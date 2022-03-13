@@ -1,0 +1,13 @@
+version: "3"
+services:
+  luisalejandroorg:
+    image: luisalejandro/luisalejandro.org:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home/luisalejandro/app
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
