@@ -3,24 +3,33 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.2.1",
+    "animejs": "^3.2.1",
+    "audiosprite": "^0.7.2",
     "classnames": "2.3.1",
     "cosmicjs": "^3.2.43",
     "date-fns": "2.28.0",
+    "howler": "^2.2.3",
     "lazysizes": "^5.2.1-rc2",
-    "next": "latest",
+    "next": "^12.1.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-datocms": "1.6.3",
     "react-dom": "^17.0.2",
     "react-imgix": "^9.0.2",
     "remark": "14.0.2",
-    "remark-html": "15.0.1"
+    "remark-html": "15.0.1",
+    "sass": "^1.49.9"
   },
   "devDependencies": {
     "autoprefixer": "10.4.2",
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
     "postcss": "8.4.5",
-    "tailwindcss": "^3.0.15"
+    "tailwindcss": "^3.0.15",
+    "typescript": "^4.6.2"
   }
 }
