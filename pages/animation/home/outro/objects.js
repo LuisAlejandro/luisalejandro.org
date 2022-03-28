@@ -1,7 +1,7 @@
-import jQuery from 'jquery';
 import anime from 'animejs';
 
-export default function () {
+
+export default function objectsOutro () {
   const timeline = anime.timeline({
     easing: 'easeOutQuart',
     autoplay: false
@@ -96,27 +96,6 @@ export default function () {
     translateY: [0, 500],
     translateX: [0, 100]
   }, 0);
-
-  jQuery('#home > .container-portfolio, ' +
-         '#home > .container-clients, ' +
-         '#home > .container-about, ' +
-         '#home > .container-contact, ' +
-         '#home > .container-donations, ' +
-         '#home > .container-easter, ' +
-         '#home > .container-blog').each(function () {
-    jQuery(this).off();
-    jQuery(this).off();
-  });
-
-  jQuery('#home > .container-portfolio, ' +
-         '#home > .container-clients, ' +
-         '#home > .container-about, ' +
-         '#home > .container-contact, ' +
-         '#home > .container-donations, ' +
-         '#home > .container-easter, ' +
-         '#home > .container-blog').promise().done(function () {
-    timeline.play();
-  });
 
   return timeline;
 };

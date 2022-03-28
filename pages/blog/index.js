@@ -1,8 +1,8 @@
-import Container from '@/components/container'
+import BlogContainer from '@/components/blog-container'
 import MoreStories from '@/components/more-stories'
 import HeroPost from '@/components/hero-post'
 import Intro from '@/components/intro'
-import Layout from '@/components/layout'
+import BlogLayout from '@/components/blog-layout'
 import { getAllPostsForHome } from '@/lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '@/lib/constants'
@@ -12,11 +12,11 @@ export default function Blog({ allPosts }) {
   const morePosts = allPosts.slice(1)
   return (
     <>
-      <Layout>
+      <BlogLayout>
         <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
-        <Container>
+        <BlogContainer>
           <Intro />
           {heroPost && (
             <HeroPost
@@ -29,8 +29,8 @@ export default function Blog({ allPosts }) {
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
+        </BlogContainer>
+      </BlogLayout>
     </>
   )
 }

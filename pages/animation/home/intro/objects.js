@@ -1,6 +1,7 @@
 import anime from 'animejs';
 
-export default function () {
+
+export default function objectsIntro() {
   const timeline = anime.timeline({
     easing: 'easeOutElastic',
     autoplay: false,

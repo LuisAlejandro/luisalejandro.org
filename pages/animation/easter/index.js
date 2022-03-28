@@ -1,8 +1,10 @@
 import anime from 'animejs';
-import jQuery from 'jquery';
-import playback from './audio';
 
-export default function () {
+import audioPlayer from './audio';
+
+
+export default function easterEgg() {
+  const playback = audioPlayer();
   const timeline = anime.timeline().add({
     targets: 'body',
     easing: 'easeOutExpo',
@@ -17,8 +19,8 @@ export default function () {
     targets: '#easter > .container-me',
     duration: 1000,
     complete: () => {
-      jQuery('#easter > .container-me, #left-foot-2, #right-foot-2').css({ 'display': 'block' });
-      jQuery('#left-foot, #right-foot').css({ 'display': 'none' });
+      document.querySelector('#easter > .container-me, #left-foot-2, #right-foot-2').style.display = 'block';
+      document.querySelector('#left-foot, #right-foot').style.display = 'none';
       const entrance = playback.play('entrance');
       playback.volume(0.2, entrance);
       const music = playback.play('music');
@@ -77,9 +79,9 @@ export default function () {
     duration: 1,
     rotate: '10deg',
     begin: () => {
-      jQuery('#shirt-front, #belly-front, #crotch-front').css({ 'display': 'none' });
-      jQuery('#shirt-side, #belly-side, #crotch-side').css({ 'display': 'block' });
-      jQuery('#easter > .container-scooter').css({ 'display': 'block' });
+      document.querySelector('#shirt-front, #belly-front, #crotch-front').style.display = 'none';
+      document.querySelector('#shirt-side, #belly-side, #crotch-side').style.display = 'block';
+      document.querySelector('#easter > .container-scooter').style.display = 'block';
     }
   }, 4000).add({
     targets: '#head-side',
@@ -87,8 +89,12 @@ export default function () {
     rotate: '0deg',
     translateX: '-40px',
     complete: () => {
-      jQuery('#neck').insertBefore('#shirt-side');
-      jQuery('#head-side').insertBefore('#shirt-side');
+      const parent = document.querySelector('#neck').parentNode;
+      const neck = document.querySelector('#neck');
+      const headSide = document.querySelector('#head-side');
+      const shirtSide = document.querySelector('#shirt-side');
+      parent.insertBefore(neck, shirtSide);
+      parent.insertBefore(headSide, shirtSide);
     }
   }, 4000).add({
     targets: '#shirt-side',
@@ -131,7 +137,10 @@ export default function () {
     // rotateZ: '20deg',
     translateX: '140px',
     begin: () => {
-      jQuery('#left-arm').insertBefore('#shirt-side');
+      const parent = document.querySelector('#left-arm').parentNode;
+      const leftArm = document.querySelector('#left-arm');
+      const shirtSide = document.querySelector('#shirt-side');
+      parent.insertBefore(leftArm, shirtSide);
     }
   }, 4000).add({
     targets: '#lower-left-arm',
@@ -199,7 +208,7 @@ export default function () {
     translateX: '-60px',
     rotate: '-30deg',
     begin: () => {
-      jQuery('#easter > .container-scooter').css({ 'z-index': 5 });
+      document.querySelector('#easter > .container-scooter').style.zIndex = '5';
     }
   }, 6500).add({
     targets: '#easter > .container-me',
@@ -235,7 +244,7 @@ export default function () {
     translateX: '-20px',
     rotate: '-25deg',
     begin: () => {
-      jQuery('#easter > .container-extinguisher').css({ 'display': 'block' });
+      document.querySelector('#easter > .container-extinguisher').style.display = 'block';
       const extinguisher = playback.play('extinguisher');
       playback.volume(0.1, extinguisher);
     }
@@ -280,7 +289,7 @@ export default function () {
     translateY: '-10px',
     rotate: '30deg',
     begin: () => {
-      jQuery('#easter > .container-extinguisher').css({ 'z-index': 4 });
+      document.querySelector('#easter > .container-extinguisher').style.zIndex = '4';
     }
   }, 10000).add({
     targets: '#cloud-small',
@@ -290,7 +299,7 @@ export default function () {
     opacity: [1, 0],
     easing: 'linear',
     begin: () => {
-      jQuery('#cloud-small').css({ 'display': 'block' });
+      document.querySelector('#cloud-small').style.display = 'block';
       const fire1 = playback.play('fire1');
       playback.volume(0.7, fire1);
     }
@@ -299,14 +308,14 @@ export default function () {
     duration: 3000,
     translateY: '20px',
     begin: () => {
-      jQuery('#easter > .container-water-drop').css({ 'display': 'block' });
+      document.querySelector('#easter > .container-water-drop').style.display = 'block';
     }
   }, 13000).add({
     targets: '#easter > .container-water-drop',
     duration: 500,
     opacity: [1, 0],
     complete: () => {
-      jQuery('#easter > .container-water-drop').css({ 'display': 'none' });
+      document.querySelector('#easter > .container-water-drop').style.display = 'none';
     }
   }, 16000).add({
     targets: '#lower-right-arm-plus-hand',
@@ -490,7 +499,7 @@ export default function () {
     rotate: ['40deg', '40deg'],
     translateX: '-=200px',
     begin: () => {
-      jQuery('#easter > .container-stream').css({ 'display': 'block' });
+      document.querySelector('#easter > .container-stream').style.display = 'block';
       const fire2 = playback.play('fire2');
       playback.volume(1, fire2);
     }
@@ -500,7 +509,7 @@ export default function () {
     scale: 0.1,
     easing: 'linear',
     complete: () => {
-      jQuery('#easter > .container-fire').css({ 'display': 'none' });
+      document.querySelector('#easter > .container-fire').style.display = 'none';
     }
   }, 21000).add({
     targets: '#easter > .container-cloud-1',
@@ -509,7 +518,7 @@ export default function () {
     easing: 'easeOutQuint',
     opacity: [0.65, 0],
     begin: () => {
-      jQuery('#easter > .container-cloud-1').css({ 'display': 'block' });
+      document.querySelector('#easter > .container-cloud-1').style.display = 'block';
     }
   }, 21000).add({
     targets: '#easter > .container-cloud-2',
@@ -518,7 +527,7 @@ export default function () {
     easing: 'easeOutQuint',
     opacity: [0.65, 0],
     begin: () => {
-      jQuery('#easter > .container-cloud-2').css({ 'display': 'block' });
+      document.querySelector('#easter > .container-cloud-2').style.display = 'block';
     }
   }, 21000).add({
     targets: '#easter > .container-scooter',
@@ -529,7 +538,7 @@ export default function () {
     rotateX: '150deg',
     rotateZ: '40deg',
     complete: () => {
-      jQuery('#easter > .container-scooter').css({ 'display': 'none' });
+      document.querySelector('#easter > .container-scooter').style.display = 'none';
     }
   }, 21000);
 
