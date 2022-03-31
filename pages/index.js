@@ -5,16 +5,16 @@ import Container from '@/components/container'
 import Layout from '@/components/layout'
 import { CMS_NAME } from '@/lib/constants'
 
-import objectsIntro from './animation/home/intro/objects';
-import objectsOutro from './animation/home/outro/objects';
-import objectsReset from './animation/home/reset/objects';
-import easterEgg from './animation/easter';
-import bgIntro from './animation/home/intro/bg';
-import aboutEvents from './animation/home/about';
-import portfolioEvents from './animation/home/portfolio';
-import contactEvents from './animation/home/contact';
-import easterEvents from './animation/home/easter';
-import blogEvents from './animation/home/blog';
+import objectsIntro from '../animation/home/intro/objects';
+import objectsOutro from '../animation/home/outro/objects';
+import objectsReset from '../animation/home/reset/objects';
+import easterEgg from '../animation/easter';
+import bgIntro from '../animation/home/intro/bg';
+import aboutEvents from '../animation/home/about';
+import portfolioEvents from '../animation/home/portfolio';
+import contactEvents from '../animation/home/contact';
+import easterEvents from '../animation/home/easter';
+import blogEvents from '../animation/home/blog';
 
 import Portfolio from '../assets/images/portfolio.svg'
 import About from '../assets/images/about.svg'
