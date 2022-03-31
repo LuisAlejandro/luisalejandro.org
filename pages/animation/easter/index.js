@@ -9,7 +9,10 @@ export default function easterEgg() {
     targets: 'body',
     easing: 'easeOutExpo',
     duration: 2000,
-    backgroundColor: '#f8d983'
+    backgroundColor: '#f8d983',
+    begin: () => {
+      document.querySelector('#easter > .container-fire').style.display = 'block';
+    }
   }, 0).add({
     targets: '#easter > .container-fire',
     easing: 'easeOutExpo',
@@ -19,8 +22,12 @@ export default function easterEgg() {
     targets: '#easter > .container-me',
     duration: 1000,
     complete: () => {
-      document.querySelector('#easter > .container-me, #left-foot-2, #right-foot-2').style.display = 'block';
-      document.querySelector('#left-foot, #right-foot').style.display = 'none';
+      document.querySelectorAll('#easter > .container-me, #left-foot-2, #right-foot-2').forEach((el) => {
+        el.style.display = 'block';
+      });
+      document.querySelectorAll('#left-foot, #right-foot').forEach((el) => {
+        el.style.display = 'none';
+      });
       const entrance = playback.play('entrance');
       playback.volume(0.2, entrance);
       const music = playback.play('music');
@@ -79,9 +86,15 @@ export default function easterEgg() {
     duration: 1,
     rotate: '10deg',
     begin: () => {
-      document.querySelector('#shirt-front, #belly-front, #crotch-front').style.display = 'none';
-      document.querySelector('#shirt-side, #belly-side, #crotch-side').style.display = 'block';
-      document.querySelector('#easter > .container-scooter').style.display = 'block';
+      document.querySelectorAll('#shirt-front, #belly-front, #crotch-front').forEach((el) => {
+        el.style.display = 'none';
+      });
+      document.querySelectorAll('#shirt-side, #belly-side, #crotch-side').forEach((el) => {
+        el.style.display = 'block';
+      });
+      document.querySelectorAll('#easter > .container-scooter').forEach((el) => {
+        el.style.display = 'block';
+      });
     }
   }, 4000).add({
     targets: '#head-side',
@@ -172,6 +185,7 @@ export default function easterEgg() {
     targets: '#easter > .container-scooter',
     duration: 2000,
     left: '54%',
+    top: '45%',
     easing: 'easeOutSine',
     begin: () => {
       const scooter = playback.play('scooter');
@@ -208,7 +222,9 @@ export default function easterEgg() {
     translateX: '-60px',
     rotate: '-30deg',
     begin: () => {
-      document.querySelector('#easter > .container-scooter').style.zIndex = '5';
+      document.querySelectorAll('#easter > .container-scooter').forEach((el) => {
+        el.style.zIndex = '5';
+      });
     }
   }, 6500).add({
     targets: '#easter > .container-me',
@@ -244,7 +260,9 @@ export default function easterEgg() {
     translateX: '-20px',
     rotate: '-25deg',
     begin: () => {
-      document.querySelector('#easter > .container-extinguisher').style.display = 'block';
+      document.querySelectorAll('#easter > .container-extinguisher').forEach((el) => {
+        el.style.display = 'block';
+      });
       const extinguisher = playback.play('extinguisher');
       playback.volume(0.1, extinguisher);
     }
@@ -266,7 +284,7 @@ export default function easterEgg() {
   }, 10000).add({
     targets: '#left-arm',
     duration: 1,
-    translateX: '-140px',
+    translateX: '140px',
     translateY: '20px',
     rotateY: '180deg',
     rotateZ: '40deg'
@@ -285,11 +303,13 @@ export default function easterEgg() {
   }, 10000).add({
     targets: '#easter > .container-extinguisher',
     duration: 2000,
-    translateX: '130px',
-    translateY: '-10px',
+    translateX: '110px',
+    translateY: '-60px',
     rotate: '30deg',
     begin: () => {
-      document.querySelector('#easter > .container-extinguisher').style.zIndex = '4';
+      document.querySelectorAll('#easter > .container-extinguisher').forEach((el) => {
+        el.style.zIndex = '4';
+      });
     }
   }, 10000).add({
     targets: '#cloud-small',
@@ -308,14 +328,18 @@ export default function easterEgg() {
     duration: 3000,
     translateY: '20px',
     begin: () => {
-      document.querySelector('#easter > .container-water-drop').style.display = 'block';
+      document.querySelectorAll('#easter > .container-water-drop').forEach((el) => {
+        el.style.display = 'block';
+      });
     }
   }, 13000).add({
     targets: '#easter > .container-water-drop',
     duration: 500,
     opacity: [1, 0],
     complete: () => {
-      document.querySelector('#easter > .container-water-drop').style.display = 'none';
+      document.querySelectorAll('#easter > .container-water-drop').forEach((el) => {
+        el.style.display = 'none';
+      });
     }
   }, 16000).add({
     targets: '#lower-right-arm-plus-hand',
@@ -334,7 +358,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '110px',
-    translateY: '0px',
+    translateY: '-50px',
     rotate: '30deg'
   }, 18600).add({
     targets: '#lower-right-arm-plus-hand',
@@ -353,7 +377,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '130px',
-    translateY: '-20px',
+    translateY: '-70px',
     rotate: '30deg'
   }, 18800).add({
     targets: '#lower-right-arm-plus-hand',
@@ -372,7 +396,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '110px',
-    translateY: '0px',
+    translateY: '-70px',
     rotate: '30deg'
   }, 19000).add({
     targets: '#lower-right-arm-plus-hand',
@@ -391,7 +415,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '130px',
-    translateY: '-20px',
+    translateY: '-90px',
     rotate: '30deg'
   }, 19200).add({
     targets: '#lower-right-arm-plus-hand',
@@ -410,7 +434,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '110px',
-    translateY: '0px',
+    translateY: '-100px',
     rotate: '30deg'
   }, 19400).add({
     targets: '#lower-right-arm-plus-hand',
@@ -429,7 +453,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '130px',
-    translateY: '-20px',
+    translateY: '-80px',
     rotate: '30deg'
   }, 19800).add({
     targets: '#lower-right-arm-plus-hand',
@@ -448,7 +472,7 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '110px',
-    translateY: '0px',
+    translateY: '-70px',
     rotate: '30deg'
   }, 20000).add({
     targets: '#lower-right-arm-plus-hand',
@@ -467,16 +491,14 @@ export default function easterEgg() {
     duration: 200,
     easing: 'linear',
     translateX: '120px',
-    translateY: '-10px',
+    translateY: '-80px',
     rotate: '30deg'
   }, 20200).add({
     targets: '#left-arm',
     duration: 600,
     easing: 'linear',
     rotateY: '+=0',
-    rotateZ: '+=30',
     translateX: '140px',
-    translateY: '-=40px'
   }, 20400).add({
     targets: '#easter > .container-me',
     duration: 3000,
@@ -499,7 +521,9 @@ export default function easterEgg() {
     rotate: ['40deg', '40deg'],
     translateX: '-=200px',
     begin: () => {
-      document.querySelector('#easter > .container-stream').style.display = 'block';
+      document.querySelectorAll('#easter > .container-stream').forEach((el) => {
+        el.style.display = 'block';
+      });
       const fire2 = playback.play('fire2');
       playback.volume(1, fire2);
     }
@@ -509,7 +533,9 @@ export default function easterEgg() {
     scale: 0.1,
     easing: 'linear',
     complete: () => {
-      document.querySelector('#easter > .container-fire').style.display = 'none';
+      document.querySelectorAll('#easter > .container-fire').forEach((el) => {
+        el.style.display = 'none';
+      });
     }
   }, 21000).add({
     targets: '#easter > .container-cloud-1',
@@ -518,7 +544,9 @@ export default function easterEgg() {
     easing: 'easeOutQuint',
     opacity: [0.65, 0],
     begin: () => {
-      document.querySelector('#easter > .container-cloud-1').style.display = 'block';
+      document.querySelectorAll('#easter > .container-cloud-1').forEach((el) => {
+        el.style.display = 'block';
+      });
     }
   }, 21000).add({
     targets: '#easter > .container-cloud-2',
@@ -527,7 +555,9 @@ export default function easterEgg() {
     easing: 'easeOutQuint',
     opacity: [0.65, 0],
     begin: () => {
-      document.querySelector('#easter > .container-cloud-2').style.display = 'block';
+      document.querySelectorAll('#easter > .container-cloud-2').forEach((el) => {
+        el.style.display = 'block';
+      });
     }
   }, 21000).add({
     targets: '#easter > .container-scooter',
@@ -538,7 +568,9 @@ export default function easterEgg() {
     rotateX: '150deg',
     rotateZ: '40deg',
     complete: () => {
-      document.querySelector('#easter > .container-scooter').style.display = 'none';
+      document.querySelectorAll('#easter > .container-scooter').forEach((el) => {
+        el.style.display = 'none';
+      });
     }
   }, 21000);
 

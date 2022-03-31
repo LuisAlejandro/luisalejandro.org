@@ -1,8 +1,18 @@
+import Head from 'next/head'
+import Theme from '@/styles/theme';
+
 import '@/styles/tailwind.css'
-import '@/styles/index.scss'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+export default function App({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <title></title>
+      </Head>
+      <Theme>
+        <Component {...pageProps} />
+      </Theme>
+    </>
+  );
 }
-
-export default MyApp

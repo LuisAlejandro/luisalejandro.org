@@ -10,10 +10,8 @@ import objectsOutro from './animation/home/outro/objects';
 import objectsReset from './animation/home/reset/objects';
 import easterEgg from './animation/easter';
 import bgIntro from './animation/home/intro/bg';
-// import clientsEvents from './animation/home/clients';
 import aboutEvents from './animation/home/about';
 import portfolioEvents from './animation/home/portfolio';
-// import donationsEvents from './animation/home/donations';
 import contactEvents from './animation/home/contact';
 import easterEvents from './animation/home/easter';
 import blogEvents from './animation/home/blog';
@@ -21,17 +19,13 @@ import blogEvents from './animation/home/blog';
 import Portfolio from '../assets/images/portfolio.svg'
 import About from '../assets/images/about.svg'
 import Blog from '../assets/images/blog.svg'
-// import Clients from '../assets/images/clients.svg'
 import Contact from '../assets/images/contact.svg'
-// import Donations from '../assets/images/donations.svg'
 import Easter from '../assets/images/easter.svg'
 import PageHome from '../assets/images/page-home.svg'
 import PagePortfolio from '../assets/images/page-portfolio.svg'
 import PageAbout from '../assets/images/page-about.svg'
 import PageBlog from '../assets/images/page-blog.svg'
-// import PageClients from '../assets/images/page-clients.svg'
 import PageContact from '../assets/images/page-contact.svg'
-// import PageDonations from '../assets/images/page-donations.svg'
 import PageEaster from '../assets/images/page-easter.svg'
 import Me from '../assets/images/me.svg'
 import Cloud from '../assets/images/cloud.svg'
@@ -57,152 +51,137 @@ export default function Index() {
   useEffect(() => {
     const bg = bgIntro();
     const intro = objectsIntro();
+    const blogCallback = () => {
+      const reset = objectsReset();
+      const blog = blogEvents();
+      reset.finished.then(() => {
+        blog.play();
+      });
+      reset.play();
+    };
+    const pageBlogCallback = () => {
+      const outro = objectsOutro();
+      outro.finished.then(() => {
+        router.push('/blog');
+      });
+      outro.play();
+    };
+    const contactCallback = () => {
+      const reset = objectsReset();
+      const contact = contactEvents();
+      reset.finished.then(() => {
+        contact.play();
+      });
+      reset.play();
+    };
+    const pageContactCallback = () => {
+      const outro = objectsOutro();
+      outro.finished.then(() => {
+        router.push('/contact');
+      });
+      outro.play();
+    };
+    const aboutCallback = () => {
+      const reset = objectsReset();
+      const about = aboutEvents();
+      reset.finished.then(() => {
+        about.play();
+      });
+      reset.play();
+    };
+    const pageAboutCallback = () => {
+      const outro = objectsOutro();
+      outro.finished.then(() => {
+        router.push('/about');
+      });
+      outro.play();
+    };
+    const easterCallback = () => {
+      const reset = objectsReset();
+      const easter = easterEvents();
+      reset.finished.then(() => {
+        easter.play();
+      });
+      reset.play();
+    };
+    const pageEasterCallback = () => {
+      const intro = objectsIntro();
+      const outro = objectsOutro();
+      const e = easterEgg();
+      e.finished.then(() => {
+        intro.play();
+      });
+      outro.finished.then(() => {
+        e.play();
+      });
+      outro.play();
+    };
+    const portfolioCallback = () => {
+      const reset = objectsReset();
+      const portfolio = portfolioEvents();
+      reset.finished.then(() => {
+        portfolio.play();
+      });
+      reset.play();
+    };
+    const pagePortfolioCallback = () => {
+      const outro = objectsOutro();
+      outro.finished.then(() => {
+        router.push('/portfolio');
+      });
+      outro.play();
+    };
   
     document.querySelector('#home > .container-blog')
-      .addEventListener('click', () => {
-        const reset = objectsReset();
-        const blog = blogEvents();
-        reset.finished.then(() => {
-          blog.play();
-        });
-        reset.play();
-      });
-
+      .addEventListener('click', blogCallback);
     document.querySelector('#home > .container-page-blog')
-      .addEventListener('click', () => {
-        const outro = objectsOutro();
-        outro.finished.then(() => {
-          router.push('/blog');
-        });
-        outro.play();
-      });
-
-    // document.querySelector('#home > .container-clients')
-    //   .addEventListener('click', () => {
-    //     const reset = objectsReset();
-    //     const clients = clientsEvents();
-    //     reset.finished.then(() => {
-    //       clients.play();
-    //     });
-    //     reset.play();
-    //   });
-
-    // document.querySelector('#home > .container-page-clients')
-    //   .addEventListener('click', () => {
-    //     const outro = objectsOutro();
-    //     outro.finished.then(() => {
-    //       router.push('/clients');
-    //     });
-    //     outro.play();
-    //   });
-
+      .addEventListener('click', pageBlogCallback);
     document.querySelector('#home > .container-contact')
-      .addEventListener('click', () => {
-        const reset = objectsReset();
-        const contact = contactEvents();
-        reset.finished.then(() => {
-          contact.play();
-        });
-        reset.play();
-      });
-
+      .addEventListener('click', contactCallback);
     document.querySelector('#home > .container-page-contact')
-      .addEventListener('click', () => {
-        const outro = objectsOutro();
-        outro.finished.then(() => {
-          router.push('/contact');
-        });
-        outro.play();
-      });
-
-    // document.querySelector('#home > .container-donations')
-    //   .addEventListener('click', () => {
-    //     const reset = objectsReset();
-    //     const donations = donationsEvents();
-    //     reset.finished.then(() => {
-    //       donations.play();
-    //     });
-    //     reset.play();
-    //   });
-
-    // document.querySelector('#home > .container-page-donations')
-    //   .addEventListener('click', () => {
-    //     const outro = objectsOutro();
-    //     outro.finished.then(() => {
-    //       router.push('/donations');
-    //     });
-    //     outro.play();
-    //   });
-
+      .addEventListener('click', pageContactCallback);
     document.querySelector('#home > .container-about')
-      .addEventListener('click', () => {
-        const reset = objectsReset();
-        const about = aboutEvents();
-        reset.finished.then(() => {
-          about.play();
-        });
-        reset.play();
-      });
-
+      .addEventListener('click', aboutCallback);
     document.querySelector('#home > .container-page-about')
-      .addEventListener('click', () => {
-        const outro = objectsOutro();
-        outro.finished.then(() => {
-          router.push('/about');
-        });
-        outro.play();
-      });
-
+      .addEventListener('click', pageAboutCallback);
     document.querySelector('#home > .container-easter')
-      .addEventListener('click', () => {
-        const reset = objectsReset();
-        const easter = easterEvents();
-        reset.finished.then(() => {
-          easter.play();
-        });
-        reset.play();
-      });
-
+      .addEventListener('click', easterCallback);
     document.querySelector('#home > .container-page-easter')
-      .addEventListener('click', () => {
-        const intro = objectsIntro();
-        const outro = objectsOutro();
-        const e = easterEgg();
-
-        e.finished.then(() => {
-          intro.play();
-        });
-
-        outro.finished.then(() => {
-          e.play();
-        });
-        outro.play();
-      });
-
+      .addEventListener('click', pageEasterCallback);
     document.querySelector('#home > .container-portfolio')
-      .addEventListener('click', () => {
-        const reset = objectsReset();
-        const portfolio = portfolioEvents();
-        reset.finished.then(() => {
-          portfolio.play();
-        });
-        reset.play();
-      });
-
+      .addEventListener('click', portfolioCallback);
     document.querySelector('#home > .container-page-portfolio')
-      .addEventListener('click', () => {
-        const outro = objectsOutro();
-        outro.finished.then(() => {
-          router.push('/portfolio');
-        });
-        outro.play();
-      });
+      .addEventListener('click', pagePortfolioCallback);
 
     bg.finished.then(() => {
       intro.play();
     });
   
     bg.play();
+
+    return () => {
+      const blogEl = document.querySelector('#home > .container-blog');
+      const pageBlogEl = document.querySelector('#home > .container-page-blog');
+      const contactEl = document.querySelector('#home > .container-contact');
+      const pageContactEl = document.querySelector('#home > .container-page-contact');
+      const aboutEl = document.querySelector('#home > .container-about');
+      const pageAboutEl = document.querySelector('#home > .container-page-about');
+      const easterEl = document.querySelector('#home > .container-easter');
+      const pageEasterEl = document.querySelector('#home > .container-page-easter');
+      const portfolioEl = document.querySelector('#home > .container-portfolio');
+      const pagePortfolioEl = document.querySelector('#home > .container-page-portfolio');
+      blogEl && blogEl.removeEventListener('click', blogCallback);
+      pageBlogEl && pageBlogEl.removeEventListener('click', pageBlogCallback);
+      contactEl && contactEl.removeEventListener('click', contactCallback);
+      pageContactEl && pageContactEl.removeEventListener('click', pageContactCallback);
+      aboutEl && aboutEl.removeEventListener('click', aboutCallback);
+      pageAboutEl && pageAboutEl.removeEventListener('click', pageAboutCallback);
+      easterEl && easterEl.removeEventListener('click', easterCallback);
+      pageEasterEl && pageEasterEl.removeEventListener('click', pageEasterCallback);
+      portfolioEl && portfolioEl.removeEventListener('click', portfolioCallback);
+      pagePortfolioEl && pagePortfolioEl.removeEventListener('click', pagePortfolioCallback);
+    };
+
   }, [router]);
 
   return (
@@ -217,17 +196,13 @@ export default function Index() {
               <Portfolio className="container-portfolio" />
               <About className="container-about" />
               <Blog className="container-blog" />
-              {/* <Clients className="container-clients" /> */}
               <Contact className="container-contact" />
-              {/* <Donations className="container-donations" /> */}
               <Easter className="container-easter" />
               <PageHome className="container-page-home" />
               <PagePortfolio className="container-page-portfolio" />
               <PageAbout className="container-page-about" />
               <PageBlog className="container-page-blog" />
-              {/* <PageClients className="container-page-clients" /> */}
               <PageContact className="container-page-contact" />
-              {/* <PageDonations className="container-page-donations" /> */}
               <PageEaster className="container-page-easter" />
             </div>
             <div id="easter">

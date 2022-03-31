@@ -1,8 +1,5 @@
 import anime from 'animejs';
 
-import objectsOutro from './outro/objects';
-import objectsReset from './reset/objects';
-
 
 export default function portfolioEvents() {
   const anim = anime.timeline({
@@ -53,20 +50,6 @@ export default function portfolioEvents() {
     translateX: [0, -15],
     rotate: [-10, -10]
   }, 0);
-
-  // const reset = objectsReset();
-  // const outro = objectsOutro();
-
-  // reset.finished.then(() => {
-  //   anim.play();
-  // });
-
-  // outro.finished.then(() => {
-  //   router.push('/portfolio');
-  // });
-
-  // document.querySelector('#home > .container-portfolio').addEventListener('click', reset.play);
-  // document.querySelector('#home > .container-page-portfolio').addEventListener('click', outro.play);
 
   return anim;
 };

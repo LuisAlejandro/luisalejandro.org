@@ -1,8 +1,5 @@
 import anime from 'animejs';
 
-import objectsOutro from './outro/objects';
-import objectsReset from './reset/objects';
-
 
 export default function contactEvents() {
   const anim = anime.timeline({
@@ -44,20 +41,6 @@ export default function contactEvents() {
     targets: '#home > .container-blog',
     translateY: [0, 5]
   }, 0);
-
-  // const reset = objectsReset();
-  // const outro = objectsOutro();
-
-  // reset.finished.then(() => {
-  //   anim.play();
-  // });
-
-  // outro.finished.then(() => {
-  //   router.push('/contact');
-  // });
-
-  // document.querySelector('#home > .container-contact').addEventListener('click', reset.play);
-  // document.querySelector('#home > .container-page-contact').addEventListener('click', outro.play);
 
   return anim;
 };
