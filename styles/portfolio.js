@@ -1,6 +1,30 @@
 import { css } from 'styled-components'
 
 const partialPortfolioStyles = css`
+#about {
+  .container-clients {
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    opacity: 0.5;
+    transform: rotateZ(30deg);
+  }
+}
+
+#projects {
+  .container-about {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    opacity: 0.5;
+    transform: rotateZ(30deg);
+  }
+}
+
 #portfolio-bg {
   .container-portfolio {
     height: 500px;

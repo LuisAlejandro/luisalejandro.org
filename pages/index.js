@@ -1,39 +1,39 @@
 import { useEffect } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Container from '@/components/container'
-import Layout from '@/components/layout'
-import { CMS_NAME } from '@/lib/constants'
 
-import objectsIntro from '../animation/home/intro/objects';
-import objectsOutro from '../animation/home/outro/objects';
-import objectsReset from '../animation/home/reset/objects';
-import easterEgg from '../animation/easter';
-import bgIntro from '../animation/home/intro/bg';
-import aboutEvents from '../animation/home/about';
-import portfolioEvents from '../animation/home/portfolio';
-import contactEvents from '../animation/home/contact';
-import easterEvents from '../animation/home/easter';
-import blogEvents from '../animation/home/blog';
+import Container from 'components/Home/container'
+import Layout from 'components/Home/layout'
+import { CMS_NAME } from 'lib/constants'
+import objectsIntro from 'animation/home/intro/objects';
+import objectsOutro from 'animation/home/outro/objects';
+import objectsReset from 'animation/home/reset/objects';
+import easterEgg from 'animation/easter';
+import bgIntro from 'animation/home/intro/bg';
+import aboutEvents from 'animation/home/about';
+import portfolioEvents from 'animation/home/portfolio';
+import contactEvents from 'animation/home/contact';
+import easterEvents from 'animation/home/easter';
+import blogEvents from 'animation/home/blog';
 
-import Portfolio from '../assets/images/portfolio.svg'
-import About from '../assets/images/about.svg'
-import Blog from '../assets/images/blog.svg'
-import Contact from '../assets/images/contact.svg'
-import Easter from '../assets/images/easter.svg'
-import PageHome from '../assets/images/page-home.svg'
-import PagePortfolio from '../assets/images/page-portfolio.svg'
-import PageAbout from '../assets/images/page-about.svg'
-import PageBlog from '../assets/images/page-blog.svg'
-import PageContact from '../assets/images/page-contact.svg'
-import PageEaster from '../assets/images/page-easter.svg'
-import Me from '../assets/images/me.svg'
-import Cloud from '../assets/images/cloud.svg'
-import Extinguisher from '../assets/images/extinguisher.svg'
-import Fire from '../assets/images/fire.svg'
-import Scooter from '../assets/images/scooter.svg'
-import Stream from '../assets/images/stream.svg'
-import WaterDrop from '../assets/images/water-drop.svg'
+import Portfolio from 'assets/images/portfolio.svg'
+import About from 'assets/images/about.svg'
+import Blog from 'assets/images/blog.svg'
+import Contact from 'assets/images/contact.svg'
+import Easter from 'assets/images/easter.svg'
+import PageHome from 'assets/images/page-home.svg'
+import PagePortfolio from 'assets/images/page-portfolio.svg'
+import PageAbout from 'assets/images/page-about.svg'
+import PageBlog from 'assets/images/page-blog.svg'
+import PageContact from 'assets/images/page-contact.svg'
+import PageEaster from 'assets/images/page-easter.svg'
+import Me from 'assets/images/me.svg'
+import Cloud from 'assets/images/cloud.svg'
+import Extinguisher from 'assets/images/extinguisher.svg'
+import Fire from 'assets/images/fire.svg'
+import Scooter from 'assets/images/scooter.svg'
+import Stream from 'assets/images/stream.svg'
+import WaterDrop from 'assets/images/water-drop.svg'
 
 
 export default function Index() {

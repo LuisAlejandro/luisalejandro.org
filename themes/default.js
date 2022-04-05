@@ -1,15 +1,15 @@
 const themeConfig = {
   // Temp fonts
   fonts: {
-    title: "Open Sans, sans-serif",
-    main: "Open Sans, sans-serif"
+    title: "Poppins, sans-serif",
+    main: "Roboto, sans-serif"
   },
   // Colors for layout
   colors: {
     primary1: "#222222",
     background1: "#f8d983",
     accent1: "hsl(34.9,98.6%,72.9%)",
-    accent2: "#f8e5b0",
+    accent2: "rgba(248, 229, 176, 0.66)",
     button: "hsl(205.1,100%,36.1%)",
     background2: "hsl(232.7,27.3%,23.7%)",
     link: "#18C5DD",

@@ -1,7 +1,7 @@
 import BlogContainer from '@/components/blog-container'
 import MoreStories from '@/components/more-stories'
 import HeroPost from '@/components/hero-post'
-import Intro from '@/components/intro'
+import Intro from '@/components/Blog/intro'
 import BlogLayout from '@/components/blog-layout'
 import { getAllPostsForHome } from '@/lib/api'
 import Head from 'next/head'
