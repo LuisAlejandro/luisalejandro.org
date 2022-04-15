@@ -11,6 +11,9 @@ import {
 } from "react-icons/si";
 
 
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
+
 export const Stars = [
   { number: 13, text: 'Years of experience' },
   { number: 30, text: 'Open Source Projects' },

@@ -3,14 +3,12 @@ import styled from 'styled-components'
 
 export const CarouselContainer = styled.ul`
   max-width: 1040px;
-  // background: #0F1624;
   padding: 0rem;
   list-style:none;
   display: flex;
   justify-content: space-between; 
-  /* overflow-x: hidden; */
-
   margin-left: 32px;
+
   &:first-of-type{
     margin-left: 0px;
   }
@@ -19,9 +17,9 @@ export const CarouselContainer = styled.ul`
 
   //remove scrollbar
   scrollbar-width: none;  
-   &::-webkit-scrollbar {
-     display: none;
-   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media ${props => props.theme.breakpoints.sm} {
     overflow-x: scroll;
@@ -30,12 +28,6 @@ export const CarouselContainer = styled.ul`
     touch-action: pan-x;
     justify-content: initial;
     margin-bottom: 8px;
-  }
-`
-export const CarouselMobileScrollNode = styled.div`
-  @media ${props => props.theme.breakpoints.sm} {
-    display: flex;
-    min-width: ${({ final }) => final ? `120%;` : `min-content`}
   }
 `
 
@@ -87,17 +79,6 @@ export const CarouselItemTitle = styled.h4`
     line-height: 28px;
   }
 `
-export const CarouselItemImg = styled.svg`
-  margin-left: 21px;
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
-  width: 100%;
-
-  @media ${props => props.theme.breakpoints.sm} {
-    -webkit-mask-image: none;
-    margin-left: 16px;
-    overflow: visible;
-  }
-`
 
 export const CarouselItemText = styled.p`
   font-size: 14px;
@@ -116,39 +97,4 @@ export const CarouselItemText = styled.p`
     line-height: 18px;
     padding-right: 0;
   }
-`
-export const CarouselButtons = styled.div`
-  width: 288px;
-
-  display: none;
-  visibility: hidden;
-
-  @media ${props => props.theme.breakpoints.sm} {
-    display: flex;
-    visibility: visible;
-    margin-bottom: 48px;
-  }
-`
-
-export const CarouselButton = styled.button`
-  box-sizing: border-box;
-  background: none;
-  padding: 4px;
-  border: none;
-  cursor: pointer;
-  margin-right: 4px;
-  opacity: ${(props) => props.active === props.index ? `1` : `.33`};
-  transform: ${(props) => props.active === props.index ? `scale(1.6)` : `scale(1)`};
-
-  &:focus {
-    outline: none;
-  }
-`
-
-export const CarouselButtonDot = styled.div`
-  background-color: white;
-  border-radius: 10px;
-  margin: auto;
-  width: 3px;
-  height: 3px;
 `

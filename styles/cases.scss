@@ -1,11 +1,144 @@
 #cases {
+
+  .page-hero {
+    background-size: cover;
+    position: relative;
+  }
+
   .cases-content {
     width: 100%;
     font-size: 18px;
     font-family: Roboto, sans-serif;
-    min-height: 3000px;
   }
-  
+
+  #why {
+
+    .container-me {
+      height: 550px;
+      width: 500px;
+      z-index: 2;
+
+      #right-foot-1,
+      #right-foot,
+      #right-foot-3,
+      #left-foot-1,
+      #left-foot,
+      #left-foot-3,
+      #left-hand-trick,
+      #shirt-side,
+      #crotch-side,
+      #head-front {
+        display: none;
+      }
+
+      #head-side {
+        transform-origin: 230px 150px;
+      }
+
+      #head-front {
+        transform-origin: 250px 140px;
+      }
+
+      #torso-plus-head-arms {
+        transform-origin: center center;
+      }
+
+      #right-arm {
+        transform-origin: 120px 240px;
+      }
+
+      #lower-right-arm-plus-hand {
+        transform-origin: 120px 380px;
+      }
+
+      #right-hand {
+        transform-origin: 150px 480px;
+      }
+
+      #left-arm {
+        transform-origin: 370px 240px;
+      }
+
+      #lower-left-arm-plus-hand {
+        transform-origin: 370px 380px;
+      }
+
+      #left-hand {
+        transform-origin: 350px 480px;
+      }
+
+      #left-leg {
+        transform-origin: 300px 500px;
+      }
+
+      #lower-left-leg-plus-foot {
+        transform-origin: 300px 650px;
+      }
+
+      #right-leg {
+        transform-origin: 200px 500px;
+      }
+
+      #lower-right-leg-plus-foot {
+        transform-origin: 200px 650px;
+      }
+
+      #right-foot,
+      #right-foot-1,
+      #right-foot-2,
+      #right-foot-3 {
+        transform-origin: 200px 850px;
+      }
+
+      #left-foot,
+      #left-foot-1,
+      #left-foot-2,
+      #left-foot-3 {
+        transform-origin: 300px 850px;
+      }
+
+      #full-body {
+        transform-origin: 300px 850px;
+      }
+
+      #torso-plus-head-arms {
+        transform: rotate(40deg);
+      }
+
+      #left-arm {
+        transform: rotate(5deg);
+      }
+
+      #lower-left-arm-plus-hand {
+        transform: rotate(60deg);
+      }
+
+      #left-hand {
+        transform: rotate(-30deg);
+      }
+
+      #right-arm {
+        transform: rotate(20deg);
+      }
+
+      #lower-right-arm-plus-hand {
+        transform: rotate(-30deg);
+      }
+
+      #left-leg {
+        transform: rotate(-40deg);
+      }
+
+      #lower-left-leg-plus-foot {
+        transform: rotate(30deg);
+      }
+
+      #head-side {
+        transform: rotate(-30deg);
+      }
+    }
+  }
+
   /* Text with image, side by side */
   
   .toutCopy {
@@ -381,15 +514,6 @@
   .slick-dots li.slick-active {
     border-top: 5px solid #333;
   }
-  
-  /* DUMMY PAGE HERO */
-  .page-hero {
-    background-image: url(https://source.unsplash.com/user/erondu/1600x900);
-    background-size: cover;
-    background-color: #444444;
-    position: relative;
-  }
-  
   
   @media only screen and (min-width: 640px) {
     .toutContent {

@@ -7,7 +7,7 @@ const partialPortfolioStyles = css`
     width: 250px;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: calc(((100% - 1040px)/2) - 20px);
     opacity: 0.5;
     transform: rotateZ(30deg);
   }
@@ -19,13 +19,25 @@ const partialPortfolioStyles = css`
     width: 300px;
     position: absolute;
     top: 0;
-    right: 10px;
+    right: calc(((100% - 1040px)/2) - 40px);
     opacity: 0.5;
     transform: rotateZ(30deg);
   }
 }
 
+#skills {
+  margin-top: 60px;
+}
+
+#about {
+  padding-top: 100px;
+}
+
 #portfolio-bg {
+  position: relative;
+  top: -50px;
+  right: -50px;
+
   .container-portfolio {
     height: 500px;
     width: 500px;

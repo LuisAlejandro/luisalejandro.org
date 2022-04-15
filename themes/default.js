@@ -1,6 +1,7 @@
 const themeConfig = {
   // Temp fonts
   fonts: {
+    display: "Vollkorn, serif",
     title: "Poppins, sans-serif",
     main: "Roboto, sans-serif"
   },

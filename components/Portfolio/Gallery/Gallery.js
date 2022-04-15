@@ -14,7 +14,7 @@ import {
   Figure,
   GalleryCardItem
 } from './GalleryStyles';
-import { Section, SectionDivider, SectionTitle, SectionText } from 'styles/GlobalComponents';
+import { Section, SectionTitle, SectionText } from 'styles/GlobalComponents';
 import { GalleryList } from 'constants/constants';
 
 
@@ -68,7 +68,6 @@ const Gallery = () => {
           </Masonry>
         </GalleryWrapper>
       )}
-      <SectionDivider />
     </Section>
   );
 };

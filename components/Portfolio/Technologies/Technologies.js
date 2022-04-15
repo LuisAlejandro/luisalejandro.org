@@ -1,11 +1,10 @@
-import { Section, SectionDivider, SectionText, SectionTitle } from "styles/GlobalComponents";
+import { Section, SectionText, SectionTitle } from "styles/GlobalComponents";
 import { Skills } from 'constants/constants';
 import { List, ListContainer, ListItem, ListParagraph, ListTitle } from "./TechnologiesStyles";
 
 
 const Technologies = () => (
   <Section id="skills">
-    <SectionDivider divider />
     <SectionTitle>On my toolbox</SectionTitle>
     <SectionText>
       These are my preferred technologies when it comes to implementing your solutions.
@@ -25,7 +24,6 @@ const Technologies = () => (
         </ListItem>
       ))}
     </List>
-    <SectionDivider colorAlt />
   </Section>
 );
 

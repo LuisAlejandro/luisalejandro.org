@@ -1,15 +1,17 @@
-import BlogContainer from '@/components/blog-container'
-import MoreStories from '@/components/more-stories'
-import HeroPost from '@/components/hero-post'
-import Intro from '@/components/Blog/intro'
-import BlogLayout from '@/components/blog-layout'
-import { getAllPostsForHome } from '@/lib/api'
 import Head from 'next/head'
+
+import Intro from '@/components/Blog/intro'
+import BlogContainer from '@/components/Blog/blog-container'
+import MoreStories from '@/components/Blog/more-stories'
+import HeroPost from '@/components/Blog/hero-post'
+import BlogLayout from '@/components/Blog/blog-layout'
+import { getAllPostsForHome } from '@/lib/api'
 import { CMS_NAME } from '@/lib/constants'
 
+
 export default function Blog({ allPosts }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+  const heroPost = allPosts[0];
+  const morePosts = allPosts.slice(1);
   return (
     <>
       <BlogLayout>

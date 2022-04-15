@@ -2,11 +2,11 @@ import styled from "styled-components"
 
 
 export const FooterWrapper = styled.section`
-  width: calc(100vw - 96px);
-  max-width: 1040px;
-  padding: 10rem 48px 40px;
-  margin: 10rem auto 0;
+  width: calc(100% - 12rem);
+  margin: 0 auto;
+  padding: 10rem 1rem 40px;
   box-sizing: content-box;
+  background: #333;
 
   @media ${props => props.theme.breakpoints.sm} {
     padding: 0 16px 48px;
@@ -17,14 +17,14 @@ export const FooterWrapper = styled.section`
 export const LinkItem = styled.a`
   font-size: 18px;
   line-height: 30px;
-  color: rgba(0, 0, 0, 0.66);
+  color: rgba(255, 255, 255, 0.66);
   margin-bottom: 16px;
   transition: .3s ease;
   position: relative;
   left: 0;
 
   &:hover {
-    color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
     left: 6px;
   }
 
@@ -44,7 +44,6 @@ export const LinkItem = styled.a`
 `
 
 export const SocialIconsContainer = styled.div`
-  max-width: 1040px;
   display: flex;
   justify-content: space-between;
 
@@ -80,7 +79,7 @@ export const CompanyContainer = styled.div`
 `
 
 export const Slogan = styled.p`
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.5);
   min-width: 280px;
   letter-spacing: 0.02em;
   font-size: 18px;
@@ -110,8 +109,23 @@ export const SocialContainer = styled.div`
   }
 `
 
+export const SocialIcons = styled.a`
+  transition: 0.3s ease;
+  color: #aaa;
+  border-radius: 50px;
+  padding: 8px;
+  margin: 0 8px;
+
+  &:hover {
+    color: #fff;
+    background-color: #555;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+`
+
 export const LinkList = styled.ul`
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  // border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: grid;
   grid-template-columns: repeat(3, minmax(85px, 220px));
   gap: 40px;
@@ -145,7 +159,7 @@ export const LinkTitle = styled.h4`
   font-size: 12px;
   line-height: 24px;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 16px;
 
   @media ${props => props.theme.breakpoints.sm} {

@@ -5,6 +5,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: "Vollkorn, serif",
+        title: "Poppins, sans-serif",
+        main: "Roboto, sans-serif"
+      },
       colors: {
         'accent-1': '#FAFAFA',
         'accent-2': '#EAEAEA',
@@ -26,6 +31,16 @@ module.exports = {
         '6xl': '2.75rem',
         '7xl': '4.5rem',
         '8xl': '6.25rem',
+        '9xl': '8.25rem',
+        '10xl': '10.25rem',
+        '11xl': '12.25rem',
+        '12xl': '14.25rem',
+        '13xl': '16.25rem',
+        '14xl': '18.25rem',
+        '15xl': '20.25rem',
+        '16xl': '22.25rem',
+        '17xl': '24.25rem',
+        '18xl': '26.25rem',
       },
       boxShadow: {
         small: '0 5px 10px rgba(0, 0, 0, 0.12)',

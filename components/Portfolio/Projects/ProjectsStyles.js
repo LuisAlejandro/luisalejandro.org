@@ -35,16 +35,6 @@ export const BlogCard = styled.div`
   }
 `;
 
-export const TitleContent = styled.div`
-  text-align: center;
-  z-index: 20;
-  width: 100%;
-  margin-top: 4rem;
-  margin-bottom: 0.7em;
-  color: #222222;
-  font-size: 1.8rem;
-`;
-
 export const HeaderThree = styled.h3`
   font-weight: 500;
   letter-spacing: 2px;
@@ -81,27 +71,6 @@ export const CardInfo = styled.p`
   margin-top: 2rem;
   @media ${(props) => props.theme.breakpoints.sm} {
     padding:.3rem
-  }
-`;
-
-export const UtilityList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-  margin: 2.5rem 0;
-`;
-
-export const ExternalLinks = styled.a`
-  color:#d4c0c0;
-  font-size: 1.6rem;
-  padding:1rem 1.5rem;
-  background: #6b3030;
-  border-radius: 15px;
-  transition: 0.5s;
-  &:hover{
-    background: #801414;
-
   }
 `;
 

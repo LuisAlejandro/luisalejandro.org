@@ -41,11 +41,13 @@ export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    const todayDate = new Date().toLocaleString('en');
-    const texts = document.getElementsByClassName('deployment-date');
-    for (var i = 0; i < texts.length; i++) {
-      texts[i].innerHTML = 'Deployment date: ' + todayDate;
-    }
+    window.addEventListener("load", () => {
+      const todayDate = new Date().toLocaleString('en');
+      const texts = document.getElementsByClassName('deployment-date');
+      for (var i = 0; i < texts.length; i++) {
+        texts[i].innerHTML = 'Deployment date: ' + todayDate;
+      }
+    });
   }, []);
 
   useEffect(() => {
