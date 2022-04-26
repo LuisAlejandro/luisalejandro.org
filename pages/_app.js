@@ -14,7 +14,6 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title></title>
       </Head>
       {GA_MEASUREMENT_ID && (
         <>
