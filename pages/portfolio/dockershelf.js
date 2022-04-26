@@ -1,6 +1,7 @@
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
 
+import { CaseStudiesStyles } from 'styles/globals';
 import HeroIntro from "@/components/CaseStudies/HeroIntro";
 import Why from "@/components/CaseStudies/Why";
 import Challenge from "@/components/CaseStudies/Challenge";
@@ -14,6 +15,7 @@ import { Layout } from '@/components/CaseStudies/Layout';
 const Dockershelf = () => {
   return (
     <Layout>
+      <CaseStudiesStyles />
       <div id="cases" style={{ background: '#333' }}>
         <Header bg="#303030" />
         <Controller>

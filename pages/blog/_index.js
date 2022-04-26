@@ -16,7 +16,6 @@ export default function Blog({ allPosts }) {
     <>
       <BlogLayout>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
         <BlogContainer>
           <Intro />

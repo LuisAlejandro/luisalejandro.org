@@ -1,3 +1,4 @@
+import { PortfolioStyles } from 'styles/globals';
 import Acomplishments from '@/components/Portfolio/Acomplishments/Acomplishments';
 import Contact from '@/components/Portfolio/Contact/Contact';
 import BackgroundAnimation from '@/components/Portfolio/BackgroundAnimation/BackgroundAnimation';
@@ -13,6 +14,7 @@ import { Section } from '@/styles/GlobalComponents';
 const Portfolio = () => {
   return (
     <Layout>
+      <PortfolioStyles />
       <Section grid overflowVisible>
         <Hero />
         <BackgroundAnimation />

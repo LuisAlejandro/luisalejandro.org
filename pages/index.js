@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 import Container from 'components/Home/container'
 import Layout from 'components/Home/layout'
@@ -15,6 +14,7 @@ import portfolioEvents from 'animation/home/portfolio';
 import contactEvents from 'animation/home/contact';
 import easterEvents from 'animation/home/easter';
 import blogEvents from 'animation/home/blog';
+import { HomeStyles } from 'styles/globals';
 
 import Portfolio from 'assets/images/portfolio.svg'
 import About from 'assets/images/about.svg'
@@ -189,9 +189,7 @@ export default function Index() {
   return (
     <>
       <Layout>
-        <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
-        </Head>
+        <HomeStyles />
         <Container>
           <div id="app">
             <div id="home">
