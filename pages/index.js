@@ -63,9 +63,9 @@ export default function Index() {
     };
     const pageBlogCallback = () => {
       const outro = objectsOutro();
-      outro.finished.then(() => {
-        router.push('/blog');
-      });
+      // outro.finished.then(() => {
+      //   router.push('/blog');
+      // });
       outro.play();
     };
     const contactCallback = () => {
@@ -79,7 +79,7 @@ export default function Index() {
     const pageContactCallback = () => {
       const outro = objectsOutro();
       outro.finished.then(() => {
-        router.push('/contact');
+        router.push('/portfolio#contact');
       });
       outro.play();
     };
@@ -94,7 +94,7 @@ export default function Index() {
     const pageAboutCallback = () => {
       const outro = objectsOutro();
       outro.finished.then(() => {
-        router.push('/about');
+        router.push('/portfolio#about');
       });
       outro.play();
     };

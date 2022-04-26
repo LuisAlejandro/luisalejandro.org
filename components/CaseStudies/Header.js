@@ -10,11 +10,11 @@ import {
 import { Container, Div1, Div2, Div3, NavLink, SocialIcons } from './HeaderStyles';
 
 
-const Header = () => (
+const Header = (props) => (
   <>
-    <Container>
+    <Container style={{ background: props.bg }}>
       <Div1>
-        <Link href="/">
+        <Link href="/portfolio">
           <a style={{ display: 'flex', alignItems: 'center', color: "white" }}>
             <Image alt="" src="/images/logomin-white.svg" height={60} width={60} />
           </a>
@@ -38,7 +38,7 @@ const Header = () => (
       </Div3>
     </Container>
     <svg viewBox="0 0 1920 100">
-      <path fill="#292929" d="M960,50l960-50H0L960,50z" />
+      <path fill={props.bg} d="M960,50l960-50H0L960,50z" />
     </svg>
   </>
 );

@@ -9,7 +9,6 @@ export const Container = styled.div`
   grid-template-rows: 1fr;
   grid-column-gap: 2rem;
   padding: 2rem 6rem;
-  background: #292929;
 
   @media ${(props) => props.theme.breakpoints.sm} {
     display: grid;

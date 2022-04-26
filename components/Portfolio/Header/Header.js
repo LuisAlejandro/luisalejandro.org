@@ -25,19 +25,19 @@ const Header = () => (
           <NavLink>Skills</NavLink>
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link passHref href="#projects">
           <NavLink>Projects</NavLink>
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link passHref href="#about">
           <NavLink>About</NavLink>
         </Link>
       </li>
       <li>
-        <Link passHref href="/blog">
-          <NavLink>Blog</NavLink>
+        <Link passHref href="#contact">
+          <NavLink>Contact</NavLink>
         </Link>
       </li>
     </Div2>

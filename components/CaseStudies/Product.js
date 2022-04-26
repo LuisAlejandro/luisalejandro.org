@@ -1,11 +1,12 @@
 import { Scene } from "react-scrollmagic";
-import { Tween } from "react-gsap";
+import { Timeline, Tween } from "react-gsap";
 import styled from 'styled-components';
 
 
 const PinContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  margin-bottom: 20rem;
   overflow: hidden;
   -webkit-perspective: 1000;
           perspective: 1000;
@@ -92,28 +93,46 @@ const Product = ({ Title, Content }) => (
             </Tween>
           )}
         </Scene>
-
-        <Scene triggerElement="#product" duration="500%" triggerHook="onLeave" pin>
-          <PinContainer>
-            <SlideContainer>
-              <Panel>
-                <b>ONE</b>
-              </Panel>
-              <Panel>
-                <b>TWO</b>
-              </Panel>
-              <Panel>
-                <b>THREE</b>
-              </Panel>
-              <Panel>
-                <b>FOUR</b>
-              </Panel>
-            </SlideContainer>
-          </PinContainer>
-        </Scene>
-
       </div>
     </div>
+    <div id="product-slide">
+    </div>
+    
+    <Scene triggerElement="#product-slide" duration="500%" triggerHook="0" pin>
+          {progress => (
+            <PinContainer>
+              <Timeline
+                target={(
+                  <SlideContainer>
+                    <Panel className="bg-white">
+                      <b>ONE</b>
+                    </Panel>
+                    <Panel className="bg-green-800">
+                      <b>TWO</b>
+                    </Panel>
+                    <Panel className="bg-red-800">
+                      <b>THREE</b>
+                    </Panel>
+                    <Panel className="bg-blue-800">
+                      <b>FOUR</b>
+                    </Panel>
+                  </SlideContainer>
+                )}
+                totalProgress={progress}
+                paused>
+                <Tween to={{ z: -150}} />
+                <Tween to={{ x: "-25%"}} />
+                <Tween to={{ z: 0}} />
+                <Tween to={{ z: -150}} />
+                <Tween to={{ x: "-50%"}} />
+                <Tween to={{ z: 0}} />
+                <Tween to={{ z: -150}} />
+                <Tween to={{ x: "-75%"}} />
+                <Tween to={{ z: 0}} />
+              </Timeline>
+            </PinContainer>
+          )}
+        </Scene>
   </div>
 );
 

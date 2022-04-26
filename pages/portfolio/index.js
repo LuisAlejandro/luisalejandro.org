@@ -18,8 +18,8 @@ const Portfolio = () => {
         <BackgroundAnimation />
       </Section>
       <Technologies />
-      <Projects />
-      <Gallery />
+      {/* <Projects />
+      <Gallery /> */}
       <Timeline />
       <Acomplishments />
       <Contact />

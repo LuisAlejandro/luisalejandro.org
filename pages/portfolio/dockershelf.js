@@ -15,7 +15,7 @@ const Dockershelf = () => {
   return (
     <Layout>
       <div id="cases" style={{ background: '#333' }}>
-        <Header />
+        <Header bg="#303030" />
         <Controller>
           <div className="cases-content">
             <HeroIntro
@@ -41,8 +41,6 @@ const Dockershelf = () => {
                 "Odoo images",
               ]}
             />
-
-
             <Scene triggerElement="#why" duration="80%" triggerHook="1">
               {progress => (
                 <Tween
@@ -54,7 +52,7 @@ const Dockershelf = () => {
                   totalProgress={progress}
                   paused>
                   <div className="w-full page-hero" style={{
-                    backgroundImage: 'url(/images/hero-dockershelf2.jpg)'
+                    backgroundImage: 'url(/images/hero-dockershelf.jpg)'
                   }}>
                     <svg viewBox="0 0 1920 100">
                       <path fill="#333" d="M960,50l960-50H0L960,50z" />
@@ -67,7 +65,6 @@ const Dockershelf = () => {
                 </Tween>
               )}
             </Scene>
-
             <Why
               Title={() => (
                 "The Motivation"
