@@ -1,5 +1,18 @@
 {
+  "name": "luisalejandro.org",
+  "version": "0.1.0",
+  "description": "Personal website",
+  "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
+  "license": "GPL-3.0-or-later",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisAlejandro/luisalejandro.org.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuisAlejandro/luisalejandro.org/issues"
+  },
+  "homepage": "https://github.com/LuisAlejandro/luisalejandro.org#readme",
   "scripts": {
     "dev": "next",
     "build": "next build",

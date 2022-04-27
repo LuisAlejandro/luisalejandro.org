@@ -1,3 +1,6 @@
+
+Current version: 0.1.0
+
 ## Made with 💖 and 🍔
 
 ![Banner](https://raw.githubusercontent.com/LuisAlejandro/luisalejandro.org/develop/assets/images/author-banner.svg)
