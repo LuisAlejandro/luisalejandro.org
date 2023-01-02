@@ -1,6 +1,6 @@
 version: "3"
 services:
-  luisalejandroorg:
+  app:
     image: luisalejandro/luisalejandro.org:latest
     build:
       context: .

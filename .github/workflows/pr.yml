@@ -1,0 +1,78 @@
+name: Pull Request
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+      - reopened
+    branches:
+      - develop
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Restoring node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: 'node_modules'
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Set environment variable
+        run: |
+          echo "UID=$(id -u)" >> $GITHUB_ENV
+          echo "GID=$(id -g)" >> $GITHUB_ENV
+          touch .env
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Building docker image
+        uses: docker/build-push-action@v3
+        with:
+            tags: luisalejandro/luisalejandro.org:latest
+            file: Dockerfile
+            context: .
+            build-args: |
+                UID=${{ env.UID }}
+                GID=${{ env.GID }}
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
+            push: false
+            load: true
+        
+      - name: Building project
+        run: |
+          make dependencies build_production
+
+  approve:
+    name: Approve pull request
+    runs-on: ubuntu-22.04
+    needs: finish
+    steps:
+      - name: Approve
+        uses: hmarr/auto-approve-action@v3.1.0
+        with:
+          github-token: "${{ github.actor == 'LuisAlejandro' && secrets.GITHUB_TOKEN || secrets.REPO_PERSONAL_ACCESS_TOKEN }}"
+
+  merge:
+    name: Merge pull request
+    runs-on: ubuntu-22.04
+    needs: approve
+    steps:
+      - name: Merge
+        uses: actions/github-script@v6
+        with:
+          github-token: "${{ github.actor == 'LuisAlejandro' && secrets.GITHUB_TOKEN || secrets.REPO_PERSONAL_ACCESS_TOKEN }}"
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number
+            })
