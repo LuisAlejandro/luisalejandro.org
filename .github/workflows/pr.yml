@@ -54,7 +54,7 @@ jobs:
   approve:
     name: Approve pull request
     runs-on: ubuntu-22.04
-    needs: finish
+    needs: build
     steps:
       - name: Approve
         uses: hmarr/auto-approve-action@v3.1.0
