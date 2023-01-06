@@ -22,7 +22,7 @@
     "build:lambda": "netlify-lambda build lambda"
   },
   "dependencies": {
-    "@svgr/webpack": "^6.2.1",
+    "@svgr/webpack": "^6.5.1",
     "animejs": "^3.2.1",
     "audiosprite": "^0.7.2",
     "classnames": "^2.3.1",
