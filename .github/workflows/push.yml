@@ -20,11 +20,12 @@ jobs:
           path: 'node_modules'
           key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock') }}
 
-      - name: Set environment variable
+      - name: Set environment variables
         run: |
           echo "UID=$(id -u)" >> $GITHUB_ENV
           echo "GID=$(id -g)" >> $GITHUB_ENV
-          touch .env
+          echo "COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}" >> .env
+          echo "COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}" >> .env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
