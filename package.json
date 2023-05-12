@@ -29,7 +29,7 @@
     "cosmicjs": "^4.3.1",
     "date-fns": "2.29.3",
     "encoding": "^0.1.13",
-    "framer-motion": "^10.2.3",
+    "framer-motion": "^10.12.10",
     "gsap": "^3.11.4",
     "howler": "^2.2.3",
     "lazysizes": "^5.2.1-rc2",
