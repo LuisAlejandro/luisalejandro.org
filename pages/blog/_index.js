@@ -19,7 +19,7 @@ export default function Blog({ allPosts }) {
         </Head>
         <BlogContainer>
           <Intro />
-          {heroPost && (
+          {/* {heroPost && (
             <HeroPost
               title={heroPost.title}
               coverImage={heroPost.metadata.cover_image}
@@ -28,7 +28,7 @@ export default function Blog({ allPosts }) {
               slug={heroPost.slug}
               excerpt={heroPost.metadata.excerpt}
             />
-          )}
+          )} */}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </BlogContainer>
       </BlogLayout>

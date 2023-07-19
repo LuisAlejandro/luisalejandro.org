@@ -470,10 +470,11 @@ export const ProjectList = [
 
 export const TimeLineData = [
   { year: 2009, text: 'Started working in a government agency (Venezuela) as a Linux distribution developer.', },
-  { year: 2016, text: 'Worked with Vauxoo ERP solutions (Mexico) as a Python developer.', },
+  // { year: 2016, text: 'Worked with Vauxoo ERP solutions (Mexico) as a Python developer.', },
   { year: 2017, text: 'Worked with Guayoyo cybersecurity experts (Uruguay) as a Python developer.', },
   { year: 2018, text: 'Worked with Leadbox automotive dealership websites (Canada) as a Fullstack developer.', },
   { year: 2019, text: 'Founded Collage Labs mobile & web solutions (Venezuela).', },
   { year: 2019, text: 'Worked with Webuzz digital marketing (Spain) as Wordpress developer.', },
   { year: 2020, text: 'Worked with Soleit startup (Chile) as Ionic/React Developer.', },
+  { year: 2022, text: 'Worked with Wheel The World startup (Chile) as a Senior Sofware Engineer.', },
 ];
