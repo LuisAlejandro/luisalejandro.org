@@ -1,6 +1,106 @@
 # Changelog
 
 
+## 0.1.1 (2023-07-19)
+
+### Changed
+
+* Updating resume. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+* Updating portfolio. [Luis Alejandro Martínez Faneyth]
+
+* Bump eslint-config-next from 13.2.3 to 13.2.4. [dependabot[bot]]
+
+* Bump react-icons from 4.7.1 to 4.8.0. [dependabot[bot]]
+
+* Bump framer-motion from 6.5.1 to 10.2.3. [dependabot[bot]]
+
+* Bump autoprefixer from 10.4.13 to 10.4.14. [dependabot[bot]]
+
+* Bump eslint-config-next from 13.2.0 to 13.2.3. [dependabot[bot]]
+
+* Bump styled-components from 5.3.6 to 5.3.8. [dependabot[bot]]
+
+* Bump eslint from 8.34.0 to 8.35.0. [dependabot[bot]]
+
+* Bump sass from 1.58.2 to 1.58.3. [dependabot[bot]]
+
+* Bump eslint-config-next from 13.1.6 to 13.2.0. [dependabot[bot]]
+
+* Bump sass from 1.58.0 to 1.58.2. [dependabot[bot]]
+
+* Bump netlify-lambda from 2.0.15 to 2.0.16. [dependabot[bot]]
+
+* Bump eslint from 8.33.0 to 8.34.0. [dependabot[bot]]
+
+* Bump tailwindcss from 3.2.6 to 3.2.7. [dependabot[bot]]
+
+* Bump remark-html from 15.0.1 to 15.0.2. [dependabot[bot]]
+
+* Bump tailwindcss from 3.2.4 to 3.2.6. [dependabot[bot]]
+
+* Bump react-imgix from 9.6.0 to 9.7.0. [dependabot[bot]]
+
+* Bump eslint from 8.11.0 to 8.33.0. [dependabot[bot]]
+
+* Bump docker/build-push-action from 3 to 4. [dependabot[bot]]
+
+* Bump sass from 1.57.1 to 1.58.0. [dependabot[bot]]
+
+* `[REF]` Removing unnecessary dependency. [Luis Alejandro Martínez Faneyth]
+
+* Bump styled-components from 5.3.5 to 5.3.6. [dependabot[bot]]
+
+* Bump postcss from 8.4.20 to 8.4.21. [dependabot[bot]]
+
+* Bump react-is from 17.0.2 to 18.2.0. [dependabot[bot]]
+
+* Bump react-icons from 4.3.1 to 4.7.1. [dependabot[bot]]
+
+* Bump eslint-config-next from 12.1.0 to 13.1.6. [dependabot[bot]]
+
+* `[REF]` Adding cosmicjs info to envfile. [Luis Alejandro Martínez Faneyth]
+
+* Bump cosmicjs from 3.4.4 to 4.3.1. [dependabot[bot]]
+
+* Bump autoprefixer from 10.4.2 to 10.4.13. [dependabot[bot]]
+
+* Bump react-imgix from 9.5.4 to 9.6.0. [dependabot[bot]]
+
+* Bump gsap from 3.10.2 to 3.11.4. [dependabot[bot]]
+
+* Bump tailwindcss from 3.0.23 to 3.2.4. [dependabot[bot]]
+
+* Bump framer-motion from 6.2.8 to 6.5.1. [dependabot[bot]]
+
+* Bump date-fns from 2.28.0 to 2.29.3. [dependabot[bot]]
+
+* Bump typescript from 4.6.2 to 4.9.4. [dependabot[bot]]
+
+* Bump postcss from 8.4.5 to 8.4.20. [dependabot[bot]]
+
+* Bump classnames from 2.3.1 to 2.3.2. [dependabot[bot]]
+
+* Bump @svgr/webpack from 6.2.1 to 6.5.1. [dependabot[bot]]
+
+* Bump react-imgix from 9.5.0 to 9.5.4. [dependabot[bot]]
+
+* Bump terser from 4.8.0 to 4.8.1. [dependabot[bot]]
+
+* Bump loader-utils from 1.4.0 to 1.4.2. [dependabot[bot]]
+
+* Bump decode-uri-component from 0.2.0 to 0.2.2. [dependabot[bot]]
+
+* Bump sass from 1.49.9 to 1.57.1. [dependabot[bot]]
+
+* `[FIX]` Fixing github workflow. Updating caniuse db. [Luis Alejandro Martínez Faneyth]
+
+* `[ADD]` Adding github workflows. [Luis Alejandro Martínez Faneyth]
+
+
 ## 0.1.0 (2022-04-27)
 
 ### Changed
