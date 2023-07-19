@@ -22,7 +22,7 @@
     "build:lambda": "netlify-lambda build lambda"
   },
   "dependencies": {
-    "@svgr/webpack": "^6.5.1",
+    "@svgr/webpack": "^8.0.1",
     "animejs": "^3.2.1",
     "audiosprite": "^0.7.2",
     "classnames": "^2.3.2",
@@ -44,18 +44,18 @@
     "react-scrollmagic": "^2.3.0",
     "remark": "14.0.2",
     "remark-html": "15.0.2",
-    "sass": "^1.58.3",
+    "sass": "^1.63.6",
     "styled-components": "^5.3.8",
     "styled-normalize": "^8.0.7",
     "vanilla-tilt": "^1.7.2"
   },
   "devDependencies": {
     "autoprefixer": "10.4.14",
-    "eslint": "8.35.0",
+    "eslint": "8.45.0",
     "eslint-config-next": "13.2.4",
     "netlify-lambda": "^2.0.16",
     "postcss": "8.4.21",
     "tailwindcss": "^3.2.7",
-    "typescript": "^4.9.4"
+    "typescript": "^5.1.6"
   }
 }
