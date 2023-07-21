@@ -27,7 +27,7 @@
     "audiosprite": "^0.7.2",
     "classnames": "^2.3.2",
     "cosmicjs": "^4.3.7",
-    "date-fns": "2.29.3",
+    "date-fns": "2.30.0",
     "encoding": "^0.1.13",
     "framer-motion": "^6.5.1",
     "gsap": "^3.11.4",
