@@ -2882,10 +2882,10 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-cosmicjs@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/cosmicjs/-/cosmicjs-4.3.1.tgz#d8962caecc6d3d23647f84b0f7d39b72898913d1"
-  integrity sha512-l+6FvVW/SV5cUQ8EKIK1CpimfNKwo8/E5oIdIKseSorL+zxJ+HBsOGqUSk2+1K8bySc4bYGal2L4Q9SsdUrpoQ==
+cosmicjs@^4.3.7:
+  version "4.3.7"
+  resolved "https://registry.yarnpkg.com/cosmicjs/-/cosmicjs-4.3.7.tgz#a0ced09612060b3a76f569620aa59883981bc272"
+  integrity sha512-FiSko3Pj5Y43o6hkspH5H6hCCBKDaTQd+BDGqDVZUCiIyV+L+ZfbO4lJ+IpRETyaKAoma58Op7HPr4uY7eUBLQ==
   dependencies:
     axios "^0.21.1"
     form-data "^3.0.0"
