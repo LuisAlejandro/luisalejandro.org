@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import Link from 'next/link'
 
-import { Section, SectionTitle, SectionText } from 'styles/GlobalComponents';
+import { Section, SectionTitle, SectionText } from '@styles/GlobalComponents';
 import { ProjectList } from 'constants/constants';
 import About from 'assets/images/about.svg'
 import {

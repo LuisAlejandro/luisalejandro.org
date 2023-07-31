@@ -1,39 +1,53 @@
-import Head from 'next/head';
-import Script from 'next/script';
+import Head from "next/head";
+import Script from "next/script";
 
-import Theme from '@/styles/theme';
-import { GA_MEASUREMENT_ID } from 'constants/constants';
+import Theme from "@styles/theme";
+import { GA_MEASUREMENT_ID } from "constants/constants";
 
-import '@/styles/tailwind.css';
-import '@/styles/cases.scss';
-import '@/styles/contact.scss';
-
+import "@styles/tailwind.css";
+import "@styles/cases.scss";
+import "@styles/contact.scss";
+import "@styles/fonts.scss";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-
-<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-<link rel="icon" type="image/png" href="/favicon/favicon.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-<link rel="manifest" href="/favicon/site.webmanifest" />
-<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#000000" />
-<link rel="shortcut icon" href="/favicon/favicon.ico" />
-<meta name="msapplication-TileColor" content="#f8d983" />
-<meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-<meta name="theme-color" content="#f8d983" />
-<link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-<link id="preload-sound-sprite" rel="preload" as="audio" type="audio/ogg" href="/sounds/sprite.ogg" />
-<meta
-  name="description"
-  content={`Luis Alejandro Martínez Faneyth`}
-/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Roboto:wght@100;300;400;500;700&family=Vollkorn:ital@1&display=swap" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
-{/* <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon/favicon.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link
+          rel="mask-icon"
+          href="/favicon/safari-pinned-tab.svg"
+          color="#000000"
+        />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#f8d983" />
+        <meta
+          name="msapplication-config"
+          content="/favicon/browserconfig.xml"
+        />
+        <meta name="theme-color" content="#f8d983" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <meta name="description" content={`Luis Alejandro Martínez Faneyth`} />
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="{{ site.author.name }}" />
 <meta name="description" content="{{ head_description }}" />
 <meta name="keywords" content="{{ head_keywords }}" />
@@ -78,47 +92,42 @@ export default function App({ Component, pageProps }) {
 <meta property="fb:profile_id" content="{{ site.facebook.profile_id }}" />
 <meta property="fb:app_id" content="{{ site.facebook.app_id }}" />
 {%- endif -%} */}
-
       </Head>
       {GA_MEASUREMENT_ID && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="google-analytics" strategy="lazyOnload">
-          {`
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="lazyOnload"
+          onLoad={() => {
             window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-          </Script>
-        </>
+            function gtag() {
+              window.dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", `${GA_MEASUREMENT_ID}`);
+          }}
+        />
       )}
       <Script
         src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
-        strategy="afterInteractive"
-      />
-      <Script id="cookieconsent" strategy="lazyOnload">
-      {`
-        window.cookieconsent.initialise({
-          "palette": {
-            "popup": {
-              "background": "#505859",
-              "text": "#fff"
+        strategy="lazyOnload"
+        onLoad={() => {
+          window.cookieconsent.initialise({
+            palette: {
+              popup: {
+                background: "#505859",
+                text: "#fff",
+              },
+              button: {
+                background: "#6c7777",
+                text: "#fff",
+              },
             },
-            "button": {
-              "background": "#6c7777",
-              "text": "#fff"
-            }
-          },
-          "position": "bottom-right",
-          "theme": "classic",
-          "showLink": false
-        });
-      `}
-      </Script>
+            position: "bottom-right",
+            theme: "classic",
+            showLink: false,
+          });
+        }}
+      />
       <Theme>
         <Component {...pageProps} />
       </Theme>

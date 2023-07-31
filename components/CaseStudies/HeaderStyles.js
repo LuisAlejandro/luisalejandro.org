@@ -54,10 +54,10 @@ export const Div3 = styled.div`
 export const NavLink = styled.a`
   font-size: 2rem;
   line-height: 50px;
-  color: ${(props) => props.theme.colors.navLink};
+  color: #aaa;
   transition: 0.4s ease;
   &:hover {
-    color: ${(props) => props.theme.colors.navLinkHover};
+    color: #fff;
     cursor: pointer;
   }
   @media ${(props) => props.theme.breakpoints.sm} {

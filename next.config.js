@@ -1,4 +1,7 @@
 module.exports = {
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     domains: ["imgix.cosmicjs.com"],
   },

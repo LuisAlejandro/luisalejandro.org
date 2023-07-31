@@ -28,10 +28,6 @@ const Footer = () => {
       <FooterWrapper>
         <LinkList>
           <LinkColumn>
-            <LinkTitle>Chat</LinkTitle>
-            <LinkItem href="https://t.me/LuisAlejandro">Telegram</LinkItem>
-          </LinkColumn>
-          <LinkColumn>
             <LinkTitle>Email</LinkTitle>
             <LinkItem href="mailto:luis@luisalejandro.org">
               luis@luisalejandro.org
@@ -49,7 +45,7 @@ const Footer = () => {
             <SocialIcons href="https://www.linkedin.com/in/martinezfaneyth" target="_blank" rel="noopener noreferrer">
               <AiFillLinkedin size="3rem" />
             </SocialIcons>
-            <SocialIcons href="https://www.youtube.com/channel/UCI5aR8hs1CaHQWm5DVozFwg" target="_blank" rel="noopener noreferrer">
+            <SocialIcons href="https://www.youtube.com/@TecnologiaEnElDivan" target="_blank" rel="noopener noreferrer">
               <AiFillYoutube size="3rem" />
             </SocialIcons>
             <SocialIcons href="https://twitter.com/LuisAlejandro" target="_blank" rel="noopener noreferrer">

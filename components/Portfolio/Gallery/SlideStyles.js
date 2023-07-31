@@ -191,3 +191,20 @@ export const Link = styled.a`
     left: 6px;
   }
 `
+
+export const Link2 = styled.a`
+  font-family: Roboto, serif;
+  font-weight: 100;
+  font-size: 2.5rem;
+  color: #000;
+  letter-spacing: -0.1206rem;
+  width: 100%;
+  cursor: pointer;
+  transition: .3s ease;
+  display: flex;
+
+  &:hover {
+    background: ${({ accent }) => accent ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.6)'};
+    left: 6px;
+  }
+`

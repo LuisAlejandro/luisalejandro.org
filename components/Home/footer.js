@@ -1,7 +1,3 @@
-
 export default function Footer() {
-  return (
-    <>
-    </>
-  )
+  return <div id="footer">&copy; 2022 Luis Martínez. All rights reserved.</div>;
 }

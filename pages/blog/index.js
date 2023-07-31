@@ -1,12 +1,12 @@
 import Head from 'next/head'
 
-import Intro from '@/components/Blog/intro'
-import BlogContainer from '@/components/Blog/blog-container'
-import MoreStories from '@/components/Blog/more-stories'
-import HeroPost from '@/components/Blog/hero-post'
-import BlogLayout from '@/components/Blog/blog-layout'
-import { getAllPostsForHome } from '@/lib/api'
-import { CMS_NAME } from '@/lib/constants'
+import Intro from '@components/Blog/intro'
+import BlogContainer from '@components/Blog/blog-container'
+import MoreStories from '@components/Blog/more-stories'
+import HeroPost from '@components/Blog/hero-post'
+import BlogLayout from '@components/Blog/blog-layout'
+import { getAllPostsForHome } from '@lib/api'
+import { CMS_NAME } from '@lib/constants'
 
 
 export default function Blog({ allPosts }) {

@@ -446,7 +446,7 @@ export const ProjectList = [
     description: "A collection of useful, lightweight and reliable docker images.",
     image: '/images/dockershelf.svg',
     tags: ['docker', 'ci/cd', 'python', 'shell scripts'],
-    visit: '/portfolio/dockershelf',
+    visit: '/case-studies/dockershelf',
     id: 0,
   },
   {
@@ -454,18 +454,9 @@ export const ProjectList = [
     description: "A collection of useful, lightweight and reliable docker images.",
     image: '/images/dockershelf.svg',
     tags: ['docker', 'ci/cd', 'python', 'shell scripts'],
-    visit: '/portfolio/dockershelf',
+    visit: '/case-studies/dockershelf',
     id: 1,
   },
-  // {
-  //   title: 'Portfolio Website',
-  //   description: "This was my personal portfolio website that has all my work and project experience, including my resume. It used to be my main portfolio before deploying this current portfolio.",
-  //   image: '/images/portfolio.jpg',
-  //   tags: ['HTML', 'CSS', 'Bootstrap', 'JQuery'],
-  //   source: 'https://github.com/lordarcadius/website',
-  //   visit: 'https://project.vipuljha.com/website/',
-  //   id: 1,
-  // },
 ];
 
 export const TimeLineData = [
@@ -475,6 +466,6 @@ export const TimeLineData = [
   { year: 2018, text: 'Worked with Leadbox automotive dealership websites (Canada) as a Fullstack developer.', },
   { year: 2019, text: 'Founded Collage Labs mobile & web solutions (Venezuela).', },
   { year: 2019, text: 'Worked with Webuzz digital marketing (Spain) as Wordpress developer.', },
-  { year: 2020, text: 'Worked with Soleit startup (Chile) as Ionic/React Developer.', },
+  { year: 2020, text: 'Worked with Soleit startup (Chile) as Fullstack Developer.', },
   { year: 2022, text: 'Worked with Wheel The World startup (Chile) as a Senior Sofware Engineer.', },
 ];

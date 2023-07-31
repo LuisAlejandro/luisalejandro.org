@@ -1,21 +1,21 @@
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
 
-import { CaseStudiesStyles } from 'styles/globals';
-import HeroIntro from "@/components/CaseStudies/HeroIntro";
-import Why from "@/components/CaseStudies/Why";
-import Challenge from "@/components/CaseStudies/Challenge";
-import Product from "@/components/CaseStudies/Product";
-import Results from "@/components/CaseStudies/Results";
-import Header from "@/components/CaseStudies/Header";
-import Footer from "@/components/CaseStudies/Footer";
-import { Layout } from '@/components/CaseStudies/Layout';
+import { CaseStudiesDetailsStyles } from 'styles/globals';
+import HeroIntro from "@components/CaseStudies/HeroIntro";
+import Why from "@components/CaseStudies/Why";
+import Challenge from "@components/CaseStudies/Challenge";
+import Product from "@components/CaseStudies/Product";
+import Results from "@components/CaseStudies/Results";
+import Header from "@components/CaseStudies/Header";
+import Footer from "@components/CaseStudies/Footer";
+import { Layout } from '@components/CaseStudies/Layout';
 
 
 const Dockershelf = () => {
   return (
     <Layout>
-      <CaseStudiesStyles />
+      <CaseStudiesDetailsStyles />
       <div id="cases" style={{ background: '#333' }}>
         <Header bg="#303030" />
         <Controller>
