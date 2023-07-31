@@ -25,11 +25,11 @@
     "@svgr/webpack": "^8.0.1",
     "animejs": "^3.2.1",
     "classnames": "^2.3.2",
-    "cosmicjs": "^4.3.1",
-    "date-fns": "2.29.3",
+    "cosmicjs": "^4.3.7",
+    "date-fns": "2.30.0",
     "encoding": "^0.1.13",
     "framer-motion": "^6.5.1",
-    "gsap": "^3.11.4",
+    "gsap": "^3.12.2",
     "lazysizes": "^5.2.1-rc2",
     "next": "^12.1.0",
     "prop-types": "^15.8.1",
@@ -40,9 +40,9 @@
     "react-imgix": "^9.7.0",
     "react-masonry-component": "^6.3.0",
     "react-scrollmagic": "^2.3.0",
-    "remark": "14.0.2",
+    "remark": "14.0.3",
     "remark-html": "15.0.2",
-    "sass": "^1.63.6",
+    "sass": "^1.64.1",
     "styled-components": "^5.3.8",
     "styled-normalize": "^8.0.7",
     "vanilla-tilt": "^1.7.2"
@@ -50,10 +50,10 @@
   "devDependencies": {
     "autoprefixer": "10.4.14",
     "eslint": "8.45.0",
-    "eslint-config-next": "13.2.4",
+    "eslint-config-next": "13.4.12",
     "netlify-lambda": "^2.0.16",
-    "postcss": "8.4.21",
-    "tailwindcss": "^3.2.7",
+    "postcss": "8.4.27",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6"
   }
 }
