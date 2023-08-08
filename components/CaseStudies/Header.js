@@ -20,7 +20,7 @@ const Header = (props) => (
   <>
     <Container style={{ background: props.bg }}>
       <Div1>
-        <Link href="/">
+        <Link passHref href="/">
           <a style={{ display: "flex", alignItems: "center", color: "white" }}>
             <Image
               alt=""

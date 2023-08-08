@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const Img = styled.img`
   width: 100%;
@@ -39,9 +38,9 @@ export const HeaderThree = styled.h3`
   font-weight: 500;
   letter-spacing: 2px;
   color: #222222;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   margin-top: 1rem;
-  font-size: ${(props) => props.title ? '3rem' : '2rem'};
+  font-size: ${(props) => (props.title ? "3rem" : "2rem")};
 `;
 
 export const Hr = styled.hr`
@@ -70,7 +69,7 @@ export const CardInfo = styled.p`
   text-align: center;
   margin-top: 2rem;
   @media ${(props) => props.theme.breakpoints.sm} {
-    padding:.3rem
+    padding: 0.3rem;
   }
 `;
 

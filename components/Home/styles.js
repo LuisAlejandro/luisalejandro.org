@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const Div3 = styled.div`
   grid-area: 1 / 5 / 2 / 6;
@@ -25,4 +24,4 @@ export const SocialIcons = styled.a`
     transform: scale(1.1);
     cursor: pointer;
   }
-`
+`;

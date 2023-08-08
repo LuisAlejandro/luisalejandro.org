@@ -19,7 +19,7 @@ import {
 const Header = () => (
   <Container>
     <Div1>
-      <Link href="/">
+      <Link passHref href="/">
         <a style={{ display: "flex", alignItems: "center", color: "white" }}>
           <Image alt="" src="/images/logomin.svg" height={60} width={60} />
         </a>

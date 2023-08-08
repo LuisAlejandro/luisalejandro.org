@@ -1,9 +1,7 @@
-import Footer from './footer'
-import Meta from './meta'
-import 'lazysizes'
-import 'lazysizes/plugins/parent-fit/ls.parent-fit'
+import Footer from "./footer";
+import Meta from "./meta";
 
-export default function Layout({ preview, children }) {
+export default function Layout({ children }) {
   return (
     <>
       <Meta />
@@ -12,5 +10,5 @@ export default function Layout({ preview, children }) {
       </div>
       <Footer />
     </>
-  )
+  );
 }

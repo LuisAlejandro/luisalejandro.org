@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Article = styled(motion.article)`
   padding: 1.5rem 0;
@@ -14,7 +13,7 @@ export const Article = styled(motion.article)`
     display: flex;
     align-items: flex-start;
   }
-`
+`;
 
 export const Header = styled.div`
   width: 50%;
@@ -26,7 +25,7 @@ export const Header = styled.div`
   @media ${(props) => props.theme.breakpoints.lg} {
     flex-basis: 60%;
   }
-`
+`;
 
 export const Figure = styled(motion.figure)`
   position: relative;
@@ -44,7 +43,7 @@ export const Figure = styled(motion.figure)`
     margin: 0;
     transform: translateX(0);
   }
-`
+`;
 
 export const Caption = styled.figcaption`
   position: absolute;
@@ -83,7 +82,7 @@ export const Caption = styled.figcaption`
     font-size: 1.9375rem;
     color: #666;
   }
-`
+`;
 
 export const Logo = styled.div`
   position: absolute;
@@ -106,9 +105,9 @@ export const Logo = styled.div`
   }
 
   img {
-    width: 100%
+    width: 100%;
   }
-`
+`;
 
 export const Body = styled.div`
   padding-bottom: 4.1875rem;
@@ -155,7 +154,7 @@ export const Body = styled.div`
       font-size: clamp(9rem, 10vw, 12.5rem);
     }
   }
-`
+`;
 
 export const Description = styled.p`
   font-family: Vollkorn, serif;
@@ -166,7 +165,7 @@ export const Description = styled.p`
   margin-bottom: 6.25rem;
   z-index: 2;
   position: relative;
-`
+`;
 
 export const Link = styled.a`
   font-family: Roboto, serif;
@@ -175,22 +174,24 @@ export const Link = styled.a`
   color: #000;
   letter-spacing: -0.1206rem;
   margin-bottom: 1.25rem;
-  margin-top: ${({ accent }) => accent ? '4rem' : '0'};
+  margin-top: ${({ accent }) => (accent ? "4rem" : "0")};
   width: 100%;
   text-align: right;
-  background: ${({ accent }) => accent ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.3)'};
+  background: ${({ accent }) =>
+    accent ? "rgba(255, 255, 255, 0.7)" : "rgba(255, 255, 255, 0.3)"};
   padding: 1rem;
   display: block;
   cursor: pointer;
-  transition: .3s ease;
+  transition: 0.3s ease;
   position: relative;
   left: 0;
 
   &:hover {
-    background: ${({ accent }) => accent ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.6)'};
+    background: ${({ accent }) =>
+      accent ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.6)"};
     left: 6px;
   }
-`
+`;
 
 export const Link2 = styled.a`
   font-family: Roboto, serif;
@@ -200,11 +201,12 @@ export const Link2 = styled.a`
   letter-spacing: -0.1206rem;
   width: 100%;
   cursor: pointer;
-  transition: .3s ease;
+  transition: 0.3s ease;
   display: flex;
 
   &:hover {
-    background: ${({ accent }) => accent ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.6)'};
+    background: ${({ accent }) =>
+      accent ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.6)"};
     left: 6px;
   }
-`
+`;

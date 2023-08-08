@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const GalleryWrapper = styled(motion.div)`
   padding: 1.5rem 0;
@@ -10,7 +9,7 @@ export const GalleryWrapper = styled(motion.div)`
   @media ${(props) => props.theme.breakpoints.sm} {
     padding-top: 2.5rem;
   }
-`
+`;
 
 export const SlideshowWrapper = styled(motion.div)`
   display: flex;
@@ -26,7 +25,7 @@ export const SlideshowWrapper = styled(motion.div)`
   @media ${(props) => props.theme.breakpoints.xl} {
     padding-top: 4rem;
   }
-`
+`;
 
 export const GalleryCardItem = styled(motion.li)`
   display: block;
@@ -34,7 +33,7 @@ export const GalleryCardItem = styled(motion.li)`
   padding: 5px;
   width: 33%;
   opacity: 0;
-`
+`;
 
 export const Figure = styled.figure`
   position: relative;
@@ -44,10 +43,10 @@ export const Figure = styled.figure`
     opacity: 0.5;
     cursor: pointer;
   }
-`
+`;
 
 export const Caption = styled(motion.figcaption)`
-  color: #FFF;
+  color: #fff;
   position: absolute;
   bottom: 0;
   padding: 2rem;
@@ -66,4 +65,4 @@ export const Caption = styled(motion.figcaption)`
     font-weight: 100;
     color: rgba(255, 255, 255, 0.75);
   }
-`
+`;

@@ -1,5 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import { AiOutlineLeft } from "react-icons/ai";
+import Image from "next/image";
 
 import {
   Article,
@@ -45,7 +46,7 @@ const Slide = ({
           >
             <picture>
               <source srcSet={current.images.hero[0]} />
-              <img src={current.images.hero[0]} alt="" />
+              <Image src={current.images.hero[0]} alt="" />
             </picture>
             <Caption
               style={{
@@ -72,7 +73,7 @@ const Slide = ({
           >
             <picture>
               <source srcSet={current.images.hero[1]} />
-              <img src={current.images.hero[1]} alt="" />
+              <Image src={current.images.hero[1]} alt="" />
             </picture>
           </Figure>
           <Figure
@@ -82,10 +83,10 @@ const Slide = ({
           >
             <picture>
               <source srcSet={current.images.hero[2]} />
-              <img src={current.images.hero[2]} alt="" />
+              <Image src={current.images.hero[2]} alt="" />
             </picture>
             <Logo>
-              <img src={current.images.logo} alt="" />
+              <Image src={current.images.logo} alt="" />
             </Logo>
           </Figure>
         </Header>

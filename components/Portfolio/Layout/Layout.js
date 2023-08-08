@@ -1,8 +1,7 @@
-import Footer from '../Footer/Footer'
-import Header from '../Header/Header'
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
-import { Container } from './LayoutStyles'
-
+import { Container } from "./LayoutStyles";
 
 export const Layout = ({ children }) => {
   return (
@@ -11,5 +10,5 @@ export const Layout = ({ children }) => {
       <main>{children}</main>
       <Footer />
     </Container>
-  )
-}
+  );
+};

@@ -1,13 +1,12 @@
-import { PortfolioStyles } from 'styles/globals';
-import Acomplishments from '@/components/Portfolio/Acomplishments/Acomplishments';
-import Contact from '@/components/Portfolio/Contact/Contact';
-import BackgroundAnimation from '@/components/Portfolio/BackgroundAnimation/BackgroundAnimation';
-import Hero from '@/components/Portfolio/Hero/Hero';
-import Technologies from '@/components/Portfolio/Technologies/Technologies';
-import Timeline from '@/components/Portfolio/TimeLine/TimeLine';
-import { Layout } from '@/components/Portfolio/Layout/Layout';
-import { Section } from '@styles/GlobalComponents';
-
+import Acomplishments from "@components/Portfolio/Acomplishments/Acomplishments";
+import Contact from "@components/Portfolio/Contact/Contact";
+import BackgroundAnimation from "@components/Portfolio/BackgroundAnimation/BackgroundAnimation";
+import Hero from "@components/Portfolio/Hero/Hero";
+import Technologies from "@components/Portfolio/Technologies/Technologies";
+import Timeline from "@components/Portfolio/TimeLine/TimeLine";
+import { Layout } from "@components/Portfolio/Layout/Layout";
+import { Section } from "@styles/GlobalComponents";
+import { PortfolioStyles } from "@styles/globals";
 
 const Portfolio = () => {
   return (

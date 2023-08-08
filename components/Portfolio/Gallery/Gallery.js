@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Masonry from "react-masonry-component";
+import Image from "next/image";
 
-import Slide from "./Slide";
+import { GalleryList } from "@constants/constants";
+import { Section, SectionTitle, SectionText } from "@styles/GlobalComponents";
 import { cardAnimation, captionAnimation, pageAnimation } from "./Animations";
 import {
   GalleryWrapper,
@@ -10,8 +12,7 @@ import {
   Figure,
   GalleryCardItem,
 } from "./GalleryStyles";
-import { Section, SectionTitle, SectionText } from "styles/GlobalComponents";
-import { GalleryList } from "constants/constants";
+import Slide from "./Slide";
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -71,10 +72,11 @@ const Gallery = () => {
                   }}
                 >
                   <Figure>
-                    <img
+                    <Image
                       src={work.images.thumbnail}
                       alt=""
                       style={{ width: "100%" }}
+                      layout="fill"
                     />
                     <Caption variants={captionAnimation}>
                       <h2>{work.name}</h2>

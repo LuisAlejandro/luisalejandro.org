@@ -6,15 +6,14 @@ import {
   AiOutlineBulb,
   AiOutlineRead,
   AiOutlineApi,
-  AiOutlineLinkedin
+  AiOutlineLinkedin,
 } from "react-icons/ai";
 
-import { HomeStyles } from "styles/globals";
-import Container from "components/Home/container";
-import Layout from "components/Home/layout";
-import Footer from "components/Home/footer";
-
-import { SocialIcons, Div3 } from "components/Home/styles";
+import Container from "@components/Home/container";
+import Layout from "@components/Home/layout";
+import Footer from "@components/Home/footer";
+import { SocialIcons, Div3 } from "@components/Home/styles";
+import { HomeStyles } from "@styles/globals";
 
 export default function Index() {
   return (
@@ -24,7 +23,7 @@ export default function Index() {
         <Container>
           <div id="app">
             <div id="home">
-              <Link href="/">
+              <Link passHref href="/">
                 <a
                   style={{
                     display: "flex",
