@@ -48,7 +48,7 @@
     "rehype-stringify": "^9.0.3",
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
-    "sass": "^1.64.2",
+    "sass": "^1.65.1",
     "styled-components": "^5.3.8",
     "styled-normalize": "^8.0.7",
     "unified": "^10.1.2",
