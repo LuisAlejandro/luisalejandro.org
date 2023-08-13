@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { AiOutlineLeft } from "react-icons/ai";
-import Image from "next/image";
 
+import markdownToHtml from "@lib/markdownToHtml";
 import {
   Article,
   Body,
@@ -10,8 +11,11 @@ import {
   Figure,
   Header,
   Logo,
-  Link,
-  Link2,
+  CustomLink,
+  CustomLink2,
+  CustomLink3,
+  TagList,
+  Tag,
 } from "./SlideStyles";
 import { slideAnimation } from "./Animations";
 
@@ -23,6 +27,17 @@ const Slide = ({
   galleryList,
 }) => {
   const current = galleryList[currentIndex];
+  const lastHero = current.images.hero.length - 1;
+
+  const [description, setDescription] = useState(current.description);
+
+  useEffect(() => {
+    const parseMarkdown = async () => {
+      setDescription(await markdownToHtml(current.description));
+    };
+
+    parseMarkdown();
+  }, [current.description]);
 
   return (
     <AnimatePresence initial={false} custom={1}>
@@ -45,8 +60,8 @@ const Slide = ({
             transition={{ duration: 1.5 }}
           >
             <picture>
-              <source srcSet={current.images.hero[0]} />
-              <Image src={current.images.hero[0]} alt="" />
+              <source srcSet="/images/other/banner.svg" />
+              <img src="/images/other/banner.svg" alt="" />
             </picture>
             <Caption
               style={{
@@ -61,45 +76,51 @@ const Slide = ({
                 width: "150px",
               }}
             >
-              <Link2 accent onClick={() => setModalOpen(false)}>
+              <CustomLink2 accent onClick={() => setModalOpen(false)}>
                 <AiOutlineLeft /> Go back
-              </Link2>
+              </CustomLink2>
             </Caption>
           </Figure>
-          <Figure
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            <picture>
-              <source srcSet={current.images.hero[1]} />
-              <Image src={current.images.hero[1]} alt="" />
-            </picture>
-          </Figure>
-          <Figure
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            <picture>
-              <source srcSet={current.images.hero[2]} />
-              <Image src={current.images.hero[2]} alt="" />
-            </picture>
-            <Logo>
-              <Image src={current.images.logo} alt="" />
-            </Logo>
-          </Figure>
+          {current.images.hero.map((imgUrl, index) => (
+            <Figure
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
+            >
+              <picture>
+                <source srcSet={imgUrl} />
+                <img
+                  src={imgUrl}
+                  alt={current.name}
+                  style={{ borderRadius: "10px" }}
+                />
+              </picture>
+              {index === lastHero && (
+                <Logo>
+                  <img src={current.images.logo} alt={current.name} />
+                </Logo>
+              )}
+            </Figure>
+          ))}
         </Header>
         <Body year={current.year}>
-          <Description>{current.description}</Description>
+          <TagList>
+            {current.tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </TagList>
+          <Description
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></Description>
           {current.sources.map((source, index) => (
-            <Link href={source.url} key={index}>
+            <CustomLink target="_blank" href={source.url} key={index}>
               View {source.name} online
-            </Link>
+            </CustomLink>
           ))}
-          <Link accent onClick={() => setModalOpen(false)}>
-            Go back to other work
-          </Link>
+          <CustomLink3 accent onClick={() => setModalOpen(false)}>
+            <AiOutlineLeft /> Go back to gallery
+          </CustomLink3>
         </Body>
       </Article>
     </AnimatePresence>

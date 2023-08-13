@@ -19,8 +19,8 @@ export const canonicalHostnameUrl =
   ENV_NAME === "local" ? "http://localhost:3000" : "https://luisalejandro.org";
 
 export const config = {
-  name: "Luis Develops",
-  app_name: "Luis Develops Blog",
+  name: "Luis Alejandro",
+  app_name: "Luis Alejandro Blog",
   title: "A blog about this and that",
   description: "A blog about this and that.",
   keywords: [
@@ -60,529 +60,218 @@ export const Stars = [
 
 export const GalleryList = [
   {
-    name: "Venezuelan government agency",
-    year: 2010,
+    name: "Leadbox build queue",
+    year: 2018,
     shortDescription:
-      "Relaunching the UI/UX of several web components of the Canaima GNU/Linux national distribution.",
-    description: "",
-    sources: [
-      {
-        name: "home page",
-        url: "https://web.archive.org/web/20120305185554/http://canaima.softwarelibre.gob.ve/",
-      },
-      {
-        name: "register page",
-        url: "https://web.archive.org/web/20120311073357/http://registro.canaima.softwarelibre.gob.ve/",
-      },
-      {
-        name: "wiki",
-        url: "https://web.archive.org/web/20120403032920/http://wiki.canaima.softwarelibre.gob.ve/wiki/Portada",
-      },
-    ],
+      "Created a mechanism to build and deploy client websites with a courier-broker-worker architecture.",
+    description:
+      "As a <a href='https://web.archive.org/web/20230603232601/https://leadboxhq.com/' target='_blank'>Leadbox</a> employee, I was tasked with creating an automatization system to aid in the day-to-day deployment process of **Angular.js** based websites. The system I came up with had a command line interface that added jobs to a queue. A courier would then pick up the job and deliver it to a broker. The broker would then assign the job to a worker, which would build the website and deploy it to the server. The system was written in Python and Bash, managed as a systemd service and installed as an RPM package. This architecture allowed any developer to trigger multiple deploys at the same time **allowing the continuous improvement of more than 100 websites**.",
+    tags: ["python", "bash", "multithread", "systemd", "rpm"],
+    sources: [],
     images: {
-      thumbnail: "/images/hero-dockershelf.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
+      thumbnail: "/images/other/leadbox-build-queue.png",
+      logo: "/images/other/logo-leadbox.svg",
       hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
+        "/images/other/leadbox-build-queue.png",
+        "/images/other/leadbox-build-queue-2.png",
       ],
     },
   },
   {
-    name: "Leadbox",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Marvin video generator",
+    year: 2018,
+    shortDescription:
+      "Created a video editor capable of mass generating videos from simple configuration.",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "As a <a href='https://web.archive.org/web/20230603232601/https://leadboxhq.com/' target='_blank'>Leadbox</a> employee, I was tasked with creating a video editor capable of mass generating videos. I created a **Python backend** that would receive a configuration file and a video template. The backend would then use **FFmpeg** to generate the videos. The frontend was built with **Angular** and allowed the user to create the configuration file and upload the video template. The frontend would then send the configuration file and the video template to the backend. The backend would then generate the videos and upload them to **Azure Blob Storage**. The frontend would then display the videos to the user. This system allowed the company to generate more than 1000 videos in a matter of minutes.",
+    tags: ["python", "bottle", "ci/cd", "azure", "ffmpeg", "angular"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
+        name: "landing page",
+        url: "https://youtu.be/YbZjNMUbZSs",
       },
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "video preview",
+        url: "https://web.archive.org/web/20230810195652/https://leadboxhq.com/leadbox-oem-video-service-ford/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
+      thumbnail: "/images/other/leadbox-marvin.png",
+      logo: "/images/other/logo-leadbox.svg",
       hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
+        "/images/other/leadbox-marvin-ui.png",
+        "/images/other/leadbox-marvin-example-1.png",
+        "/images/other/leadbox-marvin-example-2.png",
       ],
     },
   },
   {
-    name: "Btech watches",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Aguilas LDAP Single Sign On",
+    year: 2012,
+    shortDescription: "A web-based LDAP user management system",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "As a Canaima GNU/Linux developer, I worked with several platform applications on a day to day basis. A Mediawiki, a Plone site and a Trac ticket system were our main tools to work with the user community. Soon we had to deal with the problem of having to manage multiple user accounts for each of these applications. To solve this problem, I created a web-based LDAP user management system. This system allowed us to manage user accounts for all of our applications in a single place. The system was written in PHP and used a MySQL database to store user information. The system was also capable of creating user accounts in the LDAP server, which was the backbone of the SSO feature. This system was used by the Canaima GNU/Linux community for more than 5 years.",
+    tags: ["php", "css", "js", "ldap", "mysql"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
+        name: "source code",
+        url: "https://github.com/LuisAlejandro/aguilas",
       },
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20160413233709/http://www.btechwatches.com/",
+        name: "website",
+        url: "https://web.archive.org/web/20120921044410/https://registro.canaima.softwarelibre.gob.ve/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/aguilas-1.png",
+      logo: "/images/other/logo-cnti.webp",
+      hero: ["/images/other/aguilas-2.png"],
     },
   },
   {
-    name: "American Eagle Outfitters Panamá",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "HowlerMonkey CVE indexer",
+    year: 2020,
+    shortDescription:
+      "An application written in Flask to index and query various vulnerability databases",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "As a Guayoyo employee, I was tasked with creating a vulnerability database indexer. The indexer would query various vulnerability databases (CVE, CPE, CWE, Snort, etc) and store the results in a MongoDB database. The indexer was written in Python using the Flask framework. The indexer was also capable of querying the database and returning the results in JSON format. The indexer was deployed in an Azure Kubernetes cluster using Docker containers. This system allowed the company to have a single source of truth for vulnerability information.",
+    tags: ["python", "flask", "mongo", "azure", "docker"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20160219152855/http://aeo.com.pa/",
+        name: "website",
+        url: "https://web.archive.org/web/20230314165631/https://howlermonkey.io/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
+      thumbnail: "/images/other/howlermonkey-3.svg",
+      logo: "/images/other/logo-guayoyo.jpg",
       hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Collage Labs",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20160409183237/http://www.pyugmao.com.ve/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
+        "/images/other/howlermonkey-1.png",
+        "/images/other/howlermonkey-2.jpg",
       ],
     },
   },
   {
     name: "Hunting Bears Blog",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    year: 2010,
+    shortDescription: "My personal blog from 2010 to 2015",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "This was my personal blog from 2010 to 2015. It was continuously improved using open source technologies. The blog was built using Jekyll, CSS and Javascript. The blog was hosted in Github Pages and was automatically deployed using Github Actions.",
+    tags: ["jekyll", "css", "js", "python", "docker", "github actions"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
+        name: "source code",
+        url: "https://github.com/HuntingBears/huntingbears.github.io",
       },
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "banner draft",
+        url: "https://www.behance.net/gallery/14167967/Banner-of-huntingbearscomve",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
+      thumbnail: "/images/other/huntingbears-1.png",
+      logo: "/images/other/logo-huntingbears.png",
       hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
+        "/images/other/huntingbears-1.png",
+        "/images/other/huntingbears-3.png",
+        "/images/other/huntingbears-2.png",
       ],
     },
   },
   {
-    name: "Gin Burdon",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Gin Burdon website",
+    year: 2019,
+    shortDescription: "A wordpress website for a local gin brand",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "Working the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local gin brand. The website was created using a custom theme and several plugins. I worked closely with an UX designer provided by the client to plan the layout of the website. I also hired a project manager and a junior frontend developer to help me with the project. The website has been online for more than 4 years and has been a complete success for the client.",
+    tags: ["wordpress", "php", "css", "jquery", "docker"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "website",
+        url: "https://web.archive.org/web/20191206145303/https://www.ginburdon.com/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/ginburdon-3.png",
+      logo: "/images/other/logo-ginburdon.png",
+      hero: ["/images/other/ginburdon-1.png"],
     },
   },
   {
-    name: "Recetags",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Recetags website",
+    year: 2020,
+    shortDescription: "A wordpress website for a local recipe blog",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "Working the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local recipe blog. The website was created using a custom theme and several plugins. The website has been online for more than 3 years and has been a complete success for the client.",
+    tags: ["wordpress", "php", "css", "jquery", "python", "docker"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "website",
+        url: "https://web.archive.org/web/20201101021046/https://www.recetags.com/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/recetags-3.jpg",
+      logo: "/images/other/logo-recetags.svg",
+      hero: ["/images/other/recetags-1.png"],
     },
   },
   {
-    name: "Aguilas",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Leadbox website",
+    year: 2019,
+    shortDescription:
+      "Developed the new website working with project managers and UX designers.",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "As a <a href='https://web.archive.org/web/20230603232601/https://leadboxhq.com/' target='_blank'>Leadbox</a> employee, I was assigned the project of **building the layout and coding** of the new website. Collaborating closely with a project manager and a UX designer, we embarked on this exciting project. Leveraging the flexibility and user-friendly nature of WordPress, I utilized my expertise in CSS and JS to customize the website's appearance and functionality. Through meticulous coding and attention to detail, I transformed the design concepts provided by the UX designer into a fully functional and visually appealing website. This collaborative effort resulted in a seamless online experience that not only met but exceeded the company's expectations.",
+    tags: ["wordpress", "css", "js"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
+        name: "Website",
         url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/leadbox-webpage-preview.png",
+      logo: "/images/other/logo-leadbox.svg",
+      hero: ["/images/other/leadbox-webpage-full.png"],
     },
   },
   {
-    name: "Electron backend/frontend template",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "Btech watches website",
+    year: 2014,
+    shortDescription: "An e-commerce website for a local watch brand",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "Working with the <a href='https://web.archive.org/web/20150919135024/http://www.e2-361.com/' target='_blank'>e2-361 agency</a>, I was tasked with coding the website for a local watch brand. The website was built using HTML, CSS and JS. I worked closely with the designer to ensure the website was pixel perfect. The website was also integrated with the Adobe Business Catalyst e-commerce platform.",
+    tags: ["adobe bussiness catalyst", "css", "js"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "website",
+        url: "https://web.archive.org/web/20160413233709/http://www.btechwatches.com/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/btech-2.jpg",
+      logo: "/images/other/logo-btech.png",
+      hero: ["/images/other/btech-1.png", "/images/other/btech-3.png"],
     },
   },
   {
-    name: "Spices",
-    year: 1889,
-    shortDescription: "Developed a new ",
+    name: "American Eagle Outfitters Panamá website",
+    year: 2015,
+    shortDescription: "An e-commerce website for a local clothing brand",
     description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
+      "Working with the <a href='https://web.archive.org/web/20150919135024/http://www.e2-361.com/' target='_blank'>e2-361 agency</a>, I was tasked with coding the website for a local clothing brand. The website was built using HTML, CSS and JS. I worked closely with the designer to ensure the website was pixel perfect. The website was also integrated with the Adobe Business Catalyst e-commerce platform.",
+    tags: ["adobe bussiness catalyst", "css", "js"],
     sources: [
       {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
+        name: "website",
+        url: "https://web.archive.org/web/20160219152855/http://aeo.com.pa/",
       },
     ],
     images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Agoras",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Buildbot Package Builder",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Django Package Index",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Simple Lead Registration",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Simple VPS Deploy",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
-    },
-  },
-  {
-    name: "Simple Script Queue",
-    year: 1889,
-    shortDescription: "Developed a new ",
-    description:
-      'Although The Starry Night was painted during the day in Van Gogh\'s ground-floor studio, it would be inaccurate to state that the picture was painted from memory. The view has been identified as the one from his bedroom window, facing east, a view which Van Gogh painted variations of no fewer than twenty-one times, including The Starry Night. "Through the iron-barred window," he wrote to his brother, Theo, around 23 May 1889, "I can see an enclosed square of wheat ... above which, in the morning, I watch the sun rise in all its glory."',
-    sources: [
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://en.wikipedia.org/wiki/The_Starry_Night",
-      },
-      {
-        name: "",
-        url: "https://web.archive.org/web/20190223004411/http://leadboxhq.com/",
-      },
-    ],
-    images: {
-      thumbnail:
-        "https://galleria-slideshow.vercel.app/assets/starry-night/thumbnail.jpg",
-      logo: "https://galleria-slideshow.vercel.app/assets/starry-night/artist.jpg",
-      hero: [
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-        "https://galleria-slideshow.vercel.app/assets/starry-night/hero-small.jpg",
-      ],
+      thumbnail: "/images/other/aeo-1.png",
+      logo: "/images/other/logo-aeo.svg",
+      hero: ["/images/other/aeo-1.png"],
     },
   },
 ];
@@ -684,39 +373,57 @@ export const Skills = [
 
 export const ProjectList = [
   {
+    title: "Expedia API Integration",
+    description:
+      "An end-to-end implementation of the shopping and booking engines for Wheel The World. It helped increase their bookings by 39% on Q1 2023.",
+    image: "/images/case-studies/thumbnails/expedia.png",
+    tags: ["Express.js", "Next.js", "Go", "Stripe", "MySQL", "Redis"],
+    visit: "/portfolio/expedia",
+    id: 1,
+  },
+  {
+    title: "Soleit desktop app",
+    description:
+      "An electron app made with Ionic React capable of aiding in the diagnosis of foot issues. It allowed the Soleit startup raise funding for its growth stage.",
+    image: "/images/case-studies/thumbnails/soleit.png",
+    tags: ["Ionic", "React", "Electron", "Express.js", "Sequelize", "Python"],
+    visit: "/portfolio/soleit",
+    id: 1,
+  },
+  {
     title: "Dockershelf",
     description:
-      "A collection of useful, lightweight and reliable docker images.",
-    image: "/images/dockershelf.svg",
-    tags: ["docker", "ci/cd", "python", "shell scripts"],
-    visit: "/case-studies/dockershelf",
+      "A collection of useful, lightweight and reliable dockerfiles. Based on debian sid and stable, images are built and tested weekly.",
+    image: "/images/case-studies/thumbnails/dockershelf.svg",
+    tags: ["Docker", "CI/CD", "Python", "Bash", "Ruby", "Rspec"],
+    visit: "/portfolio/dockershelf",
     id: 0,
   },
   {
-    title: "Canaima",
+    title: "Canaima GNU/Linux",
     description:
-      "A collection of useful, lightweight and reliable docker images.",
-    image: "/images/dockershelf.svg",
-    tags: ["docker", "ci/cd", "python", "shell scripts"],
-    visit: "/case-studies/dockershelf",
+      "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
+    image: "/images/case-studies/thumbnails/canaima.png",
+    tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
+    visit: "/portfolio/canaima",
     id: 1,
   },
   {
-    title: "Soleit",
+    title: "Wheel The World CI/CD",
     description:
-      "A collection of useful, lightweight and reliable docker images.",
-    image: "/images/dockershelf.svg",
-    tags: ["docker", "ci/cd", "python", "shell scripts"],
-    visit: "/case-studies/dockershelf",
+      "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
+    image: "/images/case-studies/thumbnails/canaima.png",
+    tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
+    visit: "/portfolio/canaima",
     id: 1,
   },
   {
-    title: "Expedia API",
+    title: "Collage Labs Agency",
     description:
-      "A collection of useful, lightweight and reliable docker images.",
-    image: "/images/dockershelf.svg",
-    tags: ["docker", "ci/cd", "python", "shell scripts"],
-    visit: "/case-studies/dockershelf",
+      "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
+    image: "/images/case-studies/thumbnails/canaima.png",
+    tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
+    visit: "/portfolio/canaima",
     id: 1,
   },
 ];
@@ -726,7 +433,6 @@ export const TimeLineData = [
     year: 2009,
     text: "Started working in a government agency (Venezuela) as a Linux distribution developer.",
   },
-  // { year: 2016, text: 'Worked with Vauxoo ERP solutions (Mexico) as a Python developer.', },
   {
     year: 2017,
     text: "Worked with Guayoyo cybersecurity experts (Uruguay) as a Python developer.",

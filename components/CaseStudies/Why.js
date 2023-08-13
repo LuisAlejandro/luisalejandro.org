@@ -1,7 +1,7 @@
 import { Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
 
-import Me from "assets/images/me.svg";
+import Me from "@assets/images/me.svg";
 
 const Why = ({ Title, Content }) => (
   <div id="why" className="w-full">

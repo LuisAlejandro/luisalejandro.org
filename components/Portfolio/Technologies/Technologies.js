@@ -1,5 +1,5 @@
 import { Section, SectionText, SectionTitle } from "@styles/GlobalComponents";
-import { Skills } from "constants/constants";
+import { Skills } from "@constants/constants";
 import {
   List,
   ListContainer,

@@ -1,3 +1,7 @@
 export default function Footer() {
-  return <div id="footer">&copy; 2022 Luis Martínez. All rights reserved.</div>;
+  return (
+    <div className="footer">
+      &copy; {new Date().getFullYear()} Luis Martínez. All rights reserved.
+    </div>
+  );
 }

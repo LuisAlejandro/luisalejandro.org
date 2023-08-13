@@ -1,4 +1,6 @@
 import Acomplishments from "@components/Portfolio/Acomplishments/Acomplishments";
+import Projects from "@components/Portfolio/Projects/Projects";
+import Gallery from "@components/Portfolio/Gallery/Gallery";
 import Contact from "@components/Portfolio/Contact/Contact";
 import BackgroundAnimation from "@components/Portfolio/BackgroundAnimation/BackgroundAnimation";
 import Hero from "@components/Portfolio/Hero/Hero";
@@ -17,6 +19,8 @@ const Portfolio = () => {
         <BackgroundAnimation />
       </Section>
       <Technologies />
+      <Projects />
+      <Gallery />
       <Timeline />
       <Acomplishments />
       <Contact />

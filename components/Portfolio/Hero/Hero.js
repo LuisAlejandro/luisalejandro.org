@@ -14,7 +14,7 @@ const Hero = () => (
           I&apos;m passionate 💖 about finding out end user needs and creating
           beautiful interfaces with sustainable architecture.
         </SectionText>
-        <span class="button1">
+        <span className="button1">
           <a
             title='List all posts under the category "Climate"'
             rel="tag"

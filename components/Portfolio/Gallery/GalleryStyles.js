@@ -38,9 +38,13 @@ export const GalleryCardItem = styled(motion.li)`
 export const Figure = styled.figure`
   position: relative;
   opacity: 1;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.5s linear;
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
   &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: pointer;
   }
 `;
@@ -51,9 +55,16 @@ export const Caption = styled(motion.figcaption)`
   bottom: 0;
   padding: 2rem;
   text-align: left;
-  background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.85));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
   width: 100%;
+  border-radius: 10px;
+
   h2 {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  h3 {
     font-weight: bold;
     font-size: 2rem;
     line-height: normal;

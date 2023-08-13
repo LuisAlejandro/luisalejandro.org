@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: "Vollkorn, serif",
+        display: "Thunder, sans-serif",
         title: "Poppins, sans-serif",
         main: "Roboto, sans-serif"
       },

@@ -33,11 +33,6 @@ const Header = (props) => (
       </Div1>
       <Div2>
         <li>
-          <Link passHref href="/case-studies">
-            <NavLink>Case studies</NavLink>
-          </Link>
-        </li>
-        <li>
           <Link passHref href="/portfolio">
             <NavLink>Portfolio</NavLink>
           </Link>

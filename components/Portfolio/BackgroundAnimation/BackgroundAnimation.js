@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-import Portfolio from "assets/images/portfolio.svg";
-import Blog from "assets/images/blog.svg";
-import Contact from "assets/images/contact.svg";
-import Easter from "assets/images/easter.svg";
-import Donations from "assets/images/donations.svg";
+import Portfolio from "@assets/images/portfolio.svg";
+import Blog from "@assets/images/blog.svg";
+import Contact from "@assets/images/contact.svg";
+import Easter from "@assets/images/easter.svg";
+import Donations from "@assets/images/donations.svg";
 
 const BackgroundAnimation = () => {
   useEffect(() => {

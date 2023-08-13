@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Masonry from "react-masonry-component";
-import Image from "next/image";
 
 import { GalleryList } from "@constants/constants";
 import { Section, SectionTitle, SectionText } from "@styles/GlobalComponents";
@@ -17,8 +16,6 @@ import Slide from "./Slide";
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setModalOpen] = useState(false);
-
-  useEffect(() => {}, []);
 
   return (
     <Section id="gallery">
@@ -72,14 +69,10 @@ const Gallery = () => {
                   }}
                 >
                   <Figure>
-                    <Image
-                      src={work.images.thumbnail}
-                      alt=""
-                      style={{ width: "100%" }}
-                      layout="fill"
-                    />
+                    <img src={work.images.thumbnail} alt="" />
                     <Caption variants={captionAnimation}>
-                      <h2>{work.name}</h2>
+                      <h2>{work.year}</h2>
+                      <h3>{work.name}</h3>
                       <p>{work.shortDescription}</p>
                     </Caption>
                   </Figure>

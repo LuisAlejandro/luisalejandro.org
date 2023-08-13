@@ -5,6 +5,7 @@ import { GA_MEASUREMENT_ID } from "@constants/constants";
 import Theme from "@styles/theme";
 
 import "@styles/tailwind.css";
+import "@styles/fonts.scss";
 import "@styles/external.scss";
 import "@styles/cases.scss";
 import "@styles/contact.scss";
