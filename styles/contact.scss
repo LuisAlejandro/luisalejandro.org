@@ -19,14 +19,13 @@ $breakpoints: (
 }
 
 #contact {
-  padding-bottom: 100px;
+  padding-bottom: 0;
 
   .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 1040px;
+    margin: 0 auto;
+    margin-bottom: 200px;
 
     .btn {
       display: inline-block;

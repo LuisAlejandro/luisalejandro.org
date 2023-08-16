@@ -37,10 +37,10 @@ const BackgroundAnimation = () => {
     const moveContact = function (x, y) {
       const el = document.querySelector("#portfolio-bg > .container-contact");
       if (!el) return;
-      donationsPos.x = (x / window.innerWidth).toFixed(2);
-      donationsPos.y = (y / window.innerHeight).toFixed(2);
-      el.style.transform = `translate(${-10 * donationsPos.x - 450}px, ${
-        -10 * donationsPos.y - 300
+      contactPos.x = (x / window.innerWidth).toFixed(2);
+      contactPos.y = (y / window.innerHeight).toFixed(2);
+      el.style.transform = `translate(${-10 * contactPos.x - 450}px, ${
+        -10 * contactPos.y - 300
       }px) rotateZ(-50deg)`;
     };
 
@@ -57,10 +57,10 @@ const BackgroundAnimation = () => {
     const moveDonations = function (x, y) {
       const el = document.querySelector("#portfolio-bg > .container-donations");
       if (!el) return;
-      contactPos.x = (x / window.innerWidth).toFixed(2);
-      contactPos.y = (y / window.innerHeight).toFixed(2);
-      el.style.transform = `translate(${-30 * contactPos.x + 0}px, ${
-        10 * contactPos.y + 100
+      donationsPos.x = (x / window.innerWidth).toFixed(2);
+      donationsPos.y = (y / window.innerHeight).toFixed(2);
+      el.style.transform = `translate(${-30 * donationsPos.x + 0}px, ${
+        10 * donationsPos.y + 100
       }px) rotateZ(150deg)`;
     };
 

@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import Script from "next/script";
 
 import { RECAPTCHA_API_KEY } from "@constants/constants";
-import { Section, SectionTitle, SectionText } from "@styles/GlobalComponents";
-import { blurHandler, submitHandler } from "./Form";
 
-const Contact = () => {
+import { blurHandler, submitHandler } from "./Form";
+import { Section, SectionTitle, SectionText } from "./ContactStyles";
+
+const Contact = ({ transparentSection }) => {
   useEffect(() => {
     // Listen to all blur events
     document.addEventListener("blur", blurHandler, true);
@@ -49,7 +50,7 @@ const Contact = () => {
 
   return (
     <>
-      <Section id="contact">
+      <Section transparent={transparentSection} id="contact">
         <SectionTitle main>Contact</SectionTitle>
         <SectionText>
           Ask me anything! I might? be available for hire
@@ -133,11 +134,19 @@ const Contact = () => {
             </div>
           </form>
         </div>
+        <svg viewBox="0 0 1920 37">
+          <path
+            fill="#444"
+            fillOpacity="0.5"
+            d="M0,5.1l210,10.1l473.3-8.6l511.4,7.4L1710,0l210,5.1v32.4H0V5.1z"
+          />
+          <path
+            fill="#333"
+            d="M0,37.5V20.6l255,16.9l939.7-33.9L1665,6.4l255,14.2v16.9H0z"
+          />
+        </svg>
       </Section>
-      <Script
-        src="/scripts/validity-polyfill.js"
-        strategy="beforeInteractive"
-      />
+      <Script src="/scripts/validity-polyfill.js" strategy="afterInteractive" />
       {RECAPTCHA_API_KEY && (
         <Script
           src="https://www.google.com/recaptcha/api.js?render=explicit"

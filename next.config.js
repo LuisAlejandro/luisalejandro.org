@@ -15,18 +15,6 @@ module.exports = {
             svgoConfig: {
               plugins: [
                 {
-                  name: "prefixIds",
-                  params: {
-                    prefixIds: false,
-                  },
-                },
-                {
-                  name: "cleanupIds",
-                  params: {
-                    cleanupIds: false,
-                  },
-                },
-                {
                   name: "preset-default",
                   params: {
                     overrides: {
@@ -34,6 +22,7 @@ module.exports = {
                       moveElemsAttrsToGroup: false,
                       moveGroupAttrsToElems: false,
                       collapseGroups: false,
+                      cleanupIds: false,
                     },
                   },
                 },

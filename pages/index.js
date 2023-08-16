@@ -9,6 +9,7 @@ import {
   AiOutlineLinkedin,
 } from "react-icons/ai";
 
+import { experience } from "@constants/constants";
 import Container from "@components/Home/container";
 import Layout from "@components/Home/layout";
 import Footer from "@components/Home/footer";
@@ -30,7 +31,6 @@ export default function Index() {
     "/images/home/front-6.jpg",
     "/images/home/front-7.jpg",
   ];
-  const experience = new Date().getFullYear() - 2009;
   return (
     <>
       <Layout>

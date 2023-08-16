@@ -23,7 +23,7 @@ const Portfolio = () => {
       <Gallery />
       <Timeline />
       <Acomplishments />
-      <Contact />
+      <Contact transparentSection />
     </Layout>
   );
 };

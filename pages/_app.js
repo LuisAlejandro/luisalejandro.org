@@ -11,6 +11,7 @@ import "@styles/cases.scss";
 import "@styles/contact.scss";
 import "@styles/blog.scss";
 import "@styles/blog-post.scss";
+import "yet-another-react-lightbox/styles.css";
 
 export default function App({ Component, pageProps, router }) {
   useEffect(() => {

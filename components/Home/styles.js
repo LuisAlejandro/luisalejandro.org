@@ -48,7 +48,7 @@ export const Div2 = styled.div`
     display: flex;
     width: 100%;
     img {
-      width: 200px;
+      width: 220px;
       border-radius: 10px;
       margin-bottom: 20px;
     }

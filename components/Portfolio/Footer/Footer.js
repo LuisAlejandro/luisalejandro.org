@@ -21,17 +21,6 @@ import {
 const Footer = () => {
   return (
     <>
-      <svg viewBox="0 0 1920 37">
-        <path
-          fill="#333"
-          fillOpacity="0.5"
-          d="M0,5.1l210,10.1l473.3-8.6l511.4,7.4L1710,0l210,5.1v32.4H0V5.1z"
-        />
-        <path
-          fill="#333"
-          d="M0,37.5V20.6l255,16.9l939.7-33.9L1665,6.4l255,14.2v16.9H0z"
-        />
-      </svg>
       <FooterWrapper>
         <LinkList>
           <LinkColumn>

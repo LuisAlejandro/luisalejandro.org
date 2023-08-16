@@ -51,11 +51,13 @@ export const config = {
   generator: "Next.js",
 };
 
+export const experience = new Date().getFullYear() - 2009;
+
 export const Stars = [
-  { number: 13, text: "Years of experience" },
-  { number: 30, text: "Open Source Projects" },
+  { number: experience, text: "Years of experience" },
+  { number: 60, text: "Open Source Projects" },
   { number: 20, text: "Clients" },
-  { number: 100, text: "Github Stars" },
+  { number: 190, text: "Github Stars" },
 ];
 
 export const GalleryList = [
@@ -378,8 +380,15 @@ export const ProjectList = [
       "An end-to-end implementation of the shopping and booking engines for Wheel The World. It helped increase their bookings by 39% on Q1 2023.",
     image: "/images/case-studies/thumbnails/expedia.png",
     tags: ["Express.js", "Next.js", "Go", "Stripe", "MySQL", "Redis"],
-    visit: "/portfolio/expedia",
-    id: 1,
+    visit: "/case-studies/expedia",
+  },
+  {
+    title: "Wheel The World CI/CD",
+    description:
+      "An optimization project to bring down costs and increase reliability of the CI/CD pipeline. It allowed startup to speed up their development process.",
+    image: "/images/case-studies/thumbnails/wheeltheworld.svg",
+    tags: ["Docker", "Github Actions", "Google Cloud"],
+    visit: "/case-studies/wheeltheworld",
   },
   {
     title: "Soleit desktop app",
@@ -387,8 +396,7 @@ export const ProjectList = [
       "An electron app made with Ionic React capable of aiding in the diagnosis of foot issues. It allowed the Soleit startup raise funding for its growth stage.",
     image: "/images/case-studies/thumbnails/soleit.png",
     tags: ["Ionic", "React", "Electron", "Express.js", "Sequelize", "Python"],
-    visit: "/portfolio/soleit",
-    id: 1,
+    visit: "/case-studies/soleit",
   },
   {
     title: "Dockershelf",
@@ -396,7 +404,7 @@ export const ProjectList = [
       "A collection of useful, lightweight and reliable dockerfiles. Based on debian sid and stable, images are built and tested weekly.",
     image: "/images/case-studies/thumbnails/dockershelf.svg",
     tags: ["Docker", "CI/CD", "Python", "Bash", "Ruby", "Rspec"],
-    visit: "/portfolio/dockershelf",
+    visit: "/case-studies/dockershelf",
     id: 0,
   },
   {
@@ -405,26 +413,7 @@ export const ProjectList = [
       "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
     image: "/images/case-studies/thumbnails/canaima.png",
     tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
-    visit: "/portfolio/canaima",
-    id: 1,
-  },
-  {
-    title: "Wheel The World CI/CD",
-    description:
-      "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
-    image: "/images/case-studies/thumbnails/canaima.png",
-    tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
-    visit: "/portfolio/canaima",
-    id: 1,
-  },
-  {
-    title: "Collage Labs Agency",
-    description:
-      "A Linux distribution developed to power several projects of the venezuelan government, among them the adoption of free software on the public administration.",
-    image: "/images/case-studies/thumbnails/canaima.png",
-    tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
-    visit: "/portfolio/canaima",
-    id: 1,
+    visit: "/case-studies/canaima",
   },
 ];
 
