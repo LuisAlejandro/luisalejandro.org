@@ -95,7 +95,7 @@ const Dockershelf = () => {
               )}
             </Scene>
             <Why
-              Title={() => "The Motivation"}
+              Title={() => "The Problem"}
               Content={() => (
                 <>
                   <p className="py-5">

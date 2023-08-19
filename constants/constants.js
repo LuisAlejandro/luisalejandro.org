@@ -185,7 +185,7 @@ export const GalleryList = [
     year: 2019,
     shortDescription: "A wordpress website for a local gin brand",
     description:
-      "Working the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local gin brand. The website was created using a custom theme and several plugins. I worked closely with an UX designer provided by the client to plan the layout of the website. I also hired a project manager and a junior frontend developer to help me with the project. The website has been online for more than 4 years and has been a complete success for the client.",
+      "Working with the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local gin brand. The website was created using a custom theme and several plugins. I worked closely with an UX designer provided by the client to plan the layout of the website. I also hired a project manager and a junior frontend developer to help me with the project. The website has been online for more than 4 years and has been a complete success for the client.",
     tags: ["wordpress", "php", "css", "jquery", "docker"],
     sources: [
       {
@@ -204,7 +204,7 @@ export const GalleryList = [
     year: 2020,
     shortDescription: "A wordpress website for a local recipe blog",
     description:
-      "Working the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local recipe blog. The website was created using a custom theme and several plugins. The website has been online for more than 3 years and has been a complete success for the client.",
+      "Working with the <a href='https://web.archive.org/web/20190121141846/https://webuzz.es/' target='_blank'>Webuzz agency</a>, I was tasked with creating a wordpress website for a local recipe blog. The website was created using a custom theme and several plugins. The website has been online for more than 3 years and has been a complete success for the client.",
     tags: ["wordpress", "php", "css", "jquery", "python", "docker"],
     sources: [
       {

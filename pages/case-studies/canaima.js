@@ -1,14 +1,10 @@
+import { useState } from "react";
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LinearScale,
-  CategoryScale,
-  BarElement,
-} from "chart.js";
+import PhotoAlbum from "react-photo-album";
+import Lightbox from "yet-another-react-lightbox";
 
-import DockershelfWhy from "@assets/images/dockershelf-why.svg";
+import CanaimaWhy from "@assets/images/canaima-why.svg";
 import HeroIntro from "@components/CaseStudies/HeroIntro";
 import Why from "@components/CaseStudies/Why";
 import Challenge from "@components/CaseStudies/Challenge";
@@ -20,12 +16,19 @@ import Contact from "@components/Portfolio/Contact/Contact";
 import { Layout } from "@components/CaseStudies/Layout";
 import { CaseStudiesDetailsStyles } from "@styles/globals";
 
-ChartJS.register(LinearScale, CategoryScale, BarElement);
-ChartJS.defaults.font.family = "Roboto, sans-serif";
-ChartJS.defaults.font.size = 16;
-ChartJS.defaults.font.weight = "300";
+const Canaima = () => {
+  const [index, setIndex] = useState(-1);
 
-const Soleit = () => {
+  const galleryUrlList = [
+    "/images/case-studies/canaima-gallery-1.png",
+    "/images/case-studies/canaima-gallery-2.png",
+    "/images/case-studies/canaima-gallery-3.png",
+    "/images/case-studies/canaima-gallery-4.png",
+    "/images/case-studies/canaima-gallery-5.jpg",
+    "/images/case-studies/canaima-gallery-6.jpg",
+    "/images/case-studies/canaima-gallery-7.jpg",
+    "/images/case-studies/canaima-gallery-8.jpg",
+  ];
   return (
     <Layout>
       <CaseStudiesDetailsStyles />
@@ -39,12 +42,7 @@ const Soleit = () => {
               Description={() => (
                 <>
                   Canaima GNU/Linux is a free and open-source Linux distribution
-                  that is based on the Debian architecture. It was created in
-                  2004 by the Centro Nacional de Tecnologías de Información
-                  (CNTI) of the Venezuelan government as a solution to cover the
-                  needs of the Venezuelan Government as a response to
-                  presidential decree 3,390 that prioritizes the use of free and
-                  open source technologies in the public administration.
+                  that is based on the Debian architecture.
                 </>
               )}
               team={[
@@ -62,8 +60,12 @@ const Soleit = () => {
               ]}
               links={[
                 {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
+                  text: "Homepage",
+                  url: "https://canaima.softwarelibre.gob.ve/",
+                },
+                {
+                  text: "Source code",
+                  url: "https://gitlab.com/canaima-gnu-linux",
                 },
               ]}
               year={2009}
@@ -98,53 +100,66 @@ const Soleit = () => {
               )}
             </Scene>
             <Why
-              Title={() => "The Motivation"}
+              Title={() => "The Problem"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    The venezuelan government was looking for a way to migrate
+                    their infrastructure to a free and open-source operating
+                    system. They needed a method that could allow them to deploy
+                    software in a secure, centralized and reliable way to their
+                    millions of users across the country.
+                  </p>
+                  <p className="py-5">
+                    Debian as an operating system, provided the stability and
+                    security that the government was looking for. However, the
+                    process of being accepted as a maintainer in Debian was long
+                    and tedious. The government needed to introduce hundreds of
+                    packages, without having to wait for the Debian maintainers
+                    to accept their packages.
+                  </p>
                 </>
               )}
-              ImageComponent={(props) => <DockershelfWhy {...props} />}
+              ImageComponent={(props) => <CanaimaWhy {...props} />}
               ImageUseEffect={() => {
-                const monitorPos = { x: 0, y: 0 };
-                const personPos = { x: 0, y: 0 };
-                const whalesPos = { x: 0, y: 0 };
+                const whiteboardPos = { x: 0, y: 0 };
+                const presenterPos = { x: 0, y: 0 };
+                const peoplePos = { x: 0, y: 0 };
 
-                const moveMonitor = function (x, y) {
-                  const el = document.querySelector("#why-monitor");
+                const moveWhiteboard = function (x, y) {
+                  const el = document.querySelector("#why-whiteboard");
                   if (!el) return;
-                  monitorPos.x = (x / window.innerWidth).toFixed(2);
-                  monitorPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${10 * monitorPos.x + 0}px, ${
-                    10 * monitorPos.y + 0
-                  }px) rotateZ(0deg)`;
+                  whiteboardPos.x = (x / window.innerWidth).toFixed(2);
+                  whiteboardPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${
+                    10 * whiteboardPos.x + 0
+                  }px, ${10 * whiteboardPos.y + 0}px) rotateZ(0deg)`;
                 };
 
-                const movePerson = function (x, y) {
-                  const el = document.querySelector("#why-person");
+                const movePresenter = function (x, y) {
+                  const el = document.querySelector("#why-presenter");
                   if (!el) return;
-                  personPos.x = (x / window.innerWidth).toFixed(2);
-                  personPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${30 * personPos.x - 0}px, ${
-                    30 * personPos.y + 0
-                  }px) rotateZ(0deg)`;
+                  presenterPos.x = (x / window.innerWidth).toFixed(2);
+                  presenterPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${
+                    30 * presenterPos.x - 0
+                  }px, ${30 * presenterPos.y + 0}px) rotateZ(0deg)`;
                 };
 
-                const moveWhales = function (x, y) {
-                  const el = document.querySelector("#why-whales");
+                const movePeople = function (x, y) {
+                  const el = document.querySelector("#why-people");
                   if (!el) return;
-                  whalesPos.x = (x / window.innerWidth).toFixed(2);
-                  whalesPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${-10 * whalesPos.x - 0}px, ${
-                    -10 * whalesPos.y - 0
+                  peoplePos.x = (x / window.innerWidth).toFixed(2);
+                  peoplePos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${-10 * peoplePos.x - 0}px, ${
+                    -10 * peoplePos.y - 0
                   }px) rotateZ(0deg)`;
                 };
 
                 const mousemoveCallback = (e) => {
-                  moveMonitor(e.clientX, e.clientY);
-                  movePerson(e.clientX, e.clientY);
-                  moveWhales(e.clientX, e.clientY);
+                  moveWhiteboard(e.clientX, e.clientY);
+                  movePresenter(e.clientX, e.clientY);
+                  movePeople(e.clientX, e.clientY);
                 };
 
                 document.addEventListener("mousemove", mousemoveCallback);
@@ -158,9 +173,21 @@ const Soleit = () => {
               Title={() => "The Challenge"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    Leading a team of developers to create a Linux distribution
+                    is a tough job, but in the case of Canaima was even harder
+                    because we had to reach consensus with the user community
+                    while at the same time we had to meet the requirements of
+                    the government. We had annual events called
+                    &quot;Cayapas&quot; were we tried to get the community
+                    involved in the development of the distribution.
+                  </p>
+                  <p className="py-5">
+                    We had to develop our own infraestructure to support the
+                    growing of the features we were adding to the distribution.
+                    We had to develop our own build system, our own package
+                    repository, and our own website.
+                  </p>
                 </>
               )}
               imgUrl="/images/case-studies/canaima-challenge.png"
@@ -169,9 +196,29 @@ const Soleit = () => {
               Title={() => "The Product"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    Canaima GNU/Linux had several components that needed to be
+                    functioning properly so that the distribution could be used.
+                    It had a website, a wiki, a forum, a mailing list, a bug
+                    tracker, a source code repository, a build system, a package
+                    repository, a download server, and a documentation server.
+                    All of these components needed to be working together in
+                    order to provide a good experience to the users.
+                  </p>
+                  <p className="py-5">
+                    The build system was based on Debian&apos;s build system. We
+                    called it &quot;Canaima Semilla&quot;. It was a set of
+                    scripts that would build the packages and the ISO images.
+                    The build system was able to build the packages for
+                    different architectures, and it was able to build the ISO
+                    images for different flavors of the distribution.
+                  </p>
+                  <p className="py-5">
+                    We also made our own web browser, called
+                    &quot;Cunaguaro&quot;. It was based on Firefox, but it had a
+                    different logo and it had some customizations that were
+                    specific to the distribution.
+                  </p>
                 </>
               )}
               videoUrl="/images/case-studies/canaima-product.mp4"
@@ -180,8 +227,36 @@ const Soleit = () => {
               Title={() => "The Results"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    Canaima enjoyed a lot of popularity in Venezuela. It was
+                    used in schools, universities, government offices, and even
+                    in the military. On the first month of release of Canaima
+                    3.0, it had 110,000 downloads and subsequent releases were
+                    also popular.
+                  </p>
                   <div className="flex flex-row">
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        110K
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        downloads on
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        Canaima 3.0
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        150K
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        downloads on
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        Canaima 3.1
+                      </div>
+                    </div>
                     <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         220K
@@ -190,104 +265,51 @@ const Soleit = () => {
                         downloads on
                       </div>
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        debian images
+                        Canaima 4.0
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        294K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        python images
-                      </div>
-                    </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        55K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        node images
-                      </div>
-                    </div>
+                  </div>
+                  <p className="py-5">
+                    As a Canaima developer, I was able to assist to the 12th
+                    annual debian developers conference, which was held in
+                    Managua, Nicaragua. I was able to meet other Debian
+                    developers, including the creator of Live Build, which was
+                    the base for Canaima Semilla.
+                  </p>
+                  <div className="py-5">
+                    <PhotoAlbum
+                      photos={galleryUrlList.map((url) => ({
+                        src: url,
+                        width: 1080,
+                        height: 800,
+                      }))}
+                      layout="rows"
+                      targetRowHeight={150}
+                      onClick={({ index }) => setIndex(index)}
+                    />
+                    <Lightbox
+                      slides={galleryUrlList.map((url) => ({
+                        src: url,
+                        width: 1080,
+                        height: 800,
+                      }))}
+                      open={index >= 0}
+                      index={index}
+                      close={() => setIndex(-1)}
+                    />
                   </div>
                   <p className="py-5"></p>
-                  <div className="flex">
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
-                      <Bar
-                        options={{
-                          scales: {
-                            y: {
-                              beginAtZero: true,
-                            },
-                          },
-                        }}
-                        data={{
-                          labels: ["dockerhub node", "dockershelf node"],
-                          datasets: [
-                            {
-                              label: "Debian",
-                              data: [367.93, 82.43],
-                              backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                              ],
-                              borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                              ],
-                              borderWidth: 1,
-                            },
-                          ],
-                        }}
-                      />
-                    </div>
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
-                      <Bar
-                        options={{
-                          scales: {
-                            y: {
-                              beginAtZero: true,
-                            },
-                          },
-                        }}
-                        data={{
-                          labels: ["dockerhub python", "dockershelf python"],
-                          datasets: [
-                            {
-                              label: "Python",
-                              data: [360.46, 100.09],
-                              backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                              ],
-                              borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                              ],
-                              borderWidth: 1,
-                            },
-                          ],
-                        }}
-                      />
-                    </div>
-                  </div>
                   <p className="py-5"></p>
                 </>
               )}
               links={[
                 {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
+                  text: "Homepage",
+                  url: "https://canaima.softwarelibre.gob.ve/",
                 },
                 {
-                  text: "Dockerhub",
-                  url: "https://hub.docker.com/u/dockershelf",
+                  text: "Source code",
+                  url: "https://gitlab.com/canaima-gnu-linux",
                 },
               ]}
             />
@@ -300,4 +322,4 @@ const Soleit = () => {
   );
 };
 
-export default Soleit;
+export default Canaima;

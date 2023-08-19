@@ -8,7 +8,7 @@ import {
   BarElement,
 } from "chart.js";
 
-import DockershelfWhy from "@assets/images/dockershelf-why.svg";
+import WheelTheWorldWhy from "@assets/images/wheeltheworld-why.svg";
 import HeroIntro from "@components/CaseStudies/HeroIntro";
 import Why from "@components/CaseStudies/Why";
 import Challenge from "@components/CaseStudies/Challenge";
@@ -25,7 +25,7 @@ ChartJS.defaults.font.family = "Roboto, sans-serif";
 ChartJS.defaults.font.size = 16;
 ChartJS.defaults.font.weight = "300";
 
-const Soleit = () => {
+const WheelTheWorld = () => {
   return (
     <Layout>
       <CaseStudiesDetailsStyles />
@@ -35,30 +35,23 @@ const Soleit = () => {
           <div className="cases-content">
             <HeroIntro
               Subtitle={() => "Wheel The World"}
-              Title={() => "An "}
+              Title={() => "A faster, stronger pipeline"}
               Description={() => (
                 <>
+                  Wheel The World had a problem: their CI/CD pipeline was slow,
+                  unreproducible and unreliable. I helped them build a new one
+                  from scratch, using Github Actions and Docker.
                 </>
               )}
               team={[
                 "Luis Martínez",
                 "Fede Carossino",
                 "Gonzalo Rodríguez",
+                "Sebastián Vinci",
               ]}
-              deliverables={[
-                "Github Actions CI/CD",
-              ]}
-              links={[
-                {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
-                },
-                {
-                  text: "Dockerhub",
-                  url: "https://hub.docker.com/u/dockershelf",
-                },
-              ]}
-              year={2023}
+              deliverables={["Github Actions CI/CD"]}
+              links={[]}
+              year={2022}
             />
             <Scene triggerElement="#why" duration="80%" triggerHook="1">
               {(progress) => (
@@ -90,53 +83,61 @@ const Soleit = () => {
               )}
             </Scene>
             <Why
-              Title={() => "The Motivation"}
+              Title={() => "The Problem"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    On 2022, I joined Wheel The World as a software engineer as
+                    part of a reestructuring of the company. They needed to
+                    scale up the team to deliver new features continuosly and
+                    reliably. I quickly noticed that the current CI/CD schema
+                    was going to be a bottleneck for the team, so I proposed to
+                    redesign it by dropping what wasnt working and build on top
+                    of that. Luckily, the CTO was thinking the same thing, so we
+                    started working on it right away.
+                  </p>
                 </>
               )}
-              ImageComponent={(props) => <DockershelfWhy {...props} />}
+              ImageComponent={(props) => <WheelTheWorldWhy {...props} />}
               ImageUseEffect={() => {
-                const monitorPos = { x: 0, y: 0 };
-                const personPos = { x: 0, y: 0 };
-                const whalesPos = { x: 0, y: 0 };
+                const rocketPos = { x: 0, y: 0 };
+                const chartPos = { x: 0, y: 0 };
+                const manPos = { x: 0, y: 0 };
 
-                const moveMonitor = function (x, y) {
-                  const el = document.querySelector("#why-monitor");
+                const moveRocket = function (x, y) {
+                  const el = document.querySelector("#why-rocket");
                   if (!el) return;
-                  monitorPos.x = (x / window.innerWidth).toFixed(2);
-                  monitorPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${10 * monitorPos.x + 0}px, ${
-                    10 * monitorPos.y + 0
+                  rocketPos.x = (x / window.innerWidth).toFixed(2);
+                  rocketPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${10 * rocketPos.x + 0}px, ${
+                    10 * rocketPos.y + 0
                   }px) rotateZ(0deg)`;
                 };
 
-                const movePerson = function (x, y) {
-                  const el = document.querySelector("#why-person");
+                const moveChart = function (x, y) {
+                  const el = document.querySelector("#why-chart");
                   if (!el) return;
-                  personPos.x = (x / window.innerWidth).toFixed(2);
-                  personPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${30 * personPos.x - 0}px, ${
-                    30 * personPos.y + 0
+                  chartPos.x = (x / window.innerWidth).toFixed(2);
+                  chartPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${30 * chartPos.x - 0}px, ${
+                    30 * chartPos.y + 0
                   }px) rotateZ(0deg)`;
                 };
 
-                const moveWhales = function (x, y) {
-                  const el = document.querySelector("#why-whales");
+                const moveMan = function (x, y) {
+                  const el = document.querySelector("#why-man");
                   if (!el) return;
-                  whalesPos.x = (x / window.innerWidth).toFixed(2);
-                  whalesPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${-10 * whalesPos.x - 0}px, ${
-                    -10 * whalesPos.y - 0
+                  manPos.x = (x / window.innerWidth).toFixed(2);
+                  manPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${-10 * manPos.x - 0}px, ${
+                    -10 * manPos.y - 0
                   }px) rotateZ(0deg)`;
                 };
 
                 const mousemoveCallback = (e) => {
-                  moveMonitor(e.clientX, e.clientY);
-                  movePerson(e.clientX, e.clientY);
-                  moveWhales(e.clientX, e.clientY);
+                  moveRocket(e.clientX, e.clientY);
+                  moveChart(e.clientX, e.clientY);
+                  moveMan(e.clientX, e.clientY);
                 };
 
                 document.addEventListener("mousemove", mousemoveCallback);
@@ -150,65 +151,69 @@ const Soleit = () => {
               Title={() => "The Challenge"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    Wheel the world used to have a CI/CD pipeline based on
+                    Google Cloud Build. This pipeline was slow, unreliable and
+                    hard to maintain. It was also hard to reproduce locally,
+                    which made it hard to debug. Furthermore, the results of the
+                    testing were not connected to the deploy trigger, which
+                    meant that a failed test would not stop the deploy
+                    automatically. This led to a lot of manual work and a lot of
+                    time wasted.
+                  </p>
+                  <p className="py-5">
+                    To complicate things even more, wheel the world was not
+                    using Docker at all. This meant that the environment in
+                    which the code was tested was not the same as the one in
+                    which it was deployed. This led to a lot of bugs that were
+                    hard to reproduce and fix.
+                  </p>
+                  <p className="py-5">
+                    The Google Cloud Build pipeline wasnt able to provide
+                    parallelization, caching or more complex workflows, limiting
+                    the capacity to improve the overall CI/CD process.
+                  </p>
                 </>
               )}
-              imgUrl="/images/case-studies/wheeltheworld-challenge.png"
             />
             <Product
               Title={() => "The Product"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    The first thing I did was to dockerize all the services and
+                    the tests of the most important applications. This allowed
+                    the team to have a consistent environment for testing and
+                    development, regardless of the operating system or local
+                    library versions. Next was to deprecate the old pipeline
+                    based on Google Cloud Build and replace it with a new one
+                    based on Github Actions. This allowed us to have a more
+                    flexible and powerful pipeline, with parallelization,
+                    caching and more complex workflows.
+                  </p>
+                  <p className="py-5">
+                    Implementing the branch and merge workflow proposed by the
+                    CTO, I was able to reduce the time to deploy significantly
+                    and do interesting things like automatically deploy the
+                    master branch to production when all the tests pass. On a
+                    second iteration, by reducing the size of the docker images
+                    using multistage builds and dividing the tests in different
+                    jobs, I was able to reduce the time to deploy even more.
+                  </p>
                 </>
               )}
-              videoUrl="/images/case-studies/wheeltheworld-product.mov"
             />
             <Results
               Title={() => "The Results"}
               Content={() => (
                 <>
-                  <p className="py-5"></p>
-                  <div className="flex flex-row">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        220K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        debian images
-                      </div>
-                    </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        294K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        python images
-                      </div>
-                    </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        55K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        node images
-                      </div>
-                    </div>
-                  </div>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    The new pipeline is faster, more reliable and easier to
+                    maintain. Taking only the website as an example, the total
+                    weight of the docker image went from 1.5GB to 200MB, the
+                    time to deploy went from 40 minutes to 10 minutes and the
+                    time to run the tests went from 20 minutes to 5 minutes.
+                  </p>
                   <div className="flex">
                     <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
                       <Bar
@@ -220,11 +225,15 @@ const Soleit = () => {
                           },
                         }}
                         data={{
-                          labels: ["dockerhub node", "dockershelf node"],
+                          labels: [
+                            "original pipeline",
+                            "first iteration",
+                            "second iteration",
+                          ],
                           datasets: [
                             {
-                              label: "Debian",
-                              data: [367.93, 82.43],
+                              label: "Python",
+                              data: [1500, 400, 200],
                               backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(255, 159, 64, 0.2)",
@@ -249,11 +258,15 @@ const Soleit = () => {
                           },
                         }}
                         data={{
-                          labels: ["dockerhub python", "dockershelf python"],
+                          labels: [
+                            "original pipeline",
+                            "first iteration",
+                            "second iteration",
+                          ],
                           datasets: [
                             {
                               label: "Python",
-                              data: [360.46, 100.09],
+                              data: [40, 20, 10],
                               backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(255, 159, 64, 0.2)",
@@ -269,19 +282,43 @@ const Soleit = () => {
                       />
                     </div>
                   </div>
-                  <p className="py-5"></p>
+                  <p className="py-5">
+                    By reducing the aount of time it takes to deploy and the
+                    weight of the images, we were reducing the maintenance cost
+                    of the pipeline, which was a big win for the company. For
+                    example, for the website frontend, estimating a cost of
+                    0.008 USD per minute of deployment, and 5 pipeline runs per
+                    day (which is a conservative estimation), we were able to
+                    reduce the cost of the pipeline from 32 USD per month to 8
+                    USD per month (75% reduction), just for one application.
+                  </p>
+                  <div className="flex flex-row justify-center">
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        ~75%
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        reduction in costs
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        for github actions
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        ~86%
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        reduction in
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        image size
+                      </div>
+                    </div>
+                  </div>
                 </>
               )}
-              links={[
-                {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
-                },
-                {
-                  text: "Dockerhub",
-                  url: "https://hub.docker.com/u/dockershelf",
-                },
-              ]}
+              links={[]}
             />
           </div>
         </Controller>
@@ -292,4 +329,4 @@ const Soleit = () => {
   );
 };
 
-export default Soleit;
+export default WheelTheWorld;

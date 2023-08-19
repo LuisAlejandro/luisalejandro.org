@@ -92,7 +92,7 @@ const Soleit = () => {
               )}
             </Scene>
             <Why
-              Title={() => "The Motivation"}
+              Title={() => "The Problem"}
               Content={() => (
                 <>
                   <p className="py-5">
@@ -211,13 +211,22 @@ const Soleit = () => {
               Content={() => (
                 <>
                   <p className="py-5">
-                    The app was developed using Electron, a framework that
+                    The app was developed using{" "}
+                    <b className="font-black">Electron</b>, a framework that
                     allows to create desktop apps using web technologies. As a
-                    frontend language we selected Ionic React, so that the
+                    frontend language we selected{" "}
+                    <b className="font-black">Ionic React</b>, so that the
                     client could build the application for mobile devices in the
-                    future. The backend was developed using Node.js and
-                    Express.js. The database was a MongoDB database hosted in
-                    AWS.
+                    future. The backend was developed using{" "}
+                    <b className="font-black">Node.js</b> and{" "}
+                    <b className="font-black">Express.js</b>. The database was a{" "}
+                    <b className="font-black">PostgreSQL database</b> hosted in{" "}
+                    <b className="font-black">AWS</b>. It also had connections
+                    with the propietary software that made the diagnosis of the
+                    feet, which was accessed through{" "}
+                    <b className="font-black">DynamoDB</b>, and it was also
+                    integrated with the S3 bucket where the auxiliary files were
+                    stored.
                   </p>
                   <p className="py-5">
                     The hardware driver was embedded in the electron window and
@@ -225,7 +234,8 @@ const Soleit = () => {
                     allowed the app to communicate with the hardware.
                   </p>
                   <p className="py-5">
-                    
+                    The app allows Soleit to make new foot diagnoses, but also,
+                    manage users, doctors, materials, directions and more.
                   </p>
                 </>
               )}
@@ -236,7 +246,44 @@ const Soleit = () => {
               Content={() => (
                 <>
                   <p className="py-5">
-                    sfsdfd
+                    Soleit is now able to make diagnoses in a{" "}
+                    <b className="font-black">more efficient way</b>, allowing
+                    them to grow their business and expand to new markets. They
+                    have made a <b className="font-black">lot of sales</b> and
+                    are now looking to improve some of the features of the app.
+                  </p>
+                  <div className="flex flex-row justify-center">
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                        more than
+                      </div>
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        1000
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                        diagnosed
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                        patients
+                      </div>
+                    </div>
+                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                        more than
+                      </div>
+                      <div className="font-display font-black text-12xl leading-none text-center">
+                        20
+                        <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                          sold
+                        </div>
+                      </div>
+                      <div className="font-main font-extralight tracking-tighter text-6xl text-center">
+                        subscriptions
+                      </div>
+                    </div>
+                  </div>
+                  <p className="py-5">
+                    Here are some of the screenshots of the app:
                   </p>
                   <div className="py-5">
                     <PhotoAlbum
@@ -260,9 +307,6 @@ const Soleit = () => {
                       close={() => setIndex(-1)}
                     />
                   </div>
-                  <p className="py-5">
-                    sdfsdf
-                  </p>
                 </>
               )}
               links={[

@@ -58,32 +58,34 @@ const Product = ({ Title, Content, videoUrl }) => (
           )}
         </Scene>
       </div>
-      <div
-        className="col-span-4"
-        style={{
-          height: "200px",
-        }}
-      >
-        <video
-          playsInline="playsinline"
-          preload="none"
-          autoPlay="autoplay"
-          muted={true}
-          loop="loop"
+      {videoUrl && (
+        <div
+          className="col-span-4"
           style={{
-            height: "800px",
-            width: "1200px",
-            position: "relative",
-            top: "100px",
-            left: "50px",
-            maxWidth: "unset",
-            zIndex: 1,
-            opacity: 0.7,
+            height: "200px",
           }}
         >
-          <source src={videoUrl} type="video/mp4" />
-        </video>
-      </div>
+          <video
+            playsInline="playsinline"
+            preload="none"
+            autoPlay="autoplay"
+            muted={true}
+            loop="loop"
+            style={{
+              height: "800px",
+              width: "1200px",
+              position: "relative",
+              top: "100px",
+              left: "50px",
+              maxWidth: "unset",
+              zIndex: 1,
+              opacity: 0.7,
+            }}
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        </div>
+      )}
     </div>
   </div>
 );

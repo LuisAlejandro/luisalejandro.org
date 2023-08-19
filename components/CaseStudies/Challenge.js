@@ -9,10 +9,10 @@ const Challenge = ({ Title, Content, imgUrl }) => (
     <div
       className="w-full"
       style={{
-        backgroundImage: `url(${imgUrl})`,
         backgroundPosition: "top right",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        ...(imgUrl ? { backgroundImage: `url(${imgUrl})` } : {}),
       }}
     >
       <svg viewBox="0 0 1920 100">

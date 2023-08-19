@@ -1,12 +1,5 @@
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LinearScale,
-  CategoryScale,
-  BarElement,
-} from "chart.js";
 
 import ExpediaWhy from "@assets/images/expedia-why.svg";
 import HeroIntro from "@components/CaseStudies/HeroIntro";
@@ -20,12 +13,7 @@ import Contact from "@components/Portfolio/Contact/Contact";
 import { Layout } from "@components/CaseStudies/Layout";
 import { CaseStudiesDetailsStyles } from "@styles/globals";
 
-ChartJS.register(LinearScale, CategoryScale, BarElement);
-ChartJS.defaults.font.family = "Roboto, sans-serif";
-ChartJS.defaults.font.size = 16;
-ChartJS.defaults.font.weight = "300";
-
-const Soleit = () => {
+const Expedia = () => {
   return (
     <Layout>
       <CaseStudiesDetailsStyles />
@@ -34,26 +22,24 @@ const Soleit = () => {
         <Controller>
           <div className="cases-content">
             <HeroIntro
-              Subtitle={() => "Soleit"}
-              Title={() => "An "}
+              Subtitle={() => "Expedia API integration"}
+              Title={() => "A larger hotel database to book from"}
               Description={() => (
                 <>
+                  On 2022, Wheel the World pursued a commercial agreement with
+                  Expedia to integrate their hotel database booking and shopping
+                  features. I was in charge of developing several components to
+                  make this integration possible.
                 </>
               )}
               team={["Luis Martínez"]}
               deliverables={[
-                "A REST api",
+                "An expedia content indexer",
+                "A booking module",
+                "A shopping module",
+                "A matching algorithm",
               ]}
-              links={[
-                {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
-                },
-                {
-                  text: "Dockerhub",
-                  url: "https://hub.docker.com/u/dockershelf",
-                },
-              ]}
+              links={[]}
               year={2022}
             />
             <Scene triggerElement="#why" duration="80%" triggerHook="1">
@@ -86,55 +72,68 @@ const Soleit = () => {
               )}
             </Scene>
             <Why
-              Title={() => "The Motivation"}
+              Title={() => "The Problem"}
               Content={() => (
                 <>
                   <p className="py-5">
+                    Wheel the World needed to increase their sales significantly
+                    if they wanted to keep growing. They had a great product,
+                    but they needed to reach more people. One of the main
+                    problems was that they had a very limited hotel database,
+                    which made it difficult for users to find a hotel that
+                    suited their needs. They had an integration with Hotelbeds,
+                    but the available inventory was very limited.
                   </p>
                   <p className="py-5">
+                    The majority of hotels in the wheel The World inventory were
+                    bookable through a request to quote system, but this meant
+                    that users had to wait for a response from the Wheel the
+                    World team, which was not scalable. Also, pricing was not
+                    transparent or instant, which made it difficult for users to
+                    make a decision.
                   </p>
                 </>
               )}
               ImageComponent={(props) => <ExpediaWhy {...props} />}
               ImageUseEffect={() => {
-                const monitorPos = { x: 0, y: 0 };
-                const personPos = { x: 0, y: 0 };
-                const whalesPos = { x: 0, y: 0 };
+                const whiteboardPos = { x: 0, y: 0 };
+                const manPos = { x: 0, y: 0 };
+                const tablePos = { x: 0, y: 0 };
 
-                const moveMonitor = function (x, y) {
-                  const el = document.querySelector("#why-monitor");
+                const moveWhiteboard = function (x, y) {
+                  const el = document.querySelector("#why-whiteboard");
                   if (!el) return;
-                  monitorPos.x = (x / window.innerWidth).toFixed(2);
-                  monitorPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${10 * monitorPos.x + 0}px, ${
-                    10 * monitorPos.y + 0
+                  whiteboardPos.x = (x / window.innerWidth).toFixed(2);
+                  whiteboardPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${
+                    10 * whiteboardPos.x + 0
+                  }px, ${10 * whiteboardPos.y + 0}px) rotateZ(0deg)`;
+                };
+
+                const moveMan = function (x, y) {
+                  const el = document.querySelector("#why-man");
+                  if (!el) return;
+                  manPos.x = (x / window.innerWidth).toFixed(2);
+                  manPos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${30 * manPos.x - 0}px, ${
+                    30 * manPos.y + 0
                   }px) rotateZ(0deg)`;
                 };
 
-                const movePerson = function (x, y) {
-                  const el = document.querySelector("#why-person");
+                const moveTable = function (x, y) {
+                  const el = document.querySelector("#why-table");
                   if (!el) return;
-                  personPos.x = (x / window.innerWidth).toFixed(2);
-                  personPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${30 * personPos.x - 0}px, ${
-                    30 * personPos.y + 0
-                  }px) rotateZ(0deg)`;
-                };
-
-                const moveWhales = function (x, y) {
-                  const el = document.querySelector("#why-whales");
-                  if (!el) return;
-                  whalesPos.x = (x / window.innerWidth).toFixed(2);
-                  whalesPos.y = (y / window.innerHeight).toFixed(2);
-                  el.style.transform = `translate(${-10 * whalesPos.x - 0}px, ${
-                    -10 * whalesPos.y - 0
+                  tablePos.x = (x / window.innerWidth).toFixed(2);
+                  tablePos.y = (y / window.innerHeight).toFixed(2);
+                  el.style.transform = `translate(${-10 * tablePos.x - 0}px, ${
+                    -10 * tablePos.y - 0
                   }px) rotateZ(0deg)`;
                 };
 
                 const mousemoveCallback = (e) => {
-                  moveMonitor(e.clientX, e.clientY);
-                  movePerson(e.clientX, e.clientY);
-                  moveWhales(e.clientX, e.clientY);
+                  moveWhiteboard(e.clientX, e.clientY);
+                  moveMan(e.clientX, e.clientY);
+                  moveTable(e.clientX, e.clientY);
                 };
 
                 document.addEventListener("mousemove", mousemoveCallback);
@@ -149,10 +148,27 @@ const Soleit = () => {
               Content={() => (
                 <>
                   <p className="py-5">
+                    There was already a request to quote system and a
+                    booking/pricing integration with Hotelbeds in place. One of
+                    the challenges was to integrate the Expedia hotel database
+                    with a new booking/pricing system, and to make it work with
+                    the existing request to quote system. Rewriting or moving
+                    components of the system design was not an option, so the
+                    new system had to be compatible with the existing one.
                   </p>
                   <p className="py-5">
+                    One of the components needed to index all of the Expedia
+                    content database and make it searchable. This component had
+                    to be able to index the content in a reasonable amount of
+                    time, and it had to be able to update the index on a weekly
+                    basis. What made this challenging was that there were more
+                    tha 600k records in the database, with a total of 28GB of
+                    data.
                   </p>
                   <p className="py-5">
+                    The matching system was also a headeache. It had to be able
+                    to match the Expedia content with the Wheel the World
+                    content, but also allowing to match with Hotelbeds content.
                   </p>
                 </>
               )}
@@ -163,10 +179,32 @@ const Soleit = () => {
               Content={() => (
                 <>
                   <p className="py-5">
+                    The integration consisted first on a Golang application that
+                    downloaded, parsed and saved the Expedia content database
+                    (28GB of data) into a Postgres database and a Redis cache.
+                    This application was able to download and parse the whole
+                    database in less than 2 hours, and it was able to update the
+                    database on a weekly basis in less than 2 minutes.
                   </p>
                   <p className="py-5">
+                    The second part of the integration was a to add a Pricing
+                    and a Shopping provider for Expedia in the website backend.
+                    The backend was built with Express and TypeORM (Typescript),
+                    and it was deployed on Google Clour Run. The pricing
+                    provider was able to get the availability and price of a
+                    hotel room for a given date, and the booking provider was
+                    able to book a hotel room.
                   </p>
                   <p className="py-5">
+                    The third part of the integration was to add a matching
+                    algorithm that was able to match the Expedia content with
+                    the Wheel the World content, but also allowing to match with
+                    Hotelbeds content. This was a very complex algorithm that
+                    had to take into account the location, the accessibility
+                    features, the hotel amenities, the room amenities, the room
+                    type, the room accessibility features and other factors. It
+                    used the indexed data from the first part of the integration
+                    to make the matching process faster.
                   </p>
                 </>
               )}
@@ -177,118 +215,39 @@ const Soleit = () => {
               Content={() => (
                 <>
                   <p className="py-5">
+                    The integration was a success. Expedia quickly certified the
+                    integration and allowed Wheel the World to increase their
+                    hotel database from a couple of thousand hotels to more than
+                    600k hotels. This allowed Wheel the World to increase their
+                    sales by 39% on the first quarter of 2023.
                   </p>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row justify-center">
                     <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
-                        220K
+                        600K
                       </div>
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
+                        hotels to
                       </div>
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        debian images
+                        choose from
                       </div>
                     </div>
                     <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
-                        294K
+                        39%
                       </div>
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
+                        increase in
                       </div>
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        python images
-                      </div>
-                    </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
-                      <div className="font-display font-black text-12xl leading-none text-center">
-                        55K
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
-                        downloads on
-                      </div>
-                      <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
-                        node images
+                        bookings
                       </div>
                     </div>
                   </div>
-                  <p className="py-5">
-                  </p>
-                  <div className="flex">
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
-                      <Bar
-                        options={{
-                          scales: {
-                            y: {
-                              beginAtZero: true,
-                            },
-                          },
-                        }}
-                        data={{
-                          labels: ["dockerhub node", "dockershelf node"],
-                          datasets: [
-                            {
-                              label: "Debian",
-                              data: [367.93, 82.43],
-                              backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                              ],
-                              borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                              ],
-                              borderWidth: 1,
-                            },
-                          ],
-                        }}
-                      />
-                    </div>
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
-                      <Bar
-                        options={{
-                          scales: {
-                            y: {
-                              beginAtZero: true,
-                            },
-                          },
-                        }}
-                        data={{
-                          labels: ["dockerhub python", "dockershelf python"],
-                          datasets: [
-                            {
-                              label: "Python",
-                              data: [360.46, 100.09],
-                              backgroundColor: [
-                                "rgba(255, 99, 132, 0.2)",
-                                "rgba(255, 159, 64, 0.2)",
-                              ],
-                              borderColor: [
-                                "rgb(255, 99, 132)",
-                                "rgb(255, 159, 64)",
-                              ],
-                              borderWidth: 1,
-                            },
-                          ],
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <p className="py-5">
-                  </p>
                 </>
               )}
-              links={[
-                {
-                  text: "Github",
-                  url: "https://github.com/Dockershelf/dockershelf",
-                },
-                {
-                  text: "Dockerhub",
-                  url: "https://hub.docker.com/u/dockershelf",
-                },
-              ]}
+              links={[]}
             />
           </div>
         </Controller>
@@ -299,4 +258,4 @@ const Soleit = () => {
   );
 };
 
-export default Soleit;
+export default Expedia;
