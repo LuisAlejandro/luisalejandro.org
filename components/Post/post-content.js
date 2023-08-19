@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { DiscussionEmbed, CommentCount } from "disqus-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import hljs from "highlight.js";
 import parse, { domToReact } from "html-react-parser";
 import ReactPlayer from "react-player/lazy";
+import { DiscussionEmbed, CommentCount } from "disqus-react";
 
 import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
 import RelatedStories from "@components/Post/related-stories";
@@ -23,13 +23,18 @@ export default function PostContent({
   categories,
   morePosts,
 }) {
+  const [excerptText, setExcerptText] = useState("");
+
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
   const escapedCanonicalUrl = encodeURIComponent(canonicalUrl);
   const escapedTitle = encodeURIComponent(title);
 
   useEffect(() => {
     hljs.highlightAll();
-  }, []);
+    const div = document.createElement("div");
+    div.innerHTML = excerpt;
+    setExcerptText(div.textContent || div.innerText || "");
+  }, [excerpt]);
 
   useEffect(() => {
     const modal = document.querySelector("#modal");
@@ -138,15 +143,18 @@ export default function PostContent({
               data-figure-src={lowResUrl}
               data-figure-href={highResUrl}
             >
-              <a href={lowResUrl} title={excerpt}>
+              <a href={lowResUrl} title={excerptText}>
                 <figure className="figure-container">
                   <CoverImage
                     extraClasses={"image"}
-                    title={excerpt}
+                    title={excerptText}
                     lowResUrl={lowResUrl}
                     highResUrl={highResUrl}
                   />
-                  <figcaption className="caption">{excerpt}</figcaption>
+                  <figcaption
+                    className="caption"
+                    dangerouslySetInnerHTML={{ __html: excerpt }}
+                  ></figcaption>
                 </figure>
               </a>
             </span>
@@ -177,7 +185,7 @@ export default function PostContent({
                     },
                   },
                 }}
-                title={excerpt}
+                title={excerptText}
                 light={true}
                 width="100%"
                 height="100%"
@@ -209,7 +217,7 @@ export default function PostContent({
                     },
                   },
                 }}
-                title={excerpt}
+                title={excerptText}
                 light={true}
                 width="100%"
                 height="100%"
@@ -345,15 +353,18 @@ export default function PostContent({
           data-figure-src={coverImage.url}
           data-figure-href={coverImage.url}
         >
-          <a href={coverImage.url} title={excerpt}>
+          <a href={coverImage.url} title={excerptText}>
             <figure className="figure-container">
               <CoverImage
                 extraClasses={"image"}
-                title={excerpt}
+                title={excerptText}
                 lowResUrl={coverImage.url}
                 highResUrl={coverImage.imgix_url}
               />
-              <figcaption className="caption">{excerpt}</figcaption>
+              <figcaption
+                className="caption"
+                dangerouslySetInnerHTML={{ __html: excerpt }}
+              ></figcaption>
             </figure>
           </a>
         </span>

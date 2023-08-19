@@ -6,6 +6,7 @@ import { getAllPostsForHome } from "@lib/api";
 import generateFeed from "@lib/generateFeed";
 import generateSitemap from "@lib/generateSitemap";
 import markdownToHtml from "@lib/markdownToHtml";
+import ErrorPage from "@pages/_error"
 import MoreStories from "@components/Blog/more-stories";
 import HeroPost from "@components/Blog/hero-post";
 import { Layout } from "@components/Blog/Layout/Layout";
@@ -13,8 +14,6 @@ import { BlogStyles } from "@styles/globals";
 import { Section } from "@styles/GlobalComponents";
 
 export default function Blog({ posts }) {
-  const heroPost = posts[0];
-  const morePosts = posts.slice(1);
 
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
@@ -37,6 +36,13 @@ export default function Blog({ posts }) {
       });
     });
   }, []);
+
+  if (!posts?.length) {
+    return <ErrorPage statusCode={404} />;
+  }
+
+  const heroPost = posts[0];
+  const morePosts = posts.slice(1);
 
   return (
     <Layout>
