@@ -48,7 +48,12 @@ const Soleit = () => {
                   personalized insole 3D model.
                 </>
               )}
-              team={["Luis Martínez", "Saraí Santiago", "Sergi Prats"]}
+              team={[
+                "Luis Martínez",
+                "Saraí Santiago",
+                "Israel Lugo",
+                "Sergi Prats",
+              ]}
               deliverables={[
                 "A REST api",
                 "A desktop app",
