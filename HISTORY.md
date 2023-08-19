@@ -1,6 +1,71 @@
 # Changelog
 
 
+## 2.0.0 (2023-08-19)
+
+### Other
+
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Continuing development of case studies. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Finishing portfolio. [Luis Alejandro Martínez Faneyth]
+
+* Bump eslint from 8.45.0 to 8.46.0. [dependabot[bot]]
+
+* Bump react-icons from 4.8.0 to 4.10.1. [dependabot[bot]]
+
+* Bump sass from 1.64.1 to 1.64.2. [dependabot[bot]]
+
+* `[REF]` Progressing on blog development. [Luis Alejandro Martínez Faneyth]
+
+* Bump hmarr/auto-approve-action from 3.1.0 to 3.2.1. [dependabot[bot]]
+
+* Bump eslint-config-next from 13.4.10 to 13.4.12. [dependabot[bot]]
+
+* Bump sass from 1.64.0 to 1.64.1. [dependabot[bot]]
+
+* Bump postcss from 8.4.26 to 8.4.27. [dependabot[bot]]
+
+* Bump gsap from 3.11.4 to 3.12.2. [dependabot[bot]]
+
+* Bump date-fns from 2.29.3 to 2.30.0. [dependabot[bot]]
+
+* Bump eslint-config-next from 13.2.4 to 13.4.10. [dependabot[bot]]
+
+* Bump postcss from 8.4.21 to 8.4.26. [dependabot[bot]]
+
+* Bump tailwindcss from 3.2.7 to 3.3.3. [dependabot[bot]]
+
+* Bump sass from 1.63.6 to 1.64.0. [dependabot[bot]]
+
+* Bump remark from 14.0.2 to 14.0.3. [dependabot[bot]]
+
+* Bump cosmicjs from 4.3.1 to 4.3.7. [dependabot[bot]]
+
+* `[REF]` Progressing on case studies. [Luis Alejandro Martínez Faneyth]
+
+* Updating portfolio. [Luis Alejandro Martínez Faneyth]
+
+* Bump eslint from 8.35.0 to 8.45.0. [dependabot[bot]]
+
+* Bump sass from 1.58.3 to 1.63.6. [dependabot[bot]]
+
+* Bump word-wrap from 1.2.3 to 1.2.4. [dependabot[bot]]
+
+* Bump typescript from 4.9.5 to 5.1.6. [dependabot[bot]]
+
+* Bump semver from 5.7.1 to 5.7.2. [dependabot[bot]]
+
+* Bump @svgr/webpack from 6.5.1 to 8.0.1. [dependabot[bot]]
+
+
 ## 0.1.1 (2023-07-19)
 
 ### Changed
