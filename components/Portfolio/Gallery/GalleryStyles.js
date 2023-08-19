@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const GalleryWrapper = styled(motion.div)`
   padding: 1.5rem 0;
@@ -10,7 +9,7 @@ export const GalleryWrapper = styled(motion.div)`
   @media ${(props) => props.theme.breakpoints.sm} {
     padding-top: 2.5rem;
   }
-`
+`;
 
 export const SlideshowWrapper = styled(motion.div)`
   display: flex;
@@ -26,7 +25,7 @@ export const SlideshowWrapper = styled(motion.div)`
   @media ${(props) => props.theme.breakpoints.xl} {
     padding-top: 4rem;
   }
-`
+`;
 
 export const GalleryCardItem = styled(motion.li)`
   display: block;
@@ -34,27 +33,38 @@ export const GalleryCardItem = styled(motion.li)`
   padding: 5px;
   width: 33%;
   opacity: 0;
-`
+`;
 
 export const Figure = styled.figure`
   position: relative;
   opacity: 1;
-  transition: opacity 0.2s linear;
+  transition: opacity 0.5s linear;
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
   &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: pointer;
   }
-`
+`;
 
 export const Caption = styled(motion.figcaption)`
-  color: #FFF;
+  color: #fff;
   position: absolute;
   bottom: 0;
   padding: 2rem;
   text-align: left;
-  background: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.85));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.85));
   width: 100%;
+  border-radius: 10px;
+
   h2 {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  h3 {
     font-weight: bold;
     font-size: 2rem;
     line-height: normal;
@@ -66,4 +76,4 @@ export const Caption = styled(motion.figcaption)`
     font-weight: 100;
     color: rgba(255, 255, 255, 0.75);
   }
-`
+`;

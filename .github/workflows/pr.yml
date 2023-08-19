@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Restoring node_modules cache
         uses: actions/cache@v3
@@ -58,7 +60,7 @@ jobs:
     needs: build
     steps:
       - name: Approve
-        uses: hmarr/auto-approve-action@v3.1.0
+        uses: hmarr/auto-approve-action@v3.2.1
         with:
           github-token: "${{ github.actor == 'LuisAlejandro' && secrets.GITHUB_TOKEN || secrets.REPO_PERSONAL_ACCESS_TOKEN }}"
 

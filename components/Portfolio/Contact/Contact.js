@@ -1,45 +1,46 @@
-import { useEffect } from 'react';
-import Script from 'next/script';
+import { useEffect } from "react";
+import Script from "next/script";
 
-import { RECAPTCHA_API_KEY } from 'constants/constants';
-import { Section, SectionTitle, SectionText } from 'styles/GlobalComponents';
-import { blurHandler, submitHandler } from './Form';
+import { RECAPTCHA_API_KEY } from "@constants/constants";
 
+import { blurHandler, submitHandler } from "./Form";
+import { Section, SectionTitle, SectionText } from "./ContactStyles";
 
-const Contact = () => {
-
+const Contact = ({ transparentSection }) => {
   useEffect(() => {
     // Listen to all blur events
-    document.addEventListener('blur', blurHandler, true);
+    document.addEventListener("blur", blurHandler, true);
     // Check all fields on submit
-    document.addEventListener('submit', submitHandler, false);
+    document.addEventListener("submit", submitHandler, false);
 
     // everything is fully loaded, don't use me if you can use DOMContentLoaded
     window.addEventListener("load", () => {
       if (RECAPTCHA_API_KEY) {
         window.grecaptcha.render(document.getElementById("re-captcha"), {
-          'sitekey': RECAPTCHA_API_KEY,
-          'theme': "light",
-          'callback': () => {
+          sitekey: RECAPTCHA_API_KEY,
+          theme: "light",
+          callback: () => {
             window.recaptchaState = window.grecaptcha.getResponse();
             if (window.recaptchaState.length != 0) {
-              var id = 're-captcha';
+              var id = "re-captcha";
               var field = document.getElementById(id);
-  
+
               // Remove error class to field
-              field.classList.remove('error');
-              
+              field.classList.remove("error");
+
               // Remove ARIA role from the field
-              field.removeAttribute('aria-describedby');
-  
+              field.removeAttribute("aria-describedby");
+
               // Check if an error message is in the DOM
-              var message = document.querySelector('.error-message#error-for-' + id + '');
+              var message = document.querySelector(
+                ".error-message#error-for-" + id + ""
+              );
               if (!message) return;
-  
+
               // If so, hide it
-              message.innerHTML = '';
-              message.style.display = 'none';
-              message.style.visibility = 'hidden';
+              message.innerHTML = "";
+              message.style.display = "none";
+              message.style.visibility = "hidden";
             }
           },
         });
@@ -49,59 +50,61 @@ const Contact = () => {
 
   return (
     <>
-      <Section id="contact">
+      <Section transparent={transparentSection} id="contact">
         <SectionTitle main>Contact</SectionTitle>
         <SectionText>
           Ask me anything! I might? be available for hire
         </SectionText>
         <div className="container">
-          <form className="validate"
-                name="contact-form"
-                action="/.netlify/functions/portfolio-contact-form"
-                method="post"
-                data-netlify="true"
-                netlify-honeypot="bot-field">
+          <form
+            className="validate"
+            name="contact-form"
+            action="/.netlify/functions/portfolio-contact-form"
+            method="post"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
             <div className="row">
               <div className="col-lg-4">
                 <div className="form-group">
-                  <label htmlFor="contact-name">
-                    Name
-                  </label>
-                  <input type="text"
-                         className="form-control"
-                         id="contact-name"
-                         name="contact-name"
-                         minLength="3"
-                         maxLength="256"
-                         required />
+                  <label htmlFor="contact-name">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="contact-name"
+                    name="contact-name"
+                    minLength="3"
+                    maxLength="256"
+                    required
+                  />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="contact-email">
-                    Email
-                  </label>
-                  <input type="email"
-                         className="form-control"
-                         id="contact-email"
-                         name="contact-email"
-                         minLength="6"
-                         maxLength="256"
-                         title="The domain portion of the email address is invalid (the portion after the @)."
-                         pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
-                         required />
+                  <label htmlFor="contact-email">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="contact-email"
+                    name="contact-email"
+                    minLength="6"
+                    maxLength="256"
+                    title="The domain portion of the email address is invalid (the portion after the @)."
+                    pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <div id="re-captcha"></div>
                 </div>
                 <div className="row">
                   <div className="col-lg-8 waiting">
-                    <div className="loader">
-                      Waiting...
-                    </div>
+                    <div className="loader">Waiting...</div>
                   </div>
                   <div className="col-lg-4">
-                    <button type="submit"
-                            className="suscribe btn btn-custom-red float-right d-lg-block"
-                            name="contact-subscribe">
+                    <button
+                      type="submit"
+                      className="suscribe btn btn-custom-red float-right d-lg-block"
+                      name="contact-subscribe"
+                    >
                       Send
                     </button>
                   </div>
@@ -109,16 +112,15 @@ const Contact = () => {
               </div>
               <div className="col-lg-8">
                 <div className="form-group">
-                  <label htmlFor="contact-message">
-                    Message
-                  </label>
-                  <textarea className="form-control"
-                            id="contact-message"
-                            name="contact-message"
-                            minLength="3"
-                            maxLength="1024"
-                            required>
-                  </textarea>
+                  <label htmlFor="contact-message">Message</label>
+                  <textarea
+                    className="form-control"
+                    id="contact-message"
+                    name="contact-message"
+                    minLength="3"
+                    maxLength="1024"
+                    required
+                  ></textarea>
                 </div>
                 <div className="responses clear">
                   <div className="response mc-status"></div>
@@ -132,10 +134,24 @@ const Contact = () => {
             </div>
           </form>
         </div>
+        <svg viewBox="0 0 1920 37">
+          <path
+            fill="#444"
+            fillOpacity="0.5"
+            d="M0,5.1l210,10.1l473.3-8.6l511.4,7.4L1710,0l210,5.1v32.4H0V5.1z"
+          />
+          <path
+            fill="#333"
+            d="M0,37.5V20.6l255,16.9l939.7-33.9L1665,6.4l255,14.2v16.9H0z"
+          />
+        </svg>
       </Section>
-      <Script src="/scripts/validity-polyfill.js" strategy="beforeInteractive" />
+      <Script src="/scripts/validity-polyfill.js" strategy="afterInteractive" />
       {RECAPTCHA_API_KEY && (
-        <Script src="https://www.google.com/recaptcha/api.js?render=explicit" strategy="afterInteractive" />
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+        />
       )}
     </>
   );

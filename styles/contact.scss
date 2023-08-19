@@ -1,19 +1,11 @@
 // Medias querys
 $breakpoints: (
-  'xs': "(min-width: 0px) and (max-width: 575px)",
-  'sm': "(min-width: 576px) and (max-width: 767px)",
-  'md': "(min-width: 768px) and (max-width: 991px)",
-  'lg': "(min-width: 992px) and (max-width: 1199px)",
-  'xl': "(min-width: 1200px)",
+  "xs": "screen and (max-width: 450px)",
+  "sm": "screen and (max-width: 640px)",
+  "md": "screen and (max-width: 768px)",
+  "lg": "screen and (max-width: 1024px)",
+  "xl": "screen and (max-width: 1280px)",
 ) !default;
-
-
-$primary: #405761;
-$secondary: #e5616b;
-$primary-dark: #505859;
-$white: #fff;
-
-$mont: 'Montserrat', sans-serif;
 
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
@@ -27,14 +19,13 @@ $mont: 'Montserrat', sans-serif;
 }
 
 #contact {
-  padding-bottom: 100px;
+  padding-bottom: 0;
 
   .container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 1040px;
+    margin: 0 auto;
+    margin-bottom: 200px;
 
     .btn {
       display: inline-block;
@@ -49,40 +40,41 @@ $mont: 'Montserrat', sans-serif;
       line-height: 1.5;
       border-radius: 0.25rem;
       user-select: none;
-      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
 
     .btn:not(:disabled):not(.disabled) {
       cursor: pointer;
     }
-  
+
     .btn:hover {
       color: #212529;
       text-decoration: none;
     }
 
     .btn-custom-red {
-      font-weight: 800;
       font-family: Poppins, sans-serif;
+      font-weight: 800;
       font-size: 1.5rem;
       padding: 8px 16px;
       background-color: #e5616b;
       color: #fff;
       transform: perspective(1px) translateZ(0);
       box-shadow: 0 0 1px transparent;
-      transition-property: box-shadow,transform;
-      transition: all ease-in-out .3s;
+      transition-property: box-shadow, transform;
+      transition: all ease-in-out 0.3s;
     }
 
     .btn-custom-red:hover {
       color: #fff;
       box-shadow: 0 10px 10px -10px rgb(0 0 0 / 50%);
-      transition: all ease-in-out .3s;
+      transition: all ease-in-out 0.3s;
       transform: scale(1.1);
     }
 
     .float-right {
-      float: right!important;
+      float: right !important;
     }
 
     .row {
@@ -117,11 +109,11 @@ $mont: 'Montserrat', sans-serif;
     }
 
     .d-lg-none {
-      display: none!important;
+      display: none !important;
     }
 
     .d-lg-block {
-      display: block!important;
+      display: block !important;
     }
 
     .form-group {
@@ -141,7 +133,7 @@ $mont: 'Montserrat', sans-serif;
         background-clip: padding-box;
         border: 2px solid #fff;
         border-radius: 0.5rem;
-        transition: border-color 0.25s ease-in-out, box-shadow .15s ease-in-out;
+        transition: border-color 0.25s ease-in-out, box-shadow 0.15s ease-in-out;
       }
 
       label {
@@ -157,10 +149,12 @@ $mont: 'Montserrat', sans-serif;
         padding: 10px 20px;
         height: unset !important;
 
-        &:focus, &:focus-visible, &:active {
+        &:focus,
+        &:focus-visible,
+        &:active {
           outline: none;
           box-shadow: none;
-          border-color: $secondary !important;
+          border-color: #e5616b !important;
         }
       }
 
@@ -168,14 +162,16 @@ $mont: 'Montserrat', sans-serif;
         resize: none;
         height: 220px !important;
 
-        &:focus, &:focus-visible, &:active {
+        &:focus,
+        &:focus-visible,
+        &:active {
           outline: none;
           box-shadow: none;
-          border-color: $secondary !important;
+          border-color: #e5616b !important;
         }
       }
     }
-  
+
     .responses {
       margin: 0 !important;
 
@@ -209,7 +205,6 @@ $mont: 'Montserrat', sans-serif;
     }
 
     .waiting {
-
       .loader,
       .loader:before,
       .loader:after {
@@ -239,7 +234,7 @@ $mont: 'Montserrat', sans-serif;
 
       .loader:before,
       .loader:after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
       }
@@ -275,9 +270,7 @@ $mont: 'Montserrat', sans-serif;
           box-shadow: 0 2.5em 0 0;
         }
       }
-
     }
-
   }
 }
 

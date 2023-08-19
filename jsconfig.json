@@ -3,12 +3,14 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"]
+      "@constants/*": ["constants/*"],
+      "@components/*": ["components/*"],
+      "@assets/*": ["assets/*"],
+      "@themes/*": ["themes/*"],
+      "@styles/*": ["styles/*"],
+      "@pages/*": ["pages/*"],
+      "@lib/*": ["lib/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-  ]
+  "exclude": ["node_modules"]
 }

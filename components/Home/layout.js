@@ -1,16 +1,10 @@
-import Footer from './footer'
-import Meta from './meta'
-import 'lazysizes'
-import 'lazysizes/plugins/parent-fit/ls.parent-fit'
+import Meta from "./meta";
 
-export default function Layout({ preview, children }) {
+export default function Layout({ children }) {
   return (
     <>
       <Meta />
-      <div className="min-h-screen">
-        <main>{children}</main>
-      </div>
-      <Footer />
+      <main>{children}</main>
     </>
-  )
+  );
 }

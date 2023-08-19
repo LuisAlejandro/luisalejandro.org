@@ -1,15 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
-import { normalize } from 'styled-normalize';
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
 
-import partialHomeStyles from './home'
-import partialPortfolioStyles from './portfolio'
-import partialEasterStyles from './easter'
-
+import partialHomeStyles from "./home";
+import partialPortfolioStyles from "./portfolio";
 
 const HomeStyles = createGlobalStyle`
   ${normalize};
   ${partialHomeStyles}
-  ${partialEasterStyles}
 `;
 
 const PortfolioStyles = createGlobalStyle`
@@ -24,15 +21,15 @@ const PortfolioStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
   body {
-    font-family: ${props => props.theme.fonts.main};
+    font-family: ${(props) => props.theme.fonts.main};
     font-size: 1.6rem;
     background: linear-gradient(180deg,#e68449,#f1b161 15%,#f5cc6a);
-    color: ${props => props.theme.colors.primary1};
+    color: ${(props) => props.theme.colors.primary1};
     cursor: default;
     overflow-x: hidden;
   }
   h1,h2,h3,h4,h5,h6,button {
-    font-family: ${props => props.theme.fonts.title};
+    font-family: ${(props) => props.theme.fonts.title};
   }
   a {
     text-decoration: none;
@@ -43,7 +40,7 @@ const PortfolioStyles = createGlobalStyle`
   ${partialPortfolioStyles}
 `;
 
-const CaseStudiesStyles = createGlobalStyle`
+const CaseStudiesDetailsStyles = createGlobalStyle`
   ${normalize};
   * {
     box-sizing: border-box;
@@ -55,21 +52,99 @@ const CaseStudiesStyles = createGlobalStyle`
     scroll-behavior: smooth;
   }
   body {
-    font-family: ${props => props.theme.fonts.main};
+    font-family: ${(props) => props.theme.fonts.main};
     font-size: 1.6rem;
-    color: ${props => props.theme.colors.primary1};
+    color: ${(props) => props.theme.colors.primary1};
     cursor: default;
     overflow-x: hidden;
   }
   h1,h2,h3,h4,h5,h6,button {
-    font-family: ${props => props.theme.fonts.title};
+    font-family: ${(props) => props.theme.fonts.title};
   }
   a {
     text-decoration: none;
   }
-  li{
+  li {
     list-style: none;
   }
 `;
 
-export { HomeStyles, PortfolioStyles, CaseStudiesStyles };
+const BlogStyles = createGlobalStyle`
+  ${normalize};
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: ${(props) => props.theme.fonts.main};
+    font-size: 1.6rem;
+    cursor: default;
+    overflow-x: hidden;
+    line-height: 1em;
+    background: #ddd;
+    color: rgb(0, 0, 0);
+  }
+
+  h1,h2,h3,h4,h5,h6,button {
+    font-family: ${(props) => props.theme.fonts.main};
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+`;
+
+const BlogPostStyles = createGlobalStyle`
+  ${normalize};
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: ${(props) => props.theme.fonts.main};
+    font-size: 1.6rem;
+    cursor: default;
+    overflow-x: hidden;
+    line-height: 1em;
+    background: #ddd;
+    color: rgb(0, 0, 0);
+  }
+
+  h1,h2,h3,h4,h5,h6,button {
+    font-family: ${(props) => props.theme.fonts.main};
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+  li {
+    list-style: none;
+  }
+`;
+
+export {
+  HomeStyles,
+  PortfolioStyles,
+  CaseStudiesDetailsStyles,
+  BlogStyles,
+  BlogPostStyles,
+};

@@ -1,79 +1,65 @@
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import Head from 'next/head'
+import { getAllPostsSlugs, getPostAndMorePosts } from "@lib/api";
+import markdownToHtml from "@lib/markdownToHtml";
+import ErrorPage from "@pages/_error"
+import { Layout } from "@components/Post/Layout/Layout";
+import PostContent from "@components/Post/post-content";
+import { BlogPostStyles } from "@styles/globals";
+import { Section } from "@styles/GlobalComponents";
 
-import Container from '@/components/Blog/container'
-import PostBody from '@/components/Blog/post-body'
-import MoreStories from '@/components/Blog/more-stories'
-import Header from '@/components/Blog/header'
-import PostHeader from '@/components/Blog/post-header'
-import SectionSeparator from '@/components/Blog/section-separator'
-import Layout from '@/components/Blog/layout'
-import PostTitle from '@/components/Blog/post-title'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
-import { CMS_NAME } from '@/lib/constants'
-import markdownToHtml from '@/lib/markdownToHtml'
+import "highlight.js/styles/default.css";
 
-export default function Post({ post, morePosts, preview }) {
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+export default function Post({ post, morePosts }) {
+
+  if (!post?.slug) {
+    return <ErrorPage statusCode={404} />;
   }
+
   return (
-    <Layout preview={preview}>
-      <Container>
-        <Header />
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article>
-              <Head>
-                <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
-                </title>
-                <meta
-                  property="og:image"
-                  content={post.metadata.cover_image.imgix_url}
-                />
-              </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.metadata.cover_image}
-                date={post.created_at}
-                author={post.metadata.author}
-              />
-              <PostBody content={post.content} />
-            </article>
-            <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </>
-        )}
-      </Container>
-    </Layout>
-  )
+    <>
+      <Layout metadata={post}>
+        <BlogPostStyles />
+        <svg viewBox="0 0 1920 200">
+          <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+        </svg>
+        <Section grid overflowVisible oneColumn nopadding wide>
+          <PostContent
+            title={post.title}
+            coverImage={post.metadata.hero}
+            date={post.created_at}
+            id={post.id}
+            content={post.metadata.content}
+            categories={post.metadata.categories}
+            slug={post.slug}
+            excerpt={post.metadata.teaser}
+            morePosts={morePosts}
+          />
+        </Section>
+      </Layout>
+    </>
+  );
 }
 
-export async function getStaticProps({ params, preview = null }) {
-  const data = await getPostAndMorePosts(params.slug, preview)
-  const content = await markdownToHtml(data.post?.metadata?.content || '')
-
+export async function getStaticProps({ params }) {
+  const data = await getPostAndMorePosts(params.slug);
   return {
     props: {
-      preview,
       post: {
         ...data.post,
-        content,
+        metadata: {
+          ...data.post?.metadata,
+          teaser: await markdownToHtml(data.post?.metadata?.teaser || ""),
+          content: await markdownToHtml(data.post?.metadata?.content || ""),
+        },
       },
       morePosts: data.morePosts || [],
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const allPosts = (await getAllPostsWithSlug()) || []
+  const allPosts = (await getAllPostsSlugs()) || [];
   return {
     paths: allPosts.map((post) => `/blog/posts/${post.slug}`),
     fallback: true,
-  }
+  };
 }

@@ -1,40 +1,139 @@
-import Link from 'next/link'
-import Avatar from './avatar'
-import Date from './date'
-import CoverImage from './cover-image'
+import Link from "next/link";
+import { CommentCount } from "disqus-react";
+import { AiFillStar } from "react-icons/ai";
+
+import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
+import Date from "./date";
 
 export default function HeroPost({
   title,
   coverImage,
   date,
   excerpt,
-  author,
   slug,
+  type,
+  id,
+  categories,
 }) {
+  const mainCategory = categories[0];
+  const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
+  const escapedCanonicalUrl = encodeURIComponent(canonicalUrl);
+  const escapedTitle = encodeURIComponent(title);
+
   return (
-    <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage title={title} url={coverImage.imgix_url} slug={slug} />
-      </div>
-      <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
-        <div>
-          <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
-            <Link href={`/blog/posts/${slug}`}>
-              <a className="hover:underline">{title}</a>
+    <div id="featured">
+      <article
+        className={type}
+        id={`post-${id}`}
+        itemProp="blogPost"
+        itemScope=""
+        itemType="http://schema.org/BlogPosting"
+      >
+        <div className="accent">
+          <AiFillStar />
+        </div>
+        <div
+          className="bg"
+          style={{
+            backgroundImage: `url(${coverImage.url})`,
+          }}
+        >
+          <span className="category">
+            <Link passHref href={`/blog/category/${mainCategory.slug}`}>
+              <a
+                title={`List all posts under the category "${mainCategory.title}"`}
+                rel="tag"
+              >
+                {mainCategory.title}
+              </a>
             </Link>
-          </h3>
-          <div className="mb-4 md:mb-0 text-lg">
-            <Date dateString={date} />
-          </div>
+          </span>
+          <ul className="socialbar">
+            <li className="reactions">
+              {canonicalUrl && (
+                <CommentCount
+                  shortname={DISQUS_SHORTNAME}
+                  config={{
+                    identifier: id,
+                    url: canonicalUrl,
+                    title: title,
+                  }}
+                />
+              )}
+            </li>
+            <li className="share">
+              <button type="button" data-ident={id}>
+                Share
+              </button>
+            </li>
+          </ul>
+          <ul className="socialpop">
+            <li className="twitter">
+              <a
+                href={`http://twitter.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
+                title="(opens in new window)"
+                target="_blank"
+                rel="nofollow"
+              >
+                <span className="sprite"></span>
+                <span className="hide">Twitter</span>
+              </a>
+            </li>
+            <li className="facebook">
+              <a
+                href={`http://facebook.com/sharer/sharer.php?u=${escapedCanonicalUrl}`}
+                title="(opens in new window)"
+                target="_blank"
+                rel="nofollow"
+              >
+                <span className="sprite"></span>
+                <span className="hide">Facebook</span>
+              </a>
+            </li>
+            <li className="linkedin">
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${escapedCanonicalUrl}`}
+                title="(opens in new window)"
+                target="_blank"
+                rel="nofollow"
+              >
+                <span className="sprite"></span>
+                <span className="hide">LinkedIn</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-          <Avatar
-            name={author.title}
-            picture={author.metadata.picture.imgix_url}
-          />
+        <div className="data">
+          <Link passHref href={`/blog/posts/${slug}`}>
+            <a
+              rel="bookmark"
+              title={`Permanent link to "${title}"`}
+              itemProp="url"
+            >
+              <h2 className="header" itemProp="headline">
+                {title}
+              </h2>
+              <span
+                className="description"
+                itemProp="description"
+                dangerouslySetInnerHTML={{ __html: excerpt }}
+              ></span>
+              <span className="description" itemProp="description">
+                Published{" "}
+                <time
+                  className="datetime"
+                  dateTime={date}
+                  itemProp="dateCreated"
+                >
+                  {" "}
+                  <Date dateString={date} />
+                </time>
+                .
+              </span>
+            </a>
+          </Link>
         </div>
-      </div>
-    </section>
-  )
+      </article>
+    </div>
+  );
 }

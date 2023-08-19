@@ -1,6 +1,9 @@
 module.exports = {
+  compiler: {
+    styledComponents: true,
+  },
   images: {
-    domains: ["imgix.cosmicjs.com"],
+    domains: ["imgix.cosmicjs.com", "galleria-slideshow.vercel.app"],
   },
   webpack(config) {
     config.module.rules.push({
@@ -12,18 +15,6 @@ module.exports = {
             svgoConfig: {
               plugins: [
                 {
-                  name: "prefixIds",
-                  params: {
-                    prefixIds: false,
-                  },
-                },
-                {
-                  name: "cleanupIds",
-                  params: {
-                    cleanupIds: false,
-                  },
-                },
-                {
                   name: "preset-default",
                   params: {
                     overrides: {
@@ -31,6 +22,7 @@ module.exports = {
                       moveElemsAttrsToGroup: false,
                       moveGroupAttrsToElems: false,
                       collapseGroups: false,
+                      cleanupIds: false,
                     },
                   },
                 },

@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
+  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
@@ -31,11 +31,14 @@ export const Div1 = styled.div`
   }
 `;
 
-export const Div2 = styled.div`
-  grid-area: 1 / 2 / 2 / 4;
+export const Div2 = styled.ul`
+  grid-area: 1 / 2 / 2 / 5;
   display: flex;
-  margin-top: 0.75em;
-  justify-content: space-between;
+  justify-content: end;
+  li {
+    margin: 0 20px;
+    line-height: 60px;
+  }
   @media ${(props) => props.theme.breakpoints.sm} {
     grid-area: 2 / 2 / 3 / 5;
   }
@@ -55,7 +58,7 @@ export const Div3 = styled.div`
 // Navigation Links
 export const NavLink = styled.a`
   font-size: 2rem;
-  line-height: 50px;
+  font-weight: 300;
   color: ${(props) => props.theme.colors.navLink};
   transition: 0.4s ease;
   &:hover {
@@ -68,8 +71,7 @@ export const NavLink = styled.a`
   }
 `;
 
-
-// Social Icons 
+// Social Icons
 export const SocialIcons = styled.a`
   transition: 0.3s ease;
   color: ${(props) => props.theme.colors.navLink};
@@ -81,4 +83,4 @@ export const SocialIcons = styled.a`
     transform: scale(1.2);
     cursor: pointer;
   }
-`
+`;

@@ -1,15 +1,14 @@
-import { PortfolioStyles } from 'styles/globals';
-import Acomplishments from '@/components/Portfolio/Acomplishments/Acomplishments';
-import Contact from '@/components/Portfolio/Contact/Contact';
-import BackgroundAnimation from '@/components/Portfolio/BackgroundAnimation/BackgroundAnimation';
-import Hero from '@/components/Portfolio/Hero/Hero';
-import Projects from '@/components/Portfolio/Projects/Projects';
-import Gallery from '@/components/Portfolio/Gallery/Gallery';
-import Technologies from '@/components/Portfolio/Technologies/Technologies';
-import Timeline from '@/components/Portfolio/TimeLine/TimeLine';
-import { Layout } from '@/components/Portfolio/Layout/Layout';
-import { Section } from '@/styles/GlobalComponents';
-
+import Acomplishments from "@components/Portfolio/Acomplishments/Acomplishments";
+import Projects from "@components/Portfolio/Projects/Projects";
+import Gallery from "@components/Portfolio/Gallery/Gallery";
+import Contact from "@components/Portfolio/Contact/Contact";
+import BackgroundAnimation from "@components/Portfolio/BackgroundAnimation/BackgroundAnimation";
+import Hero from "@components/Portfolio/Hero/Hero";
+import Technologies from "@components/Portfolio/Technologies/Technologies";
+import Timeline from "@components/Portfolio/TimeLine/TimeLine";
+import { Layout } from "@components/Portfolio/Layout/Layout";
+import { Section } from "@styles/GlobalComponents";
+import { PortfolioStyles } from "@styles/globals";
 
 const Portfolio = () => {
   return (
@@ -20,11 +19,11 @@ const Portfolio = () => {
         <BackgroundAnimation />
       </Section>
       <Technologies />
-      {/* <Projects />
-      <Gallery /> */}
+      <Projects />
+      <Gallery />
       <Timeline />
       <Acomplishments />
-      <Contact />
+      <Contact transparentSection />
     </Layout>
   );
 };
