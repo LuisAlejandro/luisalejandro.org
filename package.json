@@ -49,7 +49,7 @@
     "react-photo-album": "^2.3.0",
     "react-player": "^2.12.0",
     "react-scrollmagic": "^2.3.0",
-    "rehype-stringify": "^9.0.3",
+    "rehype-stringify": "^9.0.4",
     "remark-parse": "^10.0.2",
     "remark-rehype": "^10.1.0",
     "sass": "^1.66.0",
