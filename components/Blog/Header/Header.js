@@ -41,28 +41,28 @@ const Header = () => (
       <SocialIcons
         href="https://github.com/LuisAlejandro"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noreferrer"
       >
         <AiFillGithub size="30px" />
       </SocialIcons>
       <SocialIcons
         href="https://www.linkedin.com/in/martinezfaneyth"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noreferrer"
       >
         <AiFillLinkedin size="30px" />
       </SocialIcons>
       <SocialIcons
         href="https://www.youtube.com/@TecnologiaEnElDivan"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noreferrer"
       >
         <AiFillYoutube size="30px" />
       </SocialIcons>
       <SocialIcons
         href="https://twitter.com/LuisAlejandro"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noreferrer"
       >
         <AiFillTwitterCircle size="30px" />
       </SocialIcons>

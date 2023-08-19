@@ -69,7 +69,7 @@ export default function PostPreview({
                 href={`http://twitter.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
                 title="(opens in new window)"
                 target="_blank"
-                rel="nofollow"
+                rel="nofollow noreferrer"
               >
                 <span className="sprite"></span>
                 <span className="hide">Twitter</span>
@@ -80,7 +80,7 @@ export default function PostPreview({
                 href={`http://facebook.com/sharer/sharer.php?u=${escapedCanonicalUrl}`}
                 title="(opens in new window)"
                 target="_blank"
-                rel="nofollow"
+                rel="nofollow noreferrer"
               >
                 <span className="sprite"></span>
                 <span className="hide">Facebook</span>
@@ -91,7 +91,7 @@ export default function PostPreview({
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${escapedCanonicalUrl}`}
                 title="(opens in new window)"
                 target="_blank"
-                rel="nofollow"
+                rel="nofollow noreferrer"
               >
                 <span className="sprite"></span>
                 <span className="hide">LinkedIn</span>

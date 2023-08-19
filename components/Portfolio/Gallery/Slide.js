@@ -114,7 +114,12 @@ const Slide = ({
             dangerouslySetInnerHTML={{ __html: description }}
           ></Description>
           {current.sources.map((source, index) => (
-            <CustomLink target="_blank" href={source.url} key={index}>
+            <CustomLink
+              target="_blank"
+              rel="nofollow noreferrer"
+              href={source.url}
+              key={index}
+            >
               View {source.name} online
             </CustomLink>
           ))}

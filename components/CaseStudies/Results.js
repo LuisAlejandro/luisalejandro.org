@@ -75,6 +75,7 @@ const Results = ({ Title, Content, links }) => (
             <li key={link.text}>
               <a
                 target="_blank"
+                rel="nofollow noreferrer"
                 href={link.url}
                 className="font-thin text-6xl text-neutral-900 py-2 px-4 my-0 mr-4 rounded-3xl bg-black bg-opacity-10 hover:bg-opacity-30 transition-all duration-300 ease-in-out"
               >

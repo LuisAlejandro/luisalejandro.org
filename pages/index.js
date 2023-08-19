@@ -67,19 +67,19 @@ export default function Index() {
                 <a
                   target="_blank"
                   href="https://github.com/LuisAlejandro"
-                  rel="noopener noreferrer"
+                  rel="nofollow noreferrer"
                 >
                   open source contributor
                 </a>{" "}
                 and like to{" "}
-                <a target="_blank" href="/blog">
-                  write
-                </a>{" "}
+                <Link passHref href="/blog">
+                  <a>write</a>
+                </Link>{" "}
                 about my discoveries. You can check out the projects I&apos;ve
                 been a part of in my{" "}
-                <a target="_blank" href="/portfolio">
-                  portfolio
-                </a>
+                <Link passHref href="/portfolio">
+                  <a>portfolio</a>
+                </Link>{" "}
                 .
               </Div1>
               <Div2>
@@ -101,7 +101,6 @@ export default function Index() {
               <Div3>
                 <SocialIcons
                   href="/blog"
-                  target="_blank"
                   style={{
                     borderRadius: "5px 0 0 5px",
                   }}
@@ -114,7 +113,7 @@ export default function Index() {
                   />
                   <span>Blog</span>
                 </SocialIcons>
-                <SocialIcons href="/portfolio" target="_blank">
+                <SocialIcons href="/portfolio">
                   <AiOutlineBulb
                     size="1.5rem"
                     style={{
@@ -126,7 +125,7 @@ export default function Index() {
                 <SocialIcons
                   href="https://github.com/LuisAlejandro"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noreferrer"
                 >
                   <AiOutlineGithub
                     size="1.5rem"
@@ -138,7 +137,7 @@ export default function Index() {
                 <SocialIcons
                   href="https://www.linkedin.com/in/martinezfaneyth"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noreferrer"
                 >
                   <AiOutlineLinkedin
                     size="1.5rem"
@@ -150,7 +149,7 @@ export default function Index() {
                 <SocialIcons
                   href="https://www.youtube.com/@TecnologiaEnElDivan"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noreferrer"
                   style={{
                     borderRadius: "0 5px 5px 0",
                   }}

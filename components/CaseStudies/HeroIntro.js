@@ -56,6 +56,7 @@ const HeroIntro = ({
                   <li key={link.text}>
                     <a
                       target="_blank"
+                      rel="nofollow noreferrer"
                       href={link.url}
                       className="font-light text-3xl text-neutral-400 py-2 px-4 my-0 mr-4 rounded-3xl bg-black bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 ease-in-out"
                     >

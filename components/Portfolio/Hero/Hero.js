@@ -17,7 +17,7 @@ const Hero = () => (
         <span className="button1">
           <a
             title='List all posts under the category "Climate"'
-            rel="tag"
+            rel="tag nofollow noreferrer"
             href="/files/resume.pdf"
             target="_blank"
           >
