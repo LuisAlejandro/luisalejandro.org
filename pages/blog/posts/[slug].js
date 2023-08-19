@@ -1,6 +1,6 @@
 import { getAllPostsSlugs, getPostAndMorePosts } from "@lib/api";
 import markdownToHtml from "@lib/markdownToHtml";
-import ErrorPage from "@pages/_error"
+import ErrorPage from "@pages/_error";
 import { Layout } from "@components/Post/Layout/Layout";
 import PostContent from "@components/Post/post-content";
 import { BlogPostStyles } from "@styles/globals";
@@ -9,7 +9,6 @@ import { Section } from "@styles/GlobalComponents";
 import "highlight.js/styles/default.css";
 
 export default function Post({ post, morePosts }) {
-
   if (!post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
@@ -39,7 +38,7 @@ export default function Post({ post, morePosts }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const data = await getPostAndMorePosts(params.slug);
   return {
     props: {
@@ -53,13 +52,5 @@ export async function getStaticProps({ params }) {
       },
       morePosts: data.morePosts || [],
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const allPosts = (await getAllPostsSlugs()) || [];
-  return {
-    paths: allPosts.map((post) => `/blog/posts/${post.slug}`),
-    fallback: true,
   };
 }

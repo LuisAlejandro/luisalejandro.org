@@ -38,7 +38,10 @@ const Footer = () => {
         </LinkList>
         <SocialIconsContainer>
           <CompanyContainer>
-            <Slogan>&copy; {new Date().getFullYear()} Luis Martínez. All rights reserved.</Slogan>
+            <Slogan>
+              &copy; {new Date().getFullYear()} Luis Martínez. All rights
+              reserved.
+            </Slogan>
           </CompanyContainer>
           <SocialContainer>
             <SocialIcons

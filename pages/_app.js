@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Head from "next/head";
 import { useEffect } from "react";
 
 import { GA_MEASUREMENT_ID } from "@constants/constants";
@@ -6,7 +7,6 @@ import Theme from "@styles/theme";
 
 import "@styles/tailwind.css";
 import "@styles/fonts.scss";
-import "@styles/external.scss";
 import "@styles/cases.scss";
 import "@styles/contact.scss";
 import "@styles/blog.scss";
@@ -14,13 +14,14 @@ import "@styles/blog-post.scss";
 import "yet-another-react-lightbox/styles.css";
 
 export default function App({ Component, pageProps, router }) {
+
   useEffect(() => {
     document.documentElement.setAttribute("lang", "en");
     document.documentElement.setAttribute(
       "xmlns",
       "http://www.w3.org/1999/xhtml"
     );
-    if (router.state.route === "/blog/posts/[slug]") {
+    if (router?.state?.route === "/blog/posts/[slug]") {
       document.documentElement.setAttribute(
         "prefix",
         "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article# dcterms: http://purl.org/dc/terms/#"
@@ -70,6 +71,20 @@ export default function App({ Component, pageProps, router }) {
           });
         }}
       />
+      <Head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Roboto:wght@100;300;400;500;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+          rel="stylesheet"
+        />
+      </Head>
       <Theme>
         <Component {...pageProps}></Component>
       </Theme>

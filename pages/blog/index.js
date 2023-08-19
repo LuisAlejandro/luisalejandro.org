@@ -3,10 +3,8 @@ import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { useEffect } from "react";
 
 import { getAllPostsForHome } from "@lib/api";
-import generateFeed from "@lib/generateFeed";
-import generateSitemap from "@lib/generateSitemap";
 import markdownToHtml from "@lib/markdownToHtml";
-import ErrorPage from "@pages/_error"
+import ErrorPage from "@pages/_error";
 import MoreStories from "@components/Blog/more-stories";
 import HeroPost from "@components/Blog/hero-post";
 import { Layout } from "@components/Blog/Layout/Layout";
@@ -14,7 +12,6 @@ import { BlogStyles } from "@styles/globals";
 import { Section } from "@styles/GlobalComponents";
 
 export default function Blog({ posts }) {
-
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
       "#content > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
@@ -71,9 +68,7 @@ export default function Blog({ posts }) {
   );
 }
 
-export async function getStaticProps() {
-  await generateFeed();
-  await generateSitemap();
+export async function getServerSideProps() {
   const allPosts = (await getAllPostsForHome()) || [];
   const posts = await Promise.all(
     allPosts.map(async (post) => ({

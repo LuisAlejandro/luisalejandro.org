@@ -2,7 +2,7 @@ import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { useEffect } from "react";
 
-import { getAllPostsForCategory, getAllCategories } from "@lib/api";
+import { getAllPostsForCategory } from "@lib/api";
 import MoreStories from "@components/Blog/more-stories";
 import { Layout } from "@components/Blog/Layout/Layout";
 import { BlogStyles } from "@styles/globals";
@@ -47,7 +47,7 @@ export default function Blog({ allPosts, categoryName }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { categoryPosts, categoryName } =
     (await getAllPostsForCategory(params.slug)) || {};
   return {
@@ -55,13 +55,5 @@ export async function getStaticProps({ params }) {
       allPosts: categoryPosts || null,
       categoryName: categoryName || null,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const categories = (await getAllCategories()) || [];
-  return {
-    paths: categories.map((category) => `/blog/category/${category.slug}`),
-    fallback: true,
   };
 }

@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: "Thunder, sans-serif",
-        title: "Poppins, sans-serif",
-        main: "Roboto, sans-serif",
+        display: ["Thunder", "sans-serif"],
+        title: ["Poppins", "sans-serif"],
+        main: ["Roboto", "sans-serif"],
       },
       colors: {
         "accent-1": "#FAFAFA",

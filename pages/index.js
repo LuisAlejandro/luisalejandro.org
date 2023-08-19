@@ -20,6 +20,8 @@ import {
   Div1,
   Div2,
 } from "@components/Home/styles";
+import generateFeed from "@lib/generateFeed";
+import generateSitemap from "@lib/generateSitemap";
 import { HomeStyles } from "@styles/globals";
 
 export default function Index() {
@@ -77,7 +79,8 @@ export default function Index() {
                 been a part of in my{" "}
                 <a target="_blank" href="/portfolio">
                   portfolio
-                </a>.
+                </a>
+                .
               </Div1>
               <Div2>
                 <Masonry
@@ -169,4 +172,12 @@ export default function Index() {
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps() {
+  await generateFeed();
+  await generateSitemap();
+  return {
+    props: {},
+  };
 }
