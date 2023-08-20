@@ -20,7 +20,7 @@ const Product = ({ Title, Content, videoUrl }) => (
       )}
     </Scene>
     <div className="grid grid-cols-8 gap-4 px-32 py-60">
-      <div className="col-span-4">
+      <div className="lg:col-span-4 col-span-8">
         <Scene triggerElement="#product" duration="80%" triggerHook="1">
           {(progress) => (
             <Tween
@@ -60,7 +60,7 @@ const Product = ({ Title, Content, videoUrl }) => (
       </div>
       {videoUrl && (
         <div
-          className="col-span-4"
+          className="col-span-4 hidden lg:block"
           style={{
             height: "200px",
           }}

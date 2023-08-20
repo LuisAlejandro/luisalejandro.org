@@ -27,7 +27,7 @@ const HeroIntro = ({
       </Tween>
     </div>
     <div className="grid grid-cols-16 gap-4 px-32 py-60">
-      <div className="col-span-11">
+      <div className="lg:col-span-11 col-span-16">
         <Tween
           duration={2}
           from={{
@@ -81,7 +81,7 @@ const HeroIntro = ({
         }}
         ease="Expo.EaseIn"
       >
-        <div className="relative col-span-3">
+        <div className="relative lg:col-span-3 col-span-8">
           <h4 className="font-title text-2xl font-regular text-gray-300 text-right">
             Team
           </h4>
@@ -96,7 +96,7 @@ const HeroIntro = ({
             ))}
           </ul>
         </div>
-        <div className="relative col-span-2">
+        <div className="relative lg:col-span-2 col-span-8">
           <h4 className="font-title text-2xl font-regular text-gray-300 text-right">
             Deliverables
           </h4>

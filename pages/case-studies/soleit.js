@@ -209,7 +209,7 @@ const Soleit = () => {
                   <p className="py-5"></p>
                 </>
               )}
-              imgUrl="/images/case-studies/soleit-challenge.png"
+              bgImgClass="lg:bg-case-studies-soleit-challenge"
             />
             <Product
               Title={() => "The Product"}

@@ -190,7 +190,7 @@ const Canaima = () => {
                   </p>
                 </>
               )}
-              imgUrl="/images/case-studies/canaima-challenge.png"
+              bgImgClass="lg:bg-case-studies-canaima-challenge"
             />
             <Product
               Title={() => "The Product"}

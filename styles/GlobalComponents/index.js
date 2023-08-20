@@ -31,15 +31,32 @@ export const Section = styled.section`
     max-width: 94%;
   }
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    padding: 24px 48px 0;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    display: flex;
     flex-direction: column;
+    max-width: calc(100% - 64px);
+    padding: 24px 32px 0;
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    padding: ${(props) => (props.nopadding ? "0" : "16px 16px 0")};
-    width: calc(100vw - 32px);
+    display: flex;
     flex-direction: column;
+    max-width: calc(100% - 64px);
+    padding: 24px 32px 0;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 64px);
+    padding: 24px 32px 0;
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 64px);
+    padding: 24px 32px 0;
   }
 `;
 

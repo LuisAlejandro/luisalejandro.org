@@ -206,7 +206,7 @@ const Dockershelf = () => {
                   </p>
                 </>
               )}
-              imgUrl="/images/case-studies/dockershelf-challenge.png"
+              bgImgClass="lg:bg-case-studies-dockershelf-challenge"
             />
             <Product
               Title={() => "The Product"}

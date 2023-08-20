@@ -1,29 +1,49 @@
 import styled from "styled-components";
 
 export const Heading1 = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3.8rem;
   font-weight: 100;
+  text-align: justify;
   margin: 60px auto 30px auto;
   width: 700px;
-  text-align: justify;
   color: rgb(60, 60, 60);
+
   span {
     font-weight: 900;
+    font-family: ${(props) => props.theme.fonts.title};
+  }
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 100%;
   }
 `;
 
 export const Div1 = styled.div`
-  margin: 30px auto;
-  width: 700px;
-  text-align: justify;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 200;
   line-height: 1.5;
+  text-align: justify;
+  margin: 30px auto;
+  width: 700px;
   color: rgb(60, 60, 60);
 
   span {
     font-weight: 900;
+    font-family: ${(props) => props.theme.fonts.title};
   }
+
   a {
     background: rgb(237, 228, 206);
     border-radius: 5px;
@@ -35,6 +55,22 @@ export const Div1 = styled.div`
       color: rgb(0, 0, 0);
     }
   }
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 100%;
+  }
 `;
 
 export const Div2 = styled.div`
@@ -44,6 +80,7 @@ export const Div2 = styled.div`
   align-items: center;
   margin: 30px auto;
   width: 700px;
+
   ul {
     display: flex;
     width: 100%;
@@ -53,9 +90,41 @@ export const Div2 = styled.div`
       margin-bottom: 20px;
     }
   }
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
+    ul {
+      img {
+        width: 70px;
+      }
+    }
+  }
+
   @media ${(props) => props.theme.breakpoints.sm} {
-    align-items: center;
-    grid-area: 1 / 4 / 2 / 6;
+    width: 100%;
+    ul {
+      img {
+        width: 100px;
+      }
+    }
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 100%;
+    ul {
+      img {
+        width: 170px;
+      }
+    }
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 100%;
+    ul {
+      img {
+        width: 180px;
+      }
+    }
   }
 `;
 
@@ -65,6 +134,7 @@ export const Div3 = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+
   @media ${(props) => props.theme.breakpoints.sm} {
     align-items: center;
     grid-area: 1 / 4 / 2 / 6;
@@ -74,6 +144,8 @@ export const Div3 = styled.div`
 export const SocialIcons = styled.a`
   display: inline-block;
   vertical-align: top;
+  font-family: ${(props) => props.theme.fonts.main};
+  font-weight: 300;
   line-height: 20px;
   text-transform: uppercase;
   height: 33px;
@@ -86,6 +158,11 @@ export const SocialIcons = styled.a`
     1px 1px 0 rgba(0, 0, 0, 0.2) inset;
   transition: background-color 0.2s ease-in, color 0.2s ease-in;
   border-radius: 0;
+
+  svg {
+    display: inline-block;
+    font-size: 24px;
+  }
 
   span {
     display: inline-block;

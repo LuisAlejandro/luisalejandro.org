@@ -1,13 +1,6 @@
 import { css } from "styled-components";
 
 const partialHomeStyles = css`
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    background-color: #f5cc6a;
-  }
-
   #app {
     display: flex;
     align-items: center;
@@ -21,6 +14,8 @@ const partialHomeStyles = css`
       width: 100%;
 
       .footer {
+        font-family: ${(props) => props.theme.fonts.main};
+        font-weight: 300;
         color: rgba(0, 0, 0, 0.4);
         margin-bottom: 20px;
       }

@@ -8,6 +8,7 @@ import {
   AiOutlineRead,
   AiOutlineLinkedin,
 } from "react-icons/ai";
+import { useState } from "react";
 
 import { experience } from "@constants/constants";
 import Container from "@components/Home/container";
@@ -25,6 +26,8 @@ import generateSitemap from "@lib/generateSitemap";
 import { HomeStyles } from "@styles/globals";
 
 export default function Index() {
+  const [imagesVisible, setImagesVisible] = useState(false);
+
   const frontList = [
     "/images/home/front-1.png",
     "/images/home/front-2.png",
@@ -90,10 +93,19 @@ export default function Index() {
                     fitWidth: true,
                     transitionDuration: 0.8,
                   }}
+                  onImagesLoaded={() => {
+                    setImagesVisible(true);
+                  }}
                 >
                   {frontList.map((imgUrl, index) => (
                     <li key={index}>
-                      <img src={imgUrl} alt="" />
+                      <img
+                        src={imgUrl}
+                        alt=""
+                        style={{
+                          display: imagesVisible ? "block" : "none",
+                        }}
+                      />
                     </li>
                   ))}
                 </Masonry>
@@ -105,21 +117,11 @@ export default function Index() {
                     borderRadius: "5px 0 0 5px",
                   }}
                 >
-                  <AiOutlineRead
-                    size="1.5rem"
-                    style={{
-                      display: "inline-block",
-                    }}
-                  />
+                  <AiOutlineRead />
                   <span>Blog</span>
                 </SocialIcons>
                 <SocialIcons href="/portfolio">
-                  <AiOutlineBulb
-                    size="1.5rem"
-                    style={{
-                      display: "inline-block",
-                    }}
-                  />
+                  <AiOutlineBulb />
                   <span>Portfolio</span>
                 </SocialIcons>
                 <SocialIcons
@@ -127,24 +129,14 @@ export default function Index() {
                   target="_blank"
                   rel="nofollow noreferrer"
                 >
-                  <AiOutlineGithub
-                    size="1.5rem"
-                    style={{
-                      display: "inline-block",
-                    }}
-                  />
+                  <AiOutlineGithub />
                 </SocialIcons>
                 <SocialIcons
                   href="https://www.linkedin.com/in/martinezfaneyth"
                   target="_blank"
                   rel="nofollow noreferrer"
                 >
-                  <AiOutlineLinkedin
-                    size="1.5rem"
-                    style={{
-                      display: "inline-block",
-                    }}
-                  />
+                  <AiOutlineLinkedin />
                 </SocialIcons>
                 <SocialIcons
                   href="https://www.youtube.com/@TecnologiaEnElDivan"
@@ -154,12 +146,7 @@ export default function Index() {
                     borderRadius: "0 5px 5px 0",
                   }}
                 >
-                  <AiOutlineYoutube
-                    size="1.5rem"
-                    style={{
-                      display: "inline-block",
-                    }}
-                  />
+                  <AiOutlineYoutube />
                 </SocialIcons>
               </Div3>
               <Div3>

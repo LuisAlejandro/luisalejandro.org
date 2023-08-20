@@ -26,8 +26,8 @@ const Results = ({ Title, Content, links }) => (
       )}
     </Scene>
     <div className="grid grid-cols-8 gap-4 px-32 pt-60">
-      <div className="col-span-1"></div>
-      <div className="col-span-6">
+      <div className="lg:col-span-1"></div>
+      <div className="lg:col-span-6 col-span-8">
         <Scene triggerElement="#results" duration="80%" triggerHook="1">
           {(progress) => (
             <Tween
@@ -65,7 +65,7 @@ const Results = ({ Title, Content, links }) => (
           )}
         </Scene>
       </div>
-      <div className="col-span-1"></div>
+      <div className="lg:col-span-1"></div>
     </div>
     <div className="grid grid-cols-8 gap-4 px-32 pt-16 pb-60">
       <div className="col-span-1"></div>
