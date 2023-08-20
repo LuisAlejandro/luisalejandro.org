@@ -45,6 +45,10 @@ const partialPortfolioStyles = css`
       bottom: 0;
       right: 0;
       transform: translate(0px, 0px) rotateZ(30deg);
+
+      @media ${(props) => props.theme.breakpoints.lg} {
+        display: none;
+      }
     }
 
     .container-blog {
@@ -54,6 +58,10 @@ const partialPortfolioStyles = css`
       bottom: 0;
       right: 0;
       transform: translate(-450px, 50px) rotateZ(-30deg);
+
+      @media ${(props) => props.theme.breakpoints.lg} {
+        display: none;
+      }
     }
 
     .container-contact {
@@ -63,6 +71,10 @@ const partialPortfolioStyles = css`
       bottom: 0;
       right: 0;
       transform: translate(-450px, -300px) rotateZ(-50deg);
+
+      @media ${(props) => props.theme.breakpoints.lg} {
+        display: none;
+      }
     }
 
     .container-donations {
@@ -72,6 +84,10 @@ const partialPortfolioStyles = css`
       bottom: 0;
       right: 0;
       transform: translate(0px, 100px) rotateZ(150deg);
+
+      @media ${(props) => props.theme.breakpoints.lg} {
+        display: none;
+      }
     }
 
     .container-easter {
@@ -81,6 +97,10 @@ const partialPortfolioStyles = css`
       bottom: 0;
       right: 0;
       transform: translate(-250px, 250px) rotateZ(20deg);
+
+      @media ${(props) => props.theme.breakpoints.lg} {
+        display: none;
+      }
     }
   }
 `;

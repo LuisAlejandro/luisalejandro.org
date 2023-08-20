@@ -1,18 +1,25 @@
 import { Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
+import cn from "classnames";
 
-const Challenge = ({ Title, Content, imgUrl }) => (
+const Challenge = ({ Title, Content, bgImgClass }) => (
   <div
     id="challenge"
     className="w-full bg-gradient-to-tl from-neutral-700 to-neutral-600"
   >
     <div
-      className="w-full"
+      className={cn(
+        "w-full bg-none",
+        bgImgClass
+          ? {
+              [bgImgClass]: true,
+            }
+          : {}
+      )}
       style={{
         backgroundPosition: "top right",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        ...(imgUrl ? { backgroundImage: `url(${imgUrl})` } : {}),
       }}
     >
       <svg viewBox="0 0 1920 100">
@@ -35,7 +42,7 @@ const Challenge = ({ Title, Content, imgUrl }) => (
         )}
       </Scene>
       <div className="grid grid-cols-8 gap-4 px-32 py-72">
-        <div className="col-span-5">
+        <div className="lg:col-span-5 col-span-8">
           <Scene triggerElement="#challenge" duration="80%" triggerHook="1">
             {(progress) => (
               <Tween

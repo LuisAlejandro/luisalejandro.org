@@ -172,7 +172,7 @@ const Expedia = () => {
                   </p>
                 </>
               )}
-              imgUrl="/images/case-studies/expedia-challenge.png"
+              bgImgClass="lg:bg-case-studies-expedia-challenge"
             />
             <Product
               Title={() => "The Product"}
