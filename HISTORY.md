@@ -1,6 +1,35 @@
 # Changelog
 
 
+## 2.0.1 (2023-08-20)
+
+### Other
+
+* `[REF]` Improving mobile version. [Luis Alejandro Martínez Faneyth]
+
+* Bump sass from 1.66.0 to 1.66.1. [dependabot[bot]]
+
+* Bump rehype-stringify from 9.0.3 to 9.0.4. [dependabot[bot]]
+
+* Bump react-photo-album from 2.2.2 to 2.3.0. [dependabot[bot]]
+
+* `[REF]` Updating resume. [Luis Alejandro Martínez Faneyth]
+
+* `[REF]` Adding ignores to dependabot. [Luis Alejandro Martínez Faneyth]
+
+* `[FIX]` Fixing eslint errors. [Luis Alejandro Martínez Faneyth]
+
+* Bump @svgr/webpack from 8.0.1 to 8.1.0. [dependabot[bot]]
+
+* Bump eslint-config-next from 13.4.12 to 13.4.18. [dependabot[bot]]
+
+* Bump react-imgix from 9.7.0 to 9.8.0. [dependabot[bot]]
+
+* Bump sass from 1.64.2 to 1.66.0. [dependabot[bot]]
+
+* `[FIX]` Fixing font issue. [Luis Alejandro Martínez Faneyth]
+
+
 ## 2.0.0 (2023-08-19)
 
 ### Other
