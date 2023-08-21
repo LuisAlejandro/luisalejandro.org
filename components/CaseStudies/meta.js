@@ -128,10 +128,7 @@ export default function Meta() {
       <meta name="twitter:url" content={config.url} />
       <meta name="twitter:title" content={config.app_name} />
       <meta name="twitter:description" content={config.description} />
-      <meta
-        name="twitter:image"
-        content={`${config.url}/favicon/android-chrome-512x512.png`}
-      />
+      <meta name="twitter:image" content={`${config.url}/images/banner.png`} />
       <meta name="twitter:site" content={`@${config.blog.twitter}`} />
       <meta name="twitter:creator" content={`@${config.author.twitter}`} />
 

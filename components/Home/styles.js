@@ -15,6 +15,7 @@ export const Heading1 = styled.h1`
 
   @media ${(props) => props.theme.breakpoints.xs} {
     width: 100%;
+    font-size: 2rem;
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {

@@ -1,5 +1,3 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -7,10 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      screens: {
-        xs: "450px",
-        ...defaultTheme.screens,
-      },
       fontFamily: {
         display: ["Thunder", "sans-serif"],
         title: ["Poppins", "sans-serif"],
@@ -59,10 +53,14 @@ module.exports = {
         "span-16": "span 16 / span 16",
       },
       backgroundImage: {
-        "case-studies-canaima-challenge": "url('/images/case-studies/canaima-challenge.png')",
-        "case-studies-dockershelf-challenge": "url('/images/case-studies/dockershelf-challenge.png')",
-        "case-studies-expedia-challenge": "url('/images/case-studies/expedia-challenge.png')",
-        "case-studies-soleit-challenge": "url('/images/case-studies/soleit-challenge.png')",
+        "case-studies-canaima-challenge":
+          "url('/images/case-studies/canaima-challenge.png')",
+        "case-studies-dockershelf-challenge":
+          "url('/images/case-studies/dockershelf-challenge.png')",
+        "case-studies-expedia-challenge":
+          "url('/images/case-studies/expedia-challenge.png')",
+        "case-studies-soleit-challenge":
+          "url('/images/case-studies/soleit-challenge.png')",
       },
     },
   },

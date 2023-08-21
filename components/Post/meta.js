@@ -3,12 +3,13 @@ import Head from "next/head";
 import { config } from "@constants/constants";
 
 export default function Meta({ data }) {
+  const excerptText = (data.metadata.teaser || '').replace( /(<([^>]+)>)/ig, '');
   return (
     <Head>
       <title>{data.title}</title>
       <meta charSet="utf-8" />
       <meta name="author" content={config.author.name} />
-      <meta name="description" content={data.metadata.teaser} />
+      <meta name="description" content={excerptText} />
       <meta
         name="keywords"
         content={data.metadata.categories
@@ -19,7 +20,7 @@ export default function Meta({ data }) {
       <meta name="robots" content="index, follow, noodp, noydir" />
 
       <meta name="dcterms.title" content={data.title} />
-      <meta name="dcterms.description" content={data.metadata.teaser} />
+      <meta name="dcterms.description" content={excerptText} />
       <meta name="dcterms.language" content="en" />
       <meta name="dcterms.type" content="Collection" />
       <meta name="dcterms.identifier" content={data.id} />
@@ -128,15 +129,12 @@ export default function Meta({ data }) {
 
       <meta property="og:title" content={data.title} />
       <meta property="og:type" content="website" />
-      <meta
-        property="og:image"
-        content={`${config.url}/favicon/android-chrome-512x512.png`}
-      />
+      <meta property="og:image" content={`${config.url}/images/banner.png`} />
       <meta
         property="og:url"
         content={`${config.url}/blog/posts/${data.slug}`}
       />
-      <meta property="og:description" content={data.metadata.teaser} />
+      <meta property="og:description" content={excerptText} />
       <meta property="og:locale" content="en_US" />
       <meta property="article:author" content={config.author.fb_profile_id} />
       <meta
@@ -161,11 +159,8 @@ export default function Meta({ data }) {
         content={`${config.url}/blog/posts/${data.slug}`}
       />
       <meta name="twitter:title" content={data.title} />
-      <meta name="twitter:description" content={data.metadata.teaser} />
-      <meta
-        name="twitter:image"
-        content={`${config.url}/favicon/android-chrome-512x512.png`}
-      />
+      <meta name="twitter:description" content={excerptText} />
+      <meta name="twitter:image" content={data.metadata.hero.url} />
       <meta name="twitter:site" content={`@${config.blog.twitter}`} />
       <meta name="twitter:creator" content={`@${config.author.twitter}`} />
 

@@ -1,4 +1,4 @@
-import { getAllPostsSlugs, getPostAndMorePosts } from "@lib/api";
+import { getPostAndMorePosts } from "@lib/api";
 import markdownToHtml from "@lib/markdownToHtml";
 import ErrorPage from "@pages/_error";
 import { Layout } from "@components/Post/Layout/Layout";

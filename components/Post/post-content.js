@@ -23,18 +23,14 @@ export default function PostContent({
   categories,
   morePosts,
 }) {
-  const [excerptText, setExcerptText] = useState("");
-
+  const excerptText = excerpt.replace( /(<([^>]+)>)/ig, '');
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
   const escapedCanonicalUrl = encodeURIComponent(canonicalUrl);
   const escapedTitle = encodeURIComponent(title);
 
   useEffect(() => {
     hljs.highlightAll();
-    const div = document.createElement("div");
-    div.innerHTML = excerpt;
-    setExcerptText(div.textContent || div.innerText || "");
-  }, [excerpt]);
+  }, []);
 
   useEffect(() => {
     const modal = document.querySelector("#modal");
