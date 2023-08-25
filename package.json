@@ -55,7 +55,7 @@
     "sass": "^1.66.1",
     "styled-components": "^5.3.8",
     "styled-normalize": "^8.0.7",
-    "unified": "^10.1.2",
+    "unified": "^11.0.2",
     "vanilla-tilt": "^1.7.2",
     "yet-another-react-lightbox": "^3.12.0"
   },
