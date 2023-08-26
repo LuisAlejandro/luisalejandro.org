@@ -1,6 +1,23 @@
 # Changelog
 
 
+## 2.0.2 (2023-08-26)
+
+### Other
+
+* `[REF]` Improving mobile version and replacing lambda function for a next endpoint. [Luis Alejandro Martínez Faneyth]
+
+* Bump vanilla-tilt from 1.8.0 to 1.8.1. [dependabot[bot]]
+
+* Bump typescript from 5.1.6 to 5.2.2. [dependabot[bot]]
+
+* Bump unified from 10.1.2 to 11.0.2. [dependabot[bot]]
+
+* Bump chart.js from 4.3.3 to 4.4.0. [dependabot[bot]]
+
+* `[REF]` Fixing miscellaneous bugs. [Luis Alejandro Martínez Faneyth]
+
+
 ## 2.0.1 (2023-08-20)
 
 ### Other
