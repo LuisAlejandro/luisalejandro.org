@@ -257,8 +257,8 @@ const Soleit = () => {
                     have made a <b className="font-black">lot of sales</b> and
                     are now looking to improve some of the features of the app.
                   </p>
-                  <div className="flex flex-row justify-center">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-main font-extralight tracking-tighter text-6xl text-center">
                         more than
                       </div>
@@ -272,7 +272,7 @@ const Soleit = () => {
                         patients
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-main font-extralight tracking-tighter text-6xl text-center">
                         more than
                       </div>

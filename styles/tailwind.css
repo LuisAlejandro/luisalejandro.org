@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button-primary {
+    @apply bg-[#abb7b7] text-[#5a5a5a] hover:bg-[#c0cece] hover:text-[#5a5a5a] cursor-pointer active:bg-[#c0cece];
+  }
+  .button-disabled-primary {
+    @apply bg-[#c3c3c3] text-[#979797] hover:bg-[#c3c3c3] hover:text-[#979797] cursor-not-allowed;
+  }
+  .button-waiting-primary {
+    @apply bg-[#f9e09c] text-[#979797] hover:bg-[#f9e09c] hover:text-[#979797] cursor-not-allowed;
+  }
+  .button-success-primary {
+    @apply bg-[#a0d989] text-[#5a5a5a] hover:bg-[#a0d989] hover:text-[#5a5a5a] cursor-pointer active:bg-[#c0cece];
+  }
+  .button-error-primary {
+    @apply bg-[#d98989] text-[#5a5a5a] hover:bg-[#d98989] hover:text-[#5a5a5a] cursor-not-allowed active:bg-[#c0cece];
+  }
+}

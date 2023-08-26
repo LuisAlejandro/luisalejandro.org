@@ -114,7 +114,8 @@ export default function Index() {
                 <SocialIcons
                   href="/blog"
                   style={{
-                    borderRadius: "5px 0 0 5px",
+                    borderTopLeftRadius: "5px",
+                    borderBottomLeftRadius: "5px",
                   }}
                 >
                   <AiOutlineRead />
@@ -143,7 +144,8 @@ export default function Index() {
                   target="_blank"
                   rel="nofollow noreferrer"
                   style={{
-                    borderRadius: "0 5px 5px 0",
+                    borderTopRightRadius: "5px",
+                    borderBottomRightRadius: "5px",
                   }}
                 >
                   <AiOutlineYoutube />

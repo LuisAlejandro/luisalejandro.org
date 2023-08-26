@@ -93,6 +93,7 @@ export const Div2 = styled.div`
   }
 
   @media ${(props) => props.theme.breakpoints.xs} {
+    display: none;
     width: 100%;
     ul {
       img {
@@ -136,9 +137,9 @@ export const Div3 = styled.div`
   align-items: center;
   margin: 0 auto;
 
-  @media ${(props) => props.theme.breakpoints.sm} {
-    align-items: center;
-    grid-area: 1 / 4 / 2 / 6;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    margin-bottom: 20px;
+    flex-direction: column;
   }
 `;
 
@@ -185,5 +186,27 @@ export const SocialIcons = styled.a`
     background-color: rgb(237, 228, 206);
     box-shadow: none;
     color: rgb(0, 0, 0);
+  }
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    border-radius: 5px;
+    display:block;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 4px 0;
+    height: 63px;
+
+    svg {
+      display: inline-block;
+      font-size: 54px;
+    }
+
+    span {
+      display: none;
+    }
+
+    &:active {
+      margin: 4px 0 0 0;
+    }
   }
 `;

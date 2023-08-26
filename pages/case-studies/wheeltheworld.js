@@ -214,8 +214,8 @@ const WheelTheWorld = () => {
                     time to deploy went from 40 minutes to 10 minutes and the
                     time to run the tests went from 20 minutes to 5 minutes.
                   </p>
-                  <div className="flex">
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="w-full md:w-1/2 p-16 m-8 rounded-3xl bg-white">
                       <Bar
                         options={{
                           scales: {
@@ -248,7 +248,7 @@ const WheelTheWorld = () => {
                         }}
                       />
                     </div>
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
+                    <div className="w-full md:w-1/2 p-16 m-8 rounded-3xl bg-white">
                       <Bar
                         options={{
                           scales: {
@@ -292,8 +292,8 @@ const WheelTheWorld = () => {
                     reduce the cost of the pipeline from 32 USD per month to 8
                     USD per month (75% reduction), just for one application.
                   </p>
-                  <div className="flex flex-row justify-center">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         ~75%
                       </div>
@@ -304,7 +304,7 @@ const WheelTheWorld = () => {
                         for github actions
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         ~86%
                       </div>

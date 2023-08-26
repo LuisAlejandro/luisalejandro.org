@@ -10,7 +10,7 @@ const HeroIntro = ({
   year,
 }) => (
   <div id="herointro" className="w-full">
-    <div className="flex absolute right-32 top-64 font-display text-14xl text-white opacity-20">
+    <div className="flex absolute right-32 top-72 md:top-64 font-display text-8xl md:text-14xl text-white opacity-20">
       <Tween
         duration={2}
         to={{
@@ -26,7 +26,7 @@ const HeroIntro = ({
         <div className="relative">{year}</div>
       </Tween>
     </div>
-    <div className="grid grid-cols-16 gap-4 px-32 py-60">
+    <div className="grid grid-cols-16 gap-4 px-8 md:px-32 py-60">
       <div className="lg:col-span-11 col-span-16">
         <Tween
           duration={2}
@@ -44,7 +44,7 @@ const HeroIntro = ({
             <p className="font-main text-3xl font-extralight text-white">
               <Subtitle />
             </p>
-            <h1 className="font-display text-10xl font-bold text-white m-0">
+            <h1 className="font-display text-8xl md:text-10xl font-bold text-white m-0">
               <Title />
             </h1>
             <p className="font-main text-4xl font-extralight text-white leading-normal">

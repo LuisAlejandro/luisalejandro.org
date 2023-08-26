@@ -35,13 +35,13 @@ const Challenge = ({ Title, Content, bgImgClass }) => (
             totalProgress={progress}
             paused
           >
-            <h1 className="font-display text-18xl font-bold text-neutral-700 m-0 absolute -left-32 opacity-30">
+            <h1 className="font-display text-18xl font-bold text-neutral-700 m-0 absolute -left-32 opacity-30 hidden md:block">
               <Title />
             </h1>
           </Tween>
         )}
       </Scene>
-      <div className="grid grid-cols-8 gap-4 px-32 py-72">
+      <div className="grid grid-cols-8 gap-4 px-8 md:px-32 py-72">
         <div className="lg:col-span-5 col-span-8">
           <Scene triggerElement="#challenge" duration="80%" triggerHook="1">
             {(progress) => (
@@ -55,7 +55,7 @@ const Challenge = ({ Title, Content, bgImgClass }) => (
                 totalProgress={progress}
                 paused
               >
-                <h1 className="font-display text-12xl font-bold text-white m-0">
+                <h1 className="font-display text-8xl md:text-12xl font-bold text-white m-0">
                   <Title />
                 </h1>
               </Tween>

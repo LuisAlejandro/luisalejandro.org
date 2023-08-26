@@ -7,42 +7,33 @@ export const Article = styled(motion.article)`
   max-width: 100%;
   display: flex;
   flex-direction: row;
-
-  @media ${(props) => props.theme.breakpoints.xl} {
-    margin-right: 1.5rem;
-    display: flex;
-    align-items: flex-start;
-  }
+  margin-right: 1.5rem;
+  align-items: flex-start;
 `;
 
 export const Header = styled.div`
   width: 50%;
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    display: none;
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    display: none;
+  }
+
   @media ${(props) => props.theme.breakpoints.md} {
-    display: flex;
-    margin-bottom: 9rem;
+    display: none;
   }
 
   @media ${(props) => props.theme.breakpoints.lg} {
-    flex-basis: 60%;
+    display: none;
   }
 `;
 
 export const Figure = styled(motion.figure)`
   position: relative;
   margin-bottom: 1rem;
-
-  @media ${(props) => props.theme.breakpoints.md} {
-    width: 29.6875rem;
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    transform: translateX(-4rem);
-  }
-
-  @media ${(props) => props.theme.breakpoints.xl} {
-    margin: 0;
-    transform: translateX(0);
-  }
 `;
 
 export const Caption = styled.figcaption`
@@ -53,18 +44,6 @@ export const Caption = styled.figcaption`
   top: -3.5rem;
   width: 75%;
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    padding: 0 4rem 4.125rem 4rem;
-    top: 0;
-    left: 15rem;
-    bottom: unset;
-    width: 100%;
-  }
-
-  @media ${(props) => props.theme.breakpoints.xl} {
-    left: 26rem;
-  }
-
   h1 {
     font-size: 3.5rem;
     color: #000;
@@ -72,10 +51,6 @@ export const Caption = styled.figcaption`
     line-height: 1;
     margin: 0px 0 10px 0;
 
-    @media ${(props) => props.theme.breakpoints.md} {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-    }
   }
 
   p {
@@ -115,16 +90,24 @@ export const Body = styled.div`
   position: relative;
   width: 50%;
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    padding-left: 7.1875rem;
-    padding-right: 7.1875rem;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
+    padding: 0;
   }
 
-  @media ${(props) => props.theme.breakpoints.xl} {
-    padding-right: 7rem;
-    padding-left: 5.188rem;
-    padding-top: 7.1875rem;
-    flex-basis: 40%;
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
+    padding: 0;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 100%;
+    padding: 0;
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 100%;
+    padding: 0;
   }
 
   &::before {
@@ -139,6 +122,18 @@ export const Body = styled.div`
     line-height: 1;
     letter-spacing: -1.8rem;
 
+    @media ${(props) => props.theme.breakpoints.xs} {
+      font-size: 12rem;
+      letter-spacing: -0.5rem;
+      top: -5rem;
+    }
+
+    @media ${(props) => props.theme.breakpoints.sm} {
+      font-size: 15rem;
+      letter-spacing: -1rem;
+      top: -8rem;
+    }
+
     @media ${(props) => props.theme.breakpoints.md} {
       font-size: 12.5rem;
       right: unset;
@@ -146,14 +141,6 @@ export const Body = styled.div`
       top: -6rem;
     }
 
-    @media ${(props) => props.theme.breakpoints.xl} {
-      left: 6rem;
-      top: 1rem;
-    }
-
-    @media ${(props) => props.theme.breakpoints.xl} {
-      font-size: clamp(9rem, 10vw, 12.5rem);
-    }
   }
 `;
 

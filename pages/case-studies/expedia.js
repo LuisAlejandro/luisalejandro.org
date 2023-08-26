@@ -221,8 +221,8 @@ const Expedia = () => {
                     600k hotels. This allowed Wheel the World to increase their
                     sales by 39% on the first quarter of 2023.
                   </p>
-                  <div className="flex flex-row justify-center">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         600K
                       </div>
@@ -233,7 +233,7 @@ const Expedia = () => {
                         choose from
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         39%
                       </div>

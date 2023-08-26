@@ -20,6 +20,13 @@ export const Boxes = styled.div`
     max-width: 500px;
     margin: 24px auto;
   }
+
+  @media ${props => props.theme.breakpoints.xs}{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0px;
+    margin: 24px auto;
+  }
 `
 
 export const Box = styled.div`
@@ -28,9 +35,9 @@ export const Box = styled.div`
   border-radius: 12px;
   height: 144px;
   padding: 24px;
+
   @media ${props => props.theme.breakpoints.lg} {
     height: 210px;
-
   }
 
   @media ${props => props.theme.breakpoints.md} {
@@ -45,6 +52,10 @@ export const Box = styled.div`
     &:nth-child(2n){
       grid-row:2;
     }
+  }
+
+  @media ${props => props.theme.breakpoints.xs} {
+    margin: 12px 0;
   }
 `
 export const BoxNum = styled.h5`
