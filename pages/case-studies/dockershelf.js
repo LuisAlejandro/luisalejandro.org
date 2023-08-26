@@ -254,8 +254,8 @@ const Dockershelf = () => {
                     awesome-docker repository, and it has been starred more than
                     60 times.
                   </p>
-                  <div className="flex flex-row">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         220K
                       </div>
@@ -266,7 +266,7 @@ const Dockershelf = () => {
                         debian images
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         294K
                       </div>
@@ -296,8 +296,8 @@ const Dockershelf = () => {
                     Although not as small as Alpine, they are still a good
                     alternative for those who need a Debian based image.
                   </p>
-                  <div className="flex">
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="w-full md:w-1/2 p-16 m-8 rounded-3xl bg-white">
                       <Bar
                         options={{
                           scales: {
@@ -326,7 +326,7 @@ const Dockershelf = () => {
                         }}
                       />
                     </div>
-                    <div className="w-1/2 p-16 m-8 rounded-3xl bg-white">
+                    <div className="w-full md:w-1/2 p-16 m-8 rounded-3xl bg-white">
                       <Bar
                         options={{
                           scales: {

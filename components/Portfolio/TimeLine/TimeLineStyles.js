@@ -1,58 +1,31 @@
 import styled from "styled-components";
 
 export const CarouselContainer = styled.ul`
-  max-width: 1040px;
-  padding: 0rem;
-  list-style: none;
   display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  width: 100%;
   justify-content: space-between;
-  margin-left: 32px;
 
-  &:first-of-type {
-    margin-left: 0px;
-  }
-
-  margin-bottom: 20px;
-
-  //remove scrollbar
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    flex-direction: column;
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    touch-action: pan-x;
-    justify-content: initial;
-    margin-bottom: 8px;
+    flex-direction: column;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    flex-direction: column;
   }
 `;
 
-export const CarouselItem = styled.div`
-  // background: #0F1624;
-  border-radius: 3px;
-  max-width: 196px;
+export const CarouselItem = styled.li`
+  margin: 10px 0;
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    max-width: 124px;
-  }
-
-  @media ${(props) => props.theme.breakpoints.sm} {
-    margin-left: 32px;
-    min-width: 120px;
-    background: #0f1624;
-    padding: 4px;
-    align-content: start;
-    scroll-snap-align: start;
-    border-radius: 3px;
-    overflow: visible;
-    position: relative;
-    height: fit-content;
-
-    ${(props) =>
-      props.active === props.index ? `opacity: 1` : `opacity: 0.5`};
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
   }
 `;
 
@@ -62,7 +35,6 @@ export const CarouselItemTitle = styled.h4`
   line-height: 42px;
   letter-spacing: 0.02em;
   display: flex;
-  /* This gradient is different due to the size of the Title container, it must transition sooner to be visible on the text */
   background: linear-gradient(
     121.57deg,
     rgba(34, 34, 34, 0.66) 10%,
@@ -88,7 +60,6 @@ export const CarouselItemText = styled.p`
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.02em;
-  // color: rgba(255, 255, 255, 0.75);
   padding-right: 16px;
 
   @media ${(props) => props.theme.breakpoints.md} {

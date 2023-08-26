@@ -3,7 +3,7 @@ const themeConfig = {
   fonts: {
     display: "Thunder, sans-serif",
     title: "Poppins, sans-serif",
-    main: "Roboto, sans-serif"
+    main: "Roboto, sans-serif",
   },
   // Colors for layout
   colors: {
@@ -19,13 +19,12 @@ const themeConfig = {
   },
   // Breakpoints for responsive design
   breakpoints: {
-    xs: 'screen and (max-width: 450px)',
-    sm: 'screen and (max-width: 640px)',
-    md: 'screen and (max-width: 768px)',
-    lg: 'screen and (max-width: 1024px)',
-    xl: 'screen and (max-width: 1280px)'
+    xs: "only screen and (min-width: 0px) and (max-width: 450px)",
+    sm: "only screen and (min-width: 451px) and (max-width: 640px)",
+    md: "only screen and (min-width: 641px) and (max-width: 768px)",
+    lg: "only screen and (min-width: 769px) and (max-width: 1024px)",
+    xl: "only screen and (min-width: 1025px) and (max-width: 1280px)",
   },
 };
 
-
-export default themeConfig
+export default themeConfig;

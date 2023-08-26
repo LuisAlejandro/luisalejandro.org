@@ -16,11 +16,18 @@ export const GridContainer = styled.section`
   column-gap: 3rem;
   row-gap: 3rem;
   margin-bottom: 10rem;
-  @media ${(props) => props.theme.breakpoints.sm} {
+
+  a {
+    width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.xs} {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 2rem 0;
     padding-bottom: 1.5rem;
+    column-gap: 1rem;
+    row-gap: 1rem;
   }
 `;
 
@@ -77,6 +84,9 @@ export const TagList = styled.ul`
   display: flex;
   justify-content: center;
   padding: 2rem;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    display: none;
+  }
 `;
 
 export const Tag = styled.li`

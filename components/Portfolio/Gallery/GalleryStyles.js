@@ -30,9 +30,22 @@ export const SlideshowWrapper = styled(motion.div)`
 export const GalleryCardItem = styled(motion.li)`
   display: block;
   float: left;
-  padding: 5px;
-  width: 33%;
+  padding: 5px 0.5%;
+  width: 33.333%;
   opacity: 0;
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    width: 100%;
+  }
+  @media ${(props) => props.theme.breakpoints.sm} {
+    width: 100%;
+  }
+  @media ${(props) => props.theme.breakpoints.md} {
+    width: 50%;
+  }
+  @media ${(props) => props.theme.breakpoints.lg} {
+    width: 50%;
+  }
 `;
 
 export const Figure = styled.figure`
@@ -63,7 +76,15 @@ export const Caption = styled(motion.figcaption)`
     font-size: 6rem;
     line-height: 1;
     margin-bottom: 0;
+
+    @media ${(props) => props.theme.breakpoints.xs} {
+      display: none;
+    }
+    @media ${(props) => props.theme.breakpoints.md} {
+      display: none;
+    }
   }
+
   h3 {
     font-weight: bold;
     font-size: 2rem;
@@ -71,9 +92,14 @@ export const Caption = styled(motion.figcaption)`
     margin-bottom: 0.4375rem;
     white-space: pre-line;
   }
+
   p {
     font-size: 1.5rem;
     font-weight: 100;
     color: rgba(255, 255, 255, 0.75);
+
+    @media ${(props) => props.theme.breakpoints.xs} {
+      display: none;
+    }
   }
 `;

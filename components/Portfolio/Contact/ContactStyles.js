@@ -9,17 +9,6 @@ export const Section = styled.section`
   padding: 0;
   margin: 0;
   background-color: ${(props) => (props.transparent ? "transparent" : "#aaa")};
-
-  @media ${(props) => props.theme.breakpoints.md} {
-    padding: 24px 48px 0;
-    flex-direction: column;
-  }
-
-  @media ${(props) => props.theme.breakpoints.sm} {
-    padding: "16px 16px 0";
-    width: calc(100vw - 32px);
-    flex-direction: column;
-  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -39,21 +28,44 @@ export const SectionTitle = styled.h2`
   margin-bottom: 16px;
   padding: 58px 0 16px;
 
-  @media ${(props) => props.theme.breakpoints.md} {
-    font-size: 56px;
-    line-height: 56px;
-    margin-bottom: 12px;
-    padding: 40px 0 12px;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 32px;
+    line-height: 40px;
+    font-size: ${(props) => (props.main ? "28px" : "32px")};
+    line-height: ${(props) => (props.main ? "32px" : "40px")};
+    margin-bottom: 8px;
+    max-width: 100%;
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
+    padding-left: 16px;
+    padding-right: 16px;
     font-size: 32px;
     line-height: 40px;
-    font-size: 28px;
-    line-height: 32px;
+    font-size: ${(props) => (props.main ? "28px" : "32px")};
+    line-height: ${(props) => (props.main ? "32px" : "40px")};
     margin-bottom: 8px;
-    padding: 16px 0 8px;
     max-width: 100%;
+  }
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: ${(props) => (props.main ? "56px" : "48px")};
+    line-height: ${(props) => (props.main ? "56px" : "48px")};
+    margin-bottom: 12px;
+  }
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media ${(props) => props.theme.breakpoints.xl} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -68,16 +80,38 @@ export const SectionText = styled.p`
   padding-bottom: 3.6rem;
   color: ${(props) => props.theme.colors.primary1};
 
+  @media ${(props) => props.theme.breakpoints.xs} {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 16px;
+  }
+
+  @media ${(props) => props.theme.breakpoints.sm} {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 16px;
+  }
+
   @media ${(props) => props.theme.breakpoints.md} {
+    padding-left: 16px;
+    padding-right: 16px;
     max-width: 670px;
     font-size: 20px;
     line-height: 32px;
     padding-bottom: 24px;
   }
 
-  @media ${(props) => props.theme.breakpoints.sm} {
-    font-size: 16px;
-    line-height: 24px;
-    padding-bottom: 16px;
+  @media ${(props) => props.theme.breakpoints.lg} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media ${(props) => props.theme.breakpoints.xl} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;

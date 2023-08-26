@@ -234,8 +234,8 @@ const Canaima = () => {
                     3.0, it had 110,000 downloads and subsequent releases were
                     also popular.
                   </p>
-                  <div className="flex flex-row">
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                  <div className="flex flex-col md:flex-row justify-center items-center">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         110K
                       </div>
@@ -257,7 +257,7 @@ const Canaima = () => {
                         Canaima 3.1
                       </div>
                     </div>
-                    <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                    <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
                       <div className="font-display font-black text-12xl leading-none text-center">
                         220K
                       </div>

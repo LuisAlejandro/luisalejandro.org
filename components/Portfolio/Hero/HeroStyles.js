@@ -48,28 +48,29 @@ export const LeftSection = styled.div`
   }
 
   @media ${(props) => props.theme.breakpoints.xs} {
-    width: 80%;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0;
+
+    .button1 {
+      width: 100%;
+      margin: 5px 0;
+    }
   }
 
   @media ${(props) => props.theme.breakpoints.sm} {
-    width: 80%;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 0;
   }
 
   @media ${(props) => props.theme.breakpoints.md} {
-    width: 100%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
   }
 
   @media ${(props) => props.theme.breakpoints.lg} {
-    width: 100%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;

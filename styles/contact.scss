@@ -1,281 +1,49 @@
-// Medias querys
-$breakpoints: (
-  "xs": "screen and (max-width: 450px)",
-  "sm": "screen and (max-width: 640px)",
-  "md": "screen and (max-width: 768px)",
-  "lg": "screen and (max-width: 1024px)",
-  "xl": "screen and (max-width: 1280px)",
-) !default;
-
-@mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media #{map-get($breakpoints, $breakpoint)} {
-      @content;
-    }
-  } @else {
-    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. ' +
-      'Please make sure it is defined in `$breakpoints` map.';
-  }
-}
-
 #contact {
   padding-bottom: 0;
 
-  .container {
-    width: 100%;
-    max-width: 1040px;
-    margin: 0 auto;
-    margin-bottom: 200px;
+  form {
+    position: relative;
+    margin-bottom: 20px;
 
-    .btn {
-      display: inline-block;
-      font-weight: 400;
-      color: #212529;
-      text-align: center;
-      vertical-align: middle;
-      background-color: transparent;
-      border: 1px solid transparent;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      border-radius: 0.25rem;
-      user-select: none;
-      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-
-    .btn:not(:disabled):not(.disabled) {
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      color: #212529;
-      text-decoration: none;
-    }
-
-    .btn-custom-red {
-      font-family: Poppins, sans-serif;
-      font-weight: 800;
-      font-size: 1.5rem;
-      padding: 8px 16px;
-      background-color: #e5616b;
-      color: #fff;
-      transform: perspective(1px) translateZ(0);
-      box-shadow: 0 0 1px transparent;
-      transition-property: box-shadow, transform;
-      transition: all ease-in-out 0.3s;
-    }
-
-    .btn-custom-red:hover {
-      color: #fff;
-      box-shadow: 0 10px 10px -10px rgb(0 0 0 / 50%);
-      transition: all ease-in-out 0.3s;
-      transform: scale(1.1);
-    }
-
-    .float-right {
-      float: right !important;
-    }
-
-    .row {
+    button {
       display: flex;
-      flex-wrap: wrap;
-      margin-right: -15px;
-      margin-left: -15px;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: 200;
+      height: 64px;
+      line-height: 20px;
+      margin: 0 0 80px 0;
+      padding: 3px 5px 7px 5px;
+      box-shadow: 0 -6px 0 rgba(255, 255, 255, 0.3) inset,
+        0 -5px 0 rgba(0, 0, 0, 0.3) inset, -1px 0 0 rgba(0, 0, 0, 0.3) inset,
+        1px 1px 0 rgba(0, 0, 0, 0.3) inset;
+      background-image: radial-gradient(
+        ellipse closest-side at 50% 50%,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0)
+      );
+      transition: background-color 0.4s ease-out;
+      border-radius: 15px;
+      width: 150px;
     }
 
-    .col-lg-4,
-    .col-lg-8,
-    .col-lg-12 {
-      position: relative;
-      width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
+    .button-active:active {
+      padding: 3px 5px;
+      margin: 4px 0 76px 0;
+      box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2) inset;
     }
 
-    .col-lg-4 {
-      flex: 0 0 33.33333%;
-      max-width: 33.33333%;
+    textarea {
+      resize: none;
+      height: 160px !important;
     }
 
-    .col-lg-8 {
-      flex: 0 0 66.66667%;
-      max-width: 66.66667%;
-    }
-
-    .col-lg-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-
-    .d-lg-none {
-      display: none !important;
-    }
-
-    .d-lg-block {
-      display: block !important;
-    }
-
-    .form-group {
-      position: relative;
-      margin-bottom: 20px;
-
-      .form-control {
-        display: block;
-        width: 100%;
-        height: calc(1.5em + 0.75rem + 2px);
-        padding: 0.375rem 0.75rem;
-        font-size: 1.7rem;
-        font-weight: 300;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 2px solid #fff;
-        border-radius: 0.5rem;
-        transition: border-color 0.25s ease-in-out, box-shadow 0.15s ease-in-out;
-      }
-
-      label {
-        display: block;
-        font-weight: 300;
-        font-family: Roboto, sans-serif;
-        color: #000;
-        padding: 0 4px;
-        margin: 4px 0;
-      }
-
-      input {
-        padding: 10px 20px;
-        height: unset !important;
-
-        &:focus,
-        &:focus-visible,
-        &:active {
-          outline: none;
-          box-shadow: none;
-          border-color: #e5616b !important;
-        }
-      }
-
-      textarea {
-        resize: none;
-        height: 220px !important;
-
-        &:focus,
-        &:focus-visible,
-        &:active {
-          outline: none;
-          box-shadow: none;
-          border-color: #e5616b !important;
-        }
-      }
-    }
-
-    .responses {
-      margin: 0 !important;
-
-      @include respond-to(xs) {
-        text-align: center !important;
-        width: 100% !important;
-        margin: 10px !important;
-      }
-    }
-
-    .response {
-      margin: 0;
-      padding: 0;
-      @include respond-to(xs) {
-        width: 100% !important;
-      }
-    }
-
-    .success-message {
-      color: green;
-      font-style: italic;
-      height: 1em;
-    }
-
-    .error-message {
-      font-weight: 300;
-      font-size: 12px;
-      color: red;
-      height: 18px;
-      padding: 3px;
-    }
-
-    .waiting {
-      .loader,
-      .loader:before,
-      .loader:after {
-        border-radius: 50%;
-        width: 2.5em;
-        height: 2.5em;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation: load7 1.8s infinite ease-in-out;
-        animation: load7 1.8s infinite ease-in-out;
-      }
-
-      .loader {
-        display: none;
+    .recaptcha {
+      div {
+        width: min-content;
         float: right;
-        color: #aaa;
-        font-size: 5px;
-        margin: 0;
-        position: relative;
-        text-indent: -9999em;
-        -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-animation-delay: -0.16s;
-        animation-delay: -0.16s;
-      }
-
-      .loader:before,
-      .loader:after {
-        content: "";
-        position: absolute;
-        top: 0;
-      }
-
-      .loader:before {
-        left: -3.5em;
-        -webkit-animation-delay: -0.32s;
-        animation-delay: -0.32s;
-      }
-
-      .loader:after {
-        left: 3.5em;
-      }
-
-      @-webkit-keyframes load7 {
-        0%,
-        80%,
-        100% {
-          box-shadow: 0 2.5em 0 -1.3em;
-        }
-        40% {
-          box-shadow: 0 2.5em 0 0;
-        }
-      }
-
-      @keyframes load7 {
-        0%,
-        80%,
-        100% {
-          box-shadow: 0 2.5em 0 -1.3em;
-        }
-        40% {
-          box-shadow: 0 2.5em 0 0;
-        }
       }
     }
   }
-}
-
-#re-captcha {
-  float: right;
-  height: 100px;
-  margin-top: 10px;
 }

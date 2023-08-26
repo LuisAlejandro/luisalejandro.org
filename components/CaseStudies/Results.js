@@ -19,13 +19,13 @@ const Results = ({ Title, Content, links }) => (
           totalProgress={progress}
           paused
         >
-          <h1 className="font-display text-18xl font-bold text-black m-0 absolute right-0 opacity-5">
+          <h1 className="font-display text-18xl font-bold text-black m-0 absolute right-0 opacity-5 hidden md:block">
             <Title />
           </h1>
         </Tween>
       )}
     </Scene>
-    <div className="grid grid-cols-8 gap-4 px-32 pt-60">
+    <div className="grid grid-cols-8 gap-4 px-8 md:px-32 py-60">
       <div className="lg:col-span-1"></div>
       <div className="lg:col-span-6 col-span-8">
         <Scene triggerElement="#results" duration="80%" triggerHook="1">
@@ -40,7 +40,7 @@ const Results = ({ Title, Content, links }) => (
               totalProgress={progress}
               paused
             >
-              <h1 className="font-display text-12xl font-bold text-black m-0">
+              <h1 className="font-display text-8xl md:text-12xl font-bold text-black m-0">
                 <Title />
               </h1>
             </Tween>

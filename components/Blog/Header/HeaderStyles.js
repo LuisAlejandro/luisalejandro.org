@@ -12,12 +12,8 @@ export const Container = styled.div`
   padding: 1rem;
   padding-top: 2rem;
 
-  @media ${(props) => props.theme.breakpoints.sm} {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 60px);
-    grid-column-gap: 0.5rem;
-    grid-row-gap: 0.5rem;
+  @media ${(props) => props.theme.breakpoints.xs} {
+    display: flex;
   }
 `;
 
@@ -26,21 +22,16 @@ export const Div1 = styled.div`
   display: flex;
   flex-direction: row;
   align-content: center;
-  @media ${(props) => props.theme.breakpoints.sm} {
-    grid-area: 1 / 1 / 2 / 3;
-  }
 `;
 
 export const Div2 = styled.ul`
   grid-area: 1 / 2 / 2 / 5;
   display: flex;
   justify-content: end;
+
   li {
     margin: 0 20px;
     line-height: 60px;
-  }
-  @media ${(props) => props.theme.breakpoints.sm} {
-    grid-area: 2 / 2 / 3 / 5;
   }
 `;
 
@@ -49,9 +40,9 @@ export const Div3 = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media ${(props) => props.theme.breakpoints.sm} {
-    align-items: center;
-    grid-area: 1 / 4 / 2 / 6;
+
+  @media ${(props) => props.theme.breakpoints.xs} {
+    display: none;
   }
 `;
 
@@ -65,7 +56,8 @@ export const NavLink = styled.a`
     color: ${(props) => props.theme.colors.navLinkHover};
     cursor: pointer;
   }
-  @media ${(props) => props.theme.breakpoints.sm} {
+
+  @media ${(props) => props.theme.breakpoints.xs} {
     padding: 0.5rem;
     font-size: 1.7rem;
   }
