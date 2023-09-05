@@ -29,7 +29,9 @@ RUN echo "luisalejandro ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/luisalejandro
 
 USER luisalejandro
 
-RUN mkdir -p /home/luisalejandro/app
+RUN mkdir -p \
+    /home/luisalejandro/app \
+    /home/luisalejandro/.cache/yarn
 
 WORKDIR /home/luisalejandro/app
 

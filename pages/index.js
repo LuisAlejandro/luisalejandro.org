@@ -31,10 +31,10 @@ export default function Index() {
   const frontList = [
     "/images/home/front-1.png",
     "/images/home/front-2.png",
-    "/images/home/front-4.jpg",
-    "/images/home/front-5.jpg",
-    "/images/home/front-6.jpg",
-    "/images/home/front-7.jpg",
+    "/images/home/front-4.png",
+    "/images/home/front-5.png",
+    "/images/home/front-6.png",
+    "/images/home/front-7.png",
   ];
   return (
     <>

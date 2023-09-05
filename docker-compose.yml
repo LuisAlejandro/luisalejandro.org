@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/home/luisalejandro/app
+      - ~/Library/Caches/Yarn:/home/luisalejandro/.cache/yarn
     env_file:
       - .env
     ports:
