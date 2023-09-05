@@ -387,7 +387,7 @@ export const ProjectList = [
     title: "Wheel The World CI/CD",
     description:
       "An optimization project to bring down costs and increase reliability of the CI/CD pipeline. It allowed startup to speed up their development process.",
-    image: "/images/case-studies/thumbnails/wheeltheworld.svg",
+    image: "/images/case-studies/thumbnails/wheeltheworld.png",
     tags: ["Docker", "Github Actions", "Google Cloud"],
     visit: "/case-studies/wheeltheworld",
   },
@@ -403,7 +403,7 @@ export const ProjectList = [
     title: "Dockershelf",
     description:
       "A collection of useful, lightweight and reliable dockerfiles. Based on debian sid and stable, images are built and tested weekly.",
-    image: "/images/case-studies/thumbnails/dockershelf.svg",
+    image: "/images/case-studies/thumbnails/dockershelf.png",
     tags: ["Docker", "CI/CD", "Python", "Bash", "Ruby", "Rspec"],
     visit: "/case-studies/dockershelf",
     id: 0,

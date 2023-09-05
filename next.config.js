@@ -3,7 +3,7 @@ module.exports = {
     styledComponents: true,
   },
   images: {
-    domains: ["imgix.cosmicjs.com", "galleria-slideshow.vercel.app"],
+    domains: ["imgix.cosmicjs.com"],
   },
   webpack(config) {
     config.module.rules.push({

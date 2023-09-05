@@ -129,7 +129,7 @@ export default function Meta({ data }) {
 
       <meta property="og:title" content={data.title} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={`${config.url}/images/banner.png`} />
+      <meta property="og:image" content={data.metadata.hero.url} />
       <meta
         property="og:url"
         content={`${config.url}/blog/posts/${data.slug}`}
