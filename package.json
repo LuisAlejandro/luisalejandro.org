@@ -51,7 +51,7 @@
     "react-is": "^17.0.2",
     "react-masonry-component": "^6.3.0",
     "react-photo-album": "^2.3.0",
-    "react-player": "^2.12.0",
+    "react-player": "^2.13.0",
     "react-scrollmagic": "^2.3.0",
     "rehype-stringify": "^10.0.0",
     "remark-parse": "^10.0.2",
