@@ -54,7 +54,7 @@
     "react-player": "^2.13.0",
     "react-scrollmagic": "^2.3.0",
     "rehype-stringify": "^10.0.0",
-    "remark-parse": "^10.0.2",
+    "remark-parse": "^11.0.0",
     "remark-rehype": "^10.1.0",
     "sass": "^1.67.0",
     "styled-components": "^5.3.8",
