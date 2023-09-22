@@ -55,7 +55,7 @@
     "react-scrollmagic": "^2.3.0",
     "rehype-stringify": "^10.0.0",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^10.1.0",
+    "remark-rehype": "^11.0.0",
     "sass": "^1.68.0",
     "styled-components": "^5.3.8",
     "styled-normalize": "^8.0.7",
