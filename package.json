@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@cosmicjs/sdk": "^1.0.10",
-    "@hookform/resolvers": "^3.3.1",
+    "@hookform/resolvers": "^3.3.2",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.5.1",
     "chart.js": "^4.4.0",
