@@ -32,7 +32,7 @@
     "encoding": "^0.1.13",
     "feed": "^4.2.2",
     "framer-motion": "^6.5.1",
-    "googleapis": "^127.0.0",
+    "googleapis": "^128.0.0",
     "gsap": "^3.12.2",
     "highlight.js": "^11.9.0",
     "html-react-parser": "^4.2.2",
