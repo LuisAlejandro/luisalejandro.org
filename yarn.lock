@@ -3177,23 +3177,23 @@ hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0:
   dependencies:
     react-is "^16.7.0"
 
-html-dom-parser@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-5.0.1.tgz#af21fcefa7b68e6e8fdef4e559e0c15915269e6e"
-  integrity sha512-8MRxHcUjkpfkCEvf3t+r1nO7KCHgfFah23tAskZHgiOFsP5/24uxJnoS6C2Hq+p/cAzpPUiKb8vjywH6ixEgzQ==
+html-dom-parser@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-5.0.4.tgz#2941a762317d088e747db31c8cf290987ec30a55"
+  integrity sha512-azy8THLKd4Ar0OVJpEgX+MSjYvKdNDWlGiRBIlovMqEQYMAnLLXBhhiSwjylDD3RDdcCYT8Utg6uoRDeLHUyHg==
   dependencies:
     domhandler "5.0.3"
     htmlparser2 "9.0.0"
 
-html-react-parser@^4.2.6:
-  version "4.2.6"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-4.2.6.tgz#dbc019c61a02daca87aa988cbdffebce0221862b"
-  integrity sha512-HTV/eN4YmhQCqFKwRz3/RdDP7Q6HPcvwLaJztFPgkFjtgaN+kj4gf1cyOHFjQ8Q8I07BYsUJNhPFhwyPG4bnZg==
+html-react-parser@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-5.0.5.tgz#b07581c1a2ed3d927d1630d4db7006a6dce07119"
+  integrity sha512-quhMjFwjIncXdvilOyAmU9zW6tp4HrPqASuL6fn7LxqPWrwu68k6seYP+4LB737mEfWG+WjfYMCencQSFrEXlQ==
   dependencies:
     domhandler "5.0.3"
-    html-dom-parser "5.0.1"
-    react-property "2.0.0"
-    style-to-js "1.1.6"
+    html-dom-parser "5.0.4"
+    react-property "2.0.2"
+    style-to-js "1.1.8"
 
 html-void-elements@^3.0.0:
   version "3.0.0"
@@ -4472,10 +4472,10 @@ react-player@^2.13.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
 
-react-property@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.0.tgz#2156ba9d85fa4741faf1918b38efc1eae3c6a136"
-  integrity sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==
+react-property@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.2.tgz#d5ac9e244cef564880a610bc8d868bd6f60fdda6"
+  integrity sha512-+PbtI3VuDV0l6CleQMsx2gtK0JZbZKbpdu5ynr+lbsuvtmgbNcS3VM0tuY2QjFNOcWxvXeHjDpy42RO+4U2rug==
 
 react-scrollmagic@^2.3.0:
   version "2.3.0"
@@ -4799,17 +4799,17 @@ strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-style-to-js@1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/style-to-js/-/style-to-js-1.1.6.tgz#8a455a8f8113e71ba04906a2cbb88cdf4cfe8fe6"
-  integrity sha512-8cx8YkokAgEqGMGhoVI2pdeiVBwPUk0ZhaF/YLsvm64EIVMN4LaiJ7eqkiboD5WnAX/11z3IMMxzxsBBbdCTow==
+style-to-js@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/style-to-js/-/style-to-js-1.1.8.tgz#b3357ad6cbd7cc1216a432ce89c31e554d0861a7"
+  integrity sha512-bPSspCXkkhETLXnEgDbaoWRWyv3lF2bj32YIc8IElok2IIMHUlZtQUrxYmAkKUNxpluhH0qnKWrmuoXUyTY12g==
   dependencies:
-    style-to-object "1.0.1"
+    style-to-object "1.0.3"
 
-style-to-object@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-1.0.1.tgz#751e6b726e8ad077280b26a8b9111777bfd7de10"
-  integrity sha512-Mp9eBDx0knTrUGKyImO1enNWkOEYMAr/ut8SUYtPpOFOu5+HOR0yMF4pnExOklQvdSlxh+Mi0+6hUZVBb1zdRw==
+style-to-object@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-1.0.3.tgz#5ce90eb7f03ef5044bd70a3a23a3c1387fcac5b4"
+  integrity sha512-xOpx7S53E0V3DpVsvt7ySvoiumRpfXiC99PUXLqGB3wiAnN9ybEIpuzlZ8LAZg+h1sl9JkEUwtSQXxcCgFqbbg==
   dependencies:
     inline-style-parser "0.2.2"
 
