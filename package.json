@@ -33,7 +33,7 @@
     "feed": "^4.2.2",
     "framer-motion": "^6.5.1",
     "googleapis": "^128.0.0",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.3",
     "highlight.js": "^11.9.0",
     "html-react-parser": "^5.0.6",
     "jose": "^5.1.1",
