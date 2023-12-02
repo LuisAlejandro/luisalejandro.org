@@ -5,28 +5,22 @@ const twitchSigningSecret = process.env.TWITCH_SIGNING_SECRET;
 const githubPersonalAccessToken = process.env.REPO_PERSONAL_ACCESS_TOKEN;
 
 export default async function twitchEvents(req, res) {
-  const messageId = req.header["Twitch-Eventsub-Message-Id"];
-  const timestamp = req.header["Twitch-Eventsub-Message-Timestamp"];
-  const messageSignature = req.header["Twitch-Eventsub-Message-Signature"];
-  const messageType = req.header["Twitch-Eventsub-Message-Type"];
+  const messageId = req.headers["twitch-eventsub-message-id"];
+  const timestamp = req.headers["twitch-eventsub-message-timestamp"];
+  const messageSignature = req.headers["twitch-eventsub-message-signature"];
+  const messageType = req.headers["twitch-eventsub-message-type"];
   const time = Math.floor(new Date().getTime() / 1000);
-
-  console.log(`Message ${messageId} Signature: `, messageSignature);
 
   if (Math.abs(time - timestamp) > 600) {
     // needs to be < 10 minutes
-    console.log(
-      `Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`
-    );
-    throw new Error("Ignore this request.");
+    throw new Error(`Verification Failed: timestamp > 10 minutes. Message Id: ${messageId}.`);
   }
 
   if (!twitchSigningSecret) {
-    console.log(`Twitch signing secret is empty.`);
     throw new Error("Twitch signing secret is empty.");
   }
 
-  const buf = req.rawBody.toString();
+  const buf = JSON.stringify(req.body);
   const computedSignature =
     "sha256=" +
     crypto
@@ -34,22 +28,17 @@ export default async function twitchEvents(req, res) {
       .update(messageId + timestamp + buf)
       .digest("hex");
 
-  console.log(`Message ${messageId} Computed Signature: `, computedSignature);
-
   if (messageSignature !== computedSignature) {
     throw new Error("Invalid signature.");
-  } else {
-    console.log("Verification successful");
   }
 
   if (messageType === "webhook_callback_verification") {
-    console.log("Verifying Webhook");
     return res.status(200).send(req.body.challenge);
   } else if (messageType === "notification") {
-    const { event, subscription } = req.body;
+    const { subscription } = req.body;
     if (subscription.type === "stream.online") {
-      const result = await axios.post(
-        "https://api.github.com/repos/LuisAlejandro/frondesk/dispatches",
+      await axios.post(
+        "https://api.github.com/repos/LuisAlejandro/frontdesk/dispatches",
         { event_type: "stream-online" },
         {
           headers: {
@@ -58,7 +47,6 @@ export default async function twitchEvents(req, res) {
           },
         }
       );
-      console.log(result);
     }
   }
 
