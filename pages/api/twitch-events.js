@@ -5,10 +5,10 @@ const twitchSigningSecret = process.env.TWITCH_SIGNING_SECRET;
 const githubPersonalAccessToken = process.env.REPO_PERSONAL_ACCESS_TOKEN;
 
 export default async function twitchEvents(req, res) {
-  const messageId = req.header("Twitch-Eventsub-Message-Id");
-  const timestamp = req.header("Twitch-Eventsub-Message-Timestamp");
-  const messageSignature = req.header("Twitch-Eventsub-Message-Signature");
-  const messageType = req.header("Twitch-Eventsub-Message-Type");
+  const messageId = req.header["Twitch-Eventsub-Message-Id"];
+  const timestamp = req.header["Twitch-Eventsub-Message-Timestamp"];
+  const messageSignature = req.header["Twitch-Eventsub-Message-Signature"];
+  const messageType = req.header["Twitch-Eventsub-Message-Type"];
   const time = Math.floor(new Date().getTime() / 1000);
 
   console.log(`Message ${messageId} Signature: `, messageSignature);
