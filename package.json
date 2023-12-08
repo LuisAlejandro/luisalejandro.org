@@ -20,7 +20,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cosmicjs/sdk": "^1.0.10",
+    "@cosmicjs/sdk": "^1.0.11",
     "@hookform/resolvers": "^3.3.2",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.6.0",
