@@ -1108,10 +1108,10 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@cosmicjs/sdk@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-1.0.10.tgz#859918612d162ca394cab8fc43254027740d1448"
-  integrity sha512-qe2mSWrgML/p3wpGrPWetLJU7pSBqizqNC9b8iGzKd1tkL+PQbufswVbocgUVJusEN8N29Cavv7EC8flGpDRBQ==
+"@cosmicjs/sdk@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-1.0.11.tgz#5414b342a465c31eaa4ae01a7bc7dafb8e5c3f7f"
+  integrity sha512-Zm53TsyAGg2ytsJaBf06NcFA5FVG+tc39ZAYQgANi3uLkojnZFWGCIkwHVAn7CYVBac8dPF4tt0U6pYWNAA+Pg==
   dependencies:
     axios "^1.3.4"
     form-data "^4.0.0"
