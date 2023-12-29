@@ -26,7 +26,7 @@
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
     "classnames": "^2.5.0",
-    "date-fns": "^3.0.5",
+    "date-fns": "^3.0.6",
     "disqus-react": "^1.1.5",
     "dotenv": "^16.0.0",
     "encoding": "^0.1.13",
