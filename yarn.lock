@@ -4409,10 +4409,10 @@ react-icons@^4.12.0:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.12.0.tgz#54806159a966961bfd5cdb26e492f4dafd6a8d78"
   integrity sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==
 
-react-imgix@^9.8.0:
-  version "9.8.0"
-  resolved "https://registry.yarnpkg.com/react-imgix/-/react-imgix-9.8.0.tgz#6adfb4c125d026863fe5fea39ab2decc1b2a811d"
-  integrity sha512-AUPNteCXzpRox17h2A28F7WMPvjGbMaYJgYVj2jwOzqGlT1J7HhYieH9atFf/hg39qTuLQPxSdCfrXRg8iFwAg==
+react-imgix@^9.8.1:
+  version "9.8.1"
+  resolved "https://registry.yarnpkg.com/react-imgix/-/react-imgix-9.8.1.tgz#910f806d5fd25feef244dd4c51eda2d381686950"
+  integrity sha512-9dazynaPe+Dll076BAmbNsfUuO8jGvZt5eh05JilolKMq1AHiF94y+al5Op0ThO+9xC6LGUu01jIH/dlHGi32w==
   dependencies:
     "@imgix/js-core" "^3.1.3"
     prop-types "^15.8.1"
