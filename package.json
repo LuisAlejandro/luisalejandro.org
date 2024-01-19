@@ -57,7 +57,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
     "sass": "^1.70.0",
-    "styled-components": "^6.1.6",
+    "styled-components": "^6.1.8",
     "styled-normalize": "^8.1.0",
     "unified": "^11.0.4",
     "vanilla-tilt": "^1.8.1",
