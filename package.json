@@ -28,7 +28,7 @@
     "classnames": "^2.5.1",
     "date-fns": "^3.3.1",
     "disqus-react": "^1.1.5",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.4.1",
     "encoding": "^0.1.13",
     "feed": "^4.2.2",
     "framer-motion": "^6.5.1",
