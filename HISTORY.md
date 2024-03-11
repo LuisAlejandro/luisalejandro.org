@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.0.5 (2024-03-11)
+
+### Changed
+
+* Fixing youtube link. [Luis Alejandro Martínez Faneyth]
+
+
 ## 2.0.4 (2024-03-11)
 
 ### Changed
