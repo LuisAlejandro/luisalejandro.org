@@ -1,6 +1,26 @@
 # Changelog
 
 
+## 2.0.4 (2024-03-11)
+
+### Changed
+
+* Adding LuisDevelops landing page. [Luis Alejandro Martínez Faneyth]
+
+* Finishing touches. [Luis Alejandro Martínez Faneyth]
+
+* Fixing header getter. [Luis Alejandro Martínez Faneyth]
+
+* Adding twitch endpoint. [Luis Alejandro Martínez Faneyth]
+
+* Updating resume. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+* Update keepalive.yml. [Luis Alejandro]
+
+
 ## 2.0.3 (2023-09-05)
 
 ### Changed
