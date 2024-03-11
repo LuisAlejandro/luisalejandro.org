@@ -140,7 +140,7 @@ export default function Index() {
                   <AiOutlineLinkedin />
                 </SocialIcons>
                 <SocialIcons
-                  href="https://www.youtube.com/@TecnologiaEnElDivan"
+                  href="https://www.youtube.com/@LuisDevelops"
                   target="_blank"
                   rel="nofollow noreferrer"
                   style={{
