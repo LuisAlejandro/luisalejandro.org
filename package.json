@@ -23,7 +23,7 @@
     "@cosmicjs/sdk": "^1.0.11",
     "@hookform/resolvers": "^3.3.4",
     "@svgr/webpack": "^8.1.0",
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "chart.js": "^4.4.2",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
