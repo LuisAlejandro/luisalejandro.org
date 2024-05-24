@@ -1177,10 +1177,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
-"@hookform/resolvers@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.4.0.tgz#4ca2c08a26118fc8b6a572da94fdd57750a79b62"
-  integrity sha512-+oAqK3okmoEDnvUkJ3N/mvNMeeMv5Apgy1jkoRmlaaAF4vBgcJs9tHvtXU7VE4DvPosvAUUkPOaNFunzt1dbgA==
+"@hookform/resolvers@^3.4.2":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.4.2.tgz#b69525248c2a9a1b2546411251ea25029915841a"
+  integrity sha512-1m9uAVIO8wVf7VCDAGsuGA0t6Z3m6jVGAN50HkV9vYLl0yixKK/Z1lr01vaRvYCkIKGoy1noVRxMzQYb4y/j1Q==
 
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
