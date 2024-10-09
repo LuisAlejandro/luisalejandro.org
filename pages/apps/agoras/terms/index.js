@@ -47,7 +47,7 @@ const Portfolio = () => {
               <p>
                 <strong>Affiliate</strong> means an entity that controls, is
                 controlled by or is under common control with a party, where
-                "control" means ownership of 50% or more of the shares, equity
+                &quot;control&quot; means ownership of 50% or more of the shares, equity
                 interest or other securities entitled to vote for election of
                 directors or other managing authority.
               </p>
@@ -59,8 +59,8 @@ const Portfolio = () => {
             </li>
             <li>
               <p>
-                <strong>Company</strong> (referred to as either "the Company",
-                "We", "Us" or "Our" in this Agreement) refers to Agoras.
+                <strong>Company</strong> (referred to as either &quot;the Company&quot;,
+                &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to Agoras.
               </p>
             </li>
             <li>
@@ -76,7 +76,7 @@ const Portfolio = () => {
             </li>
             <li>
               <p>
-                <strong>Terms and Conditions</strong> (also referred as "Terms")
+                <strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;)
                 mean these Terms and Conditions that form the entire agreement
                 between You and the Company regarding the use of the Service.
               </p>
@@ -163,7 +163,7 @@ const Portfolio = () => {
             liability of the Company and any of its suppliers under any
             provision of this Terms and Your exclusive remedy for all of the
             foregoing shall be limited to the amount actually paid by You
-            through the Service or 100 USD if You haven't purchased anything
+            through the Service or 100 USD if You haven&apos;t purchased anything
             through the Service.
           </p>
           <p>
@@ -183,12 +183,12 @@ const Portfolio = () => {
             Some states do not allow the exclusion of implied warranties or
             limitation of liability for incidental or consequential damages,
             which means that some of the above limitations may not apply. In
-            these states, each party's liability will be limited to the greatest
+            these states, each party&apos;s liability will be limited to the greatest
             extent permitted by law.
           </p>
-          <h2>"AS IS" and "AS AVAILABLE" Disclaimer</h2>
+          <h2>&quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer</h2>
           <p>
-            The Service is provided to You "AS IS" and "AS AVAILABLE" and with
+            The Service is provided to You &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; and with
             all faults and defects without warranty of any kind. To the maximum
             extent permitted under applicable law, the Company, on its own
             behalf and on behalf of its Affiliates and its and their respective
@@ -208,7 +208,7 @@ const Portfolio = () => {
           </p>
           <p>
             Without limiting the foregoing, neither the Company nor any of the
-            company's provider makes any representation or warranty of any kind,
+            company&apos;s provider makes any representation or warranty of any kind,
             express or implied: (i) as to the operation or availability of the
             Service, or the information, content, and materials or products
             included thereon; (ii) that the Service will be uninterrupted or
@@ -249,8 +249,8 @@ const Portfolio = () => {
           <p>
             You represent and warrant that (i) You are not located in a country
             that is subject to the United States government embargo, or that has
-            been designated by the United States government as a "terrorist
-            supporting" country, and (ii) You are not listed on any United
+            been designated by the United States government as a &quot;terrorist
+            supporting&quot; country, and (ii) You are not listed on any United
             States government list of prohibited or restricted parties.
           </p>
           <h2>Severability and Waiver</h2>
@@ -266,7 +266,7 @@ const Portfolio = () => {
           <p>
             Except as provided herein, the failure to exercise a right or to
             require performance of an obligation under these Terms shall not
-            affect a party's ability to exercise such right or require such
+            affect a party&apos;s ability to exercise such right or require such
             performance at any time thereafter nor shall the waiver of a breach
             constitute a waiver of any subsequent breach.
           </p>
@@ -280,7 +280,7 @@ const Portfolio = () => {
           <p>
             We reserve the right, at Our sole discretion, to modify or replace
             these Terms at any time. If a revision is material We will make
-            reasonable efforts to provide at least 30 days' notice prior to any
+            reasonable efforts to provide at least 30 days&apos; notice prior to any
             new terms taking effect. What constitutes a material change will be
             determined at Our sole discretion.
           </p>

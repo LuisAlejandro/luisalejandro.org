@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { LeftSection } from "./HeroStyles";
 
 const Nav = () => (
   <>
     <LeftSection>
       <span className="button1">
-        <a
+        <Link
           rel="tag nofollow noreferrer"
           href="/apps/agoras"
           style={{ 
@@ -12,7 +13,7 @@ const Nav = () => (
            }}
         >
           Back
-        </a>
+        </Link>
       </span>
     </LeftSection>
   </>
