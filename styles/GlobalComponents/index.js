@@ -31,6 +31,41 @@ export const Section = styled.section`
     max-width: 94%;
   }
 
+  .termspriv {
+    h2 {
+      font-weight: 200;
+      font-size: 1.5em;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 94%;
+    }
+
+    h3 {
+      font-weight: 200;
+      font-size: 1.1em;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 94%;
+    }
+
+    h4 {
+      font-weight: 200;
+      font-size: 1em;
+      margin: 10px auto;
+      width: 100%;
+      max-width: 94%;
+    }
+
+    p,
+    li {
+      font-size: 1em;
+      line-height: 1.4em;
+      margin: 5px auto;
+      width: 100%;
+      max-width: 94%;
+    }
+  }
+
   @media ${(props) => props.theme.breakpoints.xs} {
     display: flex;
     flex-direction: column;
@@ -71,6 +106,7 @@ export const SectionTitle = styled.h2`
     rgba(34, 34, 34, 1) 18.77%,
     rgba(34, 34, 34, 0.8) 60.15%
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 16px;

@@ -5,30 +5,26 @@ const Hero = () => (
   <>
     <LeftSection>
       <SectionTitle main center>
-        LuisDevelops <br />
+        Agoras <br />
         for TikTok
       </SectionTitle>
       <SectionText>
-        An app to publish short videos of my own Twitch stream.
+        A commandline desktop app to publish short videos on TikTok.
       </SectionText>
       <span className="button1">
-        <a
-          rel="tag nofollow noreferrer"
-          href="https://www.termsfeed.com/live/78193a16-1839-4bc4-b22b-e02ebb933972"
-          target="_blank"
-        >
+        <a rel="tag nofollow noreferrer" href="/apps/agoras/privacy">
           Privacy
         </a>
       </span>
       <span className="button1">
-        <a
-          rel="tag nofollow noreferrer"
-          href="https://www.termsfeed.com/live/18048855-c81b-490f-a9f7-539fc28e1555"
-          target="_blank"
-        >
+        <a rel="tag nofollow noreferrer" href="/apps/agoras/terms">
           Terms
         </a>
       </span>
+      <SectionText>
+        <h2>Installation</h2>
+        A commandline desktop app to publish short videos on TikTok.
+      </SectionText>
     </LeftSection>
   </>
 );
