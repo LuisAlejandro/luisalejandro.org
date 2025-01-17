@@ -8,11 +8,6 @@ const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
 const ACTIVATION_SECRET = process.env.GYMCONTROL_ACTIVATION_SECRET;
 const ACTIVATION_SALT = process.env.GYMCONTROL_ACTIVATION_SALT;
 
-const cosmic = createBucketClient({
-  bucketSlug: BUCKET_SLUG,
-  readKey: READ_KEY,
-});
-
 export default async function lastPosts(req, res) {
   const key = req.body.key;
   const token = req.body.token;
@@ -45,6 +40,11 @@ export default async function lastPosts(req, res) {
   if (!decodedToken) {
     return res.status(401).json({ message: "Unauthorized" });
   }
+
+  const cosmic = createBucketClient({
+    bucketSlug: BUCKET_SLUG,
+    readKey: READ_KEY,
+  });
 
   const data = await cosmic.objects
     .find({

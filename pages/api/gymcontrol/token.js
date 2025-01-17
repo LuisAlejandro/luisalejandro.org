@@ -7,11 +7,6 @@ const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
 const ACTIVATION_SALT = process.env.GYMCONTROL_ACTIVATION_SALT;
 const ACTIVATION_SECRET = process.env.GYMCONTROL_ACTIVATION_SECRET;
 
-const cosmic = createBucketClient({
-  bucketSlug: BUCKET_SLUG,
-  readKey: READ_KEY,
-});
-
 export default async function getToken(req, res) {
   const slug = req.body.user;
   const password = req.body.password;
@@ -25,6 +20,11 @@ export default async function getToken(req, res) {
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
+  
+  const cosmic = createBucketClient({
+    bucketSlug: BUCKET_SLUG,
+    readKey: READ_KEY,
+  });
 
   const data = await cosmic.objects
     .find({
