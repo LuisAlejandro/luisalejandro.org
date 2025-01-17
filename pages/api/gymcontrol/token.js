@@ -56,7 +56,7 @@ export default async function getToken(req, res) {
       const token = jwt.sign(
         { username, password, salt: ACTIVATION_SALT },
         ACTIVATION_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "5min" }
       );
       return res.status(200).json({ token });
     }
