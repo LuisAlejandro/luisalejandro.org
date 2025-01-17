@@ -34,10 +34,10 @@ console: start
 	@$(exec_on_docker) bash
 
 stop:
-	@docker-compose -p luisalejandro -f docker-compose.yml stop app
+	@docker compose -p luisalejandro -f docker-compose.yml stop app
 
 down:
-	@docker-compose -p luisalejandro -f docker-compose.yml down \
+	@docker compose -p luisalejandro -f docker-compose.yml down \
 		--remove-orphans
 
 destroy:

@@ -5,10 +5,10 @@ import {
   SiNextdotjs,
   SiDocker,
   SiGit,
-  SiAmazonaws,
   SiPython,
   SiGithub,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
@@ -341,7 +341,7 @@ export const Skills = [
   },
   {
     slug: "aws",
-    Component: SiAmazonaws,
+    Component: FaAws,
     title: "AWS/GCP",
     Description: () => (
       <>
