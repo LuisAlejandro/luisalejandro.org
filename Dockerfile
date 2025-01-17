@@ -1,4 +1,4 @@
-FROM dockershelf/node:16
+FROM dockershelf/node:18
 LABEL maintainer="Luis Alejandro Martínez Faneyth <luis@luisalejandro.org>"
 
 ARG UID=1000
