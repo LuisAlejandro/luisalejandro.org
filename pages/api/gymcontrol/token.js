@@ -2,7 +2,7 @@ import { createBucketClient } from "@cosmicjs/sdk";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-const BUCKET_SLUG = process.env.GYMCONTROL_COSMIC_BUCKET_SLUG;
+const BUCKET_SLUG = process.env.GYMCONTROL_COSMIC_BUCKET_SLUG || 'gymcontrol-production';
 const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
 const ACTIVATION_SALT = process.env.GYMCONTROL_ACTIVATION_SALT;
 const ACTIVATION_SECRET = process.env.GYMCONTROL_ACTIVATION_SECRET;
