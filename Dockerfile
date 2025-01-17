@@ -1,5 +1,5 @@
 FROM dockershelf/node:16
-LABEL maintainer "Luis Alejandro Martínez Faneyth <luis@luisalejandro.org>"
+LABEL maintainer="Luis Alejandro Martínez Faneyth <luis@luisalejandro.org>"
 
 ARG UID=1000
 ARG GID=1000
@@ -35,4 +35,4 @@ RUN mkdir -p \
 
 WORKDIR /home/luisalejandro/app
 
-CMD tail -f /dev/null
+CMD ["tail", "-f", "/dev/null"]
