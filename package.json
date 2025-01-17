@@ -24,7 +24,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.7.9",
-    "chart.js": "^4.4.6",
+    "chart.js": "^4.4.7",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "disqus-react": "^1.1.5",
