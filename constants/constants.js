@@ -15,6 +15,25 @@ export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
 export const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME;
 export const ENV_NAME = process.env.NEXT_PUBLIC_ENV_NAME;
 export const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
+// export const SENDGRID_WELCOME_SENDER_EMAIL = "luis@luisalejandro.org";
+// export const SENDGRID_WELCOME_SENDER_NAME = "Luis Alejandro";
+// export const SENDGRID_WELCOME_TEMPLATE_ID = "d-f8f86f9f4d1d4601b200d670af90f411";
+// export const SENDGRID_COMPANY_LIST_EMAIL = "contact@luisalejandro.org";
+// export const SENDGRID_COMPANY_SENDER_EMAIL = "no-reply@luisalejandro.org";
+// export const SENDGRID_COMPANY_SENDER_NAME = "Website Contact Form";
+// export const SENDGRID_COMPANY_TEMPLATE_ID = "d-83c08172e0a445c49cc5ac92eefe17ec";
+// export const SENDGRID_API_BASE_URL = "https://api.sendgrid.com";
+// export const MAILCHIMP_API_BASE_URL = "https://us14.api.mailchimp.com";
+
+export const AWS_REGION = "us-east-1";
+export const CONTACT_FORM_NAME = "luisalejandro-contactform";
+export const SES_WELCOME_SENDER_EMAIL = "luis@luisalejandro.org";
+export const SES_WELCOME_SENDER_NAME = "Luis Alejandro";
+export const SES_WELCOME_TEMPLATE_ID = "luisalejandro-welcome";
+export const SES_COMPANY_LIST_EMAIL = "contact@luisalejandro.org";
+export const SES_COMPANY_SENDER_EMAIL = "no-reply@luisalejandro.org";
+export const SES_COMPANY_SENDER_NAME = "Website Contact Form";
+export const SES_COMPANY_TEMPLATE_ID = "luisalejandro-company";
 
 export const canonicalHostnameUrl =
   ENV_NAME === "local" ? "http://localhost:3000" : "https://luisalejandro.org";
