@@ -36,6 +36,16 @@ const Header = () => (
             <NavLink>Blog</NavLink>
           </Link>
         </li>
+        <li>
+          <Link passHref href="https://store.luisalejandro.org/">
+            <NavLink>Store</NavLink>
+          </Link>
+        </li>
+        <li>
+          <Link passHref href="/contact">
+            <NavLink>Contact</NavLink>
+          </Link>
+        </li>
     </Div2>
     <Div3>
       <SocialIcons

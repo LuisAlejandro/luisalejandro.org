@@ -168,10 +168,10 @@ export const SocialIcons = styled.a`
 
   span {
     display: inline-block;
-    vertical-align: top;
-    line-height: 23px;
+    vertical-align: text-top;
+    line-height: 24px;
     margin: 0 0 0 5px;
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: 300;
   }
 

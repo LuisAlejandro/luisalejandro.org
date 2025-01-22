@@ -7,6 +7,8 @@ import {
   AiOutlineBulb,
   AiOutlineRead,
   AiOutlineLinkedin,
+  AiOutlineMessage,
+  AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { useState } from "react";
 
@@ -112,18 +114,26 @@ export default function Index() {
               </Div2>
               <Div3>
                 <SocialIcons
-                  href="/blog"
+                  href="/portfolio"
                   style={{
                     borderTopLeftRadius: "5px",
                     borderBottomLeftRadius: "5px",
                   }}
                 >
+                  <AiOutlineBulb />
+                  <span>Portfolio</span>
+                </SocialIcons>
+                <SocialIcons href="/blog">
                   <AiOutlineRead />
                   <span>Blog</span>
                 </SocialIcons>
-                <SocialIcons href="/portfolio">
-                  <AiOutlineBulb />
-                  <span>Portfolio</span>
+                <SocialIcons href="https://store.luisalejandro.org/">
+                  <AiOutlineShoppingCart />
+                  <span>Store</span>
+                </SocialIcons>
+                <SocialIcons href="/contact">
+                  <AiOutlineMessage />
+                  <span>Contact</span>
                 </SocialIcons>
                 <SocialIcons
                   href="https://github.com/LuisAlejandro"
