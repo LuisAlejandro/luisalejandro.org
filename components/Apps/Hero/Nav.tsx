@@ -2,8 +2,10 @@ import Link from "next/link";
 import { LeftSection } from "./HeroStyles";
 
 const Nav = () => (
+  
   <>
     <LeftSection>
+      
       <span className="button1">
         <Link legacyBehavior
           rel="tag nofollow noreferrer"
@@ -14,6 +16,7 @@ const Nav = () => (
         >
           Back
         </Link>
+      
       </span>
     </LeftSection>
   </>

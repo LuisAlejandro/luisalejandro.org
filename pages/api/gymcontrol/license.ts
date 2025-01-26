@@ -4,12 +4,16 @@ import { createBucketClient } from "@cosmicjs/sdk";
 import { isSchemaValid, compare, verify } from "@lib/utils";
 
 const BUCKET_SLUG =
+  
   process.env.GYMCONTROL_COSMIC_BUCKET_SLUG || "gymcontrol-production";
+
 const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
+
 const ACTIVATION_SECRET = process.env.GYMCONTROL_ACTIVATION_SECRET;
+
 const ACTIVATION_SALT = process.env.GYMCONTROL_ACTIVATION_SALT;
 
-export default async function getLicense(req, res) {
+export default async function getLicense(req: any, res: any) {
   const schema = yup
     .object({
       key: yup.string().required(),
@@ -49,6 +53,7 @@ export default async function getLicense(req, res) {
   const data = await cosmic.objects
     .find({
       type: "licenses",
+      
       slug: decodedToken.username,
     })
     .props([
@@ -68,13 +73,16 @@ export default async function getLicense(req, res) {
   const storedPassword = data.objects[0].metadata.password;
   const username = data.objects[0].slug;
 
+  
   const isValidPassword = await compare(decodedToken.password, storedPassword);
   if (!isValidPassword) {
     return res.status(401).json({ message: "Unauthorized: password" });
   }
 
   if (
+    
     decodedToken.salt === ACTIVATION_SALT &&
+    
     decodedToken.username === username
   ) {
     const cryptr = new Cryptr(ACTIVATION_SECRET);
@@ -83,8 +91,11 @@ export default async function getLicense(req, res) {
       return res.status(401).json({ message: "Unauthorized: key" });
     }
     return res.status(200).json({
+      
       type: decodedKey.type,
+      
       name: decodedKey.name,
+      
       expiration: decodedKey.expiration,
     });
   }

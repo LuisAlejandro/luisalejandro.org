@@ -1,5 +1,6 @@
 import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
+
 import { useEffect } from "react";
 
 import { getAllPostsForCategory } from "@lib/api";
@@ -8,7 +9,10 @@ import { Layout } from "@components/Blog/Layout/Layout";
 import { BlogStyles } from "@styles/globals";
 import { Section } from "@styles/GlobalComponents";
 
-export default function Blog({ allPosts, categoryName }) {
+export default function Blog({
+  allPosts,
+  categoryName
+}: any) {
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
       "#content > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
@@ -32,12 +36,17 @@ export default function Blog({ allPosts, categoryName }) {
   }, []);
 
   return (
+    
     <Layout>
       <BlogStyles />
+      
       <svg viewBox="0 0 1920 200">
+        
         <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+      
       </svg>
       <Section grid overflowVisible oneColumn nopadding wide>
+        
         <h1>Posts related to {categoryName}</h1>
       </Section>
       <Section grid overflowVisible oneColumn nopadding wide>
@@ -47,7 +56,9 @@ export default function Blog({ allPosts, categoryName }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({
+  params
+}: any) {
   const { categoryPosts, categoryName } =
     (await getAllPostsForCategory(params.slug)) || {};
   return {

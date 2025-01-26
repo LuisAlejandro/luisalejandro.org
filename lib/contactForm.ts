@@ -9,9 +9,10 @@ import {
   sendWelcomeEmail,
 } from "./leads";
 
-export async function verifyCaptcha(token) {
+export async function verifyCaptcha(token: any) {
   try {
     const res = await axios.post(
+      
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_API_SECRET}&response=${token}`
     );
     if (res.data.success) {
@@ -24,11 +25,12 @@ export async function verifyCaptcha(token) {
   }
 }
 
-export async function initLeadWorkflow(data) {
+export async function initLeadWorkflow(data: any) {
   let serverErrorMessage = "";
   let isUserOnMailchimpList = false;
 
   try {
+    
     isUserOnMailchimpList = await checkUserOnMailchimpList(data);
   } catch (error) {
     serverErrorMessage =

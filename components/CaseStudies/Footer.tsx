@@ -20,6 +20,7 @@ import {
 
 const Footer = () => {
   return (
+    
     <>
       <FooterWrapper>
         <LinkList>

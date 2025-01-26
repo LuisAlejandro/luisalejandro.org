@@ -1,5 +1,6 @@
 import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
+
 import { useEffect } from "react";
 
 import { getAllPostsForHome } from "@lib/api";
@@ -11,7 +12,9 @@ import { Layout } from "@components/Blog/Layout/Layout";
 import { BlogStyles } from "@styles/globals";
 import { Section } from "@styles/GlobalComponents";
 
-export default function Blog({ posts }) {
+export default function Blog({
+  posts
+}: any) {
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
       "#content > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
@@ -35,6 +38,7 @@ export default function Blog({ posts }) {
   }, []);
 
   if (!posts?.length) {
+    
     return <ErrorPage statusCode={404} />;
   }
 
@@ -44,8 +48,11 @@ export default function Blog({ posts }) {
   return (
     <Layout>
       <BlogStyles />
+      
       <svg viewBox="0 0 1920 200">
+        
         <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+      
       </svg>
       <Section grid overflowVisible oneColumn nopadding wide>
         {heroPost && (
@@ -71,12 +78,13 @@ export default function Blog({ posts }) {
 export async function getServerSideProps() {
   const allPosts = (await getAllPostsForHome()) || [];
   const posts = await Promise.all(
-    allPosts.map(async (post) => ({
+    allPosts.map(async (post: any) => ({
       ...post,
+
       metadata: {
         ...post.metadata,
         teaser: await markdownToHtml(post.metadata?.teaser || ""),
-      },
+      }
     }))
   );
   return {

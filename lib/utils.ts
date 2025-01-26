@@ -1,11 +1,14 @@
 import * as jose from "jose";
+
 import bcrypt from "bcrypt";
+
 import jwt from "jsonwebtoken";
+
 import { TextEncoder } from "util";
 
 import { JWT_SECRET } from "@constants/constants";
 
-export const isSchemaValid = async (schema, body) => {
+export const isSchemaValid = async (schema: any, body: any) => {
   try {
     const status = await schema.isValid(body);
     return status;
@@ -14,7 +17,7 @@ export const isSchemaValid = async (schema, body) => {
   }
 };
 
-export const isAuthorizationValid = async (header, body) => {
+export const isAuthorizationValid = async (header: any, body: any) => {
   try {
     const secret = new TextEncoder().encode(JWT_SECRET);
     const jwt = header.replace("Bearer ", "");
@@ -30,9 +33,9 @@ export const isAuthorizationValid = async (header, body) => {
   }
 };
 
-export const compare = async (param1, param2) => {
+export const compare = async (param1: any, param2: any) => {
   return new Promise((resolve, reject) => {
-    bcrypt.compare(param1, param2, (err, res) => {
+    bcrypt.compare(param1, param2, (err: any, res: any) => {
       if (err) {
         reject(err);
       } else {
@@ -48,9 +51,9 @@ export const compare = async (param1, param2) => {
     });
 };
 
-export const verify = async (token, key) => {
+export const verify = async (token: any, key: any) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, key, (err, res) => {
+    jwt.verify(token, key, (err: any, res: any) => {
       if (err) {
         reject(err);
       } else {

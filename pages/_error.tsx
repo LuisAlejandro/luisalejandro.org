@@ -1,4 +1,6 @@
-function CustomError({ statusCode }) {
+function CustomError({
+  statusCode
+}: any) {
   return (
     // <figure>
     //   <img
@@ -10,11 +12,15 @@ function CustomError({ statusCode }) {
     //     <h1>{statusCode}</h1>
     //   </figcaption>
     // </figure>
+    
     <>{statusCode}</>
   );
 }
 
-function getInitialProps({ res, err }) {
+function getInitialProps({
+  res,
+  err
+}: any) {
   let statusCode;
   // If the res variable is defined it means nextjs
   // is in server side

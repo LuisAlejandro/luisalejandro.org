@@ -1,16 +1,22 @@
 import * as yup from "yup";
+
 import jwt from "jsonwebtoken";
 import { createBucketClient } from "@cosmicjs/sdk";
 import { isAuthorizationValid, isSchemaValid, compare } from "@lib/utils";
 
 const BUCKET_SLUG =
+  
   process.env.GYMCONTROL_COSMIC_BUCKET_SLUG || "gymcontrol-production";
+
 const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
+
 const WRITE_KEY = process.env.GYMCONTROL_COSMIC_WRITE_KEY;
+
 const ACTIVATION_SALT = process.env.GYMCONTROL_ACTIVATION_SALT;
+
 const ACTIVATION_SECRET = process.env.GYMCONTROL_ACTIVATION_SECRET;
 
-export default async function getToken(req, res) {
+export default async function getToken(req: any, res: any) {
   const schema = yup
     .object({
       user: yup.string().required(),

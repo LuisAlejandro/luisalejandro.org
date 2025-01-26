@@ -1,5 +1,6 @@
 import Script from "next/script";
 import Head from "next/head";
+
 import { useEffect } from "react";
 
 import { GA_MEASUREMENT_ID } from "@constants/constants";
@@ -13,7 +14,11 @@ import "@styles/blog.scss";
 import "@styles/blog-post.scss";
 import "yet-another-react-lightbox/styles.css";
 
-export default function App({ Component, pageProps, router }) {
+export default function App({
+  Component,
+  pageProps,
+  router
+}: any) {
   useEffect(() => {
     document.documentElement.setAttribute("lang", "en");
     document.documentElement.setAttribute(
@@ -34,25 +39,33 @@ export default function App({ Component, pageProps, router }) {
   });
 
   return (
+    
     <>
       {GA_MEASUREMENT_ID && (
         <Script
+          
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="lazyOnload"
           onLoad={() => {
+            
             window.dataLayer = window.dataLayer || [];
             function gtag() {
+              
               window.dataLayer.push(arguments);
             }
+            
             gtag("js", new Date());
+            
             gtag("config", `${GA_MEASUREMENT_ID}`);
           }}
         />
       )}
       <Script
+        
         src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
         strategy="lazyOnload"
         onLoad={() => {
+          
           window.cookieconsent.initialise({
             palette: {
               popup: {
@@ -70,6 +83,7 @@ export default function App({ Component, pageProps, router }) {
           });
         }}
       />
+      
       <Head>
       </Head>
       <Theme>

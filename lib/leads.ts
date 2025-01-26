@@ -1,5 +1,8 @@
+
 import path from "node:path";
+
 import { readFile } from "node:fs/promises";
+
 
 import crypto from "crypto";
 import axios from "axios";
@@ -32,7 +35,9 @@ const sesClient = () => {
     region: AWS_REGION,
     apiVersion: "2010-12-01",
     credentials: {
+      
       accessKeyId: process.env.SES_AWS_ACCESS_KEY_ID,
+      
       secretAccessKey: process.env.SES_AWS_SECRET_ACCESS_KEY,
     },
   });
@@ -75,7 +80,7 @@ const checkIfSESListExists = async () => {
   }
 };
 
-const checkIfContactExists = async (email) => {
+const checkIfContactExists = async (email: any) => {
   const ses = sesClient();
   console.log(`[checkIfContactExists] Checking if contact ${email} exists`);
 
@@ -95,7 +100,7 @@ const checkIfContactExists = async (email) => {
   }
 };
 
-export async function createSESUser(data) {
+export async function createSESUser(data: any) {
   const { contactEmail: email, contactName: name } = data;
 
   const ses = sesClient();
@@ -158,11 +163,15 @@ export async function createSESUser(data) {
 //   }
 // }
 
-export async function checkUserOnMailchimpList(data) {
+
+export async function checkUserOnMailchimpList(data: any) {
   const { contactEmail: email } = data;
 
+  
   const apiUrl = process.env.MAILCHIMP_API_BASE_URL;
+  
   const apiKey = process.env.MAILCHIMP_API_KEY;
+  
   const listId = process.env.MAILCHIMP_LIST_ID;
 
   console.log(
@@ -223,11 +232,14 @@ export async function checkUserOnMailchimpList(data) {
 //   }
 // }
 
-export async function addUserMailchimp(data) {
+export async function addUserMailchimp(data: any) {
   const { contactEmail: email } = data;
 
+  
   const apiUrl = process.env.MAILCHIMP_API_BASE_URL;
+  
   const apiKey = process.env.MAILCHIMP_API_KEY;
+  
   const listId = process.env.MAILCHIMP_LIST_ID;
 
   console.log(`[addUserMailchimp] Adding user ${email} to list ${listId}`);
@@ -254,6 +266,7 @@ const createSESWelcomeTemplate = async () => {
   const ses = sesClient();
   console.log(`[createSESWelcomeTemplate] Creating SES template`);
 
+  
   const basedir = process.cwd();
   const templateDir = path.join(basedir, "assets", "templates");
   const templatePath = path.join(templateDir, "welcome-template.html");
@@ -304,6 +317,7 @@ const createSESCompanyTemplate = async () => {
   const ses = sesClient();
   console.log(`[createSESCompanyTemplate] Creating SES template`);
 
+  
   const basedir = process.cwd();
   const templateDir = path.join(basedir, "assets", "templates");
   const templatePath = path.join(templateDir, "company-template.html");
@@ -350,7 +364,7 @@ const checkIfSESCompanyTemplateExists = async () => {
   }
 };
 
-export async function sendWelcomeEmail(data) {
+export async function sendWelcomeEmail(data: any) {
   const { contactEmail: toEmail, contactName: toName } = data;
 
   const ses = sesClient();
@@ -394,7 +408,7 @@ export async function sendWelcomeEmail(data) {
   }
 }
 
-export async function sendCompanyEmail(data) {
+export async function sendCompanyEmail(data: any) {
   const {
     contactEmail: replyToEmail,
     contactName: replyToName,
@@ -576,7 +590,7 @@ export async function sendCompanyEmail(data) {
 //   }
 // }
 
-const getGoogleClient = async (clientEmail, privateKey) => {
+const getGoogleClient = async (clientEmail: any, privateKey: any) => {
   try {
     return await google.auth.getClient({
       credentials: {
@@ -586,11 +600,12 @@ const getGoogleClient = async (clientEmail, privateKey) => {
       scopes: "https://www.googleapis.com/auth/spreadsheets",
     });
   } catch (error) {
+    
     throw new Error(error);
   }
 };
 
-const authorizeSheets = async (clientEmail, privateKey) => {
+const authorizeSheets = async (clientEmail: any, privateKey: any) => {
   try {
     const client = await getGoogleClient(clientEmail, privateKey);
     return await google.sheets({
@@ -598,20 +613,25 @@ const authorizeSheets = async (clientEmail, privateKey) => {
       auth: client,
     });
   } catch (error) {
+    
     throw new Error(error);
   }
 };
 
-export const addSpreadsheetRow = async (data) => {
+export const addSpreadsheetRow = async (data: any) => {
   const {
     contactEmail: email,
     contactName: name,
     contactMessage: message,
   } = data;
 
+  
   const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+  
   const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/gm, "\n");
+  
   const sheetId = process.env.GOOGLE_SPREADSHEET_ID;
+  
   const sheetName = process.env.GOOGLE_SPREADSHEET_NAME;
 
   console.log(
@@ -622,6 +642,7 @@ export const addSpreadsheetRow = async (data) => {
   const date = new Date();
   const sheets = await authorizeSheets(clientEmail, privateKey);
 
+  
   return await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
     range,

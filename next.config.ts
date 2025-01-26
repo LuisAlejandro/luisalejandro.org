@@ -1,9 +1,21 @@
-module.exports = {
+import type { NextConfig } from 'next';
+
+const config: NextConfig = {
   compiler: {
     styledComponents: true,
   },
   images: {
     domains: ["imgix.cosmicjs.com"],
+  },
+  experimental: {
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   webpack(config) {
     config.module.rules.push({
@@ -36,3 +48,5 @@ module.exports = {
     return config;
   },
 };
+
+export default config;

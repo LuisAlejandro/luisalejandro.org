@@ -1,4 +1,6 @@
+
 import path from "node:path";
+
 import { mkdir, writeFile } from "node:fs/promises";
 import { Feed } from "feed";
 
@@ -6,6 +8,7 @@ import { canonicalHostnameUrl } from "@constants/constants";
 import { getAllPostsForHome } from "@lib/api";
 
 export default async function generateFeed() {
+  
   const basedir = process.cwd();
   const feedUrlPath = "blog/posts/feed.xml";
   const atomUrlPath = "blog/posts/atom.xml";
@@ -39,7 +42,7 @@ export default async function generateFeed() {
     },
   });
 
-  allPosts.forEach((post) => {
+  allPosts.forEach((post: any) => {
     feed.addItem({
       title: post.title,
       id: `${canonicalHostnameUrl}/blog/posts/${post.slug}`,

@@ -8,8 +8,12 @@ import { Section } from "@styles/GlobalComponents";
 
 import "highlight.js/styles/default.css";
 
-export default function Post({ post, morePosts }) {
+export default function Post({
+  post,
+  morePosts
+}: any) {
   if (!post?.slug) {
+    
     return <ErrorPage statusCode={404} />;
   }
 
@@ -17,8 +21,11 @@ export default function Post({ post, morePosts }) {
     <>
       <Layout metadata={post}>
         <BlogPostStyles />
+        
         <svg viewBox="0 0 1920 200">
+          
           <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+        
         </svg>
         <Section grid overflowVisible oneColumn nopadding wide>
           <PostContent
@@ -38,7 +45,9 @@ export default function Post({ post, morePosts }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({
+  params
+}: any) {
   const data = await getPostAndMorePosts(params.slug);
   return {
     props: {

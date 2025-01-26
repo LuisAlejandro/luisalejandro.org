@@ -17,7 +17,7 @@ export const pageAnimation = {
 }
 
 export const slideAnimation = {
-  enter: (direction) => {
+  enter: (direction: any) => {
     return {
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
@@ -27,7 +27,7 @@ export const slideAnimation = {
     x: '0%',
     opacity: 1,
   },
-  exit: (direction) => {
+  exit: (direction: any) => {
     return {
       x: direction < 0 ? '100%' : '-100%',
       opacity: 0,

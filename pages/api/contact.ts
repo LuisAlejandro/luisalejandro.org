@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { isAuthorizationValid, isSchemaValid } from "@lib/utils";
 import { initLeadWorkflow, verifyCaptcha } from "@lib/contactForm";
 
-export default async function contact(req, res) {
+export default async function contact(req: any, res: any) {
   const schema = yup
     .object({
       contactName: yup.string().required(),
@@ -25,7 +25,7 @@ export default async function contact(req, res) {
   if (!isSchemaValid(schema, req.body)) {
     return res.status(400).json({ error: "Invalid body" });
   }
-  if (!await verifyCaptcha(req.body.token)) {
+  if (!(await verifyCaptcha(req.body.token))) {
     return res.status(403).json({ error: "Invalid captcha" });
   }
   try {

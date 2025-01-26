@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function hotPosts(req, res) {
+export default async function hotPosts(req: any, res: any) {
   // const url = new URL("https://disqus.com/api/3.0/threads/listHot.json");
   // const params = {
   //   forum: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
@@ -13,6 +13,6 @@ export default async function hotPosts(req, res) {
   //     ...Object.entries(params),
   //   ])}`
   // );
-  const data = [];
+  const data: any = [];
   return res.status(200).json(data);
 }

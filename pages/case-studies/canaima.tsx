@@ -1,8 +1,10 @@
+
 import { useState } from "react";
 import { Controller, Scene } from "react-scrollmagic";
 import { Tween } from "react-gsap";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
+
 
 import CanaimaWhy from "@assets/images/canaima-why.svg";
 import HeroIntro from "@components/CaseStudies/HeroIntro";
@@ -30,11 +32,14 @@ const Canaima = () => {
     "/images/case-studies/canaima-gallery-8.jpg",
   ];
   return (
+    
     <Layout>
       <CaseStudiesDetailsStyles />
+      
       <div id="cases" style={{ background: "#333" }}>
         <Header bg="#303030" />
         <Controller>
+          
           <div className="cases-content">
             <HeroIntro
               Subtitle={() => "Canaima GNU/Linux"}
@@ -71,45 +76,55 @@ const Canaima = () => {
               year={2009}
             />
             <Scene triggerElement="#why" duration="80%" triggerHook="1">
-              {(progress) => (
-                <Tween
-                  to={{
-                    top: "-150px",
-                    backgroundPosition: "center 20%",
+              {(progress: any) => <Tween
+                to={{
+                  top: "-150px",
+                  backgroundPosition: "center 20%",
+                }}
+                ease="Expo.EaseIn"
+                totalProgress={progress}
+                paused
+              >
+                
+                <div
+                  className="w-full page-hero"
+                  style={{
+                    backgroundImage:
+                      "url(/images/case-studies/canaima-hero.jpg)",
                   }}
-                  ease="Expo.EaseIn"
-                  totalProgress={progress}
-                  paused
                 >
-                  <div
-                    className="w-full page-hero"
-                    style={{
-                      backgroundImage:
-                        "url(/images/case-studies/canaima-hero.jpg)",
-                    }}
-                  >
-                    <svg viewBox="0 0 1920 100">
-                      <path fill="#333" d="M960,50l960-50H0L960,50z" />
-                    </svg>
-                    <div className="h-96" />
-                    <svg viewBox="0 0 1920 100">
-                      <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
-                    </svg>
-                  </div>
-                </Tween>
-              )}
+                  
+                  <svg viewBox="0 0 1920 100">
+                    
+                    <path fill="#333" d="M960,50l960-50H0L960,50z" />
+                  
+                  </svg>
+                  
+                  <div className="h-96" />
+                  
+                  <svg viewBox="0 0 1920 100">
+                    
+                    <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
+                  
+                  </svg>
+                
+                </div>
+              </Tween>}
             </Scene>
             <Why
               Title={() => "The Problem"}
               Content={() => (
                 <>
+                  
                   <p className="py-5">
                     The venezuelan government was looking for a way to migrate
                     their infrastructure to a free and open-source operating
                     system. They needed a method that could allow them to deploy
                     software in a secure, centralized and reliable way to their
                     millions of users across the country.
+                  
                   </p>
+                  
                   <p className="py-5">
                     Debian as an operating system, provided the stability and
                     security that the government was looking for. However, the
@@ -117,46 +132,56 @@ const Canaima = () => {
                     and tedious. The government needed to introduce hundreds of
                     packages, without having to wait for the Debian maintainers
                     to accept their packages.
+                  
                   </p>
                 </>
               )}
-              ImageComponent={(props) => <CanaimaWhy {...props} />}
+              ImageComponent={(props: any) => <CanaimaWhy {...props} />}
               ImageUseEffect={() => {
                 const whiteboardPos = { x: 0, y: 0 };
                 const presenterPos = { x: 0, y: 0 };
                 const peoplePos = { x: 0, y: 0 };
 
-                const moveWhiteboard = function (x, y) {
+                const moveWhiteboard = function (x: any, y: any) {
                   const el = document.querySelector("#why-whiteboard");
                   if (!el) return;
+                  
                   whiteboardPos.x = (x / window.innerWidth).toFixed(2);
+                  
                   whiteboardPos.y = (y / window.innerHeight).toFixed(2);
+                  
                   el.style.transform = `translate(${
                     10 * whiteboardPos.x + 0
                   }px, ${10 * whiteboardPos.y + 0}px) rotateZ(0deg)`;
                 };
 
-                const movePresenter = function (x, y) {
+                const movePresenter = function (x: any, y: any) {
                   const el = document.querySelector("#why-presenter");
                   if (!el) return;
+                  
                   presenterPos.x = (x / window.innerWidth).toFixed(2);
+                  
                   presenterPos.y = (y / window.innerHeight).toFixed(2);
+                  
                   el.style.transform = `translate(${
                     30 * presenterPos.x - 0
                   }px, ${30 * presenterPos.y + 0}px) rotateZ(0deg)`;
                 };
 
-                const movePeople = function (x, y) {
+                const movePeople = function (x: any, y: any) {
                   const el = document.querySelector("#why-people");
                   if (!el) return;
+                  
                   peoplePos.x = (x / window.innerWidth).toFixed(2);
+                  
                   peoplePos.y = (y / window.innerHeight).toFixed(2);
+                  
                   el.style.transform = `translate(${-10 * peoplePos.x - 0}px, ${
                     -10 * peoplePos.y - 0
                   }px) rotateZ(0deg)`;
                 };
 
-                const mousemoveCallback = (e) => {
+                const mousemoveCallback = (e: any) => {
                   moveWhiteboard(e.clientX, e.clientY);
                   movePresenter(e.clientX, e.clientY);
                   movePeople(e.clientX, e.clientY);
@@ -173,6 +198,7 @@ const Canaima = () => {
               Title={() => "The Challenge"}
               Content={() => (
                 <>
+                  
                   <p className="py-5">
                     Leading a team of developers to create a Linux distribution
                     is a tough job, but in the case of Canaima was even harder
@@ -181,12 +207,15 @@ const Canaima = () => {
                     the government. We had annual events called
                     &quot;Cayapas&quot; were we tried to get the community
                     involved in the development of the distribution.
+                  
                   </p>
+                  
                   <p className="py-5">
                     We had to develop our own infraestructure to support the
                     growing of the features we were adding to the distribution.
                     We had to develop our own build system, our own package
                     repository, and our own website.
+                  
                   </p>
                 </>
               )}
@@ -196,6 +225,7 @@ const Canaima = () => {
               Title={() => "The Product"}
               Content={() => (
                 <>
+                  
                   <p className="py-5">
                     Canaima GNU/Linux had several components that needed to be
                     functioning properly so that the distribution could be used.
@@ -204,7 +234,9 @@ const Canaima = () => {
                     repository, a download server, and a documentation server.
                     All of these components needed to be working together in
                     order to provide a good experience to the users.
+                  
                   </p>
+                  
                   <p className="py-5">
                     The build system was based on Debian&apos;s build system. We
                     called it &quot;Canaima Semilla&quot;. It was a set of
@@ -212,12 +244,15 @@ const Canaima = () => {
                     The build system was able to build the packages for
                     different architectures, and it was able to build the ISO
                     images for different flavors of the distribution.
+                  
                   </p>
+                  
                   <p className="py-5">
                     We also made our own web browser, called
                     &quot;Cunaguaro&quot;. It was based on Firefox, but it had a
                     different logo and it had some customizations that were
                     specific to the distribution.
+                  
                   </p>
                 </>
               )}
@@ -227,55 +262,86 @@ const Canaima = () => {
               Title={() => "The Results"}
               Content={() => (
                 <>
+                  
                   <p className="py-5">
                     Canaima enjoyed a lot of popularity in Venezuela. It was
                     used in schools, universities, government offices, and even
                     in the military. On the first month of release of Canaima
                     3.0, it had 110,000 downloads and subsequent releases were
                     also popular.
+                  
                   </p>
+                  
                   <div className="flex flex-col md:flex-row justify-center items-center">
+                    
                     <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      
                       <div className="font-display font-black text-12xl leading-none text-center">
                         110K
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
                         downloads on
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
                         Canaima 3.0
+                      
                       </div>
+                    
                     </div>
+                    
                     <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      
                       <div className="font-display font-black text-12xl leading-none text-center">
                         150K
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
                         downloads on
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
                         Canaima 3.1
+                      
                       </div>
+                    
                     </div>
+                    
                     <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      
                       <div className="font-display font-black text-12xl leading-none text-center">
                         220K
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
                         downloads on
+                      
                       </div>
+                      
                       <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
                         Canaima 4.0
+                      
                       </div>
+                    
                     </div>
+                  
                   </div>
+                  
                   <p className="py-5">
                     As a Canaima developer, I was able to assist to the 12th
                     annual debian developers conference, which was held in
                     Managua, Nicaragua. I was able to meet other Debian
                     developers, including the creator of Live Build, which was
                     the base for Canaima Semilla.
+                  
                   </p>
+                  
                   <div className="py-5">
                     <PhotoAlbum
                       photos={galleryUrlList.map((url) => ({
@@ -297,8 +363,11 @@ const Canaima = () => {
                       index={index}
                       close={() => setIndex(-1)}
                     />
+                  
                   </div>
+                  
                   <p className="py-5"></p>
+                  
                   <p className="py-5"></p>
                 </>
               )}
@@ -313,10 +382,12 @@ const Canaima = () => {
                 },
               ]}
             />
+          
           </div>
         </Controller>
         <Contact />
         <Footer />
+      
       </div>
     </Layout>
   );

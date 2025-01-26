@@ -17,24 +17,31 @@ import {
 } from "./HeaderStyles";
 
 const Header = () => (
+  
   <Container>
     <Div1>
       <Link legacyBehavior passHref href="/">
+        
         <a style={{ display: "flex", alignItems: "center", color: "white" }}>
           <Image alt="" src="/images/logomin.svg" height={60} width={60} />
+        
         </a>
       </Link>
     </Div1>
     <Div2>
+      
       <li>
         <Link legacyBehavior passHref href="/portfolio">
           <NavLink>Portfolio</NavLink>
         </Link>
+      
       </li>
+      
       <li>
         <Link legacyBehavior passHref href="/blog">
           <NavLink>Blog</NavLink>
         </Link>
+      
       </li>
     </Div2>
     <Div3>

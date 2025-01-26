@@ -10,10 +10,15 @@ import {
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 
+
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
+
 export const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME;
+
 export const ENV_NAME = process.env.NEXT_PUBLIC_ENV_NAME;
+
 export const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
 // export const SENDGRID_WELCOME_SENDER_EMAIL = "luis@luisalejandro.org";
 // export const SENDGRID_WELCOME_SENDER_NAME = "Luis Alejandro";
@@ -304,6 +309,7 @@ export const Skills = [
     Component: SiTypescript,
     title: "Typescript",
     Description: () => (
+      
       <>
         I&apos;ve used typescript to develop Desktop/Mobile apps, web
         development and REST apis.

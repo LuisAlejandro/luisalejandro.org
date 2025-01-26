@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { AiOutlineLeft } from "react-icons/ai";
@@ -24,8 +25,8 @@ const Slide = ({
   setCurrentIndex,
   isModalOpen,
   setModalOpen,
-  galleryList,
-}) => {
+  galleryList
+}: any) => {
   const current = galleryList[currentIndex];
   const lastHero = current.images.hero.length - 1;
 
@@ -40,6 +41,7 @@ const Slide = ({
   }, [current.description]);
 
   return (
+    
     <AnimatePresence initial={false} custom={1}>
       <Article
         key={currentIndex}
@@ -59,16 +61,22 @@ const Slide = ({
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
+            
             <picture>
+              
               <source srcSet="/images/other/banner.svg" />
+              
               <img src="/images/other/banner.svg" alt="" />
+            
             </picture>
             <Caption
               style={{
                 top: "4rem",
               }}
             >
+              
               <h1>{current.name}</h1>
+              
               <p>{current.shortDescription}</p>
             </Caption>
             <Caption
@@ -81,23 +89,28 @@ const Slide = ({
               </CustomLink2>
             </Caption>
           </Figure>
-          {current.images.hero.map((imgUrl, index) => (
+          {current.images.hero.map((imgUrl: any, index: any) => (
             <Figure
               key={index}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5 }}
             >
+              
               <picture>
+                
                 <source srcSet={imgUrl} />
+                
                 <img
                   src={imgUrl}
                   alt={current.name}
                   style={{ borderRadius: "10px" }}
                 />
+              
               </picture>
               {index === lastHero && (
                 <Logo>
+                  
                   <img src={current.images.logo} alt={current.name} />
                 </Logo>
               )}
@@ -106,14 +119,14 @@ const Slide = ({
         </Header>
         <Body year={current.year}>
           <TagList>
-            {current.tags.map((tag, index) => (
+            {current.tags.map((tag: any, index: any) => (
               <Tag key={index}>{tag}</Tag>
             ))}
           </TagList>
           <Description
             dangerouslySetInnerHTML={{ __html: description }}
           ></Description>
-          {current.sources.map((source, index) => (
+          {current.sources.map((source: any, index: any) => (
             <CustomLink
               target="_blank"
               rel="nofollow noreferrer"

@@ -12,6 +12,7 @@ import { PortfolioStyles } from "@styles/globals";
 
 const Portfolio = () => {
   return (
+    
     <Layout>
       <PortfolioStyles />
       <Section grid overflowVisible>

@@ -1,6 +1,8 @@
 import { createBucketClient } from "@cosmicjs/sdk";
 
+
 const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG || 'luisalejandroorg-development';
+
 const READ_KEY = process.env.COSMIC_READ_KEY;
 
 const cosmic = createBucketClient({
@@ -8,8 +10,7 @@ const cosmic = createBucketClient({
   readKey: READ_KEY,
 });
 
-const is404 = (error) =>
-  /not found/i.test(error.message) || error.status === 404;
+const is404 = (error: any) => /not found/i.test(error.message) || error.status === 404;
 
 export async function getAllPostsSlugs() {
   const data = await cosmic.objects
@@ -48,7 +49,7 @@ export async function getLatestPosts() {
   return data?.objects;
 }
 
-export async function getMorePosts(slug) {
+export async function getMorePosts(slug: any) {
   try {
     const moreObjects = await cosmic.objects
       .find({
@@ -77,7 +78,7 @@ export async function getMorePosts(slug) {
   }
 }
 
-export async function getPostAndMorePosts(slug) {
+export async function getPostAndMorePosts(slug: any) {
   try {
     const object = await cosmic.objects
       .find({
@@ -109,7 +110,7 @@ export async function getPostAndMorePosts(slug) {
   }
 }
 
-export async function getAllPostsForCategory(categorySlug) {
+export async function getAllPostsForCategory(categorySlug: any) {
   try {
     const categoryDetails = await getCategoryDetails(categorySlug);
 
@@ -167,7 +168,7 @@ export async function getAllCategories() {
   }
 }
 
-export async function getCategoryDetails(categorySlug) {
+export async function getCategoryDetails(categorySlug: any) {
   try {
     const object = await cosmic.objects
       .find({

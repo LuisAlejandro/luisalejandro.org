@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Masonry from "react-masonry-component";
 
@@ -18,6 +19,7 @@ const Gallery = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
+    
     <Section id="gallery">
       <SectionTitle main>Other work</SectionTitle>
       <SectionText>
@@ -62,6 +64,7 @@ const Gallery = () => {
                 variants={cardAnimation}
                 key={index}
               >
+                
                 <div
                   onClick={() => {
                     setCurrentIndex(index);
@@ -69,13 +72,18 @@ const Gallery = () => {
                   }}
                 >
                   <Figure>
+                    
                     <img src={work.images.thumbnail} alt="" />
                     <Caption variants={captionAnimation}>
+                      
                       <h2>{work.year}</h2>
+                      
                       <h3>{work.name}</h3>
+                      
                       <p>{work.shortDescription}</p>
                     </Caption>
                   </Figure>
+                
                 </div>
               </GalleryCardItem>
             ))}

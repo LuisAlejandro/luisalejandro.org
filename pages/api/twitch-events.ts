@@ -1,10 +1,13 @@
 import axios from "axios";
+
 import crypto from "crypto";
 
+
 const twitchSigningSecret = process.env.TWITCH_SIGNING_SECRET;
+
 const githubPersonalAccessToken = process.env.REPO_PERSONAL_ACCESS_TOKEN;
 
-export default async function twitchEvents(req, res) {
+export default async function twitchEvents(req: any, res: any) {
   const messageId = req.headers["twitch-eventsub-message-id"];
   const timestamp = req.headers["twitch-eventsub-message-timestamp"];
   const messageSignature = req.headers["twitch-eventsub-message-signature"];
