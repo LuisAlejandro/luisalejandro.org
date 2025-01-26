@@ -7,7 +7,7 @@ export default function PostRelated({
 }) {
   return (
     <li>
-      <Link passHref href={`/blog/posts/${slug}`}>
+      <Link legacyBehavior passHref href={`/blog/posts/${slug}`}>
         <a title={title} rel="bookmark">
           <span
             className="thumbnail"

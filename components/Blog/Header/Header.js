@@ -19,7 +19,7 @@ import {
 const Header = () => (
   <Container>
     <Div1>
-      <Link passHref href="/">
+      <Link legacyBehavior passHref href="/">
         <a style={{ display: "flex", alignItems: "center", color: "white" }}>
           <Image alt="" src="/images/logomin.svg" height={60} width={60} />
         </a>
@@ -27,12 +27,12 @@ const Header = () => (
     </Div1>
     <Div2>
       <li>
-        <Link passHref href="/portfolio">
+        <Link legacyBehavior passHref href="/portfolio">
           <NavLink>Portfolio</NavLink>
         </Link>
       </li>
       <li>
-        <Link passHref href="/blog">
+        <Link legacyBehavior passHref href="/blog">
           <NavLink>Blog</NavLink>
         </Link>
       </li>

@@ -248,7 +248,7 @@ export default function PostContent({
         <meta itemProp="image" content={coverImage.url} />
         <span className="categories">
           {categories.map((category) => (
-            <Link
+            <Link legacyBehavior
               passHref
               href={`/blog/category/${category.slug}`}
               key={category.id}
@@ -264,7 +264,7 @@ export default function PostContent({
         </span>
         <header className="header">
           <h2>
-            <Link passHref href={canonicalUrl}>
+            <Link legacyBehavior passHref href={canonicalUrl}>
               <a
                 rel="bookmark"
                 title={`Permanent link to "${title}"`}
@@ -283,7 +283,7 @@ export default function PostContent({
           ></li>
           <li className="description">
             by{" "}
-            <Link passHref href="/portfolio">
+            <Link legacyBehavior passHref href="/portfolio">
               <a title="About the author" itemProp="author">
                 Luis Alejandro
               </a>

@@ -13,12 +13,12 @@ const Hero = () => (
         A commandline desktop app to publish short videos on TikTok.
       </SectionText>
       <span className="button1">
-        <Link rel="tag nofollow noreferrer" href="/apps/agoras/privacy">
+        <Link legacyBehavior rel="tag nofollow noreferrer" href="/apps/agoras/privacy">
           Privacy
         </Link>
       </span>
       <span className="button1">
-        <Link rel="tag nofollow noreferrer" href="/apps/agoras/terms">
+        <Link legacyBehavior rel="tag nofollow noreferrer" href="/apps/agoras/terms">
           Terms
         </Link>
       </span>

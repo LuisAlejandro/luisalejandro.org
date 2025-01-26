@@ -35,7 +35,7 @@ export default function PostPreview({
           }}
         >
           <span className="category">
-            <Link passHref href={`/blog/category/${mainCategory.slug}`}>
+            <Link legacyBehavior passHref href={`/blog/category/${mainCategory.slug}`}>
               <a
                 title={`List all posts under the category "${mainCategory.title}"`}
                 rel="tag"
@@ -100,7 +100,7 @@ export default function PostPreview({
           </ul>
         </div>
         <div className="data">
-          <Link passHref href={`/blog/posts/${slug}`}>
+          <Link legacyBehavior passHref href={`/blog/posts/${slug}`}>
             <a
               rel="bookmark"
               title={`Permanent link to "${title}"`}

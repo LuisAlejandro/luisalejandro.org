@@ -45,7 +45,7 @@ const Projects = () => {
         </SectionText>
         <GridContainer>
           {ProjectList.map((p, i) => (
-            <Link passHref key={i} href={p.visit}>
+            <Link legacyBehavior passHref key={i} href={p.visit}>
               <a>
                 <BlogCard className="vanillatilt">
                   <Img

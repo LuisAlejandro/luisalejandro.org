@@ -45,7 +45,7 @@ export default function Index() {
         <Container>
           <div id="app">
             <div className="home">
-              <Link passHref href="/">
+              <Link legacyBehavior passHref href="/">
                 <a
                   style={{
                     display: "flex",
@@ -77,12 +77,12 @@ export default function Index() {
                   open source contributor
                 </a>{" "}
                 and like to{" "}
-                <Link passHref href="/blog">
+                <Link legacyBehavior passHref href="/blog">
                   <a>write</a>
                 </Link>{" "}
                 about my discoveries. You can check out the projects I&apos;ve
                 been a part of in my{" "}
-                <Link passHref href="/portfolio">
+                <Link legacyBehavior passHref href="/portfolio">
                   <a>portfolio</a>
                 </Link>{" "}
                 .

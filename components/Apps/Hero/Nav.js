@@ -5,7 +5,7 @@ const Nav = () => (
   <>
     <LeftSection>
       <span className="button1">
-        <Link
+        <Link legacyBehavior
           rel="tag nofollow noreferrer"
           href="/apps/agoras"
           style={{ 
