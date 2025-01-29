@@ -9,7 +9,6 @@ import {
 } from "./TechnologiesStyles";
 
 const Technologies = () => (
-  
   <Section id="skills">
     <SectionTitle>On my toolbox</SectionTitle>
     <SectionText>
@@ -19,15 +18,13 @@ const Technologies = () => (
     <List>
       {Skills.map((Skill) => (
         <ListItem key={Skill.slug}>
-          
           <picture>
             <Skill.Component size="3rem" />
-          
           </picture>
           <ListContainer>
             <ListTitle>{Skill.title}</ListTitle>
             <ListParagraph>
-              <Skill.Description />
+              {Skill.description}
             </ListParagraph>
           </ListContainer>
         </ListItem>

@@ -12,9 +12,7 @@ import { Layout } from "@components/Blog/Layout/Layout";
 import { BlogStyles } from "@styles/globals";
 import { Section } from "@styles/GlobalComponents";
 
-export default function Blog({
-  posts
-}: any) {
+export default function Blog({ posts }: any) {
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
       "#content > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
@@ -38,7 +36,6 @@ export default function Blog({
   }, []);
 
   if (!posts?.length) {
-    
     return <ErrorPage statusCode={404} />;
   }
 
@@ -48,11 +45,8 @@ export default function Blog({
   return (
     <Layout>
       <BlogStyles />
-      
       <svg viewBox="0 0 1920 200">
-        
         <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-      
       </svg>
       <Section grid overflowVisible oneColumn nopadding wide>
         {heroPost && (
@@ -84,7 +78,7 @@ export async function getServerSideProps() {
       metadata: {
         ...post.metadata,
         teaser: await markdownToHtml(post.metadata?.teaser || ""),
-      }
+      },
     }))
   );
   return {

@@ -13,7 +13,7 @@ export default function HeroPost({
   slug,
   type,
   id,
-  categories
+  categories,
 }: any) {
   const mainCategory = categories[0];
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
@@ -21,9 +21,7 @@ export default function HeroPost({
   const escapedTitle = encodeURIComponent(title);
 
   return (
-    
     <div id="featured">
-      
       <article
         className={type}
         id={`post-${id}`}
@@ -31,35 +29,32 @@ export default function HeroPost({
         itemScope={true}
         itemType="http://schema.org/BlogPosting"
       >
-        
         <div className="accent">
           <AiFillStar />
-        
         </div>
-        
+
         <div
           className="bg"
           style={{
             backgroundImage: `url(${coverImage.url})`,
           }}
         >
-          
           <span className="category">
-            <Link legacyBehavior passHref href={`/blog/category/${mainCategory.slug}`}>
-              
+            <Link
+              legacyBehavior
+              passHref
+              href={`/blog/category/${mainCategory.slug}`}
+            >
               <a
                 title={`List all posts under the category "${mainCategory.title}"`}
                 rel="tag"
               >
                 {mainCategory.title}
-              
               </a>
             </Link>
-          
           </span>
-          
+
           <ul className="socialbar">
-            
             <li className="reactions">
               {canonicalUrl && DISQUS_SHORTNAME && (
                 <CommentCount
@@ -71,101 +66,76 @@ export default function HeroPost({
                   }}
                 />
               )}
-            
             </li>
-            
+
             <li className="share">
-              
               <button type="button" data-ident={id}>
                 Share
-              
               </button>
-            
             </li>
-          
           </ul>
-          
+
           <ul className="socialpop">
-            
             <li className="twitter">
-              
               <a
-                href={`http://twitter.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
+                href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
                 title="(opens in new window)"
                 target="_blank"
                 rel="nofollow noreferrer"
               >
-                
                 <span className="sprite"></span>
-                
+
                 <span className="hide">Twitter</span>
-              
               </a>
-            
             </li>
-            
+
             <li className="facebook">
-              
               <a
                 href={`http://facebook.com/sharer/sharer.php?u=${escapedCanonicalUrl}`}
                 title="(opens in new window)"
                 target="_blank"
                 rel="nofollow noreferrer"
               >
-                
                 <span className="sprite"></span>
-                
+
                 <span className="hide">Facebook</span>
-              
               </a>
-            
             </li>
-            
+
             <li className="linkedin">
-              
               <a
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${escapedCanonicalUrl}`}
                 title="(opens in new window)"
                 target="_blank"
                 rel="nofollow noreferrer"
               >
-                
                 <span className="sprite"></span>
-                
+
                 <span className="hide">LinkedIn</span>
-              
               </a>
-            
             </li>
-          
           </ul>
-        
         </div>
-        
+
         <div className="data">
           <Link legacyBehavior passHref href={`/blog/posts/${slug}`}>
-            
             <a
               rel="bookmark"
               title={`Permanent link to "${title}"`}
               itemProp="url"
             >
-              
               <h2 className="header" itemProp="headline">
                 {title}
-              
               </h2>
-              
+
               <span
                 className="description"
                 itemProp="description"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
-              
               ></span>
-              
+
               <span className="description" itemProp="description">
                 Published{" "}
-                
                 <time
                   className="datetime"
                   dateTime={date}
@@ -173,19 +143,13 @@ export default function HeroPost({
                 >
                   {" "}
                   <Date dateString={date} />
-                
                 </time>
                 .
-              
               </span>
-            
             </a>
           </Link>
-        
         </div>
-      
       </article>
-    
     </div>
   );
 }

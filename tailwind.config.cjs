@@ -14,9 +14,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["Thunder", "sans-serif"],
-        title: ["Poppins", "sans-serif"],
-        main: ["Roboto", "sans-serif"],
+        display: ["var(--font-league-gothic)", "sans-serif"],
+        title: ["var(--font-poppins)", "sans-serif"],
+        main: ["var(--font-roboto)", "sans-serif"],
       },
       colors: {
         "accent-1": "#FAFAFA",

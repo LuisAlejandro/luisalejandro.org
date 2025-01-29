@@ -67,7 +67,7 @@ const Header = () => (
         <AiFillYoutube size="30px" />
       </SocialIcons>
       <SocialIcons
-        href="https://twitter.com/LuisAlejandro"
+        href="https://x.com/LuisAlejandro"
         target="_blank"
         rel="nofollow noreferrer"
       >

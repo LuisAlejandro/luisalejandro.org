@@ -286,7 +286,7 @@ export default function PostContent({
         id={`post-${id}`}
         className="post"
         itemProp="blogPost"
-        itemScope=""
+        itemScope={true}
         itemType="http://schema.org/BlogPosting"
       >
         
@@ -383,7 +383,7 @@ export default function PostContent({
           <li className="twitter">
             
             <a
-              href={`http://twitter.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
+              href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"

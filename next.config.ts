@@ -7,16 +7,6 @@ const config: NextConfig = {
   images: {
     domains: ["imgix.cosmicjs.com"],
   },
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

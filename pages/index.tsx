@@ -40,17 +40,13 @@ export default function Index() {
     "/images/home/front-7.png",
   ];
   return (
-    
     <>
       <Layout>
         <HomeStyles />
         <Container>
-          
           <div id="app">
-            
             <div className="home">
               <Link legacyBehavior passHref href="/">
-                
                 <a
                   style={{
                     display: "flex",
@@ -64,38 +60,30 @@ export default function Index() {
                     height={200}
                     width={200}
                   />
-                
                 </a>
               </Link>
               <Heading1>
-                
                 Hi, I&apos;m <span>Luis Alejandro</span>. I&apos;m a{" "}
-                
                 <span>software engineer</span> from Venezuela, working remotely
                 since the invention of the phone.{" "}
               </Heading1>
               <Div1>
-                
                 I have more than <span>{experience} years of experience</span>{" "}
                 as a full stack developer. I&apos;m an active{" "}
-                
                 <a
                   target="_blank"
                   href="https://github.com/LuisAlejandro"
                   rel="nofollow noreferrer"
                 >
                   open source contributor
-                
                 </a>{" "}
                 and like to{" "}
                 <Link legacyBehavior passHref href="/blog">
-                  
                   <a>write</a>
                 </Link>{" "}
                 about my discoveries. You can check out the projects I&apos;ve
                 been a part of in my{" "}
                 <Link legacyBehavior passHref href="/portfolio">
-                  
                   <a>portfolio</a>
                 </Link>{" "}
                 .
@@ -113,9 +101,7 @@ export default function Index() {
                   }}
                 >
                   {frontList.map((imgUrl, index) => (
-                    
                     <li key={index}>
-                      
                       <img
                         src={imgUrl}
                         alt=""
@@ -123,7 +109,6 @@ export default function Index() {
                           display: imagesVisible ? "block" : "none",
                         }}
                       />
-                    
                     </li>
                   ))}
                 </Masonry>
@@ -137,22 +122,22 @@ export default function Index() {
                   }}
                 >
                   <AiOutlineBulb />
-                  
+
                   <span>Portfolio</span>
                 </SocialIcons>
                 <SocialIcons href="/blog">
                   <AiOutlineRead />
-                  
+
                   <span>Blog</span>
                 </SocialIcons>
                 <SocialIcons href="https://store.luisalejandro.org/">
                   <AiOutlineShoppingCart />
-                  
+
                   <span>Store</span>
                 </SocialIcons>
                 <SocialIcons href="/contact">
                   <AiOutlineMessage />
-                  
+
                   <span>Contact</span>
                 </SocialIcons>
                 <SocialIcons
@@ -184,9 +169,7 @@ export default function Index() {
               <Div3>
                 <Footer />
               </Div3>
-            
             </div>
-          
           </div>
         </Container>
       </Layout>

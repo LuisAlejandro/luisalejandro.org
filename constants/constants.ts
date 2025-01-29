@@ -308,94 +308,55 @@ export const Skills = [
     slug: "typescript",
     Component: SiTypescript,
     title: "Typescript",
-    Description: () => (
-      
-      <>
-        I&apos;ve used typescript to develop Desktop/Mobile apps, web
-        development and REST apis.
-      </>
-    ),
+    description: "I've used typescript to develop Desktop/Mobile apps, web development and REST apis."
   },
   {
     slug: "python",
     Component: SiPython,
     title: "Python",
-    Description: () => (
-      <>I use python for scripting, cli interfaces and REST api development.</>
-    ),
+    description: "I use python for scripting, cli interfaces and REST api development."
   },
   {
     slug: "golang",
     Component: SiGo,
     title: "Golang",
-    Description: () => (
-      <>Go is my go-to language when efficiency and speed 💨 is needed.</>
-    ),
+    description: "Go is my go-to language when efficiency and speed 💨 is needed."
   },
   {
     slug: "ionic",
     Component: SiIonic,
     title: "Ionic/React",
-    Description: () => (
-      <>
-        Ionic/React has allowed me to develop desktop, mobile and web
-        applications.
-      </>
-    ),
+    description: "Ionic/React has allowed me to develop desktop, mobile and web applications."
   },
   {
     slug: "nextjs",
     Component: SiNextdotjs,
     title: "Next.js",
-    Description: () => (
-      <>
-        Is so easy to develop static sites with Next.js, I always recommend it.
-      </>
-    ),
+    description: "Is so easy to develop static sites with Next.js, I always recommend it."
   },
   {
     slug: "docker",
     Component: SiDocker,
     title: "Docker/k8s",
-    Description: () => (
-      <>
-        I use containerization in all my projects. I believe in reproducible
-        development environments.
-      </>
-    ),
+    description: "I use containerization in all my projects. I believe in reproducible development environments."
   },
   {
     slug: "aws",
     Component: FaAws,
     title: "AWS/GCP",
-    Description: () => (
-      <>
-        I&apos;ve used S3, EC2 and Beanstalk when lauching client apps, but my
-        favourite is GCP.
-      </>
-    ),
+    description: "I've used S3, EC2 and Beanstalk when lauching client apps, but my favourite is GCP."
   },
   {
     slug: "ga",
     Component: SiGithub,
     title: "Github Actions",
-    Description: () => (
-      <>
-        I ❤️ (LOVE!) automation. I don&apos;t want to be doing manual stuff all
-        the time.
-      </>
-    ),
+    description: "I ❤️ (LOVE!) automation. I don't want to be doing manual stuff all the time."
   },
   {
     slug: "git",
     Component: SiGit,
     title: "Git",
-    Description: () => (
-      <>
-        Team work and order is important to me, therefore I put almost
-        everything I do into git.
-      </>
-    ),
+    description: "Team work and order is important to me, therefore I put almost everything I do into git."
   },
 ];
 
