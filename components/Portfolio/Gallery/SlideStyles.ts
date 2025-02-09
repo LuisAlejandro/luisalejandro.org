@@ -14,7 +14,7 @@ export const Article = styled(motion.article)`
 export const Header = styled.div`
   width: 50%;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: none;
   }
 
@@ -90,7 +90,7 @@ export const Body = styled.div`
   position: relative;
   width: 50%;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
     padding: 0;
   }
@@ -122,7 +122,7 @@ export const Body = styled.div`
     line-height: 1;
     letter-spacing: -1.8rem;
 
-    @media ${(props) => props.theme.breakpoints.xs} {
+    @media only screen and (min-width: 0px) and (max-width: 450px) {
       font-size: 12rem;
       letter-spacing: -0.5rem;
       top: -5rem;

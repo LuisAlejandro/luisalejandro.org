@@ -28,7 +28,7 @@ export const SectionTitle = styled.h2`
   margin-bottom: 16px;
   padding: 58px 0 16px;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 32px;
@@ -80,7 +80,7 @@ export const SectionText = styled.p`
   padding-bottom: 3.6rem;
   color: ${(props) => props.theme.colors.primary1};
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 16px;

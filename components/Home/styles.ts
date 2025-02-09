@@ -13,7 +13,7 @@ export const Heading1 = styled.h1`
     font-family: ${(props) => props.theme.fonts.title};
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
     font-size: 2rem;
   }
@@ -57,7 +57,7 @@ export const Div1 = styled.div`
     }
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
   }
 
@@ -92,7 +92,7 @@ export const Div2 = styled.div`
     }
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: none;
     width: 100%;
     ul {
@@ -137,7 +137,7 @@ export const Div3 = styled.div`
   align-items: center;
   margin: 0 auto;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     margin-bottom: 20px;
     flex-direction: column;
   }
@@ -188,7 +188,7 @@ export const SocialIcons = styled.a`
     color: rgb(0, 0, 0);
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     border-radius: 5px;
     display:block;
     width: 100%;

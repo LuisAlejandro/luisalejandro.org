@@ -8,7 +8,7 @@ export const CarouselContainer = styled.ul`
   width: 100%;
   justify-content: space-between;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     flex-direction: column;
   }
 
@@ -24,7 +24,7 @@ export const CarouselContainer = styled.ul`
 export const CarouselItem = styled.li`
   margin: 10px 0;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
   }
 `;

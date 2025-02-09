@@ -34,7 +34,7 @@ export const GalleryCardItem = styled(motion.li)`
   width: 33.333%;
   opacity: 0;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
   }
   @media ${(props) => props.theme.breakpoints.sm} {
@@ -77,7 +77,7 @@ export const Caption = styled(motion.figcaption)`
     line-height: 1;
     margin-bottom: 0;
 
-    @media ${(props) => props.theme.breakpoints.xs} {
+    @media only screen and (min-width: 0px) and (max-width: 450px) {
       display: none;
     }
     @media ${(props) => props.theme.breakpoints.md} {
@@ -98,7 +98,7 @@ export const Caption = styled(motion.figcaption)`
     font-weight: 100;
     color: rgba(255, 255, 255, 0.75);
 
-    @media ${(props) => props.theme.breakpoints.xs} {
+    @media only screen and (min-width: 0px) and (max-width: 450px) {
       display: none;
     }
   }

@@ -38,7 +38,7 @@ export const Div3 = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: none;
   }
 

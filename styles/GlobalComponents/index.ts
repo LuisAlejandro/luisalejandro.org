@@ -66,7 +66,7 @@ export const Section = styled.section`
     }
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: flex;
     flex-direction: column;
     max-width: calc(100% - 64px);
@@ -129,7 +129,7 @@ export const SectionTitle = styled.h2`
     max-width: 100%;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     font-size: 32px;
     line-height: 40px;
     font-size: ${(props) => (props.main ? "28px" : "32px")};
@@ -161,7 +161,7 @@ export const SectionText = styled.p`
     padding-bottom: 16px;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     font-size: 16px;
     line-height: 24px;
     padding-bottom: 16px;

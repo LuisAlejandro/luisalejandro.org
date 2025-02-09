@@ -21,7 +21,7 @@ export const GridContainer = styled.section`
     width: 100%;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: flex;
     flex-direction: column;
     padding: 2rem 0;
@@ -84,7 +84,7 @@ export const TagList = styled.ul`
   display: flex;
   justify-content: center;
   padding: 2rem;
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: none;
   }
 `;

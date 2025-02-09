@@ -20,7 +20,7 @@ export const FooterWrapper = styled.section`
     padding: 10rem 0 40px 0;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     padding: 10rem 0 40px 0;
   }
 `;
@@ -60,7 +60,7 @@ export const SocialIconsContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     flex-direction: column;
   }
 
@@ -75,7 +75,7 @@ export const CompanyContainer = styled.div`
   flex-wrap: wrap;
   margin-right: auto;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: flex;
     align-items: center;
     margin: 0;
@@ -96,7 +96,7 @@ export const Slogan = styled.p`
   line-height: 30px;
   padding-top: 1rem;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     line-height: 22px;
     font-size: 15px;
     text-align: center;
@@ -115,7 +115,7 @@ export const SocialContainer = styled.div`
   display: flex;
   align-items: center;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     justify-content: center;
   }
 
@@ -161,7 +161,7 @@ export const LinkList = styled.ul`
     gap: 5px;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     width: 100%;
     padding: 32px 18px 16px;
     gap: 5px;

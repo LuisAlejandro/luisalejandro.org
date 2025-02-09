@@ -38,7 +38,7 @@ const partialPortfolioStyles = css`
     top: -50px;
     right: -50px;
 
-    @media ${(props) => props.theme.breakpoints.xs} {
+    @media only screen and (min-width: 0px) and (max-width: 450px) {
       display: none;
     }
 

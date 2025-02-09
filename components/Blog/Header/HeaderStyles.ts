@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 1rem;
   padding-top: 2rem;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: flex;
   }
 `;
@@ -41,7 +41,7 @@ export const Div3 = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     display: none;
   }
 `;
@@ -50,14 +50,14 @@ export const Div3 = styled.div`
 export const NavLink = styled.a`
   font-size: 2rem;
   font-weight: 300;
-  color: ${(props) => props.theme.colors.navLink};
+  color: rgba(0,0,0,0.75);
   transition: 0.4s ease;
   &:hover {
-    color: ${(props) => props.theme.colors.navLinkHover};
+    color: rgba(0,0,0,1);
     cursor: pointer;
   }
 
-  @media ${(props) => props.theme.breakpoints.xs} {
+  @media only screen and (min-width: 0px) and (max-width: 450px) {
     padding: 0.5rem;
     font-size: 1.7rem;
   }
@@ -66,11 +66,11 @@ export const NavLink = styled.a`
 // Social Icons
 export const SocialIcons = styled.a`
   transition: 0.3s ease;
-  color: ${(props) => props.theme.colors.navLink};
+  color: rgba(0,0,0,0.75);
   border-radius: 50px;
   padding: 8px;
   &:hover {
-    color: ${(props) => props.theme.colors.navLinkHover};
+    color: rgba(0,0,0,1);
     background-color: #aaa;
     transform: scale(1.2);
     cursor: pointer;
