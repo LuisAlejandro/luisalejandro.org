@@ -39,7 +39,7 @@
     "gsap": "^3.12.5",
     "highlight.js": "^11.11.1",
     "html-react-parser": "^5.2.2",
-    "jose": "^5.9.6",
+    "jose": "^6.0.8",
     "jsonwebtoken": "^9.0.2",
     "lazysizes": "^5.3.2",
     "next": "^12.1.0",
