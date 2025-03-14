@@ -65,7 +65,7 @@
     "styled-normalize": "^8.1.1",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
-    "yet-another-react-lightbox": "^3.21.7",
+    "yet-another-react-lightbox": "^3.21.8",
     "yup": "^1.6.1"
   },
   "devDependencies": {
