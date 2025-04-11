@@ -31,7 +31,7 @@
     "cryptr": "^6.3.0",
     "date-fns": "^4.1.0",
     "disqus-react": "^1.1.6",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "encoding": "^0.1.13",
     "feed": "^4.2.2",
     "framer-motion": "^6.5.1",
