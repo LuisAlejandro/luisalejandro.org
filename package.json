@@ -25,7 +25,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.9.0",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "^6.0.0",
     "chart.js": "^4.4.9",
     "classnames": "^2.5.1",
     "cryptr": "^6.3.0",
