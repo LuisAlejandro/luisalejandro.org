@@ -20,7 +20,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.817.0",
+    "@aws-sdk/client-sesv2": "^3.825.0",
     "@cosmicjs/sdk": "^1.5.2",
     "@hookform/resolvers": "^5.0.1",
     "@svgr/webpack": "^8.1.0",
