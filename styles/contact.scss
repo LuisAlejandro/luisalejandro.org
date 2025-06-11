@@ -15,8 +15,10 @@
       line-height: 20px;
       margin: 0 0 80px 0;
       padding: 3px 5px 7px 5px;
-      box-shadow: 0 -6px 0 rgba(255, 255, 255, 0.3) inset,
-        0 -5px 0 rgba(0, 0, 0, 0.3) inset, -1px 0 0 rgba(0, 0, 0, 0.3) inset,
+      box-shadow:
+        0 -6px 0 rgba(255, 255, 255, 0.3) inset,
+        0 -5px 0 rgba(0, 0, 0, 0.3) inset,
+        -1px 0 0 rgba(0, 0, 0, 0.3) inset,
         1px 1px 0 rgba(0, 0, 0, 0.3) inset;
       background-image: radial-gradient(
         ellipse closest-side at 50% 50%,

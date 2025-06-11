@@ -33,17 +33,17 @@ jobs:
       - name: Building docker image
         uses: docker/build-push-action@v6
         with:
-            tags: luisalejandro/luisalejandro.org:latest
-            file: Dockerfile
-            context: .
-            build-args: |
-                UID=${{ env.UID }}
-                GID=${{ env.GID }}
-            cache-from: type=gha
-            cache-to: type=gha,mode=max
-            push: false
-            load: true
-        
+          tags: luisalejandro/luisalejandro.org:latest
+          file: Dockerfile
+          context: .
+          build-args: |
+            UID=${{ env.UID }}
+            GID=${{ env.GID }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: false
+          load: true
+
       - name: Building project
         run: |
           make dependencies build_production

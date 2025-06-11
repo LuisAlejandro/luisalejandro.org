@@ -1,4 +1,3 @@
-
 import path from "node:path";
 
 import { writeFile } from "node:fs/promises";
@@ -6,7 +5,6 @@ import { canonicalHostnameUrl } from "@constants/constants";
 import { getAllPostsForHome, getAllCategories } from "@lib/api";
 
 export default async function generateSitemap() {
-  
   const basedir = process.cwd();
   const sitemapUrlPath = "sitemap.xml";
   const robotsUrlPath = "robots.txt";

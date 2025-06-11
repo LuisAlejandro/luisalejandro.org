@@ -2,21 +2,19 @@ import Link from "next/link";
 import { LeftSection } from "./HeroStyles";
 
 const Nav = () => (
-  
   <>
     <LeftSection>
-      
       <span className="button1">
-        <Link legacyBehavior
+        <Link
+          legacyBehavior
           rel="tag nofollow noreferrer"
           href="/apps/agoras"
-          style={{ 
+          style={{
             margin: "50px 0 0 0",
-           }}
+          }}
         >
           Back
         </Link>
-      
       </span>
     </LeftSection>
   </>

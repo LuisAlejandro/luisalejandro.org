@@ -1,52 +1,82 @@
-import styled from "styled-components";
+import React from "react";
 
-export const Container = styled.div`
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 2rem;
-  // padding: 1rem;
-  // padding-top: 2rem;
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-  // @media ${(props) => props.theme.breakpoints.sm} {
-  //   display: grid;
-  //   grid-template-columns: repeat(5, 1fr);
-  //   grid-template-rows: repeat(2, 60px);
-  //   grid-column-gap: 0.5rem;
-  //   grid-row-gap: 0.5rem;
-  // }
-`;
+interface Div1Props extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-export const Div1 = styled.div`
-  grid-area: 1 / 1 / 2 / 2;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  // @media ${(props) => props.theme.breakpoints.sm} {
-  //   grid-area: 1 / 1 / 2 / 3;
-  // }
-`;
+interface Div2Props extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-export const Div2 = styled.div`
-  grid-area: 1 / 2 / 2 / 3;
-  display: flex;
-  justify-content: end;
-  // @media ${(props) => props.theme.breakpoints.sm} {
-  //   grid-area: 2 / 2 / 3 / 5;
-  // }
-`;
+interface Div3Props extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-export const Div3 = styled.div`
-  grid-area: 1 / 3 / 2 / 4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  // @media ${(props) => props.theme.breakpoints.sm} {
-  //   align-items: center;
-  //   grid-area: 1 / 4 / 2 / 6;
-  // }
-`;
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className:
+          `max-w-5xl w-full mx-auto mb-8 grid grid-cols-3 grid-rows-1 gap-8 ${className || ""}`.trim(),
+      },
+      children
+    );
+  }
+);
+
+export const Div1 = React.forwardRef<HTMLDivElement, Div1Props>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className:
+          `col-start-1 col-end-2 row-start-1 row-end-2 flex flex-row content-center ${className || ""}`.trim(),
+      },
+      children
+    );
+  }
+);
+
+export const Div2 = React.forwardRef<HTMLDivElement, Div2Props>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className:
+          `col-start-2 col-end-3 row-start-1 row-end-2 flex justify-end ${className || ""}`.trim(),
+      },
+      children
+    );
+  }
+);
+
+export const Div3 = React.forwardRef<HTMLDivElement, Div3Props>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className:
+          `col-start-3 col-end-4 row-start-1 row-end-2 flex justify-between items-center ${className || ""}`.trim(),
+      },
+      children
+    );
+  }
+);
+
+Container.displayName = "Container";
+Div1.displayName = "Div1";
+Div2.displayName = "Div2";
+Div3.displayName = "Div3";

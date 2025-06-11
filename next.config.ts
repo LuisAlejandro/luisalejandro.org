@@ -1,9 +1,6 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const config: NextConfig = {
-  compiler: {
-    styledComponents: true,
-  },
   images: {
     domains: ["imgix.cosmicjs.com"],
   },

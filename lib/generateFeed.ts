@@ -1,4 +1,3 @@
-
 import path from "node:path";
 
 import { mkdir, writeFile } from "node:fs/promises";
@@ -8,7 +7,6 @@ import { canonicalHostnameUrl } from "@constants/constants";
 import { getAllPostsForHome } from "@lib/api";
 
 export default async function generateFeed() {
-  
   const basedir = process.cwd();
   const feedUrlPath = "blog/posts/feed.xml";
   const atomUrlPath = "blog/posts/atom.xml";
@@ -49,7 +47,7 @@ export default async function generateFeed() {
       link: `${canonicalHostnameUrl}/blog/posts/${post.slug}`,
       description: post.teaser,
       date: new Date(post.created_at),
-      image: post.metadata.hero.url
+      image: post.metadata.hero.url,
     });
   });
 

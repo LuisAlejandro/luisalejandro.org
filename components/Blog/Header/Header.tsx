@@ -4,155 +4,85 @@ import {
   AiFillGithub,
   AiFillYoutube,
   AiFillLinkedin,
-  AiFillTwitterCircle,
+  AiOutlineX,
 } from "react-icons/ai";
 
-// import {
-//   Container,
-//   Div1,
-//   Div2,
-//   Div3,
-//   NavLink,
-//   SocialIcons,
-// } from "./HeaderStyles";
-import styled from "styled-components";
-
-const Container = styled.div`
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 2rem;
-  padding: 1rem;
-  padding-top: 2rem;
-
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
-    display: flex;
-  }
-`;
-
-const Div1 = styled.div`
-  grid-area: 1 / 1 / 2 / 2;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-`;
-
-const Div2 = styled.ul`
-  grid-area: 1 / 2 / 2 / 5;
-  display: flex;
-  justify-content: end;
-
-  li {
-    margin: 0 20px;
-    line-height: 60px;
-  }
-`;
-
-const Div3 = styled.div`
-  grid-area: 1 / 5 / 2 / 6;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
-    display: none;
-  }
-`;
-
-// Navigation Links
-const NavLink = styled.a`
-  font-size: 2rem;
-  font-weight: 300;
-  color: rgba(0,0,0,0.75);
-  transition: 0.4s ease;
-  &:hover {
-    color: rgba(0,0,0,1);
-    cursor: pointer;
-  }
-
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
-    padding: 0.5rem;
-    font-size: 1.7rem;
-  }
-`;
-
-// Social Icons
-const SocialIcons = styled.a`
-  transition: 0.3s ease;
-  color: rgba(0,0,0,0.75);
-  border-radius: 50px;
-  padding: 8px;
-  &:hover {
-    color: rgba(0,0,0,1);
-    background-color: #aaa;
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-`;
-
 const Header = () => (
-  
-  <Container>
-    <Div1>
-      <Link legacyBehavior passHref href="/">
-        
-        <a style={{ display: "flex", alignItems: "center", color: "white" }}>
-          <Image alt="" src="/images/logomin.svg" height={60} width={60} />
-        
-        </a>
+  <div className="max-w-screen-xl w-full my-0 mx-auto mb-8 p-4 pt-8 grid grid-cols-5 grid-rows-1 gap-4">
+    <div className="flex flex-row row-start-1 col-start-1 row-end-2 col-end-2">
+      <Link href="/" className="flex items-center">
+        <Image alt="" src="/images/logomin.svg" height={60} width={60} />
       </Link>
-    </Div1>
-    <Div2>
-      
-      <li>
-        <Link legacyBehavior passHref href="/portfolio">
-          <NavLink>Portfolio</NavLink>
+    </div>
+    <ul className="flex justify-end row-start-1 col-start-2 row-end-2 col-end-5">
+      <li className="my-0 mx-8 leading-15 flex items-center">
+        <Link
+          href="/portfolio"
+          className="text-4xl font-light text-black/75 ease-in-out duration-300 hover:text-black"
+        >
+          Portfolio
         </Link>
-      
       </li>
-      
-      <li>
-        <Link legacyBehavior passHref href="/blog">
-          <NavLink>Blog</NavLink>
+      <li className="my-0 mx-8 leading-15 flex items-center">
+        <Link
+          href="/blog"
+          className="text-4xl font-light text-black/75 ease-in-out duration-300 hover:text-black"
+        >
+          Blog
         </Link>
-      
       </li>
-    </Div2>
-    <Div3>
-      <SocialIcons
+      <li className="my-0 mx-8 leading-15 flex items-center">
+        <Link
+          href="https://store.luisalejandro.org/"
+          className="text-4xl font-light text-black/75 ease-in-out duration-300 hover:text-black"
+        >
+          Store
+        </Link>
+      </li>
+      <li className="my-0 mx-8 leading-15 flex items-center">
+        <Link
+          href="/contact"
+          className="text-4xl font-light text-black/75 ease-in-out duration-300 hover:text-black"
+        >
+          Contact
+        </Link>
+      </li>
+    </ul>
+    <div className="flex justify-between items-center row-start-1 col-start-5 row-end-2 col-end-6">
+      <a
         href="https://github.com/LuisAlejandro"
         target="_blank"
         rel="nofollow noreferrer"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
       >
         <AiFillGithub size="30px" />
-      </SocialIcons>
-      <SocialIcons
+      </a>
+      <a
         href="https://www.linkedin.com/in/martinezfaneyth"
         target="_blank"
         rel="nofollow noreferrer"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
       >
         <AiFillLinkedin size="30px" />
-      </SocialIcons>
-      <SocialIcons
+      </a>
+      <a
         href="https://www.youtube.com/@LuisDevelops"
         target="_blank"
         rel="nofollow noreferrer"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
       >
         <AiFillYoutube size="30px" />
-      </SocialIcons>
-      <SocialIcons
+      </a>
+      <a
         href="https://x.com/LuisAlejandro"
         target="_blank"
         rel="nofollow noreferrer"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
       >
-        <AiFillTwitterCircle size="30px" />
-      </SocialIcons>
-    </Div3>
-  </Container>
+        <AiOutlineX size="25px" />
+      </a>
+    </div>
+  </div>
 );
 
 export default Header;

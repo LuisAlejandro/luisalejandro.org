@@ -1,78 +1,35 @@
-import styled from "styled-components";
+import React from "react";
 
-export const LeftSection = styled.div`
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
+interface LeftSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-  .button1 {
-    display: inline-block;
-    vertical-align: top;
-    margin: 5px 1%;
-    width: 200px;
-
-    a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2em;
-      font-weight: 200;
-      height: 64px;
-      line-height: 20px;
-      margin: 0 0 80px 0;
-      padding: 3px 5px 7px 5px;
-      color: rgb(90, 90, 90);
-      box-shadow: 0 -6px 0 rgba(255, 255, 255, 0.3) inset,
-        0 -5px 0 rgba(0, 0, 0, 0.3) inset, -1px 0 0 rgba(0, 0, 0, 0.3) inset,
-        1px 1px 0 rgba(0, 0, 0, 0.3) inset;
-      background-color: rgb(171, 183, 183);
-      background-image: radial-gradient(
-        ellipse closest-side at 50% 50%,
-        rgba(255, 255, 255, 0.4),
-        rgba(255, 255, 255, 0)
-      );
-      transition: background-color 0.4s ease-out;
-      border-radius: 15px;
-    }
-
-    a:hover {
-      background-color: rgb(192 206 206);
-    }
-
-    a:active {
-      padding: 3px 5px;
-      margin: 4px 0 76px 0;
-      box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2) inset;
-      background-color: rgb(192 206 206);
-    }
+export const LeftSection = React.forwardRef<HTMLDivElement, LeftSectionProps>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className:
+          `max-w-5xl w-full mx-auto flex flex-col xs:flex-col sm:flex-col md:flex-col lg:flex-col ${className || ""}`.trim(),
+      },
+      children
+    );
   }
+);
 
-  @media only screen and (min-width: 0px) and (max-width: 450px) {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+LeftSection.displayName = "LeftSection";
 
-    .button1 {
-      width: 100%;
-      margin: 5px 0;
-    }
-  }
+export const LeftSectionButton1 =
+  "inline-block align-top my-1 mx-[1%] w-52 xs:w-full xs:mx-0 xs:my-1";
 
-  @media ${(props) => props.theme.breakpoints.sm} {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-  }
-
-  @media ${(props) => props.theme.breakpoints.md} {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-
-  @media ${(props) => props.theme.breakpoints.lg} {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-  }
+export const LeftSectionButtonLink = `
+  flex items-center justify-center text-3xl font-extralight h-16 leading-5 
+  mb-20 px-1 py-1 text-gray-600 
+  bg-slate-400 hover:bg-slate-500 active:bg-slate-500
+  rounded-2xl transition-colors duration-400 ease-out
+  shadow-[inset_0_-6px_0_rgba(255,255,255,0.3),inset_0_-5px_0_rgba(0,0,0,0.3),inset_-1px_0_0_rgba(0,0,0,0.3),inset_1px_1px_0_rgba(0,0,0,0.3)]
+  active:shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] active:pt-1 active:mb-[4.75rem]
+  bg-gradient-radial from-white/40 to-transparent
 `;

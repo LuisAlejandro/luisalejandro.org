@@ -1,7 +1,6 @@
 import { Container, Div1, Div2, Div3 } from "./ExtraContentStyle";
 
 const ExtraContent = () => (
-  
   <Container id="extra-content">
     {/* <Div1>
       <ul>

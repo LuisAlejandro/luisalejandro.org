@@ -1,94 +1,143 @@
-import Link from "next/link";
+import cn from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import {
   AiFillGithub,
-  AiFillYoutube,
   AiFillLinkedin,
   AiFillTwitterCircle,
+  AiFillYoutube,
 } from "react-icons/ai";
 
-import {
-  Container,
-  Div1,
-  Div2,
-  Div3,
-  NavLink,
-  SocialIcons,
-} from "./HeaderStyles";
+import { Container } from "@components/common/Header/Container";
+import { Div1 } from "@components/common/Header/Div1";
+import { Div2 } from "@components/common/Header/Div2";
+import { Div3 } from "@components/common/Header/Div3";
+import { SocialIcons } from "@components/common/Header/SocialIcons";
 
-const Header = () => (
-  
-  <Container>
-    <Div1>
-      <Link legacyBehavior passHref href="/">
-        
-        <a style={{ display: "flex", alignItems: "center", color: "white" }}>
-          <Image alt="" src="/images/logomin.svg" height={60} width={60} />
-        
-        </a>
-      </Link>
-    </Div1>
-    <Div2>
-        
-        <li>
-          <Link legacyBehavior passHref href="/portfolio">
-            <NavLink>Portfolio</NavLink>
+const Header = ({ variant }: { variant?: string }) => {
+  const isCaseStudies = variant === "case-studies";
+  return (
+    <>
+      <Container wide={isCaseStudies} dark={isCaseStudies}>
+        <Div1>
+          <Link
+            href="/"
+            style={{ display: "flex", alignItems: "center", color: "white" }}
+          >
+            <Image
+              alt=""
+              src={
+                isCaseStudies
+                  ? "/images/logomin-white.svg"
+                  : "/images/logomin.svg"
+              }
+              height={60}
+              width={60}
+            />
           </Link>
-        
-        </li>
-        
-        <li>
-          <Link legacyBehavior passHref href="/blog">
-            <NavLink>Blog</NavLink>
-          </Link>
-        
-        </li>
-        
-        <li>
-          <Link legacyBehavior passHref href="https://store.luisalejandro.org/">
-            <NavLink>Store</NavLink>
-          </Link>
-        
-        </li>
-        
-        <li>
-          <Link legacyBehavior passHref href="/contact">
-            <NavLink>Contact</NavLink>
-          </Link>
-        
-        </li>
-    </Div2>
-    <Div3>
-      <SocialIcons
-        href="https://github.com/LuisAlejandro"
-        target="_blank"
-        rel="nofollow noreferrer"
-      >
-        <AiFillGithub size="3rem" />
-      </SocialIcons>
-      <SocialIcons
-        href="https://www.linkedin.com/in/martinezfaneyth"
-        target="_blank"
-        rel="nofollow noreferrer"
-      >
-        <AiFillLinkedin size="3rem" />
-      </SocialIcons>
-      <SocialIcons
-        href="https://www.youtube.com/@LuisDevelops"
-        target="_blank"
-        rel="nofollow noreferrer"
-      >
-        <AiFillYoutube size="3rem" />
-      </SocialIcons>
-      <SocialIcons
-        href="https://x.com/LuisAlejandro"
-        target="_blank"
-        rel="nofollow noreferrer"
-      >
-        <AiFillTwitterCircle size="3rem" />
-      </SocialIcons>
-    </Div3>
-  </Container>
-);
+        </Div1>
+        <Div2>
+          <li className="mx-5 leading-[60px]">
+            <Link
+              href="/portfolio"
+              className={cn(
+                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                isCaseStudies
+                  ? "text-gray-400 hover:text-white"
+                  : "text-black/75 hover:text-black",
+                "xs:px-2 xs:text-[2rem]"
+              )}
+            >
+              Portfolio
+            </Link>
+          </li>
+          <li className="mx-5 leading-[60px]">
+            <Link
+              href="/blog"
+              className={cn(
+                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                isCaseStudies
+                  ? "text-gray-400 hover:text-white"
+                  : "text-black/75 hover:text-black",
+                "xs:px-2 xs:text-[2rem]"
+              )}
+            >
+              Blog
+            </Link>
+          </li>
+          <li className="mx-5 leading-[60px]">
+            <Link
+              href="https://store.luisalejandro.org/"
+              target="_blank"
+              rel="nofollow noreferrer"
+              className={cn(
+                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                isCaseStudies
+                  ? "text-gray-400 hover:text-white"
+                  : "text-black/75 hover:text-black",
+                "xs:px-2 xs:text-[2rem]"
+              )}
+            >
+              Store
+            </Link>
+          </li>
+          <li className="mx-5 leading-[60px]">
+            <Link
+              href="/contact"
+              className={cn(
+                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                isCaseStudies
+                  ? "text-gray-400 hover:text-white"
+                  : "text-black/75 hover:text-black",
+                "xs:px-2 xs:text-[2rem]"
+              )}
+            >
+              Contact
+            </Link>
+          </li>
+        </Div2>
+        <Div3>
+          <SocialIcons
+            dark={isCaseStudies}
+            href="https://github.com/LuisAlejandro"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <AiFillGithub size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark={isCaseStudies}
+            href="https://www.linkedin.com/in/martinezfaneyth"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <AiFillLinkedin size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark={isCaseStudies}
+            href="https://www.youtube.com/@LuisDevelops"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <AiFillYoutube size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark={isCaseStudies}
+            href="https://x.com/LuisAlejandro"
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            <AiFillTwitterCircle size="3rem" />
+          </SocialIcons>
+        </Div3>
+      </Container>
+      {isCaseStudies && (
+        <svg viewBox="0 0 1920 100">
+          <path fill="#303030" d="M960,50l960-50H0L960,50z" />
+        </svg>
+      )}
+    </>
+  );
+};
 
 export default Header;

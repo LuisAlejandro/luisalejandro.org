@@ -1,28 +1,15 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import Meta from "../meta";
-import { Container } from "./LayoutStyles";
 
 export const Layout = ({ children }: any) => {
   return (
-    <Container itemScope={true} itemType="http://schema.org/Blog">
-      <meta itemProp="name" content="xxxx" />
-      <meta itemProp="url" content="xxxx" />
-      <meta itemProp="headline" content="xxxx" />
-      <meta itemProp="description about" content="xxxx" />
-      <meta itemProp="keywords" content="xxxx" />
-      <meta itemProp="image" content="xxxx" />
-      <meta itemProp="inLanguage" content="en" />
-      <Meta />
+    <div
+      itemScope={true}
+      itemType="http://schema.org/Blog"
+      className="bg-[#ddd] w-full my-0 mx-auto"
+    >
       <Header />
-      <main
-        style={{
-          backgroundColor: "#fff",
-          paddingBottom: "200px",
-        }}
-      >
-        {children}
-      </main>
+      <main className="bg-white pb-[200px]">{children}</main>
       <div id="modal-container">
         <div id="modal-overlay">
           <div id="modal-vertical-offset">
@@ -36,6 +23,6 @@ export const Layout = ({ children }: any) => {
         </div>
       </div>
       <Footer />
-    </Container>
+    </div>
   );
 };

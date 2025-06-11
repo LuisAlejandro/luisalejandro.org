@@ -1,6 +1,24 @@
-import styled from "styled-components";
+// Tailwind CSS classes for Post Layout components
 
-export const Container = styled.div`
-  width: 100%;
-  margin: 0 auto;
-`;
+import cn from "classnames";
+import React from "react";
+
+interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
+  ({ children, className, ...props }, ref) => {
+    return React.createElement(
+      "div",
+      {
+        ...props,
+        ref,
+        className: cn("w-full mx-auto", className),
+      },
+      children
+    );
+  }
+);
+
+Container.displayName = "Container";

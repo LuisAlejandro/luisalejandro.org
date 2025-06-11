@@ -1,4 +1,3 @@
-
 import Imgix from "react-imgix";
 import cn from "classnames";
 
@@ -6,10 +5,9 @@ export default function CoverImage({
   title,
   highResUrl,
   lowResUrl,
-  extraClasses
+  extraClasses,
 }: any) {
   return (
-    
     <Imgix
       src={highResUrl}
       alt={title}

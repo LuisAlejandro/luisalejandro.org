@@ -3,8 +3,8 @@ import axios from "axios";
 import {
   addSpreadsheetRow,
   addUserMailchimp,
-  createSESUser,
   checkUserOnMailchimpList,
+  createSESUser,
   sendCompanyEmail,
   sendWelcomeEmail,
 } from "./leads";
@@ -12,7 +12,6 @@ import {
 export async function verifyCaptcha(token: any) {
   try {
     const res = await axios.post(
-      
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_API_SECRET}&response=${token}`
     );
     if (res.data.success) {
@@ -30,8 +29,7 @@ export async function initLeadWorkflow(data: any) {
   let isUserOnMailchimpList = false;
 
   try {
-    
-    isUserOnMailchimpList = await checkUserOnMailchimpList(data);
+    isUserOnMailchimpList = (await checkUserOnMailchimpList(data)) || false;
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";

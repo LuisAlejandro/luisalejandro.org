@@ -1,75 +1,101 @@
+import cn from "classnames";
 import {
   AiFillGithub,
-  AiFillYoutube,
   AiFillLinkedin,
   AiFillTwitterCircle,
+  AiFillYoutube,
 } from "react-icons/ai";
 
-import {
-  CompanyContainer,
-  FooterWrapper,
-  LinkColumn,
-  LinkItem,
-  LinkList,
-  LinkTitle,
-  Slogan,
-  SocialIcons,
-  SocialContainer,
-  SocialIconsContainer,
-} from "./FooterStyles";
+import { SocialIcons } from "@components/common/Header/SocialIcons";
+
+import { FooterWrapper } from "./FooterWrapper";
+import { LinkColumn } from "./LinkColumn";
+import { LinkItem } from "./LinkItem";
+import { LinkList } from "./LinkList";
+import { LinkTitle } from "./LinkTitle";
 
 const Footer = () => {
   return (
-    
-    <>
-      <FooterWrapper>
-        <LinkList>
-          <LinkColumn>
-            <LinkTitle>Email</LinkTitle>
-            <LinkItem href="mailto:luis@luisalejandro.org">
-              luis@luisalejandro.org
-            </LinkItem>
-          </LinkColumn>
-        </LinkList>
-        <SocialIconsContainer>
-          <CompanyContainer>
-            <Slogan>
-              &copy; {new Date().getFullYear()} Luis Martínez. All rights reserved.
-            </Slogan>
-          </CompanyContainer>
-          <SocialContainer>
-            <SocialIcons
-              href="https://github.com/LuisAlejandro"
-              target="_blank"
-              rel="nofollow noreferrer"
-            >
-              <AiFillGithub size="3rem" />
-            </SocialIcons>
-            <SocialIcons
-              href="https://www.linkedin.com/in/martinezfaneyth"
-              target="_blank"
-              rel="nofollow noreferrer"
-            >
-              <AiFillLinkedin size="3rem" />
-            </SocialIcons>
-            <SocialIcons
-              href="https://www.youtube.com/@LuisDevelops"
-              target="_blank"
-              rel="nofollow noreferrer"
-            >
-              <AiFillYoutube size="3rem" />
-            </SocialIcons>
-            <SocialIcons
-              href="https://x.com/LuisAlejandro"
-              target="_blank"
-              rel="nofollow noreferrer"
-            >
-              <AiFillTwitterCircle size="3rem" />
-            </SocialIcons>
-          </SocialContainer>
-        </SocialIconsContainer>
-      </FooterWrapper>
-    </>
+    <FooterWrapper>
+      <LinkList>
+        <LinkColumn>
+          <LinkTitle>Email</LinkTitle>
+          <LinkItem href="mailto:luis@luisalejandro.org">
+            luis@luisalejandro.org
+          </LinkItem>
+        </LinkColumn>
+      </LinkList>
+      <div
+        className={cn(
+          "flex flex-col justify-between w-full",
+          "lg:flex-row",
+          "sm:flex-col"
+        )}
+      >
+        <div
+          className={cn(
+            "flex items-baseline flex-wrap mr-auto pt-[1rem]",
+            "sm:flex sm:items-center sm:m-0",
+            "xs:flex xs:items-center xs:m-0"
+          )}
+        >
+          <p
+            className={cn(
+              "text-white/50 text-center w-full min-w-[280px] tracking-[0.02em] leading-[22px] text-[15px]",
+              "lg:text-[18px] lg:leading-[30px]",
+              "sm:leading-[22px] sm:text-[15px]"
+            )}
+          >
+            &copy; {new Date().getFullYear()} Luis Martínez. All rights
+            reserved.
+          </p>
+        </div>
+        <div
+          className={cn(
+            "flex items-center pt-[1rem]",
+            "sm:justify-center",
+            "xs:justify-center"
+          )}
+        >
+          <SocialIcons
+            dark
+            href="https://github.com/LuisAlejandro"
+            target="_blank"
+            rel="nofollow noreferrer"
+            className="m-4"
+          >
+            <AiFillGithub size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark
+            href="https://www.linkedin.com/in/martinezfaneyth"
+            target="_blank"
+            rel="nofollow noreferrer"
+            className="m-4"
+          >
+            <AiFillLinkedin size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark
+            href="https://www.youtube.com/@LuisDevelops"
+            target="_blank"
+            rel="nofollow noreferrer"
+            className="m-4"
+          >
+            <AiFillYoutube size="3rem" />
+          </SocialIcons>
+          <SocialIcons
+            dark
+            href="https://x.com/LuisAlejandro"
+            target="_blank"
+            rel="nofollow noreferrer"
+            className="m-4"
+          >
+            <AiFillTwitterCircle size="3rem" />
+          </SocialIcons>
+        </div>
+      </div>
+    </FooterWrapper>
   );
 };
 

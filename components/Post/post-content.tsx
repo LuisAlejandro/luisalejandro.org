@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
+import { CommentCount, DiscussionEmbed } from "disqus-react";
 import hljs from "highlight.js";
 import parse, { domToReact } from "html-react-parser";
+import { useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
-import { DiscussionEmbed, CommentCount } from "disqus-react";
 
-import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
-import RelatedStories from "@components/Post/related-stories";
 import Date from "@components/Blog/date";
+import RelatedStories from "@components/Post/related-stories";
+import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
 
 import ExtraContent from "./ExtraContent/ExtraContent";
 import CoverImage from "./cover-image";
@@ -22,9 +24,9 @@ export default function PostContent({
   slug,
   id,
   categories,
-  morePosts
+  morePosts,
 }: any) {
-  const excerptText = excerpt.replace( /(<([^>]+)>)/ig, '');
+  const excerptText = excerpt.replace(/(<([^>]+)>)/gi, "");
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
   const escapedCanonicalUrl = encodeURIComponent(canonicalUrl);
   const escapedTitle = encodeURIComponent(title);
@@ -34,64 +36,62 @@ export default function PostContent({
   }, []);
 
   useEffect(() => {
-    const modal = document.querySelector("#modal");
-    const modalClose = document.querySelector("#modal-close");
-    const modalContainer = document.querySelector("#modal-container");
-    const modalOverlay = document.querySelector("#modal-overlay");
-    const modalVerticalOffset = document.querySelector(
+    const modal = document.querySelector<HTMLElement>("#modal");
+    const modalClose = document.querySelector<HTMLElement>("#modal-close");
+    const modalContainer =
+      document.querySelector<HTMLElement>("#modal-container");
+    const modalOverlay = document.querySelector<HTMLElement>("#modal-overlay");
+    const modalVerticalOffset = document.querySelector<HTMLElement>(
       "#modal-vertical-offset"
     );
-    const imageLinks = document.querySelectorAll(
+    const imageLinks = document.querySelectorAll<HTMLElement>(
       ".picasa-image-large, .figure > a"
     );
 
     imageLinks.forEach((item) => {
-      item.addEventListener("click", (event) => {
+      if (modal && modalContainer) {
+        item.addEventListener("click", (event) => {
+          event.preventDefault();
+
+          const imgUrl = item.getAttribute("href");
+          modal.style.backgroundImage = `url('${imgUrl}')`;
+          modalContainer.style.display = "block";
+        });
+      }
+    });
+
+    if (modalClose && modalContainer) {
+      modalClose.addEventListener("click", (event) => {
         event.preventDefault();
-        const imgUrl = item.getAttribute("href");
-        
-        modal.style.backgroundImage = `url('${imgUrl}')`;
-        
-        modalContainer.style.display = "block";
+
+        modalContainer.style.display = "none";
       });
-    });
+    }
 
-    
-    modalClose.addEventListener("click", (event) => {
-      event.preventDefault();
-      
-      modalContainer.style.display = "none";
-    });
+    if (modalOverlay && modalContainer) {
+      modalOverlay.addEventListener("click", (event) => {
+        event.preventDefault();
 
-    
-    modalOverlay.addEventListener("click", (event) => {
-      event.preventDefault();
-      
-      modalContainer.style.display = "none";
-    });
+        modalContainer.style.display = "none";
+      });
+    }
 
-    
-    modalVerticalOffset.addEventListener("click", (event) => {
-      event.preventDefault();
-      
-      modalContainer.style.display = "none";
-    });
+    if (modalVerticalOffset && modalContainer) {
+      modalVerticalOffset.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        modalContainer.style.display = "none";
+      });
+    }
   }, []);
 
   const hidrateHtml = (htmlString: any) => {
     const options = {
-      replace: ({
-        attribs,
-        children,
-        name
-      }: any) => {
+      replace: ({ attribs, children, name }: any) => {
         if (name === "pre") {
           return (
-            
             <figure className="highlight">
-              
               <pre>{domToReact(children, options)}</pre>
-            
             </figure>
           );
         }
@@ -116,44 +116,32 @@ export default function PostContent({
             }
           }
           return hasSpecialChildren ? (
-            
             <div className="special">{domToReact(children, options)}</div>
           ) : (
-            
             <p>{domToReact(children, options)}</p>
           );
         }
 
         if (!attribs?.class) {
-          return;
+          return null;
         }
 
         const classList = attribs.class.split(" ");
 
         if (classList.includes("picasa")) {
-          
-          if (!children.length || !children[0].type === "text") return <p></p>;
+          if (!children.length || children[0].type !== "text") return <p></p>;
           const imageList = children[0].data.split("\n").filter(Boolean);
           return (
-            
             <div className="picasa">
-              
               <ul className="picasa-album">
                 {imageList.map((img: any, index: any) => (
-                  
                   <li key={index} className="picasa-image">
-                    
                     <a className="picasa-image-large" href={img}>
-                      
-                      <img className="picasa-image-thumb" src={img} />
-                    
+                      <img className="picasa-image-thumb" src={img} alt="" />
                     </a>
-                  
                   </li>
                 ))}
-              
               </ul>
-            
             </div>
           );
         }
@@ -162,15 +150,12 @@ export default function PostContent({
           const highResUrl = attribs["data-figure-href"];
           const lowResUrl = attribs["data-figure-src"];
           return (
-            
             <span
               className={attribs.class}
               data-figure-src={lowResUrl}
               data-figure-href={highResUrl}
             >
-              
               <a href={lowResUrl} title={excerptText}>
-                
                 <figure className="figure-container">
                   <CoverImage
                     extraClasses={"image"}
@@ -178,17 +163,13 @@ export default function PostContent({
                     lowResUrl={lowResUrl}
                     highResUrl={highResUrl}
                   />
-                  
+
                   <figcaption
                     className="caption"
                     dangerouslySetInnerHTML={{ __html: excerpt }}
-                  
                   ></figcaption>
-                
                 </figure>
-              
               </a>
-            
             </span>
           );
         }
@@ -196,7 +177,6 @@ export default function PostContent({
         if (classList.includes("youtube")) {
           const youtubeId = attribs["data-youtube-id"];
           return (
-            
             <span className={attribs.class} data-youtube-id={youtubeId}>
               <ReactPlayer
                 className="player"
@@ -223,7 +203,6 @@ export default function PostContent({
                 width="100%"
                 height="100%"
               />
-            
             </span>
           );
         }
@@ -231,7 +210,6 @@ export default function PostContent({
         if (classList.includes("soundcloud")) {
           const soundcloudUrl = attribs["data-soundcloud-url"];
           return (
-            
             <span className={attribs.class} data-soundcloud-url={soundcloudUrl}>
               <ReactPlayer
                 className="player"
@@ -257,31 +235,41 @@ export default function PostContent({
                 width="100%"
                 height="100%"
               />
-            
             </span>
           );
         }
 
         if (classList.includes("svgviewer")) {
           const svgUrl = attribs["data-svg-url"];
-          
+
           return <iframe className="svgviewer" src={svgUrl}></iframe>;
         }
 
         if (classList.includes("pdfviewer")) {
           const pdfUrl = attribs["data-pdf-url"];
-          
+
           return <iframe className="pdfviewer" src={pdfUrl}></iframe>;
         }
+
+        return null;
       },
     };
     return parse(htmlString, options);
   };
 
   return (
-    
     <div id="post-content">
-      
+      <style jsx global>{`
+        body {
+          font-family: var(--font-roboto), sans-serif;
+          font-size: 1.6rem;
+          cursor: default;
+          overflow-x: hidden;
+          line-height: 1em;
+          background: #ddd;
+          color: rgb(0, 0, 0);
+        }
+      `}</style>
       <article
         id={`post-${id}`}
         className="post"
@@ -289,79 +277,64 @@ export default function PostContent({
         itemScope={true}
         itemType="http://schema.org/BlogPosting"
       >
-        
         <meta itemProp="image" content={coverImage.url} />
-        
+
         <span className="categories">
-          {categories.map((category: any) => <Link legacyBehavior
-            passHref
-            href={`/blog/category/${category.slug}`}
-            key={category.id}
-          >
-            
-            <a
-              title={`List all posts under the category "${category.title}"`}
-              rel="tag"
+          {categories.map((category: any) => (
+            <Link
+              legacyBehavior
+              passHref
+              href={`/blog/category/${category.slug}`}
+              key={category.id}
             >
-              {category.title}
-            
-            </a>
-          </Link>)}
-        
+              <a
+                title={`List all posts under the category "${category.title}"`}
+                rel="tag"
+              >
+                {category.title}
+              </a>
+            </Link>
+          ))}
         </span>
-        
+
         <header className="header">
-          
           <h2>
             <Link legacyBehavior passHref href={canonicalUrl}>
-              
               <a
                 rel="bookmark"
                 title={`Permanent link to "${title}"`}
                 itemProp="url"
               >
-                
                 <span itemProp="headline">{title}</span>
-              
               </a>
             </Link>
-          
           </h2>
-        
         </header>
-        
+
         <ul className="social">
-          
           <li
             className="description"
             itemProp="description"
             dangerouslySetInnerHTML={{ __html: excerpt }}
-          
           ></li>
-          
+
           <li className="description">
             by{" "}
             <Link legacyBehavior passHref href="/portfolio">
-              
               <a title="About the author" itemProp="author">
                 Luis Alejandro
-              
               </a>
             </Link>
             , on{" "}
-            
             <time className="datetime" dateTime={date} itemProp="dateCreated">
               {" "}
               <Date dateString={date} />
-            
             </time>
-          
           </li>
-          
+
           <li className="comments">
-            
             <span className="n_comments">
-              {canonicalUrl && (
+              {canonicalUrl && DISQUS_SHORTNAME && (
                 <CommentCount
                   shortname={DISQUS_SHORTNAME}
                   config={{
@@ -371,76 +344,59 @@ export default function PostContent({
                   }}
                 />
               )}
-            
             </span>
-            
+
             <span className="t_comments">Comments</span>
-          
           </li>
-          
+
           <li className="espacio"></li>
-          
+
           <li className="twitter">
-            
             <a
               href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
             >
-              
               <span className="sprite"></span>
-              
+
               <span className="hide">Twitter</span>
-            
             </a>
-          
           </li>
-          
+
           <li className="facebook">
-            
             <a
               href={`http://facebook.com/sharer/sharer.php?u=${escapedCanonicalUrl}`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
             >
-              
               <span className="sprite"></span>
-              
+
               <span className="hide">Facebook</span>
-            
             </a>
-          
           </li>
-          
+
           <li className="linkedin">
-            
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${escapedCanonicalUrl}`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
             >
-              
               <span className="sprite"></span>
-              
+
               <span className="hide">LinkedIn</span>
-            
             </a>
-          
           </li>
-        
         </ul>
-        
+
         <span
           className="figure figure-100"
           data-figure-src={coverImage.url}
           data-figure-href={coverImage.url}
         >
-          
           <a href={coverImage.url} title={excerptText}>
-            
             <figure className="figure-container">
               <CoverImage
                 extraClasses={"image"}
@@ -448,46 +404,36 @@ export default function PostContent({
                 lowResUrl={coverImage.url}
                 highResUrl={coverImage.imgix_url}
               />
-              
+
               <figcaption
                 className="caption"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
-              
               ></figcaption>
-            
             </figure>
-          
           </a>
-        
         </span>
-        
+
         <div className="text" itemProp="articleBody">
           {hidrateHtml(content)}
-        
         </div>
-      
       </article>
-      
+
       <div className="meta">
-        
         <h3>Other posts</h3>
         {morePosts.length > 0 && <RelatedStories posts={morePosts} />}
-      
       </div>
       <ExtraContent />
-      
+
       <div id="comments">
         <DiscussionEmbed
-          shortname={DISQUS_SHORTNAME}
+          shortname={DISQUS_SHORTNAME || ""}
           config={{
             identifier: id,
             url: canonicalUrl,
             title: title,
           }}
         />
-      
       </div>
-    
     </div>
   );
 }

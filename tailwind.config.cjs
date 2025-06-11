@@ -1,11 +1,10 @@
-
 const defaultTheme = require("tailwindcss/defaultTheme");
-
 
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./side-effects/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     screens: {
@@ -24,6 +23,8 @@ module.exports = {
         "accent-7": "#333",
         success: "#0070f3",
         cyan: "#79FFE1",
+        "gray-1": "#3c3c3c",
+        "custom-beige": "#EDE4CE",
       },
       spacing: {
         28: "7rem",
@@ -33,8 +34,45 @@ module.exports = {
       },
       lineHeight: {
         tight: 1.2,
+        11: "2.75rem",
+        12: "3rem",
+        13: "3.25rem",
+        14: "3.5rem",
+        15: "3.75rem",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.5rem",
+        "6xl": "3rem",
+        "6.5xl": "3.125rem",
+        "7xl": "3.5rem",
+      },
+      width: {
+        "2.5xl": "70rem",
+        "3xl": "80rem",
+      },
+      height: {
+        "3xl": "80rem",
+      },
+      margin: {
+        12: "3rem",
+        13: "3.25rem",
+        14: "3.5rem",
+        15: "3.75rem",
+        16: "4rem",
+        17: "4.25rem",
+        18: "4.5rem",
+        19: "4.75rem",
+        20: "5rem",
+        21: "5.25rem",
+        22: "5.5rem",
+        23: "5.75rem",
+        24: "6rem",
+        25: "6.25rem",
+        26: "6.5rem",
       },
       fontSize: {
+        "3.5xl": "2rem",
         "5xl": "2.5rem",
         "6xl": "2.75rem",
         "7xl": "4.5rem",
@@ -72,6 +110,6 @@ module.exports = {
       },
     },
   },
-  
+
   plugins: [require("@tailwindcss/forms")],
 };

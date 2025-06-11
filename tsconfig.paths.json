@@ -4,6 +4,8 @@
     "paths": {
       "@constants/*": ["constants/*"],
       "@components/*": ["components/*"],
+      "@side-effects/*": ["side-effects/*"],
+      "@app/*": ["app/*"],
       "@assets/*": ["assets/*"],
       "@themes/*": ["themes/*"],
       "@styles/*": ["styles/*"],

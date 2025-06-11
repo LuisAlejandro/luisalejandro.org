@@ -1,16 +1,17 @@
 import { createBucketClient } from "@cosmicjs/sdk";
 
-
-const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG || 'luisalejandroorg-development';
+const BUCKET_SLUG =
+  process.env.COSMIC_BUCKET_SLUG || "luisalejandroorg-development";
 
 const READ_KEY = process.env.COSMIC_READ_KEY;
 
 const cosmic = createBucketClient({
   bucketSlug: BUCKET_SLUG,
-  readKey: READ_KEY,
+  readKey: READ_KEY || "",
 });
 
-const is404 = (error: any) => /not found/i.test(error.message) || error.status === 404;
+const is404 = (error: any) =>
+  /not found/i.test(error.message) || error.status === 404;
 
 export async function getAllPostsSlugs() {
   const data = await cosmic.objects

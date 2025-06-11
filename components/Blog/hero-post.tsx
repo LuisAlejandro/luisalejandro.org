@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
+
 import { CommentCount } from "disqus-react";
+import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
 
 import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
