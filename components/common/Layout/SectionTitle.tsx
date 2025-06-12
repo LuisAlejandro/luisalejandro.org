@@ -31,7 +31,7 @@ export const SectionTitle = React.forwardRef<
         "lg:mb-4",
         main
           ? "lg:text-7_5xl lg:leading-18 lg:pt-14.5 lg:pb-4"
-          : "lg:text-6_5xl lg:leading-16_75",
+          : "lg:text-6_5xl lg:leading-[67px]",
         main
           ? "md:text-6_5xl md:leading-14 md:pt-10 md:pb-3"
           : "md:text-5xl md:leading-12",

@@ -182,7 +182,7 @@ export default async function RootLayout({
       className={`${roboto.variable} ${poppins.variable} ${leagueGothic.variable}`}
       prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# dcterms: http://purl.org/dc/terms/#"
     >
-      <body className="">
+      <body>
         {children}
         {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
         <CookieConsentWrapper />

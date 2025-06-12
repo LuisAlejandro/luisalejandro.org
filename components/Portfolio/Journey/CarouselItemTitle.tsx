@@ -17,7 +17,7 @@ export const CarouselItemTitle = React.forwardRef<
       ref,
       className: cn(
         "font-black font-title text-xl leading-7 tracking-0_02em flex bg-gradient-to-br from-gray-800/80 to-gray-800/60 bg-clip-text text-transparent",
-        "lg:text-4_5xl lg:leading-10_5 lg:mb-2",
+        "lg:text-4_5xl lg:leading-10.5 lg:mb-2",
         "md:mb-1",
         className
       ),

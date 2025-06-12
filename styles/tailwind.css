@@ -98,16 +98,6 @@
   --tracking-0_01em: 0.01em;
   --tracking-0_02em: 0.02em;
   --tracking-2px: 2px;
-
-  /* line height */
-  /* convert to closest tailwind equivalent */
-  --leading-3_5: 0.875rem;
-  --leading-4_5: 1.125rem;
-  --leading-5_5: 1.375rem;
-  --leading-6_5: 1.625rem;
-  --leading-7_5: 1.875rem;
-  --leading-10_5: 2.625rem;
-  --leading-16_75: 4.1875rem;
 }
 
 @layer components {

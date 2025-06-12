@@ -37,7 +37,7 @@ interface LinkItemProps {
 const LinkItem = ({ href, children }: LinkItemProps) => (
   <a
     href={href}
-    className="text-lg leading-7_5 text-white/66 mb-4 transition-all duration-300 relative left-0 hover:text-white hover:left-[6px] md:text-lg-minus md:leading-7 md:flex sm:text-sm-plus sm:leading-3_5 sm:mb-2 sm:flex sm:items-center"
+    className="text-lg leading-7.5 text-white/66 mb-4 transition-all duration-300 relative left-0 hover:text-white hover:left-[6px] md:text-lg-minus md:leading-7 md:flex sm:text-sm-plus sm:leading-3.5 sm:mb-2 sm:flex sm:items-center"
   >
     {children}
   </a>
@@ -56,7 +56,7 @@ const CompanyContainer = ({ children }: { children: ReactNode }) => (
 );
 
 const Slogan = ({ children }: { children: ReactNode }) => (
-  <p className="text-white/50 min-w-70 tracking-0_02em text-lg leading-7_5 pt-4 min-[0px]:max-[450px]:leading-5_5 min-[0px]:max-[450px]:text-sm-plus min-[0px]:max-[450px]:text-center min-[0px]:max-[450px]:w-full sm:leading-5_5 sm:text-sm-plus sm:text-center sm:w-full">
+  <p className="text-white/50 min-w-70 tracking-0_02em text-lg leading-7.5 pt-4 min-[0px]:max-[450px]:leading-5.5 min-[0px]:max-[450px]:text-sm-plus min-[0px]:max-[450px]:text-center min-[0px]:max-[450px]:w-full sm:leading-5.5 sm:text-sm-plus sm:text-center sm:w-full">
     {children}
   </p>
 );
