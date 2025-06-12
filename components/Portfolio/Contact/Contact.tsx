@@ -108,14 +108,123 @@ const Contact = ({ dark }: { dark?: boolean }) => {
         nopadding
         nomargin
         fullwidth
-        className={dark ? "!bg-[#aaaaaa]" : ""}
+        className={dark ? "!bg-custom-light-gray" : ""}
       >
+        <style jsx global>{`
+          #contact {
+            padding-bottom: 0;
+          }
+
+          #contact form {
+            position: relative;
+            margin-bottom: 20px;
+          }
+
+          #contact form button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: 200;
+            height: 64px;
+            line-height: 20px;
+            margin: 0 0 80px 0;
+            padding: 3px 5px 7px 5px;
+            box-shadow:
+              0 -6px 0 rgba(255, 255, 255, 0.3) inset,
+              0 -5px 0 rgba(0, 0, 0, 0.3) inset,
+              -1px 0 0 rgba(0, 0, 0, 0.3) inset,
+              1px 1px 0 rgba(0, 0, 0, 0.3) inset;
+            background-image: radial-gradient(
+              ellipse closest-side at 50% 50%,
+              rgba(255, 255, 255, 0.4),
+              rgba(255, 255, 255, 0)
+            );
+            transition: background-color 0.4s ease-out;
+            border-radius: 15px;
+            width: 150px;
+          }
+
+          #contact form .button-active:active {
+            padding: 3px 5px;
+            margin: 4px 0 76px 0;
+            box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2) inset;
+          }
+
+          #contact form textarea {
+            resize: none;
+            height: 160px !important;
+          }
+
+          #contact form .recaptcha div {
+            width: min-content;
+            float: right;
+          }
+          .button-primary {
+            background-color: #abb7b7;
+            color: #5a5a5a;
+            cursor: pointer;
+          }
+          .button-primary:hover {
+            background-color: #c0cece;
+            color: #5a5a5a;
+          }
+          .button-primary:active {
+            background-color: #c0cece;
+          }
+
+          .button-disabled-primary {
+            background-color: #c3c3c3;
+            color: #979797;
+            cursor: not-allowed;
+          }
+          .button-disabled-primary:hover {
+            background-color: #c3c3c3;
+            color: #979797;
+          }
+
+          .button-waiting-primary {
+            background-color: #f9e09c;
+            color: #979797;
+            cursor: not-allowed;
+          }
+          .button-waiting-primary:hover {
+            background-color: #f9e09c;
+            color: #979797;
+          }
+
+          .button-success-primary {
+            background-color: #a0d989;
+            color: #5a5a5a;
+            cursor: pointer;
+          }
+          .button-success-primary:hover {
+            background-color: #a0d989;
+            color: #5a5a5a;
+          }
+          .button-success-primary:active {
+            background-color: #c0cece;
+          }
+
+          .button-error-primary {
+            background-color: #d98989;
+            color: #5a5a5a;
+            cursor: not-allowed;
+          }
+          .button-error-primary:hover {
+            background-color: #d98989;
+            color: #5a5a5a;
+          }
+          .button-error-primary:active {
+            background-color: #c0cece;
+          }
+        `}</style>
         <SectionTitle main>Contact</SectionTitle>
         <SectionText>
           Ask me anything! I might? be available for hire
         </SectionText>
         <form
-          className="w-full max-w-[1040px] mx-auto"
+          className="w-full max-w-260 mx-auto"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col lg:flex-row">
@@ -133,7 +242,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 {...register("contactName")}
               />
 
-              <p className="block mx-1 h-[25px] text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
                 {errors.contactName?.message}
               </p>
 
@@ -150,7 +259,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 {...register("contactEmail")}
               />
 
-              <p className="block mx-1 h-[25px] text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
                 {errors.contactEmail?.message}
               </p>
               {RECAPTCHA_API_KEY && (
@@ -181,7 +290,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 {...register("contactMessage")}
               ></textarea>
 
-              <p className="block mx-1 h-[25px] text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
                 {errors.contactMessage?.message}
               </p>
 
@@ -201,13 +310,13 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                   Send
                 </button>
                 {isSent && (
-                  <AiFillCheckCircle className="ml-4 h-[6.5rem] text-5xl text-[#333]" />
+                  <AiFillCheckCircle className="ml-4 h-6_5rem text-5xl text-gray-800" />
                 )}
                 {waiting && (
-                  <AiOutlineLoading className="ml-4 h-[6.5rem] text-5xl text-[#333] animate-spin" />
+                  <AiOutlineLoading className="ml-4 h-6_5rem text-5xl text-gray-800 animate-spin" />
                 )}
                 {errorState && (
-                  <AiFillCloseCircle className="ml-4 h-[6.5rem] text-5xl text-[#333]" />
+                  <AiFillCloseCircle className="ml-4 h-6_5rem text-5xl text-gray-800" />
                 )}
               </div>
             </div>

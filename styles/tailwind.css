@@ -1,174 +1,142 @@
 @import "tailwindcss";
 
 @theme {
+  /* breakpoint */
   --breakpoint-xs: 450px;
-  --font-display: "var(--font-league-gothic)", sans-serif;
-  --font-title: "var(--font-poppins)", sans-serif;
-  --font-main: "var(--font-roboto)", sans-serif;
-  --color-accent-1: #fafafa;
-  --color-accent-2: #eaeaea;
-  --color-accent-7: #333;
-  --color-success: #0070f3;
-  --color-cyan: #79ffe1;
-  --color-gray-1: #3c3c3c;
-  --color-custom-beige: #ede4ce;
-  --spacing-28: 7rem;
-  --letter-spacing-tighter: -0.04em;
-  --line-height-tight: 1.2;
-  --line-height-11: 2.75rem;
-  --line-height-12: 3rem;
-  --line-height-13: 3.25rem;
-  --line-height-14: 3.5rem;
-  --line-height-15: 3.75rem;
-  --radius-4xl: 2rem;
-  --radius-5xl: 2.5rem;
-  --radius-6xl: 3rem;
-  --radius-6_5xl: 3.125rem;
-  --radius-7xl: 3.5rem;
-  --width-2_5xl: 70rem;
-  --width-3xl: 80rem;
-  --height-3xl: 80rem;
-  --margin-12: 3rem;
-  --margin-13: 3.25rem;
-  --margin-14: 3.5rem;
-  --margin-15: 3.75rem;
-  --margin-16: 4rem;
-  --margin-17: 4.25rem;
-  --margin-18: 4.5rem;
-  --margin-19: 4.75rem;
-  --margin-20: 5rem;
-  --margin-21: 5.25rem;
-  --margin-22: 5.5rem;
-  --margin-23: 5.75rem;
-  --margin-24: 6rem;
-  --margin-25: 6.25rem;
-  --margin-26: 6.5rem;
-  --font-size-5xl: 2.5rem;
-  --font-size-6xl: 2.75rem;
-  --font-size-7xl: 4.5rem;
-  --font-size-8xl: 6.25rem;
-  --font-size-9xl: 8.25rem;
-  --font-size-10xl: 10.25rem;
-  --font-size-11xl: 12.25rem;
-  --font-size-12xl: 14.25rem;
-  --font-size-13xl: 16.25rem;
-  --font-size-14xl: 18.25rem;
-  --font-size-15xl: 20.25rem;
-  --font-size-16xl: 22.25rem;
-  --font-size-17xl: 24.25rem;
-  --font-size-18xl: 26.25rem;
+
+  /* font */
+  --font-display: var(--font-league-gothic), sans-serif;
+  --font-title: var(--font-poppins), sans-serif;
+  --font-main: var(--font-roboto), sans-serif;
+
+  /* shadow */
   --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+  /* grid */
   --grid-template-columns-16: repeat(16, minmax(0, 1fr));
   --grid-column-span-16: span 16 / span 16;
+
+  /* background image */
+  /* add case studies hero background image */
   --background-image-case-studies-canaima-challenge: url("/images/case-studies/canaima-challenge.png");
   --background-image-case-studies-dockershelf-challenge: url("/images/case-studies/dockershelf-challenge.png");
   --background-image-case-studies-expedia-challenge: url("/images/case-studies/expedia-challenge.png");
   --background-image-case-studies-soleit-challenge: url("/images/case-studies/soleit-challenge.png");
 
-  --font-size-3xs: 10px;
-  --font-size-2xs: 11px;
-  --font-size-sm-plus: 15px;
-  --font-size-lg-minus: 17px;
-  --font-size-2_5xl: 28px;
-  --font-size-3_5xl: 2rem;
-  --font-size-4_5xl: 42px;
-  --font-size-6_5xl: 56px;
-  --font-size-7_5xl: 65px;
-  --font-size-custom-31: 1.9375rem;
-  --font-size-custom-46: 2.875rem;
-  --font-size-custom-57: 3.5625rem;
-  --font-size-custom-61: 3.8rem;
-  --font-size-custom-2em: 2em;
-  --font-size-custom-180: 180px;
-  --font-size-custom-12rem: 12rem;
-  --font-size-custom-12_5rem: 12.5rem;
-  --font-size-custom-15rem: 15rem;
-  --font-size-custom-22rem: 22rem;
+  /* radius */
+  --radius-5xl: 40px;
+  --radius-6xl: 48px;
+  --radius-6_5xl: 50px;
+  --radius-7xl: 56px;
 
-  --spacing-4_5: 1.125rem;
-  --spacing-7_5: 1.875rem;
-  --spacing-15: 3.75rem;
-  --spacing-17: 4.25rem;
-  --spacing-18: 4.5rem;
-  --spacing-19: 4.75rem;
-  --spacing-25: 6.25rem;
-  --spacing-30: 7.5rem;
-  --spacing-60rem: 60rem;
-  --spacing-100px: 100px;
-  --spacing-160px: 160px;
-  --spacing-50px: 50px;
-  --spacing-76px: 76px;
-  --spacing-80px: 80px;
-  --spacing-15rem: 15rem;
-  --spacing-6_25rem: 6.25rem;
-  --spacing-4_1875rem: 4.1875rem;
-  --spacing-7_1875rem: 7.1875rem;
-  --spacing-4_125rem: 4.125rem;
-  --spacing-58px: 58px;
-  --spacing-10rem: 10rem;
-  --spacing-15px: 15px;
-  --spacing-200px: 200px;
-  --spacing-4_75rem: 4.75rem;
+  /* font sizes */
+  --text-3xs: 10px;
+  --text-2xs: 11px;
+  --text-sm-plus: 15px;
+  --text-lg-minus: 17px;
+  --text-1\.25xl: 20px;
+  --text-2_5xl: 28px;
+  --text-custom-31: 31px;
+  --text-3_5xl: 32px;
+  --text-custom-32px: 32px;
+  --text-38px: 38px;
+  --text-2\.375xl: 38px;
+  --text-5xl: 40px;
+  --text-4_5xl: 42px;
+  --text-6xl: 44px;
+  --text-custom-46: 46px;
+  --text-custom-54px: 54px;
+  --text-6_5xl: 56px;
+  --text-custom-57: 57px;
+  --text-custom-61: 61px;
+  --text-7_5xl: 65px;
+  --text-7xl: 72px;
+  --text-8xl: 100px;
+  --text-9xl: 132px;
+  --text-10xl: 164px;
+  --text-custom-180: 180px;
+  --text-custom-12rem: 192px;
+  --text-11xl: 196px;
+  --text-custom-12_5rem: 200px;
+  --text-12xl: 228px;
+  --text-custom-15rem: 240px;
+  --text-13xl: 260px;
+  --text-14xl: 292px;
+  --text-15xl: 324px;
+  --text-custom-22rem: 352px;
+  --text-16xl: 356px;
+  --text-17xl: 388px;
+  --text-18xl: 420px;
+  --text-custom-2em: 2em;
+
+  /* custom colors */
+  --color-custom-dark-gray: #303030;
+  --color-custom-light-gray: #aaaaaa;
+  --color-custom-gold: #f8d983;
+  --color-custom-orange: #da8244;
+  --color-custom-hr-gold: #d0bb57;
+  --color-custom-text-gray: #5a5a5a;
+  --color-custom-bg-blue-gray: #abb7b7;
+  --color-custom-bg-blue-gray-light: #c0cece;
+  --color-custom-beige: #f2d9a0;
+  --color-custom-beige-light: #ede4ce;
+  --color-accent-1: #fafafa;
+  --color-accent-2: #eaeaea;
+  --color-accent-7: #333333;
+  --color-success: #0070f3;
+  --color-cyan: #79ffe1;
+  --color-gray-1: #3c3c3c;
+
+  /* letter spacing */
+  /* standarize letter spacing */
+  --tracking-neg-1_8rem: -1.8rem;
+  --tracking-neg-1rem: -1rem;
+  --tracking-neg-0_5rem: -0.5rem;
+  --tracking-neg-0_1206rem: -0.1206rem;
+  --tracking-tighter: -0.04em;
+  --tracking-0_01em: 0.01em;
+  --tracking-0_02em: 0.02em;
+  --tracking-2px: 2px;
+
+  /* line height */
+  /* convert to closest tailwind equivalent */
+  --leading-3_5: 0.875rem;
+  --leading-4_5: 1.125rem;
+  --leading-5_5: 1.375rem;
+  --leading-6_5: 1.625rem;
+  --leading-7_5: 1.875rem;
+  --leading-10_5: 2.625rem;
+  --leading-16_75: 4.1875rem;
 }
 
 @layer components {
-  .button-primary {
-    background-color: #abb7b7;
-    color: #5a5a5a;
-    cursor: pointer;
-  }
-  .button-primary:hover {
-    background-color: #c0cece;
-    color: #5a5a5a;
-  }
-  .button-primary:active {
-    background-color: #c0cece;
+  .simple-3d-button {
+    box-shadow:
+      0 -4px 0 rgba(255, 255, 255, 0.2) inset,
+      0 -3px 0 rgba(0, 0, 0, 0.2) inset,
+      -1px 0 0 rgba(0, 0, 0, 0.2) inset,
+      1px 1px 0 rgba(0, 0, 0, 0.2) inset;
   }
 
-  .button-disabled-primary {
-    background-color: #c3c3c3;
-    color: #979797;
-    cursor: not-allowed;
-  }
-  .button-disabled-primary:hover {
-    background-color: #c3c3c3;
-    color: #979797;
+  .simple-3d-button:active {
+    box-shadow: none;
   }
 
-  .button-waiting-primary {
-    background-color: #f9e09c;
-    color: #979797;
-    cursor: not-allowed;
-  }
-  .button-waiting-primary:hover {
-    background-color: #f9e09c;
-    color: #979797;
-  }
-
-  .button-success-primary {
-    background-color: #a0d989;
-    color: #5a5a5a;
-    cursor: pointer;
-  }
-  .button-success-primary:hover {
-    background-color: #a0d989;
-    color: #5a5a5a;
-  }
-  .button-success-primary:active {
-    background-color: #c0cece;
+  .simple-3d-button-gradient {
+    box-shadow:
+      0 -6px 0 rgba(255, 255, 255, 0.3) inset,
+      0 -5px 0 rgba(0, 0, 0, 0.3) inset,
+      -1px 0 0 rgba(0, 0, 0, 0.3) inset,
+      1px 1px 0 rgba(0, 0, 0, 0.3) inset;
+    background-image: radial-gradient(
+      ellipse closest-side at 50% 50%,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0)
+    );
   }
 
-  .button-error-primary {
-    background-color: #d98989;
-    color: #5a5a5a;
-    cursor: not-allowed;
-  }
-  .button-error-primary:hover {
-    background-color: #d98989;
-    color: #5a5a5a;
-  }
-  .button-error-primary:active {
-    background-color: #c0cece;
+  .simple-3d-button-gradient:active {
+    box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2) inset;
   }
 }

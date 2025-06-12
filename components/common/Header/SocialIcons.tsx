@@ -12,7 +12,7 @@ export const SocialIcons = React.forwardRef<
   SocialIconsProps
 >(({ children, className, dark, ...props }, ref) => {
   const color = dark
-    ? "text-[#aaaaaa] hover:bg-[#555555] hover:text-white"
+    ? "text-gray-400 hover:bg-gray-600 hover:text-white"
     : "text-black/75 hover:bg-accent-2 hover:text-black";
   return React.createElement(
     "a",

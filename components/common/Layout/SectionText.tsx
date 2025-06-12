@@ -15,7 +15,7 @@ export const SectionText = React.forwardRef<
     ? "max-w-[80%]"
     : fullwidth
       ? "max-w-full"
-      : "max-w-[1040px]";
+      : "max-w-260";
 
   return React.createElement(
     "p",
@@ -25,7 +25,7 @@ export const SectionText = React.forwardRef<
       className: cn(
         "text-base leading-6 font-light pb-4 text-gray-800 w-full mx-auto",
         maxWidth,
-        "lg:text-2xl lg:leading-[40px] lg:pb-14",
+        "lg:text-2xl lg:leading-10 lg:pb-14",
         "md:text-xl md:leading-8 md:pb-6",
         "sm:text-base sm:leading-6 sm:pb-4",
         className

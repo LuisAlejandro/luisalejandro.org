@@ -14,9 +14,9 @@ const ListParagraph = React.forwardRef<HTMLDivElement, ListParagraphProps>(
         ref,
         className: cn(
           "font-light text-gray-800",
-          "lg:text-lg lg:leading-[30px]",
+          "lg:text-lg lg:leading-7_5",
           "md:text-base md:leading-7",
-          "sm:text-sm sm:leading-[22px]",
+          "sm:text-sm sm:leading-5_5",
           className
         ),
       },

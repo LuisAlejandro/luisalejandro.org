@@ -11,8 +11,8 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   ({ children, className, wide, dark, ...props }, ref) => {
     const wideClass = wide
       ? "px-[calc((100%-1280px)/2)] py-8"
-      : "max-w-[1280px] mt-0 mb-7_5 p-4 pt-8";
-    const darkClass = dark ? "bg-[#303030]" : "";
+      : "max-w-7xl mt-0 mb-7.5 p-4 pt-8";
+    const darkClass = dark ? "bg-custom-dark-gray" : "";
     return React.createElement(
       "div",
       {

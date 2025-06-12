@@ -13,7 +13,7 @@ const List = React.forwardRef<HTMLUListElement, ListProps>(
         ...props,
         ref,
         className: cn(
-          "list-none flex flex-col lg:grid lg:grid-cols-3 lg:gap-10 mb-40 lg:my-16 md:my-16 md:gap-6 sm:grid sm:grid-cols-2 sm:p-15px",
+          "list-none flex flex-col lg:grid lg:grid-cols-3 lg:gap-10 mb-40 lg:my-16 md:my-16 md:gap-6 sm:grid sm:grid-cols-2 sm:p-3.75",
           className
         ),
       },

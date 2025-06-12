@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import {
   AiFillGithub,
-  AiFillYoutube,
   AiFillLinkedin,
+  AiFillYoutube,
   AiOutlineX,
 } from "react-icons/ai";
 
@@ -53,7 +53,7 @@ const Header = () => (
         href="https://github.com/LuisAlejandro"
         target="_blank"
         rel="nofollow noreferrer"
-        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-gray-400 hover:scale-110"
       >
         <AiFillGithub size="30px" />
       </a>
@@ -61,7 +61,7 @@ const Header = () => (
         href="https://www.linkedin.com/in/martinezfaneyth"
         target="_blank"
         rel="nofollow noreferrer"
-        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-gray-400 hover:scale-110"
       >
         <AiFillLinkedin size="30px" />
       </a>
@@ -69,7 +69,7 @@ const Header = () => (
         href="https://www.youtube.com/@LuisDevelops"
         target="_blank"
         rel="nofollow noreferrer"
-        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-gray-400 hover:scale-110"
       >
         <AiFillYoutube size="30px" />
       </a>
@@ -77,7 +77,7 @@ const Header = () => (
         href="https://x.com/LuisAlejandro"
         target="_blank"
         rel="nofollow noreferrer"
-        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-[#aaa] hover:scale-110"
+        className="p-4 rounded-full text-black/75 ease-in-out duration-300 hover:text-black hover:bg-gray-400 hover:scale-110"
       >
         <AiOutlineX size="25px" />
       </a>

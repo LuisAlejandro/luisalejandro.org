@@ -267,7 +267,7 @@ const ExpediaPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-280px md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-display font-black text-12xl leading-none text-center">
                           600K
                         </div>
@@ -281,7 +281,7 @@ const ExpediaPage = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-280px md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-display font-black text-12xl leading-none text-center">
                           39%
                         </div>

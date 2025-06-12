@@ -309,7 +309,7 @@ const SoleitPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-main font-extralight tracking-tighter text-6xl text-center">
                           more than
                         </div>
@@ -327,7 +327,7 @@ const SoleitPage = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-main font-extralight tracking-tighter text-6xl text-center">
                           more than
                         </div>

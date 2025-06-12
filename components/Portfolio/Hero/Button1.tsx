@@ -14,7 +14,7 @@ export const Button1 = React.forwardRef<HTMLButtonElement, Button1Props>(
         ref,
         className: cn(
           "inline-block align-top w-full my-1.5 mx-0",
-          "lg:m-1.5 lg:mx-[1%] lg:w-[200px]",
+          "lg:m-1.5 lg:mx-[1%] lg:w-50",
           className
         ),
       },

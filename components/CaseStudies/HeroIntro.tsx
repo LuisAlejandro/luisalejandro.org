@@ -20,7 +20,7 @@ const HeroIntro = ({
   year,
 }: HeroIntroProps) => (
   <div id="herointro" className="w-full">
-    <div className="flex absolute right-32 top-64 lg:top-160px font-display font-black text-8xl lg:text-[180px] text-white opacity-20">
+    <div className="flex absolute right-32 top-64 lg:top-40 font-display font-black text-8xl lg:text-custom-180 text-white opacity-20">
       <Tween
         duration={2}
         to={{

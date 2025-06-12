@@ -25,22 +25,9 @@ export default async function HomePage() {
       <Container>
         <div
           id="app"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%",
-            padding: "60px 0 0 0",
-          }}
+          className="flex flex-col items-center justify-center w-full h-full pt-15"
         >
-          <div
-            className="home"
-            style={{
-              display: "inline-block",
-              width: "100%",
-            }}
-          >
+          <div className="home inline-block w-full">
             <Link href="/">
               <Image
                 alt=""

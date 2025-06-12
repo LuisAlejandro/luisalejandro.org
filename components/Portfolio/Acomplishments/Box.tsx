@@ -14,9 +14,9 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
         ref,
         className: cn(
           "bg-white/20 text-gray-800 rounded-xl h-36 p-6",
-          "lg:h-[210px]",
-          "md:h-[135px] md:p-4",
-          "sm:h-[110px] sm:p-3 sm:[&:nth-child(2n)]:row-start-2",
+          "lg:h-52.5",
+          "md:h-33.75 md:p-4",
+          "sm:h-27.5 sm:p-3 sm:[&:nth-child(2n)]:row-start-2",
           "max-[450px]:my-3",
           className
         ),

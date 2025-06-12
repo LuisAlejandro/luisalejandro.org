@@ -14,7 +14,7 @@ export const GalleryWrapper = React.forwardRef<
     {
       ...props,
       ref,
-      className: cn("pt-6 pb-15rem mx-auto w-full", className),
+      className: cn("pt-6 pb-60 mx-auto w-full", className),
     },
     children as any
   );

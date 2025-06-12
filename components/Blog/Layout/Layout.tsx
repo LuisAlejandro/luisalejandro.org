@@ -6,10 +6,10 @@ export const Layout = ({ children }: any) => {
     <div
       itemScope={true}
       itemType="http://schema.org/Blog"
-      className="bg-[#ddd] w-full my-0 mx-auto"
+      className="bg-gray-300 w-full my-0 mx-auto"
     >
       <Header />
-      <main className="bg-white pb-200px">{children}</main>
+      <main className="bg-white pb-50">{children}</main>
       <div id="modal-container">
         <div id="modal-overlay">
           <div id="modal-vertical-offset">

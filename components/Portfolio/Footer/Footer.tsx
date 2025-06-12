@@ -40,9 +40,9 @@ const Footer = () => {
         >
           <p
             className={cn(
-              "text-white/50 text-center w-full min-w-[280px] tracking-[0.02em] leading-[22px] text-sm-plus",
-              "lg:text-lg lg:leading-[30px]",
-              "sm:leading-[22px] sm:text-sm-plus"
+              "text-white/50 text-center w-full min-w-70 tracking-0_02em leading-5_5 text-sm-plus",
+              "lg:text-lg lg:leading-7_5",
+              "sm:leading-5_5 sm:text-sm-plus"
             )}
           >
             &copy; {new Date().getFullYear()} Luis Martínez. All rights

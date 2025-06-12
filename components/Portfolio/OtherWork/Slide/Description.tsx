@@ -15,7 +15,7 @@ export const Description = React.forwardRef<
       ...props,
       ref,
       className: cn(
-        "font-main font-extralight text-[2.875rem] text-gray-800 leading-8 mb-6_25rem z-[2] relative",
+        "font-main font-extralight text-custom-46 text-gray-800 leading-8 mb-25 z-2 relative",
         "[&>a]:bg-white/60 [&>a]:rounded-2xl [&>a]:py-1 [&>a]:px-4 [&>a:hover]:bg-white",
         className
       ),

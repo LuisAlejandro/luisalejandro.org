@@ -9,7 +9,7 @@ export const Hr = React.forwardRef<HTMLHRElement, HrProps>(
       ...props,
       ref,
       className: cn(
-        "w-[50px] h-[3px] my-2 mx-auto border-0 bg-[#d0bb57]",
+        "w-12 h-3px my-2 mx-auto border-0 bg-custom-hr-gold",
         className
       ),
     });

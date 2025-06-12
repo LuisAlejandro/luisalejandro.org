@@ -48,9 +48,9 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
     const margin = nomargin ? "m-0" : "m-auto";
 
     const background = accent1
-      ? "bg-[#f8d983]"
+      ? "bg-custom-gold"
       : accent2
-        ? "bg-[#da8244]"
+        ? "bg-custom-orange"
         : color
           ? `bg-[${color}]`
           : "bg-transparent";
@@ -59,7 +59,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       ? "max-w-[80%]"
       : fullwidth
         ? "max-w-full"
-        : "max-w-[1040px]";
+        : "max-w-260";
 
     const overflow = overflowVisible ? "overflow-visible" : "overflow-hidden";
 

@@ -30,6 +30,6 @@ export const LeftSectionButtonLink = `
   bg-slate-400 hover:bg-slate-500 active:bg-slate-500
   rounded-2xl transition-colors duration-400 ease-out
   shadow-[inset_0_-6px_0_rgba(255,255,255,0.3),inset_0_-5px_0_rgba(0,0,0,0.3),inset_-1px_0_0_rgba(0,0,0,0.3),inset_1px_1px_0_rgba(0,0,0,0.3)]
-  active:shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] active:pt-1 active:mb-4_75rem
+  active:shadow-[inset_0_-2px_2px_rgba(0,0,0,0.2)] active:pt-1 active:mb-19
   bg-gradient-radial from-white/40 to-transparent
 `;

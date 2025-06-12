@@ -39,6 +39,16 @@ const DockershelfPage = () => {
             cursor: default;
             overflow-x: hidden;
           }
+          #cases .page-hero {
+            background-size: cover;
+            position: relative;
+          }
+
+          #cases .cases-content {
+            width: 100%;
+            font-size: 18px;
+            font-family: Roboto, sans-serif;
+          }
         `}</style>
         <div id="cases" style={{ background: "#333" }}>
           <Header variant="case-studies" />
@@ -294,7 +304,7 @@ const DockershelfPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-display font-black text-12xl leading-none text-center">
                           220K
                         </div>
@@ -308,7 +318,7 @@ const DockershelfPage = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-[280px] md:w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-display font-black text-12xl leading-none text-center">
                           294K
                         </div>
@@ -322,7 +332,7 @@ const DockershelfPage = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-[320px] p-8 m-8 rounded-3xl bg-white">
+                      <div className="flex flex-col w-80 p-8 m-8 rounded-3xl bg-white">
                         <div className="font-display font-black text-12xl leading-none text-center">
                           55K
                         </div>

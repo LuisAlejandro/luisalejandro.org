@@ -60,7 +60,7 @@ export default function Gallery() {
           overflow-x: hidden;
         }
       `}</style>
-      <ul className="columns-[220px] gap-6 w-full list-none p-0 m-0">
+      <ul className="columns-[210px] gap-6 w-full list-none p-0 m-0">
         {frontList.map((imgUrl, index) => (
           <li
             key={index}

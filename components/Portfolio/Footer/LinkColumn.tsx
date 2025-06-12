@@ -12,7 +12,7 @@ export const LinkColumn = React.forwardRef<HTMLLIElement, LinkColumnProps>(
       {
         ...props,
         ref,
-        className: cn("flex flex-col max-w-[220px] w-full", className),
+        className: cn("flex flex-col max-w-55 w-full", className),
       },
       children
     );

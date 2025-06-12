@@ -65,7 +65,7 @@ const Slide = ({ currentIndex, setModalOpen, galleryList }: any) => {
               <h1 className="text-6xl text-black font-bold leading-none my-0 mb-2.5">
                 {current.name}
               </h1>
-              <p className="text-[1.9375rem] text-gray-600">
+              <p className="text-custom-31 text-gray-600">
                 {current.shortDescription}
               </p>
             </Caption>

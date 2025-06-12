@@ -8,23 +8,23 @@ import {
 
 // Reusable components with Tailwind classes
 const FooterWrapper = ({ children }: { children: ReactNode }) => (
-  <section className="w-full max-w-[1040px] px-[calc((100%-1040px)/2)] pt-80 pb-10 mx-0 box-content bg-[#333] lg:px-0 lg:pt-40 md:px-0 md:pt-40 sm:px-0 sm:pt-40 min-[0px]:max-[450px]:px-0 min-[0px]:max-[450px]:pt-40">
+  <section className="w-full max-w-260 px-[calc((100%-1040px)/2)] pt-80 pb-10 mx-0 box-content bg-gray-800 lg:px-0 lg:pt-40 md:px-0 md:pt-40 sm:px-0 sm:pt-40 min-[0px]:max-[450px]:px-0 min-[0px]:max-[450px]:pt-40">
     {children}
   </section>
 );
 
 const LinkList = ({ children }: { children: ReactNode }) => (
-  <ul className="grid grid-cols-3 gap-10 py-10 pb-7 lg:py-8 lg:pb-4 md:w-full md:py-8 md:pb-4 md:gap-4 sm:w-full sm:py-8 sm:pb-4 sm:gap-1.5 sm:px-1 min-[0px]:max-[450px]:w-full min-[0px]:max-[450px]:py-8 min-[0px]:max-[450px]:pb-4 min-[0px]:max-[450px]:gap-1.5 min-[0px]:max-[450px]:px-4_5">
+  <ul className="grid grid-cols-3 gap-10 py-10 pb-7 lg:py-8 lg:pb-4 md:w-full md:py-8 md:pb-4 md:gap-4 sm:w-full sm:py-8 sm:pb-4 sm:gap-1.5 sm:px-1 min-[0px]:max-[450px]:w-full min-[0px]:max-[450px]:py-8 min-[0px]:max-[450px]:pb-4 min-[0px]:max-[450px]:gap-1.5 min-[0px]:max-[450px]:px-4.5">
     {children}
   </ul>
 );
 
 const LinkColumn = ({ children }: { children: ReactNode }) => (
-  <li className="flex flex-col max-w-[220px] w-full">{children}</li>
+  <li className="flex flex-col max-w-55 w-full">{children}</li>
 );
 
 const LinkTitle = ({ children }: { children: ReactNode }) => (
-  <h4 className="font-semibold text-xs leading-6 uppercase text-white/40 mb-4 sm:text-[10px] sm:leading-3 sm:mb-2">
+  <h4 className="font-semibold text-xs leading-6 uppercase text-white/40 mb-4 sm:text-3xs sm:leading-3 sm:mb-2">
     {children}
   </h4>
 );
@@ -37,7 +37,7 @@ interface LinkItemProps {
 const LinkItem = ({ href, children }: LinkItemProps) => (
   <a
     href={href}
-    className="text-lg leading-[30px] text-white/66 mb-4 transition-all duration-300 relative left-0 hover:text-white hover:left-[6px] md:text-[17px] md:leading-7 md:flex sm:text-[15px] sm:leading-[14px] sm:mb-2 sm:flex sm:items-center"
+    className="text-lg leading-7_5 text-white/66 mb-4 transition-all duration-300 relative left-0 hover:text-white hover:left-[6px] md:text-lg-minus md:leading-7 md:flex sm:text-sm-plus sm:leading-3_5 sm:mb-2 sm:flex sm:items-center"
   >
     {children}
   </a>
@@ -56,7 +56,7 @@ const CompanyContainer = ({ children }: { children: ReactNode }) => (
 );
 
 const Slogan = ({ children }: { children: ReactNode }) => (
-  <p className="text-white/50 min-w-[280px] tracking-[0.02em] text-lg leading-[30px] pt-4 min-[0px]:max-[450px]:leading-[22px] min-[0px]:max-[450px]:text-[15px] min-[0px]:max-[450px]:text-center min-[0px]:max-[450px]:w-full sm:leading-[22px] sm:text-[15px] sm:text-center sm:w-full">
+  <p className="text-white/50 min-w-70 tracking-0_02em text-lg leading-7_5 pt-4 min-[0px]:max-[450px]:leading-5_5 min-[0px]:max-[450px]:text-sm-plus min-[0px]:max-[450px]:text-center min-[0px]:max-[450px]:w-full sm:leading-5_5 sm:text-sm-plus sm:text-center sm:w-full">
     {children}
   </p>
 );
@@ -79,7 +79,7 @@ const SocialIcons = ({ href, target, rel, children }: SocialIconsProps) => (
     href={href}
     target={target}
     rel={rel}
-    className="transition-all duration-300 text-[#aaa] rounded-[50px] p-2 mx-2 hover:text-white hover:bg-[#555] hover:scale-110 hover:cursor-pointer"
+    className="transition-all duration-300 text-gray-400 rounded-[50px] p-2 mx-2 hover:text-white hover:bg-gray-600 hover:scale-110 hover:cursor-pointer"
   >
     {children}
   </a>

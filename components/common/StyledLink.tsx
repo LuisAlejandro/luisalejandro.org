@@ -16,7 +16,7 @@ const StyledLink: React.FC<StyledLinkProps> = ({
   return (
     <a
       href={href}
-      className={`px-1 transition-colors duration-200 ease-in hover:bg-white hover:text-black bg-custom-beige rounded-lg ${className}`}
+      className={`px-1 transition-colors duration-200 ease-in hover:bg-white hover:text-black bg-custom-beige-light rounded-lg ${className}`}
       {...props}
     >
       {children}

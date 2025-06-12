@@ -12,8 +12,8 @@ export const Heading: React.FC<HeadingProps> = ({
 }) => (
   <h1
     className={cn(
-      "font-thin font-main text-justify mt-24 mb-12 mx-auto w-full text-6xl leading-[1.15] text-gray-1",
-      "lg:w-2_5xl lg:text-[3.8rem]",
+      "font-thin font-main text-justify mt-15 mb-7.5 mx-auto w-full text-6xl leading-11 text-gray-1",
+      "lg:w-175 lg:text-2.375xl",
       className
     )}
   >

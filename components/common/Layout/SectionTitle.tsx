@@ -16,7 +16,7 @@ export const SectionTitle = React.forwardRef<
     ? "max-w-[80%]"
     : fullwidth
       ? "max-w-full"
-      : "max-w-[1040px]";
+      : "max-w-260";
 
   return React.createElement(
     "h2",
@@ -25,20 +25,20 @@ export const SectionTitle = React.forwardRef<
       ref,
       className: cn(
         "font-black w-full mx-auto bg-gradient-to-br from-gray-900 to-gray-800/60 bg-clip-text text-transparent font-title",
-        main ? "text-[28px] leading-[32px]" : "text-[32px] leading-[40px]",
+        main ? "text-2_5xl leading-8" : "text-custom-32px leading-10",
         main ? "pt-4 pb-2" : "p-0",
         "mb-2",
         "lg:mb-4",
         main
-          ? "lg:text-[65px] lg:leading-[72px] lg:pt-58px lg:pb-4"
-          : "lg:text-[56px] lg:leading-[67px]",
+          ? "lg:text-7_5xl lg:leading-18 lg:pt-14.5 lg:pb-4"
+          : "lg:text-6_5xl lg:leading-16_75",
         main
-          ? "md:text-[56px] md:leading-[56px] md:pt-10 md:pb-3"
-          : "md:text-5xl md:leading-[48px]",
+          ? "md:text-6_5xl md:leading-14 md:pt-10 md:pb-3"
+          : "md:text-5xl md:leading-12",
         "md:mb-3",
         main
-          ? "sm:text-[28px] sm:leading-[32px] sm:pt-4 sm:pb-2"
-          : "sm:text-[32px] sm:leading-[40px]",
+          ? "sm:text-2_5xl sm:leading-8 sm:pt-4 sm:pb-2"
+          : "sm:text-custom-32px sm:leading-10",
         "sm:mb-2",
         maxWidth,
         className

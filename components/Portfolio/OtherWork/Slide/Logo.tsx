@@ -14,7 +14,7 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
         ref,
         className: cn(
           "absolute bg-white p-6 -right-14 -bottom-14 w-2/5",
-          "md:px-16 md:pt-0 md:pb-4_125rem md:top-0 md:left-60 md:bottom-auto md:w-full",
+          "md:px-16 md:pt-0 md:pb-16.5 md:top-0 md:left-60 md:bottom-auto md:w-full",
           "xl:left-[26rem]",
           className
         ),

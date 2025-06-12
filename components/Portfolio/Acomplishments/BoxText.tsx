@@ -13,8 +13,8 @@ export const BoxText = React.forwardRef<HTMLParagraphElement, BoxTextProps>(
         ...props,
         ref,
         className: cn(
-          "font-normal text-sm tracking-[0.02em] text-gray-800/75 leading-[14px]",
-          "lg:text-lg lg:leading-[24px]",
+          "font-normal text-sm tracking-0_02em text-gray-800/75 leading-3_5",
+          "lg:text-lg lg:leading-6",
           "md:text-base md:leading-5",
           className
         ),
