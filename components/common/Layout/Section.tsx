@@ -43,7 +43,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       ? "p-0"
       : accent1 || accent2
         ? "px-[calc((100%-1040px)/2)] py-8"
-        : "px-[48px] pt-[32px] pb-0";
+        : "px-12 pt-8 pb-0";
 
     const margin = nomargin ? "m-0" : "m-auto";
 

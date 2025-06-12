@@ -7,7 +7,7 @@ import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 
 import "@styles/normalize.scss";
 import "@styles/styles.scss";
-import "@styles/tailwind.scss";
+import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 const roboto = Roboto({

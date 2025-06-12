@@ -14,7 +14,7 @@ export const BoxText = React.forwardRef<HTMLParagraphElement, BoxTextProps>(
         ref,
         className: cn(
           "font-normal text-sm tracking-[0.02em] text-gray-800/75 leading-[14px]",
-          "lg:text-[18px] lg:leading-[24px]",
+          "lg:text-lg lg:leading-[24px]",
           "md:text-base md:leading-5",
           className
         ),

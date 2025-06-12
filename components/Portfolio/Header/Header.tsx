@@ -45,7 +45,7 @@ const Header = ({ variant }: { variant?: string }) => {
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-[2rem]"
+                "xs:px-2 xs:text-3_5xl"
               )}
             >
               Portfolio
@@ -59,7 +59,7 @@ const Header = ({ variant }: { variant?: string }) => {
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-[2rem]"
+                "xs:px-2 xs:text-3_5xl"
               )}
             >
               Blog
@@ -75,7 +75,7 @@ const Header = ({ variant }: { variant?: string }) => {
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-[2rem]"
+                "xs:px-2 xs:text-3_5xl"
               )}
             >
               Store
@@ -89,7 +89,7 @@ const Header = ({ variant }: { variant?: string }) => {
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-[2rem]"
+                "xs:px-2 xs:text-3_5xl"
               )}
             >
               Contact

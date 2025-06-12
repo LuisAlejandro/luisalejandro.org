@@ -13,9 +13,10 @@ import {
 import * as yup from "yup";
 
 import { JWT_SECRET, RECAPTCHA_API_KEY } from "@constants/constants";
-import { Section } from "../../common/Layout/Section";
-import { SectionText } from "../../common/Layout/SectionText";
-import { SectionTitle } from "../../common/Layout/SectionTitle";
+
+import { Section } from "@components/common/Layout/Section";
+import { SectionText } from "@components/common/Layout/SectionText";
+import { SectionTitle } from "@components/common/Layout/SectionTitle";
 
 const Contact = ({ dark }: { dark?: boolean }) => {
   const schema = yup
@@ -121,14 +122,14 @@ const Contact = ({ dark }: { dark?: boolean }) => {
             <div className="flex flex-col mx-6 lg:w-4/12 lg:mx-4">
               <label
                 htmlFor="contactName"
-                className="block m-1 text-3xl leading-normal font-main font-light"
+                className="block m-1 text-lg leading-normal font-main font-light"
               >
                 Name
               </label>
 
               <input
                 id="contactName"
-                className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-3xl leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
+                className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
                 {...register("contactName")}
               />
 
@@ -138,14 +139,14 @@ const Contact = ({ dark }: { dark?: boolean }) => {
 
               <label
                 htmlFor="contactEmail"
-                className="block m-1 text-3xl leading-normal font-main font-light "
+                className="block m-1 text-lg leading-normal font-main font-light "
               >
                 Email
               </label>
 
               <input
                 id="contactEmail"
-                className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-3xl leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
+                className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
                 {...register("contactEmail")}
               />
 
@@ -169,14 +170,14 @@ const Contact = ({ dark }: { dark?: boolean }) => {
             <div className="flex flex-col mx-6 lg:w-8/12 lg:mx-4">
               <label
                 htmlFor="contactMessage"
-                className="block m-1 text-3xl leading-normal font-main font-light"
+                className="block m-1 text-lg leading-normal font-main font-light"
               >
                 Message
               </label>
 
               <textarea
                 id="contactMessage"
-                className="textarea block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-3xl leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
+                className="textarea block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
                 {...register("contactMessage")}
               ></textarea>
 

@@ -13,7 +13,7 @@ export const GalleryContainer: React.FC<DivProps> = ({
   <div
     className={cn(
       "flex justify-center items-center my-12 mx-auto w-full",
-      "lg:w-2.5xl",
+      "lg:w-2_5xl",
       className
     )}
   >

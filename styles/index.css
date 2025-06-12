@@ -1,36 +1,3 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-}
-body {
-  font-family: var(--font-roboto), sans-serif;
-  font-size: 1.6rem;
-  background-color: #f5cc6a;
-  color: #222222;
-  cursor: default;
-  overflow-x: hidden;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
-  font-family: var(--font-poppins), sans-serif;
-}
-a {
-  text-decoration: none;
-}
-li {
-  list-style: none;
-}
-
 /* SocialIcons complex styles */
 .social-icons-custom {
   box-shadow:

@@ -1,0 +1,10 @@
+#cases .page-hero {
+  background-size: cover;
+  position: relative;
+}
+
+#cases .cases-content {
+  width: 100%;
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+}

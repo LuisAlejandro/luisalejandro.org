@@ -16,8 +16,8 @@ export const CarouselItemText = React.forwardRef<
       ...props,
       ref,
       className: cn(
-        "text-[11px] leading-[18px] pr-0 tracking-[0.02em]",
-        "lg:text-[14px] lg:leading-[22px] lg:pr-[16px]",
+        "text-2xs leading-[18px] pr-0 tracking-[0.02em]",
+        "lg:text-sm lg:leading-[22px] lg:pr-4",
         "md:text-xs md:leading-[18px] md:pr-8",
         className
       ),

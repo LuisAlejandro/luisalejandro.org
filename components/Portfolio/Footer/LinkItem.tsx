@@ -13,9 +13,9 @@ export const LinkItem = React.forwardRef<HTMLAnchorElement, LinkItemProps>(
         ...props,
         ref,
         className: cn(
-          "text-[15px] leading-[14px] flex items-center mb-2 text-white/60 transition-all duration-300 ease-in-out relative left-0 hover:text-white hover:left-1.5",
-          "lg:text-[18px] lg:leading-[30px] lg:mb-[16px]",
-          "md:text-[17px] md:leading-7 md:flex",
+          "text-sm-plus leading-[14px] flex items-center mb-2 text-white/60 transition-all duration-300 ease-in-out relative left-0 hover:text-white hover:left-1.5",
+          "lg:text-lg lg:leading-[30px] lg:mb-4",
+          "md:text-lg-minus md:leading-7 md:flex",
           className
         ),
       },

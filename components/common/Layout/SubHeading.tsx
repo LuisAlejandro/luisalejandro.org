@@ -13,7 +13,7 @@ export const SubHeading: React.FC<DivProps> = ({
   <div
     className={cn(
       "text-3xl font-thin leading-relaxed text-justify my-12 mx-auto w-full text-gray-1",
-      "lg:w-2.5xl lg:text-[2rem]",
+      "lg:w-2_5xl lg:text-[2rem]",
       className
     )}
   >

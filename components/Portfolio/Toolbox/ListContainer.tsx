@@ -12,11 +12,7 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
       {
         ...props,
         ref,
-        className: cn(
-          "flex flex-col ml-[18px]",
-          "sm:flex sm:ml-[18px]",
-          className
-        ),
+        className: cn("flex flex-col ml-4_5", "sm:flex sm:ml-4_5", className),
       },
       children
     );

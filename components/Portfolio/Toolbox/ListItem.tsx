@@ -12,7 +12,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       {
         ...props,
         ref,
-        className: cn("max-w-[320px] flex flex-row mb-[14px]", className),
+        className: cn("max-w-[320px] flex flex-row mb-3.5", className),
       },
       children
     );

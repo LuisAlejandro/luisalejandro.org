@@ -13,8 +13,8 @@ export const CardInfo = React.forwardRef<HTMLParagraphElement, CardInfoProps>(
         ...props,
         ref,
         className: cn(
-          "w-full text-gray-800 text-[16px] leading-[24px] text-center mt-[2rem] px-1",
-          "lg:px-[50px]",
+          "w-full text-gray-800 text-base leading-[24px] text-center mt-8 px-1",
+          "lg:px-50px",
           className
         ),
       },

@@ -9,7 +9,7 @@ export const Layout = ({ children }: any) => {
       className="bg-[#ddd] w-full my-0 mx-auto"
     >
       <Header />
-      <main className="bg-white pb-[200px]">{children}</main>
+      <main className="bg-white pb-200px">{children}</main>
       <div id="modal-container">
         <div id="modal-overlay">
           <div id="modal-vertical-offset">

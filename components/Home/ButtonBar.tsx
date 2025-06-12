@@ -1,8 +1,8 @@
 import {
-  AiOutlineBulb,
   AiOutlineGithub,
   AiOutlineLinkedin,
   AiOutlineMessage,
+  AiOutlinePushpin,
   AiOutlineRead,
   AiOutlineShoppingCart,
   AiOutlineYoutube,
@@ -16,7 +16,7 @@ export default function ButtonBar() {
     <ButtonBarContainer>
       <SocialIcons
         href="/portfolio"
-        icon={AiOutlineBulb}
+        icon={AiOutlinePushpin}
         text="Portfolio"
         style={{
           borderTopLeftRadius: "5px",

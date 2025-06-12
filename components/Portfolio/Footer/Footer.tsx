@@ -34,16 +34,15 @@ const Footer = () => {
       >
         <div
           className={cn(
-            "flex items-baseline flex-wrap mr-auto pt-[1rem]",
-            "sm:flex sm:items-center sm:m-0",
-            "xs:flex xs:items-center xs:m-0"
+            "flex items-center m-0 flex-wrap pt-4",
+            "lg:items-baseline lg:mr-auto"
           )}
         >
           <p
             className={cn(
-              "text-white/50 text-center w-full min-w-[280px] tracking-[0.02em] leading-[22px] text-[15px]",
-              "lg:text-[18px] lg:leading-[30px]",
-              "sm:leading-[22px] sm:text-[15px]"
+              "text-white/50 text-center w-full min-w-[280px] tracking-[0.02em] leading-[22px] text-sm-plus",
+              "lg:text-lg lg:leading-[30px]",
+              "sm:leading-[22px] sm:text-sm-plus"
             )}
           >
             &copy; {new Date().getFullYear()} Luis Martínez. All rights
@@ -52,7 +51,7 @@ const Footer = () => {
         </div>
         <div
           className={cn(
-            "flex items-center pt-[1rem]",
+            "flex items-center pt-4",
             "sm:justify-center",
             "xs:justify-center"
           )}

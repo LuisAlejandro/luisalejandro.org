@@ -20,7 +20,7 @@ const HeroIntro = ({
   year,
 }: HeroIntroProps) => (
   <div id="herointro" className="w-full">
-    <div className="flex absolute right-32 top-64 lg:top-[160px] font-display font-black text-8xl lg:text-[180px] text-white opacity-20">
+    <div className="flex absolute right-32 top-64 lg:top-160px font-display font-black text-8xl lg:text-[180px] text-white opacity-20">
       <Tween
         duration={2}
         to={{
@@ -68,7 +68,7 @@ const HeroIntro = ({
                       target="_blank"
                       rel="nofollow noreferrer"
                       href={link.url}
-                      className="font-light text-3xl text-neutral-400 py-2 px-4 my-0 mr-4 rounded-3xl bg-black bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 ease-in-out"
+                      className="font-light text-3xl text-neutral-400 py-2 px-4 my-0 mr-4 rounded-3xl bg-black/30 hover:bg-black/50 transition-all duration-300 ease-in-out"
                     >
                       {link.text}
                     </a>

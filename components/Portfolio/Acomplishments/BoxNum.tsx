@@ -14,8 +14,8 @@ export const BoxNum = React.forwardRef<HTMLHeadingElement, BoxNumProps>(
         ref,
         className: cn(
           "normal font-semibold tracking-[0.01em] text-2xl leading-[26px] text-gray-800",
-          "lg:mb-[8px] lg:text-[36px] lg:leading-[40px]",
-          "md:text-[28px] md:leading-8",
+          "lg:mb-2 lg:text-4xl lg:leading-[40px]",
+          "md:text-2_5xl md:leading-8",
           className
         ),
       },

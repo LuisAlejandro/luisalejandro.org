@@ -50,6 +50,16 @@ export default function Gallery() {
 
   return (
     <GalleryContainer>
+      <style jsx global>{`
+        body {
+          font-family: var(--font-roboto), sans-serif;
+          font-size: 1.6rem;
+          background-color: #f5cc6a;
+          color: #222222;
+          cursor: default;
+          overflow-x: hidden;
+        }
+      `}</style>
       <ul className="columns-[220px] gap-6 w-full list-none p-0 m-0">
         {frontList.map((imgUrl, index) => (
           <li

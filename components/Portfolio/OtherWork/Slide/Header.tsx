@@ -12,14 +12,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
       {
         ...props,
         ref,
-        className: cn(
-          "w-1/2",
-          "xs:hidden",
-          "sm:hidden",
-          "md:hidden",
-          "lg:hidden",
-          className
-        ),
+        className: cn("hidden w-1/2", "lg:flex", className),
       },
       children
     );

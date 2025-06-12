@@ -1,10 +1,10 @@
+import { ReactNode } from "react";
 import {
   AiFillGithub,
-  AiFillYoutube,
   AiFillLinkedin,
   AiFillTwitterCircle,
+  AiFillYoutube,
 } from "react-icons/ai";
-import { ReactNode } from "react";
 
 // Reusable components with Tailwind classes
 const FooterWrapper = ({ children }: { children: ReactNode }) => (
@@ -14,7 +14,7 @@ const FooterWrapper = ({ children }: { children: ReactNode }) => (
 );
 
 const LinkList = ({ children }: { children: ReactNode }) => (
-  <ul className="grid grid-cols-3 gap-10 py-10 pb-7 lg:py-8 lg:pb-4 md:w-full md:py-8 md:pb-4 md:gap-4 sm:w-full sm:py-8 sm:pb-4 sm:gap-[5px] sm:px-1 min-[0px]:max-[450px]:w-full min-[0px]:max-[450px]:py-8 min-[0px]:max-[450px]:pb-4 min-[0px]:max-[450px]:gap-[5px] min-[0px]:max-[450px]:px-[18px]">
+  <ul className="grid grid-cols-3 gap-10 py-10 pb-7 lg:py-8 lg:pb-4 md:w-full md:py-8 md:pb-4 md:gap-4 sm:w-full sm:py-8 sm:pb-4 sm:gap-1.5 sm:px-1 min-[0px]:max-[450px]:w-full min-[0px]:max-[450px]:py-8 min-[0px]:max-[450px]:pb-4 min-[0px]:max-[450px]:gap-1.5 min-[0px]:max-[450px]:px-4_5">
     {children}
   </ul>
 );
@@ -150,14 +150,14 @@ export default Footer;
 
 // Export the reusable components for use in other files
 export {
-  FooterWrapper,
-  LinkList,
-  LinkColumn,
-  LinkTitle,
-  LinkItem,
-  SocialIconsContainer,
   CompanyContainer,
+  FooterWrapper,
+  LinkColumn,
+  LinkItem,
+  LinkList,
+  LinkTitle,
   Slogan,
   SocialContainer,
   SocialIcons,
+  SocialIconsContainer,
 };

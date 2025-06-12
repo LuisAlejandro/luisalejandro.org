@@ -11,7 +11,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   ({ children, className, wide, dark, ...props }, ref) => {
     const wideClass = wide
       ? "px-[calc((100%-1280px)/2)] py-8"
-      : "max-w-[1280px] mt-0 mb-[30px] p-[1rem] pt-[2rem]";
+      : "max-w-[1280px] mt-0 mb-7_5 p-4 pt-8";
     const darkClass = dark ? "bg-[#303030]" : "";
     return React.createElement(
       "div",
@@ -22,7 +22,6 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           "w-full mx-auto grid grid-cols-5 grid-rows-1 gap-8",
           wideClass,
           darkClass,
-          "xs:grid",
           className
         ),
       },

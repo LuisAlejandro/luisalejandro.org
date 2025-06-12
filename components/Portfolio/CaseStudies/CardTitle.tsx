@@ -14,7 +14,7 @@ export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
         ...props,
         ref,
         className: cn(
-          "text-[3rem] font-medium tracking-[2px] text-gray-800 py-[0.5rem] mt-[1rem]",
+          "text-5xl font-medium tracking-[2px] text-gray-800 py-2 mt-4",
           className
         ),
       },

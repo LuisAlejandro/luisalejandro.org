@@ -6,9 +6,12 @@ import { GA_MEASUREMENT_ID, config } from "@constants/constants";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 
-import "@styles/normalize.scss";
-import "@styles/styles.scss";
-import "@styles/tailwind.scss";
+import "@styles/blog-post.css";
+import "@styles/blog.css";
+import "@styles/cases.css";
+import "@styles/contact.css";
+import "@styles/index.css";
+import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 const roboto = Roboto({

@@ -22,7 +22,7 @@ const Timeline = () => {
         />
         <path fill="#f8d983" d="M0,100h1920L960,50L0,100z" />
       </svg>
-      <Section id="about" accent1 className="pt-[100px]">
+      <Section id="about" accent1 className="pt-25">
         <Clients
           className="container-clients"
           style={{
