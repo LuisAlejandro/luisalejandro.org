@@ -14,10 +14,8 @@ export const FooterWrapper = React.forwardRef<HTMLElement, FooterWrapperProps>(
         ref,
         className: cn(
           "w-full max-w-260 m-0 box-content bg-gray-800",
+          "px-0 pt-40 pb-10",
           "lg:px-[calc((100%-1040px)/2)] lg:pt-80 lg:pb-10",
-          "md:px-0 md:pt-40 md:pb-10",
-          "sm:px-0 sm:pt-40 sm:pb-10",
-          "xs:px-0 xs:pt-40 xs:pb-10",
           className
         ),
       },

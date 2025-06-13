@@ -36,14 +36,14 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
     },
     ref
   ) => {
-    const displayClasses = grid ? "grid" : "flex";
-    const flexDirection = row ? "flex-row" : "flex-col";
+    const displayClasses = grid ? "flex lg:grid" : "flex";
+    const flexDirection = row ? "flex-col lg:flex-row" : "flex-col";
 
     const padding = nopadding
-      ? "p-0"
+      ? "lg:p-0 px-8 pt-6 pb-0"
       : accent1 || accent2
-        ? "px-[calc((100%-1040px)/2)] py-8"
-        : "px-12 pt-8 pb-0";
+        ? "lg:px-[calc((100%-1040px)/2)] lg:py-8 px-8 pt-6 pb-0"
+        : "lg:px-12 lg:pt-8 lg:pb-0 px-8 pt-6 pb-0";
 
     const margin = nomargin ? "m-0" : "m-auto";
 
@@ -56,20 +56,14 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
           : "bg-transparent";
 
     const maxWidth = wide
-      ? "max-w-[80%]"
+      ? "lg:max-w-[80%] max-w-[calc(100%-64px)]"
       : fullwidth
-        ? "max-w-full"
-        : "max-w-260";
+        ? "lg:max-w-full max-w-[calc(100%-64px)]"
+        : "lg:max-w-260 max-w-[calc(100%-64px)]";
 
     const overflow = overflowVisible ? "overflow-visible" : "overflow-hidden";
 
     const gridCols = oneColumn ? "grid-cols-1" : "grid-cols-2";
-
-    // const responsiveClasses =
-    //   "xs:flex xs:flex-col xs:max-w-[calc(100%-64px)] xs:px-8 xs:pt-6 sm:flex sm:flex-col md:flex md:flex-col lg:flex lg:flex-col";
-
-    // xs:px-8 xs:pt-6 xs:pb-0 sm:px-8 sm:pt-6 sm:pb-0 md:px-8 md:pt-6 md:pb-0 lg:px-8 lg:pt-6 lg:pb-0
-    // xs:max-w-[calc(100%-64px)] sm:max-w-[calc(100%-64px)] md:max-w-[calc(100%-64px)] lg:max-w-[calc(100%-64px)]
 
     return React.createElement(
       "section",

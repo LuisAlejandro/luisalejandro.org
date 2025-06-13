@@ -1,33 +1,9 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
-import { League_Gothic, Poppins, Roboto } from "next/font/google";
 
-import { GA_MEASUREMENT_ID, config } from "@constants/constants";
-
-import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
+import { config } from "@constants/constants";
 
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
-
-const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-  display: "swap",
-});
-
-const poppins = Poppins({
-  weight: ["800"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap",
-});
-
-const leagueGothic = League_Gothic({
-  subsets: ["latin"],
-  variable: "--font-league-gothic",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: `${config.app_name} | ${config.description}`,
@@ -171,22 +147,14 @@ export const viewport = {
   themeColor: "#f8d983",
 };
 
-export default async function RootLayout({
+export default async function PortfolioLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${roboto.variable} ${poppins.variable} ${leagueGothic.variable}`}
-      prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# dcterms: http://purl.org/dc/terms/#"
-    >
-      <body>
-        {children}
-        {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
-        <CookieConsentWrapper />
-      </body>
-    </html>
+    <div className="bg-gradient-to-b from-[#e68449] via-[#f1b161]/15 via-30% to-[#f5cc6a] min-h-screen">
+      {children}
+    </div>
   );
 }

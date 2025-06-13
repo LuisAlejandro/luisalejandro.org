@@ -52,8 +52,8 @@ const Footer = () => {
         <div
           className={cn(
             "flex items-center pt-4",
-            "sm:justify-center",
-            "xs:justify-center"
+            "justify-center",
+            "lg:justify-start"
           )}
         >
           <SocialIcons
@@ -63,7 +63,7 @@ const Footer = () => {
             rel="nofollow noreferrer"
             className="m-4"
           >
-            <AiFillGithub size="3rem" />
+            <AiFillGithub size="30px" />
           </SocialIcons>
           <SocialIcons
             dark
@@ -72,7 +72,7 @@ const Footer = () => {
             rel="nofollow noreferrer"
             className="m-4"
           >
-            <AiFillLinkedin size="3rem" />
+            <AiFillLinkedin size="30px" />
           </SocialIcons>
           <SocialIcons
             dark
@@ -81,7 +81,7 @@ const Footer = () => {
             rel="nofollow noreferrer"
             className="m-4"
           >
-            <AiFillYoutube size="3rem" />
+            <AiFillYoutube size="30px" />
           </SocialIcons>
           <SocialIcons
             dark
@@ -90,7 +90,7 @@ const Footer = () => {
             rel="nofollow noreferrer"
             className="m-4"
           >
-            <AiFillTwitterCircle size="3rem" />
+            <AiFillTwitterCircle size="30px" />
           </SocialIcons>
         </div>
       </div>

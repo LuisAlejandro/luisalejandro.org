@@ -18,11 +18,22 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
   <a
     {...props}
     className={cn(
-      "inline-block align-top font-light font-main leading-5 uppercase h-8.25 px-2.5 pt-1 pb-2 mb-6 bg-custom-beige text-custom-text-gray transition-all duration-200 ease-in rounded-none hover:bg-custom-beige-light hover:text-black active:mt-1 active:mb-5 active:py-1 active:px-2.5 active:bg-custom-beige-light active:text-black max-[450px]:rounded-md max-[450px]:block max-[450px]:w-full max-[450px]:text-center max-[450px]:my-0 max-[450px]:mb-1 max-[450px]:h-15.75 max-[450px]:active:mt-1 max-[450px]:active:mb-0 simple-3d-button",
+      "w-full rounded-md block text-center align-top font-light font-main leading-5 uppercase px-2.5 pt-1 pb-2 my-0 mb-1 h-15.75 bg-custom-beige text-custom-text-gray transition-all duration-200 ease-in simple-3d-button",
+
+      // hover
+      "hover:bg-custom-beige-light hover:text-black",
+
+      // active
+      "active:mt-1 active:mb-0 active:py-1 active:px-2.5 active:bg-custom-beige-light active:text-black",
+
+      // breakpoints
+      "lg:w-fit lg:rounded-none lg:inline-block lg:mb-6 lg:h-8.25 lg:active:mb-5",
       className
     )}
   >
-    <Icon className="text-2xl align-top inline-block max-[450px]:text-custom-54px" />
+    <Icon
+      className={cn("lg:text-2xl align-top inline-block text-custom-54px")}
+    />
     {text && <SocialIconLabel>{text}</SocialIconLabel>}
   </a>
 );

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { GalleryContainer } from "@components/common/Layout/GalleryContainer";
@@ -10,12 +11,12 @@ export default function Gallery() {
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
 
   const frontList = [
-    "/images/home/front-1.png",
-    "/images/home/front-6.png",
-    "/images/home/front-2.png",
-    "/images/home/front-7.png",
-    "/images/home/front-4.png",
-    "/images/home/front-5.png",
+    { src: "/images/home/front-1.png", alt: "Gallery image 1" },
+    { src: "/images/home/front-6.png", alt: "Gallery image 6" },
+    { src: "/images/home/front-2.png", alt: "Gallery image 2" },
+    { src: "/images/home/front-7.png", alt: "Gallery image 7" },
+    { src: "/images/home/front-4.png", alt: "Gallery image 4" },
+    { src: "/images/home/front-5.png", alt: "Gallery image 5" },
   ];
 
   const handleImageLoad = (index: number) => {
@@ -50,28 +51,20 @@ export default function Gallery() {
 
   return (
     <GalleryContainer>
-      <style jsx global>{`
-        body {
-          font-family: var(--font-roboto), sans-serif;
-          font-size: 1.6rem;
-          background-color: #f5cc6a;
-          color: #222222;
-          cursor: default;
-          overflow-x: hidden;
-        }
-      `}</style>
       <ul className="columns-[210px] gap-6 w-full list-none p-0 m-0">
-        {frontList.map((imgUrl, index) => (
+        {frontList.map((item, index) => (
           <li
             key={index}
             className={`break-inside-avoid mb-5 transition-opacity duration-700 ease-in-out ${
               imagesVisible ? "opacity-100" : "opacity-0"
             }`}
           >
-            <img
+            <Image
               ref={handleImageRef(index)}
-              src={imgUrl}
-              alt=""
+              src={item.src}
+              alt={item.alt}
+              width={300}
+              height={200}
               onLoad={() => handleImageLoad(index)}
               className="w-full h-auto mb-5 block rounded-lg"
             />

@@ -13,11 +13,8 @@ export const LeftSection = React.forwardRef<HTMLDivElement, LeftSectionProps>(
         ...props,
         ref,
         className: cn(
-          "max-w-7xl w-full mx-auto flex flex-col",
-          "lg:flex lg:flex-col lg:mx-auto",
-          "md:flex md:flex-col md:mx-auto",
-          "sm:flex sm:flex-col sm:m-0",
-          "xs:flex xs:flex-col xs:m-0",
+          "max-w-7xl w-full mx-0 flex flex-col",
+          "lg:mx-auto",
           className
         ),
       },

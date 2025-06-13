@@ -13,7 +13,7 @@ export const Div3 = React.forwardRef<HTMLDivElement, Div3Props>(
         ...props,
         ref,
         className: cn(
-          "col-start-5 col-end-6 row-start-1 row-end-2 flex justify-between items-center hidden",
+          "col-start-5 col-end-6 row-start-1 row-end-2 justify-between items-center hidden",
           "lg:flex",
           className
         ),

@@ -2,15 +2,7 @@ import cn from "classnames";
 
 export function Container({ children, className }: any) {
   return (
-    <div
-      className={cn(
-        "w-11/12 mx-auto px-0",
-        "lg:px-64",
-        "md:px-32",
-        "xs:container xs:px-16",
-        className
-      )}
-    >
+    <div className={cn("w-full mx-auto px-12", "md:px-32", className)}>
       {children}
     </div>
   );

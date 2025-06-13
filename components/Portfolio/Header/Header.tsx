@@ -20,10 +20,7 @@ const Header = ({ variant }: { variant?: string }) => {
     <>
       <Container wide={isCaseStudies} dark={isCaseStudies}>
         <Div1>
-          <Link
-            href="/"
-            style={{ display: "flex", alignItems: "center", color: "white" }}
-          >
+          <Link href="/" className="flex items-center text-white">
             <Image
               alt=""
               src={
@@ -41,11 +38,11 @@ const Header = ({ variant }: { variant?: string }) => {
             <Link
               href="/portfolio"
               className={cn(
-                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-3_5xl"
+                "lg:p-0 lg:text-xl"
               )}
             >
               Portfolio
@@ -55,11 +52,11 @@ const Header = ({ variant }: { variant?: string }) => {
             <Link
               href="/blog"
               className={cn(
-                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-3_5xl"
+                "lg:p-0 lg:text-xl"
               )}
             >
               Blog
@@ -71,11 +68,11 @@ const Header = ({ variant }: { variant?: string }) => {
               target="_blank"
               rel="nofollow noreferrer"
               className={cn(
-                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-3_5xl"
+                "lg:p-0 lg:text-xl"
               )}
             >
               Store
@@ -85,11 +82,11 @@ const Header = ({ variant }: { variant?: string }) => {
             <Link
               href="/contact"
               className={cn(
-                "text-3xl font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
+                "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies
                   ? "text-gray-400 hover:text-white"
                   : "text-black/75 hover:text-black",
-                "xs:px-2 xs:text-3_5xl"
+                "lg:p-0 lg:text-xl"
               )}
             >
               Contact
@@ -103,7 +100,7 @@ const Header = ({ variant }: { variant?: string }) => {
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <AiFillGithub size="3rem" />
+            <AiFillGithub size="30px" />
           </SocialIcons>
           <SocialIcons
             dark={isCaseStudies}
@@ -111,7 +108,7 @@ const Header = ({ variant }: { variant?: string }) => {
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <AiFillLinkedin size="3rem" />
+            <AiFillLinkedin size="30px" />
           </SocialIcons>
           <SocialIcons
             dark={isCaseStudies}
@@ -119,7 +116,7 @@ const Header = ({ variant }: { variant?: string }) => {
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <AiFillYoutube size="3rem" />
+            <AiFillYoutube size="30px" />
           </SocialIcons>
           <SocialIcons
             dark={isCaseStudies}
@@ -127,7 +124,7 @@ const Header = ({ variant }: { variant?: string }) => {
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <AiFillTwitterCircle size="3rem" />
+            <AiFillTwitterCircle size="30px" />
           </SocialIcons>
         </Div3>
       </Container>

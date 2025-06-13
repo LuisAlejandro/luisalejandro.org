@@ -17,16 +17,6 @@ const Portfolio = () => {
     <div className="w-full mx-auto">
       <Header />
       <main>
-        <style jsx global>{`
-          body {
-            font-family: var(--font-roboto), sans-serif;
-            font-size: 1.6rem;
-            background: linear-gradient(180deg, #e68449, #f1b161 15%, #f5cc6a);
-            color: #222222;
-            cursor: default;
-            overflow-x: hidden;
-          }
-        `}</style>
         <Section grid overflowVisible>
           <Hero />
           <BackgroundAnimation />
