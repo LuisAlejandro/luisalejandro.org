@@ -1,3 +1,5 @@
+"use client";
+
 import Nav from "@components/Apps/Hero/Nav";
 import { Section } from "@components/common/Layout/Section";
 import Contact from "@components/Portfolio/Contact/Contact";
