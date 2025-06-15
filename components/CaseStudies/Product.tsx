@@ -61,28 +61,14 @@ const Product = ({ Title, Content, videoUrl }: ProductProps) => (
         </Scene>
       </div>
       {videoUrl && (
-        <div
-          className="col-span-4 hidden lg:block"
-          style={{
-            height: "200px",
-          }}
-        >
+        <div className="col-span-4 hidden lg:block h-[200px]">
           <video
             playsInline={true}
             preload="none"
             autoPlay={true}
             muted={true}
             loop={true}
-            style={{
-              height: "800px",
-              width: "1200px",
-              position: "relative",
-              top: "100px",
-              left: "50px",
-              maxWidth: "unset",
-              zIndex: 1,
-              opacity: 0.7,
-            }}
+            className="h-[800px] w-[1200px] relative top-[100px] left-[50px] max-w-none z-[1] opacity-70"
           >
             <source src={videoUrl} type="video/mp4" />
           </video>

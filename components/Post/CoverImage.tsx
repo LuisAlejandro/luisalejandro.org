@@ -1,5 +1,5 @@
-import Imgix from "react-imgix";
 import cn from "classnames";
+import Imgix from "react-imgix";
 
 export default function CoverImage({
   title,
@@ -8,9 +8,9 @@ export default function CoverImage({
   extraClasses,
 }: any) {
   return (
+    // @ts-ignore
     <Imgix
       src={highResUrl}
-      alt={title}
       className={cn("lazyload shadow-small w-full", {
         [extraClasses]: true,
       })}
@@ -22,6 +22,7 @@ export default function CoverImage({
       }}
       htmlAttributes={{
         src: `${lowResUrl}?auto=format,compress&q=1&blur=500&w=auto`,
+        alt: title,
       }}
     />
   );

@@ -2552,6 +2552,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-imgix@^9.5.4":
+  version "9.5.4"
+  resolved "https://registry.yarnpkg.com/@types/react-imgix/-/react-imgix-9.5.4.tgz#86633674bc29d12d447c693d9eae9c7a418f77d0"
+  integrity sha512-hl4IckUh5Sti++SQITc3P53+IiTwTircL6ZQMOce+n39vlkFrwtlM+s54C+VLCYBHVIrahSBWe88/kUo43BBBw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "19.1.8"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-19.1.8.tgz#ff8395f2afb764597265ced15f8dddb0720ae1c3"

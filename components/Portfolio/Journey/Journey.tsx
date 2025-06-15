@@ -20,18 +20,7 @@ const Timeline = () => {
         <path fill="#f8d983" d="M0,100h1920L960,50L0,100z" />
       </svg>
       <Section id="about" className="pt-25" accent1 smallpadding>
-        <Clients
-          className="container-clients"
-          style={{
-            height: "250px",
-            width: "250px",
-            position: "absolute",
-            top: "0px",
-            right: "calc(((100% - 1040px) / 2) - 20px)",
-            opacity: "0.5",
-            transform: "rotateZ(30deg)",
-          }}
-        />
+        <Clients className="container-clients h-[250px] w-[250px] absolute top-0 right-[calc(((100%-1040px)/2)-20px)] opacity-50 rotate-[30deg]" />
         <SectionTitle>My Journey</SectionTitle>
         <SectionText>
           I&apos;ve worked with very interesting people along the years. Every

@@ -44,17 +44,7 @@ const CaseStudies = () => {
         <path fill="#f8d983" d="M0,100h1920L960,50L0,100z" />
       </svg>
       <Section id="projects" accent1 smallpadding>
-        <About
-          style={{
-            height: "300px",
-            width: "300px",
-            position: "absolute",
-            top: "0",
-            right: "calc(((100% - 1040px) / 2) - 40px)",
-            opacity: "0.5",
-            transform: "rotateZ(30deg)",
-          }}
-        />
+        <About className="h-[300px] w-[300px] absolute top-0 right-[calc(((100%-1040px)/2)-40px)] opacity-50 rotate-[30deg]" />
         <SectionTitle>Case studies</SectionTitle>
         <SectionText>
           Here I list some of the most complex and multidisciplinary projects
@@ -64,12 +54,7 @@ const CaseStudies = () => {
           {ProjectList.map((p, i) => (
             <Link key={i} href={p.visit} className="w-full">
               <Card className="vanillatilt">
-                <Img
-                  src={p.image}
-                  style={{
-                    borderRadius: "10px 10px 0 0",
-                  }}
-                />
+                <Img src={p.image} className="rounded-t-[10px]" />
                 <CardTitle>{p.title}</CardTitle>
                 <Hr />
                 <CardInfo>{p.description}</CardInfo>

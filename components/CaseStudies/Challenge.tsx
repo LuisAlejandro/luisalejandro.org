@@ -15,18 +15,13 @@ const Challenge = ({ Title, Content, bgImgClass }: ChallengeProps) => (
   >
     <div
       className={cn(
-        "w-full bg-none",
+        "w-full bg-none bg-top bg-right bg-cover bg-no-repeat",
         bgImgClass
           ? {
               [bgImgClass]: true,
             }
           : {}
       )}
-      style={{
-        backgroundPosition: "top right",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
     >
       <svg viewBox="0 0 1920 100">
         <path fill="#333" d="M960,50l960-50H0L960,50z" />

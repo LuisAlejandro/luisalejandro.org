@@ -8,12 +8,11 @@ import parse, { domToReact } from "html-react-parser";
 import { useEffect } from "react";
 import ReactPlayer from "react-player/lazy";
 
-import Date from "@components/Blog/date";
-import RelatedStories from "@components/Post/related-stories";
+import FriendlyDate from "@components/Blog/FriendlyDate";
+import RelatedStories from "@components/Post/RelatedStories";
 import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
 
-import ExtraContent from "./ExtraContent/ExtraContent";
-import CoverImage from "./cover-image";
+import CoverImage from "./CoverImage";
 
 export default function PostContent({
   title,
@@ -90,9 +89,25 @@ export default function PostContent({
       replace: ({ attribs, children, name }: any) => {
         if (name === "pre") {
           return (
-            <figure className="highlight">
-              <pre>{domToReact(children, options)}</pre>
+            <figure className="inline-block align-top w-full">
+              <pre className="inline-block align-top w-[98%] my-0 mb-[30px] mx-0 px-[1%] rounded-[5px] post-highlight-pre overflow-auto">
+                {domToReact(children, options)}
+              </pre>
             </figure>
+          );
+        }
+        if (name === "code") {
+          return (
+            <code className="post-highlight-code">
+              {domToReact(children, options)}
+            </code>
+          );
+        }
+        if (name === "blockquote") {
+          return (
+            <blockquote className="post-blockquote">
+              {domToReact(children, options)}
+            </blockquote>
           );
         }
         if (name === "p") {
@@ -118,7 +133,7 @@ export default function PostContent({
           return hasSpecialChildren ? (
             <div className="special">{domToReact(children, options)}</div>
           ) : (
-            <p>{domToReact(children, options)}</p>
+            <p className="my-0 mb-[30px]">{domToReact(children, options)}</p>
           );
         }
 
@@ -132,12 +147,22 @@ export default function PostContent({
           if (!children.length || children[0].type !== "text") return <p></p>;
           const imageList = children[0].data.split("\n").filter(Boolean);
           return (
-            <div className="picasa">
-              <ul className="picasa-album">
+            <div className="inline-block align-top w-full my-[15px] mx-0">
+              <ul className="inline-block align-top w-full my-0 mx-0 p-0">
                 {imageList.map((img: any, index: any) => (
-                  <li key={index} className="picasa-image">
-                    <a className="picasa-image-large" href={img}>
-                      <img className="picasa-image-thumb" src={img} alt="" />
+                  <li
+                    key={index}
+                    className="float-left list-none w-[16%] mx-[1%] my-[10px] px-[1%] py-[10px] rounded-[5px] post-picasa-image"
+                  >
+                    <a
+                      className="inline-block align-top w-full overflow-hidden rounded-[5px]"
+                      href={img}
+                    >
+                      <img
+                        className="inline-block align-top w-full"
+                        src={img}
+                        alt=""
+                      />
                     </a>
                   </li>
                 ))}
@@ -151,21 +176,43 @@ export default function PostContent({
           const lowResUrl = attribs["data-figure-src"];
           return (
             <span
-              className={attribs.class}
+              className={`inline-block align-top post-figure cursor-pointer overflow-hidden rounded-[5px] ${
+                classList.includes("figure-100")
+                  ? "w-full my-[15px] mx-0 mb-[60px]"
+                  : classList.includes("figure-right-40")
+                    ? "w-[40%] float-right m-[30px]"
+                    : classList.includes("figure-right-30")
+                      ? "w-[30%] float-right m-[30px]"
+                      : classList.includes("figure-right-20")
+                        ? "w-[20%] float-right m-[30px]"
+                        : classList.includes("figure-left-40")
+                          ? "w-[40%] float-left m-[30px]"
+                          : classList.includes("figure-left-30")
+                            ? "w-[30%] float-left m-[30px]"
+                            : classList.includes("figure-left-20")
+                              ? "w-[20%] float-left m-[30px]"
+                              : "w-full my-[15px] mx-0 mb-[60px]"
+              }`}
               data-figure-src={lowResUrl}
               data-figure-href={highResUrl}
             >
-              <a href={lowResUrl} title={excerptText}>
-                <figure className="figure-container">
+              <a
+                href={lowResUrl}
+                title={excerptText}
+                className="inline-block align-top w-full"
+              >
+                <figure className="inline-block align-top relative w-full">
                   <CoverImage
-                    extraClasses={"image"}
+                    extraClasses={
+                      "inline-block align-top w-full h-auto my-0 mx-0 p-0"
+                    }
                     title={excerptText}
                     lowResUrl={lowResUrl}
                     highResUrl={highResUrl}
                   />
 
                   <figcaption
-                    className="caption"
+                    className="block absolute bottom-0 w-[98%] px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
                     dangerouslySetInnerHTML={{ __html: excerpt }}
                   ></figcaption>
                 </figure>
@@ -177,9 +224,12 @@ export default function PostContent({
         if (classList.includes("youtube")) {
           const youtubeId = attribs["data-youtube-id"];
           return (
-            <span className={attribs.class} data-youtube-id={youtubeId}>
+            <span
+              className="inline-block relative w-full h-0 pb-[56.25%] rounded-[10px] overflow-hidden"
+              data-youtube-id={youtubeId}
+            >
               <ReactPlayer
-                className="player"
+                className="inline-block align-middle absolute w-full h-full top-0 left-0 my-0 mx-0 p-0"
                 url={`https://www.youtube.com/watch?v=${youtubeId}`}
                 config={{
                   youtube: {
@@ -210,9 +260,12 @@ export default function PostContent({
         if (classList.includes("soundcloud")) {
           const soundcloudUrl = attribs["data-soundcloud-url"];
           return (
-            <span className={attribs.class} data-soundcloud-url={soundcloudUrl}>
+            <span
+              className="inline-block relative w-full h-0 pb-[16%]"
+              data-soundcloud-url={soundcloudUrl}
+            >
               <ReactPlayer
-                className="player"
+                className="inline-block align-middle absolute w-full h-full top-0 left-0 my-0 mx-0 p-0"
                 url={soundcloudUrl}
                 config={{
                   soundcloud: {
@@ -242,13 +295,23 @@ export default function PostContent({
         if (classList.includes("svgviewer")) {
           const svgUrl = attribs["data-svg-url"];
 
-          return <iframe className="svgviewer" src={svgUrl}></iframe>;
+          return (
+            <iframe
+              className="inline-block align-top w-full h-[600px] my-0 mx-0 p-0"
+              src={svgUrl}
+            ></iframe>
+          );
         }
 
         if (classList.includes("pdfviewer")) {
           const pdfUrl = attribs["data-pdf-url"];
 
-          return <iframe className="pdfviewer" src={pdfUrl}></iframe>;
+          return (
+            <iframe
+              className="inline-block align-top w-full h-[600px] my-0 mx-0 p-0"
+              src={pdfUrl}
+            ></iframe>
+          );
         }
 
         return null;
@@ -259,81 +322,74 @@ export default function PostContent({
 
   return (
     <div id="post-content">
-      <style jsx global>{`
-        body {
-          font-family: var(--font-roboto), sans-serif;
-          font-size: 1.6rem;
-          cursor: default;
-          overflow-x: hidden;
-          line-height: 1em;
-          background: #ddd;
-          color: rgb(0, 0, 0);
-        }
-      `}</style>
       <article
         id={`post-${id}`}
-        className="post"
+        className="inline-block align-top w-full my-0 mx-0 p-0"
         itemProp="blogPost"
         itemScope={true}
         itemType="http://schema.org/BlogPosting"
       >
         <meta itemProp="image" content={coverImage.url} />
 
-        <span className="categories">
+        <span className="inline-block align-top my-[5px] mx-0">
           {categories.map((category: any) => (
             <Link
-              legacyBehavior
-              passHref
               href={`/blog/category/${category.slug}`}
               key={category.id}
+              title={`List all posts under the category "${category.title}"`}
+              rel="tag"
+              className="inline-block align-top text-sm uppercase h-[28px] leading-[20px] py-[3px] px-[5px] my-0 mx-[5px] mb-[24px] mr-0 bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-[5px] transition-colors duration-200 ease-in post-category-button"
             >
-              <a
-                title={`List all posts under the category "${category.title}"`}
-                rel="tag"
-              >
-                {category.title}
-              </a>
+              {category.title}
             </Link>
           ))}
         </span>
 
-        <header className="header">
-          <h2>
-            <Link legacyBehavior passHref href={canonicalUrl}>
-              <a
-                rel="bookmark"
-                title={`Permanent link to "${title}"`}
-                itemProp="url"
+        <header className="inline-block align-top w-full my-0 mx-0 p-0">
+          <h2 className="inline-block align-top w-full my-0 mx-0 p-0">
+            <Link
+              href={canonicalUrl}
+              rel="bookmark"
+              title={`Permanent link to "${title}"`}
+              itemProp="url"
+              className="inline-block align-top w-full my-0 mx-0 p-0 no-underline text-black hover:no-underline hover:text-[rgb(77,77,70)]"
+            >
+              <span
+                itemProp="headline"
+                className="text-[3.2em] font-extralight leading-4"
               >
-                <span itemProp="headline">{title}</span>
-              </a>
+                {title}
+              </span>
             </Link>
           </h2>
         </header>
 
-        <ul className="social">
+        <ul className="inline-block align-top w-full my-[5px] mx-0 p-0">
           <li
-            className="description"
+            className="float-left w-full my-[5px] mx-0 p-0 text-[rgb(102,102,102)] text-xl font-light leading-4 text-justify"
             itemProp="description"
             dangerouslySetInnerHTML={{ __html: excerpt }}
           ></li>
 
-          <li className="description">
+          <li className="float-left w-full my-[5px] mx-0 p-0 text-[rgb(102,102,102)] text-xl font-light leading-4 text-justify">
             by{" "}
-            <Link legacyBehavior passHref href="/portfolio">
-              <a title="About the author" itemProp="author">
-                Luis Alejandro
-              </a>
+            <Link
+              href="/portfolio"
+              title="About the author"
+              itemProp="author"
+              className="no-underline text-teal-custom font-normal hover:underline"
+            >
+              Luis Alejandro
             </Link>
             , on{" "}
             <time className="datetime" dateTime={date} itemProp="dateCreated">
               {" "}
-              <Date dateString={date} />
+              <FriendlyDate dateString={date} />
             </time>
           </li>
 
-          <li className="comments">
-            <span className="n_comments">
+          <li className="float-left w-[12%] text-[rgb(153,153,153)] my-[20px] mx-0">
+            <span className="inline-block align-top w-full h-[50px] text-5xl leading-[50px] text-center uppercase break-words">
               {canonicalUrl && DISQUS_SHORTNAME && (
                 <CommentCount
                   shortname={DISQUS_SHORTNAME}
@@ -346,85 +402,105 @@ export default function PostContent({
               )}
             </span>
 
-            <span className="t_comments">Comments</span>
+            <span className="inline-block align-top w-full h-[20px] text-xs leading-[20px] text-center uppercase break-words">
+              Comments
+            </span>
           </li>
 
-          <li className="espacio"></li>
+          <li className="float-left w-[52%] lg:w-[70%] h-[70px] my-[20px] mx-0"></li>
 
-          <li className="twitter">
+          <li className="float-left w-[12%] lg:w-[6%]">
             <a
               href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="sprite"></span>
+              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-300px_-90px] hover:bg-[-300px_-30px]"></span>
 
-              <span className="hide">Twitter</span>
+              <span className="hidden">Twitter</span>
             </a>
           </li>
 
-          <li className="facebook">
+          <li className="float-left w-[12%] lg:w-[6%]">
             <a
               href={`http://facebook.com/sharer/sharer.php?u=${escapedCanonicalUrl}`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="sprite"></span>
+              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-360px_-90px] hover:bg-[-360px_-30px]"></span>
 
-              <span className="hide">Facebook</span>
+              <span className="hidden">Facebook</span>
             </a>
           </li>
 
-          <li className="linkedin">
+          <li className="float-left w-[12%] lg:w-[6%]">
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${escapedCanonicalUrl}`}
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="sprite"></span>
+              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-420px_-90px] hover:bg-[-420px_-30px]"></span>
 
-              <span className="hide">LinkedIn</span>
+              <span className="hidden">LinkedIn</span>
             </a>
           </li>
         </ul>
 
         <span
-          className="figure figure-100"
+          className="inline-block align-top post-figure cursor-pointer overflow-hidden rounded-[5px] w-full my-[15px] mx-0 mb-[60px]"
           data-figure-src={coverImage.url}
           data-figure-href={coverImage.url}
         >
-          <a href={coverImage.url} title={excerptText}>
-            <figure className="figure-container">
+          <a
+            href={coverImage.url}
+            title={excerptText}
+            className="inline-block align-top w-full"
+          >
+            <figure className="inline-block align-top relative w-full">
               <CoverImage
-                extraClasses={"image"}
+                extraClasses={
+                  "inline-block align-top w-full h-auto my-0 mx-0 p-0"
+                }
                 title={excerptText}
                 lowResUrl={coverImage.url}
                 highResUrl={coverImage.imgix_url}
               />
 
               <figcaption
-                className="caption"
+                className="block absolute bottom-0 w-[98%] px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></figcaption>
             </figure>
           </a>
         </span>
 
-        <div className="text" itemProp="articleBody">
+        <div
+          className="post-content inline-block align-top w-full text-2xl font-light leading-7.5 text-justify break-words"
+          itemProp="articleBody"
+        >
           {hidrateHtml(content)}
         </div>
       </article>
 
-      <div className="meta">
-        <h3>Other posts</h3>
-        {morePosts.length > 0 && <RelatedStories posts={morePosts} />}
-      </div>
-      <ExtraContent />
+      {morePosts.length > 0 && (
+        <div className="inline-block align-top w-full mt-20">
+          <h3 className="text-4xl font-thin leading-4 mt-0 mb-[10px]">
+            Other posts
+          </h3>
+          <RelatedStories posts={morePosts} />
+        </div>
+      )}
 
-      <div id="comments">
+      <div
+        id="comments"
+        className="inline-block align-top w-full my-[30px] mx-0"
+      >
         <DiscussionEmbed
           shortname={DISQUS_SHORTNAME || ""}
           config={{

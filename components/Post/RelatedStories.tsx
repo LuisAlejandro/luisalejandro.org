@@ -1,8 +1,11 @@
-import PostRelated from "./post-related";
+import PostRelated from "./PostRelated";
 
 export default function RelatedStories({ posts }: any) {
   return (
-    <ul id="relatedposts">
+    <ul
+      id="relatedposts"
+      className="inline-block align-top w-full my-0 mx-0 mb-[70px]"
+    >
       {posts.map((post: any) => (
         <PostRelated
           key={post.slug}

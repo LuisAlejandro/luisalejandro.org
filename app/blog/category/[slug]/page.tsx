@@ -3,10 +3,10 @@ import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { notFound } from "next/navigation";
 
 import { Layout } from "@components/Blog/Layout/Layout";
-import MoreStories from "@components/Blog/more-stories";
+import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
 import { getAllPostsForCategory } from "@lib/api";
-import BlogCategoryClient from "../../components/BlogCategoryClient";
+import BlogCategoryClient from "../../../../side-effects/Blog/BlogCategoryClient";
 
 interface CategoryPageProps {
   params: {

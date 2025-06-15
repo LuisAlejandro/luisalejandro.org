@@ -1,5 +1,3 @@
-import "@styles/normalize.scss";
-import "@styles/styles.scss";
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 

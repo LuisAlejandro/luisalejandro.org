@@ -87,7 +87,7 @@ const Slide = ({ currentIndex, setModalOpen, galleryList }: any) => {
                 <img
                   src={imgUrl}
                   alt={current.name}
-                  style={{ borderRadius: "10px" }}
+                  className="rounded-[10px]"
                 />
               </picture>
               {index === lastHero && (

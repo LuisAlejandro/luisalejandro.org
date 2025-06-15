@@ -18,10 +18,7 @@ export default function ButtonBar() {
         href="/portfolio"
         icon={AiOutlinePushpin}
         text="Portfolio"
-        style={{
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px",
-        }}
+        className="rounded-l-[5px]"
       />
       <SocialIcons href="/blog" icon={AiOutlineRead} text="Blog" />
       <SocialIcons
@@ -47,10 +44,7 @@ export default function ButtonBar() {
         target="_blank"
         rel="nofollow noreferrer"
         icon={AiOutlineYoutube}
-        style={{
-          borderTopRightRadius: "5px",
-          borderBottomRightRadius: "5px",
-        }}
+        className="rounded-r-[5px]"
       />
     </ButtonBarContainer>
   );

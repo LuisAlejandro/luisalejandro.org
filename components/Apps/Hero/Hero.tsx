@@ -16,21 +16,13 @@ const Hero = () => (
       </SectionText>
 
       <span className="button1">
-        <Link
-          legacyBehavior
-          rel="tag nofollow noreferrer"
-          href="/apps/agoras/privacy"
-        >
+        <Link rel="tag nofollow noreferrer" href="/apps/agoras/privacy">
           Privacy
         </Link>
       </span>
 
       <span className="button1">
-        <Link
-          legacyBehavior
-          rel="tag nofollow noreferrer"
-          href="/apps/agoras/terms"
-        >
+        <Link rel="tag nofollow noreferrer" href="/apps/agoras/terms">
           Terms
         </Link>
       </span>
