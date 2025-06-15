@@ -15,7 +15,7 @@ export const Body = React.forwardRef<HTMLDivElement, BodyProps>(
         ref,
         className: cn(
           "relative w-full p-0",
-          "lg:pb-16.75 lg:pl-28.75 lg:w-1/2",
+          "lg:pb-16 lg:pl-16 lg:w-1/2",
           className
         ),
         // Handle the year pseudo-element using a data attribute
@@ -27,10 +27,9 @@ export const Body = React.forwardRef<HTMLDivElement, BodyProps>(
           "div",
           {
             className: cn(
-              "absolute font-bold text-white/30 right-4 z-1 leading-none text-custom-12rem tracking-neg-0_5rem -top-20",
-              "lg:text-custom-22rem lg:-top-40 lg:tracking-neg-1_8rem",
-              "sm:text-custom-15rem sm:tracking-neg-1rem sm:-top-32",
-              "md:text-custom-12_5rem md:right-auto md:left-0 md:-top-24",
+              "absolute font-bold font-title text-white/30 right-0 z-1 leading-none ",
+              "text-9xl tracking-tighter -top-20",
+              "lg:text-14xl lg:tracking-tighter lg:-top-40",
               className
             ),
             style: { pointerEvents: "none" },

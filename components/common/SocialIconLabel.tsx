@@ -12,7 +12,8 @@ export default function SocialIconLabel({
   return (
     <span
       className={cn(
-        "hidden lg:inline-block align-text-top leading-6 ml-1.5 text-sm-plus font-light",
+        "hidden align-text-top leading-6 ml-1.5 text-xs font-light",
+        "lg:text-lg lg:leading-7.5 lg:inline-block",
         className
       )}
     >

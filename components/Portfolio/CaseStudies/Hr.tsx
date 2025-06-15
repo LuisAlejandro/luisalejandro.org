@@ -8,10 +8,7 @@ export const Hr = React.forwardRef<HTMLHRElement, HrProps>(
     return React.createElement("hr", {
       ...props,
       ref,
-      className: cn(
-        "w-12 h-3px my-2 mx-auto border-0 bg-custom-hr-gold",
-        className
-      ),
+      className: cn("w-12 h-1 my-2 mx-auto border-0 bg-gold-dark", className),
     });
   }
 );

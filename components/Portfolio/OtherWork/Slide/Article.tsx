@@ -13,7 +13,7 @@ export const Article = React.forwardRef<HTMLElement, ArticleProps>(
         ...props,
         ref,
         className: cn(
-          "py-6 mx-auto max-w-full flex flex-row mr-6 items-start",
+          "py-4 mx-auto max-w-full flex flex-row mr-4 items-start",
           className
         ),
       },

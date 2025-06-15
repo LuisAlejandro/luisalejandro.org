@@ -19,87 +19,42 @@
 
   /* background image */
   /* add case studies hero background image */
+  --background-image-case-studies-canaima-hero: url("/images/case-studies/canaima-hero.jpg");
+  --background-image-case-studies-dockershelf-hero: url("/images/case-studies/dockershelf-hero.png");
+  --background-image-case-studies-expedia-hero: url("/images/case-studies/expedia-hero.png");
+  --background-image-case-studies-soleit-hero: url("/images/case-studies/soleit-hero.png");
+  --background-image-case-studies-wheeltheworld-hero: url("/images/case-studies/wheeltheworld-hero.png");
   --background-image-case-studies-canaima-challenge: url("/images/case-studies/canaima-challenge.png");
   --background-image-case-studies-dockershelf-challenge: url("/images/case-studies/dockershelf-challenge.png");
   --background-image-case-studies-expedia-challenge: url("/images/case-studies/expedia-challenge.png");
   --background-image-case-studies-soleit-challenge: url("/images/case-studies/soleit-challenge.png");
 
-  /* radius */
-  --radius-5xl: 40px;
-  --radius-6xl: 48px;
-  --radius-6_5xl: 50px;
-  --radius-7xl: 56px;
-
   /* font sizes */
-  --text-3xs: 10px;
-  --text-2xs: 11px;
-  --text-sm-plus: 15px;
-  --text-lg-minus: 17px;
-  --text-1\.25xl: 20px;
-  --text-2_5xl: 28px;
-  --text-custom-31: 31px;
-  --text-3_5xl: 32px;
-  --text-custom-32px: 32px;
-  --text-38px: 38px;
-  --text-2\.375xl: 38px;
-  --text-5xl: 40px;
-  --text-4_5xl: 42px;
-  --text-6xl: 44px;
-  --text-custom-46: 46px;
-  --text-custom-54px: 54px;
-  --text-6_5xl: 56px;
-  --text-custom-57: 57px;
-  --text-custom-61: 61px;
-  --text-7_5xl: 65px;
-  --text-7xl: 72px;
-  --text-8xl: 100px;
-  --text-9xl: 132px;
   --text-10xl: 164px;
-  --text-custom-180: 180px;
-  --text-custom-12rem: 192px;
-  --text-11xl: 196px;
-  --text-custom-12_5rem: 200px;
+  --text-11xl: 180px;
   --text-12xl: 228px;
-  --text-custom-15rem: 240px;
-  --text-13xl: 260px;
-  --text-14xl: 292px;
-  --text-15xl: 324px;
-  --text-custom-22rem: 352px;
-  --text-16xl: 356px;
-  --text-17xl: 388px;
+  --text-14xl: 224px;
+  --text-15xl: 262px;
   --text-18xl: 420px;
-  --text-custom-2em: 2em;
 
   /* custom colors */
-  --color-custom-dark-gray: #303030;
-  --color-custom-light-gray: #aaaaaa;
-  --color-custom-gold: #f8d983;
-  --color-custom-orange: #da8244;
-  --color-custom-hr-gold: #d0bb57;
-  --color-custom-text-gray: #5a5a5a;
-  --color-custom-bg-blue-gray: #abb7b7;
-  --color-custom-bg-blue-gray-light: #c0cece;
+  --color-orange: #da8244;
+  --color-gold: #f8d983;
+  --color-gold-dark: #d0bb57;
+  --color-gray-3: #5a5a5a;
+  --color-blue-gray: #abb7b7;
+  --color-blue-gray-light: #c0cece;
   --color-custom-beige: #f2d9a0;
   --color-custom-beige-light: #ede4ce;
-  --color-accent-1: #fafafa;
   --color-accent-2: #eaeaea;
   --color-accent-7: #333333;
-  --color-success: #0070f3;
-  --color-cyan: #79ffe1;
   --color-gray-1: #3c3c3c;
   --color-bright-gold: #f5cc6a;
   --color-gray-2: #222222;
-
-  /* letter spacing */
-  /* standarize letter spacing */
-  --tracking-neg-1_8rem: -1.8rem;
-  --tracking-neg-1rem: -1rem;
-  --tracking-neg-0_5rem: -0.5rem;
-  --tracking-neg-0_1206rem: -0.1206rem;
-  --tracking-tighter: -0.04em;
-  --tracking-0_01em: 0.01em;
-  --tracking-0_02em: 0.02em;
-  --tracking-2px: 2px;
+  --color-gray-4: #303030;
+  --color-gray-5: #aaaaaa;
+  --color-orange-2: #e68449;
+  --color-orange-3: #f1b161;
 }
 
 @layer components {

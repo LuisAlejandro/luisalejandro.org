@@ -12,7 +12,11 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>(
       {
         ...props,
         ref,
-        className: cn("hidden w-1/2", "lg:flex", className),
+        className: cn(
+          "hidden w-full",
+          "lg:flex lg:flex-col lg:w-1/2",
+          className
+        ),
       },
       children
     );

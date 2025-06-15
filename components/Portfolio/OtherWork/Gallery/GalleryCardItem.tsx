@@ -14,12 +14,7 @@ export const GalleryCardItem = React.forwardRef<
     {
       ...props,
       ref,
-      className: cn(
-        "py-1.5 px-[0.5%] w-1/2 opacity-0",
-        "lg:w-full",
-        "md:w-1/2",
-        className
-      ),
+      className: cn("py-1.5 px-[0.5%] w-1/2 opacity-0", "w-full", className),
     },
     children as any
   );

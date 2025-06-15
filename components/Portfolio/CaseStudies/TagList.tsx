@@ -12,7 +12,7 @@ export const TagList = React.forwardRef<HTMLUListElement, TagListProps>(
       {
         ...props,
         ref,
-        className: cn("py-8 hidden ", "lg:flex lg:justify-center", className),
+        className: cn("py-8 flex justify-center", className),
       },
       children
     );

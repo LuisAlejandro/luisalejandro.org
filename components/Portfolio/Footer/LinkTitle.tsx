@@ -14,8 +14,8 @@ export const LinkTitle = React.forwardRef<HTMLHeadingElement, LinkTitleProps>(
         ref,
         className: cn(
           "normal font-semibold uppercase text-white/40",
-          "text-3xs leading-3 mb-2",
-          "lg:text-xs lg:leading-6 lg:mb-4",
+          "text-base leading-3 mb-2",
+          "lg:leading-6 lg:mb-4",
           className
         ),
       },

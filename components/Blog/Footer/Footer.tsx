@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import {
   AiFillGithub,
   AiFillLinkedin,
-  AiFillTwitterCircle,
   AiFillYoutube,
+  AiOutlineX,
 } from "react-icons/ai";
 
 // Reusable components with Tailwind classes
@@ -137,7 +137,7 @@ const Footer = () => {
               target="_blank"
               rel="nofollow noreferrer"
             >
-              <AiFillTwitterCircle size="3rem" />
+              <AiOutlineX size="3rem" />
             </SocialIcons>
           </SocialContainer>
         </SocialIconsContainer>

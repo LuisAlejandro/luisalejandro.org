@@ -13,10 +13,10 @@ export const Boxes = React.forwardRef<HTMLDivElement, BoxesProps>(
         ...props,
         ref,
         className: cn(
-          "w-full grid grid-cols-1 gap-0 mx-auto my-6",
-          "lg:grid lg:grid-cols-4 lg:max-w-full lg:gap-6 lg:my-6 lg:mb-40",
-          "md:grid md:grid-cols-[repeat(auto-fit,minmax(140px,1fr))] md:gap-4 md:my-5 md:mb-8",
-          "sm:grid sm:grid-cols-2 sm:gap-2.5 sm:max-w-125 sm:mx-auto sm:my-6",
+          "w-full grid gap-4 mx-auto my-8",
+          "lg:grid-cols-4",
+          "md:grid-cols-2",
+          "grid-cols-1",
           className
         ),
       },

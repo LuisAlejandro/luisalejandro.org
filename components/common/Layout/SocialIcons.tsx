@@ -18,7 +18,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
   <a
     {...props}
     className={cn(
-      "w-full rounded-md block text-center align-top font-light font-main leading-5 uppercase px-2.5 pt-1 pb-2 my-0 mb-1 h-15.75 bg-custom-beige text-custom-text-gray transition-all duration-200 ease-in simple-3d-button",
+      "w-full rounded-md block text-center align-top font-light font-main leading-5 uppercase px-2.5 pt-1 pb-2 my-0 mb-1 h-15.75 bg-custom-beige text-gray-3 transition-all duration-200 ease-in simple-3d-button",
 
       // hover
       "hover:bg-custom-beige-light hover:text-black",
@@ -31,9 +31,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
       className
     )}
   >
-    <Icon
-      className={cn("lg:text-2xl align-top inline-block text-custom-54px")}
-    />
+    <Icon className={cn("lg:text-2xl align-top inline-block text-5xl")} />
     {text && <SocialIconLabel>{text}</SocialIconLabel>}
   </a>
 );

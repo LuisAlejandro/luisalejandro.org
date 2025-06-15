@@ -13,11 +13,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
         ...props,
         ref,
         className: cn(
-          "bg-white/20 text-gray-800 rounded-xl h-36 p-6",
-          "lg:h-52.5",
-          "md:h-33.75 md:p-4",
-          "sm:h-27.5 sm:p-3 sm:[&:nth-child(2n)]:row-start-2",
-          "max-[450px]:my-3",
+          "bg-white/20 text-gray-800 rounded-xl p-6 min-h-32",
           className
         ),
       },

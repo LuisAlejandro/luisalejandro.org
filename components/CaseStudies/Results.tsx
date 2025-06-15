@@ -25,14 +25,14 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
           totalProgress={progress}
           paused
         >
-          <h1 className="font-display text-18xl font-bold text-black m-0 absolute right-0 opacity-5 hidden md:block">
+          <h1 className="font-display text-15xl font-bold text-black m-0 absolute right-0 opacity-5 hidden md:block">
             <Title />
           </h1>
         </Tween>
       )}
     </Scene>
 
-    <div className="grid grid-cols-8 gap-4 px-8 md:px-32 py-60">
+    <div className="grid grid-cols-8 gap-4 px-8 pt-60">
       <div className="lg:col-span-1"></div>
       <div className="lg:col-span-6 col-span-8">
         <Scene triggerElement="#results" duration="200%" triggerHook="1">
@@ -45,7 +45,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
               totalProgress={progress}
               paused
             >
-              <h1 className="font-display text-8xl md:text-12xl font-bold text-black m-0">
+              <h1 className="font-display text-10xl font-bold text-black m-0">
                 <Title />
               </h1>
             </Tween>
@@ -61,7 +61,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
               totalProgress={progress}
               paused
             >
-              <div className="font-main text-4xl font-extralight text-neutral-700 leading-normal">
+              <div className="font-main text-2xl font-extralight text-neutral-700 leading-normal">
                 <Content />
               </div>
             </Tween>
@@ -71,18 +71,17 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
 
       <div className="lg:col-span-1"></div>
     </div>
-
-    <div className="grid grid-cols-8 gap-4 px-32 pt-16 pb-60">
-      <div className="col-span-1"></div>
-      <div className="col-span-6 font-main text-2xl font-extralight text-white">
-        <ul className="flex py-8">
+    <div className="grid grid-cols-8 gap-4 px-8">
+      <div className="lg:col-span-1"></div>
+      <div className="lg:col-span-6 col-span-8">
+        <ul className="flex py-16">
           {links.map((link) => (
             <li key={link.text}>
               <a
                 target="_blank"
                 rel="nofollow noreferrer"
                 href={link.url}
-                className="font-thin text-6xl text-neutral-900 py-2 px-4 my-0 mr-4 rounded-3xl bg-black/10 hover:bg-black/30 transition-all duration-300 ease-in-out"
+                className="font-thin text-2xl text-neutral-900 py-1 px-4 my-0 mr-4 rounded-xl bg-black/10 hover:bg-black/30 transition-all duration-300 ease-in-out"
               >
                 {link.text}
               </a>
@@ -90,7 +89,8 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
           ))}
         </ul>
       </div>
-      <div className="col-span-1"></div>
+
+      <div className="lg:col-span-1"></div>
     </div>
 
     <svg viewBox="0 0 1920 100">

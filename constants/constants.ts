@@ -104,34 +104,6 @@ export const GalleryList = [
     },
   },
   {
-    name: "Marvin video generator",
-    year: 2018,
-    shortDescription:
-      "Created a video editor capable of mass generating videos from simple configuration.",
-    description:
-      "As a <a href='https://web.archive.org/web/20230603232601/https://leadboxhq.com/' target='_blank'>Leadbox</a> employee, I was tasked with creating a video editor capable of mass generating videos. I created a **Python backend** that would receive a configuration file and a video template. The backend would then use **FFmpeg** to generate the videos. The frontend was built with **Angular** and allowed the user to create the configuration file and upload the video template. The frontend would then send the configuration file and the video template to the backend. The backend would then generate the videos and upload them to **Azure Blob Storage**. The frontend would then display the videos to the user. This system allowed the company to generate more than 1000 videos in a matter of minutes.",
-    tags: ["python", "bottle", "ci/cd", "azure", "ffmpeg", "angular"],
-    sources: [
-      {
-        name: "landing page",
-        url: "https://youtu.be/YbZjNMUbZSs",
-      },
-      {
-        name: "video preview",
-        url: "https://web.archive.org/web/20230810195652/https://leadboxhq.com/leadbox-oem-video-service-ford/",
-      },
-    ],
-    images: {
-      thumbnail: "/images/other/leadbox-marvin.png",
-      logo: "/images/other/logo-leadbox.svg",
-      hero: [
-        "/images/other/leadbox-marvin-ui.png",
-        "/images/other/leadbox-marvin-example-1.png",
-        "/images/other/leadbox-marvin-example-2.png",
-      ],
-    },
-  },
-  {
     name: "Aguilas LDAP Single Sign On",
     year: 2012,
     shortDescription: "A web-based LDAP user management system",
@@ -202,6 +174,53 @@ export const GalleryList = [
         "/images/other/huntingbears-3.png",
         "/images/other/huntingbears-2.png",
       ],
+    },
+  },
+  {
+    name: "Marvin video generator",
+    year: 2018,
+    shortDescription:
+      "Created a video editor capable of mass generating videos from simple configuration.",
+    description:
+      "As a <a href='https://web.archive.org/web/20230603232601/https://leadboxhq.com/' target='_blank'>Leadbox</a> employee, I was tasked with creating a video editor capable of mass generating videos. I created a **Python backend** that would receive a configuration file and a video template. The backend would then use **FFmpeg** to generate the videos. The frontend was built with **Angular** and allowed the user to create the configuration file and upload the video template. The frontend would then send the configuration file and the video template to the backend. The backend would then generate the videos and upload them to **Azure Blob Storage**. The frontend would then display the videos to the user. This system allowed the company to generate more than 1000 videos in a matter of minutes.",
+    tags: ["python", "bottle", "ci/cd", "azure", "ffmpeg", "angular"],
+    sources: [
+      {
+        name: "landing page",
+        url: "https://youtu.be/YbZjNMUbZSs",
+      },
+      {
+        name: "video preview",
+        url: "https://web.archive.org/web/20230810195652/https://leadboxhq.com/leadbox-oem-video-service-ford/",
+      },
+    ],
+    images: {
+      thumbnail: "/images/other/leadbox-marvin.png",
+      logo: "/images/other/logo-leadbox.svg",
+      hero: [
+        "/images/other/leadbox-marvin-ui.png",
+        "/images/other/leadbox-marvin-example-1.png",
+        "/images/other/leadbox-marvin-example-2.png",
+      ],
+    },
+  },
+  {
+    name: "American Eagle Outfitters Panamá website",
+    year: 2015,
+    shortDescription: "An e-commerce website for a local clothing brand",
+    description:
+      "Working with the <a href='https://web.archive.org/web/20150919135024/http://www.e2-361.com/' target='_blank'>e2-361 agency</a>, I was tasked with coding the website for a local clothing brand. The website was built using HTML, CSS and JS. I worked closely with the designer to ensure the website was pixel perfect. The website was also integrated with the Adobe Business Catalyst e-commerce platform.",
+    tags: ["adobe bussiness catalyst", "css", "js"],
+    sources: [
+      {
+        name: "website",
+        url: "https://web.archive.org/web/20160219152855/http://aeo.com.pa/",
+      },
+    ],
+    images: {
+      thumbnail: "/images/other/aeo-1.png",
+      logo: "/images/other/logo-aeo.svg",
+      hero: ["/images/other/aeo-1.png"],
     },
   },
   {
@@ -279,25 +298,6 @@ export const GalleryList = [
       thumbnail: "/images/other/btech-2.jpg",
       logo: "/images/other/logo-btech.png",
       hero: ["/images/other/btech-1.png", "/images/other/btech-3.png"],
-    },
-  },
-  {
-    name: "American Eagle Outfitters Panamá website",
-    year: 2015,
-    shortDescription: "An e-commerce website for a local clothing brand",
-    description:
-      "Working with the <a href='https://web.archive.org/web/20150919135024/http://www.e2-361.com/' target='_blank'>e2-361 agency</a>, I was tasked with coding the website for a local clothing brand. The website was built using HTML, CSS and JS. I worked closely with the designer to ensure the website was pixel perfect. The website was also integrated with the Adobe Business Catalyst e-commerce platform.",
-    tags: ["adobe bussiness catalyst", "css", "js"],
-    sources: [
-      {
-        name: "website",
-        url: "https://web.archive.org/web/20160219152855/http://aeo.com.pa/",
-      },
-    ],
-    images: {
-      thumbnail: "/images/other/aeo-1.png",
-      logo: "/images/other/logo-aeo.svg",
-      hero: ["/images/other/aeo-1.png"],
     },
   },
 ];

@@ -16,7 +16,7 @@ export const SlideshowWrapper = React.forwardRef<
       ...props,
       ref,
       className: cn(
-        "flex flex-col py-6 pb-60 mx-auto w-full relative",
+        "flex flex-col pt-4 pb-38 mx-auto w-full relative",
         "xl:pt-16",
         "md:pt-10",
         className

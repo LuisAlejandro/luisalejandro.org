@@ -11,7 +11,7 @@ import ListParagraph from "./ListParagraph";
 import ListTitle from "./ListTitle";
 
 const Toolbox = () => (
-  <Section className="mt-15">
+  <Section className="mt-15" smallpadding>
     <SectionTitle>On my toolbox</SectionTitle>
     <SectionText>
       These are my preferred technologies when it comes to implementing your

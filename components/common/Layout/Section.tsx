@@ -8,6 +8,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   nopadding?: boolean;
   accent1?: boolean;
   accent2?: boolean;
+  smallpadding?: boolean;
   color?: string;
   wide?: boolean;
   overflowVisible?: boolean;
@@ -26,6 +27,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       nopadding,
       accent1,
       accent2,
+      smallpadding,
       color,
       wide,
       overflowVisible,
@@ -40,17 +42,17 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
     const flexDirection = row ? "flex-col lg:flex-row" : "flex-col";
 
     const padding = nopadding
-      ? "lg:p-0 px-8 pt-6 pb-0"
-      : accent1 || accent2
+      ? "p-0 pt-6"
+      : smallpadding
         ? "lg:px-[calc((100%-1040px)/2)] lg:py-8 px-8 pt-6 pb-0"
         : "lg:px-12 lg:pt-8 lg:pb-0 px-8 pt-6 pb-0";
 
     const margin = nomargin ? "m-0" : "m-auto";
 
     const background = accent1
-      ? "bg-custom-gold"
+      ? "bg-gold"
       : accent2
-        ? "bg-custom-orange"
+        ? "bg-orange"
         : color
           ? `bg-[${color}]`
           : "bg-transparent";
@@ -58,7 +60,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
     const maxWidth = wide
       ? "lg:max-w-[80%] max-w-[calc(100%-64px)]"
       : fullwidth
-        ? "lg:max-w-full max-w-[calc(100%-64px)]"
+        ? "max-w-full"
         : "lg:max-w-260 max-w-[calc(100%-64px)]";
 
     const overflow = overflowVisible ? "overflow-visible" : "overflow-hidden";

@@ -6,10 +6,7 @@ import { Section } from "@components/common/Layout/Section";
 import { SectionText } from "@components/common/Layout/SectionText";
 import { SectionTitle } from "@components/common/Layout/SectionTitle";
 
-import { CarouselContainer } from "./CarouselContainer";
-import { CarouselItem } from "./CarouselItem";
-import { CarouselItemText } from "./CarouselItemText";
-import { CarouselItemTitle } from "./CarouselItemTitle";
+import TimelineChart from "./TimelineChart";
 
 const Timeline = () => {
   return (
@@ -22,7 +19,7 @@ const Timeline = () => {
         />
         <path fill="#f8d983" d="M0,100h1920L960,50L0,100z" />
       </svg>
-      <Section id="about" accent1 className="pt-25">
+      <Section id="about" className="pt-25" accent1 smallpadding>
         <Clients
           className="container-clients"
           style={{
@@ -41,14 +38,7 @@ const Timeline = () => {
           client had its particular set of challenges and requirements which
           made me bring the best of me to the table.
         </SectionText>
-        <CarouselContainer>
-          {TimeLineData.map((item, index) => (
-            <CarouselItem key={index} id={`carousel__item-${index}`}>
-              <CarouselItemTitle>{item.year}</CarouselItemTitle>
-              <CarouselItemText>{item.text}</CarouselItemText>
-            </CarouselItem>
-          ))}
-        </CarouselContainer>
+        <TimelineChart data={TimeLineData} />
       </Section>
     </>
   );

@@ -6,7 +6,7 @@ import Header from "@components/Portfolio/Header/Header";
 
 export default function ContactPage() {
   return (
-    <div className="w-full mx-auto bg-[#f5cc6a] min-h-screen">
+    <div className="w-full mx-auto bg-bright-gold min-h-screen">
       <Header />
       <main>
         <div className="container pb-80"></div>

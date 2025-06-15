@@ -12,7 +12,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     const wideClass = wide
       ? "px-[calc((100%-1280px)/2)] py-8"
       : "max-w-7xl mt-0 mb-7.5 p-4 pt-8";
-    const darkClass = dark ? "bg-custom-dark-gray" : "";
+    const darkClass = dark ? "bg-gray-4" : "";
     return React.createElement(
       "div",
       {

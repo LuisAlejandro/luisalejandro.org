@@ -27,14 +27,14 @@ const Why = ({ Title, Content, ImageComponent, ImageUseEffect }: WhyProps) => {
               totalProgress={progress}
               paused
             >
-              <h1 className="font-display text-18xl font-bold text-neutral-700 m-0 absolute right-0 opacity-30 z-0 hidden md:block">
+              <h1 className="font-display text-15xl font-bold text-neutral-700 m-0 absolute right-0 opacity-30 z-0 hidden md:block">
                 <Title />
               </h1>
             </Tween>
           )}
         </Scene>
 
-        <div className="grid grid-cols-8 gap-4 px-8 md:px-32 py-60">
+        <div className="grid grid-cols-8 gap-4 px-8 py-60">
           <div className="col-span-4 hidden lg:block">
             <ImageComponent
               style={{
@@ -58,7 +58,7 @@ const Why = ({ Title, Content, ImageComponent, ImageUseEffect }: WhyProps) => {
                   totalProgress={progress}
                   paused
                 >
-                  <h1 className="font-display text-8xl md:text-12xl font-bold text-white opacity-0 m-0 z-10">
+                  <h1 className="font-display text-10xl font-bold text-white opacity-0 m-0 z-10">
                     <Title />
                   </h1>
                 </Tween>
@@ -74,7 +74,7 @@ const Why = ({ Title, Content, ImageComponent, ImageUseEffect }: WhyProps) => {
                   totalProgress={progress}
                   paused
                 >
-                  <div className="font-main text-4xl font-extralight text-white opacity-0 leading-normal">
+                  <div className="font-main text-2xl font-extralight text-white opacity-0 leading-normal">
                     <Content />
                   </div>
                 </Tween>

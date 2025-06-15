@@ -55,25 +55,21 @@ const Slide = ({ currentIndex, setModalOpen, galleryList }: any) => {
           >
             <picture>
               <source srcSet="/images/other/banner.svg" />
-              <img src="/images/other/banner.svg" alt="" />
+              <img
+                src="/images/other/banner.svg"
+                alt={current.name}
+                className="mb-4"
+              />
             </picture>
-            <Caption
-              style={{
-                top: "4rem",
-              }}
-            >
-              <h1 className="text-6xl text-black font-bold leading-none my-0 mb-2.5">
+            <Caption className="top-6">
+              <h1 className="text-4xl text-black font-bold leading-none my-0 mb-2.5">
                 {current.name}
               </h1>
-              <p className="text-custom-31 text-gray-600">
+              <p className="text-xl text-gray-600">
                 {current.shortDescription}
               </p>
             </Caption>
-            <Caption
-              style={{
-                width: "150px",
-              }}
-            >
+            <Caption className="w-38">
               <CustomLink2 accent onClick={() => setModalOpen(false)}>
                 <AiOutlineLeft /> Go back
               </CustomLink2>

@@ -13,7 +13,7 @@ export const Caption = React.forwardRef<HTMLElement, CaptionProps>(
         ...props,
         ref,
         className: cn(
-          "text-white absolute bottom-0 p-8 text-left w-full rounded-lg bg-gradient-to-t from-black/85 to-transparent",
+          "text-white absolute bottom-0 p-5 text-left w-full h-full rounded-lg bg-gradient-to-t from-black/85 via-black/50 via-60% to-black/10",
           className
         ),
       },

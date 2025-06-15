@@ -18,19 +18,10 @@ const ExpediaPage = () => {
   return (
     <div className="w-full">
       <main>
-        <style jsx global>{`
-          body {
-            font-family: var(--font-roboto), sans-serif;
-            font-size: 1.6rem;
-            color: #222222;
-            cursor: default;
-            overflow-x: hidden;
-          }
-        `}</style>
-        <div id="cases" style={{ background: "#333" }}>
+        <div id="cases" className="bg-accent-7 text-gray-2">
           <Header variant="case-studies" />
           <Controller>
-            <div className="cases-content">
+            <div className="cases-content w-full text-lg font-main">
               <HeroIntro
                 Subtitle={() => "Expedia API integration"}
                 Title={() => "A larger hotel database to book from"}
@@ -63,13 +54,7 @@ const ExpediaPage = () => {
                     totalProgress={progress}
                     paused
                   >
-                    <div
-                      className="w-full page-hero"
-                      style={{
-                        backgroundImage:
-                          "url(/images/case-studies/expedia-hero.png)",
-                      }}
-                    >
+                    <div className="w-full page-hero bg-case-studies-expedia-hero bg-cover relative">
                       <svg viewBox="0 0 1920 100">
                         <path fill="#333" d="M960,50l960-50H0L960,50z" />
                       </svg>
@@ -267,30 +252,30 @@ const ExpediaPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-280px md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           600K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           hotels to
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           choose from
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-280px md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           39%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           increase in
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           bookings
                         </div>
                       </div>

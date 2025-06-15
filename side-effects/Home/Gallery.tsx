@@ -51,11 +51,11 @@ export default function Gallery() {
 
   return (
     <GalleryContainer>
-      <ul className="columns-[210px] gap-6 w-full list-none p-0 m-0">
+      <ul className="columns-3 gap-4 w-full list-none p-0 m-0">
         {frontList.map((item, index) => (
           <li
             key={index}
-            className={`break-inside-avoid mb-5 transition-opacity duration-700 ease-in-out ${
+            className={`break-inside-avoid mb-4 transition-opacity duration-700 ease-in-out ${
               imagesVisible ? "opacity-100" : "opacity-0"
             }`}
           >

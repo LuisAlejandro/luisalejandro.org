@@ -107,64 +107,35 @@ const BackgroundAnimation = () => {
   return (
     <div
       id="portfolio-bg"
-      style={{
-        position: "relative",
-        top: "-50px",
-        right: "-50px",
-      }}
+      className="hidden lg:block relative -top-[50px] -right-[50px]"
     >
       <Portfolio
-        className="container-portfolio"
+        className="container-portfolio absolute bottom-0 right-0 h-[500px] w-[500px]"
         style={{
-          height: "500px",
-          width: "500px",
-          position: "absolute",
-          bottom: "0",
-          right: "0",
           transform: "translate(0px, 0px) rotateZ(30deg)",
         }}
       />
       <Blog
-        className="container-blog"
+        className="container-blog absolute bottom-0 right-0 h-[250px] w-[250px]"
         style={{
-          height: "250px",
-          width: "250px",
-          position: "absolute",
-          bottom: "0",
-          right: "0",
           transform: "translate(-450px, 50px) rotateZ(-30deg)",
         }}
       />
       <Contact
-        className="container-contact"
+        className="container-contact absolute bottom-0 right-0 h-[150px] w-[150px]"
         style={{
-          height: "150px",
-          width: "150px",
-          position: "absolute",
-          bottom: "0",
-          right: "0",
           transform: "translate(-450px, -300px) rotateZ(-50deg)",
         }}
       />
       <Easter
-        className="container-easter"
+        className="container-easter absolute bottom-0 right-0 h-[300px] w-[300px]"
         style={{
-          height: "300px",
-          width: "300px",
-          position: "absolute",
-          bottom: "0",
-          right: "0",
           transform: "translate(-250px, 250px) rotateZ(20deg)",
         }}
       />
       <Donations
-        className="container-donations"
+        className="container-donations absolute bottom-0 right-0 h-[170px] w-[170px]"
         style={{
-          height: "170px",
-          width: "170px",
-          position: "absolute",
-          bottom: "0",
-          right: "0",
           transform: "translate(0px, 100px) rotateZ(150deg)",
         }}
       />

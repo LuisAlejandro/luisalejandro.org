@@ -12,10 +12,10 @@ export const SectionText = React.forwardRef<
   SectionTextProps
 >(({ children, className, wide, fullwidth, ...props }, ref) => {
   const maxWidth = wide
-    ? "max-w-[80%]"
+    ? "max-w-[80%] mx-8"
     : fullwidth
       ? "max-w-full"
-      : "max-w-260";
+      : "max-w-260 mx-0";
 
   return React.createElement(
     "p",
@@ -23,11 +23,10 @@ export const SectionText = React.forwardRef<
       ...props,
       ref,
       className: cn(
-        "text-base leading-6 font-light pb-4 text-gray-800 w-full mx-auto",
+        "text-md leading-8 font-extralight pb-4 text-gray-800 w-full",
         maxWidth,
-        "lg:text-2xl lg:leading-10 lg:pb-14",
+        "lg:text-2xl lg:leading-10 lg:pb-14 lg:mx-auto",
         "md:text-xl md:leading-8 md:pb-6",
-        "sm:text-base sm:leading-6 sm:pb-4",
         className
       ),
     },

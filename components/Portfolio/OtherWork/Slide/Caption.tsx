@@ -12,10 +12,7 @@ export const Caption = React.forwardRef<HTMLElement, CaptionProps>(
       {
         ...props,
         ref,
-        className: cn(
-          "absolute bg-white p-6 -left-14 -top-14 w-3/4",
-          className
-        ),
+        className: cn("absolute bg-white p-4 -left-6 -top-14 w-3/4", className),
       },
       children
     );

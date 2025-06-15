@@ -31,29 +31,10 @@ const DockershelfPage = () => {
   return (
     <div className="w-full">
       <main>
-        <style jsx global>{`
-          body {
-            font-family: var(--font-roboto), sans-serif;
-            font-size: 1.6rem;
-            color: #222222;
-            cursor: default;
-            overflow-x: hidden;
-          }
-          #cases .page-hero {
-            background-size: cover;
-            position: relative;
-          }
-
-          #cases .cases-content {
-            width: 100%;
-            font-size: 18px;
-            font-family: Roboto, sans-serif;
-          }
-        `}</style>
-        <div id="cases" style={{ background: "#333" }}>
+        <div id="cases" className="bg-accent-7 text-gray-2">
           <Header variant="case-studies" />
           <Controller>
-            <div className="cases-content">
+            <div className="cases-content w-full text-lg font-main">
               <HeroIntro
                 Subtitle={() => "Dockershelf"}
                 Title={() => "Reliable docker images"}
@@ -97,13 +78,7 @@ const DockershelfPage = () => {
                     totalProgress={progress}
                     paused
                   >
-                    <div
-                      className="w-full page-hero"
-                      style={{
-                        backgroundImage:
-                          "url(/images/case-studies/dockershelf-hero.png)",
-                      }}
-                    >
+                    <div className="w-full page-hero bg-case-studies-dockershelf-hero bg-cover relative">
                       <svg viewBox="0 0 1920 100">
                         <path fill="#333" d="M960,50l960-50H0L960,50z" />
                       </svg>
@@ -304,44 +279,44 @@ const DockershelfPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           220K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           debian images
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           294K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           python images
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           55K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           node images
                         </div>
                       </div>
@@ -369,15 +344,15 @@ const DockershelfPage = () => {
                             labels: ["dockerhub node", "dockershelf node"],
                             datasets: [
                               {
-                                label: "Debian",
+                                label: "Debian images (MB)",
                                 data: [367.93, 82.43],
                                 backgroundColor: [
                                   "rgba(255, 99, 132, 0.2)",
-                                  "rgba(255, 159, 64, 0.2)",
+                                  // "rgba(255, 159, 64, 0.2)",
                                 ],
                                 borderColor: [
                                   "rgb(255, 99, 132)",
-                                  "rgb(255, 159, 64)",
+                                  // "rgb(255, 159, 64)",
                                 ],
                                 borderWidth: 1,
                               },
@@ -399,15 +374,15 @@ const DockershelfPage = () => {
                             labels: ["dockerhub python", "dockershelf python"],
                             datasets: [
                               {
-                                label: "Python",
+                                label: "Python images (MB)",
                                 data: [360.46, 100.09],
                                 backgroundColor: [
                                   "rgba(255, 99, 132, 0.2)",
-                                  "rgba(255, 159, 64, 0.2)",
+                                  // "rgba(255, 159, 64, 0.2)",
                                 ],
                                 borderColor: [
                                   "rgb(255, 99, 132)",
-                                  "rgb(255, 159, 64)",
+                                  // "rgb(255, 159, 64)",
                                 ],
                                 borderWidth: 1,
                               },

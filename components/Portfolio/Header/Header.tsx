@@ -4,8 +4,8 @@ import Link from "next/link";
 import {
   AiFillGithub,
   AiFillLinkedin,
-  AiFillTwitterCircle,
   AiFillYoutube,
+  AiOutlineX,
 } from "react-icons/ai";
 
 import { Container } from "@components/common/Header/Container";
@@ -124,7 +124,7 @@ const Header = ({ variant }: { variant?: string }) => {
             target="_blank"
             rel="nofollow noreferrer"
           >
-            <AiFillTwitterCircle size="30px" />
+            <AiOutlineX size="30px" />
           </SocialIcons>
         </Div3>
       </Container>

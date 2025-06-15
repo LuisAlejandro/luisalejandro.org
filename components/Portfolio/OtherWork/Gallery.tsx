@@ -42,12 +42,12 @@ const Gallery = ({ setCurrentIndex, setModalOpen, galleryList }: any) => {
 
   return (
     <>
-      <ul className="columns-[300px] gap-6 w-full list-none p-0 m-0">
+      <ul className="columns-1 md:columns-2 lg:columns-3 gap-2 w-full list-none p-0 m-0">
         {galleryList.map((work: any, index: any) => (
           <GalleryCardItem
             variants={cardAnimation}
             key={index}
-            className={`break-inside-avoid mb-5 transition-opacity duration-700 ease-in-out ${
+            className={`break-inside-avoid transition-opacity duration-700 ease-in-out ${
               imagesVisible ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -66,13 +66,13 @@ const Gallery = ({ setCurrentIndex, setModalOpen, galleryList }: any) => {
                   className="w-full rounded-lg"
                 />
                 <Caption variants={captionAnimation}>
-                  <h2 className="text-8xl leading-none mb-0 hidden lg:block">
+                  <h2 className="text-6xl font-bold leading-none block font-title">
                     {work.year}
                   </h2>
-                  <h3 className="font-bold text-3xl normal mb-2 whitespace-pre-line">
+                  <h3 className="text-xl mb-2 whitespace-pre-line font-bold font-title">
                     {work.name}
                   </h3>
-                  <p className="text-2xl font-thin text-white/75 hidden lg:block">
+                  <p className="text-base font-thin text-white/75 block">
                     {work.shortDescription}
                   </p>
                 </Caption>

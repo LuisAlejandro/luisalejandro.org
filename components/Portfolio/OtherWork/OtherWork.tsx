@@ -17,8 +17,8 @@ const OtherWork = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <Section id="gallery">
-      <SectionTitle main>Other work</SectionTitle>
+    <Section id="gallery" smallpadding>
+      <SectionTitle>Other work</SectionTitle>
       <SectionText>
         This is a gallery showing other important work I&apos;ve done along the
         years.

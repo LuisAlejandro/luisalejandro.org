@@ -153,7 +153,7 @@ export default async function PortfolioLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-gradient-to-b from-[#e68449] via-[#f1b161]/15 via-30% to-[#f5cc6a] min-h-screen">
+    <div className="bg-gradient-to-b from-orange-2 via-orange-3/15 via-30% to-bright-gold min-h-screen">
       {children}
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LeftSection } from "./HeroStyles";
+
+import { LeftSection } from "@components/Portfolio/Hero/LeftSection";
 
 const Nav = () => (
   <>

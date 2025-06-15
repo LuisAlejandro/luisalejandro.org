@@ -2,8 +2,7 @@ import Link from "next/link";
 
 import { SectionText } from "@components/common/Layout/SectionText";
 import { SectionTitle } from "@components/common/Layout/SectionTitle";
-
-import { LeftSection } from "./HeroStyles";
+import { LeftSection } from "@components/Portfolio/Hero/LeftSection";
 
 const Hero = () => (
   <>

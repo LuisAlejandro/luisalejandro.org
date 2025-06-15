@@ -13,9 +13,7 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
         ...props,
         ref,
         className: cn(
-          "absolute bg-white p-6 -right-14 -bottom-14 w-2/5",
-          "md:px-16 md:pt-0 md:pb-16.5 md:top-0 md:left-60 md:bottom-auto md:w-full",
-          "xl:left-[26rem]",
+          "absolute bg-white p-6 -right-8 -bottom-14 w-2/5",
           className
         ),
       },

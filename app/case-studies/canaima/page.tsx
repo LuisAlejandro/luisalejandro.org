@@ -33,19 +33,10 @@ const CanaimaPage = () => {
   return (
     <div className="w-full">
       <main>
-        <style jsx global>{`
-          body {
-            font-family: var(--font-roboto), sans-serif;
-            font-size: 1.6rem;
-            color: #222222;
-            cursor: default;
-            overflow-x: hidden;
-          }
-        `}</style>
-        <div id="cases" style={{ background: "#333" }}>
+        <div id="cases" className="bg-accent-7 text-gray-2">
           <Header variant="case-studies" />
           <Controller>
-            <div className="cases-content">
+            <div className="cases-content w-full text-lg font-main">
               <HeroIntro
                 Subtitle={() => "Canaima GNU/Linux"}
                 Title={() => "A Venezuelan Linux Distribution"}
@@ -91,13 +82,7 @@ const CanaimaPage = () => {
                     totalProgress={progress}
                     paused
                   >
-                    <div
-                      className="w-full page-hero"
-                      style={{
-                        backgroundImage:
-                          "url(/images/case-studies/canaima-hero.jpg)",
-                      }}
-                    >
+                    <div className="w-full page-hero bg-case-studies-canaima-hero bg-cover relative">
                       <svg viewBox="0 0 1920 100">
                         <path fill="#333" d="M960,50l960-50H0L960,50z" />
                       </svg>
@@ -277,44 +262,44 @@ const CanaimaPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           110K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 3.0
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           150K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 3.1
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           220K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 4.0
                         </div>
                       </div>

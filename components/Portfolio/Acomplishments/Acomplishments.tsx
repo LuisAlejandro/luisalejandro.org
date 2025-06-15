@@ -9,7 +9,7 @@ import { Boxes } from "./Boxes";
 
 const Acomplishments = () => (
   <>
-    <Section id="acomplishments" accent1>
+    <Section id="acomplishments" accent1 smallpadding>
       <Boxes>
         {Stars.map((card, index) => (
           <Box key={index}>

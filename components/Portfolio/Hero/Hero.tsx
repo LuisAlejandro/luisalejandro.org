@@ -19,7 +19,7 @@ const Hero = () => (
       </SectionText>
       <Button1>
         <ResumeLink
-          title='List all posts under the category "Climate"'
+          title="Luis Alejandro's resume"
           rel="tag nofollow noreferrer"
           href="/files/resume.pdf"
           target="_blank"

@@ -13,8 +13,8 @@ export const CardGrid = React.forwardRef<HTMLElement, CardGridProps>(
         ...props,
         ref,
         className: cn(
-          "flex flex-col py-8 pb-6 gap-x-4 gap-y-4 mb-40",
-          "lg:grid lg:grid-cols-[repeat(auto-fill,minmax(400px,1fr))] lg:pt-12 lg:pb-12 lg:place-items-center lg:gap-x-12 lg:gap-y-12",
+          "flex flex-col py-8 gap-4 mb-40",
+          "lg:grid lg:grid-cols-2 lg:py-12 lg:gap-12",
           className
         ),
       },

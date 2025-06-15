@@ -43,7 +43,7 @@ const CaseStudies = () => {
         />
         <path fill="#f8d983" d="M0,100h1920L960,50L0,100z" />
       </svg>
-      <Section id="projects" accent1>
+      <Section id="projects" accent1 smallpadding>
         <About
           style={{
             height: "300px",
@@ -55,7 +55,7 @@ const CaseStudies = () => {
             transform: "rotateZ(30deg)",
           }}
         />
-        <SectionTitle main>Case studies</SectionTitle>
+        <SectionTitle>Case studies</SectionTitle>
         <SectionText>
           Here I list some of the most complex and multidisciplinary projects
           that I&apos;ve been a part of.

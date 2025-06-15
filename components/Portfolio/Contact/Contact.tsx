@@ -90,6 +90,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
         return false;
       }
     } catch (error) {
+      console.error(error);
       return false;
     }
   };
@@ -105,130 +106,21 @@ const Contact = ({ dark }: { dark?: boolean }) => {
     <>
       <Section
         id="contact"
-        nopadding
         nomargin
+        nopadding
         fullwidth
-        className={dark ? "!bg-custom-light-gray" : ""}
+        className={cn("pb-0", dark ? "!bg-gray-5" : "")}
       >
-        <style jsx global>{`
-          #contact {
-            padding-bottom: 0;
-          }
-
-          #contact form {
-            position: relative;
-            margin-bottom: 20px;
-          }
-
-          #contact form button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            font-weight: 200;
-            height: 64px;
-            line-height: 20px;
-            margin: 0 0 80px 0;
-            padding: 3px 5px 7px 5px;
-            box-shadow:
-              0 -6px 0 rgba(255, 255, 255, 0.3) inset,
-              0 -5px 0 rgba(0, 0, 0, 0.3) inset,
-              -1px 0 0 rgba(0, 0, 0, 0.3) inset,
-              1px 1px 0 rgba(0, 0, 0, 0.3) inset;
-            background-image: radial-gradient(
-              ellipse closest-side at 50% 50%,
-              rgba(255, 255, 255, 0.4),
-              rgba(255, 255, 255, 0)
-            );
-            transition: background-color 0.4s ease-out;
-            border-radius: 15px;
-            width: 150px;
-          }
-
-          #contact form .button-active:active {
-            padding: 3px 5px;
-            margin: 4px 0 76px 0;
-            box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2) inset;
-          }
-
-          #contact form textarea {
-            resize: none;
-            height: 160px !important;
-          }
-
-          #contact form .recaptcha div {
-            width: min-content;
-            float: right;
-          }
-          .button-primary {
-            background-color: #abb7b7;
-            color: #5a5a5a;
-            cursor: pointer;
-          }
-          .button-primary:hover {
-            background-color: #c0cece;
-            color: #5a5a5a;
-          }
-          .button-primary:active {
-            background-color: #c0cece;
-          }
-
-          .button-disabled-primary {
-            background-color: #c3c3c3;
-            color: #979797;
-            cursor: not-allowed;
-          }
-          .button-disabled-primary:hover {
-            background-color: #c3c3c3;
-            color: #979797;
-          }
-
-          .button-waiting-primary {
-            background-color: #f9e09c;
-            color: #979797;
-            cursor: not-allowed;
-          }
-          .button-waiting-primary:hover {
-            background-color: #f9e09c;
-            color: #979797;
-          }
-
-          .button-success-primary {
-            background-color: #a0d989;
-            color: #5a5a5a;
-            cursor: pointer;
-          }
-          .button-success-primary:hover {
-            background-color: #a0d989;
-            color: #5a5a5a;
-          }
-          .button-success-primary:active {
-            background-color: #c0cece;
-          }
-
-          .button-error-primary {
-            background-color: #d98989;
-            color: #5a5a5a;
-            cursor: not-allowed;
-          }
-          .button-error-primary:hover {
-            background-color: #d98989;
-            color: #5a5a5a;
-          }
-          .button-error-primary:active {
-            background-color: #c0cece;
-          }
-        `}</style>
-        <SectionTitle main>Contact</SectionTitle>
-        <SectionText>
+        <SectionTitle wide>Contact</SectionTitle>
+        <SectionText wide>
           Ask me anything! I might? be available for hire
         </SectionText>
         <form
-          className="w-full max-w-260 mx-auto"
+          className="w-full lg:max-w-260 mx-auto relative mb-5 p-8 lg:p-0"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col lg:flex-row">
-            <div className="flex flex-col mx-6 lg:w-4/12 lg:mx-4">
+            <div className="flex flex-col mx-0 lg:w-4/12 lg:mx-4">
               <label
                 htmlFor="contactName"
                 className="block m-1 text-lg leading-normal font-main font-light"
@@ -242,7 +134,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 {...register("contactName")}
               />
 
-              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">
                 {errors.contactName?.message}
               </p>
 
@@ -259,24 +151,24 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 {...register("contactEmail")}
               />
 
-              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">
                 {errors.contactEmail?.message}
               </p>
               {RECAPTCHA_API_KEY && (
-                // @ts-ignore
-                <ReCAPTCHA
-                  className="recaptcha my-5"
-                  theme="light"
-                  ref={recaptchaRef}
-                  sitekey={RECAPTCHA_API_KEY}
-                  onChange={() => setIsVerified(true)}
-                  onExpired={() => setIsVerified(false)}
-                  onErrored={() => setIsVerified(false)}
-                />
+                <div className="my-5 flex justify-start lg:justify-end">
+                  {/* @ts-ignore */}
+                  <ReCAPTCHA
+                    theme="light"
+                    ref={recaptchaRef}
+                    sitekey={RECAPTCHA_API_KEY}
+                    onChange={() => setIsVerified(true)}
+                    onExpired={() => setIsVerified(false)}
+                    onErrored={() => setIsVerified(false)}
+                  />
+                </div>
               )}
             </div>
-
-            <div className="flex flex-col mx-6 lg:w-8/12 lg:mx-4">
+            <div className="flex flex-col mx-0 lg:w-8/12 lg:mx-4">
               <label
                 htmlFor="contactMessage"
                 className="block m-1 text-lg leading-normal font-main font-light"
@@ -286,43 +178,54 @@ const Contact = ({ dark }: { dark?: boolean }) => {
 
               <textarea
                 id="contactMessage"
-                className="textarea block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
+                className="block my-1 px-3 py-1.5 w-full h-40 rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400 resize-none"
                 {...register("contactMessage")}
               ></textarea>
 
-              <p className="block mx-1 h-25px text-2xl leading-normal font-main font-normal text-red-500">
+              <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">
                 {errors.contactMessage?.message}
               </p>
 
-              <div className="flex flex-row justify-start">
+              <div className="flex flex-row justify-end lg:justify-start">
                 <button
                   type="submit"
-                  className={cn("font-main font-light", {
-                    "button-primary button-active": !buttonDisabled,
-                    "button-waiting-primary": !buttonDisabled && waiting,
-                    "button-success-primary button-active":
-                      !buttonDisabled && isSent,
-                    "button-error-primary": errorState,
-                    "button-disabled-primary": buttonDisabled,
-                  })}
+                  className={cn(
+                    "flex items-center justify-center text-3xl font-extralight h-16 leading-5 mb-20 px-1.5 py-0.5 rounded-2xl w-36 font-main transition-colors duration-300 ease-out simple-3d-button-gradient",
+                    {
+                      // Primary state
+                      "bg-slate-400 text-neutral-600 hover:bg-slate-300 active:pt-0.5 active:pb-0.5 active:mt-1 active:mb-[76px] cursor-pointer":
+                        !buttonDisabled && !waiting && !isSent && !errorState,
+                      // Waiting state
+                      "bg-yellow-200 text-neutral-500 cursor-not-allowed":
+                        !buttonDisabled && waiting,
+                      // Success state
+                      "bg-green-300 text-neutral-600 hover:bg-green-300 active:bg-slate-300 cursor-pointer":
+                        !buttonDisabled && isSent,
+                      // Error state
+                      "bg-red-300 text-neutral-600 hover:bg-red-300 cursor-not-allowed":
+                        errorState,
+                      // Disabled state
+                      "bg-neutral-300 text-neutral-500 cursor-not-allowed":
+                        buttonDisabled,
+                    }
+                  )}
                   disabled={!!buttonDisabled}
                 >
                   Send
                 </button>
                 {isSent && (
-                  <AiFillCheckCircle className="ml-4 h-6_5rem text-5xl text-gray-800" />
+                  <AiFillCheckCircle className="ml-4 h-16 text-3xl text-gray-800" />
                 )}
                 {waiting && (
-                  <AiOutlineLoading className="ml-4 h-6_5rem text-5xl text-gray-800 animate-spin" />
+                  <AiOutlineLoading className="ml-4 h-16 text-3xl text-gray-800 animate-spin" />
                 )}
                 {errorState && (
-                  <AiFillCloseCircle className="ml-4 h-6_5rem text-5xl text-gray-800" />
+                  <AiFillCloseCircle className="ml-4 h-16 text-3xl text-gray-800" />
                 )}
               </div>
             </div>
           </div>
         </form>
-
         <svg viewBox="0 0 1920 37">
           <path
             fill="#444"

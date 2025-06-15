@@ -31,19 +31,10 @@ const WheelTheWorldPage = () => {
   return (
     <div className="w-full">
       <main>
-        <style jsx global>{`
-          body {
-            font-family: var(--font-roboto), sans-serif;
-            font-size: 1.6rem;
-            color: #222222;
-            cursor: default;
-            overflow-x: hidden;
-          }
-        `}</style>
-        <div id="cases" style={{ background: "#333" }}>
+        <div id="cases" className="bg-accent-7 text-gray-2">
           <Header variant="case-studies" />
           <Controller>
-            <div className="cases-content">
+            <div className="cases-content w-full text-lg font-main">
               <HeroIntro
                 Subtitle={() => "Wheel The World"}
                 Title={() => "A faster, stronger pipeline"}
@@ -75,13 +66,7 @@ const WheelTheWorldPage = () => {
                     totalProgress={progress}
                     paused
                   >
-                    <div
-                      className="w-full page-hero"
-                      style={{
-                        backgroundImage:
-                          "url(/images/case-studies/wheeltheworld-hero.png)",
-                      }}
-                    >
+                    <div className="w-full page-hero bg-case-studies-wheeltheworld-hero bg-cover relative">
                       <svg viewBox="0 0 1920 100">
                         <path fill="#333" d="M960,50l960-50H0L960,50z" />
                       </svg>
@@ -269,15 +254,15 @@ const WheelTheWorldPage = () => {
                             ],
                             datasets: [
                               {
-                                label: "Python",
+                                label: "Image size (MB)",
                                 data: [1500, 400, 200],
                                 backgroundColor: [
                                   "rgba(255, 99, 132, 0.2)",
-                                  "rgba(255, 159, 64, 0.2)",
+                                  // "rgba(255, 159, 64, 0.2)",
                                 ],
                                 borderColor: [
                                   "rgb(255, 99, 132)",
-                                  "rgb(255, 159, 64)",
+                                  // "rgb(255, 159, 64)",
                                 ],
                                 borderWidth: 1,
                               },
@@ -303,15 +288,15 @@ const WheelTheWorldPage = () => {
                             ],
                             datasets: [
                               {
-                                label: "Python",
+                                label: "Time to deploy (minutes)",
                                 data: [40, 20, 10],
                                 backgroundColor: [
                                   "rgba(255, 99, 132, 0.2)",
-                                  "rgba(255, 159, 64, 0.2)",
+                                  // "rgba(255, 159, 64, 0.2)",
                                 ],
                                 borderColor: [
                                   "rgb(255, 99, 132)",
-                                  "rgb(255, 159, 64)",
+                                  // "rgb(255, 159, 64)",
                                 ],
                                 borderWidth: 1,
                               },
@@ -334,30 +319,30 @@ const WheelTheWorldPage = () => {
                     </p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
-                          ~75%
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
+                          &sim;75%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           reduction in costs
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           for github actions
                         </div>
                       </div>
 
-                      <div className="flex flex-col w-70 md:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-display font-black text-12xl leading-none text-center">
-                          ~86%
+                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
+                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
+                          &sim;86%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-3 text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           reduction in
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-6xl leading-relaxed text-center">
+                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           image size
                         </div>
                       </div>

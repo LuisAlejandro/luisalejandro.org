@@ -13,8 +13,8 @@ const ListTitle = React.forwardRef<HTMLHeadingElement, ListTitleProps>(
         ...props,
         ref,
         className: cn(
-          "font-extrabold tracking-0_02em text-gray-800",
-          "lg:text-2_5xl lg:leading-8 lg:mb-2",
+          "font-extrabold tracking-wide text-gray-800",
+          "lg:text-3xl lg:leading-8 lg:mb-2",
           "md:text-2xl md:leading-7",
           "sm:text-xl sm:leading-7 sm:mb-1",
           className

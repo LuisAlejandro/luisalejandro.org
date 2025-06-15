@@ -2,8 +2,8 @@ import cn from "classnames";
 import {
   AiFillGithub,
   AiFillLinkedin,
-  AiFillTwitterCircle,
   AiFillYoutube,
+  AiOutlineX,
 } from "react-icons/ai";
 
 import { SocialIcons } from "@components/common/Header/SocialIcons";
@@ -40,9 +40,8 @@ const Footer = () => {
         >
           <p
             className={cn(
-              "text-white/50 text-center w-full min-w-70 tracking-0_02em leading-5.5 text-sm-plus",
-              "lg:text-lg lg:leading-7.5",
-              "sm:leading-5.5 sm:text-sm-plus"
+              "text-white/50 text-center w-full min-w-70 tracking-wide leading-5.5 text-base",
+              "lg:text-lg lg:leading-7.5"
             )}
           >
             &copy; {new Date().getFullYear()} Luis Martínez. All rights
@@ -90,7 +89,7 @@ const Footer = () => {
             rel="nofollow noreferrer"
             className="m-4"
           >
-            <AiFillTwitterCircle size="30px" />
+            <AiOutlineX size="30px" />
           </SocialIcons>
         </div>
       </div>

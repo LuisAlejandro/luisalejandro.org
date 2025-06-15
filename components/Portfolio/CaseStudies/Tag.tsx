@@ -13,7 +13,7 @@ export const Tag = React.forwardRef<HTMLLIElement, TagProps>(
         ...props,
         ref,
         className: cn(
-          "text-gray-800 bg-white/30 rounded-3xl px-2.5 py-1.5 mx-0.5 text-2xl",
+          "text-gray-800 bg-white/30 rounded-3xl px-2.5 py-1.5 mx-0.5 text-sm hidden lg:inline-block",
           className
         ),
       },

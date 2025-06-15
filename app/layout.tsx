@@ -10,14 +10,14 @@ import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700"],
+  weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
   display: "swap",
 });
 
 const poppins = Poppins({
-  weight: ["800"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-poppins",
   display: "swap",
@@ -182,7 +182,7 @@ export default async function RootLayout({
       className={`${roboto.variable} ${poppins.variable} ${leagueGothic.variable}`}
       prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# dcterms: http://purl.org/dc/terms/#"
     >
-      <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-[1.6rem] font-main">
+      <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-2xl font-main">
         {children}
         {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
         <CookieConsentWrapper />
