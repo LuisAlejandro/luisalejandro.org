@@ -2,7 +2,7 @@
 
 import Hero from "@components/Apps/Hero/Hero";
 import { Section } from "@components/common/Layout/Section";
-import Contact from "@components/Portfolio/Contact/Contact";
+import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 
 export default function AgorasPage() {
@@ -13,8 +13,9 @@ export default function AgorasPage() {
         <Section grid overflowVisible>
           <Hero />
         </Section>
-        <Contact />
+        {/* <Contact /> */}
       </main>
+      <Footer />
     </div>
   );
 }

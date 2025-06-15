@@ -15,7 +15,7 @@ const Challenge = ({ Title, Content, bgImgClass }: ChallengeProps) => (
   >
     <div
       className={cn(
-        "w-full bg-none bg-top bg-right bg-cover bg-no-repeat",
+        "w-full bg-none bg-right bg-cover bg-no-repeat",
         bgImgClass
           ? {
               [bgImgClass]: true,

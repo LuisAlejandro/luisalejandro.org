@@ -116,7 +116,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
           Ask me anything! I might? be available for hire
         </SectionText>
         <form
-          className="w-full lg:max-w-260 mx-auto relative mb-5 p-8 lg:p-0"
+          className="w-full lg:max-w-[80%] mx-auto relative mb-5 p-8 lg:p-0"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col lg:flex-row">
