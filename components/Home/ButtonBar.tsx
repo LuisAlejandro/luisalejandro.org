@@ -18,7 +18,7 @@ export default function ButtonBar() {
         href="/portfolio"
         icon={AiOutlinePushpin}
         text="Portfolio"
-        className="rounded-l-[5px]"
+        className="!rounded-l-[5px]"
       />
       <SocialIcons href="/blog" icon={AiOutlineRead} text="Blog" />
       <SocialIcons
@@ -44,7 +44,7 @@ export default function ButtonBar() {
         target="_blank"
         rel="nofollow noreferrer"
         icon={AiOutlineYoutube}
-        className="rounded-r-[5px]"
+        className="!rounded-r-[5px]"
       />
     </ButtonBarContainer>
   );
