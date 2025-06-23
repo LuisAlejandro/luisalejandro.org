@@ -61,7 +61,7 @@ fi
 print_step "Current version: $CURRENT_VERSION"
 
 # Calculate new version using bumpversion in dry-run mode
-NEW_VERSION=$(bumpversion --dry-run --list $VERSION_TYPE | grep new_version | cut -d'=' -f2)
+NEW_VERSION=$(bumpversion --dry-run --list $VERSION_TYPE | grep "new_version=" | cut -d'=' -f2)
 
 # Check if $NEW_VERSION is not a version
 if ! echo "$NEW_VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
