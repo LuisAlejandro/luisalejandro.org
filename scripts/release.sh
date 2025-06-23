@@ -5,6 +5,9 @@ set -e
 # Default version type is patch
 VERSION_TYPE=${1:-patch}
 
+# Non-interactive mode flag
+NON_INTERACTIVE=${NON_INTERACTIVE:-false}
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -71,12 +74,16 @@ fi
 
 print_step "New version will be: $NEW_VERSION"
 
-# Confirm with user
-read -p "Proceed with release $NEW_VERSION? (y/N): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    print_error "Release cancelled"
-    exit 1
+# Confirm with user (unless in non-interactive mode)
+if [[ "$NON_INTERACTIVE" != "true" ]]; then
+    read -p "Proceed with release $NEW_VERSION? (y/N): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        print_error "Release cancelled"
+        exit 1
+    fi
+else
+    print_step "Running in non-interactive mode, proceeding with release $NEW_VERSION"
 fi
 
 # Make sure we are in the develop branch
@@ -112,9 +119,22 @@ git commit -S -m "Updating Changelog and version to $NEW_VERSION"
 print_step "Removing temporary tag"
 git tag -d $NEW_VERSION 2>/dev/null || true
 
+# Configure git for non-interactive mode
+print_step "Configuring git for non-interactive mode"
+git config --local core.editor ":"        # Use ":" as editor (no-op command)
+git config --local merge.ours.driver true # Handle merge conflicts automatically
+
+# Set environment variables for non-interactive mode
+export GIT_MERGE_AUTOEDIT=no
+export GPG_TTY=$(tty) 2>/dev/null || true # For GPG signing
+
 # Finish git flow release
 print_step "Finishing git flow release"
-git flow release finish -s -p $NEW_VERSION
+git flow release finish -s -p -m "Release version $NEW_VERSION" $NEW_VERSION
+
+# Clean up git configuration
+git config --local --unset core.editor 2>/dev/null || true
+git config --local --unset merge.ours.driver 2>/dev/null || true
 
 # Create GitHub release
 print_step "Creating GitHub release"

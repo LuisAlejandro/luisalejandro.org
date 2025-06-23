@@ -1,9 +1,18 @@
 # Changelog
 
 
+## 3.0.1 (2025-06-23)
+
+### Other
+
+* Adding 404 page. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.0 (2025-06-23)
 
 ### Other
+
+* Updating Changelog and version to 3.0.0. [Luis Alejandro Martínez Faneyth]
 
 * Fixing release script bug. [Luis Alejandro Martínez Faneyth]
 
