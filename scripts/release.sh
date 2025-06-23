@@ -79,6 +79,14 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
+# Make sure we are in the develop branch
+print_step "Checking out develop branch"
+git checkout develop
+
+# Make sure we have the latest changes
+print_step "Pulling latest changes"
+git pull origin develop
+
 # Start git flow release
 print_step "Starting git flow release: $NEW_VERSION"
 git flow release start $NEW_VERSION
