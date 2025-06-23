@@ -14,40 +14,88 @@ const is404 = (error: any) =>
   /not found/i.test(error.message) || error.status === 404;
 
 export async function getAllPostsSlugs() {
-  const data = await cosmic.objects
-    .find({
-      type: "posts",
-    })
-    .props("slug");
-  return data?.objects.length ? data?.objects : [];
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+      })
+      .props("slug");
+    return data?.objects.length ? data?.objects : [];
+  } catch (error) {
+    console.error("Error fetching all posts slugs:", error);
+    return [];
+  }
 }
 
 export async function getAllPostsForHome() {
-  const data = await cosmic.objects
-    .find({
-      type: "posts",
-    })
-    .props([
-      "id",
-      "slug",
-      "title",
-      "metadata.hero",
-      "metadata.categories",
-      "metadata.teaser",
-      "created_at",
-    ])
-    .sort("-created_at");
-  return data?.objects;
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+      })
+      .props([
+        "id",
+        "slug",
+        "title",
+        "metadata.hero",
+        "metadata.categories",
+        "metadata.teaser",
+        "created_at",
+      ])
+      .sort("-created_at");
+    return data?.objects;
+  } catch (error) {
+    console.error("Error fetching all posts for home:", error);
+    return [];
+  }
 }
 
 export async function getLatestPosts() {
-  const data = await cosmic.objects
-    .find({
-      type: "posts",
-    })
-    .props(["id", "title", "slug", "created_at"])
-    .sort("-created_at");
-  return data?.objects;
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+      })
+      .props(["id", "title", "slug", "created_at"])
+      .sort("-created_at");
+    return data?.objects;
+  } catch (error) {
+    console.error("Error fetching latest posts:", error);
+    return [];
+  }
+}
+
+export async function getPostById(id: string) {
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+        id,
+      })
+      .props(["id", "title", "slug", "created_at"]);
+    return data?.objects.length ? data?.objects[0] : undefined;
+  } catch (error) {
+    console.error("Error fetching post by id:", error);
+    return undefined;
+  }
+}
+
+export async function getPostsByIds(ids: string[]) {
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+        id: {
+          $in: ids,
+        },
+      })
+      .props(["id", "title", "slug", "created_at"])
+      .sort("-created_at");
+    return data?.objects.length ? data?.objects : [];
+  } catch (error) {
+    console.error("Error fetching posts by ids:", error);
+    return [];
+  }
 }
 
 export async function getMorePosts(slug: any) {

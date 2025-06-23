@@ -1,8 +1,13 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
 import { League_Gothic, Poppins, Roboto } from "next/font/google";
+import Script from "next/script";
 
-import { GA_MEASUREMENT_ID, config } from "@constants/constants";
+import {
+  ADSENSE_PUBLISHER_ID,
+  GA_MEASUREMENT_ID,
+  config,
+} from "@constants/constants";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 
@@ -134,6 +139,9 @@ export const metadata: Metadata = {
     },
   },
   other: {
+    // Google AdSense verification
+    "google-adsense-account": "ca-pub-6592430305679345",
+
     // Dublin Core metadata
     "dcterms.title": config.app_name,
     "dcterms.description": config.description,
@@ -185,6 +193,14 @@ export default async function RootLayout({
       <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-2xl font-main">
         {children}
         {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
+        {ADSENSE_PUBLISHER_ID && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
         <CookieConsentWrapper />
       </body>
     </html>

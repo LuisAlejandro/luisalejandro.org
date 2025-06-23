@@ -10,7 +10,13 @@ import ReactPlayer from "react-player/lazy";
 
 import FriendlyDate from "@components/Blog/FriendlyDate";
 import RelatedStories from "@components/Post/RelatedStories";
-import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
+import {
+  ADSENSE_AD_SLOT_ID,
+  ADSENSE_PUBLISHER_ID,
+  DISQUS_SHORTNAME,
+  ENV_NAME,
+  canonicalHostnameUrl,
+} from "@constants/constants";
 
 import CoverImage from "./CoverImage";
 
@@ -32,6 +38,19 @@ export default function PostContent({
 
   useEffect(() => {
     hljs.highlightAll();
+  }, []);
+
+  useEffect(() => {
+    // Initialize Google AdSense
+    try {
+      if (typeof window !== "undefined" && (window as any).adsbygoogle) {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+          {}
+        );
+      }
+    } catch (error) {
+      console.error("AdSense error:", error);
+    }
   }, []);
 
   useEffect(() => {
@@ -390,7 +409,7 @@ export default function PostContent({
 
           <li className="float-left w-[12%] text-[rgb(153,153,153)] my-[20px] mx-0">
             <span className="inline-block align-top w-full h-[50px] text-5xl leading-[50px] text-center uppercase break-words">
-              {canonicalUrl && DISQUS_SHORTNAME && (
+              {canonicalUrl && DISQUS_SHORTNAME && ENV_NAME !== "local" && (
                 <CommentCount
                   shortname={DISQUS_SHORTNAME}
                   config={{
@@ -488,6 +507,25 @@ export default function PostContent({
         </div>
       </article>
 
+      {/* Google AdSense Banner Ad */}
+      {ADSENSE_PUBLISHER_ID && ADSENSE_AD_SLOT_ID && (
+        <div className="inline-block align-top w-full my-12">
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl">
+              {/* AdSense Responsive Banner */}
+              <ins
+                className="adsbygoogle block"
+                style={{ display: "block" }}
+                data-ad-client={ADSENSE_PUBLISHER_ID}
+                data-ad-slot={ADSENSE_AD_SLOT_ID}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
       {morePosts.length > 0 && (
         <div className="inline-block align-top w-full mt-20">
           <h3 className="text-4xl font-thin leading-4 mt-0 mb-[10px]">
@@ -501,14 +539,16 @@ export default function PostContent({
         id="comments"
         className="inline-block align-top w-full my-[30px] mx-0"
       >
-        <DiscussionEmbed
-          shortname={DISQUS_SHORTNAME || ""}
-          config={{
-            identifier: id,
-            url: canonicalUrl,
-            title: title,
-          }}
-        />
+        {ENV_NAME !== "local" && (
+          <DiscussionEmbed
+            shortname={DISQUS_SHORTNAME || ""}
+            config={{
+              identifier: id,
+              url: canonicalUrl,
+              title: title,
+            }}
+          />
+        )}
       </div>
     </div>
   );

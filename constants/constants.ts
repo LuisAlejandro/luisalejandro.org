@@ -16,6 +16,11 @@ export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
 
 export const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME;
 
+export const ADSENSE_PUBLISHER_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
+
+export const ADSENSE_AD_SLOT_ID = process.env.NEXT_PUBLIC_ADSENSE_AD_SLOT_ID;
+
 export const ENV_NAME = process.env.NEXT_PUBLIC_ENV_NAME;
 
 export const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;

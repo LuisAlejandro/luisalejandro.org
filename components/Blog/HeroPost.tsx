@@ -4,7 +4,11 @@ import { CommentCount } from "disqus-react";
 import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
 
-import { DISQUS_SHORTNAME, canonicalHostnameUrl } from "@constants/constants";
+import {
+  DISQUS_SHORTNAME,
+  ENV_NAME,
+  canonicalHostnameUrl,
+} from "@constants/constants";
 import FriendlyDate from "./FriendlyDate";
 
 export default function HeroPost({
@@ -54,7 +58,7 @@ export default function HeroPost({
 
           <ul className="socialbar float-right align-top mx-[1%] my-[5px]">
             <li className="reactions float-left">
-              {canonicalUrl && DISQUS_SHORTNAME && (
+              {canonicalUrl && DISQUS_SHORTNAME && ENV_NAME !== "local" && (
                 <span
                   className="blog-category-button inline-block align-top text-sm uppercase h-[28px] leading-[20px] py-[3px] pl-[28px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-l-[5px] bg-[url('/images/sprite.svg')] bg-no-repeat"
                   style={{ backgroundPosition: "5px -75px" }}
