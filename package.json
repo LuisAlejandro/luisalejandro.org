@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -40,7 +40,7 @@
     "dotenv": "^16.5.0",
     "encoding": "^0.1.13",
     "feed": "^5.1.0",
-    "framer-motion": "^12.0.5",
+    "framer-motion": "^13.0.0",
     "googleapis": "^150.0.1",
     "gsap": "^3.13.0",
     "highlight.js": "^11.11.1",
