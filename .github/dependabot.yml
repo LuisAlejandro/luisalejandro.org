@@ -1,33 +1,14 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: friday
-    time: "01:00"
-  ignore:
-  - dependency-name: framer-motion
-    versions:
-    - "> 6"
-  - dependency-name: next
-    versions:
-    - "> 12"
-  - dependency-name: eslint-config-next
-    versions:
-    - "> 12"
-  - dependency-name: react
-    versions:
-    - "> 17"
-  - dependency-name: react-is
-    versions:
-    - "> 17"
-  - dependency-name: react-dom
-    versions:
-    - "> 17"
-- package-ecosystem: github-actions
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: friday
-    time: "01:00"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: friday
+      time: "01:00"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: friday
+      time: "01:00"

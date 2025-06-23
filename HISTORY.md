@@ -1,6 +1,73 @@
 # Changelog
 
 
+## 3.0.0 (2025-06-23)
+
+### Other
+
+* Fixing release script bug. [Luis Alejandro Martínez Faneyth]
+
+* Fixing release script bug. [Luis Alejandro Martínez Faneyth]
+
+* Fixing release script bug. [Luis Alejandro Martínez Faneyth]
+
+* Adding support for google adsense. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Removing styled components. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Starting removal of styles components. [Luis Alejandro Martínez Faneyth]
+
+* Migrating to TS. [Luis Alejandro Martínez Faneyth]
+
+* Migrating to TS. [Luis Alejandro Martínez Faneyth]
+
+* Migrating to TS. [Luis Alejandro Martínez Faneyth]
+
+* Migrating next 12 to 15. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Fixing lint errors. [Luis Alejandro Martínez Faneyth]
+
+* Adding agoras landing page. [Luis Alejandro Martínez Faneyth]
+
+
 ## 2.0.5 (2024-03-11)
 
 ### Changed
