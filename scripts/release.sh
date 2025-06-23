@@ -145,8 +145,8 @@ if command -v gh >/dev/null 2>&1; then
         RELEASE_NOTES=""
         if [ -f "HISTORY.md" ]; then
             # Extract the latest version's changelog entry
-            RELEASE_CONTENT=$(awk "/^$NEW_VERSION \(/ { flag=1; next } /^[0-9]+\.[0-9]+\.[0-9]+ \(/ && flag { flag=0 } flag" HISTORY.md | head -n -1)
-            RELEASE_NOTES="## What's new in $($NEW_VERSION)
+            RELEASE_CONTENT=$(awk "/^## $NEW_VERSION \(/ { flag=1; next } flag && /^## [0-9]+\.[0-9]+\.[0-9]+ \(/ { exit } flag" HISTORY.md)
+            RELEASE_NOTES="## What's new in $NEW_VERSION
 $RELEASE_CONTENT
 
 Read [HISTORY](HISTORY.md) for more info.
@@ -166,7 +166,7 @@ Read [HISTORY](HISTORY.md) for more info.
                 COMMIT_MESSAGES=$(git log --pretty=format:"- %s" -10)
             fi
 
-            RELEASE_NOTES="## What's new in $($NEW_VERSION)
+            RELEASE_NOTES="## What's new in $NEW_VERSION
 $COMMIT_MESSAGES
 
 Read [HISTORY](HISTORY.md) for more info.
