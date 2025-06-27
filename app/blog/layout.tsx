@@ -6,9 +6,31 @@ import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 export const metadata: Metadata = {
-  title: `${config.app_name} | ${config.description}`,
-  description: config.description,
-  keywords: config.keywords,
+  title: "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+  description:
+    "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
+  keywords: [
+    "software development blog",
+    "programming blog",
+    "TypeScript blog",
+    "Python programming blog",
+    "Golang blog",
+    "remote work blog",
+    "Venezuelan developer blog",
+    "open source blog",
+    "web development blog",
+    "full stack developer blog",
+    "technical blog",
+    "coding blog",
+    "software engineering blog",
+    "DevOps blog",
+    "React development blog",
+    "Next.js blog",
+    "Docker blog",
+    "API development blog",
+    "remote work tips",
+    "software architecture blog",
+  ],
   authors: [{ name: config.author.name }],
   generator: config.generator,
   applicationName: config.app_name,
@@ -21,10 +43,12 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: config.app_name,
-    description: config.description,
-    url: config.url,
-    siteName: config.app_name,
+    title:
+      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+    description:
+      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
+    url: `${config.url}/blog`,
+    siteName: "Luis Alejandro Martínez Faneyth",
     images: [
       {
         url: `${config.url}/favicon/android-chrome-512x512.png`,
@@ -38,8 +62,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: config.app_name,
-    description: config.description,
+    title:
+      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+    description:
+      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
     images: [`${config.url}/images/banner.png`],
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
@@ -111,8 +137,10 @@ export const metadata: Metadata = {
   },
   other: {
     // Dublin Core metadata
-    "dcterms.title": config.app_name,
-    "dcterms.description": config.description,
+    "dcterms.title":
+      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+    "dcterms.description":
+      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
     "dcterms.language": "en",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,

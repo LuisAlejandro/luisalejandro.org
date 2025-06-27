@@ -7,6 +7,10 @@ export default function CoverImage({
   lowResUrl,
   extraClasses,
 }: any) {
+  if (!highResUrl) {
+    return <></>;
+  }
+
   return (
     // @ts-ignore
     <Imgix

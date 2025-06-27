@@ -10,6 +10,7 @@ exec_on_docker = docker compose \
 
 # Release configuration
 VERSION_TYPE ?= patch
+APP_NAME ?= luisalejandro.org
 
 help:
 	@echo "Available commands:"
@@ -94,16 +95,16 @@ release:
 	@./scripts/release.sh $(VERSION_TYPE)
 
 release-patch:
-	@./scripts/release.sh patch
+	@./scripts/release.sh patch $(APP_NAME)
 
 release-minor:
-	@./scripts/release.sh minor
+	@./scripts/release.sh minor $(APP_NAME)
 
 release-major:
-	@./scripts/release.sh major
+	@./scripts/release.sh major $(APP_NAME)
 
 # Hotfix management
 hotfix:
-	@./scripts/hotfix.sh
+	@./scripts/hotfix.sh $(APP_NAME)
 
 .PHONY: help image start dependencies build_production serve console stop down destroy cataplum release release-patch release-minor release-major hotfix

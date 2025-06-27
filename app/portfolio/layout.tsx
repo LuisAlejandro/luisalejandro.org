@@ -6,9 +6,31 @@ import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 export const metadata: Metadata = {
-  title: `${config.app_name} | ${config.description}`,
-  description: config.description,
-  keywords: config.keywords,
+  title: "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",
+  description:
+    "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.",
+  keywords: [
+    "full stack developer portfolio",
+    "TypeScript developer portfolio",
+    "Python developer portfolio",
+    "Golang developer portfolio",
+    "remote developer portfolio",
+    "software engineer portfolio",
+    "web developer portfolio",
+    "API developer portfolio",
+    "Docker expert portfolio",
+    "Next.js developer portfolio",
+    "React developer portfolio",
+    "Node.js developer portfolio",
+    "DevOps portfolio",
+    "open source portfolio",
+    "software architecture portfolio",
+    "Venezuelan developer portfolio",
+    "Latin American developer",
+    "freelance developer portfolio",
+    "remote work portfolio",
+    "software consultant portfolio",
+  ],
   authors: [{ name: config.author.name }],
   generator: config.generator,
   applicationName: config.app_name,
@@ -21,10 +43,11 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: config.app_name,
-    description: config.description,
-    url: config.url,
-    siteName: config.app_name,
+    title: "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",
+    description:
+      "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.",
+    url: `${config.url}/portfolio`,
+    siteName: "Luis Alejandro Martínez Faneyth",
     images: [
       {
         url: `${config.url}/favicon/android-chrome-512x512.png`,
@@ -38,8 +61,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: config.app_name,
-    description: config.description,
+    title: "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",
+    description:
+      "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.",
     images: [`${config.url}/images/banner.png`],
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
@@ -111,8 +135,10 @@ export const metadata: Metadata = {
   },
   other: {
     // Dublin Core metadata
-    "dcterms.title": config.app_name,
-    "dcterms.description": config.description,
+    "dcterms.title":
+      "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",
+    "dcterms.description":
+      "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.",
     "dcterms.language": "en",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,

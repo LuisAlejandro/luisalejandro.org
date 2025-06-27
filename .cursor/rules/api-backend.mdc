@@ -1,0 +1,53 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# API Routes & Backend Functionality
+
+This project uses Next.js App Router API routes for backend functionality.
+
+## API Route Structure
+
+### Contact System
+- [app/api/contact/route.ts](mdc:app/api/contact/route.ts) - Contact form submission endpoint
+- [lib/contactForm.ts](mdc:lib/contactForm.ts) - Contact form logic and validation
+- [lib/leads.ts](mdc:lib/leads.ts) - Lead management functionality
+
+### Blog & Content API
+- [app/api/last-posts/route.ts](mdc:app/api/last-posts/route.ts) - Fetch recent blog posts
+- [app/api/trending-posts/route.ts](mdc:app/api/trending-posts/route.ts) - Fetch popular posts
+- [app/blog/posts/atom.xml/route.ts](mdc:app/blog/posts/atom.xml/route.ts) - Atom feed generation
+- [app/blog/posts/feed.json/route.ts](mdc:app/blog/posts/feed.json/route.ts) - JSON feed
+- [app/blog/posts/feed.xml/route.ts](mdc:app/blog/posts/feed.xml/route.ts) - RSS feed
+
+### External Integrations
+- [app/api/twitch-events/route.ts](mdc:app/api/twitch-events/route.ts) - Twitch API integration
+- [app/api/gymcontrol/license/route.ts](mdc:app/api/gymcontrol/license/route.ts) - GymControl license validation
+- [app/api/gymcontrol/token/route.ts](mdc:app/api/gymcontrol/token/route.ts) - GymControl token management
+
+### SEO & Metadata
+- [app/sitemap.xml/route.ts](mdc:app/sitemap.xml/route.ts) - Dynamic sitemap generation
+- [app/robots.txt/route.ts](mdc:app/robots.txt/route.ts) - Robots.txt configuration
+
+## Utility Libraries
+- [lib/api.ts](mdc:lib/api.ts) - Main API utilities and data fetching
+- [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) - Markdown processing for blog posts
+- [lib/utils.ts](mdc:lib/utils.ts) - General utility functions
+
+## Email Templates
+- [assets/templates/company-template.html](mdc:assets/templates/company-template.html) - Company email template
+- [assets/templates/welcome-template.html](mdc:assets/templates/welcome-template.html) - Welcome email template
+
+## API Response Patterns
+- All API routes follow REST conventions
+- Error handling includes proper HTTP status codes
+- CORS is configured for necessary external integrations
+- Rate limiting may be implemented on contact forms
+
+## Environment Variables
+API routes likely depend on environment variables for:
+- Email service configuration
+- External API keys (Twitch, etc.)
+- Database connections (if applicable)
+- Authentication secrets

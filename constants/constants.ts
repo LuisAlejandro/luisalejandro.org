@@ -49,9 +49,8 @@ export const canonicalHostnameUrl =
 
 export const config = {
   name: "Luis Alejandro",
-  app_name: "Luis Alejandro Blog",
-  title: "A blog about this and that",
-  description: "A blog about this and that.",
+  app_name: "Luis Alejandro",
+  description: "A software engineer portfolio",
   keywords: [
     "gnu",
     "linux",

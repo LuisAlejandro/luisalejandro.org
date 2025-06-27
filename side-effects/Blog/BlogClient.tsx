@@ -27,10 +27,6 @@ export default function BlogClient() {
 
   return (
     <style jsx global>{`
-      #modal-close:hover {
-        background-position: -656px -32px !important;
-      }
-
       .socialpop.show {
         display: inline-block !important;
       }

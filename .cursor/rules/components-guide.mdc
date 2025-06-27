@@ -1,0 +1,62 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Component Organization Guide
+
+Components are organized by feature/section for better maintainability and navigation.
+
+## Component Structure
+
+### Blog Components
+- [components/Blog/](mdc:components/Blog) - Blog-specific components
+  - [FriendlyDate.tsx](mdc:components/Blog/FriendlyDate.tsx) - Date formatting
+  - [HeroPost.tsx](mdc:components/Blog/HeroPost.tsx) - Featured post display
+  - [MoreStories.tsx](mdc:components/Blog/MoreStories.tsx) - Additional posts grid
+  - [PostPreview.tsx](mdc:components/Blog/PostPreview.tsx) - Post card component
+
+### Portfolio Components
+- [components/Portfolio/](mdc:components/Portfolio) - Portfolio section components
+  - [Hero/](mdc:components/Portfolio/Hero) - Hero section with introduction
+  - [Acomplishments/](mdc:components/Portfolio/Acomplishments) - Achievement boxes
+  - [CaseStudies/](mdc:components/Portfolio/CaseStudies) - Case study cards
+  - [Journey/](mdc:components/Portfolio/Journey) - Timeline and career journey
+  - [OtherWork/](mdc:components/Portfolio/OtherWork) - Gallery and slideshow
+  - [Toolbox/](mdc:components/Portfolio/Toolbox) - Skills and technologies
+  - [Contact/](mdc:components/Portfolio/Contact) - Contact section
+  - [Footer/](mdc:components/Portfolio/Footer) - Footer links and info
+
+### Case Study Components
+- [components/CaseStudies/](mdc:components/CaseStudies) - Case study page components
+  - [HeroIntro.tsx](mdc:components/CaseStudies/HeroIntro.tsx) - Case study introduction
+  - [Challenge.tsx](mdc:components/CaseStudies/Challenge.tsx) - Problem statement
+  - [Why.tsx](mdc:components/CaseStudies/Why.tsx) - Solution rationale
+  - [Product.tsx](mdc:components/CaseStudies/Product.tsx) - Product showcase
+  - [Results.tsx](mdc:components/CaseStudies/Results.tsx) - Outcomes and metrics
+
+### Common/Shared Components
+- [components/common/](mdc:components/common) - Reusable components
+  - [Header/](mdc:components/common/Header) - Site header components
+  - [Layout/](mdc:components/common/Layout) - Layout wrapper components
+  - [HighlightText.tsx](mdc:components/common/HighlightText.tsx) - Text highlighting
+  - [StyledLink.tsx](mdc:components/common/StyledLink.tsx) - Custom link component
+  - [SocialIconLabel.tsx](mdc:components/common/SocialIconLabel.tsx) - Social media icons
+
+### Post Components
+- [components/Post/](mdc:components/Post) - Individual blog post components
+  - [CoverImage.tsx](mdc:components/Post/CoverImage.tsx) - Post cover image
+  - [PostContent.tsx](mdc:components/Post/PostContent.tsx) - Post content wrapper
+  - [PostRelated.tsx](mdc:components/Post/PostRelated.tsx) - Related posts
+  - [RelatedStories.tsx](mdc:components/Post/RelatedStories.tsx) - Story suggestions
+
+## Side Effects (Client Components)
+- [side-effects/](mdc:side-effects) - Client-side interactive components
+  - [CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx) - Cookie consent
+  - [Blog/BlogClient.tsx](mdc:side-effects/Blog/BlogClient.tsx) - Blog interactivity
+  - [Home/Gallery.tsx](mdc:side-effects/Home/Gallery.tsx) - Homepage gallery
+
+## Styling Philosophy
+- Components use Tailwind CSS classes for styling
+- Styled-components are used for complex animations and dynamic styles
+- Each component section has its own styling patterns

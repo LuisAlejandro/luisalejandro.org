@@ -1,0 +1,77 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Development Workflow & Release Management
+
+This project uses a structured development workflow with automated release management.
+
+## Development Scripts & Commands
+
+### Package Management
+- [package.json](mdc:package.json) - Dependencies and npm scripts
+- [yarn.lock](mdc:yarn.lock) - Yarn package lock file
+- Use `yarn` for package management
+
+### Build & Development
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn start` - Start production server
+- `yarn lint` - Run ESLint checks
+
+### Release Management
+- [scripts/release.sh](mdc:scripts/release.sh) - Automated release script
+- [scripts/hotfix.sh](mdc:scripts/hotfix.sh) - Hotfix release script
+- [Makefile](mdc:Makefile) - Build automation and deployment commands
+
+## Configuration Files
+
+### Code Quality
+- [eslint.config.mjs](mdc:eslint.config.mjs) - ESLint configuration
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript main configuration
+- [tsconfig.paths.json](mdc:tsconfig.paths.json) - Path mapping configuration
+- [jsconfig.json](mdc:jsconfig.json) - JavaScript configuration
+
+### Styling
+- [postcss.config.cjs](mdc:postcss.config.cjs) - PostCSS configuration
+- [styles/tailwind.css](mdc:styles/tailwind.css) - Global Tailwind CSS
+
+### Release Configuration
+- [setup.cfg](mdc:setup.cfg) - Python-style configuration (for release tools)
+- [.gitchangelog.rc](mdc:.gitchangelog.rc) - Changelog generation config
+- [.gitchangelog.tpl](mdc:.gitchangelog.tpl) - Changelog template
+
+## Docker & Deployment
+
+### Docker Configuration
+- [Dockerfile](mdc:Dockerfile) - Docker image configuration
+- [docker-compose.yml](mdc:docker-compose.yml) - Docker Compose setup
+
+### Deployment Process
+1. Use `make` commands for build and deployment
+2. Release scripts handle version bumping and changelog generation
+3. Docker containers for consistent deployment environments
+
+## Documentation
+- [README.md](mdc:README.md) - Project overview and setup instructions
+- [HISTORY.md](mdc:HISTORY.md) - Project changelog
+- [MAINTAINER.md](mdc:MAINTAINER.md) - Maintainer information
+- [RELEASE_DESCRIPTION.md](mdc:RELEASE_DESCRIPTION.md) - Release notes template
+
+## Branch Strategy
+- `develop` - Development branch (current active branch)
+- Release scripts handle branching and merging
+- Hotfix scripts for emergency fixes
+
+## Asset Management
+- Static assets in [public/](mdc:public) for Next.js static serving
+- Images organized by feature in [public/images/](mdc:public/images)
+- Favicon and meta assets in [public/favicon/](mdc:public/favicon)
+
+## Environment Setup
+- Node.js and Yarn required
+- TypeScript support enabled
+- Tailwind CSS for styling
+- ESLint for code quality
+- Docker optional for containerized development

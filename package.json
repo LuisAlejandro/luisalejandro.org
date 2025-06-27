@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -64,6 +64,7 @@
     "react-player": "^2.16.0",
     "react-scrollmagic": "^2.3.0",
     "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "sass": "^1.89.1",
