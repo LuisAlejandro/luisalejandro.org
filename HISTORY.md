@@ -1,9 +1,18 @@
 # Changelog
 
 
+## 3.0.4 (2025-06-27)
+
+### Other
+
+* Adding ads.tx. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.3 (2025-06-27)
 
 ### Other
+
+* Updating Changelog and version to 3.0.3. [Luis Alejandro Martínez Faneyth]
 
 * Fixing soundcloud component. [Luis Alejandro Martínez Faneyth]
 
