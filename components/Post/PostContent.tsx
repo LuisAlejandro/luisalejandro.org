@@ -190,7 +190,6 @@ export default function PostContent({
                     lowResUrl={lowResUrl}
                     highResUrl={highResUrl}
                   />
-
                   <figcaption
                     className="block absolute bottom-0 w-full px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
                     dangerouslySetInnerHTML={{ __html: altText }}

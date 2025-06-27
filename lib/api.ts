@@ -1,5 +1,7 @@
 import { createBucketClient } from "@cosmicjs/sdk";
 
+import { ENV_NAME } from "@constants/constants";
+
 const BUCKET_SLUG =
   process.env.COSMIC_BUCKET_SLUG || "luisalejandroorg-development";
 
@@ -32,6 +34,8 @@ export async function getAllPostsForHome() {
     const data = await cosmic.objects
       .find({
         type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
       })
       .props([
         "id",
@@ -55,6 +59,8 @@ export async function getLatestPosts() {
     const data = await cosmic.objects
       .find({
         type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
       })
       .props(["id", "title", "slug", "created_at"])
       .sort("-created_at");
@@ -103,6 +109,8 @@ export async function getMorePosts(slug: any) {
     const moreObjects = await cosmic.objects
       .find({
         type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
         slug: {
           $ne: slug,
         },
@@ -132,6 +140,8 @@ export async function getPostAndMorePosts(slug: any) {
     const object = await cosmic.objects
       .find({
         slug,
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
       })
       .props([
         "id",
@@ -172,6 +182,8 @@ export async function getAllPostsForCategory(categorySlug: any) {
     const data = await cosmic.objects
       .find({
         type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
         "metadata.categories": {
           $in: [categoryDetails.id],
         },
