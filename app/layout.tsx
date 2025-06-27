@@ -164,7 +164,7 @@ export const metadata: Metadata = {
   },
   other: {
     // Google AdSense verification
-    "google-adsense-account": "ca-pub-6592430305679345",
+    "google-adsense-account": ADSENSE_PUBLISHER_ID || "",
 
     // Dublin Core metadata
     "dcterms.title":

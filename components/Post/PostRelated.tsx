@@ -15,7 +15,7 @@ export default function PostRelated({ title, coverImage, slug }: any) {
             backgroundImage: `url(${coverImage.url})`,
           }}
         ></span>
-        <span className="title inline-block align-top w-[98%] h-[110px] my-[5px] mx-[1%] text-2xl font-light leading-4">
+        <span className="title inline-block align-top w-[96%] h-[110px] my-[5px] mx-[2%] text-2xl font-light leading-6">
           {title}
         </span>
       </Link>

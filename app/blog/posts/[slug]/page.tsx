@@ -76,28 +76,4 @@ export default async function PostPage({ params }: PostPageProps) {
   );
 }
 
-// Generate metadata for SEO
-export async function generateMetadata({ params }: PostPageProps) {
-  const { slug } = await params;
-  const data = await getPostAndMorePosts(slug);
-
-  if (!data?.post) {
-    return {
-      title: "Post Not Found",
-    };
-  }
-
-  return {
-    title: data.post.title,
-    description:
-      data.post.metadata?.teaser?.replace(/<[^>]*>/g, "").substring(0, 160) ||
-      "",
-    openGraph: {
-      title: data.post.title,
-      description:
-        data.post.metadata?.teaser?.replace(/<[^>]*>/g, "").substring(0, 160) ||
-        "",
-      images: data.post.metadata?.hero ? [data.post.metadata.hero] : [],
-    },
-  };
-}
+// Metadata is now handled by layout.tsx for better SEO optimization
