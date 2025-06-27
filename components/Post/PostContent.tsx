@@ -238,7 +238,8 @@ export default function PostContent({
         }
 
         if (classList.includes("soundcloud")) {
-          const soundcloudUrl = attribs["data-soundcloud-url"];
+          const soundcloudId = attribs["data-soundcloud-id"];
+          const soundcloudUrl = `https://api.soundcloud.com/tracks/${soundcloudId}`;
           return (
             <span
               className="inline-block relative w-full h-0 pb-[16%]"
