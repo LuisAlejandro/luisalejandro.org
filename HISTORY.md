@@ -1,9 +1,18 @@
 # Changelog
 
 
+## 3.0.3 (2025-06-27)
+
+### Other
+
+* Fixing soundcloud component. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.2 (2025-06-27)
 
 ### Other
+
+* Updating Changelog and version to 3.0.2. [Luis Alejandro Martínez Faneyth]
 
 * Replacing microdata structured data with json-ld objects. [Luis Alejandro Martínez Faneyth]
 

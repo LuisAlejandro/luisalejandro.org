@@ -17,7 +17,7 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
   const blogPosts = posts.map((post) => {
     const blogPost: any = {
       "@type": "BlogPosting",
-      "@id": `${config.url}/blog/posts/${post.slug}/#BlogPosting`,
+      "@id": `${config.url}/blog/posts/${post.slug}`,
       mainEntityOfPage: `${config.url}/blog/posts/${post.slug}`,
       headline: post.title,
       name: post.title,
@@ -27,9 +27,9 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
       dateModified: post.created_at,
       author: {
         "@type": "Person",
-        "@id": `${config.url}/about/#Person`,
+        "@id": `${config.url}/portfolio`,
         name: config.author.name,
-        url: config.url,
+        url: `${config.url}/portfolio`,
       },
       url: `${config.url}/blog/posts/${post.slug}`,
       keywords: post.metadata.categories || [],
@@ -50,20 +50,16 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
   return {
     "@context": "https://schema.org/",
     "@type": "Blog",
-    "@id": `${config.url}/blog/#Blog`,
+    "@id": `${config.url}/blog`,
     mainEntityOfPage: `${config.url}/blog`,
     name: "Luis Alejandro - Software Development & Remote Work Insights",
     description:
       "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
     publisher: {
-      "@type": "Organization",
-      "@id": `${config.url}/#Organization`,
+      "@type": "Person",
+      "@id": `${config.url}/portfolio`,
       name: config.author.name,
-      logo: {
-        "@type": "ImageObject",
-        "@id": `${config.url}/images/logo.svg`,
-        url: `${config.url}/images/logo.svg`,
-      },
+      url: `${config.url}/portfolio`,
     },
     blogPost: blogPosts,
   };
