@@ -1,9 +1,20 @@
 # Changelog
 
 
+## 3.0.2 (2025-06-27)
+
+### Other
+
+* Replacing microdata structured data with json-ld objects. [Luis Alejandro Martínez Faneyth]
+
+* Fixing release script. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.1 (2025-06-23)
 
 ### Other
+
+* Updating Changelog and version to 3.0.1. [Luis Alejandro Martínez Faneyth]
 
 * Adding 404 page. [Luis Alejandro Martínez Faneyth]
 
@@ -81,22 +92,22 @@
 
 ### Changed
 
-* Fixing youtube link. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Fixing youtube link. [Luis Alejandro Martínez Faneyth]
 
 
 ## 2.0.4 (2024-03-11)
 
 ### Changed
 
-* Adding LuisDevelops landing page. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Adding LuisDevelops landing page. [Luis Alejandro Martínez Faneyth]
 
-* Finishing touches. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing touches. [Luis Alejandro Martínez Faneyth]
 
-* Fixing header getter. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Fixing header getter. [Luis Alejandro Martínez Faneyth]
 
-* Adding twitch endpoint. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Adding twitch endpoint. [Luis Alejandro Martínez Faneyth]
 
-* Updating resume. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Updating resume. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -108,9 +119,9 @@
 
 ### Changed
 
-* Cleaning code. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Cleaning code. [Luis Alejandro Martínez Faneyth]
 
-* Optimizing images. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Optimizing images. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -120,9 +131,9 @@
 
 ### Changed
 
-* Improving mobile version and replacing lambda function for a next endpoint. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Improving mobile version and replacing lambda function for a next endpoint. [Luis Alejandro Martínez Faneyth]
 
-* Fixing miscellaneous bugs. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Fixing miscellaneous bugs. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -132,18 +143,18 @@
 
 ### Changed
 
-* Improving mobile version. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Improving mobile version. [Luis Alejandro Martínez Faneyth]
 
-* Updating resume. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Updating resume. [Luis Alejandro Martínez Faneyth]
 
-* Adding ignores to dependabot. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Adding ignores to dependabot. [Luis Alejandro Martínez Faneyth]
 
 
 ### Fixed
 
-* Fixing eslint errors. [Luis Alejandro Martínez Faneyth]
+* `[FIX]` Fixing eslint errors. [Luis Alejandro Martínez Faneyth]
 
-* Fixing font issue. [Luis Alejandro Martínez Faneyth]
+* `[FIX]` Fixing font issue. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -153,21 +164,21 @@
 
 ### Changed
 
-* Finishing case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Finishing case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Finishing case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Finishing case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Continuing development of case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Continuing development of case studies. [Luis Alejandro Martínez Faneyth]
 
-* Finishing portfolio. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Finishing portfolio. [Luis Alejandro Martínez Faneyth]
 
-* Progressing on blog development. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Progressing on blog development. [Luis Alejandro Martínez Faneyth]
 
-* Progressing on case studies. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Progressing on case studies. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -179,21 +190,21 @@
 
 ### Added
 
-* Adding github workflows. [Luis Alejandro Martínez Faneyth]
+* `[ADD]` Adding github workflows. [Luis Alejandro Martínez Faneyth]
 
 
 ### Changed
 
-* Removing unnecessary dependency. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Removing unnecessary dependency. [Luis Alejandro Martínez Faneyth]
 
-* Adding cosmicjs info to envfile. [Luis Alejandro Martínez Faneyth]
+* `[REF]` Adding cosmicjs info to envfile. [Luis Alejandro Martínez Faneyth]
 
-* Updating resume. [Luis Alejandro Martínez Faneyth]
+* [REF] Updating resume. [Luis Alejandro Martínez Faneyth]
 
 
 ### Fixed
 
-* Fixing github workflow. Updating caniuse db. [Luis Alejandro Martínez Faneyth]
+* `[FIX]` Fixing github workflow. Updating caniuse db. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
@@ -205,38 +216,38 @@
 
 ### Changed
 
-* Updating version. [Luis Alejandro Martínez Faneyth]
+* [REF] Updating version. [Luis Alejandro Martínez Faneyth]
 
-* Fixing resume. [Luis Alejandro Martínez Faneyth]
+* [REF] Fixing resume. [Luis Alejandro Martínez Faneyth]
 
-* Improving readme. [Luis Alejandro Martínez Faneyth]
+* [REF] Improving readme. [Luis Alejandro Martínez Faneyth]
 
-* Adding resume. [Luis Alejandro Martínez Faneyth]
+* [REF] Adding resume. [Luis Alejandro Martínez Faneyth]
 
-* Fixing styles. [Luis Alejandro Martínez Faneyth]
+* [REF] Fixing styles. [Luis Alejandro Martínez Faneyth]
 
-* Adding encoding to dependencies. [Luis Alejandro Martínez Faneyth]
+* [REF] Adding encoding to dependencies. [Luis Alejandro Martínez Faneyth]
 
-* Improving meta info. [Luis Alejandro Martínez Faneyth]
+* [REF] Improving meta info. [Luis Alejandro Martínez Faneyth]
 
-* Updating favicons. [Luis Alejandro Martínez Faneyth]
+* [REF] Updating favicons. [Luis Alejandro Martínez Faneyth]
 
-* Improving portfolio. [Luis Alejandro Martínez Faneyth]
+* [REF] Improving portfolio. [Luis Alejandro Martínez Faneyth]
 
-* Developing case studies. [Luis Alejandro Martínez Faneyth]
+* [REF] Developing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Developing case studies. [Luis Alejandro Martínez Faneyth]
+* [REF] Developing case studies. [Luis Alejandro Martínez Faneyth]
 
-* Developing portfolio. [Luis Alejandro Martínez Faneyth]
+* [REF] Developing portfolio. [Luis Alejandro Martínez Faneyth]
 
-* Working on homepage animation. [Luis Alejandro Martínez Faneyth]
+* [REF] Working on homepage animation. [Luis Alejandro Martínez Faneyth]
 
-* Adding old site resources. [Luis Alejandro Martínez Faneyth]
+* [REF] Adding old site resources. [Luis Alejandro Martínez Faneyth]
 
 
 ### Fixed
 
-* Fixing build errors. [Luis Alejandro Martínez Faneyth]
+* [FIX] Fixing build errors. [Luis Alejandro Martínez Faneyth]
 
 
 ### Other
