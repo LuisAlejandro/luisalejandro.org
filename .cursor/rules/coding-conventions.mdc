@@ -1,0 +1,105 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Coding Conventions & Best Practices
+
+This project follows specific coding patterns and conventions for consistency and maintainability.
+
+## TypeScript Conventions
+
+### File Structure
+- Use `.tsx` for React components
+- Use `.ts` for utilities and API routes
+- Organize components by feature/section in [components/](mdc:components)
+- Keep utility functions in [lib/](mdc:lib)
+
+### Naming Conventions
+- **Components**: PascalCase (e.g., `HeroPost.tsx`)
+- **Files**: PascalCase for components, camelCase for utilities
+- **Directories**: PascalCase for component groups, camelCase for utilities
+- **Constants**: UPPER_SNAKE_CASE in [constants/constants.ts](mdc:constants/constants.ts)
+
+## React Patterns
+
+### Component Organization
+- **Page Components**: In [app/](mdc:app) directory following Next.js App Router
+- **Reusable Components**: In [components/](mdc:components) organized by feature
+- **Client Components**: In [side-effects/](mdc:side-effects) for interactivity
+- **Layout Components**: Separate layout files like [app/blog/layout.tsx](mdc:app/blog/layout.tsx)
+
+### State Management
+- Server Components by default (Next.js App Router)
+- Client Components only when necessary (marked with 'use client')
+- Props drilling for simple state passing
+- Context API for complex shared state
+
+## Styling Conventions
+
+### Tailwind CSS
+- Utility-first approach with Tailwind classes
+- Custom styles in [styles/tailwind.css](mdc:styles/tailwind.css)
+- Responsive design with Tailwind breakpoints
+- Dark mode support where applicable
+
+### Styled Components
+- Used for complex animations and dynamic styles
+- Component-specific styling files when needed
+- Animation logic in [components/Portfolio/OtherWork/Animations.ts](mdc:components/Portfolio/OtherWork/Animations.ts)
+
+## API Development
+
+### Route Structure
+- Follow Next.js App Router conventions
+- Use `route.ts` files in [app/api/](mdc:app/api)
+- Proper HTTP methods and status codes
+- Error handling and validation
+
+### Data Fetching
+- Server-side data fetching in Server Components
+- Utility functions in [lib/api.ts](mdc:lib/api.ts)
+- Markdown processing in [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts)
+
+## Performance Best Practices
+
+### Image Optimization
+- Use Next.js `Image` component
+- Organize images in [public/images/](mdc:public/images) by feature
+- SVG icons in [assets/images/](mdc:assets/images)
+
+### Code Splitting
+- Automatic with Next.js App Router
+- Client components loaded only when needed
+- Dynamic imports for heavy components
+
+## SEO & Metadata
+
+### Page Metadata
+- Implement metadata in layout files
+- Dynamic metadata for blog posts
+- Structured data where applicable
+
+### Content Structure
+- Semantic HTML elements
+- Proper heading hierarchy
+- Alt text for images
+- Meta descriptions and titles
+
+## Error Handling
+
+### Client-Side
+- Error boundaries for React components
+- Graceful fallbacks for failed data fetching
+- User-friendly error messages
+
+### Server-Side
+- Custom 404 page at [app/not-found.tsx](mdc:app/not-found.tsx)
+- API error responses with proper status codes
+- Logging for debugging
+
+## Testing Strategy
+- Component testing with Jest/React Testing Library
+- API route testing
+- E2E testing for critical user flows
+- Visual regression testing for UI consistency

@@ -1,0 +1,39 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Project Structure & Navigation Guide
+
+This is Luis Alejandro's personal website built with Next.js 14, featuring a blog, portfolio, case studies, and contact functionality.
+
+## Main Application Structure
+
+### Core App Directory
+- [app/layout.tsx](mdc:app/layout.tsx) - Root layout with metadata and global styles
+- [app/page.tsx](mdc:app/page.tsx) - Homepage with hero section and portfolio preview
+- [app/not-found.tsx](mdc:app/not-found.tsx) - Custom 404 page
+
+### Key Page Sections
+- **Blog**: [app/blog/page.tsx](mdc:app/blog/page.tsx) with category filtering at [app/blog/category/[slug]/page.tsx](mdc:app/blog/category/[slug]/page.tsx)
+- **Portfolio**: [app/portfolio/page.tsx](mdc:app/portfolio/page.tsx) - Main portfolio showcase
+- **Case Studies**: Individual case studies in [app/case-studies/](mdc:app/case-studies)
+- **Contact**: [app/contact/page.tsx](mdc:app/contact/page.tsx) - Contact form and information
+- **Apps**: External app links at [app/apps/agoras/page.tsx](mdc:app/apps/agoras/page.tsx)
+
+### API Routes
+- [app/api/contact/route.ts](mdc:app/api/contact/route.ts) - Contact form submission
+- [app/api/last-posts/route.ts](mdc:app/api/last-posts/route.ts) - Recent blog posts
+- [app/api/trending-posts/route.ts](mdc:app/api/trending-posts/route.ts) - Popular content
+- [app/api/twitch-events/route.ts](mdc:app/api/twitch-events/route.ts) - Twitch integration
+
+## Configuration Files
+- [next.config.ts](mdc:next.config.ts) - Next.js configuration
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [package.json](mdc:package.json) - Dependencies and scripts
+- [tailwind.config.js](mdc:tailwind.config.js) - Tailwind CSS configuration (if exists)
+
+## Content & Assets
+- [constants/constants.ts](mdc:constants/constants.ts) - Global constants and configuration
+- [public/images/](mdc:public/images) - Static images and assets
+- [assets/](mdc:assets) - SVG icons and HTML templates

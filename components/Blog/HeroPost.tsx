@@ -28,19 +28,13 @@ export default function HeroPost({
 
   return (
     <div id="featured" className="flex w-[94%] mx-auto">
-      <article
-        className={`${type} w-full p-0 m-0`}
-        id={`post-${id}`}
-        itemProp="blogPost"
-        itemScope={true}
-        itemType="http://schema.org/BlogPosting"
-      >
-        <div className="accent inline-block align-top w-[5%] h-[270px] p-0 m-0 text-[30px] text-white bg-[rgba(0,177,106,0.9)] rounded-l-[5px]">
+      <article className={`${type} w-full p-0 m-0`} id={`post-${id}`}>
+        <div className="accent inline-block align-top w-[5%] h-[350px] p-0 m-0 text-[30px] text-white bg-[rgba(0,177,106,0.9)] rounded-l-[5px]">
           <AiFillStar className="m-[5px]" />
         </div>
 
         <div
-          className="bg inline-block align-top w-1/2 h-[270px] p-0 m-0 rounded-none bg-cover bg-no-repeat bg-center"
+          className="bg inline-block align-top w-1/2 h-[350px] p-0 m-0 rounded-none bg-cover bg-no-repeat bg-center"
           style={{
             backgroundImage: `url(${coverImage.url})`,
           }}
@@ -144,30 +138,22 @@ export default function HeroPost({
         <div className="data inline-block align-top w-[45%] p-0 m-0 mb-[20px]">
           <Link
             href={`/blog/posts/${slug}`}
-            className="blog-data-container-big inline-block align-top w-full h-[270px] rounded-r-[5px] rounded-l-0 py-[10px] px-[4%] text-[rgb(90,90,90)] bg-[rgb(240,240,240)] transition-colors duration-200 ease-in hover:text-black"
+            className="blog-data-container-big inline-block align-top w-full h-[350px] rounded-r-[5px] rounded-l-0 py-[10px] px-[4%] text-[rgb(90,90,90)] bg-[rgb(240,240,240)] transition-colors duration-200 ease-in hover:text-black"
             rel="bookmark"
             title={`Permanent link to "${title}"`}
-            itemProp="url"
           >
-            <h2
-              className="header inline-block align-top text-left text-5xl leading-14 font-thin"
-              itemProp="headline"
-            >
+            <h2 className="header inline-block align-top text-left text-5xl leading-14 font-thin">
               {title}
             </h2>
 
             <span
               className="description inline-block align-top w-full text-base font-light my-1"
-              itemProp="description"
               dangerouslySetInnerHTML={{ __html: excerpt }}
             ></span>
 
-            <span
-              className="description inline-block align-top w-full text-base font-light my-1"
-              itemProp="description"
-            >
+            <span className="description inline-block align-top w-full text-base font-light my-1">
               Published{" "}
-              <time className="datetime" dateTime={date} itemProp="dateCreated">
+              <time className="datetime" dateTime={date}>
                 {" "}
                 <FriendlyDate dateString={date} />
               </time>

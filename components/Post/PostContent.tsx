@@ -1,12 +1,14 @@
 "use client";
 
-import Link from "next/link";
-
 import { CommentCount, DiscussionEmbed } from "disqus-react";
 import hljs from "highlight.js";
 import parse, { domToReact } from "html-react-parser";
-import { useEffect } from "react";
-import ReactPlayer from "react-player/lazy";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import PhotoAlbum from "react-photo-album";
+import "react-photo-album/rows.css";
+import Lightbox from "yet-another-react-lightbox";
 
 import FriendlyDate from "@components/Blog/FriendlyDate";
 import RelatedStories from "@components/Post/RelatedStories";
@@ -19,6 +21,10 @@ import {
 } from "@constants/constants";
 
 import CoverImage from "./CoverImage";
+
+const ReactPlayer = dynamic(() => import("react-player/lazy"), {
+  ssr: false,
+});
 
 export default function PostContent({
   title,
@@ -35,7 +41,9 @@ export default function PostContent({
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
   const escapedCanonicalUrl = encodeURIComponent(canonicalUrl);
   const escapedTitle = encodeURIComponent(title);
+  const [index, setIndex] = useState(-1);
 
+  // highlight just once
   useEffect(() => {
     hljs.highlightAll();
   }, []);
@@ -50,56 +58,6 @@ export default function PostContent({
       }
     } catch (error) {
       console.error("AdSense error:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    const modal = document.querySelector<HTMLElement>("#modal");
-    const modalClose = document.querySelector<HTMLElement>("#modal-close");
-    const modalContainer =
-      document.querySelector<HTMLElement>("#modal-container");
-    const modalOverlay = document.querySelector<HTMLElement>("#modal-overlay");
-    const modalVerticalOffset = document.querySelector<HTMLElement>(
-      "#modal-vertical-offset"
-    );
-    const imageLinks = document.querySelectorAll<HTMLElement>(
-      ".picasa-image-large, .figure > a"
-    );
-
-    imageLinks.forEach((item) => {
-      if (modal && modalContainer) {
-        item.addEventListener("click", (event) => {
-          event.preventDefault();
-
-          const imgUrl = item.getAttribute("href");
-          modal.style.backgroundImage = `url('${imgUrl}')`;
-          modalContainer.style.display = "block";
-        });
-      }
-    });
-
-    if (modalClose && modalContainer) {
-      modalClose.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        modalContainer.style.display = "none";
-      });
-    }
-
-    if (modalOverlay && modalContainer) {
-      modalOverlay.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        modalContainer.style.display = "none";
-      });
-    }
-
-    if (modalVerticalOffset && modalContainer) {
-      modalVerticalOffset.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        modalContainer.style.display = "none";
-      });
     }
   }, []);
 
@@ -167,25 +125,26 @@ export default function PostContent({
           const imageList = children[0].data.split("\n").filter(Boolean);
           return (
             <div className="inline-block align-top w-full my-[15px] mx-0">
-              <ul className="inline-block align-top w-full my-0 mx-0 p-0">
-                {imageList.map((img: any, index: any) => (
-                  <li
-                    key={index}
-                    className="float-left list-none w-[16%] mx-[1%] my-[10px] px-[1%] py-[10px] rounded-[5px] post-picasa-image"
-                  >
-                    <a
-                      className="inline-block align-top w-full overflow-hidden rounded-[5px]"
-                      href={img}
-                    >
-                      <img
-                        className="inline-block align-top w-full"
-                        src={img}
-                        alt=""
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <PhotoAlbum
+                photos={imageList.map((img: any) => ({
+                  src: img,
+                  width: 1080,
+                  height: 800,
+                }))}
+                layout="rows"
+                targetRowHeight={150}
+                onClick={({ index }) => setIndex(index)}
+              />
+              <Lightbox
+                slides={imageList.map((img: any) => ({
+                  src: img,
+                  width: 1080,
+                  height: 800,
+                }))}
+                open={index >= 0}
+                index={index}
+                close={() => setIndex(-1)}
+              />
             </div>
           );
         }
@@ -193,6 +152,7 @@ export default function PostContent({
         if (classList.includes("figure")) {
           const highResUrl = attribs["data-figure-href"];
           const lowResUrl = attribs["data-figure-src"];
+          const altText = attribs["data-figure-alt"];
           return (
             <span
               className={`inline-block align-top post-figure cursor-pointer overflow-hidden rounded-[5px] ${
@@ -214,6 +174,7 @@ export default function PostContent({
               }`}
               data-figure-src={lowResUrl}
               data-figure-href={highResUrl}
+              data-figure-alt={altText}
             >
               <a
                 href={lowResUrl}
@@ -231,8 +192,8 @@ export default function PostContent({
                   />
 
                   <figcaption
-                    className="block absolute bottom-0 w-[98%] px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
-                    dangerouslySetInnerHTML={{ __html: excerpt }}
+                    className="block absolute bottom-0 w-full px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
+                    dangerouslySetInnerHTML={{ __html: altText }}
                   ></figcaption>
                 </figure>
               </a>
@@ -344,12 +305,7 @@ export default function PostContent({
       <article
         id={`post-${id}`}
         className="inline-block align-top w-full my-0 mx-0 p-0"
-        itemProp="blogPost"
-        itemScope={true}
-        itemType="http://schema.org/BlogPosting"
       >
-        <meta itemProp="image" content={coverImage.url} />
-
         <span className="inline-block align-top my-[5px] mx-0">
           {categories.map((category: any) => (
             <Link
@@ -370,13 +326,9 @@ export default function PostContent({
               href={canonicalUrl}
               rel="bookmark"
               title={`Permanent link to "${title}"`}
-              itemProp="url"
               className="inline-block align-top w-full my-0 mx-0 p-0 no-underline text-black hover:no-underline hover:text-[rgb(77,77,70)]"
             >
-              <span
-                itemProp="headline"
-                className="text-[3.2em] font-extralight leading-4"
-              >
+              <span className="text-[3.2em] font-extralight leading-18">
                 {title}
               </span>
             </Link>
@@ -386,7 +338,6 @@ export default function PostContent({
         <ul className="inline-block align-top w-full my-[5px] mx-0 p-0">
           <li
             className="float-left w-full my-[5px] mx-0 p-0 text-[rgb(102,102,102)] text-xl font-light leading-4 text-justify"
-            itemProp="description"
             dangerouslySetInnerHTML={{ __html: excerpt }}
           ></li>
 
@@ -395,13 +346,12 @@ export default function PostContent({
             <Link
               href="/portfolio"
               title="About the author"
-              itemProp="author"
               className="no-underline text-teal-custom font-normal hover:underline"
             >
               Luis Alejandro
             </Link>
             , on{" "}
-            <time className="datetime" dateTime={date} itemProp="dateCreated">
+            <time className="datetime" dateTime={date}>
               {" "}
               <FriendlyDate dateString={date} />
             </time>
@@ -474,7 +424,7 @@ export default function PostContent({
         <span
           className="inline-block align-top post-figure cursor-pointer overflow-hidden rounded-[5px] w-full my-[15px] mx-0 mb-[60px]"
           data-figure-src={coverImage.url}
-          data-figure-href={coverImage.url}
+          data-figure-href={coverImage.imgix_url}
         >
           <a
             href={coverImage.url}
@@ -492,23 +442,20 @@ export default function PostContent({
               />
 
               <figcaption
-                className="block absolute bottom-0 w-[98%] px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
+                className="block absolute bottom-0 w-full px-[1%] py-[5px] text-base leading-4 text-left text-gray-600 post-figure-caption"
                 dangerouslySetInnerHTML={{ __html: excerpt }}
               ></figcaption>
             </figure>
           </a>
         </span>
 
-        <div
-          className="post-content inline-block align-top w-full text-2xl font-light leading-7.5 text-justify break-words"
-          itemProp="articleBody"
-        >
+        <div className="post-content inline-block align-top w-full text-2xl font-light leading-10 text-justify break-words">
           {hidrateHtml(content)}
         </div>
       </article>
 
       {/* Google AdSense Banner Ad */}
-      {ADSENSE_PUBLISHER_ID && ADSENSE_AD_SLOT_ID && (
+      {ADSENSE_PUBLISHER_ID && ADSENSE_AD_SLOT_ID && ENV_NAME !== "local" && (
         <div className="inline-block align-top w-full my-12">
           <div className="flex justify-center">
             <div className="w-full max-w-4xl">

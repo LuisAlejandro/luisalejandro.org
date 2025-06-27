@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Tween } from "react-gsap";
 import PhotoAlbum from "react-photo-album";
+import "react-photo-album/rows.css";
 import { Controller, Scene } from "react-scrollmagic";
 import Lightbox from "yet-another-react-lightbox";
 

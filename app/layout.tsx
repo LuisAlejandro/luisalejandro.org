@@ -35,9 +35,31 @@ const leagueGothic = League_Gothic({
 });
 
 export const metadata: Metadata = {
-  title: `${config.app_name} | ${config.description}`,
-  description: config.description,
-  keywords: config.keywords,
+  title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
+  description:
+    "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
+  keywords: [
+    "Venezuelan software engineer",
+    "remote full stack developer",
+    "TypeScript developer",
+    "Python developer",
+    "Golang developer",
+    "open source contributor",
+    "remote work specialist",
+    "Next.js developer",
+    "Docker expert",
+    "AWS developer",
+    "software architect",
+    "web development",
+    "API development",
+    "DevOps engineer",
+    "Latin American developer",
+    "freelance developer",
+    "software consultant",
+    "GitHub developer",
+    "React developer",
+    "Node.js developer",
+  ],
   authors: [{ name: config.author.name }],
   generator: config.generator,
   applicationName: config.app_name,
@@ -50,10 +72,11 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: config.app_name,
-    description: config.description,
+    title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
+    description:
+      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
     url: config.url,
-    siteName: config.app_name,
+    siteName: "Luis Alejandro Martínez Faneyth",
     images: [
       {
         url: `${config.url}/favicon/android-chrome-512x512.png`,
@@ -67,8 +90,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: config.app_name,
-    description: config.description,
+    title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
+    description:
+      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
     images: [`${config.url}/images/banner.png`],
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
@@ -143,8 +167,10 @@ export const metadata: Metadata = {
     "google-adsense-account": "ca-pub-6592430305679345",
 
     // Dublin Core metadata
-    "dcterms.title": config.app_name,
-    "dcterms.description": config.description,
+    "dcterms.title":
+      "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
+    "dcterms.description":
+      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
     "dcterms.language": "en",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,

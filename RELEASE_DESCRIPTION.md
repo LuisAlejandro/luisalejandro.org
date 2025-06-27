@@ -1,0 +1,1 @@
+_luisalejandro.org_ is a personal website built with Next.js, Tailwind CSS, and TypeScript. It is hosted on Vercel and uses the Vercel DNS to serve the website. It is a collection of my projects, blog posts, and other content.
