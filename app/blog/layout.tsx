@@ -6,9 +6,10 @@ import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 
 export const metadata: Metadata = {
-  title: "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+  title:
+    "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
   description:
-    "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
+    "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
   keywords: [
     "software development blog",
     "programming blog",
@@ -44,9 +45,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
     description:
-      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
+      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
     url: `${config.url}/blog`,
     siteName: "Luis Alejandro Martínez Faneyth",
     images: [
@@ -57,15 +58,15 @@ export const metadata: Metadata = {
         alt: config.app_name,
       },
     ],
-    locale: "en_US",
+    locale: "es_VE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
     description:
-      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
+      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
     images: [`${config.url}/images/banner.png`],
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
@@ -113,7 +114,7 @@ export const metadata: Metadata = {
   },
   manifest: `${config.url}/favicon/site.webmanifest`,
   alternates: {
-    canonical: config.url,
+    canonical: `${config.url}/blog`,
     types: {
       "application/rss+xml": [
         {
@@ -133,15 +134,24 @@ export const metadata: Metadata = {
           title: "JSON feed",
         },
       ],
+      "application/xml": [
+        {
+          url: `${config.url}/sitemap.xml`,
+          title: "Sitemap",
+        },
+      ],
     },
   },
   other: {
+    // Sitemap reference
+    sitemap: `${config.url}/sitemap.xml`,
+
     // Dublin Core metadata
     "dcterms.title":
-      "Blog | Luis Alejandro - Software Development & Remote Work Insights",
+      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
     "dcterms.description":
-      "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
-    "dcterms.language": "en",
+      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
+    "dcterms.language": "es",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,
     "dcterms.creator": config.author.name,

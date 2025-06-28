@@ -9,8 +9,10 @@ export async function GET() {
     const allPosts = await getAllPostsForHome();
 
     const feed = new Feed({
-      title: "Luis Alejandro's Blog",
-      description: "Some of this and that",
+      title:
+        "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
+      description:
+        "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
       language: "es",
       id: canonicalHostnameUrl,
       link: canonicalHostnameUrl,

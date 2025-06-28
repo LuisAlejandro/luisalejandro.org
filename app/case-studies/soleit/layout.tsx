@@ -46,6 +46,10 @@ export const metadata: Metadata = {
     creator: "@LuisDevelops",
     images: [`${config.url}/images/case-studies/soleit-hero.png`],
   },
+  other: {
+    // Sitemap reference
+    sitemap: `${config.url}/sitemap.xml`,
+  },
 };
 
 export default function SoleitLayout({
