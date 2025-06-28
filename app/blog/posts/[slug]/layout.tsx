@@ -25,9 +25,9 @@ export async function generateMetadata({
 
   if (!data?.post) {
     return {
-      title: "Post Not Found | Luis Alejandro Blog",
+      title: "Post Not Found | Blog de Luis Alejandro",
       description:
-        "The requested blog post could not be found. Explore other software development insights on Luis Alejandro's blog.",
+        "El post solicitado no pudo ser encontrado. Explora otros insights de desarrollo de software en el blog de Luis Alejandro.",
     };
   }
 
@@ -44,8 +44,8 @@ export async function generateMetadata({
   const postTitle = post.title;
   const seoTitle =
     postTitle.length > 60
-      ? `${postTitle.substring(0, 57)}... | Luis Alejandro Blog`
-      : `${postTitle} | Luis Alejandro - Software Development Blog`;
+      ? `${postTitle.substring(0, 57)}... | Blog de Luis Alejandro`
+      : `${postTitle} | Blog de Luis Alejandro`;
 
   // Extract categories for keywords
   const categories = post.metadata?.categories || [];
@@ -127,22 +127,22 @@ export async function generateMetadata({
       title: seoTitle,
       description: optimizedDescription,
       url: canonicalUrl,
-      siteName: "Luis Alejandro Martínez Faneyth - Software Development Blog",
+      siteName: "Luis Alejandro - Blog de Desarrollo de Software",
       images: [
         {
           url: optimizedImageUrl,
           width: 1200,
           height: 630,
-          alt: `${postTitle} - Software Development Insights by Luis Alejandro`,
+          alt: `${postTitle} - Insights de Desarrollo de Software por Luis Alejandro`,
         },
         {
           url: `${config.url}/images/banner.png`,
           width: 1200,
           height: 630,
-          alt: "Luis Alejandro - Full Stack Developer & Open Source Expert",
+          alt: "Luis Alejandro - Desarrollador de Software & Experto en Código Abierto",
         },
       ],
-      locale: "en_US",
+      locale: "es_VE",
       type: "article",
       publishedTime: publishedISO,
       modifiedTime: publishedISO,
@@ -224,16 +224,25 @@ export async function generateMetadata({
             title: "Luis Alejandro Blog JSON Feed",
           },
         ],
+        "application/xml": [
+          {
+            url: `${config.url}/sitemap.xml`,
+            title: "Sitemap",
+          },
+        ],
       },
     },
     other: {
       // Google AdSense verification
       "google-adsense-account": ADSENSE_PUBLISHER_ID || "",
 
+      // Sitemap reference
+      sitemap: `${config.url}/sitemap.xml`,
+
       // Article-specific Dublin Core metadata
       "dcterms.title": postTitle,
       "dcterms.description": optimizedDescription,
-      "dcterms.language": "en",
+      "dcterms.language": "es",
       "dcterms.type": "Text",
       "dcterms.format": "text/html",
       "dcterms.identifier": canonicalUrl,
@@ -300,7 +309,7 @@ export async function generateMetadata({
         .map((cat: any) => cat.title)
         .filter(Boolean)
         .join(", "),
-      "content-language": "en",
+      "content-language": "es",
       "content-author": config.author.name,
       "content-publication-date": publishedISO,
     },

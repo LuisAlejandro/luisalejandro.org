@@ -160,11 +160,20 @@ export const metadata: Metadata = {
           title: "JSON feed",
         },
       ],
+      "application/xml": [
+        {
+          url: `${config.url}/sitemap.xml`,
+          title: "Sitemap",
+        },
+      ],
     },
   },
   other: {
     // Google AdSense verification
     "google-adsense-account": ADSENSE_PUBLISHER_ID || "",
+
+    // Sitemap reference
+    sitemap: `${config.url}/sitemap.xml`,
 
     // Dublin Core metadata
     "dcterms.title":

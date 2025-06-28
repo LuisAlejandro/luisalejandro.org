@@ -111,7 +111,7 @@ export const metadata: Metadata = {
   },
   manifest: `${config.url}/favicon/site.webmanifest`,
   alternates: {
-    canonical: config.url,
+    canonical: `${config.url}/portfolio`,
     types: {
       "application/rss+xml": [
         {
@@ -131,9 +131,18 @@ export const metadata: Metadata = {
           title: "JSON feed",
         },
       ],
+      "application/xml": [
+        {
+          url: `${config.url}/sitemap.xml`,
+          title: "Sitemap",
+        },
+      ],
     },
   },
   other: {
+    // Sitemap reference
+    sitemap: `${config.url}/sitemap.xml`,
+
     // Dublin Core metadata
     "dcterms.title":
       "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",
