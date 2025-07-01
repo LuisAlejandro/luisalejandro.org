@@ -1,11 +1,13 @@
 "use client";
 
+import { Adsense } from "@ctrl/react-adsense";
 import { CommentCount, DiscussionEmbed } from "disqus-react";
 import hljs from "highlight.js";
 import parse, { domToReact } from "html-react-parser";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AiFillFacebook, AiFillLinkedin, AiOutlineX } from "react-icons/ai";
 import PhotoAlbum from "react-photo-album";
 import "react-photo-album/rows.css";
 import Lightbox from "yet-another-react-lightbox";
@@ -20,7 +22,6 @@ import {
   canonicalHostnameUrl,
 } from "@constants/constants";
 
-import { AiFillFacebook, AiFillLinkedin, AiOutlineX } from "react-icons/ai";
 import CoverImage from "./CoverImage";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -37,6 +38,7 @@ export default function PostContent({
   id,
   categories,
   morePosts,
+  allCategories,
 }: any) {
   const excerptText = excerpt.replace(/(<([^>]+)>)/gi, "");
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
@@ -47,19 +49,6 @@ export default function PostContent({
   // highlight just once
   useEffect(() => {
     hljs.highlightAll();
-  }, []);
-
-  useEffect(() => {
-    // Initialize Google AdSense
-    try {
-      if (typeof window !== "undefined" && (window as any).adsbygoogle) {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-          {}
-        );
-      }
-    } catch (error) {
-      console.error("AdSense error:", error);
-    }
   }, []);
 
   const hidrateHtml = (htmlString: any) => {
@@ -472,14 +461,13 @@ export default function PostContent({
         <div className="inline-block align-top w-full my-12">
           <div className="flex justify-center">
             <div className="w-full max-w-4xl">
-              {/* AdSense Responsive Banner */}
-              <ins
-                className="adsbygoogle block"
+              {/* AdSense Responsive Banner using @ctrl/react-adsense */}
+              <Adsense
+                client={ADSENSE_PUBLISHER_ID}
+                slot={ADSENSE_AD_SLOT_ID}
                 style={{ display: "block" }}
-                data-ad-client={ADSENSE_PUBLISHER_ID}
-                data-ad-slot={ADSENSE_AD_SLOT_ID}
-                data-ad-format="auto"
-                data-full-width-responsive="true"
+                format="auto"
+                responsive="true"
               />
             </div>
           </div>
@@ -488,12 +476,36 @@ export default function PostContent({
 
       {morePosts.length > 0 && (
         <div className="inline-block align-top w-full mt-20">
-          <h3 className="text-4xl font-thin leading-4 mt-0 mb-[10px]">
+          <h3 className="text-4xl font-thin leading-4 mt-0 mb-8">
             Other posts
           </h3>
           <RelatedStories posts={morePosts} />
         </div>
       )}
+
+      <div className="inline-block align-top w-full mt-20">
+        <h1 className="text-4xl font-thin leading-4 mt-0 mb-8">Topics</h1>
+        <div className="flex flex-wrap justify-start items-start gap-4 w-full mx-auto">
+          {allCategories.map((category: any) => {
+            return (
+              <span
+                key={category.id}
+                className="inline-block align-top my-[5px] mx-0"
+              >
+                <Link
+                  href={`/blog/category/${category.slug}`}
+                  key={category.id}
+                  title={`List all posts under the category "${category.title}"`}
+                  rel="tag"
+                  className="flex items-center justify-center text-2xl font-extralight h-16 leading-5 mb-20 pt-1 px-4 pb-2 text-gray-3 bg-blue-gray rounded-2xl transition-colors duration-400 ease-out hover:bg-blue-gray-light active:pt-1 active:px-4 active:mt-1 active:mb-19 simple-3d-button-gradient"
+                >
+                  {category.title}
+                </Link>
+              </span>
+            );
+          })}
+        </div>
+      </div>
 
       <div
         id="comments"

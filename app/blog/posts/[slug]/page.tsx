@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { getPostAndMorePosts } from "@lib/api";
+import { getAllCategories, getPostAndMorePosts } from "@lib/api";
 import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
 
@@ -23,6 +23,7 @@ interface PostPageProps {
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
   const data = await getPostAndMorePosts(slug);
+  const allCategories = (await getAllCategories()) || [];
 
   if (!data?.post?.slug) {
     notFound();
@@ -67,6 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
               slug={post.slug}
               excerpt={post.metadata.teaser}
               morePosts={morePosts}
+              allCategories={allCategories}
             />
           </Section>
         </main>

@@ -20,8 +20,9 @@ interface CategoryPageProps {
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
   const { categoryPosts, categoryName } =
-    (await getAllPostsForCategory(params.slug)) || {};
+    (await getAllPostsForCategory(slug)) || {};
 
   if (!categoryPosts || !categoryName) {
     notFound();
