@@ -69,6 +69,7 @@ const checkIfSESListExists = async () => {
     }
     return true;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };
@@ -89,6 +90,7 @@ const checkIfContactExists = async (email: any) => {
     }
     return false;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };
@@ -188,6 +190,7 @@ export async function checkUserOnMailchimpList(data: any) {
     }
     return false;
   } catch (error) {
+    console.error(error);
     return false;
   }
 }
@@ -299,6 +302,7 @@ const checkIfSESWelcomeTemplateExists = async () => {
     }
     return true;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };
@@ -349,6 +353,7 @@ const checkIfSESCompanyTemplateExists = async () => {
     }
     return true;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };

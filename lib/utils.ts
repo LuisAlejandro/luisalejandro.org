@@ -13,6 +13,7 @@ export const isSchemaValid = async (schema: any, body: any) => {
     const status = await schema.isValid(body);
     return status;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };

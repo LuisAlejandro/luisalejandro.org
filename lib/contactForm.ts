@@ -20,6 +20,7 @@ export async function verifyCaptcha(token: any) {
       return false;
     }
   } catch (error) {
+    console.error(error);
     return false;
   }
 }

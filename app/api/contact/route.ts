@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
     await initLeadWorkflow(body);
     return NextResponse.json({ sent: true });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

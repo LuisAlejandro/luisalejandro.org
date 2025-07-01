@@ -15,6 +15,9 @@ export default function MoreStories({ posts }: any) {
   const hasMorePosts = remainingPosts.length > visiblePostsCount;
 
   useEffect(() => {
+    // Only run intersection observer in the browser
+    if (typeof window === "undefined") return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasMorePosts && !isLoading) {
