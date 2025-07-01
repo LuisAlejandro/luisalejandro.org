@@ -2,7 +2,14 @@
 
 import { CommentCount } from "disqus-react";
 import Link from "next/link";
-import { AiFillStar } from "react-icons/ai";
+import {
+  AiFillFacebook,
+  AiFillHeart,
+  AiFillLinkedin,
+  AiFillStar,
+  AiOutlineRetweet,
+  AiOutlineX,
+} from "react-icons/ai";
 
 import {
   DISQUS_SHORTNAME,
@@ -53,10 +60,11 @@ export default function HeroPost({
           <ul className="socialbar float-right align-top mx-[1%] my-[5px]">
             <li className="reactions float-left">
               {canonicalUrl && DISQUS_SHORTNAME && ENV_NAME !== "local" && (
-                <span
-                  className="blog-category-button inline-block align-top text-sm uppercase h-[28px] leading-[20px] py-[3px] pl-[28px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-l-[5px] bg-[url('/images/sprite.svg')] bg-no-repeat"
-                  style={{ backgroundPosition: "5px -75px" }}
-                >
+                <span className="blog-category-button inline-block align-top text-sm uppercase h-[28px] w-[50px] leading-[20px] py-[3px] pl-[5px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-l-[5px]">
+                  <AiFillHeart
+                    size={20}
+                    className="m-0 inline-block align-top"
+                  />
                   <CommentCount
                     shortname={DISQUS_SHORTNAME}
                     config={{
@@ -73,15 +81,18 @@ export default function HeroPost({
               <button
                 type="button"
                 data-ident={id}
-                className="blog-category-button inline-block align-top text-sm uppercase h-[28px] leading-[20px] my-0 mb-[4px] ml-0 py-[3px] pl-[25px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-r-[5px] bg-[url('/images/sprite.svg')] bg-no-repeat transition-colors duration-200 ease-in hover:bg-white active:my-[4px] active:ml-0 active:py-[3px] active:pl-[25px] active:pr-[5px]"
-                style={{ backgroundPosition: "5px -100px" }}
+                className="blog-category-button inline-block align-top text-sm uppercase h-[28px] leading-[20px] my-0 mb-[4px] ml-0 py-[3px] pl-[5px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-r-[5px] transition-colors duration-200 ease-in hover:bg-white active:my-[4px] active:ml-0 active:py-[3px] active:pl-[3px] active:pr-[5px]"
               >
+                <AiOutlineRetweet
+                  size={20}
+                  className="m-0 mr-[5px] inline-block align-top"
+                />
                 Share
               </button>
             </li>
           </ul>
 
-          <ul className="socialpop blog-socialpop hidden align-top w-1/2 h-[100px] mx-[25%] my-[50px] mb-[80px] px-[5%] py-[20px] bg-[rgb(230,230,230)] rounded-[5px] relative">
+          <ul className="socialpop blog-socialpop hidden align-top w-[60%] h-[100px] mx-[20%] my-[100px] mb-[80px] px-[5%] py-[20px] bg-[rgb(230,230,230)] rounded-[5px] relative">
             <li className="twitter float-left w-[31.333%] mx-[1%]">
               <a
                 href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
@@ -90,11 +101,12 @@ export default function HeroPost({
                 rel="nofollow noreferrer"
                 className="inline-block align-top w-full text-center"
               >
-                <span
-                  className="sprite inline-block align-top w-[60px] h-[60px] bg-[url('/images/sprite.svg')] bg-no-repeat hover:bg-[-300px_-30px]"
-                  style={{ backgroundPosition: "-300px -90px" }}
-                ></span>
-
+                <span className="inline-block align-top w-[60px] h-[60px]">
+                  <AiOutlineX
+                    size="60px"
+                    className="text-[#00000099] hover:text-[#000000ff] transition-colors duration-200 ease-in"
+                  />
+                </span>
                 <span className="hide hidden">Twitter</span>
               </a>
             </li>
@@ -107,11 +119,12 @@ export default function HeroPost({
                 rel="nofollow noreferrer"
                 className="inline-block align-top w-full text-center"
               >
-                <span
-                  className="sprite inline-block align-top w-[60px] h-[60px] bg-[url('/images/sprite.svg')] bg-no-repeat hover:bg-[-360px_-30px]"
-                  style={{ backgroundPosition: "-360px -90px" }}
-                ></span>
-
+                <span className="inline-block align-top w-[60px] h-[60px]">
+                  <AiFillFacebook
+                    size="60px"
+                    className="text-[#0866FF99] hover:text-[#0866FFff] transition-colors duration-200 ease-in"
+                  />
+                </span>
                 <span className="hide hidden">Facebook</span>
               </a>
             </li>
@@ -124,11 +137,12 @@ export default function HeroPost({
                 rel="nofollow noreferrer"
                 className="inline-block align-top w-full text-center"
               >
-                <span
-                  className="sprite inline-block align-top w-[60px] h-[60px] bg-[url('/images/sprite.svg')] bg-no-repeat hover:bg-[-420px_-30px]"
-                  style={{ backgroundPosition: "-420px -90px" }}
-                ></span>
-
+                <span className="inline-block align-top w-[60px] h-[60px]">
+                  <AiFillLinkedin
+                    size="60px"
+                    className="text-[#0a66c299] hover:text-[#0a66c2ff] transition-colors duration-200 ease-in"
+                  />
+                </span>
                 <span className="hide hidden">LinkedIn</span>
               </a>
             </li>

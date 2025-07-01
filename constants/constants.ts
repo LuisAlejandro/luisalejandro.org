@@ -20,6 +20,8 @@ export const ADSENSE_PUBLISHER_ID =
   process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
 export const ADSENSE_AD_SLOT_ID = process.env.NEXT_PUBLIC_ADSENSE_AD_SLOT_ID;
+export const ADSENSE_AD_SLOT_ID_FRONT =
+  process.env.NEXT_PUBLIC_ADSENSE_AD_SLOT_ID_FRONT;
 
 export const ENV_NAME = process.env.NEXT_PUBLIC_ENV_NAME;
 

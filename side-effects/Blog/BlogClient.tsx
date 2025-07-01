@@ -35,7 +35,7 @@ export default function BlogClient() {
         box-shadow:
           1px 0 0 0 rgb(190, 190, 190) inset,
           -1px 1px 0 0 rgb(190, 190, 190) inset,
-          0 -270px 0 0 rgba(0, 0, 0, 0.3) inset !important;
+          0 -350px 0 0 rgba(0, 0, 0, 0.3) inset !important;
       }
     `}</style>
   );

@@ -20,6 +20,7 @@ import {
   canonicalHostnameUrl,
 } from "@constants/constants";
 
+import { AiFillFacebook, AiFillLinkedin, AiOutlineX } from "react-icons/ai";
 import CoverImage from "./CoverImage";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -386,8 +387,12 @@ export default function PostContent({
               rel="nofollow noreferrer"
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-300px_-90px] hover:bg-[-300px_-30px]"></span>
-
+              <span className="block w-[60px] h-[60px] my-0 mx-auto">
+                <AiOutlineX
+                  size="60px"
+                  className="text-[#00000099] hover:text-[#000000ff] transition-colors duration-200 ease-in"
+                />
+              </span>
               <span className="hidden">Twitter</span>
             </a>
           </li>
@@ -400,8 +405,12 @@ export default function PostContent({
               rel="nofollow noreferrer"
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-360px_-90px] hover:bg-[-360px_-30px]"></span>
-
+              <span className="block w-[60px] h-[60px] my-0 mx-auto">
+                <AiFillFacebook
+                  size="60px"
+                  className="text-[#0866FF99] hover:text-[#0866FFff] transition-colors duration-200 ease-in"
+                />
+              </span>
               <span className="hidden">Facebook</span>
             </a>
           </li>
@@ -414,8 +423,12 @@ export default function PostContent({
               rel="nofollow noreferrer"
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
-              <span className="block w-[60px] h-[60px] my-0 mx-auto bg-[url('/images/sprite.svg')] bg-no-repeat bg-[-420px_-90px] hover:bg-[-420px_-30px]"></span>
-
+              <span className="block w-[60px] h-[60px] my-0 mx-auto">
+                <AiFillLinkedin
+                  size="60px"
+                  className="text-[#0a66c299] hover:text-[#0a66c2ff] transition-colors duration-200 ease-in"
+                />
+              </span>
               <span className="hidden">LinkedIn</span>
             </a>
           </li>

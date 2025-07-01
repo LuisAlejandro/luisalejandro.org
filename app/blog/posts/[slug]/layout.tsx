@@ -135,12 +135,6 @@ export async function generateMetadata({
           height: 630,
           alt: `${postTitle} - Insights de Desarrollo de Software por Luis Alejandro`,
         },
-        {
-          url: `${config.url}/images/banner.png`,
-          width: 1200,
-          height: 630,
-          alt: "Luis Alejandro - Desarrollador de Software & Experto en Código Abierto",
-        },
       ],
       locale: "es_VE",
       type: "article",
