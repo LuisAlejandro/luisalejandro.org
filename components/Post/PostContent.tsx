@@ -1,6 +1,5 @@
 "use client";
 
-import { Adsense } from "@ctrl/react-adsense";
 import { CommentCount, DiscussionEmbed } from "disqus-react";
 import hljs from "highlight.js";
 import parse, { domToReact } from "html-react-parser";
@@ -16,12 +15,12 @@ import FriendlyDate from "@components/Blog/FriendlyDate";
 import RelatedStories from "@components/Post/RelatedStories";
 import {
   ADSENSE_AD_SLOT_ID,
-  ADSENSE_PUBLISHER_ID,
   DISQUS_SHORTNAME,
   ENV_NAME,
   canonicalHostnameUrl,
 } from "@constants/constants";
 
+import AdSenseBanner from "@side-effects/AdSenseBanner";
 import CoverImage from "./CoverImage";
 
 const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -457,22 +456,7 @@ export default function PostContent({
       </article>
 
       {/* Google AdSense Banner Ad */}
-      {ADSENSE_PUBLISHER_ID && ADSENSE_AD_SLOT_ID && ENV_NAME !== "local" && (
-        <div className="inline-block align-top w-full my-12">
-          <div className="flex justify-center">
-            <div className="w-full max-w-4xl">
-              {/* AdSense Responsive Banner using @ctrl/react-adsense */}
-              <Adsense
-                client={ADSENSE_PUBLISHER_ID}
-                slot={ADSENSE_AD_SLOT_ID}
-                style={{ display: "block" }}
-                format="auto"
-                responsive="true"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      {ADSENSE_AD_SLOT_ID && <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID} />}
 
       {morePosts.length > 0 && (
         <div className="inline-block align-top w-full mt-20">

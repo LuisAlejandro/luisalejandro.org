@@ -1,4 +1,3 @@
-import { Adsense } from "@ctrl/react-adsense";
 import "lazysizes";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { notFound } from "next/navigation";
@@ -12,11 +11,8 @@ import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
-import {
-  ADSENSE_AD_SLOT_ID_FRONT,
-  ADSENSE_PUBLISHER_ID,
-  ENV_NAME,
-} from "@constants/constants";
+import { ADSENSE_AD_SLOT_ID_FRONT } from "@constants/constants";
+import AdSenseBanner from "@side-effects/AdSenseBanner";
 import BlogClient from "@side-effects/Blog/BlogClient";
 
 // Revalidate the page every 60 seconds
@@ -73,24 +69,9 @@ export default async function BlogPage() {
           )}
         </Section>
         {/* Google AdSense Banner Ad */}
-        {ADSENSE_PUBLISHER_ID &&
-          ADSENSE_AD_SLOT_ID_FRONT &&
-          ENV_NAME !== "local" && (
-            <div className="inline-block align-top w-full my-12">
-              <div className="flex justify-center">
-                <div className="w-full max-w-4xl">
-                  {/* AdSense Responsive Banner using @ctrl/react-adsense */}
-                  <Adsense
-                    client={ADSENSE_PUBLISHER_ID}
-                    slot={ADSENSE_AD_SLOT_ID_FRONT}
-                    style={{ display: "block" }}
-                    format="auto"
-                    responsive="true"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
+        {ADSENSE_AD_SLOT_ID_FRONT && (
+          <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_FRONT} />
+        )}
         <Section grid overflowVisible oneColumn nopadding wide>
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Section>
