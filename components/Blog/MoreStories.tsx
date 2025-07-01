@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
+import { ADSENSE_AD_SLOT_ID_FRONT } from "@constants/constants";
+import AdSenseBanner from "@side-effects/AdSenseBanner";
+
 import PostPreview from "./PostPreview";
 import PostPreviewMini from "./PostPreviewMini";
 
@@ -64,6 +68,11 @@ export default function MoreStories({ posts }: any) {
           />
         ))}
       </div>
+
+      {/* Google AdSense Banner Ad */}
+      {ADSENSE_AD_SLOT_ID_FRONT && (
+        <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_FRONT} />
+      )}
 
       {/* Remaining posts with PostPreviewMini */}
       {remainingPosts.length > 0 && (

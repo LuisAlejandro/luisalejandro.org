@@ -11,8 +11,6 @@ import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
-import { ADSENSE_AD_SLOT_ID_FRONT } from "@constants/constants";
-import AdSenseBanner from "@side-effects/AdSenseBanner";
 import BlogClient from "@side-effects/Blog/BlogClient";
 
 // Revalidate the page every 60 seconds
@@ -68,10 +66,6 @@ export default async function BlogPage() {
             />
           )}
         </Section>
-        {/* Google AdSense Banner Ad */}
-        {ADSENSE_AD_SLOT_ID_FRONT && (
-          <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_FRONT} />
-        )}
         <Section grid overflowVisible oneColumn nopadding wide>
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Section>
