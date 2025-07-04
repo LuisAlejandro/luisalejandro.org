@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.0.7 (2025-07-04)
+
+### Changed
+
+* Replacing react-gsap with the official library. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.6 (2025-07-04)
 
 ### Added
