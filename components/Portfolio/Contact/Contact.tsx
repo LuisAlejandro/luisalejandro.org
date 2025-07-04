@@ -190,7 +190,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 <button
                   type="submit"
                   className={cn(
-                    "flex items-center justify-center text-3xl font-extralight h-16 leading-5 mb-20 px-1.5 py-0.5 rounded-2xl w-36 font-main transition-colors duration-300 ease-out simple-3d-button-gradient",
+                    "flex items-center justify-center text-3xl font-light h-16 leading-5 mb-20 px-1.5 py-0.5 rounded-2xl w-36 font-main transition-colors duration-300 ease-out simple-3d-button-gradient",
                     {
                       // Primary state
                       "bg-slate-400 text-neutral-600 hover:bg-slate-300 active:pt-0.5 active:pb-0.5 active:mt-1 active:mb-[76px] cursor-pointer":

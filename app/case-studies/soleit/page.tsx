@@ -304,7 +304,7 @@ const SoleitPage = () => {
 
                     <div className="flex flex-col md:flex-row justify-center items-center">
                       <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                           more than
                         </div>
 
@@ -312,28 +312,28 @@ const SoleitPage = () => {
                           1000
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                           diagnosed
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                           patients
                         </div>
                       </div>
 
                       <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                           more than
                         </div>
 
                         <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
                           20
-                          <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                          <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                             sold
                           </div>
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
                           subscriptions
                         </div>
                       </div>

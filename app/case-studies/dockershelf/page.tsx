@@ -292,11 +292,11 @@ const DockershelfPage = () => {
                           220K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           debian images
                         </div>
                       </div>
@@ -306,11 +306,11 @@ const DockershelfPage = () => {
                           294K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           python images
                         </div>
                       </div>
@@ -320,11 +320,11 @@ const DockershelfPage = () => {
                           55K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           node images
                         </div>
                       </div>

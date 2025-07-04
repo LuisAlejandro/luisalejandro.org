@@ -85,7 +85,7 @@ export default async function CategoriesPage() {
         </svg>
         <Section grid overflowVisible oneColumn nopadding wide>
           <div className="w-full px-[2%] py-8">
-            <h1 className="text-4xl font-thin leading-4 mt-0 mb-8 text-center">
+            <h1 className="text-4xl font-light leading-4 mt-0 mb-8 text-center">
               Blog Categories
             </h1>
             <p className="text-lg font-light text-gray-600 text-center mb-12 max-w-2xl mx-auto">

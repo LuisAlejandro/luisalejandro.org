@@ -23,9 +23,9 @@ export const SectionText = React.forwardRef<
       ...props,
       ref,
       className: cn(
-        "text-md leading-8 font-extralight pb-4 text-gray-800 w-full",
+        "text-md font-normal leading-8 pb-4 text-gray-800 w-full",
         maxWidth,
-        "lg:text-2xl lg:leading-10 lg:pb-14 lg:mx-auto",
+        "lg:text-2xl lg:leading-10 lg:font-light lg:pb-14 lg:mx-auto",
         "md:text-xl md:leading-8 md:pb-6",
         className
       ),

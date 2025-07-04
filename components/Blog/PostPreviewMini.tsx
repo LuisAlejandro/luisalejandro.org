@@ -20,7 +20,7 @@ export default function PostPreviewMini({
             rel="bookmark"
             title={`Permanent link to "${title}"`}
           >
-            <h2 className="header inline-block align-top text-left text-3xl leading-8 font-thin">
+            <h2 className="header inline-block align-top text-left text-3xl leading-8 font-light">
               {title}
             </h2>
 

@@ -317,7 +317,7 @@ export default function PostContent({
               title={`Permanent link to "${title}"`}
               className="inline-block align-top w-full my-0 mx-0 p-0 no-underline text-black hover:no-underline hover:text-[rgb(77,77,70)]"
             >
-              <span className="font-normal lg:font-extralight text-3xl leading-8 md:text-4xl md:leading-12 lg:text-[3.2em] lg:leading-18">
+              <span className="font-normal lg:font-light text-3xl leading-8 md:text-4xl md:leading-12 lg:text-[3.2em] lg:leading-18">
                 {title}
               </span>
             </Link>
@@ -460,7 +460,7 @@ export default function PostContent({
 
       {morePosts.length > 0 && (
         <div className="inline-block align-top w-full mt-20">
-          <h3 className="text-4xl font-normal lg:font-thin leading-4 mt-0 mb-8">
+          <h3 className="text-4xl font-normal lg:font-light leading-4 mt-0 mb-8">
             Other posts
           </h3>
           <RelatedStories posts={morePosts} />
@@ -468,7 +468,7 @@ export default function PostContent({
       )}
 
       <div className="inline-block align-top w-full mt-20">
-        <h1 className="text-4xl font-normal lg:font-thin leading-4 mt-0 mb-8">
+        <h1 className="text-4xl font-normal lg:font-light leading-4 mt-0 mb-8">
           Topics
         </h1>
         <div className="flex flex-wrap justify-start items-start gap-4 w-full mx-auto mb-20">
@@ -483,7 +483,7 @@ export default function PostContent({
                   key={category.id}
                   title={`List all posts under the category "${category.title}"`}
                   rel="tag"
-                  className="flex items-center justify-center text-2xl font-normal lg:font-extralight h-16 leading-5 mb-1 pt-1 px-4 pb-2 text-gray-3 bg-blue-gray rounded-2xl transition-colors duration-400 ease-out hover:bg-blue-gray-light active:pt-1 active:px-4 active:mt-1 active:mb-0 simple-3d-button-gradient"
+                  className="flex items-center justify-center text-2xl font-normal lg:font-light h-16 leading-5 mb-1 pt-1 px-4 pb-2 text-gray-3 bg-blue-gray rounded-2xl transition-colors duration-400 ease-out hover:bg-blue-gray-light active:pt-1 active:px-4 active:mt-1 active:mb-0 simple-3d-button-gradient"
                 >
                   {category.title}
                 </Link>

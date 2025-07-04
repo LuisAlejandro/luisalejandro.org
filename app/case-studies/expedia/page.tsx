@@ -265,11 +265,11 @@ const ExpediaPage = () => {
                           600K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           hotels to
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           choose from
                         </div>
                       </div>
@@ -279,11 +279,11 @@ const ExpediaPage = () => {
                           39%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           increase in
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           bookings
                         </div>
                       </div>

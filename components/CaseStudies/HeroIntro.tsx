@@ -84,16 +84,16 @@ const HeroIntro = ({
             totalProgress={progress}
             className="relative"
           >
-            <p className="font-main text-lg font-extralight text-white">
+            <p className="font-main text-lg font-light text-white">
               <Subtitle />
             </p>
             <h1 className="font-display text-8xl tracking-wide font-bold text-white m-0">
               <Title />
             </h1>
-            <p className="font-main text-2xl font-extralight text-white leading-normal">
+            <p className="font-main text-2xl font-light text-white leading-normal">
               <Description />
             </p>
-            <div className="font-main text-2xl font-extralight text-white">
+            <div className="font-main text-2xl font-light text-white">
               <ul className="flex py-8">
                 {links.map((link: any) => (
                   <li key={link.text}>
@@ -133,7 +133,7 @@ const HeroIntro = ({
               {team.map((t: any) => (
                 <li
                   key={t}
-                  className="font-main text-lg font-extralight text-white text-right"
+                  className="font-main text-lg font-light text-white text-right"
                 >
                   {t}
                 </li>
@@ -148,7 +148,7 @@ const HeroIntro = ({
               {deliverables.map((d: any) => (
                 <li
                   key={d}
-                  className="font-main text-lg font-extralight text-white text-right"
+                  className="font-main text-lg font-light text-white text-right"
                 >
                   {d}
                 </li>

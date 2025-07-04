@@ -20,7 +20,7 @@ export const CustomLink3 = React.forwardRef<HTMLAnchorElement, CustomLinkProps>(
         ...props,
         ref,
         className: cn(
-          "font-main font-thin text-2xl text-black mb-3 p-2",
+          "font-main font-light text-2xl text-black mb-3 p-2",
           marginTop,
           "w-full flex cursor-pointer transition-all duration-300 ease-in-out justify-end items-center relative left-0 hover:left-1.5",
           background,
