@@ -1,6 +1,33 @@
 # Changelog
 
 
+## 3.0.6 (2025-07-04)
+
+### Added
+
+* Adding category endpoint. [Luis Alejandro Martínez Faneyth]
+
+
+### Changed
+
+* Moving adsense banner. [Luis Alejandro Martínez Faneyth]
+
+* Making the adsense banner into a component. [Luis Alejandro Martínez Faneyth]
+
+* Style improvements. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+* Adding cursor rules. [Luis Alejandro Martínez Faneyth]
+
+* Fixing responsive in the blog. [Luis Alejandro Martínez Faneyth]
+
+* Client side fix. [Luis Alejandro Martínez Faneyth]
+
+* Adding lazy load to blog front page. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.5 (2025-06-28)
 
 ### Other
