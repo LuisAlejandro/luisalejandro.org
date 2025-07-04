@@ -3,6 +3,7 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Luis Alejandro's Personal Website - Overview
 
 This is a comprehensive Next.js 14 personal website with blog, portfolio, case studies, and contact functionality.
@@ -10,43 +11,53 @@ This is a comprehensive Next.js 14 personal website with blog, portfolio, case s
 ## Quick Navigation
 
 ### 🏠 Start Here
+
 - [project-structure.mdc](mdc:.cursor/rules/project-structure.mdc) - Main project structure and navigation
 - [app/page.tsx](mdc:app/page.tsx) - Homepage entry point
 - [package.json](mdc:package.json) - Project dependencies and scripts
 
 ### 🧩 Components & UI
+
 - [components-guide.mdc](mdc:.cursor/rules/components-guide.mdc) - Component organization guide
 - [components/](mdc:components) - All React components organized by feature
 - [styles/tailwind.css](mdc:styles/tailwind.css) - Global styles
 
 ### 🔗 Backend & APIs
+
 - [api-backend.mdc](mdc:.cursor/rules/api-backend.mdc) - API routes and backend functionality
 - [app/api/](mdc:app/api) - Next.js API routes
 - [lib/](mdc:lib) - Utility functions and API helpers
 
 ### 🚀 Development
+
 - [development-workflow.mdc](mdc:.cursor/rules/development-workflow.mdc) - Development and release workflow
 - [coding-conventions.mdc](mdc:.cursor/rules/coding-conventions.mdc) - Coding standards and best practices
+- [nextjs-server-client-components.mdc](mdc:.cursor/rules/nextjs-server-client-components.mdc) - Server vs Client components guide
+- [error-debugging-patterns.mdc](mdc:.cursor/rules/error-debugging-patterns.mdc) - Common error patterns and debugging steps
 
 ## Key Features
 
 ### Blog System
+
 - Markdown-based blog posts with RSS/Atom feeds
 - Category filtering and trending posts
 - SEO-optimized with proper metadata
 
 ### Portfolio Showcase
+
 - Interactive portfolio with case studies
 - Timeline and journey visualization
 - Skills and technologies toolbox
 - Gallery with animations
 
 ### Contact Integration
+
 - Contact form with email templates
 - Lead management system
 - Social media integration
 
 ### Technical Stack
+
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with Styled Components
@@ -54,13 +65,21 @@ This is a comprehensive Next.js 14 personal website with blog, portfolio, case s
 - **Content**: Markdown with HTML processing
 
 ## Getting Started
+
 1. Run `yarn install` to install dependencies
 2. Run `yarn dev` to start development server
 3. Check [README.md](mdc:README.md) for detailed setup instructions
 4. Follow [coding-conventions.mdc](mdc:.cursor/rules/coding-conventions.mdc) for development standards
 
 ## Common Tasks
+
 - **Add new blog post**: Create markdown file and update API routes
 - **Add case study**: Create new page in [app/case-studies/](mdc:app/case-studies)
 - **Update portfolio**: Modify components in [components/Portfolio/](mdc:components/Portfolio)
 - **API changes**: Update routes in [app/api/](mdc:app/api) and utilities in [lib/](mdc:lib)
+
+## Troubleshooting
+
+- **"Super expression must either be null or a function"**: Add `"use client";` to components using client-only libraries
+- **Server/Client component issues**: Check [nextjs-server-client-components.mdc](mdc:.cursor/rules/nextjs-server-client-components.mdc)
+- **Common debugging patterns**: See [error-debugging-patterns.mdc](mdc:.cursor/rules/error-debugging-patterns.mdc)
