@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Tween } from "react-gsap";
 import PhotoAlbum from "react-photo-album";
 import "react-photo-album/rows.css";
 import { Controller, Scene } from "react-scrollmagic";
@@ -13,6 +12,7 @@ import Challenge from "@components/CaseStudies/Challenge";
 import HeroIntro from "@components/CaseStudies/HeroIntro";
 import Product from "@components/CaseStudies/Product";
 import Results from "@components/CaseStudies/Results";
+import ScrollTween from "@components/CaseStudies/ScrollTween";
 import Why from "@components/CaseStudies/Why";
 import Contact from "@components/Portfolio/Contact/Contact";
 import Footer from "@components/Portfolio/Footer/Footer";
@@ -69,29 +69,37 @@ const SoleitPage = () => {
                 ]}
                 year={2021}
               />
-              <Scene triggerElement="#why" duration="80%" triggerHook="1">
+              <Scene
+                triggerElement="#why"
+                duration="100%"
+                triggerHook="1"
+                offset={-100}
+              >
                 {(progress: any) => (
-                  <Tween
+                  <ScrollTween
                     to={{
-                      top: "-150px",
-                      backgroundPosition: "center 20%",
+                      top: "-300px",
+                      backgroundPositionY: "100%",
+                    }}
+                    from={{
+                      top: "0px",
+                      backgroundPositionY: "0%",
                     }}
                     ease="Expo.EaseIn"
                     totalProgress={progress}
                     paused
+                    className="w-full page-hero bg-case-studies-soleit-hero relative"
                   >
-                    <div className="w-full page-hero bg-case-studies-soleit-hero bg-cover relative">
-                      <svg viewBox="0 0 1920 100">
-                        <path fill="#333" d="M960,50l960-50H0L960,50z" />
-                      </svg>
+                    <svg viewBox="0 0 1920 100">
+                      <path fill="#333" d="M960,50l960-50H0L960,50z" />
+                    </svg>
 
-                      <div className="h-96" />
+                    <div className="h-96" />
 
-                      <svg viewBox="0 0 1920 100">
-                        <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
-                      </svg>
-                    </div>
-                  </Tween>
+                    <svg viewBox="0 0 1920 100">
+                      <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
+                    </svg>
+                  </ScrollTween>
                 )}
               </Scene>
               <Why

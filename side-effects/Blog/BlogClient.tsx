@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function BlogClient() {
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
-      "#content > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
+      "#content > .preview > .bg > ul.socialbar > .share > button, #featured-preview > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
     );
 
     share_buttons.forEach((button) => {
@@ -19,8 +19,14 @@ export default function BlogClient() {
         const post_bg = document.querySelectorAll("#post-" + pid + " > .bg");
 
         button.classList.toggle("active");
-        if (share_dialog.length > 0) share_dialog[0].classList.toggle("show");
-        if (post_bg.length > 0) post_bg[0].classList.toggle("dark");
+
+        for (let i = 0; i < share_dialog.length; i++) {
+          share_dialog[i].classList.toggle("show");
+        }
+
+        for (let i = 0; i < post_bg.length; i++) {
+          post_bg[i].classList.toggle("dark");
+        }
       });
     });
   }, []);
