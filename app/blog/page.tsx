@@ -67,7 +67,10 @@ export default async function BlogPage() {
                 excerpt={heroPost.metadata.teaser}
                 date={heroPost.created_at}
               />
-              <div className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto">
+              <div
+                id="featured-preview"
+                className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto"
+              >
                 <PostPreview
                   key={heroPost.id}
                   type="preview"

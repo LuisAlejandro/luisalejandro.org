@@ -1,6 +1,7 @@
 import cn from "classnames";
-import { Tween } from "react-gsap";
 import { Scene } from "react-scrollmagic";
+
+import ScrollTween from "./ScrollTween";
 
 interface ChallengeProps {
   Title: () => React.ReactNode;
@@ -26,55 +27,83 @@ const Challenge = ({ Title, Content, bgImgClass }: ChallengeProps) => (
       <svg viewBox="0 0 1920 100">
         <path fill="#333" d="M960,50l960-50H0L960,50z" />
       </svg>
-      <Scene triggerElement="#challenge" duration="200%" triggerHook="1">
+      <Scene
+        triggerElement="#challenge"
+        duration="200%"
+        triggerHook="1"
+        offset={-100}
+      >
         {(progress: number) => (
-          <Tween
+          <ScrollTween
             to={{
               left: "100px",
+            }}
+            from={{
+              left: "-128px",
             }}
             ease="Expo.EaseIn"
             totalProgress={progress}
             paused
+            className="absolute"
           >
-            <h1 className="font-display text-15xl font-bold text-neutral-700 m-0 absolute -left-32 opacity-30 hidden md:block">
+            <h1 className="font-display text-5xl leading-6 lg:text-15xl lg:leading-10 font-bold text-neutral-700 m-0 opacity-30 hidden md:block">
               <Title />
             </h1>
-          </Tween>
+          </ScrollTween>
         )}
       </Scene>
 
       <div className="grid grid-cols-8 gap-4 px-8 py-72">
         <div className="lg:col-span-5 col-span-8">
-          <Scene triggerElement="#challenge" duration="200%" triggerHook="1">
+          <Scene
+            triggerElement="#challenge"
+            duration="100%"
+            triggerHook="1"
+            offset={-100}
+          >
             {(progress: number) => (
-              <Tween
+              <ScrollTween
                 to={{
                   opacity: 1,
+                  top: "-100px",
+                }}
+                from={{
+                  opacity: 0,
+                  top: "0px",
                 }}
                 ease="Expo.EaseIn"
                 totalProgress={progress}
                 paused
+                className="relative"
               >
-                <h1 className="font-display text-10xl font-bold text-white opacity-0 m-0">
+                <h1 className="font-display text-5xl leading-6 lg:text-10xl lg:leading-35 font-bold text-white m-0">
                   <Title />
                 </h1>
-              </Tween>
+              </ScrollTween>
             )}
           </Scene>
-          <Scene triggerElement="#challenge" duration="200%" triggerHook="1">
+          <Scene
+            triggerElement="#challenge"
+            duration="100%"
+            triggerHook="1"
+            offset={-100}
+          >
             {(progress: number) => (
-              <Tween
+              <ScrollTween
                 to={{
                   opacity: 1,
+                }}
+                from={{
+                  opacity: 0,
                 }}
                 ease="Expo.EaseIn"
                 totalProgress={progress}
                 paused
               >
-                <div className="font-main text-2xl font-extralight text-white opacity-0 leading-normal">
+                <div className="font-main text-2xl font-extralight text-white leading-normal">
                   <Content />
                 </div>
-              </Tween>
+              </ScrollTween>
             )}
           </Scene>
         </div>

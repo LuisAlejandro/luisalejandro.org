@@ -5,6 +5,7 @@ import Script from "next/script";
 
 import {
   ADSENSE_PUBLISHER_ID,
+  ENV_NAME,
   GA_MEASUREMENT_ID,
   config,
 } from "@constants/constants";
@@ -227,8 +228,10 @@ export default async function RootLayout({
     >
       <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-2xl font-main">
         {children}
-        {GA_MEASUREMENT_ID && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
-        {ADSENSE_PUBLISHER_ID && (
+        {GA_MEASUREMENT_ID && ENV_NAME !== "local" && (
+          <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        )}
+        {ADSENSE_PUBLISHER_ID && ENV_NAME !== "local" && (
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
