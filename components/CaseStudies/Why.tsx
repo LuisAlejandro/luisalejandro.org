@@ -104,7 +104,7 @@ const Why = ({ Title, Content, ImageComponent, ImageUseEffect }: WhyProps) => {
                   paused
                   className="flex"
                 >
-                  <div className="font-main text-2xl font-extralight text-white leading-normal">
+                  <div className="font-main text-2xl font-light text-white leading-normal">
                     <Content />
                   </div>
                 </ScrollTween>

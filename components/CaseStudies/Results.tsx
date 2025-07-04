@@ -90,7 +90,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
               totalProgress={progress}
               paused
             >
-              <div className="font-main text-2xl font-extralight text-neutral-700 leading-normal">
+              <div className="font-main text-2xl font-light text-neutral-700 leading-normal">
                 <Content />
               </div>
             </ScrollTween>
@@ -110,7 +110,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
                 target="_blank"
                 rel="nofollow noreferrer"
                 href={link.url}
-                className="font-thin text-2xl text-neutral-900 py-1 px-4 my-0 mr-4 rounded-xl bg-black/10 hover:bg-black/30 transition-all duration-300 ease-in-out"
+                className="font-light text-2xl text-neutral-900 py-1 px-4 my-0 mr-4 rounded-xl bg-black/10 hover:bg-black/30 transition-all duration-300 ease-in-out"
               >
                 {link.text}
               </a>

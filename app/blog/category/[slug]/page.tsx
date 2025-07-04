@@ -37,7 +37,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
         </svg>
         <Section grid overflowVisible oneColumn nopadding wide>
-          <h1 className="text-4xl font-thin leading-4 mt-0 mb-[10px]">
+          <h1 className="text-4xl font-light leading-4 mt-0 mb-[10px]">
             Posts related to {categoryName}
           </h1>
         </Section>

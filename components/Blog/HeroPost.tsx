@@ -157,7 +157,7 @@ export default function HeroPost({
             rel="bookmark"
             title={`Permanent link to "${title}"`}
           >
-            <h2 className="header inline-block align-top text-left text-5xl leading-14 font-thin">
+            <h2 className="header inline-block align-top text-left text-5xl leading-14 font-light">
               {title}
             </h2>
 

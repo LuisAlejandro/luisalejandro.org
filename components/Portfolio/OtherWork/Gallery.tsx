@@ -72,7 +72,7 @@ const Gallery = ({ setCurrentIndex, setModalOpen, galleryList }: any) => {
                   <h3 className="text-xl mb-2 whitespace-pre-line font-bold font-title">
                     {work.name}
                   </h3>
-                  <p className="text-base font-thin text-white/75 block">
+                  <p className="text-base font-light text-white/75 block">
                     {work.shortDescription}
                   </p>
                 </Caption>

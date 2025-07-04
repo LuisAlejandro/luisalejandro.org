@@ -155,7 +155,7 @@ export default function PostPreview({
             rel="bookmark"
             title={`Permanent link to "${title}"`}
           >
-            <h2 className="header inline-block align-top text-left text-3xl leading-8 md:text-4xl md:leading-12 lg:text-5xl lg:leading-14 font-thin">
+            <h2 className="header inline-block align-top text-left text-3xl leading-8 md:text-4xl md:leading-12 lg:text-5xl lg:leading-14 font-light">
               {title}
             </h2>
 

@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.0.8 (2025-07-04)
+
+### Changed
+
+* Addressing le_ors's feedback about font weight being too low. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.7 (2025-07-04)
 
 ### Changed

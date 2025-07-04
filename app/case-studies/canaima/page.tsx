@@ -276,11 +276,11 @@ const CanaimaPage = () => {
                           110K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 3.0
                         </div>
                       </div>
@@ -290,11 +290,11 @@ const CanaimaPage = () => {
                           150K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 3.1
                         </div>
                       </div>
@@ -304,11 +304,11 @@ const CanaimaPage = () => {
                           220K
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           downloads on
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           Canaima 4.0
                         </div>
                       </div>

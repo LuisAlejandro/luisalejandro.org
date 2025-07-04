@@ -17,7 +17,7 @@ export const CustomLink2 = React.forwardRef<HTMLAnchorElement, CustomLinkProps>(
         ...props,
         ref,
         className: cn(
-          "font-main font-thin text-2xl text-black w-full cursor-pointer transition-all duration-300 ease-in-out flex",
+          "font-main font-light text-2xl text-black w-full cursor-pointer transition-all duration-300 ease-in-out flex",
           background,
           className
         ),

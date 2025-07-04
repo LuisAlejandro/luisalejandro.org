@@ -332,11 +332,11 @@ const WheelTheWorldPage = () => {
                           &sim;75%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           reduction in costs
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           for github actions
                         </div>
                       </div>
@@ -346,11 +346,11 @@ const WheelTheWorldPage = () => {
                           &sim;86%
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-3 text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-3 text-center">
                           reduction in
                         </div>
 
-                        <div className="font-main font-extralight tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
+                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl leading-relaxed text-center">
                           image size
                         </div>
                       </div>
