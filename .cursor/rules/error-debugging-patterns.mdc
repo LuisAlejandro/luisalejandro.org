@@ -1,0 +1,38 @@
+---
+alwaysApply: true
+description: Common error patterns and debugging steps for Next.js applications
+---
+
+# Error Debugging Patterns
+
+## "Super expression must either be null or a function" Error
+
+### Root Cause
+This error occurs when there's a **server/client component mismatch** in Next.js 13+ App Router.
+
+### Debugging Steps
+1. **Identify the failing component** - Check browser console for specific component name
+2. **Look for client-only libraries** in the component:
+   - `disqus-react`, `react-icons`, `framer-motion`, `react-hook-form`
+   - Libraries using `useEffect`, `useState`, browser APIs
+3. **Check for missing "use client" directive**
+4. **Restart dev server** after adding the directive
+
+### Quick Resolution
+```bash
+# Add to top of problematic component file:
+"use client";
+```
+
+### Prevention
+- **Start with server components** (default behavior)
+- **Add "use client" only when needed** (interactions, hooks, client libraries)
+- **Review imports** - client-only libraries need client components
+
+### Related Error Patterns
+- Component using hooks without "use client"
+- Browser API access in server components
+- Event handlers in server components
+- Third-party libraries requiring browser environment
+
+This debugging pattern helps quickly identify and resolve the most common Next.js SSR/client-side rendering conflicts.

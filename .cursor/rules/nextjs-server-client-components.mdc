@@ -1,0 +1,78 @@
+---
+globs: *.tsx,*.ts
+description: Next.js Server vs Client Components - Prevents "Super expression must either be null or a function" errors
+---
+
+# Next.js Server vs Client Components Guide
+
+## Critical Rule: Client-Only Libraries Require "use client" Directive
+
+### Common Error: "Super expression must either be null or a function"
+This error typically occurs when:
+- A **server component** tries to use a **client-only library**
+- Missing `"use client";` directive at the top of components using browser APIs
+
+### Client-Only Libraries That Require "use client"
+- `disqus-react` - Comment system components
+- `react-icons` - When using interactive features
+- `framer-motion` - Animation library
+- `react-hook-form` - Form handling
+- `react-google-recaptcha` - reCAPTCHA integration
+- Any library that uses `useEffect`, `useState`, `window`, `document`, etc.
+
+### Server vs Client Component Rules
+
+#### Server Components (Default in Next.js 13+ App Router)
+- **Default behavior** - no "use client" needed
+- Can fetch data directly with `async/await`
+- Cannot use browser APIs, hooks, or event handlers
+- Rendered on server, sent as HTML to client
+- Better for SEO and performance
+
+#### Client Components (Require "use client")
+- **Must start with `"use client";`** directive
+- Can use React hooks (`useState`, `useEffect`)
+- Can handle user interactions and events
+- Can access browser APIs (`window`, `document`)
+- Required for third-party libraries that need browser environment
+
+### Quick Fix for "Super expression" Error
+If you see this error:
+1. **Check if component uses client-only libraries** (like `disqus-react`)
+2. **Add `"use client";`** at the top of the file
+3. **Restart dev server** to clear cache
+
+### Example Fixes
+
+#### ❌ Wrong (Server component using client library):
+```tsx
+import { CommentCount } from "disqus-react"; // Client-only library
+
+export default function PostPreview() {
+  return <CommentCount shortname="..." />; // Error!
+}
+```
+
+#### ✅ Correct (Client component):
+```tsx
+"use client";
+
+import { CommentCount } from "disqus-react"; // Client-only library
+
+export default function PostPreview() {
+  return <CommentCount shortname="..." />; // Works!
+}
+```
+
+### Best Practices
+1. **Start with server components** (better performance)
+2. **Add "use client" only when needed** (interactions, hooks, client libraries)
+3. **Keep client components small** - split UI into server/client boundaries
+4. **Pass data down from server to client components** as props
+
+### Common Client-Only Patterns
+- Components with `useState`, `useEffect`, `useContext`
+- Event handlers (`onClick`, `onChange`, `onSubmit`)
+- Browser API access (`localStorage`, `sessionStorage`, `window`)
+- Third-party libraries requiring browser environment
+- Interactive animations and form handling
