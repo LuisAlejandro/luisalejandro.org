@@ -4,7 +4,7 @@ export default function RelatedStories({ posts }: any) {
   return (
     <ul
       id="relatedposts"
-      className="inline-block align-top w-full my-0 mx-0 mb-[70px]"
+      className="lg:inline-block align-top w-full my-0 mx-0 mb-[70px] flex flex-col gap-4"
     >
       {posts.map((post: any) => (
         <PostRelated

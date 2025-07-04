@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function PostRelated({ title, coverImage, slug }: any) {
   return (
-    <li className="float-left py-[5px] px-0 my-[5px] mx-0 mr-[1%] w-[24%] list-none text-gray-600">
+    <li className="py-[5px] px-0 my-[5px] mx-0 mr-[1%] lg:float-left lg:w-[24%] list-none text-gray-600 w-full">
       <Link
         href={`/blog/posts/${slug}`}
         title={title}

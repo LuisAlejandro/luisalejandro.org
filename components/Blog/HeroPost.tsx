@@ -19,6 +19,7 @@ import {
 import FriendlyDate from "./FriendlyDate";
 
 export default function HeroPost({
+  className,
   title,
   coverImage,
   date,
@@ -34,7 +35,7 @@ export default function HeroPost({
   const escapedTitle = encodeURIComponent(title);
 
   return (
-    <div id="featured" className="flex w-[94%] mx-auto">
+    <div id="featured" className={`flex w-[94%] mx-auto ${className}`}>
       <article className={`${type} w-full p-0 m-0`} id={`post-${id}`}>
         <div className="accent inline-block align-top w-[5%] h-[350px] p-0 m-0 text-[30px] text-white bg-[rgba(0,177,106,0.9)] rounded-l-[5px]">
           <AiFillStar className="m-[5px]" />

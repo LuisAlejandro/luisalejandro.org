@@ -8,6 +8,7 @@ import { generateBlogJsonLd } from "@lib/structuredData";
 
 import HeroPost from "@components/Blog/HeroPost";
 import MoreStories from "@components/Blog/MoreStories";
+import PostPreview from "@components/Blog/PostPreview";
 import { Section } from "@components/common/Layout/Section";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
@@ -54,16 +55,32 @@ export default async function BlogPage() {
         </svg>
         <Section grid overflowVisible oneColumn nopadding wide>
           {heroPost && (
-            <HeroPost
-              type="big"
-              id={heroPost.id}
-              slug={heroPost.slug}
-              title={heroPost.title}
-              coverImage={heroPost.metadata.hero}
-              categories={heroPost.metadata.categories}
-              excerpt={heroPost.metadata.teaser}
-              date={heroPost.created_at}
-            />
+            <>
+              <HeroPost
+                className="hidden lg:flex"
+                type="big"
+                id={heroPost.id}
+                slug={heroPost.slug}
+                title={heroPost.title}
+                coverImage={heroPost.metadata.hero}
+                categories={heroPost.metadata.categories}
+                excerpt={heroPost.metadata.teaser}
+                date={heroPost.created_at}
+              />
+              <div className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto">
+                <PostPreview
+                  key={heroPost.id}
+                  type="preview"
+                  id={heroPost.id}
+                  slug={heroPost.slug}
+                  title={heroPost.title}
+                  coverImage={heroPost.metadata.hero}
+                  categories={heroPost.metadata.categories}
+                  excerpt={heroPost.metadata.teaser}
+                  date={heroPost.created_at}
+                />
+              </div>
+            </>
           )}
         </Section>
         <Section grid overflowVisible oneColumn nopadding wide>

@@ -13,7 +13,7 @@ export const Div2 = React.forwardRef<HTMLUListElement, Div2Props>(
         ...props,
         ref,
         className: cn(
-          "col-start-3 col-end-6 lg:col-start-2 lg:col-end-5 row-start-1 row-end-2 justify-end flex",
+          "lg:col-start-2 lg:col-end-5 lg:row-start-1 lg:row-end-2 lg:justify-end justify-center items-center flex",
           className
         ),
       },

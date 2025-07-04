@@ -34,7 +34,7 @@ const Header = ({ variant }: { variant?: string }) => {
           </Link>
         </Div1>
         <Div2>
-          <li className="mx-5 leading-15">
+          <li className="mx-2 lg:mx-5 leading-15">
             <Link
               href="/portfolio"
               className={cn(
@@ -48,7 +48,7 @@ const Header = ({ variant }: { variant?: string }) => {
               Portfolio
             </Link>
           </li>
-          <li className="mx-5 leading-15">
+          <li className="mx-2 lg:mx-5 leading-15">
             <Link
               href="/blog"
               className={cn(
@@ -62,7 +62,7 @@ const Header = ({ variant }: { variant?: string }) => {
               Blog
             </Link>
           </li>
-          <li className="mx-5 leading-15">
+          <li className="mx-2 lg:mx-5 leading-15">
             <Link
               href="https://store.luisalejandro.org/"
               target="_blank"
@@ -78,7 +78,7 @@ const Header = ({ variant }: { variant?: string }) => {
               Store
             </Link>
           </li>
-          <li className="mx-5 leading-15">
+          <li className="mx-2 lg:mx-5 leading-15">
             <Link
               href="/contact"
               className={cn(

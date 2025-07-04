@@ -19,7 +19,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
         ...props,
         ref,
         className: cn(
-          "w-full mx-auto grid grid-cols-5 grid-rows-1 gap-8",
+          "w-full mx-auto flex flex-col lg:grid lg:grid-cols-5 lg:grid-rows-1 gap-8",
           wideClass,
           darkClass,
           className

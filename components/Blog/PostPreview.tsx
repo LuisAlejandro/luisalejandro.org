@@ -1,3 +1,5 @@
+"use client";
+
 import { CommentCount } from "disqus-react";
 import Link from "next/link";
 
@@ -16,6 +18,7 @@ import {
 import FriendlyDate from "./FriendlyDate";
 
 export default function PostPreview({
+  className,
   title,
   coverImage,
   date,
@@ -33,11 +36,11 @@ export default function PostPreview({
   return (
     <>
       <article
-        className={`${type} w-full p-0 my-[5px] mb-[20px]`}
+        className={`${type} w-full p-0 my-[5px] mb-[20px] ${className}`}
         id={`post-${id}`}
       >
         <div
-          className="bg inline-block align-top w-full h-[350px] bg-cover bg-no-repeat bg-center rounded-t-[5px] blog-post-bg"
+          className="bg inline-block align-top w-full h-[300px] sm:h-[250px] md:h-[270px] lg:h-[350px] bg-cover bg-no-repeat bg-center rounded-t-[5px] blog-post-bg"
           style={{
             backgroundImage: `url(${coverImage.url})`,
           }}
@@ -88,7 +91,7 @@ export default function PostPreview({
             </li>
           </ul>
 
-          <ul className="socialpop blog-socialpop hidden align-top w-[60%] h-[100px] mx-[20%] my-[100px] mb-[80px] px-[5%] py-[20px] bg-[rgb(230,230,230)] rounded-[5px] relative">
+          <ul className="socialpop blog-socialpop hidden align-top w-[80%] lg:w-[60%] h-[100px] mx-[10%] lg:mx-[20%] my-[60px] lg:my-[100px] mb-[80px] px-[5%] py-[20px] bg-[rgb(230,230,230)] rounded-[5px] relative">
             <li className="twitter float-left w-[31.333%] mx-[1%]">
               <a
                 href={`http://x.com/intent/tweet?url=${escapedCanonicalUrl}&amp;text=${escapedTitle}&amp;via=@LuisDevelops&amp;related=@LuisAlejandro`}
@@ -148,11 +151,11 @@ export default function PostPreview({
         <div className="data inline-block align-top w-full">
           <Link
             href={`/blog/posts/${slug}`}
-            className="blog-data-container inline-block align-top w-full h-[350px] py-[15px] px-[2%] text-[rgb(90,90,90)] bg-[rgb(240,240,240)] rounded-b-[5px] transition-colors duration-200 ease-in hover:text-black"
+            className="blog-data-container inline-block align-top w-full h-[300px] sm:h-[250px] md:h-[270px] lg:h-[350px] py-[15px] px-[2%] text-[rgb(90,90,90)] bg-[rgb(240,240,240)] rounded-b-[5px] transition-colors duration-200 ease-in hover:text-black"
             rel="bookmark"
             title={`Permanent link to "${title}"`}
           >
-            <h2 className="header inline-block align-top text-left text-5xl leading-14 font-thin">
+            <h2 className="header inline-block align-top text-left text-3xl leading-8 md:text-4xl md:leading-12 lg:text-5xl lg:leading-14 font-thin">
               {title}
             </h2>
 
