@@ -14,9 +14,6 @@ import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import BlogClient from "@side-effects/Blog/BlogClient";
 
-// Revalidate the page every 60 seconds
-export const revalidate = 60;
-
 export default async function BlogPage() {
   const allPosts = (await getAllPostsForHome()) || [];
   const posts = await Promise.all(

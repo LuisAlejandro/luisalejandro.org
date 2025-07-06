@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.0.10 (2025-07-06)
+
+### Changed
+
+* Changing revalidation policy. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.9 (2025-07-06)
 
 ### Changed
