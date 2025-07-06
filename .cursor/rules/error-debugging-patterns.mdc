@@ -8,31 +8,233 @@ description: Common error patterns and debugging steps for Next.js applications
 ## "Super expression must either be null or a function" Error
 
 ### Root Cause
+
 This error occurs when there's a **server/client component mismatch** in Next.js 13+ App Router.
 
 ### Debugging Steps
+
 1. **Identify the failing component** - Check browser console for specific component name
 2. **Look for client-only libraries** in the component:
    - `disqus-react`, `react-icons`, `framer-motion`, `react-hook-form`
-   - Libraries using `useEffect`, `useState`, browser APIs
+   - `react-ga4`, `react-google-recaptcha`, Google AdSense integrations
+   - Libraries using `useEffect`, `useState`, `useRouter`, browser APIs
 3. **Check for missing "use client" directive**
 4. **Restart dev server** after adding the directive
+5. **Consider moving to `side-effects/` directory** for better organization
 
 ### Quick Resolution
+
 ```bash
 # Add to top of problematic component file:
 "use client";
 ```
 
 ### Prevention
+
 - **Start with server components** (default behavior)
 - **Add "use client" only when needed** (interactions, hooks, client libraries)
 - **Review imports** - client-only libraries need client components
+- **Organize interactive components** in `side-effects/` directory
 
-### Related Error Patterns
-- Component using hooks without "use client"
-- Browser API access in server components
-- Event handlers in server components
-- Third-party libraries requiring browser environment
+## Hydration Mismatch Errors
 
-This debugging pattern helps quickly identify and resolve the most common Next.js SSR/client-side rendering conflicts.
+### Common Causes
+
+- Server-rendered content differs from client-rendered content
+- Date/time differences between server and client
+- Conditional rendering based on browser APIs
+
+### Resolution Strategies
+
+```tsx
+// ❌ Problem: Different content on server vs client
+export default function ProblematicComponent() {
+  return <div>{new Date().toLocaleString()}</div>; // Will cause hydration mismatch
+}
+
+// ✅ Solution: Use useEffect for client-only content
+("use client");
+import { useState, useEffect } from "react";
+
+export default function FixedComponent() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div>Loading...</div>;
+
+  return <div>{new Date().toLocaleString()}</div>;
+}
+```
+
+## TypeScript Configuration Errors
+
+### Path Mapping Issues
+
+- **Problem**: Imports not resolving with `@/` prefix
+- **Solution**: Check [tsconfig.paths.json](mdc:tsconfig.paths.json) configuration
+- **Files to verify**: [tsconfig.json](mdc:tsconfig.json), [jsconfig.json](mdc:jsconfig.json)
+
+### Type Errors in Development
+
+```bash
+# Run type checking separately
+yarn type-check
+
+# Check for TypeScript errors during build
+yarn build
+```
+
+## Build and Deployment Errors
+
+### Image Optimization Issues
+
+- **Problem**: Images not loading or optimizing correctly
+- **Solution**: Verify Next.js Image component usage and image paths
+- **Check**: [public/images/](mdc:public/images) organization and import paths
+
+### API Route Errors
+
+- **Problem**: API routes returning 404 or 500 errors
+- **Solution**: Verify file structure in [app/api/](mdc:app/api)
+- **Check**: Route handlers use correct HTTP methods and status codes
+
+## CSS and Styling Issues
+
+### Tailwind CSS Not Loading
+
+- **Problem**: Tailwind classes not applying
+- **Solution**: Check [styles/tailwind.css](mdc:styles/tailwind.css) and [postcss.config.cjs](mdc:postcss.config.cjs)
+- **Verify**: Build process includes PostCSS processing
+
+### Styled Components SSR Issues
+
+```tsx
+// Ensure styled-components work with SSR
+import styled from "styled-components";
+
+const StyledComponent = styled.div`
+  /* Styles here */
+`;
+```
+
+## Environment and Configuration Errors
+
+### Missing Environment Variables
+
+- **Problem**: External integrations failing
+- **Solution**: Check environment variable configuration
+- **Common vars**: API keys, service URLs, authentication secrets
+
+### Docker Build Issues
+
+- **Problem**: Build failing in Docker container
+- **Solution**: Check [Dockerfile](mdc:Dockerfile) and [docker-compose.yml](mdc:docker-compose.yml)
+- **Verify**: Dependencies and build steps
+
+## Performance and Loading Issues
+
+### Large Bundle Size
+
+```bash
+# Analyze bundle size
+yarn build
+yarn analyze # if configured
+
+# Check for large imports
+# Prefer dynamic imports for heavy libraries
+```
+
+### Slow Loading Components
+
+- **Solution**: Move large interactive components to `side-effects/` with dynamic imports
+- **Check**: Component organization and code splitting
+
+## Content and Data Issues
+
+### Markdown Processing Errors
+
+- **Problem**: Blog posts not rendering correctly
+- **Solution**: Check [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) and [lib/htmlRenderer.tsx](mdc:lib/htmlRenderer.tsx)
+- **Verify**: Markdown file format and frontmatter
+
+### SEO and Metadata Issues
+
+- **Problem**: Missing or incorrect meta tags
+- **Solution**: Check [lib/structuredData.ts](mdc:lib/structuredData.ts) and page metadata
+- **Verify**: OpenGraph and Twitter Card data
+
+## AdSense and Analytics Issues
+
+### AdSense Not Loading
+
+- **Problem**: Ads not displaying
+- **Solution**: Check [side-effects/AdSenseBanner.tsx](mdc:side-effects/AdSenseBanner.tsx)
+- **Verify**: Client component setup and AdSense configuration
+
+### Cookie Consent Issues
+
+- **Problem**: Cookie consent not working
+- **Solution**: Check [side-effects/CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx)
+- **Verify**: Client-side storage and consent management
+
+## Debugging Strategies
+
+### Systematic Approach
+
+1. **Check browser console** for error messages
+2. **Verify component organization** (server vs client)
+3. **Test with JavaScript disabled** for server-side rendering
+4. **Use React DevTools** to inspect component tree
+5. **Check network tab** for failed requests
+
+### Development Tools
+
+- **Next.js DevTools**: Built-in development helpers
+- **React DevTools**: Component inspection
+- **Browser DevTools**: Network, console, performance
+- **TypeScript**: Type checking and IntelliSense
+
+### Project-Specific Debugging
+
+- **Check file organization**: Components in correct directories
+- **Verify imports**: Using correct path mappings
+- **Test API routes**: Using proper HTTP methods
+- **Validate environment**: All required variables set
+
+## Common Anti-Patterns to Avoid
+
+### Server Component Mistakes
+
+```tsx
+// ❌ Don't use hooks in server components
+export default function ServerComponent() {
+  const [state, setState] = useState(); // Error!
+  return <div>Content</div>;
+}
+
+// ✅ Use props and async data fetching instead
+export default async function ServerComponent() {
+  const data = await fetchData();
+  return <div>{data.content}</div>;
+}
+```
+
+### Client Component Overuse
+
+```tsx
+// ❌ Don't make everything a client component
+"use client";
+export default function OverlyClientComponent() {
+  return <h1>Static heading</h1>; // Doesn't need client
+}
+
+// ✅ Keep server components for static content
+export default function ServerComponent() {
+  return <h1>Static heading</h1>;
+}
+```
+
+This debugging pattern helps quickly identify and resolve the most common Next.js SSR/client-side rendering conflicts and project-specific issues.

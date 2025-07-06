@@ -1,78 +1,216 @@
----
-globs: *.tsx,*.ts
-description: Next.js Server vs Client Components - Prevents "Super expression must either be null or a function" errors
----
-
 # Next.js Server vs Client Components Guide
 
 ## Critical Rule: Client-Only Libraries Require "use client" Directive
 
 ### Common Error: "Super expression must either be null or a function"
+
 This error typically occurs when:
+
 - A **server component** tries to use a **client-only library**
 - Missing `"use client";` directive at the top of components using browser APIs
+- Mixing server and client component patterns incorrectly
 
 ### Client-Only Libraries That Require "use client"
+
 - `disqus-react` - Comment system components
 - `react-icons` - When using interactive features
 - `framer-motion` - Animation library
 - `react-hook-form` - Form handling
 - `react-google-recaptcha` - reCAPTCHA integration
-- Any library that uses `useEffect`, `useState`, `window`, `document`, etc.
+- `react-ga4` - Google Analytics tracking
+- Libraries using `useEffect`, `useState`, `useRouter`, etc.
+- Any library that accesses `window`, `document`, `localStorage`, etc.
 
 ### Server vs Client Component Rules
 
 #### Server Components (Default in Next.js 13+ App Router)
+
 - **Default behavior** - no "use client" needed
 - Can fetch data directly with `async/await`
 - Cannot use browser APIs, hooks, or event handlers
 - Rendered on server, sent as HTML to client
-- Better for SEO and performance
+- Better for SEO and initial page load performance
+- Can import and use server-only libraries
 
 #### Client Components (Require "use client")
+
 - **Must start with `"use client";`** directive
-- Can use React hooks (`useState`, `useEffect`)
+- Can use React hooks (`useState`, `useEffect`, `useRouter`)
 - Can handle user interactions and events
-- Can access browser APIs (`window`, `document`)
+- Can access browser APIs (`window`, `document`, `localStorage`)
 - Required for third-party libraries that need browser environment
+- Hydrated on the client side
+
+### Component Organization Patterns
+
+#### Side Effects Directory Structure
+
+This project uses [side-effects/](mdc:side-effects) for client components:
+
+- [side-effects/AdSenseBanner.tsx](mdc:side-effects/AdSenseBanner.tsx) - Ad integration
+- [side-effects/CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx) - Cookie management
+- [side-effects/Blog/](mdc:side-effects/Blog) - Blog interactivity
+- [side-effects/Home/](mdc:side-effects/Home) - Homepage interactions
+
+#### Server Components Directory
+
+Standard components in [components/](mdc:components) are server components by default:
+
+- [components/Blog/](mdc:components/Blog) - Blog display components
+- [components/Portfolio/](mdc:components/Portfolio) - Portfolio sections
+- [components/CaseStudies/](mdc:components/CaseStudies) - Case study layouts
 
 ### Quick Fix for "Super expression" Error
+
 If you see this error:
-1. **Check if component uses client-only libraries** (like `disqus-react`)
-2. **Add `"use client";`** at the top of the file
-3. **Restart dev server** to clear cache
+
+1. **Check if component uses client-only libraries** (like `disqus-react`, `framer-motion`)
+2. **Add `"use client";`** at the very top of the file
+3. **Restart dev server** to clear Next.js cache
+4. **Move component to `side-effects/`** if it's primarily interactive
 
 ### Example Fixes
 
 #### ❌ Wrong (Server component using client library):
+
 ```tsx
 import { CommentCount } from "disqus-react"; // Client-only library
+import { useState } from "react"; // Client-only hook
 
 export default function PostPreview() {
+  const [likes, setLikes] = useState(0); // Error!
   return <CommentCount shortname="..." />; // Error!
 }
 ```
 
 #### ✅ Correct (Client component):
+
 ```tsx
 "use client";
 
 import { CommentCount } from "disqus-react"; // Client-only library
+import { useState } from "react"; // Client-only hook
 
 export default function PostPreview() {
+  const [likes, setLikes] = useState(0); // Works!
   return <CommentCount shortname="..." />; // Works!
 }
 ```
 
+#### ✅ Better (Hybrid approach):
+
+```tsx
+// Server component (components/Blog/PostPreview.tsx)
+import PostInteractions from "@/side-effects/Blog/PostInteractions";
+
+export default function PostPreview({ post }) {
+  return (
+    <article>
+      <h2>{post.title}</h2>
+      <p>{post.excerpt}</p>
+      <PostInteractions postId={post.id} />
+    </article>
+  );
+}
+
+// Client component (side-effects/Blog/PostInteractions.tsx)
+("use client");
+
+import { CommentCount } from "disqus-react";
+import { useState } from "react";
+
+export default function PostInteractions({ postId }) {
+  const [likes, setLikes] = useState(0);
+  return <CommentCount shortname="..." identifier={postId} />;
+}
+```
+
+### Advanced Patterns
+
+#### Conditional Client Components
+
+```tsx
+"use client";
+
+import { useEffect, useState } from "react";
+
+export default function ConditionalFeature() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return <div>Loading...</div>; // Server-side fallback
+  }
+
+  return <div>Client-side feature loaded!</div>;
+}
+```
+
+#### Progressive Enhancement
+
+```tsx
+// Server component with optional client enhancement
+import ClientOnlyFeature from "@/side-effects/ClientOnlyFeature";
+
+export default function ProgressiveComponent() {
+  return (
+    <div>
+      <h1>Works without JavaScript</h1>
+      <p>Basic content visible to all users</p>
+      <ClientOnlyFeature />
+    </div>
+  );
+}
+```
+
 ### Best Practices
+
+#### Component Architecture
+
 1. **Start with server components** (better performance)
 2. **Add "use client" only when needed** (interactions, hooks, client libraries)
 3. **Keep client components small** - split UI into server/client boundaries
 4. **Pass data down from server to client components** as props
+5. **Use the `side-effects/` directory** for interactive components
 
-### Common Client-Only Patterns
-- Components with `useState`, `useEffect`, `useContext`
+#### Performance Considerations
+
+- **Server components** reduce JavaScript bundle size
+- **Client components** add to hydration time
+- **Minimize client component usage** for better Core Web Vitals
+- **Use suspense boundaries** for loading states
+
+#### Common Client-Only Patterns
+
+- Components with `useState`, `useEffect`, `useRouter`, `useSearchParams`
 - Event handlers (`onClick`, `onChange`, `onSubmit`)
 - Browser API access (`localStorage`, `sessionStorage`, `window`)
-- Third-party libraries requiring browser environment
+- Third-party integrations (analytics, ads, comments)
 - Interactive animations and form handling
+- Real-time features (WebSocket connections)
+
+#### Debugging Tips
+
+- **Check browser console** for specific error messages
+- **Verify "use client" placement** (must be at very top)
+- **Restart development server** after adding directives
+- **Use React DevTools** to identify component boundaries
+- **Test with JavaScript disabled** to verify server rendering
+
+### Migration Strategies
+
+#### From Pages Router to App Router
+
+- Components with hooks need `"use client"`
+- `getStaticProps`/`getServerSideProps` becomes async components
+- Client-side routing requires `"use client"`
+
+#### Refactoring Large Components
+
+1. **Identify client-only features** (hooks, events, browser APIs)
+2. **Extract client logic** into separate components
+3. **Move to `side-effects/` directory** for organization
+4. **Keep server logic** in main component for SEO benefits

@@ -3,37 +3,113 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Project Structure & Navigation Guide
 
-This is Luis Alejandro's personal website built with Next.js 14, featuring a blog, portfolio, case studies, and contact functionality.
+This is Luis Alejandro's personal website built with Next.js 14, featuring a blog, portfolio, case studies, contact functionality, and external app integrations.
 
 ## Main Application Structure
 
 ### Core App Directory
+
 - [app/layout.tsx](mdc:app/layout.tsx) - Root layout with metadata and global styles
 - [app/page.tsx](mdc:app/page.tsx) - Homepage with hero section and portfolio preview
 - [app/not-found.tsx](mdc:app/not-found.tsx) - Custom 404 page
 
 ### Key Page Sections
+
 - **Blog**: [app/blog/page.tsx](mdc:app/blog/page.tsx) with category filtering at [app/blog/category/[slug]/page.tsx](mdc:app/blog/category/[slug]/page.tsx)
 - **Portfolio**: [app/portfolio/page.tsx](mdc:app/portfolio/page.tsx) - Main portfolio showcase
 - **Case Studies**: Individual case studies in [app/case-studies/](mdc:app/case-studies)
+  - [canaima/](mdc:app/case-studies/canaima) - Canaima Linux distribution
+  - [dockershelf/](mdc:app/case-studies/dockershelf) - Docker images project
+  - [expedia/](mdc:app/case-studies/expedia) - Travel platform work
+  - [soleit/](mdc:app/case-studies/soleit) - Solar energy platform
+  - [wheeltheworld/](mdc:app/case-studies/wheeltheworld) - Accessibility platform
 - **Contact**: [app/contact/page.tsx](mdc:app/contact/page.tsx) - Contact form and information
-- **Apps**: External app links at [app/apps/agoras/page.tsx](mdc:app/apps/agoras/page.tsx)
+- **Apps**: External app integrations
+  - [app/apps/agoras/page.tsx](mdc:app/apps/agoras/page.tsx) - Agoras app landing
+  - [app/apps/agoras/privacy/page.tsx](mdc:app/apps/agoras/privacy/page.tsx) - Privacy policy
+  - [app/apps/agoras/terms/page.tsx](mdc:app/apps/agoras/terms/page.tsx) - Terms of service
 
 ### API Routes
-- [app/api/contact/route.ts](mdc:app/api/contact/route.ts) - Contact form submission
-- [app/api/last-posts/route.ts](mdc:app/api/last-posts/route.ts) - Recent blog posts
-- [app/api/trending-posts/route.ts](mdc:app/api/trending-posts/route.ts) - Popular content
-- [app/api/twitch-events/route.ts](mdc:app/api/twitch-events/route.ts) - Twitch integration
+
+- **Contact System**:
+  - [app/api/contact/route.ts](mdc:app/api/contact/route.ts) - Contact form submission
+- **Content APIs**:
+  - [app/api/last-posts/route.ts](mdc:app/api/last-posts/route.ts) - Recent blog posts
+  - [app/api/trending-posts/route.ts](mdc:app/api/trending-posts/route.ts) - Popular content
+- **External Integrations**:
+  - [app/api/twitch-events/route.ts](mdc:app/api/twitch-events/route.ts) - Twitch integration
+  - [app/api/gymcontrol/license/route.ts](mdc:app/api/gymcontrol/license/route.ts) - License validation
+  - [app/api/gymcontrol/token/route.ts](mdc:app/api/gymcontrol/token/route.ts) - Token management
+- **SEO & Feeds**:
+  - [app/blog/posts/atom.xml/route.ts](mdc:app/blog/posts/atom.xml/route.ts) - Atom feed
+  - [app/blog/posts/feed.json/route.ts](mdc:app/blog/posts/feed.json/route.ts) - JSON feed
+  - [app/blog/posts/feed.xml/route.ts](mdc:app/blog/posts/feed.xml/route.ts) - RSS feed
+  - [app/sitemap.xml/route.ts](mdc:app/sitemap.xml/route.ts) - Dynamic sitemap
+  - [app/robots.txt/route.ts](mdc:app/robots.txt/route.ts) - Robots.txt
 
 ## Configuration Files
+
+### Build & Development
+
 - [next.config.ts](mdc:next.config.ts) - Next.js configuration
-- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
 - [package.json](mdc:package.json) - Dependencies and scripts
-- [tailwind.config.js](mdc:tailwind.config.js) - Tailwind CSS configuration (if exists)
+- [yarn.lock](mdc:yarn.lock) - Package lock file
+
+### TypeScript & JavaScript
+
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript main configuration
+- [tsconfig.paths.json](mdc:tsconfig.paths.json) - Path mapping configuration
+- [jsconfig.json](mdc:jsconfig.json) - JavaScript configuration
+
+### Code Quality & Styling
+
+- [eslint.config.mjs](mdc:eslint.config.mjs) - ESLint configuration
+- [postcss.config.cjs](mdc:postcss.config.cjs) - PostCSS configuration
+- [styles/tailwind.css](mdc:styles/tailwind.css) - Global Tailwind CSS
+
+### Deployment & Docker
+
+- [Dockerfile](mdc:Dockerfile) - Docker image configuration
+- [docker-compose.yml](mdc:docker-compose.yml) - Docker Compose setup
+- [Makefile](mdc:Makefile) - Build automation
 
 ## Content & Assets
+
+### Constants & Configuration
+
 - [constants/constants.ts](mdc:constants/constants.ts) - Global constants and configuration
-- [public/images/](mdc:public/images) - Static images and assets
-- [assets/](mdc:assets) - SVG icons and HTML templates
+
+### Static Assets
+
+- [public/images/](mdc:public/images) - Static images organized by feature
+  - [case-studies/](mdc:public/images/case-studies) - Case study assets
+  - [home/](mdc:public/images/home) - Homepage images
+  - [other/](mdc:public/images/other) - Other project assets
+- [public/favicon/](mdc:public/favicon) - Favicon and meta assets
+- [public/files/](mdc:public/files) - Documents and media files
+- [assets/images/](mdc:assets/images) - SVG icons and graphics
+- [assets/templates/](mdc:assets/templates) - HTML email templates
+
+### Utility Libraries
+
+- [lib/api.ts](mdc:lib/api.ts) - Main API utilities and data fetching
+- [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) - Markdown processing
+- [lib/htmlRenderer.tsx](mdc:lib/htmlRenderer.tsx) - Custom HTML rendering
+- [lib/contactForm.ts](mdc:lib/contactForm.ts) - Contact form logic
+- [lib/leads.ts](mdc:lib/leads.ts) - Lead management
+- [lib/structuredData.ts](mdc:lib/structuredData.ts) - SEO structured data
+- [lib/utils.ts](mdc:lib/utils.ts) - General utility functions
+
+## Component Organization
+
+- [components/](mdc:components) - Server-side React components organized by feature
+- [side-effects/](mdc:side-effects) - Client-side interactive components requiring browser APIs
+
+## Development & Release
+
+- [scripts/](mdc:scripts) - Release and hotfix automation scripts
+- [setup.cfg](mdc:setup.cfg) - Release tool configuration
+- [HISTORY.md](mdc:HISTORY.md), [README.md](mdc:README.md), [MAINTAINER.md](mdc:MAINTAINER.md) - Documentation
