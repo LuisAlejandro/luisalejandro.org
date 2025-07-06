@@ -3,103 +3,205 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Coding Conventions & Best Practices
 
-This project follows specific coding patterns and conventions for consistency and maintainability.
+This project follows specific coding patterns and conventions for consistency, maintainability, and optimal performance with Next.js 14 App Router.
 
 ## TypeScript Conventions
 
-### File Structure
-- Use `.tsx` for React components
-- Use `.ts` for utilities and API routes
+### File Structure & Extensions
+
+- Use `.tsx` for React components with JSX
+- Use `.ts` for utilities, API routes, and non-component code
 - Organize components by feature/section in [components/](mdc:components)
 - Keep utility functions in [lib/](mdc:lib)
+- Client-side interactive components in [side-effects/](mdc:side-effects)
 
 ### Naming Conventions
-- **Components**: PascalCase (e.g., `HeroPost.tsx`)
+
+- **Components**: PascalCase (e.g., `HeroPost.tsx`, `CaseStudyCard.tsx`)
 - **Files**: PascalCase for components, camelCase for utilities
 - **Directories**: PascalCase for component groups, camelCase for utilities
 - **Constants**: UPPER_SNAKE_CASE in [constants/constants.ts](mdc:constants/constants.ts)
+- **API Routes**: snake_case in URLs, camelCase in file structure
 
-## React Patterns
+### Type Safety
+
+- Leverage TypeScript strict mode for maximum type safety
+- Define interfaces for props, API responses, and data structures
+- Use proper typing for async functions and API calls
+- Avoid `any` type; use `unknown` when type is uncertain
+
+## React Patterns & Architecture
 
 ### Component Organization
-- **Page Components**: In [app/](mdc:app) directory following Next.js App Router
+
+- **Page Components**: In [app/](mdc:app) directory following Next.js App Router structure
 - **Reusable Components**: In [components/](mdc:components) organized by feature
-- **Client Components**: In [side-effects/](mdc:side-effects) for interactivity
+- **Client Components**: In [side-effects/](mdc:side-effects) for browser-dependent functionality
 - **Layout Components**: Separate layout files like [app/blog/layout.tsx](mdc:app/blog/layout.tsx)
 
-### State Management
-- Server Components by default (Next.js App Router)
-- Client Components only when necessary (marked with 'use client')
-- Props drilling for simple state passing
-- Context API for complex shared state
+### Server vs Client Components
 
-## Styling Conventions
+- **Default to Server Components** for better performance and SEO
+- **Use Client Components (`"use client"`)** only when necessary:
+  - Interactive features (forms, buttons, animations)
+  - Browser APIs (localStorage, geolocation, etc.)
+  - React hooks (useState, useEffect, etc.)
+  - Third-party libraries requiring browser environment
 
-### Tailwind CSS
-- Utility-first approach with Tailwind classes
-- Custom styles in [styles/tailwind.css](mdc:styles/tailwind.css)
-- Responsive design with Tailwind breakpoints
-- Dark mode support where applicable
+### State Management Patterns
 
-### Styled Components
-- Used for complex animations and dynamic styles
-- Component-specific styling files when needed
-- Animation logic in [components/Portfolio/OtherWork/Animations.ts](mdc:components/Portfolio/OtherWork/Animations.ts)
+- Server Components by default (Next.js App Router best practice)
+- Props drilling for simple state passing between components
+- React Context API for complex shared state across multiple components
+- URL state for shareable and bookmarkable application state
 
-## API Development
+### Component Design Principles
 
-### Route Structure
-- Follow Next.js App Router conventions
-- Use `route.ts` files in [app/api/](mdc:app/api)
-- Proper HTTP methods and status codes
-- Error handling and validation
+- **Single Responsibility**: Each component has one clear purpose
+- **Composition over Inheritance**: Build complex UIs by composing simple components
+- **Props Interface**: Clear, typed interfaces for all component props
+- **Default Props**: Sensible defaults for optional props
 
-### Data Fetching
-- Server-side data fetching in Server Components
-- Utility functions in [lib/api.ts](mdc:lib/api.ts)
-- Markdown processing in [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts)
+## Styling Conventions & Design System
+
+### Tailwind CSS Approach
+
+- **Utility-first** approach with Tailwind classes
+- **Responsive design** with mobile-first breakpoints
+- **Consistent spacing** using Tailwind's spacing scale
+- **Color system** following design tokens
+- **Dark mode considerations** where applicable
+
+### Custom Styling
+
+- Global styles in [styles/tailwind.css](mdc:styles/tailwind.css)
+- Component-specific styles using CSS modules when needed
+- Styled-components for complex animations and dynamic styles
+- Animation logic organized in dedicated files like [components/Portfolio/OtherWork/Animations.ts](mdc:components/Portfolio/OtherWork/Animations.ts)
+
+### CSS Organization
+
+- **Base styles**: Global resets and base element styles
+- **Component styles**: Scoped to individual components
+- **Utility classes**: Custom utilities for common patterns
+- **Animation classes**: Reusable animation utilities
+
+## API Development & Data Handling
+
+### Route Structure & Conventions
+
+- Follow Next.js App Router conventions for file structure
+- Use `route.ts` files in [app/api/](mdc:app/api) for API endpoints
+- Implement proper HTTP methods (GET, POST, PUT, DELETE)
+- Consistent error handling with appropriate status codes
+
+### Data Fetching Patterns
+
+- **Server-side data fetching** in Server Components using async/await
+- **Client-side fetching** only when necessary (user interactions, real-time updates)
+- Utility functions in [lib/api.ts](mdc:lib/api.ts) for reusable API logic
+- Content processing in [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) and [lib/htmlRenderer.tsx](mdc:lib/htmlRenderer.tsx)
+
+### Error Handling Strategy
+
+- Graceful error handling with user-friendly messages
+- Proper HTTP status codes for different error types
+- Logging for debugging without exposing sensitive information
+- Fallback UI components for error states
 
 ## Performance Best Practices
 
-### Image Optimization
-- Use Next.js `Image` component
+### Image & Asset Optimization
+
+- Use Next.js `Image` component for automatic optimization
 - Organize images in [public/images/](mdc:public/images) by feature
-- SVG icons in [assets/images/](mdc:assets/images)
+- SVG icons in [assets/images/](mdc:assets/images) for scalability
+- Lazy loading for non-critical images and components
 
-### Code Splitting
-- Automatic with Next.js App Router
+### Code Splitting & Loading
+
+- Automatic code splitting with Next.js App Router
+- Dynamic imports for heavy components and libraries
 - Client components loaded only when needed
-- Dynamic imports for heavy components
+- Progressive enhancement for interactive features
 
-## SEO & Metadata
+### Caching & Performance
 
-### Page Metadata
-- Implement metadata in layout files
-- Dynamic metadata for blog posts
-- Structured data where applicable
+- Leverage Next.js built-in caching mechanisms
+- Static generation for content that doesn't change frequently
+- API route caching where appropriate
+- Optimize bundle size with proper imports
 
-### Content Structure
-- Semantic HTML elements
-- Proper heading hierarchy
-- Alt text for images
-- Meta descriptions and titles
+## SEO & Accessibility
 
-## Error Handling
+### Metadata & SEO
 
-### Client-Side
-- Error boundaries for React components
-- Graceful fallbacks for failed data fetching
-- User-friendly error messages
+- Implement metadata in layout and page files
+- Dynamic metadata for blog posts and case studies
+- Structured data using [lib/structuredData.ts](mdc:lib/structuredData.ts)
+- Proper OpenGraph and Twitter Card metadata
 
-### Server-Side
-- Custom 404 page at [app/not-found.tsx](mdc:app/not-found.tsx)
-- API error responses with proper status codes
-- Logging for debugging
+### Content Structure & Accessibility
 
-## Testing Strategy
-- Component testing with Jest/React Testing Library
-- API route testing
+- Semantic HTML elements for proper document structure
+- Proper heading hierarchy (h1, h2, h3, etc.)
+- Alt text for all images and media
+- ARIA labels for interactive elements
+- Keyboard navigation support
+
+### Performance Metrics
+
+- Optimize Core Web Vitals (LCP, FID, CLS)
+- Monitor bundle size and loading performance
+- Ensure responsive design across all devices
+- Test with various network conditions
+
+## Code Quality & Development
+
+### Linting & Formatting
+
+- ESLint configuration in [eslint.config.mjs](mdc:eslint.config.mjs)
+- Consistent code formatting across the project
+- Pre-commit hooks for code quality (if configured)
+- TypeScript strict mode for type safety
+
+### Testing Strategy
+
+- Component testing with React Testing Library
+- API route testing for backend functionality
 - E2E testing for critical user flows
 - Visual regression testing for UI consistency
+- Unit tests for utility functions
+
+### Documentation Standards
+
+- Clear component prop documentation
+- API endpoint documentation
+- Code comments for complex business logic
+- README files for setup and development instructions
+
+## File Organization Rules
+
+### Directory Structure
+
+- **Feature-based organization**: Group related components together
+- **Consistent naming**: PascalCase for components, camelCase for utilities
+- **Clear separation**: Server components vs client components
+- **Logical hierarchy**: Nested directories for sub-features
+
+### Import/Export Patterns
+
+- Named exports for components and utilities
+- Default exports for pages and main components
+- Absolute imports using TypeScript path mapping
+- Organized import order: external libraries, internal modules, relative imports
+
+### Environment Configuration
+
+- Environment variables for external service configuration
+- Type-safe environment variable handling
+- Development vs production configuration differences
+- Secure handling of API keys and secrets

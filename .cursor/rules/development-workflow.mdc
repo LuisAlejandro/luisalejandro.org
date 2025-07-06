@@ -3,75 +3,164 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Development Workflow & Release Management
 
-This project uses a structured development workflow with automated release management.
+This project uses a structured development workflow with automated release management, comprehensive tooling, and modern build processes.
 
 ## Development Scripts & Commands
 
 ### Package Management
+
 - [package.json](mdc:package.json) - Dependencies and npm scripts
 - [yarn.lock](mdc:yarn.lock) - Yarn package lock file
-- Use `yarn` for package management
+- Use `yarn` for package management (preferred over npm)
 
 ### Build & Development
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
+
+- `yarn dev` - Start development server with hot reload
+- `yarn build` - Build for production with optimizations
 - `yarn start` - Start production server
-- `yarn lint` - Run ESLint checks
+- `yarn lint` - Run ESLint checks and fixes
+- `yarn type-check` - TypeScript type checking
 
 ### Release Management
-- [scripts/release.sh](mdc:scripts/release.sh) - Automated release script
-- [scripts/hotfix.sh](mdc:scripts/hotfix.sh) - Hotfix release script
+
+- [scripts/release.sh](mdc:scripts/release.sh) - Automated release script with versioning
+- [scripts/hotfix.sh](mdc:scripts/hotfix.sh) - Hotfix release script for urgent fixes
 - [Makefile](mdc:Makefile) - Build automation and deployment commands
 
 ## Configuration Files
 
-### Code Quality
-- [eslint.config.mjs](mdc:eslint.config.mjs) - ESLint configuration
-- [tsconfig.json](mdc:tsconfig.json) - TypeScript main configuration
-- [tsconfig.paths.json](mdc:tsconfig.paths.json) - Path mapping configuration
-- [jsconfig.json](mdc:jsconfig.json) - JavaScript configuration
+### Code Quality & Linting
 
-### Styling
-- [postcss.config.cjs](mdc:postcss.config.cjs) - PostCSS configuration
-- [styles/tailwind.css](mdc:styles/tailwind.css) - Global Tailwind CSS
+- [eslint.config.mjs](mdc:eslint.config.mjs) - ESLint configuration for modern JavaScript/TypeScript
+- TypeScript configuration split for better organization:
+  - [tsconfig.json](mdc:tsconfig.json) - Main TypeScript configuration
+  - [tsconfig.paths.json](mdc:tsconfig.paths.json) - Path mapping and aliases
+  - [jsconfig.json](mdc:jsconfig.json) - JavaScript/JSX configuration
 
-### Release Configuration
-- [setup.cfg](mdc:setup.cfg) - Python-style configuration (for release tools)
-- [.gitchangelog.rc](mdc:.gitchangelog.rc) - Changelog generation config
-- [.gitchangelog.tpl](mdc:.gitchangelog.tpl) - Changelog template
+### Styling & PostCSS
+
+- [postcss.config.cjs](mdc:postcss.config.cjs) - PostCSS configuration for Tailwind and plugins
+- [styles/tailwind.css](mdc:styles/tailwind.css) - Global Tailwind CSS with custom styles
+
+### Next.js Configuration
+
+- [next.config.ts](mdc:next.config.ts) - Next.js build and runtime configuration
+- [next-env.d.ts](mdc:next-env.d.ts) - Next.js TypeScript declarations
+
+### Release & Changelog Configuration
+
+- [setup.cfg](mdc:setup.cfg) - Python-style configuration for release tools
+- Changelog generation (if configured):
+  - `.gitchangelog.rc` - Changelog generation config
+  - `.gitchangelog.tpl` - Changelog template
 
 ## Docker & Deployment
 
-### Docker Configuration
-- [Dockerfile](mdc:Dockerfile) - Docker image configuration
-- [docker-compose.yml](mdc:docker-compose.yml) - Docker Compose setup
+### Container Configuration
+
+- [Dockerfile](mdc:Dockerfile) - Multi-stage Docker image for production
+- [docker-compose.yml](mdc:docker-compose.yml) - Development and testing environment
 
 ### Deployment Process
-1. Use `make` commands for build and deployment
-2. Release scripts handle version bumping and changelog generation
-3. Docker containers for consistent deployment environments
 
-## Documentation
-- [README.md](mdc:README.md) - Project overview and setup instructions
-- [HISTORY.md](mdc:HISTORY.md) - Project changelog
-- [MAINTAINER.md](mdc:MAINTAINER.md) - Maintainer information
+1. **Development**: Use `yarn dev` for local development
+2. **Testing**: Run `yarn build` and `yarn start` to test production build
+3. **Release**: Use release scripts for version bumping and changelog generation
+4. **Deploy**: Docker containers for consistent deployment environments
+5. **Monitoring**: Check build status and application health
+
+## Documentation & Project Info
+
+- [README.md](mdc:README.md) - Project overview, setup instructions, and usage
+- [HISTORY.md](mdc:HISTORY.md) - Project changelog and version history
+- [MAINTAINER.md](mdc:MAINTAINER.md) - Maintainer information and contact
 - [RELEASE_DESCRIPTION.md](mdc:RELEASE_DESCRIPTION.md) - Release notes template
+- [LICENSE](mdc:LICENSE) - Project license information
 
-## Branch Strategy
-- `develop` - Development branch (current active branch)
-- Release scripts handle branching and merging
-- Hotfix scripts for emergency fixes
+## Branch Strategy & Git Workflow
 
-## Asset Management
-- Static assets in [public/](mdc:public) for Next.js static serving
+- `develop` - Main development branch (current active branch)
+- `main`/`master` - Production-ready releases
+- Feature branches for new developments
+- Release scripts handle branching and merging automatically
+- Hotfix scripts for emergency fixes that bypass normal workflow
+
+## Asset Management & Organization
+
+### Static Assets
+
+- [public/](mdc:public) - Next.js static file serving
 - Images organized by feature in [public/images/](mdc:public/images)
 - Favicon and meta assets in [public/favicon/](mdc:public/favicon)
+- Documents and media in [public/files/](mdc:public/files)
 
-## Environment Setup
-- Node.js and Yarn required
-- TypeScript support enabled
-- Tailwind CSS for styling
-- ESLint for code quality
-- Docker optional for containerized development
+### Development Assets
+
+- [assets/](mdc:assets) - Development-time assets (SVGs, templates)
+- [constants/](mdc:constants) - Application constants and configuration
+
+## Environment Setup & Requirements
+
+### Prerequisites
+
+- **Node.js** (Latest LTS version recommended)
+- **Yarn** package manager
+- **TypeScript** support (built-in with Next.js)
+- **Docker** (optional, for containerized development)
+
+### Development Environment
+
+- **Next.js 14** with App Router
+- **Tailwind CSS** for styling
+- **ESLint** for code quality
+- **TypeScript** for type safety
+- **PostCSS** for CSS processing
+
+### IDE Configuration
+
+- TypeScript path mapping configured
+- ESLint integration
+- Tailwind CSS IntelliSense support
+- Cursor/VS Code optimized workflow
+
+## Performance & Optimization
+
+### Build Optimizations
+
+- Next.js automatic code splitting
+- Image optimization with Next.js Image component
+- Static generation for improved performance
+- Bundle analysis tools for size monitoring
+
+### Development Experience
+
+- Hot module replacement for instant feedback
+- TypeScript checking during development
+- ESLint real-time feedback
+- Fast refresh for React components
+
+## Quality Assurance
+
+### Code Quality
+
+- ESLint for consistent code style
+- TypeScript for type safety
+- Automated formatting (if configured)
+- Pre-commit hooks (if configured)
+
+### Testing Strategy
+
+- Component testing framework ready
+- API route testing capabilities
+- E2E testing setup available
+- Visual regression testing for UI consistency
+
+## Deployment Targets
+
+- **Development**: Local development server
+- **Staging**: Docker containers for testing
+- **Production**: Optimized Docker builds
+- **CDN**: Static assets optimization for global delivery

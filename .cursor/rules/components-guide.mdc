@@ -3,6 +3,7 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Component Organization Guide
 
 Components are organized by feature/section for better maintainability and navigation.
@@ -10,53 +11,112 @@ Components are organized by feature/section for better maintainability and navig
 ## Component Structure
 
 ### Blog Components
+
 - [components/Blog/](mdc:components/Blog) - Blog-specific components
   - [FriendlyDate.tsx](mdc:components/Blog/FriendlyDate.tsx) - Date formatting
   - [HeroPost.tsx](mdc:components/Blog/HeroPost.tsx) - Featured post display
   - [MoreStories.tsx](mdc:components/Blog/MoreStories.tsx) - Additional posts grid
   - [PostPreview.tsx](mdc:components/Blog/PostPreview.tsx) - Post card component
+  - [PostPreviewMini.tsx](mdc:components/Blog/PostPreviewMini.tsx) - Compact post preview
 
 ### Portfolio Components
+
 - [components/Portfolio/](mdc:components/Portfolio) - Portfolio section components
-  - [Hero/](mdc:components/Portfolio/Hero) - Hero section with introduction
-  - [Acomplishments/](mdc:components/Portfolio/Acomplishments) - Achievement boxes
-  - [CaseStudies/](mdc:components/Portfolio/CaseStudies) - Case study cards
-  - [Journey/](mdc:components/Portfolio/Journey) - Timeline and career journey
-  - [OtherWork/](mdc:components/Portfolio/OtherWork) - Gallery and slideshow
-  - [Toolbox/](mdc:components/Portfolio/Toolbox) - Skills and technologies
+  - [Hero/](mdc:components/Portfolio/Hero) - Hero section with introduction and resume link
+  - [Acomplishments/](mdc:components/Portfolio/Acomplishments) - Achievement boxes with numbers and text
+  - [CaseStudies/](mdc:components/Portfolio/CaseStudies) - Case study cards with tags and images
+  - [Journey/](mdc:components/Portfolio/Journey) - Timeline chart and career journey
+  - [OtherWork/](mdc:components/Portfolio/OtherWork) - Gallery slideshow with animations
+  - [Toolbox/](mdc:components/Portfolio/Toolbox) - Skills and technologies list
   - [Contact/](mdc:components/Portfolio/Contact) - Contact section
-  - [Footer/](mdc:components/Portfolio/Footer) - Footer links and info
+  - [Footer/](mdc:components/Portfolio/Footer) - Footer links and social information
+  - [Header/](mdc:components/Portfolio/Header) - Portfolio page header
+  - [BackgroundAnimation/](mdc:components/Portfolio/BackgroundAnimation) - Animated background
 
 ### Case Study Components
+
 - [components/CaseStudies/](mdc:components/CaseStudies) - Case study page components
   - [HeroIntro.tsx](mdc:components/CaseStudies/HeroIntro.tsx) - Case study introduction
   - [Challenge.tsx](mdc:components/CaseStudies/Challenge.tsx) - Problem statement
   - [Why.tsx](mdc:components/CaseStudies/Why.tsx) - Solution rationale
   - [Product.tsx](mdc:components/CaseStudies/Product.tsx) - Product showcase
   - [Results.tsx](mdc:components/CaseStudies/Results.tsx) - Outcomes and metrics
+  - [ScrollTween.tsx](mdc:components/CaseStudies/ScrollTween.tsx) - Scroll-based animations
+
+### Apps Components
+
+- [components/Apps/](mdc:components/Apps) - External app-related components
+  - [Hero/](mdc:components/Apps/Hero) - App hero sections and navigation
 
 ### Common/Shared Components
+
 - [components/common/](mdc:components/common) - Reusable components
-  - [Header/](mdc:components/common/Header) - Site header components
-  - [Layout/](mdc:components/common/Layout) - Layout wrapper components
+  - [Header/](mdc:components/common/Header) - Site header with containers and social icons
+  - [Layout/](mdc:components/common/Layout) - Layout wrappers, sections, and typography
   - [HighlightText.tsx](mdc:components/common/HighlightText.tsx) - Text highlighting
   - [StyledLink.tsx](mdc:components/common/StyledLink.tsx) - Custom link component
   - [SocialIconLabel.tsx](mdc:components/common/SocialIconLabel.tsx) - Social media icons
 
 ### Post Components
+
 - [components/Post/](mdc:components/Post) - Individual blog post components
   - [CoverImage.tsx](mdc:components/Post/CoverImage.tsx) - Post cover image
   - [PostContent.tsx](mdc:components/Post/PostContent.tsx) - Post content wrapper
   - [PostRelated.tsx](mdc:components/Post/PostRelated.tsx) - Related posts
   - [RelatedStories.tsx](mdc:components/Post/RelatedStories.tsx) - Story suggestions
 
+### Home Components
+
+- [components/Home/](mdc:components/Home) - Homepage-specific components
+  - [ButtonBar.tsx](mdc:components/Home/ButtonBar.tsx) - Navigation button bar
+
 ## Side Effects (Client Components)
+
+Interactive components that require browser APIs and client-side functionality:
+
 - [side-effects/](mdc:side-effects) - Client-side interactive components
-  - [CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx) - Cookie consent
-  - [Blog/BlogClient.tsx](mdc:side-effects/Blog/BlogClient.tsx) - Blog interactivity
-  - [Home/Gallery.tsx](mdc:side-effects/Home/Gallery.tsx) - Homepage gallery
+  - [AdSenseBanner.tsx](mdc:side-effects/AdSenseBanner.tsx) - Google AdSense integration
+  - [CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx) - Cookie consent management
+  - [Blog/](mdc:side-effects/Blog) - Blog interactivity
+    - [BlogClient.tsx](mdc:side-effects/Blog/BlogClient.tsx) - Blog page interactions
+    - [BlogCategoryClient.tsx](mdc:side-effects/Blog/BlogCategoryClient.tsx) - Category filtering
+  - [Home/](mdc:side-effects/Home) - Homepage interactions
+    - [Gallery.tsx](mdc:side-effects/Home/Gallery.tsx) - Interactive homepage gallery
+
+## Component Architecture Patterns
+
+### Server Components (Default)
+
+- Portfolio showcase components
+- Blog post rendering
+- Case study layouts
+- SEO and metadata components
+
+### Client Components ("use client")
+
+- Interactive galleries and animations
+- Form submissions and user input
+- Cookie consent and tracking
+- Dynamic content loading
+
+### Hybrid Components
+
+- Components that render on server but have client-side enhancements
+- Progressive enhancement patterns
+- Conditional client-side features
 
 ## Styling Philosophy
-- Components use Tailwind CSS classes for styling
-- Styled-components are used for complex animations and dynamic styles
-- Each component section has its own styling patterns
+
+- **Tailwind CSS**: Primary styling system with utility classes
+- **Styled Components**: Complex animations and dynamic styles
+- **Component-specific styles**: Animation logic in dedicated files
+- **Responsive design**: Mobile-first approach with Tailwind breakpoints
+- **Dark mode**: Considered in component design where applicable
+
+## File Organization Rules
+
+- **PascalCase**: Component files and directories
+- **Feature grouping**: Components organized by website section
+- **Client separation**: Interactive components in `side-effects/`
+- **Reusability**: Common components shared across features
+- **Single responsibility**: Each component has a clear, focused purpose

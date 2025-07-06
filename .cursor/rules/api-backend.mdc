@@ -3,18 +3,21 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # API Routes & Backend Functionality
 
-This project uses Next.js App Router API routes for backend functionality.
+This project uses Next.js App Router API routes for backend functionality with comprehensive utilities and integrations.
 
 ## API Route Structure
 
 ### Contact System
+
 - [app/api/contact/route.ts](mdc:app/api/contact/route.ts) - Contact form submission endpoint
 - [lib/contactForm.ts](mdc:lib/contactForm.ts) - Contact form logic and validation
 - [lib/leads.ts](mdc:lib/leads.ts) - Lead management functionality
 
 ### Blog & Content API
+
 - [app/api/last-posts/route.ts](mdc:app/api/last-posts/route.ts) - Fetch recent blog posts
 - [app/api/trending-posts/route.ts](mdc:app/api/trending-posts/route.ts) - Fetch popular posts
 - [app/blog/posts/atom.xml/route.ts](mdc:app/blog/posts/atom.xml/route.ts) - Atom feed generation
@@ -22,32 +25,102 @@ This project uses Next.js App Router API routes for backend functionality.
 - [app/blog/posts/feed.xml/route.ts](mdc:app/blog/posts/feed.xml/route.ts) - RSS feed
 
 ### External Integrations
+
 - [app/api/twitch-events/route.ts](mdc:app/api/twitch-events/route.ts) - Twitch API integration
 - [app/api/gymcontrol/license/route.ts](mdc:app/api/gymcontrol/license/route.ts) - GymControl license validation
 - [app/api/gymcontrol/token/route.ts](mdc:app/api/gymcontrol/token/route.ts) - GymControl token management
 
 ### SEO & Metadata
+
 - [app/sitemap.xml/route.ts](mdc:app/sitemap.xml/route.ts) - Dynamic sitemap generation
 - [app/robots.txt/route.ts](mdc:app/robots.txt/route.ts) - Robots.txt configuration
 
 ## Utility Libraries
+
+### Core API Utilities
+
 - [lib/api.ts](mdc:lib/api.ts) - Main API utilities and data fetching
-- [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) - Markdown processing for blog posts
 - [lib/utils.ts](mdc:lib/utils.ts) - General utility functions
 
+### Content Processing
+
+- [lib/markdownToHtml.ts](mdc:lib/markdownToHtml.ts) - Markdown processing for blog posts
+- [lib/htmlRenderer.tsx](mdc:lib/htmlRenderer.tsx) - Custom HTML rendering with React components
+
+### SEO & Structured Data
+
+- [lib/structuredData.ts](mdc:lib/structuredData.ts) - SEO structured data generation for rich snippets
+
 ## Email Templates
+
 - [assets/templates/company-template.html](mdc:assets/templates/company-template.html) - Company email template
 - [assets/templates/welcome-template.html](mdc:assets/templates/welcome-template.html) - Welcome email template
 
+## Client-Side Integrations
+
+- [side-effects/AdSenseBanner.tsx](mdc:side-effects/AdSenseBanner.tsx) - Google AdSense banner integration
+- [side-effects/CookieConsentWrapper.tsx](mdc:side-effects/CookieConsentWrapper.tsx) - Cookie consent management
+
 ## API Response Patterns
+
+### Standard Responses
+
 - All API routes follow REST conventions
-- Error handling includes proper HTTP status codes
-- CORS is configured for necessary external integrations
-- Rate limiting may be implemented on contact forms
+- Consistent error handling with proper HTTP status codes
+- JSON responses with standardized structure
+- CORS configuration for necessary external integrations
+
+### Error Handling
+
+- Graceful error responses with user-friendly messages
+- Proper status codes (400, 401, 404, 500, etc.)
+- Logging for debugging and monitoring
+- Rate limiting on contact forms to prevent spam
+
+### Security Considerations
+
+- Input validation and sanitization
+- CSRF protection where applicable
+- API key management for external services
+- Proper authentication for protected endpoints
 
 ## Environment Variables
-API routes likely depend on environment variables for:
-- Email service configuration
-- External API keys (Twitch, etc.)
-- Database connections (if applicable)
-- Authentication secrets
+
+API routes and integrations depend on environment variables for:
+
+- **Email service configuration** - SMTP settings and credentials
+- **External API keys** - Twitch, GymControl, and other service keys
+- **Database connections** - If applicable for data persistence
+- **Authentication secrets** - JWT secrets and OAuth credentials
+- **Analytics tracking** - Google Analytics and AdSense IDs
+- **Domain configuration** - Base URLs and domain settings
+
+## Data Flow Patterns
+
+### Blog Content
+
+1. Markdown files processed by `markdownToHtml.ts`
+2. Rendered with custom components via `htmlRenderer.tsx`
+3. SEO data generated with `structuredData.ts`
+4. Feeds generated via dedicated API routes
+
+### Contact Management
+
+1. Form submissions processed by `contactForm.ts`
+2. Lead data managed via `leads.ts`
+3. Email notifications sent using HTML templates
+4. Response tracking and analytics
+
+### External Integrations
+
+1. API calls managed through utility functions
+2. Authentication handled per service requirements
+3. Response caching where appropriate
+4. Error handling and fallback strategies
+
+## Performance Optimizations
+
+- API route caching strategies
+- Static generation for feeds and sitemaps
+- Lazy loading for non-critical integrations
+- Optimized image processing and serving

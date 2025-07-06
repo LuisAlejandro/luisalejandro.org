@@ -6,7 +6,7 @@ alwaysApply: true
 
 # Luis Alejandro's Personal Website - Overview
 
-This is a comprehensive Next.js 14 personal website with blog, portfolio, case studies, and contact functionality.
+This is a comprehensive Next.js 14 personal website with blog, portfolio, case studies, contact functionality, and external app integrations.
 
 ## Quick Navigation
 
@@ -20,6 +20,7 @@ This is a comprehensive Next.js 14 personal website with blog, portfolio, case s
 
 - [components-guide.mdc](mdc:.cursor/rules/components-guide.mdc) - Component organization guide
 - [components/](mdc:components) - All React components organized by feature
+- [side-effects/](mdc:side-effects) - Client-side interactive components
 - [styles/tailwind.css](mdc:styles/tailwind.css) - Global styles
 
 ### 🔗 Backend & APIs
@@ -42,27 +43,39 @@ This is a comprehensive Next.js 14 personal website with blog, portfolio, case s
 - Markdown-based blog posts with RSS/Atom feeds
 - Category filtering and trending posts
 - SEO-optimized with proper metadata
+- Interactive client-side components for enhanced UX
 
 ### Portfolio Showcase
 
-- Interactive portfolio with case studies
-- Timeline and journey visualization
+- Interactive portfolio with detailed case studies
+- Timeline and career journey visualization
 - Skills and technologies toolbox
-- Gallery with animations
+- Animated gallery with slideshow functionality
+- Accomplishments and achievements display
 
 ### Contact Integration
 
-- Contact form with email templates
-- Lead management system
+- Contact form with email templates and validation
+- Lead management system with structured data
 - Social media integration
+- Interactive user feedback
+
+### External Apps Integration
+
+- Agoras app with privacy and terms pages
+- GymControl license validation and token management
+- External app links and previews
 
 ### Technical Stack
 
 - **Framework**: Next.js 14 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS with Styled Components
+- **Content Processing**: Custom HTML renderer with Markdown support
+- **SEO**: Structured data, sitemaps, RSS feeds
+- **Analytics**: AdSense integration
 - **Deployment**: Docker + Custom release scripts
-- **Content**: Markdown with HTML processing
+- **Package Management**: Yarn with lock file
 
 ## Getting Started
 
@@ -74,12 +87,16 @@ This is a comprehensive Next.js 14 personal website with blog, portfolio, case s
 ## Common Tasks
 
 - **Add new blog post**: Create markdown file and update API routes
-- **Add case study**: Create new page in [app/case-studies/](mdc:app/case-studies)
+- **Add case study**: Create new page in [app/case-studies/](mdc:app/case-studies) with proper layout
 - **Update portfolio**: Modify components in [components/Portfolio/](mdc:components/Portfolio)
 - **API changes**: Update routes in [app/api/](mdc:app/api) and utilities in [lib/](mdc:lib)
+- **Add interactive features**: Create client components in [side-effects/](mdc:side-effects)
+- **Add external app**: Create pages in [app/apps/](mdc:app/apps)
 
 ## Troubleshooting
 
 - **"Super expression must either be null or a function"**: Add `"use client";` to components using client-only libraries
 - **Server/Client component issues**: Check [nextjs-server-client-components.mdc](mdc:.cursor/rules/nextjs-server-client-components.mdc)
 - **Common debugging patterns**: See [error-debugging-patterns.mdc](mdc:.cursor/rules/error-debugging-patterns.mdc)
+- **AdSense integration issues**: Check [side-effects/AdSenseBanner.tsx](mdc:side-effects/AdSenseBanner.tsx)
+- **HTML rendering issues**: Check [lib/htmlRenderer.tsx](mdc:lib/htmlRenderer.tsx)
