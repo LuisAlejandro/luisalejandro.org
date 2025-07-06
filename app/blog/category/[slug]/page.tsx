@@ -10,9 +10,6 @@ import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import BlogCategoryClient from "@side-effects/Blog/BlogCategoryClient";
 
-// Revalidate category pages every 60 seconds
-export const revalidate = 60;
-
 interface CategoryPageProps {
   params: {
     slug: string;

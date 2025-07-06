@@ -11,9 +11,6 @@ import PostContent from "@components/Post/PostContent";
 
 import "highlight.js/styles/default.css";
 
-// Revalidate individual blog posts every 60 seconds
-export const revalidate = 60;
-
 interface PostPageProps {
   params: {
     slug: string;
