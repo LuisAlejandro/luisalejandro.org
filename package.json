@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -39,7 +39,7 @@
     "cryptr": "^6.3.0",
     "date-fns": "^4.1.0",
     "disqus-react": "^1.1.6",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.0",
     "encoding": "^0.1.13",
     "feed": "^5.1.0",
     "framer-motion": "^12.0.0",
@@ -88,7 +88,7 @@
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.35.1",
     "eslint": "^9.29.0",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "15.3.5",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.2.0",
@@ -96,5 +96,11 @@
     "prettier": "^3.3.3",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3"
-  }
+  },
+  "browserslist": [
+    "chrome >= 91",
+    "firefox >= 90",
+    "safari >= 14",
+    "edge >= 91"
+  ]
 }

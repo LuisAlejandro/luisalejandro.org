@@ -4,6 +4,9 @@ const config: NextConfig = {
   images: {
     domains: ["imgix.cosmicjs.com"],
   },
+  experimental: {
+    optimizePackageImports: ["yet-another-react-lightbox"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

@@ -1,6 +1,16 @@
 # Changelog
 
 
+## 3.0.11 (2025-07-15)
+
+### Changed
+
+* Improving cache rules. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+
 ## 3.0.10 (2025-07-06)
 
 ### Changed
