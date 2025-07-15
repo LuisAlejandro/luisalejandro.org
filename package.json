@@ -96,5 +96,11 @@
     "prettier": "^3.3.3",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3"
-  }
+  },
+  "browserslist": [
+    "chrome >= 91",
+    "firefox >= 90",
+    "safari >= 14",
+    "edge >= 91"
+  ]
 }
