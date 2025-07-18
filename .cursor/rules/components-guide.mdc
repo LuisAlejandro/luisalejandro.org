@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Describes the component organization and structure for the project.
 ---
 
 # Component Organization Guide

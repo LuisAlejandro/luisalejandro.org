@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Describes the coding conventions and best practices for the project.
 ---
 
 # Coding Conventions & Best Practices

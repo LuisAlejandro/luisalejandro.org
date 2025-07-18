@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Describes the API routes and backend functionality for the project.
 ---
 
 # API Routes & Backend Functionality
