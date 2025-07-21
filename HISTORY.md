@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 3.0.12 (2025-07-21)
+
+### Other
+
+* Fixing cache header for blog feeds. [Luis Alejandro Martínez Faneyth]
+
+* Improving cursor rules. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.11 (2025-07-15)
 
 ### Changed
