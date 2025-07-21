@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Development workflow and release management for the project.
 ---
 
 # Development Workflow & Release Management

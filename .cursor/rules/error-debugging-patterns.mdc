@@ -1,6 +1,6 @@
 ---
-alwaysApply: true
 description: Common error patterns and debugging steps for Next.js applications
+alwaysApply: false
 ---
 
 # Error Debugging Patterns

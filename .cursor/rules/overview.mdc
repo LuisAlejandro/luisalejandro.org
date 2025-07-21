@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Overview of the project structure and key features.
 ---
 
 # Luis Alejandro's Personal Website - Overview

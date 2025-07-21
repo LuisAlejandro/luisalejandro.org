@@ -1,7 +1,6 @@
 ---
-description:
-globs:
-alwaysApply: true
+alwaysApply: false
+description: Describes the project structure and navigation guide.
 ---
 
 # Project Structure & Navigation Guide
