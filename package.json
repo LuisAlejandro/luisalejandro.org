@@ -71,7 +71,7 @@
     "sass": "^1.89.1",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
-    "yet-another-react-lightbox": "^3.23.2",
+    "yet-another-react-lightbox": "^3.25.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
