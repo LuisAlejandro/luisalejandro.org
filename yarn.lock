@@ -4211,10 +4211,10 @@ googleapis-common@^8.0.0:
     qs "^6.7.0"
     url-template "^2.0.8"
 
-googleapis@^153.0.0:
-  version "153.0.0"
-  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-153.0.0.tgz#715cb221bb5b9827c6bfe392889769d2d504e009"
-  integrity sha512-QT9Tdy9lx7KuZx620RaR/YsjwZTSw/dqlPKQRVLnMKTzOEghN0uZaKvpsm8aXjK+yEKWhJ8HQ6qOXRsJPLZHpw==
+googleapis@^154.1.0:
+  version "154.1.0"
+  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-154.1.0.tgz#2d44401ab6ebd8239ba74c9548c3b396da9e7eff"
+  integrity sha512-lsgKftflkjR+PNdKDjy5e4zZUQO3BMaNLO0Q91uvr9YCy3aOqtEwkDtfhcBguFtFLsqj+XjdfDu2on6rtHNvYg==
   dependencies:
     google-auth-library "^10.1.0"
     googleapis-common "^8.0.0"
