@@ -24,7 +24,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.863.0",
+    "@aws-sdk/client-sesv2": "^3.864.0",
     "@cosmicjs/sdk": "^1.5.5",
     "@ctrl/react-adsense": "^1.8.0",
     "@gsap/react": "^2.1.2",
