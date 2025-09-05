@@ -43,7 +43,7 @@
     "encoding": "^0.1.13",
     "feed": "^5.1.0",
     "framer-motion": "^12.23.6",
-    "googleapis": "^156.0.0",
+    "googleapis": "^159.0.0",
     "gsap": "^3.13.0",
     "highlight.js": "^11.11.1",
     "html-react-parser": "^5.2.6",
