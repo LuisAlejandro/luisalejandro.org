@@ -72,7 +72,7 @@
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.25.0",
-    "yup": "^1.7.0"
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
