@@ -86,7 +86,7 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/react-imgix": "^9.5.4",
     "@typescript-eslint/eslint-plugin": "^8.34.0",
-    "@typescript-eslint/parser": "^8.35.1",
+    "@typescript-eslint/parser": "^8.45.0",
     "eslint": "^9.36.0",
     "eslint-config-next": "15.5.4",
     "eslint-plugin-react": "^7.37.2",
