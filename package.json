@@ -68,7 +68,7 @@
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "sass": "^1.92.1",
+    "sass": "^1.93.2",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.25.0",
