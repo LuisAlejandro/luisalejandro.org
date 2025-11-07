@@ -6080,10 +6080,10 @@ react-measure@^2.3.0:
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.0"
 
-react-photo-album@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-3.1.0.tgz#90ca5b116341543ced3024c580ebeb06394c1cfe"
-  integrity sha512-9PiWzwvckfefJRHY5E6kcNKoWNjyyFKhQ6Pl5nS1Z29QeP9h8zDOAoVQKWcv/AhZjRoduw1dybu9RNMj0+uPzQ==
+react-photo-album@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-3.2.1.tgz#18b22c615902b0d9d3daa8543f901080157572ac"
+  integrity sha512-I4C4ZN/BXE2KEj3lHEhlHc1sAeetgOPLF2UaiJgPW1s5CKotg1l2p+ZOpL9hA868pUZ9BA5TTXXGmFiFG+jdIg==
 
 react-player@^2.16.0:
   version "2.16.0"
