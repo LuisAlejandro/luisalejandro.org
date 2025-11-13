@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
 import { getPostAndMorePosts } from "@lib/api";
@@ -310,16 +309,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostLayout({
-  children,
-  params,
-}: PostLayoutProps) {
-  const { slug } = await params;
-  const data = await getPostAndMorePosts(slug);
-
-  if (!data?.post?.slug) {
-    notFound();
-  }
-
+export default async function PostLayout({ children }: PostLayoutProps) {
   return <>{children}</>;
 }

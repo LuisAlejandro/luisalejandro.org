@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 
-import { getAllCategories, getPostAndMorePosts } from "@lib/api";
+import {
+  getAllCategories,
+  getAllPostsSlugs,
+  getPostAndMorePosts,
+} from "@lib/api";
 import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
 
@@ -15,6 +19,14 @@ interface PostPageProps {
   params: {
     slug: string;
   };
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPostsSlugs();
+
+  return posts.map((post: { slug: string }) => ({
+    slug: post.slug,
+  }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
