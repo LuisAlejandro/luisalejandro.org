@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.0.13 (2025-11-13)
+
+### Other
+
+* Fixing performance issues. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.12 (2025-07-21)
 
 ### Other
