@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.2 (2025-11-14)
+
+### Other
+
+* Fixing wrong package.json. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.1 (2025-11-14)
 
 ### Other
