@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
 import { createBucketClient } from "@cosmicjs/sdk";
+import { logError } from "@lib/logger";
 import { compare, isAuthorizationValid, isSchemaValid } from "@lib/utils";
 import jwt from "jsonwebtoken";
 
@@ -128,7 +129,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ token }, { headers: corsHeaders });
   } catch (error) {
-    console.error(error);
+    logError("gymcontrol-token-api", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      hasWriteKey: !!WRITE_KEY,
+      hasActivationSecret: !!ACTIVATION_SECRET,
+      hasActivationSalt: !!ACTIVATION_SALT,
+    });
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500, headers: corsHeaders }

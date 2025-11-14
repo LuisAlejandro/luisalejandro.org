@@ -1,6 +1,7 @@
 import { createBucketClient } from "@cosmicjs/sdk";
 
 import { ENV_NAME } from "@constants/constants";
+import { logError } from "@lib/logger";
 
 const BUCKET_SLUG =
   process.env.COSMIC_BUCKET_SLUG || "luisalejandroorg-development";
@@ -24,7 +25,10 @@ export async function getAllPostsSlugs() {
       .props("slug");
     return data?.objects.length ? data?.objects : [];
   } catch (error) {
-    console.error("Error fetching all posts slugs:", error);
+    logError("getAllPostsSlugs", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+    });
     return [];
   }
 }
@@ -49,7 +53,11 @@ export async function getAllPostsForHome() {
       .sort("-created_at");
     return data?.objects;
   } catch (error) {
-    console.error("Error fetching all posts for home:", error);
+    logError("getAllPostsForHome", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
     return [];
   }
 }
@@ -66,7 +74,11 @@ export async function getLatestPosts() {
       .sort("-created_at");
     return data?.objects;
   } catch (error) {
-    console.error("Error fetching latest posts:", error);
+    logError("getLatestPosts", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
     return [];
   }
 }
@@ -81,7 +93,11 @@ export async function getPostById(id: string) {
       .props(["id", "title", "slug", "created_at"]);
     return data?.objects.length ? data?.objects[0] : undefined;
   } catch (error) {
-    console.error("Error fetching post by id:", error);
+    logError("getPostById", error, {
+      postId: id,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+    });
     return undefined;
   }
 }
@@ -99,7 +115,12 @@ export async function getPostsByIds(ids: string[]) {
       .sort("-created_at");
     return data?.objects.length ? data?.objects : [];
   } catch (error) {
-    console.error("Error fetching posts by ids:", error);
+    logError("getPostsByIds", error, {
+      postIds: ids,
+      idsCount: ids.length,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+    });
     return [];
   }
 }
@@ -131,6 +152,12 @@ export async function getMorePosts(slug: any) {
   } catch (error) {
     // Don't throw if there are no more posts
     if (is404(error)) return [];
+    logError("getMorePosts", error, {
+      slug,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
     throw error;
   }
 }
@@ -165,6 +192,12 @@ export async function getPostAndMorePosts(slug: any) {
         post: undefined,
         morePosts: [],
       };
+    logError("getPostAndMorePosts", error, {
+      slug,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
     throw error;
   }
 }
@@ -210,6 +243,12 @@ export async function getAllPostsForCategory(categorySlug: any) {
         categoryPosts: [],
         categoryName: undefined,
       };
+    logError("getAllPostsForCategory", error, {
+      categorySlug,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
     throw error;
   }
 }
@@ -225,6 +264,10 @@ export async function getAllCategories() {
   } catch (error) {
     // Don't throw if an slug doesn't exist
     if (is404(error)) return [];
+    logError("getAllCategories", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+    });
     throw error;
   }
 }
@@ -241,6 +284,11 @@ export async function getCategoryDetails(categorySlug: any) {
   } catch (error) {
     // Don't throw if an slug doesn't exist
     if (is404(error)) return undefined;
+    logError("getCategoryDetails", error, {
+      categorySlug,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+    });
     throw error;
   }
 }

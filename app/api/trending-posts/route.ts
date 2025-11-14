@@ -2,6 +2,7 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 import { getLatestPosts, getPostsByIds } from "@lib/api";
+import { logError } from "@lib/logger";
 
 export async function GET() {
   try {
@@ -37,7 +38,10 @@ export async function GET() {
     );
     return NextResponse.json({ response: posts });
   } catch (error) {
-    console.error("Error fetching trending posts:", error);
+    logError("trending-posts-api", error, {
+      hasDisqusShortname: !!process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
+      hasDisqusApiKey: !!process.env.DISQUS_API_KEY,
+    });
     return NextResponse.json({ response: [] });
   }
 }

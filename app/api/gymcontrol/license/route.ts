@@ -4,6 +4,8 @@ import Cryptr from "cryptr";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
+import { logError } from "@lib/logger";
+
 const BUCKET_SLUG =
   process.env.GYMCONTROL_COSMIC_BUCKET_SLUG || "gymcontrol-production";
 
@@ -142,7 +144,12 @@ export async function POST(request: NextRequest) {
       { status: 401, headers: corsHeaders }
     );
   } catch (error) {
-    console.error(error);
+    logError("gymcontrol-license-api", error, {
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      hasActivationSecret: !!ACTIVATION_SECRET,
+      hasActivationSalt: !!ACTIVATION_SALT,
+    });
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500, headers: corsHeaders }

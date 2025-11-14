@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
 import { initLeadWorkflow, verifyCaptcha } from "@lib/contactForm";
+import { logError } from "@lib/logger";
 import { isAuthorizationValid, isSchemaValid } from "@lib/utils";
 
 export async function POST(request: NextRequest) {
@@ -43,7 +44,9 @@ export async function POST(request: NextRequest) {
     await initLeadWorkflow(body);
     return NextResponse.json({ sent: true });
   } catch (error) {
-    console.error(error);
+    logError("contact-api", error, {
+      hasBody: !!request.body,
+    });
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

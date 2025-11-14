@@ -5,6 +5,7 @@ import {
   getAllPostsSlugs,
   getPostAndMorePosts,
 } from "@lib/api";
+import { logError } from "@lib/logger";
 import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
 
@@ -31,28 +32,29 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
-  const data = await getPostAndMorePosts(slug);
-  const allCategories = (await getAllCategories()) || [];
+  try {
+    const data = await getPostAndMorePosts(slug);
+    const allCategories = (await getAllCategories()) || [];
 
-  if (!data?.post?.slug) {
-    notFound();
-  }
+    if (!data?.post?.slug) {
+      notFound();
+    }
 
-  const post = {
-    ...data.post,
-    metadata: {
-      ...data.post?.metadata,
-      teaser: await markdownToHtml(data.post?.metadata?.teaser || ""),
-      content: await markdownToHtml(data.post?.metadata?.content || ""),
-    },
-  };
+    const post = {
+      ...data.post,
+      metadata: {
+        ...data.post?.metadata,
+        teaser: await markdownToHtml(data.post?.metadata?.teaser || ""),
+        content: await markdownToHtml(data.post?.metadata?.content || ""),
+      },
+    };
 
-  const morePosts = data.morePosts || [];
+    const morePosts = data.morePosts || [];
 
-  // Generate JSON-LD structured data
-  const blogPostingJsonLd = generateBlogPostingJsonLd(post);
+    // Generate JSON-LD structured data
+    const blogPostingJsonLd = generateBlogPostingJsonLd(post);
 
-  return (
+    return (
     <>
       <script
         type="application/ld+json"
@@ -84,7 +86,13 @@ export default async function PostPage({ params }: PostPageProps) {
         <Footer />
       </div>
     </>
-  );
+    );
+  } catch (error) {
+    logError("blog-post-page", error, {
+      slug,
+    });
+    throw error;
+  }
 }
 
 // Metadata is now handled by layout.tsx for better SEO optimization

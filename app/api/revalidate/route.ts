@@ -1,6 +1,8 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
+import { logError } from "@lib/logger";
+
 interface RevalidateRequestBody {
   posts?: Array<{
     slug: string;
@@ -71,7 +73,9 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Revalidation error:", error);
+    logError("revalidate-api", error, {
+      hasSecret: !!process.env.REVALIDATE_SECRET,
+    });
     return NextResponse.json(
       {
         message: "Error during revalidation",
