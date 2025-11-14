@@ -14,8 +14,24 @@ export function logError(
   error: unknown,
   metadata?: ErrorContext
 ): void {
-  const errorMessage = error instanceof Error ? error.message : String(error);
-  const errorStack = error instanceof Error ? error.stack : undefined;
+  let errorMessage: string;
+  let errorStack: string | undefined;
+
+  if (error instanceof Error) {
+    errorMessage = error.message;
+    errorStack = error.stack;
+  } else if (typeof error === "object" && error !== null) {
+    try {
+      errorMessage = JSON.stringify(error);
+    } catch {
+      errorMessage = String(error);
+    }
+    errorStack = undefined;
+  } else {
+    errorMessage = String(error);
+    errorStack = undefined;
+  }
+
   const errorDetails = {
     timestamp: new Date().toISOString(),
     context,
