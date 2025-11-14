@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { canonicalHostnameUrl } from "@constants/constants";
 import { getAllCategories, getAllPostsForHome } from "@lib/api";
+import { logError } from "@lib/logger";
 
 export async function GET() {
   try {
@@ -80,7 +81,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error("Error generating sitemap:", error);
+    logError("sitemap", error);
     return new NextResponse("Error generating sitemap", { status: 500 });
   }
 }

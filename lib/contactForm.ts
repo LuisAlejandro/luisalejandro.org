@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import { logError } from "@lib/logger";
 import {
   addSpreadsheetRow,
   addUserMailchimp,
@@ -20,7 +21,7 @@ export async function verifyCaptcha(token: any) {
       return false;
     }
   } catch (error) {
-    console.error(error);
+    logError("verify-captcha", error);
     return false;
   }
 }
@@ -34,10 +35,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[checkUserOnMailchimpList] There was an error communicating with Mailchimp API."
-    );
+    logError("init-lead-workflow-check-mailchimp", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 
@@ -46,11 +46,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[createSESUser] There was an error communicating with AWS API."
-    );
-    console.error(error);
+    logError("init-lead-workflow-create-ses-user", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 
@@ -61,11 +59,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[addUserMailchimp] There was an error communicating with Mailchimp API."
-    );
-    console.error(error);
+    logError("init-lead-workflow-add-mailchimp", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 
@@ -76,11 +72,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[sendWelcomeEmail] There was an error communicating with AWS API."
-    );
-    console.error(error);
+    logError("init-lead-workflow-send-welcome-email", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 
@@ -89,11 +83,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[sendCompanyEmail] There was an error communicating with AWS API."
-    );
-    console.error(error);
+    logError("init-lead-workflow-send-company-email", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 
@@ -102,11 +94,9 @@ export async function initLeadWorkflow(data: any) {
   } catch (error) {
     serverErrorMessage =
       "Error in server operation: external service communication problem.";
-    console.error(serverErrorMessage);
-    console.error(
-      "[addSpreadsheetRow] There was an error communicating with Google Cloud API."
-    );
-    console.error(error);
+    logError("init-lead-workflow-add-spreadsheet-row", error, {
+      userEmail: data?.contactEmail,
+    });
     throw error;
   }
 }

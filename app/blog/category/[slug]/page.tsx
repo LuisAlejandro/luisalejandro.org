@@ -3,6 +3,7 @@ import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { notFound } from "next/navigation";
 
 import { getAllPostsForCategory } from "@lib/api";
+import { logError } from "@lib/logger";
 
 import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
@@ -18,14 +19,15 @@ interface CategoryPageProps {
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
-  const { categoryPosts, categoryName } =
-    (await getAllPostsForCategory(slug)) || {};
+  try {
+    const { categoryPosts, categoryName } =
+      (await getAllPostsForCategory(slug)) || {};
 
-  if (!categoryPosts || !categoryName) {
-    notFound();
-  }
+    if (!categoryPosts || !categoryName) {
+      notFound();
+    }
 
-  return (
+    return (
     <div className="bg-gray-6 text-black w-full my-0 mx-auto">
       <Header />
       <main className="bg-white pb-50">
@@ -44,5 +46,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </main>
       <Footer />
     </div>
-  );
+    );
+  } catch (error) {
+    logError("blog-category-page", error, {
+      slug,
+    });
+    throw error;
+  }
 }

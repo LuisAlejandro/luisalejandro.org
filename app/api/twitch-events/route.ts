@@ -2,6 +2,8 @@ import axios from "axios";
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
+import { logError } from "@lib/logger";
+
 const twitchSigningSecret = process.env.TWITCH_SIGNING_SECRET;
 const githubPersonalAccessToken = process.env.REPO_PERSONAL_ACCESS_TOKEN;
 
@@ -64,7 +66,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({}, { status: 200 });
   } catch (error) {
-    console.error("Twitch webhook error:", error);
+    logError("twitch-events-api", error, {
+      hasSigningSecret: !!twitchSigningSecret,
+      hasGithubToken: !!githubPersonalAccessToken,
+    });
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

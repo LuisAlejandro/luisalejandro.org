@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { canonicalHostnameUrl } from "@constants/constants";
+import { logError } from "@lib/logger";
 
 export async function GET() {
   try {
@@ -21,7 +22,7 @@ Sitemap: ${canonicalHostnameUrl}/sitemap.xml`;
       },
     });
   } catch (error) {
-    console.error("Error generating robots.txt:", error);
+    logError("robots-txt", error);
     return new NextResponse("Error generating robots.txt", { status: 500 });
   }
 }

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 
 import { config } from "@constants/constants";
 import { getAllCategories } from "@lib/api";
+import { logError } from "@lib/logger";
 
 import { Section } from "@components/common/Layout/Section";
 import Footer from "@components/Portfolio/Footer/Footer";
@@ -67,13 +68,14 @@ export const metadata: Metadata = {
 };
 
 export default async function CategoriesPage() {
-  const categories = (await getAllCategories()) || [];
+  try {
+    const categories = (await getAllCategories()) || [];
 
-  if (!categories?.length) {
-    notFound();
-  }
+    if (!categories?.length) {
+      notFound();
+    }
 
-  return (
+    return (
     <div className="bg-gray-6 text-black w-full my-0 mx-auto">
       <Header />
       <main className="bg-white pb-50">
@@ -126,5 +128,9 @@ export default async function CategoriesPage() {
       </main>
       <Footer />
     </div>
-  );
+    );
+  } catch (error) {
+    logError("blog-category-index-page", error);
+    throw error;
+  }
 }

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { canonicalHostnameUrl } from "@constants/constants";
 import { getAllPostsForHome } from "@lib/api";
+import { logError } from "@lib/logger";
 
 export async function GET() {
   try {
@@ -53,7 +54,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error("Error generating Atom feed:", error);
+    logError("atom-feed", error);
     return new NextResponse("Error generating Atom feed", { status: 500 });
   }
 }
