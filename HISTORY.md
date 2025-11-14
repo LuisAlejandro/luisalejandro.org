@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 3.1.1 (2025-11-14)
+
+### Other
+
+* Improving logs. [Luis Alejandro Martínez Faneyth]
+
+* Improving logs. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.0 (2025-11-14)
 
 ### Other
