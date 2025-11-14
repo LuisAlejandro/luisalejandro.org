@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.0 (2025-11-14)
+
+### Other
+
+* Adding sentry logging. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.0.13 (2025-11-13)
 
 ### Other
