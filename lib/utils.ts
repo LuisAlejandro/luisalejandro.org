@@ -7,13 +7,14 @@ import jwt from "jsonwebtoken";
 import { TextEncoder } from "util";
 
 import { JWT_SECRET } from "@constants/constants";
+import { logError } from "@lib/logger";
 
 export const isSchemaValid = async (schema: any, body: any) => {
   try {
     const status = await schema.isValid(body);
     return status;
   } catch (error) {
-    console.error(error);
+    logError("isSchemaValid", error);
     return false;
   }
 };
@@ -29,7 +30,7 @@ export const isAuthorizationValid = async (header: any, body: any) => {
     const status = JSON.stringify(payload) === JSON.stringify(body);
     return status;
   } catch (error) {
-    console.log(error);
+    logError("isAuthorizationValid", error);
     return false;
   }
 };

@@ -1,3 +1,4 @@
+import { logError } from "@lib/logger";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
@@ -16,7 +17,7 @@ export default async function markdownToHtml(markdown: any) {
       .process(markdown);
     return result.toString();
   } catch (error) {
-    console.error(error);
+    logError("markdownToHtml", error, { markdownLength: markdown?.length });
     return "";
   }
 }

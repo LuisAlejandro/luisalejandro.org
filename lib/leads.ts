@@ -21,6 +21,7 @@ import {
   SES_WELCOME_SENDER_EMAIL,
   SES_WELCOME_TEMPLATE_ID,
 } from "@constants/constants";
+import { logError } from "@lib/logger";
 import axios from "axios";
 import crypto from "crypto";
 import { google } from "googleapis";
@@ -46,9 +47,9 @@ const createSESContactList = async () => {
     await ses.send(createContactList);
     return true;
   } catch (error) {
-    console.error(
-      `[createContactList] There was an error creating the SES contact list.`
-    );
+    logError("createContactList", error, {
+      message: "Error creating SES contact list",
+    });
     throw error;
   }
 };
@@ -69,7 +70,7 @@ const checkIfSESListExists = async () => {
     }
     return true;
   } catch (error) {
-    console.error(error);
+    logError("checkIfSESListExists", error);
     return false;
   }
 };
@@ -90,7 +91,7 @@ const checkIfContactExists = async (email: any) => {
     }
     return false;
   } catch (error) {
-    console.error(error);
+    logError("checkIfContactExists", error, { email });
     return false;
   }
 };
@@ -118,9 +119,7 @@ export async function createSESUser(data: any) {
       );
     }
   } catch (error) {
-    console.error(
-      `[createSESUser] There was an error trying to add your user ${email}.`
-    );
+    logError("createSESUser", error, { email });
     throw error;
   }
 }
@@ -190,7 +189,7 @@ export async function checkUserOnMailchimpList(data: any) {
     }
     return false;
   } catch (error) {
-    console.error(error);
+    logError("checkUserOnMailchimpList", error, { email, listId });
     return false;
   }
 }
@@ -277,9 +276,9 @@ const createSESWelcomeTemplate = async () => {
     );
     return true;
   } catch (error) {
-    console.error(
-      `[createSESWelcomeTemplate] There was an error creating the SES template.`
-    );
+    logError("createSESWelcomeTemplate", error, {
+      templateName: SES_WELCOME_TEMPLATE_ID,
+    });
     throw error;
   }
 };
@@ -302,7 +301,9 @@ const checkIfSESWelcomeTemplateExists = async () => {
     }
     return true;
   } catch (error) {
-    console.error(error);
+    logError("checkIfSESWelcomeTemplateExists", error, {
+      templateName: SES_WELCOME_TEMPLATE_ID,
+    });
     return false;
   }
 };
@@ -328,9 +329,9 @@ const createSESCompanyTemplate = async () => {
     );
     return true;
   } catch (error) {
-    console.error(
-      `[createSESCompanyTemplate] There was an error creating the SES template.`
-    );
+    logError("createSESCompanyTemplate", error, {
+      templateName: SES_COMPANY_TEMPLATE_ID,
+    });
     throw error;
   }
 };
@@ -353,7 +354,9 @@ const checkIfSESCompanyTemplateExists = async () => {
     }
     return true;
   } catch (error) {
-    console.error(error);
+    logError("checkIfSESCompanyTemplateExists", error, {
+      templateName: SES_COMPANY_TEMPLATE_ID,
+    });
     return false;
   }
 };
@@ -395,9 +398,7 @@ export async function sendWelcomeEmail(data: any) {
     }
     return false;
   } catch (error) {
-    console.error(
-      `[sendWelcomeEmail] There was an error trying send a welcome email to ${toEmail}.`
-    );
+    logError("sendWelcomeEmail", error, { toEmail, toName });
     throw error;
   }
 }
@@ -447,9 +448,7 @@ export async function sendCompanyEmail(data: any) {
     }
     return false;
   } catch (error) {
-    console.error(
-      `[sendCompanyEmail] There was an error trying send a company email from ${replyToEmail}.`
-    );
+    logError("sendCompanyEmail", error, { replyToEmail, replyToName });
     throw error;
   }
 }

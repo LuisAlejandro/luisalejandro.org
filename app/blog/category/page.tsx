@@ -76,29 +76,29 @@ export default async function CategoriesPage() {
     }
 
     return (
-    <div className="bg-gray-6 text-black w-full my-0 mx-auto">
-      <Header />
-      <main className="bg-white pb-50">
-        <svg viewBox="0 0 1920 200">
-          <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-        </svg>
-        <Section grid overflowVisible oneColumn nopadding wide>
-          <div className="w-full px-[2%] py-8">
-            <h1 className="text-4xl font-light leading-4 mt-0 mb-8 text-center">
-              Blog Categories
-            </h1>
-            <p className="text-lg font-light text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-              Explore posts organized by topics. Click on any category to see
-              all related articles.
-            </p>
+      <div className="bg-gray-6 text-black w-full my-0 mx-auto">
+        <Header />
+        <main className="bg-white pb-50">
+          <svg viewBox="0 0 1920 200">
+            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+          </svg>
+          <Section grid overflowVisible oneColumn nopadding wide>
+            <div className="w-full px-[2%] py-8">
+              <h1 className="text-4xl font-light leading-4 mt-0 mb-8 text-center">
+                Blog Categories
+              </h1>
+              <p className="text-lg font-light text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                Explore posts organized by topics. Click on any category to see
+                all related articles.
+              </p>
 
-            <div className="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto">
-              {categories.map((category: any) => {
-                return (
-                  <Link
-                    key={category.id}
-                    href={`/blog/category/${category.slug}`}
-                    className={`
+              <div className="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto">
+                {categories.map((category: any) => {
+                  return (
+                    <Link
+                      key={category.id}
+                      href={`/blog/category/${category.slug}`}
+                      className={`
                       inline-block align-top font-normal
                       bg-[rgb(210,210,210)] text-[rgb(90,90,90)]
                       rounded-md transition-all duration-300 ease-in-out
@@ -106,28 +106,28 @@ export default async function CategoriesPage() {
                       active:scale-95 active:bg-white
                       text-base px-4 py-2
                     `}
-                    title={`View all posts in the "${category.title}" category`}
-                    rel="tag"
-                  >
-                    {category.title}
-                  </Link>
-                );
-              })}
-            </div>
+                      title={`View all posts in the "${category.title}" category`}
+                      rel="tag"
+                    >
+                      {category.title}
+                    </Link>
+                  );
+                })}
+              </div>
 
-            <div className="text-center mt-12">
-              <Link
-                href="/blog"
-                className="inline-block text-lg text-[rgb(90,90,90)] hover:text-black transition-colors duration-200 underline"
-              >
-                ← Back to all posts
-              </Link>
+              <div className="text-center mt-12">
+                <Link
+                  href="/blog"
+                  className="inline-block text-lg text-[rgb(90,90,90)] hover:text-black transition-colors duration-200 underline"
+                >
+                  ← Back to all posts
+                </Link>
+              </div>
             </div>
-          </div>
-        </Section>
-      </main>
-      <Footer />
-    </div>
+          </Section>
+        </main>
+        <Footer />
+      </div>
     );
   } catch (error) {
     logError("blog-category-index-page", error);

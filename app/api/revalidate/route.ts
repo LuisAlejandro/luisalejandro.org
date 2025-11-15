@@ -67,6 +67,9 @@ export async function POST(request: NextRequest) {
       "/sitemap.xml"
     );
 
+    console.log(`[revalidate-api] Revalidation completed successfully`, {
+      revalidatedPaths,
+    });
     return NextResponse.json({
       message: "Revalidation completed successfully",
       revalidatedPaths,

@@ -34,7 +34,12 @@ export async function register() {
         maskAllText: true,
         blockAllMedia: true,
       }),
+      // send console.log, console.warn, and console.error calls as logs to Sentry
+      Sentry.consoleLoggingIntegration({ levels: ["log", "warn", "error"] }),
     ],
+
+    // Enable logs to be sent to Sentry
+    enableLogs: true,
   });
 
   console.log("[Sentry] Successfully initialized on client");
