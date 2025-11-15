@@ -50,6 +50,7 @@ export async function POST(request: NextRequest) {
     const token = request.headers.get("authorization");
 
     if (!token) {
+      console.log(`[gymcontrol-license-api] Missing authorization header`);
       return NextResponse.json(
         { error: "Missing authorization header" },
         { status: 400, headers: corsHeaders }
@@ -57,6 +58,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isSchemaValid(schema, body)) {
+      console.log(`[gymcontrol-license-api] Invalid body`);
       return NextResponse.json(
         { error: "Invalid body" },
         { status: 400, headers: corsHeaders }
@@ -68,6 +70,7 @@ export async function POST(request: NextRequest) {
       ACTIVATION_SECRET || ""
     )) as DecodedToken;
     if (!decodedToken) {
+      console.log(`[gymcontrol-license-api] Unauthorized: token`);
       return NextResponse.json(
         { message: "Unauthorized: token" },
         { status: 401, headers: corsHeaders }
@@ -109,6 +112,9 @@ export async function POST(request: NextRequest) {
       storedPassword
     );
     if (!isValidPassword) {
+      console.log(
+        `[gymcontrol-license-api] Unauthorized: password ${decodedToken.username}`
+      );
       return NextResponse.json(
         { message: "Unauthorized: password" },
         { status: 401, headers: corsHeaders }
@@ -125,11 +131,17 @@ export async function POST(request: NextRequest) {
         ACTIVATION_SALT || ""
       )) as DecodedKey;
       if (!decodedKey) {
+        console.log(
+          `[gymcontrol-license-api] Unauthorized: key ${decodedToken.username}`
+        );
         return NextResponse.json(
           { message: "Unauthorized: key" },
           { status: 401, headers: corsHeaders }
         );
       }
+      console.log(
+        `[gymcontrol-license-api] Authorized: key ${decodedToken.username}`
+      );
       return NextResponse.json(
         {
           type: decodedKey.type,
@@ -139,6 +151,9 @@ export async function POST(request: NextRequest) {
         { headers: corsHeaders }
       );
     }
+    console.log(
+      `[gymcontrol-license-api] Unauthorized: salt ${decodedToken.username}`
+    );
     return NextResponse.json(
       { message: "Unauthorized: salt" },
       { status: 401, headers: corsHeaders }

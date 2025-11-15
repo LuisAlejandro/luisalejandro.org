@@ -64,6 +64,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    console.log(`[twitch-events-api] Event processed successfully`, {
+      messageType,
+      subscription: parsedBody.subscription.type,
+    });
     return NextResponse.json({}, { status: 200 });
   } catch (error) {
     logError("twitch-events-api", error, {

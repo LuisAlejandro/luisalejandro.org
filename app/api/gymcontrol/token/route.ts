@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
     const authHeader = request.headers.get("authorization");
 
     if (!authHeader) {
+      console.log(`[gymcontrol-token-api] Missing authorization header`);
       return NextResponse.json(
         { error: "Missing authorization header" },
         { status: 400, headers: corsHeaders }
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isSchemaValid(schema, body)) {
+      console.log(`[gymcontrol-token-api] Invalid body`);
       return NextResponse.json(
         { error: "Invalid body" },
         { status: 400, headers: corsHeaders }
@@ -58,6 +60,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!isAuthorizationValid(authHeader, body)) {
+      console.log(`[gymcontrol-token-api] Invalid authorization`);
       return NextResponse.json(
         { error: "Invalid authorization" },
         { status: 401, headers: corsHeaders }
@@ -87,6 +90,7 @@ export async function POST(request: NextRequest) {
       .sort("-created_at");
 
     if (data.objects.length === 0) {
+      console.log(`[gymcontrol-token-api] User not found`);
       return NextResponse.json(
         { message: "User not found" },
         { status: 404, headers: corsHeaders }
@@ -101,6 +105,7 @@ export async function POST(request: NextRequest) {
     const isValidPassword = await compare(password, storedPassword);
 
     if (!isValidPassword) {
+      console.log(`[gymcontrol-token-api] Unauthorized: password`);
       return NextResponse.json(
         { message: "Unauthorized: password" },
         { status: 401, headers: corsHeaders }
@@ -115,6 +120,7 @@ export async function POST(request: NextRequest) {
         },
       });
     } else if (storedIdentifier !== identifier) {
+      console.log(`[gymcontrol-token-api] Unauthorized: identifier`);
       return NextResponse.json(
         { message: "Unauthorized: identifier" },
         { status: 401, headers: corsHeaders }
@@ -127,6 +133,7 @@ export async function POST(request: NextRequest) {
       { expiresIn: "5min" }
     );
 
+    console.log(`[gymcontrol-token-api] Token generated`);
     return NextResponse.json({ token }, { headers: corsHeaders });
   } catch (error) {
     logError("gymcontrol-token-api", error, {

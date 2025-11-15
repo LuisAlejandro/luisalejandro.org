@@ -27,14 +27,14 @@ export async function verifyCaptcha(token: any) {
 }
 
 export async function initLeadWorkflow(data: any) {
-  let serverErrorMessage = "";
   let isUserOnMailchimpList = false;
 
   try {
+    console.log(
+      `[initLeadWorkflow] Checking user on Mailchimp list ${data?.contactEmail}`
+    );
     isUserOnMailchimpList = (await checkUserOnMailchimpList(data)) || false;
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-check-mailchimp", error, {
       userEmail: data?.contactEmail,
     });
@@ -42,10 +42,9 @@ export async function initLeadWorkflow(data: any) {
   }
 
   try {
+    console.log(`[initLeadWorkflow] Creating SES user ${data?.contactEmail}`);
     await createSESUser(data);
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-create-ses-user", error, {
       userEmail: data?.contactEmail,
     });
@@ -54,11 +53,12 @@ export async function initLeadWorkflow(data: any) {
 
   try {
     if (!isUserOnMailchimpList) {
+      console.log(
+        `[initLeadWorkflow] Adding user to Mailchimp list ${data?.contactEmail}`
+      );
       await addUserMailchimp(data);
     }
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-add-mailchimp", error, {
       userEmail: data?.contactEmail,
     });
@@ -67,11 +67,12 @@ export async function initLeadWorkflow(data: any) {
 
   try {
     if (!isUserOnMailchimpList) {
+      console.log(
+        `[initLeadWorkflow] Sending welcome email to ${data?.contactEmail}`
+      );
       await sendWelcomeEmail(data);
     }
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-send-welcome-email", error, {
       userEmail: data?.contactEmail,
     });
@@ -79,10 +80,11 @@ export async function initLeadWorkflow(data: any) {
   }
 
   try {
+    console.log(
+      `[initLeadWorkflow] Sending company email to ${data?.contactEmail}`
+    );
     await sendCompanyEmail(data);
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-send-company-email", error, {
       userEmail: data?.contactEmail,
     });
@@ -90,10 +92,11 @@ export async function initLeadWorkflow(data: any) {
   }
 
   try {
+    console.log(
+      `[initLeadWorkflow] Adding spreadsheet row to ${data?.contactEmail}`
+    );
     await addSpreadsheetRow(data);
   } catch (error) {
-    serverErrorMessage =
-      "Error in server operation: external service communication problem.";
     logError("init-lead-workflow-add-spreadsheet-row", error, {
       userEmail: data?.contactEmail,
     });

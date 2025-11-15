@@ -28,24 +28,24 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     }
 
     return (
-    <div className="bg-gray-6 text-black w-full my-0 mx-auto">
-      <Header />
-      <main className="bg-white pb-50">
-        <BlogCategoryClient />
-        <svg viewBox="0 0 1920 200">
-          <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-        </svg>
-        <Section grid overflowVisible oneColumn nopadding wide>
-          <h1 className="text-4xl font-light leading-4 mt-0 mb-[10px]">
-            Posts related to {categoryName}
-          </h1>
-        </Section>
-        <Section grid overflowVisible oneColumn nopadding wide>
-          {categoryPosts?.length > 0 && <MoreStories posts={categoryPosts} />}
-        </Section>
-      </main>
-      <Footer />
-    </div>
+      <div className="bg-gray-6 text-black w-full my-0 mx-auto">
+        <Header />
+        <main className="bg-white pb-50">
+          <BlogCategoryClient />
+          <svg viewBox="0 0 1920 200">
+            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+          </svg>
+          <Section grid overflowVisible oneColumn nopadding wide>
+            <h1 className="text-4xl font-light leading-4 mt-0 mb-[10px]">
+              Posts related to {categoryName}
+            </h1>
+          </Section>
+          <Section grid overflowVisible oneColumn nopadding wide>
+            {categoryPosts?.length > 0 && <MoreStories posts={categoryPosts} />}
+          </Section>
+        </main>
+        <Footer />
+      </div>
     );
   } catch (error) {
     logError("blog-category-page", error, {
