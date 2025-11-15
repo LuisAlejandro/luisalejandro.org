@@ -1,9 +1,18 @@
 # Changelog
 
 
+## 3.1.3 (2025-11-15)
+
+### Other
+
+* Adding sentry logging. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.2 (2025-11-14)
 
 ### Other
+
+* Disabling telemetry. [Luis Alejandro Martínez Faneyth]
 
 * Fixing wrong package.json. [Luis Alejandro Martínez Faneyth]
 
