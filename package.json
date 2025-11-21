@@ -32,7 +32,7 @@
     "@sentry/nextjs": "^10.25.0",
     "@next/third-parties": "^16.0.3",
     "@svgr/webpack": "^8.1.0",
-    "axios": "^1.13.1",
+    "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
     "chart.js": "^4.5.1",
     "chartjs-plugin-annotation": "^3.1.0",
