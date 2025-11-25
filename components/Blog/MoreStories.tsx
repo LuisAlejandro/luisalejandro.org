@@ -18,6 +18,11 @@ export default function MoreStories({ posts }: any) {
   const postsToShow = remainingPosts.slice(0, visiblePostsCount);
   const hasMorePosts = remainingPosts.length > visiblePostsCount;
 
+  // Reset pagination when posts array changes
+  useEffect(() => {
+    setVisiblePostsCount(9);
+  }, [posts.length, posts[0]?.id]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

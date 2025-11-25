@@ -7,10 +7,7 @@ import { logError } from "@lib/logger";
 import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogJsonLd } from "@lib/structuredData";
 
-import HeroPost from "@components/Blog/HeroPost";
-import MoreStories from "@components/Blog/MoreStories";
-import PostPreview from "@components/Blog/PostPreview";
-import { Section } from "@components/common/Layout/Section";
+import BlogSearchWrapper from "@components/Blog/BlogSearchWrapper";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import BlogClient from "@side-effects/Blog/BlogClient";
@@ -32,9 +29,6 @@ export default async function BlogPage() {
       notFound();
     }
 
-    const heroPost = posts[0];
-    const morePosts = posts.slice(1);
-
     // Generate JSON-LD structured data
     const blogJsonLd = generateBlogJsonLd(posts);
 
@@ -52,42 +46,7 @@ export default async function BlogPage() {
           <svg viewBox="0 0 1920 200">
             <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
           </svg>
-          <Section grid overflowVisible oneColumn nopadding wide>
-            {heroPost && (
-              <>
-                <HeroPost
-                  className="hidden lg:flex"
-                  type="big"
-                  id={heroPost.id}
-                  slug={heroPost.slug}
-                  title={heroPost.title}
-                  coverImage={heroPost.metadata.hero}
-                  categories={heroPost.metadata.categories}
-                  excerpt={heroPost.metadata.teaser}
-                  date={heroPost.created_at}
-                />
-                <div
-                  id="featured-preview"
-                  className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto"
-                >
-                  <PostPreview
-                    key={heroPost.id}
-                    type="preview"
-                    id={heroPost.id}
-                    slug={heroPost.slug}
-                    title={heroPost.title}
-                    coverImage={heroPost.metadata.hero}
-                    categories={heroPost.metadata.categories}
-                    excerpt={heroPost.metadata.teaser}
-                    date={heroPost.created_at}
-                  />
-                </div>
-              </>
-            )}
-          </Section>
-          <Section grid overflowVisible oneColumn nopadding wide>
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </Section>
+          <BlogSearchWrapper posts={posts} />
         </main>
         <Footer />
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -29,10 +29,10 @@
     "@ctrl/react-adsense": "^2.1.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.2.2",
-    "@sentry/nextjs": "^10.25.0",
+    "@sentry/nextjs": "^10.27.0",
     "@next/third-parties": "^16.0.3",
     "@svgr/webpack": "^8.1.0",
-    "axios": "^1.13.1",
+    "axios": "^1.13.2",
     "bcrypt": "^6.0.0",
     "chart.js": "^4.5.1",
     "chartjs-plugin-annotation": "^3.1.0",
@@ -44,7 +44,7 @@
     "encoding": "^0.1.13",
     "feed": "^5.1.0",
     "framer-motion": "^12.23.24",
-    "googleapis": "^165.0.0",
+    "googleapis": "^166.0.0",
     "gsap": "^3.13.0",
     "highlight.js": "^11.11.1",
     "html-react-parser": "^5.2.7",
@@ -96,7 +96,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.3.3",
     "tailwindcss": "^4.1.17",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "browserslist": [
     "chrome >= 91",

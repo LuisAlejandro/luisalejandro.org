@@ -292,3 +292,87 @@ export async function getCategoryDetails(categorySlug: any) {
     throw error;
   }
 }
+
+export async function searchPosts(query: string) {
+  try {
+    if (!query || query.trim().length === 0) {
+      return [];
+    }
+
+    const searchQuery = query.trim();
+    const regexPattern = { $regex: searchQuery, $options: "i" };
+
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
+        $or: [
+          { title: regexPattern },
+          { "metadata.teaser": regexPattern },
+        ],
+      })
+      .props([
+        "id",
+        "slug",
+        "title",
+        "metadata.hero",
+        "metadata.categories",
+        "metadata.teaser",
+        "created_at",
+      ])
+      .sort("-created_at");
+
+    // Filter by category names (title and teaser already filtered by Cosmic query)
+    const posts = data?.objects || [];
+    const searchQueryLower = searchQuery.toLowerCase();
+
+    // Also search for posts matching categories
+    // Note: This requires fetching all posts to check categories, which is less efficient
+    // but necessary since Cosmic.js doesn't support nested field search in categories
+    const allPostsData = await cosmic.objects
+      .find({
+        type: "posts",
+        status:
+          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
+      })
+      .props([
+        "id",
+        "slug",
+        "title",
+        "metadata.hero",
+        "metadata.categories",
+        "metadata.teaser",
+        "created_at",
+      ])
+      .sort("-created_at");
+
+    // Find posts that match categories but weren't already found by title/teaser search
+    const existingPostIds = new Set(posts.map((p: any) => p.id));
+    const categoryMatches = (allPostsData?.objects || []).filter((post: any) => {
+      // Skip if already found by title/teaser search
+      if (existingPostIds.has(post.id)) return false;
+
+      // Check if query matches any category title
+      return post.metadata?.categories?.some((cat: any) =>
+        cat.title?.toLowerCase().includes(searchQueryLower)
+      ) || false;
+    });
+
+    // Combine results and deduplicate
+    const allResults = [...posts, ...categoryMatches];
+    const uniqueResults = allResults.filter(
+      (post, index, self) => index === self.findIndex((p) => p.id === post.id)
+    );
+
+    return uniqueResults;
+  } catch (error) {
+    logError("searchPosts", error, {
+      query,
+      bucketSlug: BUCKET_SLUG,
+      hasReadKey: !!READ_KEY,
+      envName: ENV_NAME,
+    });
+    return [];
+  }
+}

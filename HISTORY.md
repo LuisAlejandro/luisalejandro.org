@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.4 (2025-11-25)
+
+### Other
+
+* Adding search bar. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.3 (2025-11-15)
 
 ### Other
