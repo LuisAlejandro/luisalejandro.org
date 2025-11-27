@@ -16,6 +16,7 @@ import {
   ENV_NAME,
   canonicalHostnameUrl,
 } from "@constants/constants";
+import { trackPixelEvent } from "@lib/pixel";
 import FriendlyDate from "./FriendlyDate";
 
 export default function HeroPost({
@@ -82,6 +83,12 @@ export default function HeroPost({
               <button
                 type="button"
                 data-ident={id}
+                onClick={() =>
+                  trackPixelEvent("ClickShare", {
+                    location: "frontpage",
+                    postId: id,
+                  })
+                }
                 className="blog-category-button inline-block align-top text-sm uppercase h-[28px] leading-[20px] my-0 mb-[4px] ml-0 py-[3px] pl-[5px] pr-[5px] bg-[rgb(210,210,210)] text-[rgb(90,90,90)] rounded-r-[5px] transition-colors duration-200 ease-in hover:bg-white active:my-[4px] active:ml-0 active:py-[3px] active:pl-[5px] active:pr-[5px]"
               >
                 <AiOutlineRetweet

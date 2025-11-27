@@ -11,11 +11,13 @@ import FriendlyDate from "@components/Blog/FriendlyDate";
 import RelatedStories from "@components/Post/RelatedStories";
 import {
   ADSENSE_AD_SLOT_ID,
+  ADSENSE_AD_SLOT_ID_CONTENT_TOP,
   DISQUS_SHORTNAME,
   ENV_NAME,
   canonicalHostnameUrl,
 } from "@constants/constants";
 import { renderHtmlContent } from "@lib/htmlRenderer";
+import { trackPixelEvent } from "@lib/pixel";
 
 import AdSenseBanner from "@side-effects/AdSenseBanner";
 import CoverImage from "./CoverImage";
@@ -127,6 +129,13 @@ export default function PostContent({
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              onClick={() =>
+                trackPixelEvent("ClickShare", {
+                  location: "post",
+                  postId: id,
+                  network: "twitter",
+                })
+              }
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
               <span className="block w-[60px] h-[60px] my-0 mx-auto">
@@ -145,6 +154,13 @@ export default function PostContent({
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              onClick={() =>
+                trackPixelEvent("ClickShare", {
+                  location: "post",
+                  postId: id,
+                  network: "facebook",
+                })
+              }
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
               <span className="block w-[60px] h-[60px] my-0 mx-auto">
@@ -163,6 +179,13 @@ export default function PostContent({
               title="(opens in new window)"
               target="_blank"
               rel="nofollow noreferrer"
+              onClick={() =>
+                trackPixelEvent("ClickShare", {
+                  location: "post",
+                  postId: id,
+                  network: "linkedin",
+                })
+              }
               className="inline-block align-top w-full h-[60px] my-[25px] mx-0"
             >
               <span className="block w-[60px] h-[60px] my-0 mx-auto">
@@ -175,6 +198,11 @@ export default function PostContent({
             </a>
           </li>
         </ul>
+
+        {/* Google AdSense Banner Ad Top */}
+        {ADSENSE_AD_SLOT_ID_CONTENT_TOP && (
+          <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_CONTENT_TOP} />
+        )}
 
         <div className="post-content inline-block align-top w-full text-2xl font-light leading-10 text-justify break-words">
           <span
