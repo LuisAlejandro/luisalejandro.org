@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.5 (2025-11-27)
+
+### Other
+
+* Adding more ads. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.4 (2025-11-25)
 
 ### Other
