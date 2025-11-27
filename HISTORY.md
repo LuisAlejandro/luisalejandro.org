@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.7 (2025-11-27)
+
+### Other
+
+* Fixing build. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.6 (2025-11-27)
 
 ### Other
