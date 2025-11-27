@@ -6,6 +6,8 @@ import HeroPost from "@components/Blog/HeroPost";
 import MoreStories from "@components/Blog/MoreStories";
 import PostPreview from "@components/Blog/PostPreview";
 import { Section } from "@components/common/Layout/Section";
+import { ADSENSE_AD_SLOT_ID_HERO } from "@constants/constants";
+import AdSenseBanner from "@side-effects/AdSenseBanner";
 import SearchBar from "./SearchBar";
 
 interface BlogSearchWrapperProps {
@@ -30,7 +32,9 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
     setSearchQuery(query);
 
     try {
-      const response = await fetch(`/api/search-posts?q=${encodeURIComponent(query)}`);
+      const response = await fetch(
+        `/api/search-posts?q=${encodeURIComponent(query)}`
+      );
       const data = await response.json();
       setSearchResults(data.response || []);
       setIsSearching(true);
@@ -51,69 +55,64 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
     }
   }, []);
 
-  // Determine which posts to display
-  const displayPosts = isSearching ? searchResults : posts;
-  const heroPost = displayPosts.length > 0 ? displayPosts[0] : null;
-  const morePosts = displayPosts.slice(1);
+  // Hero post is always the first post from the static list
+  const heroPost = posts.length > 0 ? posts[0] : null;
+  const morePosts = posts.slice(1);
 
   return (
     <>
-      <SearchBar
-        value={searchQuery}
-        onChange={handleSearchChange}
-        onSearch={handleSearch}
-        isLoading={isLoading}
-      />
-      {isSearching && searchResults.length === 0 && !isLoading && (
-        <Section grid overflowVisible oneColumn nopadding wide>
-          <div className="w-full text-center py-12">
-            <p className="text-lg text-gray-500 font-light">
-              No posts found matching &quot;{searchQuery}&quot;
-            </p>
-          </div>
-        </Section>
+      <Section grid overflowVisible oneColumn nopadding wide>
+        {heroPost && (
+          <>
+            <HeroPost
+              className="hidden lg:flex"
+              type="big"
+              id={heroPost.id}
+              slug={heroPost.slug}
+              title={heroPost.title}
+              coverImage={heroPost.metadata.hero}
+              categories={heroPost.metadata.categories}
+              excerpt={heroPost.metadata.teaser}
+              date={heroPost.created_at}
+            />
+            <div
+              id="featured-preview"
+              className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto"
+            >
+              <PostPreview
+                key={heroPost.id}
+                type="preview"
+                id={heroPost.id}
+                slug={heroPost.slug}
+                title={heroPost.title}
+                coverImage={heroPost.metadata.hero}
+                categories={heroPost.metadata.categories}
+                excerpt={heroPost.metadata.teaser}
+                date={heroPost.created_at}
+              />
+            </div>
+          </>
+        )}
+      </Section>
+
+      <Section grid overflowVisible oneColumn nopadding wide>
+        <SearchBar
+          value={searchQuery}
+          onChange={handleSearchChange}
+          onSearch={handleSearch}
+          isLoading={isLoading}
+          results={searchResults}
+          isSearching={isSearching}
+        />
+      </Section>
+
+      {ADSENSE_AD_SLOT_ID_HERO && (
+        <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_HERO} />
       )}
-      {displayPosts.length > 0 && (
-        <>
-          <Section grid overflowVisible oneColumn nopadding wide>
-            {heroPost && (
-              <>
-                <HeroPost
-                  className="hidden lg:flex"
-                  type="big"
-                  id={heroPost.id}
-                  slug={heroPost.slug}
-                  title={heroPost.title}
-                  coverImage={heroPost.metadata.hero}
-                  categories={heroPost.metadata.categories}
-                  excerpt={heroPost.metadata.teaser}
-                  date={heroPost.created_at}
-                />
-                <div
-                  id="featured-preview"
-                  className="grid grid-cols-1 lg:hidden gap-[25px] w-[94%] mx-auto"
-                >
-                  <PostPreview
-                    key={heroPost.id}
-                    type="preview"
-                    id={heroPost.id}
-                    slug={heroPost.slug}
-                    title={heroPost.title}
-                    coverImage={heroPost.metadata.hero}
-                    categories={heroPost.metadata.categories}
-                    excerpt={heroPost.metadata.teaser}
-                    date={heroPost.created_at}
-                  />
-                </div>
-              </>
-            )}
-          </Section>
-          <Section grid overflowVisible oneColumn nopadding wide>
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </Section>
-        </>
-      )}
+
+      <Section grid overflowVisible oneColumn nopadding wide>
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      </Section>
     </>
   );
 }
-

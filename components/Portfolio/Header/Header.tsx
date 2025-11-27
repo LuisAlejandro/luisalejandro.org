@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +15,7 @@ import { Div1 } from "@components/common/Header/Div1";
 import { Div2 } from "@components/common/Header/Div2";
 import { Div3 } from "@components/common/Header/Div3";
 import { SocialIcons } from "@components/common/Header/SocialIcons";
+import { trackPixelEvent } from "@lib/pixel";
 
 const Header = ({ variant }: { variant?: string }) => {
   const isCaseStudies = variant === "case-studies";
@@ -67,6 +70,7 @@ const Header = ({ variant }: { variant?: string }) => {
               href="https://store.luisalejandro.org/"
               target="_blank"
               rel="nofollow noreferrer"
+              onClick={() => trackPixelEvent("ClickHeaderStore")}
               className={cn(
                 "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies
@@ -81,6 +85,7 @@ const Header = ({ variant }: { variant?: string }) => {
           <li className="mx-2 lg:mx-5 leading-15">
             <Link
               href="/contact"
+              onClick={() => trackPixelEvent("ClickHeaderContact")}
               className={cn(
                 "text-lg p-1 font-light transition-all duration-400 ease-in-out hover:cursor-pointer",
                 isCaseStudies

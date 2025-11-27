@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AiOutlineGithub,
   AiOutlineLinkedin,
@@ -10,6 +12,7 @@ import {
 
 import { ButtonBarContainer } from "@components/common/Layout/ButtonBarContainer";
 import { SocialIcons } from "@components/common/Layout/SocialIcons";
+import { trackPixelEvent } from "@lib/pixel";
 
 export default function ButtonBar() {
   return (
@@ -25,8 +28,14 @@ export default function ButtonBar() {
         href="https://store.luisalejandro.org/"
         icon={AiOutlineShoppingCart}
         text="Store"
+        onClick={() => trackPixelEvent("ClickHeaderStore")}
       />
-      <SocialIcons href="/contact" icon={AiOutlineMessage} text="Contact" />
+      <SocialIcons
+        href="/contact"
+        icon={AiOutlineMessage}
+        text="Contact"
+        onClick={() => trackPixelEvent("ClickHeaderContact")}
+      />
       <SocialIcons
         href="https://github.com/LuisAlejandro"
         target="_blank"

@@ -11,6 +11,7 @@ import {
 } from "@constants/constants";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
+import MetaPixel from "@side-effects/MetaPixel";
 
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
@@ -239,6 +240,7 @@ export default async function RootLayout({
             strategy="afterInteractive"
           />
         )}
+        <MetaPixel />
         <CookieConsentWrapper />
       </body>
     </html>

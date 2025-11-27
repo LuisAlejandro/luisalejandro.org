@@ -2,6 +2,8 @@
 
 import { ADSENSE_PUBLISHER_ID, ENV_NAME } from "@constants/constants";
 import { Adsense } from "@ctrl/react-adsense";
+import { trackPixelEvent } from "@lib/pixel";
+import { useEffect } from "react";
 
 interface AdSenseBannerProps {
   slotId: string;
@@ -12,6 +14,16 @@ export default function AdSenseBanner({
   slotId,
   className = "",
 }: AdSenseBannerProps) {
+  useEffect(() => {
+    const handleBlur = () => {
+      if (document.activeElement instanceof HTMLIFrameElement) {
+        trackPixelEvent("ClickAdSense", { slotId });
+      }
+    };
+    window.addEventListener("blur", handleBlur);
+    return () => window.removeEventListener("blur", handleBlur);
+  }, [slotId]);
+
   if (!ADSENSE_PUBLISHER_ID || !slotId || ENV_NAME === "local") {
     return null;
   }
