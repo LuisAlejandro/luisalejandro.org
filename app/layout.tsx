@@ -2,6 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
 import { League_Gothic, Poppins, Roboto } from "next/font/google";
 import Script from "next/script";
+import { Suspense } from "react";
 
 import {
   ADSENSE_PUBLISHER_ID,
@@ -240,7 +241,9 @@ export default async function RootLayout({
             strategy="afterInteractive"
           />
         )}
-        <MetaPixel />
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <CookieConsentWrapper />
       </body>
     </html>
