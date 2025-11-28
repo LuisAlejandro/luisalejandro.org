@@ -6,8 +6,6 @@ import HeroPost from "@components/Blog/HeroPost";
 import MoreStories from "@components/Blog/MoreStories";
 import PostPreview from "@components/Blog/PostPreview";
 import { Section } from "@components/common/Layout/Section";
-import { ADSENSE_AD_SLOT_ID_HERO } from "@constants/constants";
-import AdSenseBanner from "@side-effects/AdSenseBanner";
 import SearchBar from "./SearchBar";
 
 interface BlogSearchWrapperProps {
@@ -105,10 +103,6 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
           isSearching={isSearching}
         />
       </Section>
-
-      {ADSENSE_AD_SLOT_ID_HERO && (
-        <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_HERO} />
-      )}
 
       <Section grid overflowVisible oneColumn nopadding wide>
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}

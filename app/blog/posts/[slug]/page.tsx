@@ -13,6 +13,8 @@ import { Section } from "@components/common/Layout/Section";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import PostContent from "@components/Post/PostContent";
+import { ADSENSE_AD_SLOT_ID_CONTENT_TOP } from "@constants/constants";
+import AdSenseBanner from "@side-effects/AdSenseBanner";
 
 import "highlight.js/styles/default.css";
 
@@ -55,37 +57,43 @@ export default async function PostPage({ params }: PostPageProps) {
     const blogPostingJsonLd = generateBlogPostingJsonLd(post);
 
     return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogPostingJsonLd),
-        }}
-      />
-      <div className="bg-gray-6 w-full mx-auto">
-        <Header />
-        <main className="bg-white pb-50">
-          <svg viewBox="0 0 1920 200">
-            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-          </svg>
-          <Section grid overflowVisible oneColumn nopadding wide>
-            <PostContent
-              title={post.title}
-              coverImage={post.metadata.hero}
-              date={post.created_at}
-              id={post.id}
-              content={post.metadata.content}
-              categories={post.metadata.categories}
-              slug={post.slug}
-              excerpt={post.metadata.teaser}
-              morePosts={morePosts}
-              allCategories={allCategories}
-            />
-          </Section>
-        </main>
-        <Footer />
-      </div>
-    </>
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(blogPostingJsonLd),
+          }}
+        />
+        <div className="bg-gray-6 w-full mx-auto">
+          <Header />
+          <main className="bg-white pb-50">
+            <svg viewBox="0 0 1920 200">
+              <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
+            </svg>
+
+            {/* Google AdSense Banner Ad Top */}
+            {ADSENSE_AD_SLOT_ID_CONTENT_TOP && (
+              <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_CONTENT_TOP} />
+            )}
+
+            <Section grid overflowVisible oneColumn nopadding wide>
+              <PostContent
+                title={post.title}
+                coverImage={post.metadata.hero}
+                date={post.created_at}
+                id={post.id}
+                content={post.metadata.content}
+                categories={post.metadata.categories}
+                slug={post.slug}
+                excerpt={post.metadata.teaser}
+                morePosts={morePosts}
+                allCategories={allCategories}
+              />
+            </Section>
+          </main>
+          <Footer />
+        </div>
+      </>
     );
   } catch (error) {
     logError("blog-post-page", error, {
