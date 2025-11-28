@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.8 (2025-11-28)
+
+### Other
+
+* Repositioning ads. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.7 (2025-11-27)
 
 ### Other
