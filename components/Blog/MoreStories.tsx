@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { ADSENSE_AD_SLOT_ID_FRONT } from "@constants/constants";
+import {
+  ADSENSE_AD_SLOT_ID_CONTENT_TOP,
+  ADSENSE_AD_SLOT_ID_FRONT,
+  ADSENSE_AD_SLOT_ID_HERO,
+} from "@constants/constants";
 import AdSenseBanner from "@side-effects/AdSenseBanner";
 
 import PostPreview from "./PostPreview";
@@ -54,6 +58,17 @@ export default function MoreStories({ posts }: any) {
 
   return (
     <>
+      {/* Square AdSense Units */}
+      {ADSENSE_AD_SLOT_ID_HERO && ADSENSE_AD_SLOT_ID_CONTENT_TOP && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] w-[94%] mx-auto mb-[50px]">
+          <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_HERO} format="rectangle" />
+          <AdSenseBanner
+            slotId={ADSENSE_AD_SLOT_ID_CONTENT_TOP}
+            format="rectangle"
+          />
+        </div>
+      )}
+
       {/* First 6 posts with PostPreview */}
       <div
         id="content"

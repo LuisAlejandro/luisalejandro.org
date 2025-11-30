@@ -4,6 +4,14 @@ export async function register() {
     // The config you add here will be used whenever the server handles a request.
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
+    // Skip Sentry initialization in development
+    if (process.env.NODE_ENV !== "production") {
+      console.log(
+        "[Sentry] Skipping initialization in development mode (Node.js)"
+      );
+      return;
+    }
+
     console.log("[Sentry] Initializing Sentry on Node.js runtime");
     console.log(`[Sentry] DSN configured: ${!!process.env.SENTRY_DSN}`);
 
@@ -32,6 +40,14 @@ export async function register() {
   if (process.env.NEXT_RUNTIME === "edge") {
     // This file configures the initialization of Sentry for edge features.
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/
+
+    // Skip Sentry initialization in development
+    if (process.env.NODE_ENV !== "production") {
+      console.log(
+        "[Sentry] Skipping initialization in development mode (Edge)"
+      );
+      return;
+    }
 
     console.log("[Sentry] Initializing Sentry on Edge runtime");
     console.log(`[Sentry] DSN configured: ${!!process.env.SENTRY_DSN}`);

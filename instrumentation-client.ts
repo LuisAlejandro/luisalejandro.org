@@ -7,6 +7,12 @@ import * as Sentry from "@sentry/nextjs";
 export async function register() {
   if (typeof window === "undefined") return; // Only run on client
 
+  // Skip Sentry initialization in development
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[Sentry] Skipping initialization in development mode");
+    return;
+  }
+
   console.log("[Sentry] Initializing Sentry on client");
   console.log(
     `[Sentry] DSN configured: ${!!process.env.NEXT_PUBLIC_SENTRY_DSN}`

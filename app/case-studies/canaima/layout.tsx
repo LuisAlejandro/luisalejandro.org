@@ -2,6 +2,8 @@ import { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
+import "yet-another-react-lightbox/styles.css";
+
 export const metadata: Metadata = {
   title: "Canaima GNU/Linux Case Study | Luis Alejandro",
   description:
