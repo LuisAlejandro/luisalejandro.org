@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function BlogClient() {
   useEffect(() => {
     const share_buttons = document.querySelectorAll(
-      "#content > .preview > .bg > ul.socialbar > .share > button, #featured-preview > .preview > .bg > ul.socialbar > .share > button, #featured > article > .bg > ul.socialbar > .share > button"
+      "#content > .preview > .bg ul.socialbar > .share > button, #featured-preview > .preview > .bg ul.socialbar > .share > button, #featured > article > .bg ul.socialbar > .share > button"
     );
 
     share_buttons.forEach((button) => {
@@ -14,7 +14,7 @@ export default function BlogClient() {
 
         const pid = button.getAttribute("data-ident");
         const share_dialog = document.querySelectorAll(
-          "#post-" + pid + " > .bg > .socialpop"
+          "#post-" + pid + " .socialpop"
         );
         const post_bg = document.querySelectorAll("#post-" + pid + " > .bg");
 

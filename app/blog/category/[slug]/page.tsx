@@ -1,5 +1,3 @@
-import "lazysizes";
-import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { notFound } from "next/navigation";
 
 import { getAllPostsForCategory } from "@lib/api";
@@ -7,6 +5,7 @@ import { logError } from "@lib/logger";
 
 import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
+import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import BlogCategoryClient from "@side-effects/Blog/BlogCategoryClient";
@@ -43,6 +42,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <Section grid overflowVisible oneColumn nopadding wide>
             {categoryPosts?.length > 0 && <MoreStories posts={categoryPosts} />}
           </Section>
+          <LazyImagesLoader />
         </main>
         <Footer />
       </div>

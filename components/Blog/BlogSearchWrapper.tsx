@@ -34,8 +34,17 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
         `/api/search-posts?q=${encodeURIComponent(query)}`
       );
       const data = await response.json();
-      setSearchResults(data.response || []);
+      const results = data.response || [];
+      setSearchResults(results);
       setIsSearching(true);
+
+      // Track search event with Google Analytics
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "search", {
+          search_term: query.trim(),
+          results_count: results.length,
+        });
+      }
     } catch (error) {
       console.error("Search error:", error);
       setSearchResults([]);

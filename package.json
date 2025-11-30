@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -90,7 +90,7 @@
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
     "eslint": "^9.39.1",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "16.0.5",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^16.2.0",
@@ -100,10 +100,8 @@
     "typescript": "^5.9.3"
   },
   "browserslist": [
-    "chrome >= 91",
-    "firefox >= 90",
-    "safari >= 14",
-    "edge >= 91"
+    "last 2 versions and not dead",
+    "> 1%"
   ],
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

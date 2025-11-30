@@ -1,5 +1,3 @@
-import "lazysizes";
-import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -9,6 +7,7 @@ import { getAllCategories } from "@lib/api";
 import { logError } from "@lib/logger";
 
 import { Section } from "@components/common/Layout/Section";
+import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 
@@ -125,6 +124,7 @@ export default async function CategoriesPage() {
               </div>
             </div>
           </Section>
+          <LazyImagesLoader />
         </main>
         <Footer />
       </div>

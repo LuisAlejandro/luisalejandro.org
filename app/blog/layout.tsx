@@ -190,5 +190,15 @@ export default async function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <link rel="preconnect" href="https://imgix.cosmicjs.com" />
+      <link rel="dns-prefetch" href="https://imgix.cosmicjs.com" />
+      <link rel="preconnect" href="https://cdn.cosmicjs.com" />
+      <link rel="dns-prefetch" href="https://cdn.cosmicjs.com" />
+      <link rel="preconnect" href="https://disqus.com" />
+      <link rel="dns-prefetch" href="https://disqus.com" />
+      {children}
+    </>
+  );
 }

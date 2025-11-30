@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { config } from "@constants/constants";
 
 import "@styles/tailwind.css";
-import "yet-another-react-lightbox/styles.css";
 
 export const metadata: Metadata = {
   title: "Portfolio | Luis Alejandro - TypeScript, Python & Golang Expert",

@@ -8,11 +8,13 @@ import { useEffect } from "react";
 interface AdSenseBannerProps {
   slotId: string;
   className?: string;
+  format?: string;
 }
 
 export default function AdSenseBanner({
   slotId,
   className = "",
+  format = "auto",
 }: AdSenseBannerProps) {
   useEffect(() => {
     const handleBlur = () => {
@@ -37,7 +39,7 @@ export default function AdSenseBanner({
             client={ADSENSE_PUBLISHER_ID}
             slot={slotId}
             style={{ display: "block" }}
-            format="auto"
+            format={format}
             responsive="true"
           />
         </div>

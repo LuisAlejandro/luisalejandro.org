@@ -46,7 +46,6 @@ export function logError(
   // Always log to console
   console.error(`[Error - ${context}]`, errorDetails);
 
-  // Send to Sentry only in production
   if (process.env.NODE_ENV === "production") {
     Sentry.captureException(error, {
       tags: {

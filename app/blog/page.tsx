@@ -1,5 +1,3 @@
-import "lazysizes";
-import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import { notFound } from "next/navigation";
 
 import { getAllPostsForHome } from "@lib/api";
@@ -8,23 +6,29 @@ import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogJsonLd } from "@lib/structuredData";
 
 import BlogSearchWrapper from "@components/Blog/BlogSearchWrapper";
+import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
-import { ADSENSE_AD_SLOT_ID_HERO } from "@constants/constants";
-import AdSenseBanner from "@side-effects/AdSenseBanner";
 import BlogClient from "@side-effects/Blog/BlogClient";
 
 export default async function BlogPage() {
   try {
     const allPosts = (await getAllPostsForHome()) || [];
     const posts = await Promise.all(
-      allPosts.map(async (post: any) => ({
-        ...post,
-        metadata: {
-          ...post.metadata,
-          teaser: await markdownToHtml(post.metadata?.teaser || ""),
-        },
-      }))
+      allPosts.map(async (post: any) => {
+        // Check if teaser is already HTML (starts with <)
+        const teaserHtml = post.metadata?.teaser?.startsWith('<')
+          ? post.metadata.teaser
+          : await markdownToHtml(post.metadata?.teaser || "");
+
+        return {
+          ...post,
+          metadata: {
+            ...post.metadata,
+            teaser: teaserHtml,
+          },
+        };
+      })
     );
 
     if (!posts?.length) {
@@ -48,12 +52,8 @@ export default async function BlogPage() {
           <svg viewBox="0 0 1920 200">
             <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
           </svg>
-
-          {ADSENSE_AD_SLOT_ID_HERO && (
-            <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_HERO} />
-          )}
-
           <BlogSearchWrapper posts={posts} />
+          <LazyImagesLoader />
         </main>
         <Footer />
       </div>
