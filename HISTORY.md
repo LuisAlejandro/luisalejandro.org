@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.9 (2025-11-30)
+
+### Other
+
+* Improving performance. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.8 (2025-11-28)
 
 ### Other
