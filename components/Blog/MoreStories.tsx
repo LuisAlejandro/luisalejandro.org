@@ -60,7 +60,7 @@ export default function MoreStories({ posts }: any) {
     <>
       {/* Square AdSense Units */}
       {ADSENSE_AD_SLOT_ID_HERO && ADSENSE_AD_SLOT_ID_CONTENT_TOP && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] w-[94%] mx-auto mb-[50px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] w-[94%] mx-auto mb-[50px] justify-items-center">
           <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID_HERO} format="rectangle" />
           <AdSenseBanner
             slotId={ADSENSE_AD_SLOT_ID_CONTENT_TOP}
