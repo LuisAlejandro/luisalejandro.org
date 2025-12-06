@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.13 (2025-12-06)
+
+### Other
+
+* Updating Next and React. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.12 (2025-11-30)
 
 ### Other
