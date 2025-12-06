@@ -8,16 +8,16 @@ import "yet-another-react-lightbox/styles.css";
 
 interface PostLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate comprehensive SEO metadata for individual blog posts
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const data = await getPostAndMorePosts(slug);
