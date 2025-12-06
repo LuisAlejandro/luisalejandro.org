@@ -18,6 +18,167 @@ const config: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     qualities: [75, 85, 90, 95, 100],
   },
+  async headers() {
+    return [
+      // Forever cache for blog posts - content is immutable once published
+      {
+        source: "/blog/posts/:slug*",
+        has: [
+          {
+            type: "header",
+            key: "x-matched-path",
+            value: "(?!.*(feed\\.xml|atom\\.xml|feed\\.json))",
+          },
+        ],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Cache-Tag",
+            value: "blog-posts, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "blog-posts, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Forever cache for case studies - content is immutable
+      {
+        source: "/case-studies/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Cache-Tag",
+            value: "case-studies, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "case-studies, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Revalidation cache for blog index
+      {
+        source: "/blog",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "blog-index, blog-listings, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "blog-index, blog-listings, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Revalidation cache for blog category pages
+      {
+        source: "/blog/category/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "blog-index, blog-listings, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "blog-index, blog-listings, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Revalidation cache for portfolio
+      {
+        source: "/portfolio",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "portfolio, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "portfolio, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+    ];
+  },
   experimental: {
     optimizePackageImports: ["yet-another-react-lightbox"],
   },

@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.14 (2025-12-06)
+
+### Other
+
+* Updating react-player. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.13 (2025-12-06)
 
 ### Other
