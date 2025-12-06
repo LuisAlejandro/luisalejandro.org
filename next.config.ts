@@ -3,7 +3,16 @@ import type { NextConfig } from "next";
 
 const config: NextConfig = {
   images: {
-    domains: ["imgix.cosmicjs.com", "cdn.cosmicjs.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "imgix.cosmicjs.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.cosmicjs.com",
+      },
+    ],
     formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -11,6 +20,14 @@ const config: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["yet-another-react-lightbox"],
+  },
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
   },
   webpack(config) {
     config.module.rules.push({

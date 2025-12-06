@@ -17,9 +17,9 @@ import PostContent from "@components/Post/PostContent";
 import "highlight.js/styles/default.css";
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {

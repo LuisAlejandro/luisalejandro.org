@@ -11,9 +11,9 @@ import Header from "@components/Portfolio/Header/Header";
 import BlogCategoryClient from "@side-effects/Blog/BlogCategoryClient";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
