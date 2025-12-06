@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 import PhotoAlbum from "react-photo-album";
 import Lightbox from "yet-another-react-lightbox";
 
-const ReactPlayer = dynamic(() => import("react-player/lazy"), {
+// react-player v3.x removed the /lazy subpath - lazy loading is now built-in
+const ReactPlayer = dynamic(() => import("react-player"), {
   ssr: false,
 });
 
@@ -159,25 +160,14 @@ export const renderHtmlContent = (
           >
             <ReactPlayer
               className="inline-block align-middle absolute w-full h-full top-0 left-0 my-0 mx-0 p-0"
-              url={`https://www.youtube.com/watch?v=${youtubeId}`}
+              src={`https://www.youtube.com/watch?v=${youtubeId}`}
               config={{
                 youtube: {
-                  playerVars: {
-                    rel: 0,
-                    autoplay: 0,
-                    modestbranding: 1,
-                    cc_lang_pref: "en",
-                    cc_load_policy: 0,
-                    iv_load_policy: 3,
-                    controls: 1,
-                  },
-                  embedOptions: {
-                    allowfullscreen: 1,
-                    frameborder: 0,
-                  },
+                  cc_lang_pref: "en",
                 },
               }}
               title={excerptText}
+              controls
               light={true}
               width="100%"
               height="100%"
@@ -186,37 +176,25 @@ export const renderHtmlContent = (
         );
       }
 
+      // SoundCloud is not supported in react-player v3.x, using iframe widget instead
       if (classList.includes("soundcloud")) {
         const soundcloudId = attribs["data-soundcloud-id"];
         const soundcloudUrl = `https://api.soundcloud.com/tracks/${soundcloudId}`;
+        const widgetUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(soundcloudUrl)}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
         return (
           <span
-            className="inline-block relative w-full h-0 pb-[16%]"
+            className="inline-block relative w-full"
             data-soundcloud-url={soundcloudUrl}
           >
-            <ReactPlayer
-              className="inline-block align-middle absolute w-full h-full top-0 left-0 my-0 mx-0 p-0"
-              url={soundcloudUrl}
-              config={{
-                soundcloud: {
-                  options: {
-                    color: "ff5500",
-                    auto_play: "false",
-                    hide_related: "true",
-                    show_artwork: "true",
-                    single_active: "false",
-                    show_user: "false",
-                    show_playcount: "false",
-                    download: "false",
-                    buying: "false",
-                    sharing: "false",
-                  },
-                },
-              }}
-              title={excerptText}
-              light={true}
+            <iframe
+              className="inline-block align-middle w-full my-0 mx-0 p-0"
               width="100%"
-              height="100%"
+              height="166"
+              scrolling="no"
+              frameBorder="no"
+              allow="autoplay"
+              src={widgetUrl}
+              title={excerptText}
             />
           </span>
         );
