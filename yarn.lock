@@ -7150,10 +7150,10 @@ react-measure@^2.3.0:
     prop-types "^15.6.2"
     resize-observer-polyfill "^1.5.0"
 
-react-photo-album@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-3.3.0.tgz#c8317728e4cfee8a4c5083430a4bb380456dc62e"
-  integrity sha512-2KvavqTjOgq+cgQDyewdEyOt9mIk4KO91Hq1mTXq8Jdpax7TYSV9ikySCfhlFOcfAC2vGQ7Femb626kJYovIAA==
+react-photo-album@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-3.4.0.tgz#2d5738fa0eeb52b88d1cbad08851db958b657a75"
+  integrity sha512-pPaCoxEfVDhowpqxECq4SOD5kzP1Uao8PEN11Jasxayv4cZjad3Fy8SlKt6wvtLnVJRtOjsQDU/ZnnUuberwMg==
 
 react-player@^3.4.0:
   version "3.4.0"
