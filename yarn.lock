@@ -8348,10 +8348,10 @@ yallist@^3.0.2:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
   integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
 
-yet-another-react-lightbox@^3.27.0:
-  version "3.27.0"
-  resolved "https://registry.yarnpkg.com/yet-another-react-lightbox/-/yet-another-react-lightbox-3.27.0.tgz#1a2d74f2451061aa37d43d20131b106b77b8759e"
-  integrity sha512-SV4U0s7vZfwNWPOqyEP81VyquBu/7m9mVJhKEAgWTWUpsIRD6FFLn5+9RvJ4N0wMrxr7v517GzUNqoDPC2EdHg==
+yet-another-react-lightbox@^3.28.0:
+  version "3.28.0"
+  resolved "https://registry.yarnpkg.com/yet-another-react-lightbox/-/yet-another-react-lightbox-3.28.0.tgz#f78f84fb6b00ae452a283b1004890fddc1c7ab40"
+  integrity sha512-bHjG1/DS4aWPkKb/6hNp0+zcgjda27wQlXBpJvb9TcblC1U1dY3Ih0pe85O8/ZLz+OIy+ZvLxN2gmsbDW0Q/QQ==
 
 yocto-queue@^0.1.0:
   version "0.1.0"
