@@ -7,20 +7,7 @@ ARG GID=1000
 RUN apt-get update && \
     apt-get install gnupg dirmngr sudo
 
-RUN gpg --no-default-keyring \
-        --keyring ./yarn.gpg \
-        --keyserver hkp://keyserver.ubuntu.com:80 \
-        --recv-keys 23E7166788B63E1E
-
-RUN gpg --no-default-keyring \
-        --keyring ./yarn.gpg \
-        --armor --export "23E7166788B63E1E" \
-        > /usr/share/keyrings/yarn.gpg
-
-RUN echo "deb [signed-by=/usr/share/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-RUN apt-get update && \
-    apt-get install yarn
+RUN npm install -g yarn
 
 RUN EXISTUSER=$(getent passwd | awk -F':' '$3 == '$UID' {print $1}') && \
     [ -n "${EXISTUSER}" ] && deluser ${EXISTUSER} || true
