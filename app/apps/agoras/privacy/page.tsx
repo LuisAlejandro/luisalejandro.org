@@ -20,6 +20,7 @@ export default function AgorasPrivacyPage() {
           }
 
           .termspriv {
+            margin-bottom: 200px;
             h2 {
               font-weight: 200;
               font-size: 1.5em;
@@ -55,7 +56,7 @@ export default function AgorasPrivacyPage() {
           }
         `}</style>
         <Nav />
-        <Section grid overflowVisible>
+        <Section overflowVisible>
           <div className="termspriv">
             <h1>Privacy Policy</h1>
 

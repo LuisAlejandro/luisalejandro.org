@@ -1,21 +1,15 @@
-import Link from "next/link";
-
+import { Button1 } from "@components/Portfolio/Hero/Button1";
 import { LeftSection } from "@components/Portfolio/Hero/LeftSection";
+import { ResumeLink } from "@components/Portfolio/Hero/ResumeLink";
 
 const Nav = () => (
   <>
     <LeftSection>
-      <span className="button1">
-        <Link
-          rel="tag nofollow noreferrer"
-          href="/apps/agoras"
-          style={{
-            margin: "50px 0 0 0",
-          }}
-        >
+      <Button1>
+        <ResumeLink rel="tag nofollow noreferrer" href="/apps/agoras">
           Back
-        </Link>
-      </span>
+        </ResumeLink>
+      </Button1>
     </LeftSection>
   </>
 );

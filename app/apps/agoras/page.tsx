@@ -127,6 +127,20 @@ export default function AgorasPage() {
         <Section overflowVisible>
           <Hero />
           <div className="termspriv">
+            <h2>Installation</h2>
+
+            <p>
+              The TikTok API is still in beta, so you need to install the
+              development version of Agoras directly from GitHub. To install it
+              you can use the following command:
+            </p>
+
+            <pre>
+              <code>
+                {`pip install --upgrade https://github.com/LuisAlejandro/agoras/archive/develop.tar.gz`}
+              </code>
+            </pre>
+
             <h1>Usage for TikTok</h1>
 
             <p>
