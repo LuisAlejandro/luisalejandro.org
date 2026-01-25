@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.16 (2026-01-25)
+
+### Other
+
+* Improving documentation on tiktok. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.15 (2026-01-25)
 
 ### Other
