@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.15 (2026-01-25)
+
+### Other
+
+* Finishing agoras for tiktok page. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.14 (2025-12-06)
 
 ### Other
