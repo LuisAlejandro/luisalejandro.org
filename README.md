@@ -1,4 +1,4 @@
-Current version: 3.1.15
+Current version: 3.1.16
 
 ## Made with 💖 and 🍔
 

@@ -20,6 +20,7 @@ export default function AgorasTermsPage() {
           }
 
           .termspriv {
+            margin-bottom: 200px;
             h2 {
               font-weight: 200;
               font-size: 1.5em;
@@ -55,7 +56,7 @@ export default function AgorasTermsPage() {
           }
         `}</style>
         <Nav />
-        <Section grid overflowVisible>
+        <Section overflowVisible>
           <div className="termspriv">
             <h1>Terms and Conditions</h1>
 

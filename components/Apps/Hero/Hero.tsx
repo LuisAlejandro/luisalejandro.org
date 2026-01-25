@@ -26,10 +26,6 @@ const Hero = () => (
           </ResumeLink>
         </Button1>
       </div>
-      {/* <SectionText>
-        <h2>Installation</h2>A commandline desktop app to publish short videos
-        on TikTok.
-      </SectionText> */}
       <SectionText>&nbsp;</SectionText>
     </LeftSection>
   </>

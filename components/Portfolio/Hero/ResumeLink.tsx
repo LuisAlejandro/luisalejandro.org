@@ -1,8 +1,7 @@
 import cn from "classnames";
 import React from "react";
 
-interface ResumeLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface ResumeLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
 }
 
