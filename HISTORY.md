@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.1.17 (2026-02-16)
+
+### Other
+
+* Adding wholmaster license endpoints. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.16 (2026-01-25)
 
 ### Other
