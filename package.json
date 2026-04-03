@@ -39,7 +39,7 @@
     "@types/react": "^19.2.14",
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/react-imgix": "^9.5.4",
-    "axios": "^1.13.6",
+    "axios": "^1.14.0",
     "bcrypt": "^6.0.0",
     "chart.js": "^4.5.1",
     "chartjs-plugin-annotation": "^3.1.0",
