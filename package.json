@@ -32,7 +32,7 @@
     "@next/third-parties": "^16.2.0",
     "@sentry/nextjs": "^10.46.0",
     "@svgr/webpack": "^8.1.0",
-    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/postcss": "^4.2.2",
     "@types/bcrypt": "^6.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^25.5.0",
