@@ -1316,13 +1316,10 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@cosmicjs/sdk@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-1.8.0.tgz#c730f7cd4f7029d0128c233af560c5654b65a672"
-  integrity sha512-bKvRyOSad+czclcxo2J6sxIQWzwHk8eHrK+eruRjcVdi1v6SIfWBPl13hfc/nsPxTup5mcqYUnIAo9VUv+aakA==
-  dependencies:
-    axios "^1.3.4"
-    form-data "^4.0.0"
+"@cosmicjs/sdk@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-2.0.1.tgz#e8d64f92da848cefc20adb050d567dc5d8736992"
+  integrity sha512-Z1i063no/iOEiIoUL/kjRwJYdcsT/6x5S4XH3trFQJR2o9FLTwCWrYOBf8mw4MhEZp3Zax9b3qst1GLbVKXXtg==
 
 "@ctrl/react-adsense@^2.1.0":
   version "2.1.0"
@@ -3880,7 +3877,7 @@ axe-core@^4.10.0:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.11.0.tgz#16f74d6482e343ff263d4f4503829e9ee91a86b6"
   integrity sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==
 
-axios@^1.14.0, axios@^1.3.4:
+axios@^1.14.0:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.14.0.tgz#7c29f4cf2ea91ef05018d5aa5399bf23ed3120eb"
   integrity sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==
@@ -5093,7 +5090,7 @@ foreground-child@^3.1.0:
     cross-spawn "^7.0.6"
     signal-exit "^4.0.1"
 
-form-data@^4.0.0, form-data@^4.0.5:
+form-data@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.5.tgz#b49e48858045ff4cbf6b03e1805cebcad3679053"
   integrity sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==
