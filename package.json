@@ -78,7 +78,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "sass": "^1.99.0",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.2.4",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.31.0",
