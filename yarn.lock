@@ -5132,10 +5132,10 @@ hoist-non-react-statics@^3.3.0:
   dependencies:
     react-is "^16.7.0"
 
-html-dom-parser@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-7.0.1.tgz#0cb90cdb392529a8024e7706d4cc10b0f7c29421"
-  integrity sha512-loRBDTCY/05/jAC63J1X9ID+xjRucmpLkIcQO0IRbOubBo5ucnpUpyXXob9UMXOskMZlu7KPsDP/2KOMelzJNA==
+html-dom-parser@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-7.1.0.tgz#40b96b212b019e9295928dd5dacac6346f997c81"
+  integrity sha512-83BgaFSW/Sj6QTotGenvPvKfGxFzpFfrJNYes77mzqnq+YjVm12d4qeG0+108w4ejnam/+nCnnLuyyJlXkuPtA==
   dependencies:
     domhandler "6.0.1"
     htmlparser2 "12.0.0"
@@ -5145,13 +5145,13 @@ html-entities@^2.5.2:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-2.6.0.tgz#7c64f1ea3b36818ccae3d3fb48b6974208e984f8"
   integrity sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==
 
-html-react-parser@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-6.0.1.tgz#8437f566ec228924b654a4078855c162c1cedab3"
-  integrity sha512-tIie2HSIk2Ct1tdupjd/DhBjskxN/NL5J4ncbUnk2smBr5UIfpPpitUo0imGfBM0BlOL7ac8RcqEwne1jXTcsQ==
+html-react-parser@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-6.1.0.tgz#0a9c1fac32fb2780595277a6aad37f2c627621d2"
+  integrity sha512-FoFY2aZrSAMcPPhUmb4R87gwfhwvYT6luJIQ++Xl9qm2x/4IDGjf+B2F+wcdrhMVOe/o44Nq7IEbvsKfq6fq+Q==
   dependencies:
     domhandler "6.0.1"
-    html-dom-parser "7.0.1"
+    html-dom-parser "7.1.0"
     react-property "2.0.2"
     style-to-js "1.1.21"
 
