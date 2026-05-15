@@ -63,7 +63,7 @@
     "react": "^19.2.6",
     "react-chartjs-2": "^5.3.0",
     "react-cookie-consent": "^10.0.1",
-    "react-dom": "^19.2.5",
+    "react-dom": "^19.2.6",
     "react-facebook-pixel": "^1.0.4",
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.74.0",
