@@ -81,7 +81,7 @@
     "tailwindcss": "^4.2.2",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
-    "yet-another-react-lightbox": "^3.31.0",
+    "yet-another-react-lightbox": "^3.32.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {
