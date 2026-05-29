@@ -30,7 +30,7 @@
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.4.0",
     "@next/third-parties": "^16.2.6",
-    "@sentry/nextjs": "^10.53.1",
+    "@sentry/nextjs": "^10.55.0",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/bcrypt": "^6.0.0",
