@@ -5,8 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/home/luisalejandro/app
-      - ~/Library/Caches/Yarn:/home/luisalejandro/.cache/yarn
+      - .:/home/luisalejandro-org/app
+      - ~/.npm:/home/luisalejandro-org/.npm
+      - ~/.cache/yarn:/home/luisalejandro-org/.cache/yarn
     env_file:
       - .env
     ports:

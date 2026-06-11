@@ -5,7 +5,8 @@ ARG UID=1000
 ARG GID=1000
 
 RUN apt-get update && \
-    apt-get install gnupg dirmngr sudo
+    apt-get install -y gnupg dirmngr sudo && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g yarn
 
@@ -15,17 +16,18 @@ RUN EXISTUSER=$(getent passwd | awk -F':' '$3 == '$UID' {print $1}') && \
 RUN EXISTGROUP=$(getent group | awk -F':' '$3 == '$GID' {print $1}') && \
     [ -n "${EXISTGROUP}" ] && delgroup ${EXISTGROUP} || true
 
-RUN groupadd -g "${GID}" luisalejandro || true
-RUN useradd -u "${UID}" -g "${GID}" -ms /bin/bash luisalejandro
+RUN groupadd -g "${GID}" luisalejandro-org || true
+RUN useradd -u "${UID}" -g "${GID}" -ms /bin/bash luisalejandro-org
 
-RUN echo "luisalejandro ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/luisalejandro
+RUN echo "luisalejandro-org ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/luisalejandro-org
 
-USER luisalejandro
+USER luisalejandro-org
 
 RUN mkdir -p \
-    /home/luisalejandro/app \
-    /home/luisalejandro/.cache/yarn
+    /home/luisalejandro-org/app \
+    /home/luisalejandro-org/.npm \
+    /home/luisalejandro-org/.cache/yarn
 
-WORKDIR /home/luisalejandro/app
+WORKDIR /home/luisalejandro-org/app
 
 CMD ["tail", "-f", "/dev/null"]

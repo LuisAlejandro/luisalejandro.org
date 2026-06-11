@@ -2,15 +2,14 @@
 # -*- makefile -*-
 
 SHELL = bash -e
-all_ps_hashes = $(shell docker ps -q)
 img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
-exec_on_docker = docker compose \
-	-p luisalejandro -f docker-compose.yml exec \
-	--user luisalejandro app
 
-# Release configuration
+PROJECT_NAME ?= luisalejandro.org
 VERSION_TYPE ?= patch
 APP_NAME ?= luisalejandro.org
+exec_on_docker = docker compose \
+	-p $(PROJECT_NAME) -f docker-compose.yml exec \
+	--user luisalejandro-org app
 
 help:
 	@echo "Available commands:"
@@ -26,6 +25,10 @@ help:
 	@echo "    destroy          - Remove all containers, images and volumes"
 	@echo "    cataplum         - Remove ALL Docker resources (system-wide)"
 	@echo ""
+	@echo "  Quality commands:"
+	@echo "    lint             - Run ESLint"
+	@echo "    test             - Run TypeScript type check"
+	@echo ""
 	@echo "  Release commands:"
 	@echo "    release          - Create a new release (default: patch)"
 	@echo "    release-patch    - Create a new patch release (x.x.X)"
@@ -36,18 +39,6 @@ help:
 	@echo "  Release with custom version type:"
 	@echo "    make release VERSION_TYPE=minor"
 	@echo ""
-
-image:
-	@docker compose -p luisalejandro -f docker-compose.yml build \
-		--build-arg UID=$(shell id -u) \
-		--build-arg GID=$(shell id -g)
-
-start:
-	@if [ -z "$(img_hash)" ]; then\
-		make image;\
-	fi
-	@docker compose -p luisalejandro -f docker-compose.yml up \
-		--remove-orphans --no-build --detach
 
 dependencies: start
 	@$(exec_on_docker) yarn install
@@ -61,11 +52,35 @@ serve: start
 console: start
 	@$(exec_on_docker) bash
 
+lint: start
+	@$(exec_on_docker) yarn lint
+
+test: start
+	@$(exec_on_docker) yarn type-check
+
+# >>> rosey-maintainer:ops-docker BEGIN
+# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
+
+PROJECT_NAME ?= luisalejandro.org
+all_ps_hashes = $(shell docker ps -q)
+
+image:
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml build \
+		--build-arg UID=$(shell id -u) \
+		--build-arg GID=$(shell id -g)
+
+start:
+	@if [ -z "$(img_hash)" ]; then\
+		make image;\
+	fi
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml up \
+		--remove-orphans --no-build --detach
+
 stop:
-	@docker compose -p luisalejandro -f docker-compose.yml stop app
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml stop
 
 down:
-	@docker compose -p luisalejandro -f docker-compose.yml down \
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml down \
 		--remove-orphans
 
 destroy:
@@ -74,7 +89,7 @@ destroy:
 	@echo "This will stop and delete all containers, images and volumes related to this project."
 	@echo
 	@read -p "Press ctrl+c to abort or enter to continue." -n 1 -r
-	@docker compose -p luisalejandro -f docker-compose.yml down \
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml down \
 		--rmi all --remove-orphans --volumes
 
 cataplum:
@@ -86,25 +101,28 @@ cataplum:
 	@if [ -n "$(all_ps_hashes)" ]; then\
 		docker kill $(shell docker ps -q);\
 	fi
-	@docker compose -p luisalejandro -f docker-compose.yml down \
+	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml down \
 		--rmi all --remove-orphans --volumes
 	@docker system prune -a -f --volumes
+# <<< rosey-maintainer:ops-docker END
 
-# Release management
+# >>> rosey-maintainer:ops-release BEGIN
+# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
+
 release:
-	@./scripts/release.sh $(VERSION_TYPE)
+	@./scripts/release.sh $${VERSION_TYPE}
 
 release-patch:
-	@./scripts/release.sh patch $(APP_NAME)
+	@./scripts/release.sh patch $${APP_NAME}
 
 release-minor:
-	@./scripts/release.sh minor $(APP_NAME)
+	@./scripts/release.sh minor $${APP_NAME}
 
 release-major:
-	@./scripts/release.sh major $(APP_NAME)
+	@./scripts/release.sh major $${APP_NAME}
 
-# Hotfix management
 hotfix:
-	@./scripts/hotfix.sh $(APP_NAME)
+	@./scripts/hotfix.sh $${APP_NAME}
+# <<< rosey-maintainer:ops-release END
 
-.PHONY: help image start dependencies build_production serve console stop down destroy cataplum release release-patch release-minor release-major hotfix
+.PHONY: help dependencies build_production serve console lint test image start stop down destroy cataplum release release-patch release-minor release-major hotfix
