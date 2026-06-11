@@ -35,3 +35,17 @@ package-lock.json
 .vercel
 
 .env
+
+# Rosey Agentic Environment
+.cursor/
+rosey/brainstorms/
+rosey/plans/
+rosey/designs/
+rosey/solutions/
+rosey/insights/
+rosey/design-system/
+rosey/qa/
+rosey/deepening/
+rosey/agentic-env.json
+AGENTS.md
+DESIGN.md
