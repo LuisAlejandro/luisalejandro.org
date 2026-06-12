@@ -4,7 +4,6 @@
 SHELL = bash -e
 img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
 
-PROJECT_NAME ?= luisalejandro.org
 VERSION_TYPE ?= patch
 APP_NAME ?= luisalejandro.org
 exec_on_docker = docker compose \

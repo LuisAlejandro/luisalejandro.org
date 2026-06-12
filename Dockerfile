@@ -18,7 +18,6 @@ RUN EXISTGROUP=$(getent group | awk -F':' '$3 == '$GID' {print $1}') && \
 
 RUN groupadd -g "${GID}" luisalejandro-org || true
 RUN useradd -u "${UID}" -g "${GID}" -ms /bin/bash luisalejandro-org
-
 RUN echo "luisalejandro-org ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/luisalejandro-org
 
 USER luisalejandro-org
