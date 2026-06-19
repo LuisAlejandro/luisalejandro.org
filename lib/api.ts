@@ -3,13 +3,12 @@ import { createBucketClient } from "@cosmicjs/sdk";
 import { ENV_NAME } from "@constants/constants";
 import { logError } from "@lib/logger";
 
-const BUCKET_SLUG =
-  process.env.COSMIC_BUCKET_SLUG || "luisalejandroorg-development";
+const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG;
 
 const READ_KEY = process.env.COSMIC_READ_KEY;
 
 const cosmic = createBucketClient({
-  bucketSlug: BUCKET_SLUG,
+  bucketSlug: BUCKET_SLUG || "",
   readKey: READ_KEY || "",
 });
 
@@ -26,7 +25,7 @@ export async function getAllPostsSlugs() {
     return data?.objects.length ? data?.objects : [];
   } catch (error) {
     logError("getAllPostsSlugs", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
     return [];
@@ -54,7 +53,7 @@ export async function getAllPostsForHome() {
     return data?.objects;
   } catch (error) {
     logError("getAllPostsForHome", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
@@ -75,7 +74,7 @@ export async function getLatestPosts() {
     return data?.objects;
   } catch (error) {
     logError("getLatestPosts", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
@@ -95,7 +94,7 @@ export async function getPostById(id: string) {
   } catch (error) {
     logError("getPostById", error, {
       postId: id,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
     return undefined;
@@ -118,7 +117,7 @@ export async function getPostsByIds(ids: string[]) {
     logError("getPostsByIds", error, {
       postIds: ids,
       idsCount: ids.length,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
     return [];
@@ -154,7 +153,7 @@ export async function getMorePosts(slug: any) {
     if (is404(error)) return [];
     logError("getMorePosts", error, {
       slug,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
@@ -194,7 +193,7 @@ export async function getPostAndMorePosts(slug: any) {
       };
     logError("getPostAndMorePosts", error, {
       slug,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
@@ -245,7 +244,7 @@ export async function getAllPostsForCategory(categorySlug: any) {
       };
     logError("getAllPostsForCategory", error, {
       categorySlug,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
@@ -265,7 +264,7 @@ export async function getAllCategories() {
     // Don't throw if an slug doesn't exist
     if (is404(error)) return [];
     logError("getAllCategories", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
     throw error;
@@ -286,7 +285,7 @@ export async function getCategoryDetails(categorySlug: any) {
     if (is404(error)) return undefined;
     logError("getCategoryDetails", error, {
       categorySlug,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
     throw error;
@@ -307,10 +306,7 @@ export async function searchPosts(query: string) {
         type: "posts",
         status:
           ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
-        $or: [
-          { title: regexPattern },
-          { "metadata.teaser": regexPattern },
-        ],
+        $or: [{ title: regexPattern }, { "metadata.teaser": regexPattern }],
       })
       .props([
         "id",
@@ -349,15 +345,19 @@ export async function searchPosts(query: string) {
 
     // Find posts that match categories but weren't already found by title/teaser search
     const existingPostIds = new Set(posts.map((p: any) => p.id));
-    const categoryMatches = (allPostsData?.objects || []).filter((post: any) => {
-      // Skip if already found by title/teaser search
-      if (existingPostIds.has(post.id)) return false;
+    const categoryMatches = (allPostsData?.objects || []).filter(
+      (post: any) => {
+        // Skip if already found by title/teaser search
+        if (existingPostIds.has(post.id)) return false;
 
-      // Check if query matches any category title
-      return post.metadata?.categories?.some((cat: any) =>
-        cat.title?.toLowerCase().includes(searchQueryLower)
-      ) || false;
-    });
+        // Check if query matches any category title
+        return (
+          post.metadata?.categories?.some((cat: any) =>
+            cat.title?.toLowerCase().includes(searchQueryLower)
+          ) || false
+        );
+      }
+    );
 
     // Combine results and deduplicate
     const allResults = [...posts, ...categoryMatches];
@@ -369,7 +369,7 @@ export async function searchPosts(query: string) {
   } catch (error) {
     logError("searchPosts", error, {
       query,
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });

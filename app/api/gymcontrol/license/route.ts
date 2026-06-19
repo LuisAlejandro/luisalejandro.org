@@ -6,8 +6,7 @@ import * as yup from "yup";
 
 import { logError } from "@lib/logger";
 
-const BUCKET_SLUG =
-  process.env.GYMCONTROL_COSMIC_BUCKET_SLUG || "gymcontrol-production";
+const BUCKET_SLUG = process.env.GYMCONTROL_COSMIC_BUCKET_SLUG;
 
 const READ_KEY = process.env.GYMCONTROL_COSMIC_READ_KEY;
 
@@ -78,7 +77,7 @@ export async function POST(request: NextRequest) {
     }
 
     const cosmic = createBucketClient({
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       readKey: READ_KEY || "",
     });
 
@@ -160,7 +159,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     logError("gymcontrol-license-api", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       hasActivationSecret: !!ACTIVATION_SECRET,
       hasActivationSalt: !!ACTIVATION_SALT,
