@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "schema_version": "v1",
+    "name": "luisalejandro.org agent permissions",
+    "description": "Interaction policy for AI agents using luisalejandro.org.",
+    "last_updated": "2026-06-15",
+    "author": "Luis Alejandro Martinez Faneyth",
+    "contact": "luis@luisalejandro.org"
+  },
+  "resource_rules": [
+    {
+      "verb": "read_content",
+      "selector": "body",
+      "allowed": true,
+      "modifiers": {
+        "rate_limit": {
+          "max_requests": 120,
+          "window_seconds": 3600
+        }
+      }
+    },
+    {
+      "verb": "follow_link",
+      "selector": "a[href]",
+      "allowed": true,
+      "modifiers": {
+        "rate_limit": {
+          "max_requests": 240,
+          "window_seconds": 3600
+        }
+      }
+    },
+    {
+      "verb": "submit_form",
+      "selector": "form",
+      "allowed": true,
+      "modifiers": {
+        "human_in_the_loop": true,
+        "rate_limit": {
+          "max_requests": 3,
+          "window_seconds": 3600
+        }
+      }
+    },
+    {
+      "verb": "click_element",
+      "selector": "button[type='submit'], input[type='submit']",
+      "allowed": true,
+      "modifiers": {
+        "human_in_the_loop": true,
+        "rate_limit": {
+          "max_requests": 3,
+          "window_seconds": 3600
+        }
+      }
+    }
+  ],
+  "action_guidelines": [
+    {
+      "directive": "SHOULD",
+      "description": "Prefer llms.txt, sitemap.xml, RSS, Atom, and JSON feeds before broad crawling."
+    },
+    {
+      "directive": "MUST",
+      "description": "Attribute cited public content to luisalejandro.org and include the canonical URL."
+    },
+    {
+      "directive": "MUST NOT",
+      "description": "Submit contact forms, token endpoints, license endpoints, or other transactional requests without explicit human confirmation."
+    },
+    {
+      "directive": "SHOULD NOT",
+      "description": "Use automated interactions to generate spam, unsolicited messages, or repeated form submissions."
+    }
+  ],
+  "api": [
+    {
+      "type": "llms_txt",
+      "endpoint": "https://luisalejandro.org/llms.txt",
+      "description": "Curated AI-readable site index."
+    },
+    {
+      "type": "sitemap",
+      "endpoint": "https://luisalejandro.org/sitemap.xml",
+      "description": "Canonical XML sitemap."
+    },
+    {
+      "type": "rss",
+      "endpoint": "https://luisalejandro.org/blog/posts/feed.xml",
+      "description": "Blog RSS feed."
+    },
+    {
+      "type": "atom",
+      "endpoint": "https://luisalejandro.org/blog/posts/atom.xml",
+      "description": "Blog Atom feed."
+    },
+    {
+      "type": "json_feed",
+      "endpoint": "https://luisalejandro.org/blog/posts/feed.json",
+      "description": "Blog JSON feed."
+    }
+  ]
+}

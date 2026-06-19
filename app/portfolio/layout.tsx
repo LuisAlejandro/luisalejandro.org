@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { config } from "@constants/constants";
+import { generatePortfolioJsonLd } from "@lib/structuredData";
 
 import "@styles/tailwind.css";
 
@@ -186,8 +187,16 @@ export default async function PortfolioLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const portfolioJsonLd = generatePortfolioJsonLd();
+
   return (
     <div className="bg-gradient-to-b from-orange-2 via-orange-3/15 via-30% to-bright-gold min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(portfolioJsonLd),
+        }}
+      />
       {children}
     </div>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { experience } from "@constants/constants";
+import { generateHomepageJsonLd } from "@lib/structuredData";
 
 import HighlightText from "@components/common/HighlightText";
 import { Container } from "@components/common/Layout/Container";
@@ -14,8 +15,16 @@ import ButtonBar from "@components/Home/ButtonBar";
 import Gallery from "@side-effects/Home/Gallery";
 
 export default async function HomePage() {
+  const homepageJsonLd = generateHomepageJsonLd();
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homepageJsonLd),
+        }}
+      />
       <Container>
         <div
           id="app"

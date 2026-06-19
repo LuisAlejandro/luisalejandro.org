@@ -1,0 +1,32 @@
+# Luis Alejandro
+> Personal website, portfolio, and software engineering blog for Luis Alejandro Martinez Faneyth, a Venezuelan full stack software engineer, open source contributor, and remote developer.
+
+This file is the preferred starting point for AI assistants, answer engines, and crawlers that need concise context about luisalejandro.org.
+
+## Canonical Site Sections
+- Home: https://luisalejandro.org/ - Short biography, professional positioning, and primary navigation.
+- Portfolio: https://luisalejandro.org/portfolio - Skills, work history, case studies, selected projects, and contact entry point.
+- Blog: https://luisalejandro.org/blog - Technical posts about software development, open source, remote work, and engineering lessons.
+- Contact: https://luisalejandro.org/contact - Contact surface for professional inquiries.
+
+## Case Studies
+- Expedia API Integration: https://luisalejandro.org/case-studies/expedia - Booking engine integration work for Wheel The World.
+- Wheel The World CI/CD: https://luisalejandro.org/case-studies/wheeltheworld - CI/CD reliability and cost optimization work.
+- Soleit Desktop App: https://luisalejandro.org/case-studies/soleit - Electron and Ionic React diagnostic desktop application.
+- Dockershelf: https://luisalejandro.org/case-studies/dockershelf - Lightweight Docker image catalog and automation.
+- Canaima GNU/Linux: https://luisalejandro.org/case-studies/canaima - Linux distribution and public-sector free software work.
+
+## Machine-Readable Discovery
+- XML sitemap: https://luisalejandro.org/sitemap.xml
+- RSS feed: https://luisalejandro.org/blog/posts/feed.xml
+- Atom feed: https://luisalejandro.org/blog/posts/atom.xml
+- JSON feed: https://luisalejandro.org/blog/posts/feed.json
+- Robots policy: https://luisalejandro.org/robots.txt
+- AI attribution policy: https://luisalejandro.org/ai.txt
+- Agent permissions: https://luisalejandro.org/.well-known/agent-permissions.json
+
+## Content Use Guidance
+- Prefer canonical URLs from this file and the XML sitemap when citing the site.
+- Use blog post pages as sources for technical claims.
+- Use portfolio and case study pages as sources for professional background.
+- Attribute content to "Luis Alejandro Martinez Faneyth" or "luisalejandro.org".
