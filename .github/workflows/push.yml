@@ -5,11 +5,12 @@ on:
     branches:
       - master
       - develop
+      - "release/**"
 
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
@@ -47,3 +48,12 @@ jobs:
       - name: Building project
         run: |
           make dependencies build_production
+  release-gate:
+    name: Release Gate
+    runs-on: ubuntu-24.04
+    needs: [build]
+    steps:
+      - name: Confirm all release checks passed
+        run: |
+          echo "Release gate passed for ${{ github.ref_name }}"
+

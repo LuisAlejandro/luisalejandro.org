@@ -40,4 +40,4 @@ See `make help` for Docker lifecycle and release targets.
 
 ## Releases
 
-Release and hotfix workflows are documented in `MAINTAINER.md`. Changelog entries are written to `HISTORY.md`.
+Release workflows are documented in `MAINTAINER.md`. Changelog entries are written to `HISTORY.md`.

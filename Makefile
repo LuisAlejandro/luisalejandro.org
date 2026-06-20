@@ -33,7 +33,6 @@ help:
 	@echo "    release-patch    - Create a new patch release (x.x.X)"
 	@echo "    release-minor    - Create a new minor release (x.X.x)"
 	@echo "    release-major    - Create a new major release (X.x.x)"
-	@echo "    hotfix           - Create a new hotfix (always patch increment)"
 	@echo ""
 	@echo "  Release with custom version type:"
 	@echo "    make release VERSION_TYPE=minor"
@@ -54,11 +53,14 @@ console: start
 lint: start
 	@$(exec_on_docker) yarn lint
 
+format: start
+	@$(exec_on_docker) yarn format
+
 test: start
 	@$(exec_on_docker) yarn type-check
 
 # >>> rosey-maintainer:ops-docker BEGIN
-# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
+# Managed by rosey-maintainer-tools 0.2.0. Do not edit directly.
 
 PROJECT_NAME ?= luisalejandro.org
 all_ps_hashes = $(shell docker ps -q)
@@ -106,7 +108,7 @@ cataplum:
 # <<< rosey-maintainer:ops-docker END
 
 # >>> rosey-maintainer:ops-release BEGIN
-# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
+# Managed by rosey-maintainer-tools 0.2.0. Do not edit directly.
 
 release:
 	@./scripts/release.sh $${VERSION_TYPE}
@@ -120,8 +122,21 @@ release-minor:
 release-major:
 	@./scripts/release.sh major $${APP_NAME}
 
-hotfix:
-	@./scripts/hotfix.sh $${APP_NAME}
+
+release-preflight: start
+
+
+	@make lint
+
+	@make format
+
+	@make test
+
+
+
+undo-release:
+	@: "$${VERSION:?Set VERSION=x.y.z before running make undo-release}"
+	@VERSION=$${VERSION} ./scripts/rollback.sh release
 # <<< rosey-maintainer:ops-release END
 
-.PHONY: help dependencies build_production serve console lint test image start stop down destroy cataplum release release-patch release-minor release-major hotfix
+.PHONY: help dependencies build_production serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major undo-release
