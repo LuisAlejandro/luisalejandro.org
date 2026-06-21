@@ -1,4 +1,5 @@
 import { config, experience, ProjectList } from "@constants/constants";
+import { stripHtmlToPlainText } from "@lib/plainText";
 
 const portfolioDescription =
   "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.";
@@ -152,7 +153,7 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
       headline: post.title,
       name: post.title,
       description:
-        post.metadata.teaser?.replace(/<[^>]*>/g, "").substring(0, 160) || "",
+        stripHtmlToPlainText(post.metadata.teaser || "").substring(0, 160),
       datePublished: post.created_at,
       dateModified: post.created_at,
       author: {
@@ -204,7 +205,7 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
     headline: post.title,
     name: post.title,
     description:
-      post.metadata.teaser?.replace(/<[^>]*>/g, "").substring(0, 160) || "",
+      stripHtmlToPlainText(post.metadata.teaser || "").substring(0, 160),
     datePublished: post.created_at,
     dateModified: post.created_at,
     author: {
