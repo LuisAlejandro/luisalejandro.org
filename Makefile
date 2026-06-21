@@ -64,7 +64,7 @@ test: start
 # >>> rosey-maintainer:ops-docker BEGIN
 # Managed by rosey-maintainer-tools 0.3.0. Do not edit directly.
 
-PROJECT_NAME ?= luisalejandro.org
+PROJECT_NAME ?= luisalejandro-org
 all_ps_hashes = $(shell docker ps -q)
 
 image:
