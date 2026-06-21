@@ -33,6 +33,7 @@ The app runs at [http://localhost:3000](http://localhost:3000).
 | `make serve` | Start the Next.js dev server in Docker |
 | `make build_production` | Production build inside the container |
 | `make lint` | Run ESLint |
+| `make format` | Run Prettier |
 | `make test` | Run TypeScript type check |
 | `make console` | Open a shell in the app container |
 
