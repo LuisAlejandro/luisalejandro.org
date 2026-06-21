@@ -8,6 +8,21 @@ Personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS.
 
 > Web [luisalejandro.org](http://luisalejandro.org/) · GitHub [@LuisAlejandro](https://github.com/LuisAlejandro) · Twitter [@LuisAlejandro](https://x.com/LuisAlejandro)
 
+## Stack
+
+- **Framework:** Next.js 16 (App Router), React 19, TypeScript
+- **Styling:** Tailwind CSS 4, Sass
+- **Content:** Cosmic CMS (`@cosmicjs/sdk`)
+- **Monitoring:** Sentry (`@sentry/nextjs`)
+- **Package manager:** Yarn 1.x (Docker and local workflows)
+
+## Features
+
+- Portfolio, blog, and case-study pages with Cosmic-backed content
+- Contact form with reCAPTCHA, AWS SES, Mailchimp, and Google Sheets integrations
+- License activation APIs for Wholmaster and Gymcontrol apps
+- Disqus comments, analytics, and on-demand revalidation API routes
+
 ## Local development
 
 Copy environment variables and fill in secrets:
@@ -26,18 +41,35 @@ make serve
 
 The app runs at [http://localhost:3000](http://localhost:3000).
 
-## Common commands
+Use `make console` for a shell inside the app container.
+
+## Commands
 
 | Command | Description |
 |---------|-------------|
 | `make serve` | Start the Next.js dev server in Docker |
 | `make build_production` | Production build inside the container |
-| `make lint` | Run ESLint |
-| `make format` | Run Prettier |
-| `make test` | Run TypeScript type check |
+| `make lint` | Run ESLint (`yarn lint`) |
+| `make format` | Run Prettier (`yarn format`) |
+| `make test` | Run TypeScript type check (`yarn type-check`) |
 | `make console` | Open a shell in the app container |
+| `make dependencies` | `yarn install` inside the app container |
 
-See `make help` for Docker lifecycle and release targets.
+Docker lifecycle targets (`make image`, `make start`, `make stop`, `make down`, `make destroy`, `make cataplum`) are provided by Rosey maintainer managed blocks. See `make help` for release targets.
+
+## Testing and quality
+
+```bash
+make lint
+make format
+make test
+```
+
+Release preflight runs these three targets via `make release-preflight` before tagging.
+
+## CI
+
+Pull requests to `develop` run the Docker build and production build (see `.github/workflows/pr.yml`). CodeQL runs in `.github/workflows/code-quality.yml`. Auto-approve and merge run in `.github/workflows/pr-auto-merge.yml` after CI succeeds.
 
 ## Releases
 
