@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Shared release gates for release scripts.
-# Managed by rosey-maintainer-tools 0.2.0. Do not edit directly.
+# Managed by rosey-maintainer-tools 0.4.3. Do not edit directly.
 
 RELEASE_CI_WORKFLOW=${RELEASE_CI_WORKFLOW:-push.yml}
 RELEASE_CI_TIMEOUT_SECONDS=${RELEASE_CI_TIMEOUT_SECONDS:-2700}
@@ -255,6 +255,36 @@ release_finish_release() {
 
     previous_version=${PREVIOUS_VERSION:-$(git tag --sort=-v:refname | awk -v version="$version" '$0 != version { print; exit }')}
     release_create_github_release "$version" "$app_name $version" "$(release_build_notes "$previous_version" "$version")"
+}
+
+release_read_post_bump_commands() {
+    if [[ ! -f .bumpversion.cfg ]]; then
+        return 0
+    fi
+
+    awk '
+        /^\[rosey-maintainer\]/ { in_section=1; next }
+        /^\[/ && in_section { exit }
+        in_section && /^post_bump_commands[[:space:]]*=/ { collecting=1; next }
+        collecting && /^[[:space:]]+/ {
+            sub(/^[[:space:]]+/, "")
+            if (length($0) > 0) {
+                print
+            }
+            next
+        }
+        collecting && /^[^[:space:]]/ { exit }
+    ' .bumpversion.cfg
+}
+
+release_run_post_bump_commands() {
+    local command
+
+    while IFS= read -r command; do
+        [[ -z "$command" ]] && continue
+        print_step "Running post-bump command: $command"
+        bash -c "$command"
+    done < <(release_read_post_bump_commands)
 }
 
 release_resolve_branch_version() {

@@ -1,7 +1,7 @@
 name: Pull Request
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - ready_for_review
@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Restoring node_modules cache
         uses: actions/cache@v5
@@ -30,6 +28,7 @@ jobs:
         run: |
           echo "UID=$(id -u)" >> $GITHUB_ENV
           echo "GID=$(id -g)" >> $GITHUB_ENV
+          echo "PROJECT_NAME=luisalejandro-org" >> $GITHUB_ENV
           echo "COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}" >> .env
           echo "COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}" >> .env
 
@@ -54,30 +53,29 @@ jobs:
         run: |
           make dependencies build_production
 
-  approve:
-    name: Approve pull request
-    runs-on: ubuntu-24.04
-    needs: build
-    if: github.actor == github.repository_owner || github.actor == 'dependabot[bot]'
-    steps:
-      - name: Approve
-        uses: hmarr/auto-approve-action@v4.0.0
-        with:
-          github-token: "${{ github.actor == github.repository_owner && secrets.GITHUB_TOKEN || secrets.REPO_PERSONAL_ACCESS_TOKEN }}"
+      - name: Tear down Docker
+        if: always()
+        run: make down
 
-  merge:
-    name: Merge pull request
+  # >>> rosey-maintainer:ci-quality BEGIN
+  code-quality:
+    name: Code Quality
     runs-on: ubuntu-24.04
-    needs: approve
-    if: github.actor == github.repository_owner || github.actor == 'dependabot[bot]'
+    container:
+      image: semgrep/semgrep
     steps:
-      - name: Merge
-        uses: actions/github-script@v9
+      - name: Checkout repo
+        uses: actions/checkout@v6
         with:
-          github-token: "${{ github.actor == github.repository_owner && secrets.GITHUB_TOKEN || secrets.REPO_PERSONAL_ACCESS_TOKEN }}"
-          script: |
-            await github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            })
+          fetch-depth: 0
+
+      - name: Semgrep scan
+        run: |
+          BASELINE="${{ github.event.pull_request.base.sha }}"
+          semgrep scan \
+            --config p/ci \
+            --config p/javascript \
+            --baseline-commit "${BASELINE}" \
+            --metrics=off \
+            --error
+  # <<< rosey-maintainer:ci-quality END
