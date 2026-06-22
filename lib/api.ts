@@ -15,6 +15,8 @@ const cosmic = createBucketClient({
 const is404 = (error: any) =>
   /not found/i.test(error.message) || error.status === 404;
 
+const hasCosmicCredentials = () => Boolean(BUCKET_SLUG && READ_KEY);
+
 export async function getAllPostsSlugs() {
   try {
     const data = await cosmic.objects
@@ -253,6 +255,10 @@ export async function getAllPostsForCategory(categorySlug: any) {
 }
 
 export async function getAllCategories() {
+  if (!hasCosmicCredentials()) {
+    return [];
+  }
+
   try {
     const data = await cosmic.objects
       .find({
@@ -267,7 +273,7 @@ export async function getAllCategories() {
       bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
     });
-    throw error;
+    return [];
   }
 }
 
