@@ -26,6 +26,7 @@ help:
 	@echo ""
 	@echo "  Quality commands:"
 	@echo "    lint             - Run ESLint"
+	@echo "    format           - Run Prettier"
 	@echo "    test             - Run TypeScript type check"
 	@echo ""
 	@echo "  Release commands:"
@@ -33,6 +34,7 @@ help:
 	@echo "    release-patch    - Create a new patch release (x.x.X)"
 	@echo "    release-minor    - Create a new minor release (x.X.x)"
 	@echo "    release-major    - Create a new major release (X.x.x)"
+	@echo "    undo-release     - Roll back a botched release (VERSION=x.y.z)"
 	@echo ""
 	@echo "  Release with custom version type:"
 	@echo "    make release VERSION_TYPE=minor"
@@ -60,9 +62,9 @@ test: start
 	@$(exec_on_docker) yarn type-check
 
 # >>> rosey-maintainer:ops-docker BEGIN
-# Managed by rosey-maintainer-tools 0.2.0. Do not edit directly.
+# Managed by rosey-maintainer-tools 0.4.3. Do not edit directly.
 
-PROJECT_NAME ?= luisalejandro.org
+PROJECT_NAME ?= luisalejandro-org
 all_ps_hashes = $(shell docker ps -q)
 
 image:
@@ -108,7 +110,7 @@ cataplum:
 # <<< rosey-maintainer:ops-docker END
 
 # >>> rosey-maintainer:ops-release BEGIN
-# Managed by rosey-maintainer-tools 0.2.0. Do not edit directly.
+# Managed by rosey-maintainer-tools 0.4.3. Do not edit directly.
 
 release:
 	@./scripts/release.sh $${VERSION_TYPE}
@@ -139,4 +141,4 @@ undo-release:
 	@VERSION=$${VERSION} ./scripts/rollback.sh release
 # <<< rosey-maintainer:ops-release END
 
-.PHONY: help dependencies build_production serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major undo-release
+.PHONY: help dependencies build_production serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major release-preflight undo-release
