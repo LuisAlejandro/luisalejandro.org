@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
 import { getPostAndMorePosts } from "@lib/api";
+import { stripHtmlToPlainText } from "@lib/plainText";
 
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
@@ -33,7 +34,7 @@ export async function generateMetadata({
   const post = data.post;
 
   // Clean and optimize description
-  const rawDescription = post.metadata?.teaser?.replace(/<[^>]*>/g, "") || "";
+  const rawDescription = stripHtmlToPlainText(post.metadata?.teaser || "");
   const optimizedDescription =
     rawDescription.length > 160
       ? rawDescription.substring(0, 157) + "..."
