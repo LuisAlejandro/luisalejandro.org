@@ -10,6 +10,8 @@ import {
   AiOutlineYoutube,
 } from "react-icons/ai";
 
+import { socialSrLabels } from "@constants/socialSrLabels";
+
 import { ButtonBarContainer } from "@components/common/Layout/ButtonBarContainer";
 import { SocialIcons } from "@components/common/Layout/SocialIcons";
 import { trackPixelEvent } from "@lib/pixel";
@@ -41,18 +43,21 @@ export default function ButtonBar() {
         target="_blank"
         rel="nofollow noreferrer"
         icon={AiOutlineGithub}
+        srLabel={socialSrLabels.github}
       />
       <SocialIcons
         href="https://www.linkedin.com/in/martinezfaneyth"
         target="_blank"
         rel="nofollow noreferrer"
         icon={AiOutlineLinkedin}
+        srLabel={socialSrLabels.linkedin}
       />
       <SocialIcons
         href="https://www.youtube.com/@LuisDevelops"
         target="_blank"
         rel="nofollow noreferrer"
         icon={AiOutlineYoutube}
+        srLabel={socialSrLabels.youtube}
         className="!rounded-r-[5px]"
       />
     </ButtonBarContainer>

@@ -7,11 +7,13 @@ interface SocialIconsProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   icon: React.ComponentType<{ className?: string }>;
   text?: string;
+  srLabel?: string;
 }
 
 export const SocialIcons: React.FC<SocialIconsProps> = ({
   icon: Icon,
   text,
+  srLabel,
   className = "",
   ...props
 }) => (
@@ -32,6 +34,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
     )}
   >
     <Icon className={cn("lg:text-2xl align-top inline-block text-5xl")} />
+    {srLabel && <span className="sr-only">{srLabel}</span>}
     {text && <SocialIconLabel>{text}</SocialIconLabel>}
   </a>
 );
