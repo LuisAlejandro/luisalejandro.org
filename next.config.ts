@@ -22,14 +22,8 @@ const config: NextConfig = {
     return [
       // Forever cache for blog posts - content is immutable once published
       {
-        source: "/blog/posts/:slug*",
-        has: [
-          {
-            type: "header",
-            key: "x-matched-path",
-            value: "(?!.*(feed\\.xml|atom\\.xml|feed\\.json))",
-          },
-        ],
+        source:
+          "/blog/posts/:slug((?!feed\\.xml$)(?!atom\\.xml$)(?!feed\\.json$).+)",
         headers: [
           {
             key: "Cache-Control",
