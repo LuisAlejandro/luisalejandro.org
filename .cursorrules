@@ -1,0 +1,23 @@
+# Cursor Cloud specific instructions
+
+Personal website and portfolio: a single Next.js 16 (App Router) + TypeScript + Tailwind app at the repo root. Content comes from Cosmic CMS; API routes cover contact forms, license activation, and integrations. There is no separate backend service — only the Next.js dev server (port `3101`).
+
+## Environment layout
+
+- **Package manager:** Yarn 1.x (`packageManager` in `package.json`). Dependencies are installed by the startup update script (`yarn install`), so they should already be present.
+- The `Makefile` targets (`make serve`, `make lint`, `make test`, etc.) run **inside Docker**. On the host, use the `yarn` scripts directly (see below).
+- Copy env before running: `cp .env.example .env`. Cosmic CMS keys (`COSMIC_*`) are required for blog/portfolio/case-study pages that fetch content. Contact-form and third-party integrations (AWS SES, reCAPTCHA, Mailchimp, Google Sheets, Sentry) need their own vars when exercising those routes.
+
+## Lint / test / run (host)
+
+- **Dev server:** `PORT=3101 yarn dev` → http://localhost:3101 (matches `docker-compose.yml` and `constants/constants.ts` local URL).
+- **Lint:** `yarn lint` (`next lint`).
+- **Format:** `yarn format` (Prettier write) or `yarn format:check` (check only).
+- **Type-check:** `yarn type-check` (`tsc --noEmit`) — this is what `make test` runs in Docker.
+- **Production build:** `yarn build`.
+
+## Non-obvious gotchas
+
+- `make release-preflight` chains `lint`, `format`, and `test`; CI PR workflow builds the Docker image and runs a production build (`.github/workflows/pr.yml`).
+- Pages backed by Cosmic will error or show empty content without valid `COSMIC_BUCKET_SLUG` and `COSMIC_READ_KEY` in `.env`.
+- Sentry is wired via `@sentry/nextjs`; builds may warn if DSN-related env is missing — that is expected in a minimal local setup.

@@ -49,7 +49,7 @@ export const SES_COMPANY_SENDER_NAME = "Website Contact Form";
 export const SES_COMPANY_TEMPLATE_ID = "luisalejandro-company";
 
 export const canonicalHostnameUrl =
-  ENV_NAME === "local" ? "http://localhost:3000" : "https://luisalejandro.org";
+  ENV_NAME === "local" ? "http://localhost:3101" : "https://luisalejandro.org";
 
 export const config = {
   name: "Luis Alejandro",

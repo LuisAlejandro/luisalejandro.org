@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/LuisAlejandro/luisalejandro.org#readme",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "prebuild": "node scripts/strip-image-metadata.mjs",
     "build": "next build",
     "start": "next build && next start",

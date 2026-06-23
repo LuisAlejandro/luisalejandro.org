@@ -39,21 +39,21 @@ make dependencies
 make serve
 ```
 
-The app runs at [http://localhost:3000](http://localhost:3000).
+The app runs at [http://localhost:3101](http://localhost:3101).
 
 Use `make console` for a shell inside the app container.
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `make serve` | Start the Next.js dev server in Docker |
-| `make build_production` | Production build inside the container |
-| `make lint` | Run ESLint (`yarn lint`) |
-| `make format` | Run Prettier (`yarn format`) |
-| `make test` | Run TypeScript type check (`yarn type-check`) |
-| `make console` | Open a shell in the app container |
-| `make dependencies` | `yarn install` inside the app container |
+| Command                 | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `make serve`            | Start the Next.js dev server in Docker        |
+| `make build_production` | Production build inside the container         |
+| `make lint`             | Run ESLint (`yarn lint`)                      |
+| `make format`           | Run Prettier (`yarn format`)                  |
+| `make test`             | Run TypeScript type check (`yarn type-check`) |
+| `make console`          | Open a shell in the app container             |
+| `make dependencies`     | `yarn install` inside the app container       |
 
 Docker lifecycle targets (`make image`, `make start`, `make stop`, `make down`, `make destroy`, `make cataplum`) are provided by Rosey maintainer managed blocks. See `make help` for release targets.
 

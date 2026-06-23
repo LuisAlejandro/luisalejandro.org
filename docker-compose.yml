@@ -10,5 +10,7 @@ services:
       - ~/.cache/yarn:/home/luisalejandro-org/.cache/yarn
     env_file:
       - .env
+    environment:
+      PORT: 3101
     ports:
-      - "3000:3000"
+      - "3101:3101"
