@@ -69,7 +69,7 @@ Release preflight runs these three targets via `make release-preflight` before t
 
 ## CI
 
-Pull requests to `develop` run the Docker build and production build (see `.github/workflows/pr.yml`). CodeQL runs in `.github/workflows/code-quality.yml`. Auto-approve and merge run in `.github/workflows/pr-auto-merge.yml` after CI succeeds.
+Pull requests to `develop` run a Docker build and production build plus a Semgrep **Code Quality** job in `.github/workflows/pr.yml`. Auto-approve and merge run in `.github/workflows/pr-auto-merge.yml` after the **Pull Request** workflow succeeds.
 
 ## Releases
 
