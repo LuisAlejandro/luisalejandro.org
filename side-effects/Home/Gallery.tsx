@@ -65,6 +65,7 @@ export default function Gallery() {
               alt={item.alt}
               width={300}
               height={200}
+              sizes="(max-width: 768px) 33vw, 300px"
               onLoad={() => handleImageLoad(index)}
               className="w-full h-auto mb-5 block rounded-lg"
             />

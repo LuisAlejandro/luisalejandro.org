@@ -24,6 +24,7 @@ export default function NotFound() {
                   src="/images/logomin.svg"
                   height={200}
                   width={200}
+                  sizes="(max-width: 768px) 150px, 200px"
                 />
               </Link>
               <Heading className="!text-[10rem] !text-center !py-10">

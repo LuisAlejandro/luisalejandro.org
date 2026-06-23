@@ -1,4 +1,3 @@
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
 import { League_Gothic, Poppins, Roboto } from "next/font/google";
 import Script from "next/script";
@@ -42,10 +41,13 @@ const leagueGothic = League_Gothic({
   adjustFontFallback: true,
 });
 
+const siteTitle = "Luis Alejandro | Full Stack Developer & Open Source Expert";
+const siteDescription =
+  "Venezuelan full-stack software engineer with 16+ years of remote expertise in TypeScript, Python, and Go. Discover my open-source projects, tools, and developer blog.";
+
 export const metadata: Metadata = {
-  title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
-  description:
-    "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     "Venezuelan software engineer",
     "remote full stack developer",
@@ -80,9 +82,8 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
-    description:
-      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
+    title: siteTitle,
+    description: siteDescription,
     url: config.url,
     siteName: "Luis Alejandro Martínez Faneyth",
     images: [
@@ -98,9 +99,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
-    description:
-      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
+    title: siteTitle,
+    description: siteDescription,
     images: [`${config.url}/images/banner.png`],
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
@@ -184,10 +184,8 @@ export const metadata: Metadata = {
     sitemap: `${config.url}/sitemap.xml`,
 
     // Dublin Core metadata
-    "dcterms.title":
-      "Luis Alejandro | Remote Full Stack Developer & Open Source Expert",
-    "dcterms.description":
-      "Venezuelan software engineer with 16+ years experience. TypeScript, Python, Go expert. 220K+ downloads, 190+ GitHub stars. Remote work specialist.",
+    "dcterms.title": siteTitle,
+    "dcterms.description": siteDescription,
     "dcterms.language": "en",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,
@@ -236,14 +234,27 @@ export default async function RootLayout({
       <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-2xl font-main">
         {children}
         {GA_MEASUREMENT_ID && ENV_NAME !== "local" && (
-          <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="lazyOnload"
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
         )}
         {ADSENSE_PUBLISHER_ID && ENV_NAME !== "local" && (
           <Script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
             crossOrigin="anonymous"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
         )}
         <Suspense fallback={null}>
