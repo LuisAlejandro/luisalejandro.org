@@ -1,4 +1,10 @@
-import { config, experience, ProjectList } from "@constants/constants";
+import {
+  config,
+  experience,
+  ProjectList,
+  SITE_PROFILE_DATE_CREATED,
+  SITE_PROFILE_DATE_MODIFIED,
+} from "@constants/constants";
 import { stripHtmlToPlainText } from "@lib/plainText";
 
 const portfolioDescription =
@@ -43,6 +49,7 @@ function buildPersonNode(personUrl: string) {
     sameAs: [
       `https://github.com/${config.author.github}`,
       `https://x.com/${config.author.twitter}`,
+      "https://www.linkedin.com/in/martinezfaneyth",
     ],
   };
 }
@@ -75,6 +82,8 @@ export function generateHomepageJsonLd() {
         url: config.url,
         name: `${config.author.first_name} - Software Engineer`,
         description: config.description,
+        dateCreated: SITE_PROFILE_DATE_CREATED,
+        dateModified: SITE_PROFILE_DATE_MODIFIED,
         isPartOf: {
           "@id": websiteId,
         },
@@ -152,8 +161,10 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
       mainEntityOfPage: `${config.url}/blog/posts/${post.slug}`,
       headline: post.title,
       name: post.title,
-      description:
-        stripHtmlToPlainText(post.metadata.teaser || "").substring(0, 160),
+      description: stripHtmlToPlainText(post.metadata.teaser || "").substring(
+        0,
+        160
+      ),
       datePublished: post.created_at,
       dateModified: post.created_at,
       author: {
@@ -204,8 +215,10 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
     mainEntityOfPage: `${config.url}/blog/posts/${post.slug}`,
     headline: post.title,
     name: post.title,
-    description:
-      stripHtmlToPlainText(post.metadata.teaser || "").substring(0, 160),
+    description: stripHtmlToPlainText(post.metadata.teaser || "").substring(
+      0,
+      160
+    ),
     datePublished: post.created_at,
     dateModified: post.created_at,
     author: {

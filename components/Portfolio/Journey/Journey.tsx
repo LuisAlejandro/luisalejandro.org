@@ -11,7 +11,7 @@ import TimelineChart from "./TimelineChart";
 const Timeline = () => {
   return (
     <>
-      <svg viewBox="0 0 1920 100">
+      <svg viewBox="0 0 1920 100" aria-hidden="true">
         <path
           fill="#f8d983"
           fillOpacity="0.5"

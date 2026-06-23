@@ -10,6 +10,7 @@ import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
 
 import { Section } from "@components/common/Layout/Section";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import PostContent from "@components/Post/PostContent";
@@ -64,10 +65,8 @@ export default async function PostPage({ params }: PostPageProps) {
         />
         <div className="bg-gray-6 w-full mx-auto">
           <Header />
-          <main className="bg-white pb-50">
-            <svg viewBox="0 0 1920 200">
-              <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-            </svg>
+          <main id="main-content" tabIndex={-1} className="bg-white pb-50">
+            <WaveDivider variant="200" />
             <Section grid overflowVisible oneColumn nopadding wide>
               <PostContent
                 title={post.title}

@@ -1,6 +1,7 @@
 import cn from "classnames";
 import { Scene } from "react-scrollmagic";
 
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import ScrollTween from "./ScrollTween";
 
 interface ChallengeProps {
@@ -24,9 +25,7 @@ const Challenge = ({ Title, Content, bgImgClass }: ChallengeProps) => (
           : {}
       )}
     >
-      <svg viewBox="0 0 1920 100">
-        <path fill="#333" d="M960,50l960-50H0L960,50z" />
-      </svg>
+      <WaveDivider fill="#333" />
       <Scene
         triggerElement="#challenge"
         duration="200%"
@@ -111,9 +110,7 @@ const Challenge = ({ Title, Content, bgImgClass }: ChallengeProps) => (
         <div className="col-span-3"></div>
       </div>
 
-      <svg viewBox="0 0 1920 100">
-        <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
-      </svg>
+      <WaveDivider fill="#333" inverted />
     </div>
   </div>
 );

@@ -16,7 +16,7 @@ const Portfolio = () => {
   return (
     <div className="w-full mx-auto">
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Section grid overflowVisible>
           <Hero />
           <BackgroundAnimation />

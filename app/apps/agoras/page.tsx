@@ -10,7 +10,7 @@ export default function AgorasPage() {
   return (
     <div className="w-full mx-auto">
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <style jsx global>{`
           h1 {
             font-weight: 200;

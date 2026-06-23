@@ -6,6 +6,7 @@ import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogJsonLd } from "@lib/structuredData";
 
 import BlogSearchWrapper from "@components/Blog/BlogSearchWrapper";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
@@ -17,7 +18,7 @@ export default async function BlogPage() {
     const posts = await Promise.all(
       allPosts.map(async (post: any) => {
         // Check if teaser is already HTML (starts with <)
-        const teaserHtml = post.metadata?.teaser?.startsWith('<')
+        const teaserHtml = post.metadata?.teaser?.startsWith("<")
           ? post.metadata.teaser
           : await markdownToHtml(post.metadata?.teaser || "");
 
@@ -47,11 +48,9 @@ export default async function BlogPage() {
           }}
         />
         <Header />
-        <main className="bg-white pb-50">
+        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
           <BlogClient />
-          <svg viewBox="0 0 1920 200">
-            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-          </svg>
+          <WaveDivider variant="200" />
           <BlogSearchWrapper posts={posts} />
           <LazyImagesLoader />
         </main>

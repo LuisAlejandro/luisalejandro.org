@@ -5,6 +5,7 @@ import { logError } from "@lib/logger";
 
 import MoreStories from "@components/Blog/MoreStories";
 import { Section } from "@components/common/Layout/Section";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
@@ -29,11 +30,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     return (
       <div className="bg-gray-6 text-black w-full my-0 mx-auto">
         <Header />
-        <main className="bg-white pb-50">
+        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
           <BlogCategoryClient />
-          <svg viewBox="0 0 1920 200">
-            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-          </svg>
+          <WaveDivider variant="200" />
           <Section grid overflowVisible oneColumn nopadding wide>
             <h1 className="text-4xl font-light leading-4 mt-0 mb-[10px]">
               Posts related to {categoryName}
