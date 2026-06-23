@@ -43,6 +43,7 @@ This file is the preferred starting point for AI assistants, answer engines, and
 - AI attribution policy: https://luisalejandro.org/ai.txt
 - Agent instructions: https://luisalejandro.org/agents.md
 - Agent permissions: https://luisalejandro.org/.well-known/agent-permissions.json
+- API catalog (RFC 9727): https://luisalejandro.org/.well-known/api-catalog
 
 ## Content Use Guidance
 

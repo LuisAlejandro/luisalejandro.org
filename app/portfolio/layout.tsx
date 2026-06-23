@@ -137,6 +137,12 @@ export const metadata: Metadata = {
           title: "Sitemap",
         },
       ],
+      "text/markdown": [
+        {
+          url: "/portfolio.md",
+          title: "Markdown twin",
+        },
+      ],
     },
   },
   other: {

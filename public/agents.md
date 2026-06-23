@@ -17,6 +17,7 @@ Use these sources before broad crawling:
 - `https://luisalejandro.org/blog/posts/feed.json` for the JSON feed.
 - `https://luisalejandro.org/ai.txt` for attribution preferences.
 - `https://luisalejandro.org/.well-known/agent-permissions.json` for browser-agent interaction permissions.
+- `https://luisalejandro.org/.well-known/api-catalog` for RFC 9727 API discovery (also advertised via HTTP `Link: rel="api-catalog"`).
 
 ## How To Interpret Pages
 

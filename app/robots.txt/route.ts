@@ -3,43 +3,26 @@ import { NextResponse } from "next/server";
 import { canonicalHostnameUrl } from "@constants/constants";
 import { logError } from "@lib/logger";
 
+const CONTENT_SIGNAL = "Content-Signal: search=yes, ai-input=yes, ai-train=no";
+
+function aiCrawlerBlock(userAgent: string): string {
+  return `User-agent: ${userAgent}
+Allow: /
+${CONTENT_SIGNAL}
+`;
+}
+
 export async function GET() {
   try {
     const robotsTemplate = `# *
 User-agent: *
 Allow: /
 
+# Declare usage boundaries for real-time models versus model pre-training
+${CONTENT_SIGNAL}
+
 # AI crawlers and answer engines
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
+${aiCrawlerBlock("GPTBot")}${aiCrawlerBlock("OAI-SearchBot")}${aiCrawlerBlock("ChatGPT-User")}${aiCrawlerBlock("ClaudeBot")}${aiCrawlerBlock("Claude-Web")}${aiCrawlerBlock("PerplexityBot")}${aiCrawlerBlock("Perplexity-User")}${aiCrawlerBlock("Google-Extended")}${aiCrawlerBlock("Applebot")}${aiCrawlerBlock("Applebot-Extended")}
 # Host
 Host: ${canonicalHostnameUrl}
 

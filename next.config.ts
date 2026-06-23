@@ -182,11 +182,22 @@ const config: NextConfig = {
         headers: [
           {
             key: "Link",
-            value: '</llms.txt>; rel="describedby"; type="text/markdown"',
+            value:
+              '</llms.txt>; rel="describedby"; type="text/markdown", </.well-known/api-catalog>; rel="api-catalog"',
           },
         ],
       },
     ];
+  },
+  async rewrites() {
+    return {
+      afterFiles: [
+        {
+          source: "/:path((?!(?:_next|api|\\.well-known)).*)\\.md",
+          destination: "/markdown-twin/:path",
+        },
+      ],
+    };
   },
   experimental: {
     optimizePackageImports: ["yet-another-react-lightbox"],

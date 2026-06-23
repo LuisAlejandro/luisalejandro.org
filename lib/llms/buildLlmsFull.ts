@@ -1,7 +1,5 @@
-import fs from "fs";
-import path from "path";
-
 import { canonicalHostnameUrl } from "@constants/constants";
+import { readSection } from "@lib/markdown/readSection";
 import markdownToHtml from "@lib/markdownToHtml";
 import { stripHtmlToPlainText } from "@lib/plainText";
 
@@ -11,15 +9,6 @@ export type LlmsFullPost = {
   created_at?: string;
   metadata?: { teaser?: string };
 };
-
-function readSection(filename: string): string {
-  const filePath = path.join(process.cwd(), "content/llms", filename);
-  try {
-    return fs.readFileSync(filePath, "utf-8").trim();
-  } catch {
-    return `_Section content unavailable (${filename})._`;
-  }
-}
 
 function formatSection(title: string, url: string, body: string): string {
   return `# ${title}\n\nCanonical URL: ${url}\n\n${body}`;
