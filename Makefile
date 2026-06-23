@@ -2,6 +2,7 @@
 # -*- makefile -*-
 
 SHELL = bash -e
+export BASH_ENV := $(HOME)/.bash_env
 img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
 
 VERSION_TYPE ?= patch
