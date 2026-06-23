@@ -11,6 +11,7 @@ import { Heading } from "@components/common/Layout/Heading";
 import { SubHeading } from "@components/common/Layout/SubHeading";
 import StyledLink from "@components/common/StyledLink";
 import ButtonBar from "@components/Home/ButtonBar";
+import { HomeContentSections } from "@components/Home/HomeContentSections";
 
 import Gallery from "@side-effects/Home/Gallery";
 
@@ -62,6 +63,7 @@ export default async function HomePage() {
               of in my <StyledLink href="/portfolio">portfolio</StyledLink> .
             </SubHeading>
             <Gallery />
+            <HomeContentSections />
             <ButtonBar />
             <Footer />
           </div>
