@@ -18,6 +18,12 @@ import { Section } from "@components/common/Layout/Section";
 import { SectionText } from "@components/common/Layout/SectionText";
 import { SectionTitle } from "@components/common/Layout/SectionTitle";
 
+const contactWebMcp = {
+  toolname: "contactLuis",
+  tooldescription:
+    "Describes a professional inquiry form for Luis Alejandro. Human must complete reCAPTCHA and submit; agents must not submit unattended or call POST /api/contact directly.",
+} as Record<string, string>;
+
 const Contact = ({ dark }: { dark?: boolean }) => {
   const schema = yup
     .object({
@@ -117,7 +123,9 @@ const Contact = ({ dark }: { dark?: boolean }) => {
         </SectionText>
         <form
           className="w-full lg:max-w-[80%] mx-auto relative mb-5 p-8 lg:p-0"
+          // eslint-disable-next-line react-hooks/refs -- react-hook-form submit handler factory
           onSubmit={handleSubmit(onSubmit)}
+          {...contactWebMcp}
         >
           <div className="flex flex-col lg:flex-row">
             <div className="flex flex-col mx-0 lg:w-4/12 lg:mx-4">
@@ -132,6 +140,10 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 id="contactName"
                 className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
                 {...register("contactName")}
+                {...({
+                  toolparamdescription:
+                    "Full name of the sender or hiring manager (3-256 characters).",
+                } as Record<string, string>)}
               />
 
               <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">
@@ -149,6 +161,10 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 id="contactEmail"
                 className="block my-1 px-3 py-1.5 w-full rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400"
                 {...register("contactEmail")}
+                {...({
+                  toolparamdescription:
+                    "Valid email address where Luis Alejandro should reply.",
+                } as Record<string, string>)}
               />
 
               <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">
@@ -180,6 +196,10 @@ const Contact = ({ dark }: { dark?: boolean }) => {
                 id="contactMessage"
                 className="block my-1 px-3 py-1.5 w-full h-40 rounded-xl bg-white border-transparent text-lg leading-normal font-main font-light focus:bg-white focus:ring-2 focus:ring-neutral-300 focus:border-neutral-400 resize-none"
                 {...register("contactMessage")}
+                {...({
+                  toolparamdescription:
+                    "Contract description, job details, or inquiry text (3-1024 characters).",
+                } as Record<string, string>)}
               ></textarea>
 
               <p className="block mx-1 h-6 text-sm leading-normal font-main font-normal text-red-500">

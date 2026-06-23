@@ -3,6 +3,8 @@
 import SearchResultItem from "@components/Blog/SearchResultItem";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+
+import { MAX_SEARCH_QUERY_LENGTH } from "@lib/searchQuery";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 
 interface SearchBarProps {
@@ -12,7 +14,14 @@ interface SearchBarProps {
   isLoading?: boolean;
   results?: any[];
   isSearching?: boolean;
+  searchError?: string | null;
 }
+
+const searchWebMcp = {
+  toolname: "searchBlogPosts",
+  tooldescription:
+    'Read-only blog search by query string (max 128 chars). Submit the form or type to search via GET /api/search-posts?q=. Returns {"response":[...]} on success; 400 {"error":"Query too long"} when over limit.',
+} as Record<string, string>;
 
 export default function SearchBar({
   value,
@@ -21,13 +30,14 @@ export default function SearchBar({
   isLoading = false,
   results = [],
   isSearching = false,
+  searchError = null,
 }: SearchBarProps) {
   const [localValue, setLocalValue] = useState(value);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const [isInputFocused, setIsInputFocused] = useState(false);
-
   useEffect(() => {
+    // Keep local input in sync when parent clears search state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- controlled reset from BlogSearchWrapper
     setLocalValue(value);
   }, [value]);
 
@@ -66,16 +76,36 @@ export default function SearchBar({
     onSearch("");
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    const trimmed = localValue.trim();
+    if (trimmed.length > 0) {
+      onSearch(trimmed);
+    } else {
+      onSearch("");
+    }
+  };
+
   const hasResults = isSearching && results.length > 0;
   const showNoResults =
     isSearching &&
     results.length === 0 &&
     localValue.trim().length > 0 &&
-    !isLoading;
+    !isLoading &&
+    !searchError;
+  const showSearchError = isSearching && Boolean(searchError) && !isLoading;
 
   return (
     <div className="w-[94%] mx-auto mb-6">
-      <div className="bg-[#f0f0f0] rounded-lg overflow-hidden transition-all duration-300 shadow-[inset_0_0_0_1px_rgb(190,190,190)]">
+      <form
+        role="search"
+        className="bg-[#f0f0f0] rounded-lg overflow-hidden transition-all duration-300 shadow-[inset_0_0_0_1px_rgb(190,190,190)]"
+        onSubmit={handleSubmit}
+        {...searchWebMcp}
+      >
         <div className="relative p-4">
           <label htmlFor="blog-search" className="sr-only">
             Search blog posts
@@ -90,14 +120,18 @@ export default function SearchBar({
             </div>
             <input
               id="blog-search"
-              type="text"
+              name="q"
+              type="search"
               value={localValue}
               onChange={handleChange}
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
               placeholder="Search posts by title, content, or category..."
+              maxLength={MAX_SEARCH_QUERY_LENGTH}
               className="block w-full pl-12 pr-10 py-4 text-lg leading-normal font-main font-light rounded-md bg-white border-transparent focus:outline-none focus:shadow-[0_0_0_2px_rgb(0,177,106),0_0_0_6px_rgba(0,177,106,0.3)] transition-shadow duration-200"
               aria-label="Search blog posts"
+              {...({
+                toolparamdescription:
+                  "Search query for blog posts by title, content, or category (maps to GET /api/search-posts?q=).",
+              } as Record<string, string>)}
             />
             {localValue.length > 0 && (
               <button
@@ -118,7 +152,7 @@ export default function SearchBar({
         </div>
 
         <AnimatePresence>
-          {(hasResults || showNoResults) && (
+          {(hasResults || showNoResults || showSearchError) && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
@@ -127,6 +161,12 @@ export default function SearchBar({
               className="overflow-hidden"
             >
               <div className="px-4 pb-4">
+                {showSearchError && (
+                  <div className="text-center py-8 text-red-600 font-light text-lg">
+                    {searchError}
+                  </div>
+                )}
+
                 {showNoResults && (
                   <div className="text-center py-8 text-gray-500 font-light text-lg">
                     No posts found matching &quot;{localValue}&quot;
@@ -150,7 +190,7 @@ export default function SearchBar({
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </form>
     </div>
   );
 }

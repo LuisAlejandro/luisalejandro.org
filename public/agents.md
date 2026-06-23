@@ -11,6 +11,7 @@ luisalejandro.org is the personal website, portfolio, and technical blog of Luis
 Use these sources before broad crawling:
 
 - `https://luisalejandro.org/llms.txt` for a concise AI-oriented index.
+- `https://luisalejandro.org/llms-full.txt` for a single-request markdown snapshot of primary surfaces.
 - `https://luisalejandro.org/sitemap.xml` for canonical URLs.
 - `https://luisalejandro.org/blog/posts/feed.xml` for the blog RSS feed.
 - `https://luisalejandro.org/blog/posts/feed.json` for the JSON feed.
@@ -39,6 +40,7 @@ Suggested citation format:
 ## Interaction Guidance
 
 - Reading and following public links is allowed.
+- Blog search is read-only via `GET /api/search-posts?q=` or the `/blog` search UI. Query strings are capped at 128 characters; longer queries return HTTP 400 with `{"error":"Query too long"}`. Success responses use `{"response":[...]}`; empty or whitespace `q` returns `{"response":[]}`.
 - Submitting contact forms or other forms should require explicit human confirmation.
 - Do not attempt login, token, license, or private API workflows unless the user explicitly asks and provides the needed context.
 - Prefer public feeds and API-safe endpoints over repeated page scraping when collecting blog metadata.

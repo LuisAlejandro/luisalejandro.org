@@ -2,6 +2,7 @@ import { createBucketClient } from "@cosmicjs/sdk";
 
 import { ENV_NAME } from "@constants/constants";
 import { logError } from "@lib/logger";
+import { sanitizeSearchQuery } from "@lib/searchQuery";
 
 const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG;
 
@@ -300,78 +301,66 @@ export async function getCategoryDetails(categorySlug: any) {
 
 export async function searchPosts(query: string) {
   try {
-    if (!query || query.trim().length === 0) {
+    const searchQuery = sanitizeSearchQuery(query);
+
+    if (!searchQuery) {
       return [];
     }
 
-    const searchQuery = query.trim();
     const regexPattern = { $regex: searchQuery, $options: "i" };
+    const statusFilter =
+      ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] };
+    const postProps = [
+      "id",
+      "slug",
+      "title",
+      "metadata.hero",
+      "metadata.categories",
+      "metadata.teaser",
+      "created_at",
+    ];
 
     const data = await cosmic.objects
       .find({
         type: "posts",
-        status:
-          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
+        status: statusFilter,
         $or: [{ title: regexPattern }, { "metadata.teaser": regexPattern }],
       })
-      .props([
-        "id",
-        "slug",
-        "title",
-        "metadata.hero",
-        "metadata.categories",
-        "metadata.teaser",
-        "created_at",
-      ])
+      .props(postProps)
       .sort("-created_at");
 
-    // Filter by category names (title and teaser already filtered by Cosmic query)
     const posts = data?.objects || [];
-    const searchQueryLower = searchQuery.toLowerCase();
+    const existingPostIds = new Set(posts.map((p: any) => p.id));
 
-    // Also search for posts matching categories
-    // Note: This requires fetching all posts to check categories, which is less efficient
-    // but necessary since Cosmic.js doesn't support nested field search in categories
-    const allPostsData = await cosmic.objects
+    const categoryData = await cosmic.objects
+      .find({
+        type: "categories",
+        title: regexPattern,
+      })
+      .props(["id"]);
+
+    const matchingCategoryIds = (categoryData?.objects || []).map(
+      (category: any) => category.id
+    );
+
+    if (matchingCategoryIds.length === 0) {
+      return posts;
+    }
+
+    const categoryPostsData = await cosmic.objects
       .find({
         type: "posts",
-        status:
-          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
+        status: statusFilter,
+        "metadata.categories": { $in: matchingCategoryIds },
       })
-      .props([
-        "id",
-        "slug",
-        "title",
-        "metadata.hero",
-        "metadata.categories",
-        "metadata.teaser",
-        "created_at",
-      ])
+      .props(postProps)
       .sort("-created_at");
 
-    // Find posts that match categories but weren't already found by title/teaser search
-    const existingPostIds = new Set(posts.map((p: any) => p.id));
-    const categoryMatches = (allPostsData?.objects || []).filter(
-      (post: any) => {
-        // Skip if already found by title/teaser search
-        if (existingPostIds.has(post.id)) return false;
-
-        // Check if query matches any category title
-        return (
-          post.metadata?.categories?.some((cat: any) =>
-            cat.title?.toLowerCase().includes(searchQueryLower)
-          ) || false
-        );
-      }
+    const categoryMatches = (categoryPostsData?.objects || []).filter(
+      (post: any) => !existingPostIds.has(post.id)
     );
 
-    // Combine results and deduplicate
-    const allResults = [...posts, ...categoryMatches];
-    const uniqueResults = allResults.filter(
-      (post, index, self) => index === self.findIndex((p) => p.id === post.id)
-    );
-
-    return uniqueResults;
+    return [...posts, ...categoryMatches];
   } catch (error) {
     logError("searchPosts", error, {
       query,

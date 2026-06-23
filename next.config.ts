@@ -177,6 +177,15 @@ const config: NextConfig = {
           },
         ],
       },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Link",
+            value: '</llms.txt>; rel="describedby"; type="text/markdown"',
+          },
+        ],
+      },
     ];
   },
   experimental: {
