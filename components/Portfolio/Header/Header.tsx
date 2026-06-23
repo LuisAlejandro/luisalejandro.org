@@ -33,6 +33,7 @@ const Header = ({ variant }: { variant?: string }) => {
               }
               height={60}
               width={60}
+              sizes="60px"
             />
           </Link>
         </Div1>

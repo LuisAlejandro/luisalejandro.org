@@ -26,6 +26,6 @@
       }
     ]
   },
-  "exclude": ["./node_modules/**/*", "./.next"],
+  "exclude": ["./node_modules/**/*", "./.next", "./rosey/design-system/**"],
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"]
 }

@@ -38,6 +38,7 @@ export default async function HomePage() {
                 src="/images/logomin.svg"
                 height={200}
                 width={200}
+                sizes="(max-width: 768px) 150px, 200px"
               />
             </Link>
             <Heading>
