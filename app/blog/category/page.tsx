@@ -64,6 +64,14 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: `${config.url}/blog/category`,
+    types: {
+      "text/markdown": [
+        {
+          url: "/blog/category.md",
+          title: "Markdown twin",
+        },
+      ],
+    },
   },
 };
 

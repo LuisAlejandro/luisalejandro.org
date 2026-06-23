@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,6 +16,19 @@ import ButtonBar from "@components/Home/ButtonBar";
 import { HomeContentSections } from "@components/Home/HomeContentSections";
 
 import Gallery from "@side-effects/Home/Gallery";
+
+export const metadata: Metadata = {
+  alternates: {
+    types: {
+      "text/markdown": [
+        {
+          url: "/index.md",
+          title: "Markdown twin",
+        },
+      ],
+    },
+  },
+};
 
 export default async function HomePage() {
   const homepageJsonLd = generateHomepageJsonLd();

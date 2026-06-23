@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { config } from "@constants/constants";
 import { getAllPostsForCategory } from "@lib/api";
 import { logError } from "@lib/logger";
 
@@ -15,6 +17,25 @@ interface CategoryPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  return {
+    alternates: {
+      canonical: `${config.url}/blog/category/${slug}`,
+      types: {
+        "text/markdown": [
+          {
+            url: `/blog/category/${slug}.md`,
+            title: "Markdown twin",
+          },
+        ],
+      },
+    },
+  };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {

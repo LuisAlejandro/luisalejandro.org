@@ -47,6 +47,13 @@ export const metadata: Metadata = {
     creator: "@LuisDevelops",
     images: [`${config.url}/images/case-studies/canaima-hero.jpg`],
   },
+  alternates: {
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/canaima.md", title: "Markdown twin" },
+      ],
+    },
+  },
   other: {
     // Sitemap reference
     sitemap: `${config.url}/sitemap.xml`,

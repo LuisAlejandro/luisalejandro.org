@@ -164,6 +164,126 @@ export async function getMorePosts(slug: any) {
   }
 }
 
+/** Published-only post fetch for markdown twins (ignores local draft ENV). */
+export async function getPublishedPostForTwin(slug: string) {
+  if (!hasCosmicCredentials()) {
+    return undefined;
+  }
+  try {
+    const object = await cosmic.objects
+      .find({
+        type: "posts",
+        slug,
+        status: "published",
+      })
+      .props([
+        "title",
+        "slug",
+        "metadata.content",
+        "metadata.categories",
+        "created_at",
+      ]);
+    return object?.objects?.length ? object.objects[0] : undefined;
+  } catch (error) {
+    if (is404(error)) {
+      return undefined;
+    }
+    logError("getPublishedPostForTwin", error, { slug });
+    return undefined;
+  }
+}
+
+/** Published-only home listing for markdown twins (ignores local draft ENV). */
+export async function getPublishedPostsForHomeTwin() {
+  if (!hasCosmicCredentials()) {
+    return [];
+  }
+  try {
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+        status: "published",
+      })
+      .props([
+        "id",
+        "slug",
+        "title",
+        "metadata.hero",
+        "metadata.categories",
+        "metadata.teaser",
+        "created_at",
+      ])
+      .sort("-created_at");
+    return data?.objects || [];
+  } catch (error) {
+    logError("getPublishedPostsForHomeTwin", error, {
+      bucketSlug: BUCKET_SLUG || "",
+      hasReadKey: !!READ_KEY,
+    });
+    return [];
+  }
+}
+
+/** Published-only category listing for markdown twins (ignores local draft ENV). */
+export async function getPublishedPostsForCategoryTwin(categorySlug: string) {
+  if (!hasCosmicCredentials()) {
+    return {
+      categoryPosts: [],
+      categoryName: undefined,
+    };
+  }
+  try {
+    const categoryDetails = await getCategoryDetails(categorySlug);
+
+    if (!categoryDetails) {
+      return {
+        categoryPosts: [],
+        categoryName: undefined,
+      };
+    }
+
+    const data = await cosmic.objects
+      .find({
+        type: "posts",
+        status: "published",
+        "metadata.categories": {
+          $in: [categoryDetails.id],
+        },
+      })
+      .props([
+        "id",
+        "title",
+        "slug",
+        "metadata.hero",
+        "metadata.content",
+        "metadata.teaser",
+        "metadata.categories",
+        "created_at",
+      ]);
+
+    return {
+      categoryPosts: data?.objects.length ? data?.objects : [],
+      categoryName: categoryDetails.title || undefined,
+    };
+  } catch (error) {
+    if (is404(error)) {
+      return {
+        categoryPosts: [],
+        categoryName: undefined,
+      };
+    }
+    logError("getPublishedPostsForCategoryTwin", error, {
+      categorySlug,
+      bucketSlug: BUCKET_SLUG || "",
+      hasReadKey: !!READ_KEY,
+    });
+    return {
+      categoryPosts: [],
+      categoryName: undefined,
+    };
+  }
+}
+
 export async function getPostAndMorePosts(slug: any) {
   try {
     const object = await cosmic.objects
@@ -205,6 +325,13 @@ export async function getPostAndMorePosts(slug: any) {
 }
 
 export async function getAllPostsForCategory(categorySlug: any) {
+  if (!hasCosmicCredentials()) {
+    return {
+      categoryPosts: [],
+      categoryName: undefined,
+    };
+  }
+
   try {
     const categoryDetails = await getCategoryDetails(categorySlug);
 
