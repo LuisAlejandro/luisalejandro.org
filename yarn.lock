@@ -1323,10 +1323,10 @@
     "@babel/helper-string-parser" "^7.29.7"
     "@babel/helper-validator-identifier" "^7.29.7"
 
-"@cosmicjs/sdk@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-2.0.1.tgz#e8d64f92da848cefc20adb050d567dc5d8736992"
-  integrity sha512-Z1i063no/iOEiIoUL/kjRwJYdcsT/6x5S4XH3trFQJR2o9FLTwCWrYOBf8mw4MhEZp3Zax9b3qst1GLbVKXXtg==
+"@cosmicjs/sdk@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@cosmicjs/sdk/-/sdk-2.1.0.tgz#61fd5118a28e93491ebc31f95c0ba080383bd915"
+  integrity sha512-ocVmDJ05furPR0OGeUodf/cpEHBUL0B2hKAd3Zrmelf7zkRZvTBYNV4o1dJQ5Uh7MY6nnq8Nozuzd4xlm8lGqA==
 
 "@ctrl/react-adsense@^2.1.0":
   version "2.1.0"
