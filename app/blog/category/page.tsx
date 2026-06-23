@@ -7,6 +7,7 @@ import { getAllCategories } from "@lib/api";
 import { logError } from "@lib/logger";
 
 import { Section } from "@components/common/Layout/Section";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import LazyImagesLoader from "@components/LazyImagesLoader";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
@@ -77,10 +78,8 @@ export default async function CategoriesPage() {
     return (
       <div className="bg-gray-6 text-black w-full my-0 mx-auto">
         <Header />
-        <main className="bg-white pb-50">
-          <svg viewBox="0 0 1920 200">
-            <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-          </svg>
+        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
+          <WaveDivider variant="200" />
           <Section grid overflowVisible oneColumn nopadding wide>
             <div className="w-full px-[2%] py-8">
               <h1 className="text-4xl font-light leading-4 mt-0 mb-8 text-center">

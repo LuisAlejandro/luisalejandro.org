@@ -8,6 +8,7 @@ import { ProjectList } from "@constants/constants";
 import { Section } from "@components/common/Layout/Section";
 import { SectionText } from "@components/common/Layout/SectionText";
 import { SectionTitle } from "@components/common/Layout/SectionTitle";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 
 import About from "@assets/images/about.svg";
 
@@ -35,7 +36,7 @@ const CaseStudies = () => {
 
   return (
     <>
-      <svg viewBox="0 0 1920 100">
+      <svg viewBox="0 0 1920 100" aria-hidden="true">
         <path
           fill="#f8d983"
           fillOpacity="0.5"
@@ -68,9 +69,7 @@ const CaseStudies = () => {
           ))}
         </CardGrid>
       </Section>
-      <svg viewBox="0 0 1920 100">
-        <path fill="#f8d983" d="M960,50l960-50H0L960,50z" />
-      </svg>
+      <WaveDivider fill="#f8d983" />
     </>
   );
 };

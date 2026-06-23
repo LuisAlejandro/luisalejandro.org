@@ -51,6 +51,9 @@ export const SES_COMPANY_TEMPLATE_ID = "luisalejandro-company";
 export const canonicalHostnameUrl =
   ENV_NAME === "local" ? "http://localhost:3101" : "https://luisalejandro.org";
 
+export const SITE_PROFILE_DATE_CREATED = "2020-01-15T08:00:00+00:00";
+export const SITE_PROFILE_DATE_MODIFIED = "2026-06-22T00:00:00+00:00";
+
 export const config = {
   name: "Luis Alejandro",
   app_name: "Luis Alejandro",

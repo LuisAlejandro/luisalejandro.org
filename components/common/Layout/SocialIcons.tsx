@@ -3,8 +3,7 @@ import React from "react";
 
 import SocialIconLabel from "../SocialIconLabel";
 
-interface SocialIconsProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface SocialIconsProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   icon: React.ComponentType<{ className?: string }>;
   text?: string;
   srLabel?: string;
@@ -33,7 +32,10 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
       className
     )}
   >
-    <Icon className={cn("lg:text-2xl align-top inline-block text-5xl")} />
+    <Icon
+      className={cn("lg:text-2xl align-top inline-block text-5xl")}
+      aria-hidden={Boolean(text || srLabel)}
+    />
     {srLabel && <span className="sr-only">{srLabel}</span>}
     {text && <SocialIconLabel>{text}</SocialIconLabel>}
   </a>

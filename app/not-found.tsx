@@ -4,13 +4,15 @@ import Link from "next/link";
 import { Container } from "@components/common/Layout/Container";
 import { Footer } from "@components/common/Layout/Footer";
 import { Heading } from "@components/common/Layout/Heading";
+import { HomeSiteHeader } from "@components/common/Layout/HomeSiteHeader";
 import { SubHeading } from "@components/common/Layout/SubHeading";
 import ButtonBar from "@components/Home/ButtonBar";
 
 export default function NotFound() {
   return (
     <>
-      <main>
+      <HomeSiteHeader />
+      <main id="main-content" tabIndex={-1}>
         <Container>
           <div
             id="app"
@@ -34,11 +36,11 @@ export default function NotFound() {
                 The page you are looking for does not exist.
               </SubHeading>
               <ButtonBar />
-              <Footer />
             </div>
           </div>
         </Container>
       </main>
+      <Footer />
     </>
   );
 }

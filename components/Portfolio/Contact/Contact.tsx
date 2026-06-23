@@ -226,7 +226,7 @@ const Contact = ({ dark }: { dark?: boolean }) => {
             </div>
           </div>
         </form>
-        <svg viewBox="0 0 1920 37">
+        <svg viewBox="0 0 1920 37" aria-hidden="true">
           <path
             fill="#444"
             fillOpacity="0.5"
