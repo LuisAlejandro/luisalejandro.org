@@ -80,6 +80,16 @@
       "description": "Curated AI-readable site index."
     },
     {
+      "type": "llms_full",
+      "endpoint": "https://luisalejandro.org/llms-full.txt",
+      "description": "Single-request markdown snapshot of primary site surfaces."
+    },
+    {
+      "type": "search_posts",
+      "endpoint": "https://luisalejandro.org/api/search-posts",
+      "description": "Read-only blog post search by query string (GET ?q=, max 128 characters). Returns 400 {\"error\":\"Query too long\"} when q exceeds the limit; empty q returns {\"response\":[]}."
+    },
+    {
       "type": "sitemap",
       "endpoint": "https://luisalejandro.org/sitemap.xml",
       "description": "Canonical XML sitemap."

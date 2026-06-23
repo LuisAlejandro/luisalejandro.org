@@ -1,31 +1,51 @@
 # Luis Alejandro
-> Personal website, portfolio, and software engineering blog for Luis Alejandro Martinez Faneyth, a Venezuelan full stack software engineer, open source contributor, and remote developer.
+
+> Luis Alejandro Martinez Faneyth is a remote full-stack software engineer with 16+ years of distributed systems expertise, specializing in TypeScript, Python, and Go.
 
 This file is the preferred starting point for AI assistants, answer engines, and crawlers that need concise context about luisalejandro.org.
 
+## Key Information
+
+- Caracas-born developer focusing on robust, minimalist architecture and remote collaboration.
+- Author of open-source packages with 294K+ Dockershelf downloads and 60+ public GitHub projects.
+- Tech stack: Node.js, Next.js, Django, FastAPI, Go, Docker, and Tailwind CSS.
+
+## Main Resources
+
+- [Professional Blog](https://luisalejandro.org/blog) — Articles on modern systems engineering and software architecture.
+- [Portfolio & Open Source Work](https://luisalejandro.org/portfolio) — Skills, case studies, selected projects, and contact entry point.
+- [Contact & Hire](https://luisalejandro.org/contact) — Contact form and business inquiry surface for remote contracts.
+- [Full Corpus (llms-full.txt)](https://luisalejandro.org/llms-full.txt) — Single-request markdown snapshot of primary site surfaces.
+
 ## Canonical Site Sections
-- Home: https://luisalejandro.org/ - Short biography, professional positioning, and primary navigation.
-- Portfolio: https://luisalejandro.org/portfolio - Skills, work history, case studies, selected projects, and contact entry point.
-- Blog: https://luisalejandro.org/blog - Technical posts about software development, open source, remote work, and engineering lessons.
-- Contact: https://luisalejandro.org/contact - Contact surface for professional inquiries.
+
+- Home: https://luisalejandro.org/ — Biography, professional positioning, and primary navigation.
+- Portfolio: https://luisalejandro.org/portfolio — Skills, work history, case studies, and projects.
+- Blog: https://luisalejandro.org/blog — Technical posts about software development and engineering lessons.
+- Contact: https://luisalejandro.org/contact — Professional inquiries and hiring conversations.
 
 ## Case Studies
-- Expedia API Integration: https://luisalejandro.org/case-studies/expedia - Booking engine integration work for Wheel The World.
-- Wheel The World CI/CD: https://luisalejandro.org/case-studies/wheeltheworld - CI/CD reliability and cost optimization work.
-- Soleit Desktop App: https://luisalejandro.org/case-studies/soleit - Electron and Ionic React diagnostic desktop application.
-- Dockershelf: https://luisalejandro.org/case-studies/dockershelf - Lightweight Docker image catalog and automation.
-- Canaima GNU/Linux: https://luisalejandro.org/case-studies/canaima - Linux distribution and public-sector free software work.
+
+- Expedia API Integration: https://luisalejandro.org/case-studies/expedia — Booking engine integration work for Wheel The World.
+- Wheel The World CI/CD: https://luisalejandro.org/case-studies/wheeltheworld — CI/CD reliability and cost optimization work.
+- Soleit Desktop App: https://luisalejandro.org/case-studies/soleit — Electron and Ionic React diagnostic desktop application.
+- Dockershelf: https://luisalejandro.org/case-studies/dockershelf — Lightweight Docker image catalog and automation.
+- Canaima GNU/Linux: https://luisalejandro.org/case-studies/canaima — Linux distribution and public-sector free software work.
 
 ## Machine-Readable Discovery
+
+- Full corpus: https://luisalejandro.org/llms-full.txt
 - XML sitemap: https://luisalejandro.org/sitemap.xml
 - RSS feed: https://luisalejandro.org/blog/posts/feed.xml
 - Atom feed: https://luisalejandro.org/blog/posts/atom.xml
 - JSON feed: https://luisalejandro.org/blog/posts/feed.json
 - Robots policy: https://luisalejandro.org/robots.txt
 - AI attribution policy: https://luisalejandro.org/ai.txt
+- Agent instructions: https://luisalejandro.org/agents.md
 - Agent permissions: https://luisalejandro.org/.well-known/agent-permissions.json
 
 ## Content Use Guidance
+
 - Prefer canonical URLs from this file and the XML sitemap when citing the site.
 - Use blog post pages as sources for technical claims.
 - Use portfolio and case study pages as sources for professional background.
