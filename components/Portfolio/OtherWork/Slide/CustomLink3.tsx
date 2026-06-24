@@ -1,8 +1,7 @@
 import cn from "classnames";
 import React from "react";
 
-interface CustomLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface CustomLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   accent?: boolean;
 }

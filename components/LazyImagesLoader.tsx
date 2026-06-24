@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 /**
  * Lazy loads the lazysizes library after component mount
@@ -11,14 +11,13 @@ export default function LazyImagesLoader() {
     // Dynamically import lazysizes after initial render
     Promise.all([
       // @ts-ignore - lazysizes doesn't have TypeScript definitions
-      import('lazysizes'),
+      import("lazysizes"),
       // @ts-ignore - lazysizes plugin doesn't have TypeScript definitions
-      import('lazysizes/plugins/parent-fit/ls.parent-fit')
-    ]).catch(err => {
-      console.error('Failed to load lazysizes:', err);
+      import("lazysizes/plugins/parent-fit/ls.parent-fit"),
+    ]).catch((err) => {
+      console.error("Failed to load lazysizes:", err);
     });
   }, []);
 
   return null;
 }
-

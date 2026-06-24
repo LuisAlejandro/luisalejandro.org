@@ -52,11 +52,11 @@ _[Image: Product demo video — /images/case-studies/canaima-product.mp4]_
 
 Canaima enjoyed a lot of popularity in Venezuela. It was used in schools, universities, government offices, and even in the military. On the first month of release of Canaima 3.0, it had 110,000 downloads and subsequent releases were also popular.
 
-| Release | Downloads |
-| --- | --- |
-| Canaima 3.0 | 110K |
-| Canaima 3.1 | 150K |
-| Canaima 4.0 | 220K |
+| Release     | Downloads |
+| ----------- | --------- |
+| Canaima 3.0 | 110K      |
+| Canaima 3.1 | 150K      |
+| Canaima 4.0 | 220K      |
 
 As a Canaima developer, I was able to assist to the 12th annual debian developers conference, which was held in Managua, Nicaragua. I was able to meet other Debian developers, including the creator of Live Build, which was the base for Canaima Semilla.
 

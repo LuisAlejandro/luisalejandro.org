@@ -56,4 +56,3 @@ jobs:
       - name: Confirm all release checks passed
         run: |
           echo "Release gate passed for ${{ github.ref_name }}"
-

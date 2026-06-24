@@ -1,8 +1,7 @@
 import cn from "classnames";
 import React from "react";
 
-interface SocialIconsProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface SocialIconsProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   children: React.ReactNode;
   dark?: boolean;
 }

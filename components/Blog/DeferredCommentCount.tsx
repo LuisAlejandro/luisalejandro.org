@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
 const CommentCount = dynamic(
-  () => import('disqus-react').then(mod => mod.CommentCount),
+  () => import("disqus-react").then((mod) => mod.CommentCount),
   { ssr: false }
 );
 
@@ -19,7 +19,7 @@ interface DeferredCommentCountProps {
 
 export default function DeferredCommentCount({
   shortname,
-  config
+  config,
 }: DeferredCommentCountProps) {
   const [mounted, setMounted] = useState(false);
 
@@ -30,13 +30,8 @@ export default function DeferredCommentCount({
   }, []);
 
   if (!mounted) {
-    return (
-      <span className="inline-block align-top">
-        —
-      </span>
-    );
+    return <span className="inline-block align-top">—</span>;
   }
 
   return <CommentCount shortname={shortname} config={config} />;
 }
-

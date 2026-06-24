@@ -18,10 +18,8 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-
       - name: Run lint
         run: make lint
 
       - name: Run tests
         run: make test
-

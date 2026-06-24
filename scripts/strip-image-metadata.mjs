@@ -65,7 +65,9 @@ async function main() {
     const changed = await stripMetadata(filePath);
     if (changed) {
       optimized += 1;
-      console.log(`strip-image-metadata: optimized ${path.relative(process.cwd(), filePath)}`);
+      console.log(
+        `strip-image-metadata: optimized ${path.relative(process.cwd(), filePath)}`
+      );
     }
   }
 

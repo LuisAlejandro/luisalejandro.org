@@ -62,13 +62,13 @@ When `develop` is ready to ship:
 
   Auto-merge eligibility:
 
-  | Check | Rule |
-  |-------|------|
-  | Head branch | `feature/**` or `dependabot/**` |
-  | Base branch | `develop` (gate) |
-  | Actor | repo owner or Dependabot |
+  | Check              | Rule                                                                                         |
+  | ------------------ | -------------------------------------------------------------------------------------------- |
+  | Head branch        | `feature/**` or `dependabot/**`                                                              |
+  | Base branch        | `develop` (gate)                                                                             |
+  | Actor              | repo owner or Dependabot                                                                     |
   | Required workflows | **Pull Request** workflow on same `head_sha` (includes **Code Quality** when bundle present) |
-  | Excluded | `release/**`, PRs not targeting `develop`, external contributors |
+  | Excluded           | `release/**`, PRs not targeting `develop`, external contributors                             |
 
 ## Skill reference
 

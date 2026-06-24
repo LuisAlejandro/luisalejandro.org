@@ -1,8 +1,10 @@
 import cn from "classnames";
 import React from "react";
 
-interface CardTitleProps
-  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, "title"> {
+interface CardTitleProps extends Omit<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  "title"
+> {
   children: React.ReactNode;
 }
 

@@ -1,8 +1,7 @@
 import cn from "classnames";
 import React from "react";
 
-interface HomeSectionHeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {
+interface HomeSectionHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   children: React.ReactNode;
   className?: string;
 }
