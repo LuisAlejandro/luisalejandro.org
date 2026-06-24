@@ -18,6 +18,13 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      - name: Set environment variables
+        run: |
+          echo "UID=$(id -u)" >> $GITHUB_ENV
+          echo "GID=$(id -g)" >> $GITHUB_ENV
+          echo "COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}" >> .env
+          echo "COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}" >> .env
+
       - name: Run lint
         run: make lint
 

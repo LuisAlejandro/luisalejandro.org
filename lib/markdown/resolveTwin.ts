@@ -13,6 +13,10 @@ import {
 export async function resolveTwinMarkdown(
   pathSegments: string[]
 ): Promise<string | null> {
+  if (pathSegments.length === 0) {
+    return buildHomeTwin();
+  }
+
   if (!assertSafePathSegments(pathSegments)) {
     return null;
   }

@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
+import { purgeByTags as purgeCloudflareByTags } from "@lib/cloudflare/purgeByTags";
 import { logError } from "@lib/logger";
 import { BLOG_PURGE_TAGS, purgeByTags } from "@lib/netlify/purgeByTags";
 
@@ -87,31 +88,49 @@ export async function POST(request: NextRequest) {
     revalidatedPaths.push("/llms-full.txt");
 
     const purgedTags = [...BLOG_PURGE_TAGS];
-    const purgeResult = await purgeByTags(purgedTags);
+    const [netlifyPurge, cfPurge] = await Promise.all([
+      purgeByTags(purgedTags),
+      purgeCloudflareByTags(purgedTags),
+    ]);
 
-    if (!purgeResult.ok && purgeResult.reason !== "missing_env") {
+    if (!netlifyPurge.ok && netlifyPurge.reason !== "missing_env") {
       logError(
-        "revalidate-api-purge",
-        new Error(`Netlify purge failed: ${purgeResult.reason ?? "unknown"}`),
+        "revalidate-api-purge-netlify",
+        new Error(`Netlify purge failed: ${netlifyPurge.reason ?? "unknown"}`),
         {
           purgedTags,
-          status: purgeResult.status,
+          status: netlifyPurge.status,
+        }
+      );
+    }
+
+    if (!cfPurge.ok && cfPurge.reason !== "missing_env") {
+      logError(
+        "revalidate-api-purge-cloudflare",
+        new Error(`Cloudflare purge failed: ${cfPurge.reason ?? "unknown"}`),
+        {
+          purgedTags,
+          status: cfPurge.status,
         }
       );
     }
 
     console.log(`[revalidate-api] Revalidation completed successfully`, {
       revalidatedPaths,
-      purgeOk: purgeResult.ok,
-      purgeError: purgeResult.ok ? undefined : purgeResult.reason,
+      purgeOk: netlifyPurge.ok,
+      purgeError: netlifyPurge.ok ? undefined : netlifyPurge.reason,
+      cfPurgeOk: cfPurge.ok,
+      cfPurgeError: cfPurge.ok ? undefined : cfPurge.reason,
     });
 
     return NextResponse.json({
       message: "Revalidation completed successfully",
       revalidatedPaths,
       purgedTags,
-      purgeOk: purgeResult.ok,
-      purgeError: purgeResult.ok ? undefined : purgeResult.reason,
+      purgeOk: netlifyPurge.ok,
+      purgeError: netlifyPurge.ok ? undefined : netlifyPurge.reason,
+      cfPurgeOk: cfPurge.ok,
+      cfPurgeError: cfPurge.ok ? undefined : cfPurge.reason,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {

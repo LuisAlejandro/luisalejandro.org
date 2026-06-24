@@ -187,6 +187,10 @@ const config: NextConfig = {
     return {
       afterFiles: [
         {
+          source: "/index.md",
+          destination: "/markdown-twin",
+        },
+        {
           source: "/:path((?!(?:_next|api|\\.well-known)).*)\\.md",
           destination: "/markdown-twin/:path",
         },
