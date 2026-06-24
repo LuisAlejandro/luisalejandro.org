@@ -20,6 +20,36 @@ const config: NextConfig = {
   },
   async headers() {
     return [
+      // Feeds — 1h CDN cache + purge tags (blog-listings in BLOG_PURGE_TAGS)
+      {
+        source: "/blog/posts/:feed((?:feed|atom)\\.xml|feed\\.json)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "blog-listings, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "blog-listings, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
       // Forever cache for blog posts - content is immutable once published
       {
         source:
