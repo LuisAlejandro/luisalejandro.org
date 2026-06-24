@@ -50,27 +50,27 @@ _[Image: Product demo video — /images/case-studies/dockershelf-product.mov]_
 
 My intention with dockershelf was to be a personal project, but it turned out to be something more. Several people started using the images and I started to receive feedback and contributions. The project has also been featured in the awesome-docker repository, and it has been starred more than 60 times.
 
-| Metric | Value |
-| --- | --- |
-| Downloads on debian images | 220K |
-| Downloads on python images | 294K |
-| Downloads on node images | 55K |
+| Metric                     | Value |
+| -------------------------- | ----- |
+| Downloads on debian images | 220K  |
+| Downloads on python images | 294K  |
+| Downloads on node images   | 55K   |
 
 The difference in size between the official images and the dockershelf ones are significant. The Python and Node images are 4 times smaller, making them faster to download and use. Although not as small as Alpine, they are still a good alternative for those who need a Debian based image.
 
 **Node image size (MB)**
 
-| Image | Size (MB) |
-| --- | --- |
-| dockerhub node | 367.93 |
-| dockershelf node | 82.43 |
+| Image            | Size (MB) |
+| ---------------- | --------- |
+| dockerhub node   | 367.93    |
+| dockershelf node | 82.43     |
 
 **Python image size (MB)**
 
-| Image | Size (MB) |
-| --- | --- |
-| dockerhub python | 360.46 |
-| dockershelf python | 100.09 |
+| Image              | Size (MB) |
+| ------------------ | --------- |
+| dockerhub python   | 360.46    |
+| dockershelf python | 100.09    |
 
 The project is still active and I keep adding new images and arquitectures when possible. You can checkout the project on Github or contact me for more information.
 

@@ -45,7 +45,7 @@ _[Image: Product demo video — /images/case-studies/expedia-product.mov]_
 
 The integration was a success. Expedia quickly certified the integration and allowed Wheel the World to increase their hotel database from a couple of thousand hotels to more than 600k hotels. This allowed Wheel the World to increase their sales by 39% on the first quarter of 2023.
 
-| Metric | Value |
-| --- | --- |
-| Hotels to choose from | 600K |
-| Increase in bookings | 39% |
+| Metric                | Value |
+| --------------------- | ----- |
+| Hotels to choose from | 600K  |
+| Increase in bookings  | 39%   |

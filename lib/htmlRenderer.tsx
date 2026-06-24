@@ -10,7 +10,7 @@ const ReactPlayer = dynamic(() => import("react-player"), {
 
 interface HtmlRendererOptions {
   excerptText: string;
-  setIndex: (index: number) => void;
+  setIndex: (_index: number) => void;
   index: number;
   CoverImage: any; // Component type
 }

@@ -41,23 +41,23 @@ The new pipeline is faster, more reliable and easier to maintain. Taking only th
 
 **Image size (MB)**
 
-| Pipeline | Image size (MB) |
-| --- | --- |
-| original pipeline | 1500 |
-| first iteration | 400 |
-| second iteration | 200 |
+| Pipeline          | Image size (MB) |
+| ----------------- | --------------- |
+| original pipeline | 1500            |
+| first iteration   | 400             |
+| second iteration  | 200             |
 
 **Time to deploy (minutes)**
 
-| Pipeline | Time to deploy (minutes) |
-| --- | --- |
-| original pipeline | 40 |
-| first iteration | 20 |
-| second iteration | 10 |
+| Pipeline          | Time to deploy (minutes) |
+| ----------------- | ------------------------ |
+| original pipeline | 40                       |
+| first iteration   | 20                       |
+| second iteration  | 10                       |
 
 By reducing the aount of time it takes to deploy and the weight of the images, we were reducing the maintenance cost of the pipeline, which was a big win for the company. For example, for the website frontend, estimating a cost of 0.008 USD per minute of deployment, and 5 pipeline runs per day (which is a conservative estimation), we were able to reduce the cost of the pipeline from 32 USD per month to 8 USD per month (75% reduction), just for one application.
 
-| Metric | Value |
-| --- | --- |
-| Reduction in costs for GitHub Actions | ~75% |
-| Reduction in image size | ~86% |
+| Metric                                | Value |
+| ------------------------------------- | ----- |
+| Reduction in costs for GitHub Actions | ~75%  |
+| Reduction in image size               | ~86%  |

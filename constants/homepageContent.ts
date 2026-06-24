@@ -52,11 +52,9 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "How can I start a conversation about hiring you?",
-    answer:
-      `Visit the contact page at ${config.url}/contact to send a message with your project scope, timeline, and team context. I reply to serious contract and full-time remote inquiries within a few business days.`,
+    answer: `Visit the contact page at ${config.url}/contact to send a message with your project scope, timeline, and team context. I reply to serious contract and full-time remote inquiries within a few business days.`,
   },
 ];
-
 
 export const sectionTitles = {
   philosophy: "How I work remotely",
