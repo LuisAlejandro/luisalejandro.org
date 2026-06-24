@@ -25,7 +25,14 @@ const eslintConfig = [
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
       "prefer-const": "warn",
-      "no-unused-vars": "warn",
+      "no-unused-vars": [
+        "warn",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_",
+        },
+      ],
       "react-hooks/error-boundaries": "warn",
       "react-hooks/set-state-in-effect": "warn",
     },

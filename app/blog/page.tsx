@@ -13,9 +13,11 @@ import Header from "@components/Portfolio/Header/Header";
 import BlogClient from "@side-effects/Blog/BlogClient";
 
 export default async function BlogPage() {
+  let posts: any[];
+
   try {
     const allPosts = (await getAllPostsForHome()) || [];
-    const posts = await Promise.all(
+    posts = await Promise.all(
       allPosts.map(async (post: any) => {
         // Check if teaser is already HTML (starts with <)
         const teaserHtml = post.metadata?.teaser?.startsWith("<")
@@ -35,30 +37,30 @@ export default async function BlogPage() {
     if (!posts?.length) {
       notFound();
     }
-
-    // Generate JSON-LD structured data
-    const blogJsonLd = generateBlogJsonLd(posts);
-
-    return (
-      <div className="bg-gray-6 text-black w-full my-0 mx-auto">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(blogJsonLd),
-          }}
-        />
-        <Header />
-        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
-          <BlogClient />
-          <WaveDivider variant="200" />
-          <BlogSearchWrapper posts={posts} />
-          <LazyImagesLoader />
-        </main>
-        <Footer />
-      </div>
-    );
   } catch (error) {
     logError("blog-page", error);
     throw error;
   }
+
+  // Generate JSON-LD structured data
+  const blogJsonLd = generateBlogJsonLd(posts);
+
+  return (
+    <div className="bg-gray-6 text-black w-full my-0 mx-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogJsonLd),
+        }}
+      />
+      <Header />
+      <main id="main-content" tabIndex={-1} className="bg-white pb-50">
+        <BlogClient />
+        <WaveDivider variant="200" />
+        <BlogSearchWrapper posts={posts} />
+        <LazyImagesLoader />
+      </main>
+      <Footer />
+    </div>
+  );
 }

@@ -13,19 +13,21 @@ import PostPreview from "./PostPreview";
 import PostPreviewMini from "./PostPreviewMini";
 
 export default function MoreStories({ posts }: any) {
+  const postsKey = `${posts.length}:${posts[0]?.id ?? ""}`;
+  const [prevPostsKey, setPrevPostsKey] = useState(postsKey);
   const [visiblePostsCount, setVisiblePostsCount] = useState(9);
   const [isLoading, setIsLoading] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  if (postsKey !== prevPostsKey) {
+    setPrevPostsKey(postsKey);
+    setVisiblePostsCount(9);
+  }
 
   const firstSixPosts = posts.slice(0, 6);
   const remainingPosts = posts.slice(6);
   const postsToShow = remainingPosts.slice(0, visiblePostsCount);
   const hasMorePosts = remainingPosts.length > visiblePostsCount;
-
-  // Reset pagination when posts array changes
-  useEffect(() => {
-    setVisiblePostsCount(9);
-  }, [posts.length, posts[0]?.id]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

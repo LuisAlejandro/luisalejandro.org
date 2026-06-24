@@ -51,4 +51,7 @@ Thumbs.db
 *.tar.gz
 
 # Public assets that shouldn't be formatted
-public/ 
+public/
+
+# Markdown (changelog, docs, twins)
+*.md

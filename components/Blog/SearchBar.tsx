@@ -9,8 +9,8 @@ import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 
 interface SearchBarProps {
   value: string;
-  onChange: (value: string) => void;
-  onSearch: (query: string) => void;
+  onChange: (_value: string) => void;
+  onSearch: (_query: string) => void;
   isLoading?: boolean;
   results?: any[];
   isSearching?: boolean;

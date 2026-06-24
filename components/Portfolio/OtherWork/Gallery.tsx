@@ -6,9 +6,10 @@ import { Figure } from "./Gallery/Figure";
 import { GalleryCardItem } from "./Gallery/GalleryCardItem";
 
 const Gallery = ({ setCurrentIndex, setModalOpen, galleryList }: any) => {
-  const [imagesVisible, setImagesVisible] = useState(false);
   const [loadedImages, setLoadedImages] = useState(new Set<number>());
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const imagesVisible =
+    galleryList.length > 0 && loadedImages.size === galleryList.length;
 
   const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => {
@@ -33,12 +34,6 @@ const Gallery = ({ setCurrentIndex, setModalOpen, galleryList }: any) => {
       }
     });
   }, []); // Run only once after initial render
-
-  useEffect(() => {
-    if (loadedImages.size === galleryList.length) {
-      setImagesVisible(true);
-    }
-  }, [loadedImages.size, galleryList.length]);
 
   return (
     <>
