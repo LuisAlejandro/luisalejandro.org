@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 3.2.3 (2026-06-24)
+
+### Other
+
+* Chore: apply prettier formatting to workflow files. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer workflows and fix release CI bootstrap. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.2 (2026-06-24)
 
 ### Other
