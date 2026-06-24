@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 3.2.2 (2026-06-24)
+
+### Other
+
+* Improving cloudflare cache. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer release preflight and ops tooling. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.1 (2026-06-24)
 
 ### Other
