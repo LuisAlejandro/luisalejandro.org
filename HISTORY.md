@@ -1,6 +1,17 @@
 # Changelog
 
 
+## 3.2.1 (2026-06-24)
+
+### Other
+
+* Format eslint.config.mjs with Prettier. [Luis Alejandro Martínez Faneyth]
+
+* Fixing lint errors. [Luis Alejandro Martínez Faneyth]
+
+* Improving cloudflare cache. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.0 (2026-06-24)
 
 ### Other
