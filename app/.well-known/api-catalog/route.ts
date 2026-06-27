@@ -11,9 +11,17 @@ const catalogLinkset = {
         { href: `${canonicalHostnameUrl}/llms.txt` },
         { href: `${canonicalHostnameUrl}/llms-full.txt` },
         { href: `${canonicalHostnameUrl}/.well-known/agent-permissions.json` },
+        { href: `${canonicalHostnameUrl}/.well-known/agent-skills/index.json` },
+        { href: `${canonicalHostnameUrl}/.well-known/mcp/server-card.json` },
         { href: `${canonicalHostnameUrl}/sitemap.xml` },
       ],
-      item: [{ href: `${canonicalHostnameUrl}/blog/posts/feed.xml` }],
+      item: [
+        { href: `${canonicalHostnameUrl}/api/search-posts` },
+        { href: `${canonicalHostnameUrl}/api/mcp` },
+        { href: `${canonicalHostnameUrl}/blog/posts/feed.xml` },
+        { href: `${canonicalHostnameUrl}/blog/posts/atom.xml` },
+        { href: `${canonicalHostnameUrl}/blog/posts/feed.json` },
+      ],
     },
   ],
 };
@@ -35,6 +43,9 @@ export async function GET() {
     });
   } catch (error) {
     logError("api-catalog", error);
-    return new NextResponse("Error generating API catalog", { status: 500 });
+    return NextResponse.json(
+      { error: "Error generating API catalog" },
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }

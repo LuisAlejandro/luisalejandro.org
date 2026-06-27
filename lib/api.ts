@@ -426,7 +426,10 @@ export async function getCategoryDetails(categorySlug: any) {
   }
 }
 
-export async function searchPosts(query: string) {
+export async function searchPosts(
+  query: string,
+  options?: { signalUpstreamFailure?: boolean }
+) {
   try {
     const searchQuery = sanitizeSearchQuery(query);
 
@@ -459,16 +462,23 @@ export async function searchPosts(query: string) {
     const posts = data?.objects || [];
     const existingPostIds = new Set(posts.map((p: any) => p.id));
 
-    const categoryData = await cosmic.objects
-      .find({
-        type: "categories",
-        title: regexPattern,
-      })
-      .props(["id"]);
+    let matchingCategoryIds: string[] = [];
+    try {
+      const categoryData = await cosmic.objects
+        .find({
+          type: "categories",
+          title: regexPattern,
+        })
+        .props(["id"]);
 
-    const matchingCategoryIds = (categoryData?.objects || []).map(
-      (category: any) => category.id
-    );
+      matchingCategoryIds = (categoryData?.objects || []).map(
+        (category: any) => category.id
+      );
+    } catch (error) {
+      if (!is404(error)) {
+        throw error;
+      }
+    }
 
     if (matchingCategoryIds.length === 0) {
       return posts;
@@ -495,6 +505,9 @@ export async function searchPosts(query: string) {
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
     });
+    if (options?.signalUpstreamFailure) {
+      throw error;
+    }
     return [];
   }
 }

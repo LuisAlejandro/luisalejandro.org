@@ -44,6 +44,10 @@ This file is the preferred starting point for AI assistants, answer engines, and
 - Agent instructions: https://luisalejandro.org/agents.md
 - Agent permissions: https://luisalejandro.org/.well-known/agent-permissions.json
 - API catalog (RFC 9727): https://luisalejandro.org/.well-known/api-catalog
+- Agent skills index: https://luisalejandro.org/.well-known/agent-skills/index.json
+- MCP server card: https://luisalejandro.org/.well-known/mcp/server-card.json
+- MCP transport (read-only): https://luisalejandro.org/api/mcp
+- Markdown negotiation: send `Accept: text/markdown` on canonical page URLs (e.g. `/`, `/portfolio`, `/blog/posts/{slug}`) to receive markdown twins without the `.md` suffix
 
 ## Content Use Guidance
 

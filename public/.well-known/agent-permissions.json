@@ -3,7 +3,7 @@
     "schema_version": "v1",
     "name": "luisalejandro.org agent permissions",
     "description": "Interaction policy for AI agents using luisalejandro.org.",
-    "last_updated": "2026-06-15",
+    "last_updated": "2026-06-26",
     "author": "Luis Alejandro Martinez Faneyth",
     "contact": "luis@luisalejandro.org"
   },
@@ -108,6 +108,26 @@
       "type": "json_feed",
       "endpoint": "https://luisalejandro.org/blog/posts/feed.json",
       "description": "Blog JSON feed."
+    },
+    {
+      "type": "api_catalog",
+      "endpoint": "https://luisalejandro.org/.well-known/api-catalog",
+      "description": "RFC 9727 machine API catalog."
+    },
+    {
+      "type": "agent_skills",
+      "endpoint": "https://luisalejandro.org/.well-known/agent-skills/index.json",
+      "description": "Agent Skills discovery index (v0.2.0)."
+    },
+    {
+      "type": "mcp_server_card",
+      "endpoint": "https://luisalejandro.org/.well-known/mcp/server-card.json",
+      "description": "MCP server card (SEP-1649)."
+    },
+    {
+      "type": "mcp_transport",
+      "endpoint": "https://luisalejandro.org/api/mcp",
+      "description": "Read-only MCP Streamable HTTP transport (blog search + site discovery tools)."
     }
   ]
 }

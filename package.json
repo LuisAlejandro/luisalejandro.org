@@ -22,7 +22,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "agent-readiness:smoke": "bash scripts/agent-readiness-smoke.sh"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1075.0",
@@ -30,6 +31,7 @@
     "@ctrl/react-adsense": "^2.1.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.4.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@next/third-parties": "^16.2.9",
     "@sentry/nextjs": "^10.60.0",
     "@svgr/webpack": "^8.1.0",
@@ -83,7 +85,8 @@
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.32.0",
-    "yup": "^1.7.1"
+    "yup": "^1.7.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
