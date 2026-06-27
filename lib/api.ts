@@ -64,7 +64,7 @@ export async function getAllPostsForHome() {
   }
 }
 
-export async function getLatestPosts() {
+export async function getLatestPosts(limit = 10) {
   try {
     const data = await cosmic.objects
       .find({
@@ -73,7 +73,8 @@ export async function getLatestPosts() {
           ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
       })
       .props(["id", "title", "slug", "created_at"])
-      .sort("-created_at");
+      .sort("-created_at")
+      .limit(limit);
     return data?.objects;
   } catch (error) {
     logError("getLatestPosts", error, {

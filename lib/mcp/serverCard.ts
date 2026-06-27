@@ -49,6 +49,23 @@ export function buildMcpServerCard() {
         },
       },
       {
+        name: "get_latest_posts",
+        title: "Get latest blog posts",
+        description:
+          "Returns the most recent published blog posts (read-only).",
+        inputSchema: {
+          type: "object",
+          properties: {
+            limit: {
+              type: "number",
+              description: "Number of posts to return (default: 5, max: 20)",
+              minimum: 1,
+              maximum: 20,
+            },
+          },
+        },
+      },
+      {
         name: "get_site_discovery",
         title: "Site discovery metadata",
         description:

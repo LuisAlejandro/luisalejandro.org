@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import * as z from "zod/v4";
 
-import { searchPosts } from "@lib/api";
+import { getLatestPosts, searchPosts } from "@lib/api";
 import { logError } from "@lib/logger";
 import { getSiteDiscoveryMetadata } from "@lib/mcp/discoveryMetadata";
 import { MAX_SEARCH_QUERY_LENGTH } from "@lib/searchQuery";
@@ -71,6 +71,50 @@ export function createMcpServer() {
               text: JSON.stringify({
                 error: "upstream_search_unavailable",
                 message: "Blog search is temporarily unavailable",
+              }),
+            },
+          ],
+          isError: true,
+        };
+      }
+    }
+  );
+
+  server.registerTool(
+    "get_latest_posts",
+    {
+      title: "Get latest blog posts",
+      description: "Returns the most recent published blog posts (read-only).",
+      inputSchema: {
+        limit: z
+          .number()
+          .min(1)
+          .max(20)
+          .optional()
+          .describe("Number of posts to return (default: 5, max: 20)"),
+      },
+    },
+    async ({ limit }) => {
+      try {
+        const posts = await getLatestPosts(limit ?? 5);
+        const response = (posts || []).map((post: any) => ({
+          title: post.title,
+          slug: post.slug,
+          published_at: post.created_at ?? null,
+        }));
+
+        return {
+          content: [{ type: "text", text: JSON.stringify({ response }) }],
+        };
+      } catch (error) {
+        logError("mcp-latest-posts", error);
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                error: "upstream_fetch_unavailable",
+                message: "Blog posts are temporarily unavailable",
               }),
             },
           ],

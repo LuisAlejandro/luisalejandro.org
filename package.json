@@ -15,7 +15,7 @@
   "homepage": "https://github.com/LuisAlejandro/luisalejandro.org#readme",
   "scripts": {
     "dev": "next dev --webpack",
-    "prebuild": "node scripts/strip-image-metadata.mjs",
+    "prebuild": "node scripts/strip-image-metadata.mjs && node scripts/generate-agent-discovery.mjs",
     "build": "next build",
     "start": "next build && next start",
     "lint": "eslint .",
