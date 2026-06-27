@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.2.5 (2026-06-27)
+
+### Other
+
+* Improving mcp data. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.4 (2026-06-27)
 
 ### Other
