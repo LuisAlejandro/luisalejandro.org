@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.2.7 (2026-06-28)
+
+### Other
+
+* Add X Aggregator utility and fix MCP server-card version. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.6 (2026-06-28)
 
 ### Other
