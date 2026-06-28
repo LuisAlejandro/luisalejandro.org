@@ -224,10 +224,6 @@ const config: NextConfig = {
           source: "/:path((?!(?:_next|api|\\.well-known)).*)\\.md",
           destination: "/markdown-twin/:path",
         },
-        {
-          source: "/.well-known/mcp/server-card.json",
-          destination: "/.well-known/mcp/server-card",
-        },
       ],
     };
   },

@@ -5,7 +5,7 @@
   "serverInfo": {
     "name": "luisalejandro.org",
     "title": "Luis Alejandro — Read-only Agent API",
-    "version": "3.2.4"
+    "version": "3.2.5"
   },
   "description": "Read-only discovery and blog search for luisalejandro.org. No authenticated or transactional tools.",
   "documentationUrl": "https://luisalejandro.org/agents.md",
