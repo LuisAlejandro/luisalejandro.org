@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.2.6 (2026-06-28)
+
+### Other
+
+* Serve MCP server card from static prebuild artifact. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.5 (2026-06-27)
 
 ### Other
