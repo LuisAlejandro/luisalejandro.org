@@ -27,7 +27,7 @@ const bodySchema = yup
           .matches(tweetUrlPattern, "URL de tweet no válida")
       )
       .min(1, "Se requiere al menos una URL de tweet")
-      .max(MAX_URLS, `Máximo ${MAX_URLS} URLs de tweets permitidas`)
+      .max(MAX_URLS, `Máximo ${MAX_URLS} URLs de tweet permitidas`)
       .required(),
   })
   .required();
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     if (!(await isSchemaValid(bodySchema, body))) {
       return NextResponse.json(
         {
-          error: `Solicitud no válida. Proporciona entre 1 y ${MAX_URLS} URLs de tweets.`,
+          error: `Solicitud no válida. Proporciona entre 1 y ${MAX_URLS} URLs de tweet.`,
         },
         { status: 400 }
       );
