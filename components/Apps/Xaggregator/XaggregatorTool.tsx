@@ -101,7 +101,7 @@ export default function XaggregatorTool() {
       return;
     }
     if (urls.length > MAX_URLS) {
-      setFormError(`Máximo ${MAX_URLS} URLs de tweets permitidas.`);
+      setFormError(`Máximo ${MAX_URLS} URLs de tweet permitidas.`);
       return;
     }
 
@@ -123,7 +123,7 @@ export default function XaggregatorTool() {
         return;
       }
       if (!response.ok) {
-        setFormError(payload.error ?? "La solicitud falló.");
+        setFormError(payload.error ?? "No se pudo procesar la solicitud.");
         setResults([]);
         return;
       }
@@ -167,6 +167,8 @@ export default function XaggregatorTool() {
       showMessage(
         `Se ${succeeded === 1 ? "descargó" : "descargaron"} ${succeeded} imagen${succeeded === 1 ? "" : "es"}.`
       );
+    } else if (succeeded === 0) {
+      showMessage("No se pudo descargar ninguna imagen.");
     } else {
       showMessage(
         `Se descargaron ${succeeded} de ${imageUrls.length} imagen${imageUrls.length === 1 ? "" : "es"}.`
@@ -184,19 +186,19 @@ export default function XaggregatorTool() {
     <Section>
       <SectionTitle main>Agregador de X</SectionTitle>
       <p className="mb-6 text-lg font-light text-gray-700">
-        Esta es una iniciativa para facilitar la extracción de texto y imágenes
-        de tweets en el marco de la emergencia por el terremoto en Venezuela
-        2026. Dale uso prudente.
+        Esta es una iniciativa para facilitar la extracción de texto e imágenes
+        de tweets en el marco de la emergencia causada por el terremoto de 2026
+        en Venezuela. Úsala con prudencia.
       </p>
       <p className="mb-6 text-lg font-light text-gray-700">
-        Pega hasta {MAX_URLS} URLs de tweets (una por línea) para obtener el
+        Pega hasta {MAX_URLS} URLs de tweet (una por línea) para obtener el
         texto y las imágenes.
       </p>
 
       <form onSubmit={handleSubmit} className="mb-8 space-y-4">
         <label className="block w-full">
           <span className="mb-2 block text-sm font-medium text-gray-700">
-            URLs de tweets ({urlCount}/{MAX_URLS})
+            URLs de tweet ({urlCount}/{MAX_URLS})
           </span>
           <textarea
             className="min-h-[160px] w-full rounded-xl border border-gray-200 bg-white p-4 font-mono text-sm focus:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-200"

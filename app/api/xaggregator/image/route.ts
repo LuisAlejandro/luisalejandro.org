@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
   if (!rawUrl) {
     return NextResponse.json(
-      { error: "Falta el parámetro url" },
+      { error: "Falta el parámetro URL" },
       { status: 400 }
     );
   }

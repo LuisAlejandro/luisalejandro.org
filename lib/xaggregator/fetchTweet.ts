@@ -69,7 +69,7 @@ export async function fetchTweet(
     return {
       ok: false,
       error: "upstream",
-      message: "No se pudo contactar el servicio de sindicación",
+      message: "No se pudo contactar con el servicio de sindicación",
     };
   } finally {
     clearTimeout(timeout);
