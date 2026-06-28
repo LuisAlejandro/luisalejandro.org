@@ -17,7 +17,7 @@
     "dev": "next dev --webpack",
     "prebuild": "node scripts/generate-agent-discovery.mjs",
     "optimize-images": "node scripts/strip-image-metadata.mjs",
-    "postinstall": "npx update-browserslist-db@latest --quiet",
+    "postinstall": "update-browserslist-db --quiet",
     "build": "next build",
     "start": "next build && next start",
     "lint": "eslint .",
@@ -104,7 +104,8 @@
     "globals": "^17.7.0",
     "postcss": "^8.5.15",
     "prettier": "^3.8.4",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "update-browserslist-db": "^1.2.3"
   },
   "browserslist": [
     "last 2 versions and not dead",
