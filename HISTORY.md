@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 3.2.8 (2026-06-28)
+
+### Other
+
+* Fix Spanish copy and grammar in X Aggregator. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.7 (2026-06-28)
 
 ### Other
