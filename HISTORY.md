@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 3.2.9 (2026-06-28)
+
+### Other
+
+* Fix postinstall for Docker CI browserslist update. [Luis Alejandro Martínez Faneyth]
+
+* Improving build system. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.8 (2026-06-28)
 
 ### Other
