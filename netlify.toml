@@ -1,0 +1,15 @@
+# Netlify build config for luisalejandro.org
+# Full env reference: .env.example (set secrets in Netlify UI, not here)
+
+[build]
+  command = "yarn build"
+  # Netlify Next.js runtime manages publish output; kept for documentation.
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Build-time env vars (configure in Netlify site settings):
+# - COSMIC_BUCKET_SLUG, COSMIC_READ_KEY — blog, portfolio, case-study SSG
+# - SENTRY_AUTH_TOKEN — production source map upload
+# - NEXT_PUBLIC_* and runtime secrets as needed for routes built at deploy time
