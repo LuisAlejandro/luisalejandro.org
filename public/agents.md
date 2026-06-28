@@ -18,6 +18,9 @@ Use these sources before broad crawling:
 - `https://luisalejandro.org/ai.txt` for attribution preferences.
 - `https://luisalejandro.org/.well-known/agent-permissions.json` for browser-agent interaction permissions.
 - `https://luisalejandro.org/.well-known/api-catalog` for RFC 9727 API discovery (also advertised via HTTP `Link: rel="api-catalog"`).
+- `https://luisalejandro.org/.well-known/agent-skills/index.json` for Agent Skills discovery.
+- `https://luisalejandro.org/.well-known/mcp/server-card.json` for MCP Server Card discovery.
+- `https://luisalejandro.org/api/mcp` for read-only MCP tools (blog search, site discovery).
 
 ## How To Interpret Pages
 

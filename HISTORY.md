@@ -1,6 +1,61 @@
 # Changelog
 
 
+## 3.2.9 (2026-06-28)
+
+### Other
+
+* Fix postinstall for Docker CI browserslist update. [Luis Alejandro Martínez Faneyth]
+
+* Improving build system. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.8 (2026-06-28)
+
+### Other
+
+* Fix Spanish copy and grammar in X Aggregator. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.7 (2026-06-28)
+
+### Other
+
+* Add X Aggregator utility and fix MCP server-card version. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.6 (2026-06-28)
+
+### Other
+
+* Serve MCP server card from static prebuild artifact. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.5 (2026-06-27)
+
+### Other
+
+* Improving mcp data. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.4 (2026-06-27)
+
+### Other
+
+* Improving mcp robustness. [Luis Alejandro Martínez Faneyth]
+
+* Fix: pin sharp 0.35.2 via yarn resolutions for next.js compatibility. [Cursor Agent]
+
+
+## 3.2.3 (2026-06-24)
+
+### Other
+
+* Chore: apply prettier formatting to workflow files. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer workflows and fix release CI bootstrap. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.2 (2026-06-24)
 
 ### Other

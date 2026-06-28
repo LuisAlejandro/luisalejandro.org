@@ -1,0 +1,66 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "luisalejandro.org",
+    "title": "Luis Alejandro — Read-only Agent API",
+    "version": "3.2.9"
+  },
+  "description": "Read-only discovery and blog search for luisalejandro.org. No authenticated or transactional tools.",
+  "documentationUrl": "https://luisalejandro.org/agents.md",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://luisalejandro.org/api/mcp"
+  },
+  "capabilities": {
+    "tools": {}
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  },
+  "tools": [
+    {
+      "name": "search_blog_posts",
+      "title": "Search blog posts",
+      "description": "Search published blog posts by title, teaser, or category. Read-only; max query length 128 characters.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "description": "Search query",
+            "maxLength": 128
+          }
+        }
+      }
+    },
+    {
+      "name": "get_latest_posts",
+      "title": "Get latest blog posts",
+      "description": "Returns the most recent published blog posts (read-only).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "description": "Number of posts to return (default: 5, max: 20)",
+            "minimum": 1,
+            "maximum": 20
+          }
+        }
+      }
+    },
+    {
+      "name": "get_site_discovery",
+      "title": "Site discovery metadata",
+      "description": "Returns canonical discovery URLs for llms.txt, sitemap, feeds, API catalog, and MCP.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  ]
+}

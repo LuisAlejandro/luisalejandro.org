@@ -1,6 +1,6 @@
 {
   "name": "luisalejandro.org",
-  "version": "3.2.2",
+  "version": "3.2.9",
   "description": "Personal website",
   "author": "Luis Alejandro Martínez Faneyth <luis@collagelabs.org>",
   "license": "GPL-3.0-or-later",
@@ -15,21 +15,25 @@
   "homepage": "https://github.com/LuisAlejandro/luisalejandro.org#readme",
   "scripts": {
     "dev": "next dev --webpack",
-    "prebuild": "node scripts/strip-image-metadata.mjs",
+    "prebuild": "node scripts/generate-agent-discovery.mjs",
+    "optimize-images": "node scripts/strip-image-metadata.mjs",
+    "postinstall": "update-browserslist-db --quiet",
     "build": "next build",
     "start": "next build && next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "agent-readiness:smoke": "bash scripts/agent-readiness-smoke.sh"
   },
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.1074.0",
+    "@aws-sdk/client-sesv2": "^3.1075.0",
     "@cosmicjs/sdk": "^2.1.0",
     "@ctrl/react-adsense": "^2.1.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.4.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@next/third-parties": "^16.2.9",
     "@sentry/nextjs": "^10.60.0",
     "@svgr/webpack": "^8.1.0",
@@ -46,7 +50,7 @@
     "chartjs-plugin-annotation": "^3.1.0",
     "classnames": "^2.5.1",
     "cryptr": "^6.4.0",
-    "date-fns": "^4.3.0",
+    "date-fns": "^4.4.0",
     "disqus-react": "^1.1.7",
     "dotenv": "^17.4.2",
     "encoding": "^0.1.13",
@@ -67,7 +71,7 @@
     "react-dom": "^19.2.7",
     "react-facebook-pixel": "^1.0.4",
     "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.76.0",
+    "react-hook-form": "^7.80.0",
     "react-icons": "^5.6.0",
     "react-imgix": "^9.11.0",
     "react-is": "^19.2.7",
@@ -79,11 +83,13 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "sass": "^1.101.0",
+    "sharp": "^0.35.2",
     "tailwindcss": "^4.3.1",
     "unified": "^11.0.5",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.32.0",
-    "yup": "^1.7.1"
+    "yup": "^1.7.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
@@ -98,12 +104,15 @@
     "globals": "^17.7.0",
     "postcss": "^8.5.15",
     "prettier": "^3.8.4",
-    "sharp": "^0.34.5",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "update-browserslist-db": "^1.2.3"
   },
   "browserslist": [
     "last 2 versions and not dead",
     "> 1%"
   ],
+  "resolutions": {
+    "sharp": "0.35.2"
+  },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

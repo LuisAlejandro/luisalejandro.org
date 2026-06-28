@@ -281,18 +281,17 @@ export default withSentryConfig(config, {
   // Disable Sentrytelemetry
   telemetry: false,
 
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  silent: true,
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-  // Upload a larger set of source maps for better error tracking
-  widenClientFileUpload: true,
+  // Default upload scope keeps Netlify builds fast; re-enable if client traces regress.
+  widenClientFileUpload: false,
 
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
+  // Note: Check that the configured route will not match with your Next.js proxy, otherwise reporting of client-
   // side errors will fail.
   tunnelRoute: "/monitoring",
 
@@ -300,10 +299,20 @@ export default withSentryConfig(config, {
   sourcemaps: {
     // Hides source maps from generated client bundles
     assets: "./.next/**/*",
-    ignore: ["node_modules"],
+    ignore: [
+      "node_modules",
+      "**/*.woff2",
+      "**/*.css",
+      "**/*.{md,MD}",
+      "**/Dockerfile*",
+      "**/.dockerignore",
+      "**/.editorconfig",
+      "**/.tsbuildinfo",
+      "**/Makefile",
+    ],
     deleteSourcemapsAfterUpload: true,
   },
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  // Deprecated with Turbopack; keep until Sentry supports webpack.treeshake.removeDebugLogging.
   disableLogger: true,
 });

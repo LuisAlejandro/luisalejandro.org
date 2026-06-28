@@ -29,6 +29,19 @@ async function stripMetadata(filePath) {
   const input = await readFile(filePath);
   const extension = path.extname(filePath).toLowerCase();
 
+  const metadata = await sharp(input, { failOn: "none" }).metadata();
+  const hasMetadata = Boolean(
+    metadata.exif ||
+    metadata.icc ||
+    metadata.iptc ||
+    metadata.xmp ||
+    (metadata.orientation && metadata.orientation !== 1)
+  );
+
+  if (!hasMetadata) {
+    return false;
+  }
+
   let pipeline = sharp(input, { failOn: "none" }).rotate();
 
   if (extension === ".png") {
@@ -52,6 +65,11 @@ async function stripMetadata(filePath) {
 }
 
 async function main() {
+  if (process.env.CI || process.env.NETLIFY) {
+    console.log("strip-image-metadata: skipped in CI/Netlify");
+    return;
+  }
+
   const files = await collectRasterFiles(IMAGE_ROOT);
 
   if (files.length === 0) {
