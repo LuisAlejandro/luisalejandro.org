@@ -16,7 +16,7 @@ Personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS.
 - **Styling:** Tailwind CSS 4, Sass
 - **Content:** Cosmic CMS (`@cosmicjs/sdk`)
 - **Monitoring:** Sentry (`@sentry/nextjs`)
-- **Package manager:** Yarn 1.x (Docker and local workflows)
+- **Package manager:** npm (`package-lock.json`; Docker and local workflows)
 
 ## Features
 
@@ -51,11 +51,11 @@ Use `make console` for a shell inside the app container.
 | ----------------------- | --------------------------------------------- |
 | `make serve`            | Start the Next.js dev server in Docker        |
 | `make build_production` | Production build inside the container         |
-| `make lint`             | Run ESLint (`yarn lint`)                      |
-| `make format`           | Run Prettier (`yarn format`)                  |
-| `make test`             | Run TypeScript type check (`yarn type-check`) |
+| `make lint`             | Run ESLint (`npm run lint`)                      |
+| `make format`           | Run Prettier (`npm run format`)                  |
+| `make test`             | Run TypeScript type check (`npm run type-check`) |
 | `make console`          | Open a shell in the app container             |
-| `make dependencies`     | `yarn install` inside the app container       |
+| `make dependencies`     | `npm ci` inside the app container       |
 
 Docker lifecycle targets (`make image`, `make start`, `make stop`, `make down`, `make destroy`, `make cataplum`) are provided by Rosey maintainer managed blocks. See `make help` for release targets.
 

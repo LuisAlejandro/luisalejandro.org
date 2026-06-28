@@ -18,11 +18,27 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v7
 
-      - name: Restoring node_modules cache
+      - name: Prepare npm cache directory
+        run: mkdir -p ~/.npm
+
+      - name: Restore npm cache
         uses: actions/cache@v6
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            node_modules
+            */node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Set environment variables
         run: |

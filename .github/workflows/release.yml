@@ -18,6 +18,17 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      - name: Prepare npm cache directory
+        run: mkdir -p ~/.npm
+
+      - name: Restore npm cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Restore node_modules cache
         uses: actions/cache@v6
         with:
@@ -25,7 +36,7 @@ jobs:
             node_modules
             */node_modules
             */*/node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock', 'package-lock.json', '**/package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
 

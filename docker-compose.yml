@@ -7,7 +7,6 @@ services:
     volumes:
       - .:/home/luisalejandro-org/app
       - ~/.npm:/home/luisalejandro-org/.npm
-      - ~/.cache/yarn:/home/luisalejandro-org/.cache/yarn
     env_file:
       - .env
     environment:

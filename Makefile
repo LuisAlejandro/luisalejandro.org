@@ -42,25 +42,25 @@ help:
 	@echo ""
 
 dependencies: start
-	@$(exec_on_docker) yarn install
+	@$(exec_on_docker) npm ci
 
 build_production: start
-	@$(exec_on_docker) yarn run build
+	@$(exec_on_docker) npm run build
 
 serve: start
-	@$(exec_on_docker) yarn dev
+	@$(exec_on_docker) npm run dev
 
 console: start
 	@$(exec_on_docker) bash
 
 lint: start
-	@$(exec_on_docker) yarn lint
+	@$(exec_on_docker) npm run lint
 
 format: start
-	@$(exec_on_docker) yarn format
+	@$(exec_on_docker) npm run format
 
 test: start
-	@$(exec_on_docker) yarn type-check
+	@$(exec_on_docker) npm run type-check
 
 # >>> rosey-maintainer:ops-docker BEGIN
 # Managed by rosey-maintainer-tools 0.4.4. Do not edit directly.
