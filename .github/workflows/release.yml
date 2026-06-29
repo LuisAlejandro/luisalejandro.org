@@ -18,9 +18,6 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Prepare npm cache directory
-        run: mkdir -p ~/.npm
-
       - name: Restore npm cache
         uses: actions/cache@v6
         with:
@@ -60,6 +57,9 @@ jobs:
 
       - name: Install dependencies in container
         run: make dependencies
+
+      - name: Build production artifacts
+        run: make build
 
       - name: Run lint
         run: make lint

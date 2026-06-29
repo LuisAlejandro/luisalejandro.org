@@ -20,7 +20,7 @@ From **clean** `develop`:
 | Manual | `make release-preflight` then `make release-patch` (or `-minor` / `-major`) |
 | Rollback | `VERSION=<version> make undo-release` |
 
-Preflight: `make format`, `make lint`, `make test`.
+Preflight: `make image`, `make dependencies`, `make build`, `make format`, `make lint`, `make test`.
 Gate details, milestones, and workflow verification: `.cursor/skills/rosey-release/`.
 Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
 

@@ -15,9 +15,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v7
 
-      - name: Prepare npm cache directory
-        run: mkdir -p ~/.npm
-
       - name: Restore npm cache
         uses: actions/cache@v6
         with:
@@ -63,7 +60,9 @@ jobs:
 
       - name: Building project
         run: |
-          make dependencies build_production
+          make image
+          make dependencies
+          make build
   release-gate:
     name: Release Gate
     runs-on: ubuntu-24.04

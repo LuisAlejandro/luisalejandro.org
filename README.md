@@ -50,7 +50,7 @@ Use `make console` for a shell inside the app container.
 | Command                 | Description                                   |
 | ----------------------- | --------------------------------------------- |
 | `make serve`            | Start the Next.js dev server in Docker        |
-| `make build_production` | Production build inside the container         |
+| `make build` | Production build inside the container         |
 | `make lint`             | Run ESLint (`npm run lint`)                      |
 | `make format`           | Run Prettier (`npm run format`)                  |
 | `make test`             | Run TypeScript type check (`npm run type-check`) |
