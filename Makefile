@@ -11,6 +11,8 @@ exec_on_docker = docker compose \
 	-p $(PROJECT_NAME) -f docker-compose.yml exec \
 	--user luisalejandro-org app
 
+.PHONY: help dependencies build serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major release-preflight undo-release
+
 help:
 	@echo "Available commands:"
 	@echo "  Docker commands:"
@@ -130,5 +132,3 @@ release-preflight:
 undo-release:
 	@: "$${VERSION:?Set VERSION=x.y.z before running make undo-release}"
 	@VERSION=$${VERSION} ./scripts/rollback.sh release
-
-.PHONY: help dependencies build serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major release-preflight undo-release
