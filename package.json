@@ -28,7 +28,7 @@
     "agent-readiness:smoke": "bash scripts/agent-readiness-smoke.sh"
   },
   "dependencies": {
-    "@aws-sdk/client-sesv2": "^3.1075.0",
+    "@aws-sdk/client-sesv2": "^3.1076.0",
     "@cosmicjs/sdk": "^2.1.0",
     "@ctrl/react-adsense": "^2.1.0",
     "@gsap/react": "^2.1.2",
