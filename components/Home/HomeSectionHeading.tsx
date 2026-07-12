@@ -15,8 +15,9 @@ export function HomeSectionHeading({
     <h2
       {...props}
       className={cn(
-        "font-main font-normal text-justify mt-10 mb-4 mx-auto w-full text-2xl leading-9 text-gray-1",
-        "lg:font-light lg:w-175 lg:text-3xl lg:leading-10",
+        "font-title font-black text-4xl leading-tight tracking-tight mb-7 mx-auto w-full",
+        "bg-gradient-to-br from-gray-900 to-gray-800/60 bg-clip-text text-transparent",
+        "lg:text-5xl",
         className
       )}
     >
