@@ -1,8 +1,5 @@
 export type TweetFetchError =
-  | "invalidUrl"
-  | "notFound"
-  | "tombstone"
-  | "upstream";
+  "invalidUrl" | "notFound" | "tombstone" | "upstream";
 
 export type TweetData = {
   link: string;
