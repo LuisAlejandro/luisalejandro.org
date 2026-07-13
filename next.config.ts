@@ -233,7 +233,29 @@ const config: NextConfig = {
   turbopack: {
     rules: {
       "*.svg": {
-        loaders: ["@svgr/webpack"],
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: "preset-default",
+                    params: {
+                      overrides: {
+                        removeNonInheritableGroupAttrs: false,
+                        moveElemsAttrsToGroup: false,
+                        moveGroupAttrsToElems: false,
+                        collapseGroups: false,
+                        cleanupIds: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
         as: "*.js",
       },
     },

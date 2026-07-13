@@ -144,7 +144,7 @@ const Header = ({ variant }: { variant?: string }) => {
           </SocialIcons>
         </Div3>
       </Container>
-      {isCaseStudies && <WaveDivider fill="#303030" />}
+      {isCaseStudies && <WaveDivider fill="#303030" className="bg-accent-7" />}
     </header>
   );
 };
