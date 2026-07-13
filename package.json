@@ -55,7 +55,7 @@
     "dotenv": "^17.4.2",
     "encoding": "^0.1.13",
     "feed": "^6.0.0",
-    "framer-motion": "^12.42.0",
+    "framer-motion": "^12.42.2",
     "googleapis": "^173.0.0",
     "gsap": "^3.15.0",
     "highlight.js": "^11.11.1",
