@@ -13,6 +13,7 @@ const eslintConfig = [
       "rosey/**",
       "content/**",
       "coverage/**",
+      "**/.venv/**",
     ],
   },
   ...nextConfig,
