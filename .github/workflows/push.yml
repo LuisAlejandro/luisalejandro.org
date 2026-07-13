@@ -34,6 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
+      - name: Ensure npm cache dir exists
+        run: mkdir -p ~/.npm
+
       - name: Set environment variables
         run: |
           echo "UID=$(id -u)" >> $GITHUB_ENV
@@ -63,6 +66,17 @@ jobs:
           make image
           make dependencies
           make build
+
+      - name: Run lint
+        run: make lint
+
+      - name: Run tests
+        run: make test
+
+      - name: Tear down Docker
+        if: always()
+        run: make down
+
   release-gate:
     name: Release Gate
     runs-on: ubuntu-24.04
