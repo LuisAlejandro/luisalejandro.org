@@ -3,10 +3,12 @@
 
 SHELL = bash -e
 export BASH_ENV := $(HOME)/.bash_env
-img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
 
+PROJECT_NAME ?= luisalejandro-org
 VERSION_TYPE ?= patch
 APP_NAME ?= luisalejandro.org
+img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
+all_ps_hashes = $(shell docker ps -q)
 exec_on_docker = docker compose \
 	-p $(PROJECT_NAME) -f docker-compose.yml exec \
 	--user luisalejandro-org app
@@ -18,7 +20,7 @@ help:
 	@echo "  Docker commands:"
 	@echo "    image            - Build Docker image"
 	@echo "    start            - Start Docker containers"
-	@echo "    dependencies     - Install dependencies"
+	@echo "    dependencies     - Install dependencies (npm ci)"
 	@echo "    build            - Build production version"
 	@echo "    serve            - Start development server"
 	@echo "    console          - Open bash console in container"
@@ -37,6 +39,7 @@ help:
 	@echo "    release-patch    - Create a new patch release (x.x.X)"
 	@echo "    release-minor    - Create a new minor release (x.X.x)"
 	@echo "    release-major    - Create a new major release (X.x.x)"
+	@echo "    release-preflight - image → dependencies → build → format → lint → test"
 	@echo "    undo-release     - Roll back a botched release (VERSION=x.y.z)"
 	@echo ""
 	@echo "  Release with custom version type:"
@@ -63,9 +66,6 @@ format: start
 
 test: start
 	@$(exec_on_docker) npm run type-check
-
-PROJECT_NAME ?= luisalejandro-org
-all_ps_hashes = $(shell docker ps -q)
 
 image:
 	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml build \
@@ -119,7 +119,6 @@ release-minor:
 
 release-major:
 	@./scripts/release.sh major $${APP_NAME}
-
 
 release-preflight:
 	@make image
