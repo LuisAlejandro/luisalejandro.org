@@ -1,6 +1,5 @@
 type RateLimitResult =
-  | { allowed: true }
-  | { allowed: false; retryAfterSeconds: number };
+  { allowed: true } | { allowed: false; retryAfterSeconds: number };
 
 type Bucket = {
   timestamps: number[];

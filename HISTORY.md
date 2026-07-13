@@ -1,6 +1,47 @@
 # Changelog
 
 
+## 3.2.10 (2026-07-13)
+
+### Other
+
+* Fixing bugs. [Luis Alejandro Martínez Faneyth]
+
+* Chore: clean up eslint config rules. [Luis Alejandro Martínez Faneyth]
+
+* Fix: pin eslint to ^9.28.0 for plugin ecosystem compatibility. [Luis Alejandro Martínez Faneyth]
+
+* Style: prettier formatting. [Luis Alejandro Martínez Faneyth]
+
+* Fix: upgrade Docker Node 20 to 22 for ESLint 10 compat. [Luis Alejandro Martínez Faneyth]
+
+* Chore: update next-env.d.ts (auto-generated) [Luis Alejandro Martínez Faneyth]
+
+* Fix: increase Node.js heap size in Docker for build. [Luis Alejandro Martínez Faneyth]
+
+* Chore: apply rosey-maintainer fleet sync. [Luis Alejandro Martínez Faneyth]
+
+* Fix: add updateBranch fallback to auto-merge workflow. [Luis Alejandro Martínez Faneyth]
+
+* Fix: migrate tsconfig for TypeScript 6.0 compatibility. [Cursor Agent]
+
+* Fix: skip auto-merge for draft pull requests. [Luis Alejandro Martínez Faneyth]
+
+* Chore: update gitignore for Rosey agentic env. [Luis Alejandro Martínez Faneyth]
+
+* Fix: redesign homepage content sections (V2 design) [Luis Alejandro Martínez Faneyth]
+
+* Chore: maintainer sync follow-ups for env and Makefile. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer ops from rosey-maintainer-sync. [Luis Alejandro Martínez Faneyth]
+
+* Add .npmrc legacy-peer-deps for npm ci in CI. [Luis Alejandro Martínez Faneyth]
+
+* Chore: add CI npm cache restore and standardize on npm. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer ops from fleet-wide rosey-maintainer-sync. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.9 (2026-06-28)
 
 ### Other

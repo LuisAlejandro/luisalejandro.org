@@ -11,5 +11,6 @@ services:
       - .env
     environment:
       PORT: 3101
+      NODE_OPTIONS: "--max-old-space-size=4096"
     ports:
       - "3101:3101"
