@@ -104,7 +104,7 @@
     "globals": "^17.7.0",
     "postcss": "^8.5.18",
     "prettier": "^3.9.5",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "update-browserslist-db": "^1.2.3"
   },
   "browserslist": [
