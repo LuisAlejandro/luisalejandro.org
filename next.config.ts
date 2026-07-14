@@ -2,6 +2,10 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const config: NextConfig = {
+  typescript: {
+    // Type-check with TypeScript 7 runs in the build script before `next build`.
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
