@@ -94,6 +94,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^9.28.0",
+    "@netlify/plugin-nextjs": "^5.15.12",
     "@tailwindcss/forms": "^0.5.11",
     "@typescript-eslint/eslint-plugin": "^8.64.0",
     "@typescript-eslint/parser": "^8.64.0",

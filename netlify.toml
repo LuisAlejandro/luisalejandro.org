@@ -12,6 +12,14 @@
   # The build script needs @typescript/native (devDep) for type-checking.
   NPM_FLAGS = "--include=dev"
 
+# Next.js runtime adapter (OpenNext). Pinned to v5 to use modern Netlify
+# Functions v2 and avoid the AWS Lambda 4KB env var limit of the legacy v4
+# plugin. Remove the UI-installed plugin in Netlify site settings so this
+# repo-pinned version takes precedence.
+# Ref: https://developers.netlify.com/guides/migrating-to-the-modern-netlify-functions/
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Build-time env vars (configure in Netlify site settings):
 # - COSMIC_BUCKET_SLUG, COSMIC_READ_KEY — blog, portfolio, case-study SSG
 # - SENTRY_AUTH_TOKEN — production source map upload
