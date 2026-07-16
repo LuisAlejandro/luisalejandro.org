@@ -8,6 +8,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Netlify sets NODE_ENV=production which skips devDependencies.
+  # The build script needs @typescript/native (devDep) for type-checking.
+  NPM_FLAGS = "--include=dev"
 
 # Build-time env vars (configure in Netlify site settings):
 # - COSMIC_BUCKET_SLUG, COSMIC_READ_KEY — blog, portfolio, case-study SSG
