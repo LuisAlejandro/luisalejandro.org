@@ -85,7 +85,7 @@
 
 * Improving mcp robustness. [Luis Alejandro Martínez Faneyth]
 
-* Fix: pin sharp 0.35.2 via yarn resolutions for next.js compatibility. [Cursor Agent]
+* Fix: pin sharp 0.35.2 via npm overrides for next.js compatibility. [Cursor Agent]
 
 
 ## 3.2.3 (2026-06-24)
