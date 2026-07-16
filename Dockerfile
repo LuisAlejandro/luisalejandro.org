@@ -9,10 +9,10 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN EXISTUSER=$(getent passwd | awk -F':' '$3 == '$UID' {print $1}') && \
-    [ -n "${EXISTUSER}" ] && deluser ${EXISTUSER} || true
+    [ -n "${EXISTUSER}" ] && userdel ${EXISTUSER} || true
 
 RUN EXISTGROUP=$(getent group | awk -F':' '$3 == '$GID' {print $1}') && \
-    [ -n "${EXISTGROUP}" ] && delgroup ${EXISTGROUP} || true
+    [ -n "${EXISTGROUP}" ] && groupdel ${EXISTGROUP} || true
 
 RUN groupadd -g "${GID}" luisalejandro-org || true
 RUN useradd -u "${UID}" -g "${GID}" -ms /bin/bash luisalejandro-org

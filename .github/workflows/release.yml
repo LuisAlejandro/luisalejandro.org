@@ -37,6 +37,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
+      - name: Ensure npm cache dir exists
+        run: mkdir -p ~/.npm
+
       - name: Set environment variables
         run: |
           echo "UID=$(id -u)" >> $GITHUB_ENV
