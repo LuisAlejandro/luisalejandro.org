@@ -2,7 +2,7 @@
 # Full env reference: .env.example (set secrets in Netlify UI, not here)
 
 [build]
-  command = "yarn build"
+  command = "npm run build"
   # Netlify Next.js runtime manages publish output; kept for documentation.
   publish = ".next"
 
