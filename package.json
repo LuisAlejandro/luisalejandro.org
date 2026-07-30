@@ -34,7 +34,7 @@
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.5.7",
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "@next/third-parties": "^16.3.0-preview.6",
+    "@next/third-parties": "^16.3.0-preview.10",
     "@sentry/nextjs": "^10.65.0",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.3.3",
