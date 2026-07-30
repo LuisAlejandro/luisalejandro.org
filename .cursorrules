@@ -4,17 +4,17 @@ Personal website and portfolio: a single Next.js 16 (App Router) + TypeScript + 
 
 ## Environment layout
 
-- **Package manager:** Yarn 1.x (`packageManager` in `package.json`). Dependencies are installed by the startup update script (`yarn install`), so they should already be present.
-- The `Makefile` targets (`make serve`, `make lint`, `make test`, etc.) run **inside Docker**. On the host, use the `yarn` scripts directly (see below).
+- **Package manager:** npm. Dependencies are installed by the startup update script (`npm install`), so they should already be present.
+- The `Makefile` targets (`make serve`, `make lint`, `make test`, etc.) run **inside Docker**. On the host, use the `npm` scripts directly (see below).
 - Copy env before running: `cp .env.example .env`. Cosmic CMS keys (`COSMIC_*`) are required for blog/portfolio/case-study pages that fetch content. Contact-form and third-party integrations (AWS SES, reCAPTCHA, Mailchimp, Google Sheets, Sentry) need their own vars when exercising those routes.
 
 ## Lint / test / run (host)
 
-- **Dev server:** `PORT=3101 yarn dev` → http://localhost:3101 (matches `docker-compose.yml` and `constants/constants.ts` local URL).
-- **Lint:** `yarn lint` (`next lint`).
-- **Format:** `yarn format` (Prettier write) or `yarn format:check` (check only).
-- **Type-check:** `yarn type-check` (`tsc --noEmit`) — this is what `make test` runs in Docker.
-- **Production build:** `yarn build`.
+- **Dev server:** `PORT=3101 npm run dev` → http://localhost:3101 (matches `docker-compose.yml` and `constants/constants.ts` local URL).
+- **Lint:** `npm run lint` (`next lint`).
+- **Format:** `npm run format` (Prettier write) or `npm run format:check` (check only).
+- **Type-check:** `npm run type-check` (`tsc --noEmit`) — this is what `make test` runs in Docker.
+- **Production build:** `npm run build`.
 
 ## Non-obvious gotchas
 
