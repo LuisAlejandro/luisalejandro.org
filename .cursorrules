@@ -20,4 +20,5 @@ Personal website and portfolio: a single Next.js 16 (App Router) + TypeScript + 
 
 - `make release-preflight` chains `lint`, `format`, and `test`; CI PR workflow builds the Docker image and runs a production build (`.github/workflows/pr.yml`).
 - Pages backed by Cosmic will error or show empty content without valid `COSMIC_BUCKET_SLUG` and `COSMIC_READ_KEY` in `.env`.
+- Even without any secrets configured, these surfaces work for quick end-to-end smoke tests: the homepage (`/`), the contact page/form (`/contact`, renders and accepts input; actual submission needs reCAPTCHA + SES), the static routes (`/robots.txt`, `/sitemap.xml`, `/.well-known/api-catalog`), and the built-in MCP server at `POST /api/mcp` (JSON-RPC `initialize`/`tools/list` respond). Requests must send `Accept: application/json, text/event-stream`.
 - Sentry is wired via `@sentry/nextjs`; builds may warn if DSN-related env is missing — that is expected in a minimal local setup.
