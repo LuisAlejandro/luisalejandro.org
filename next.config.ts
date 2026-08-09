@@ -205,6 +205,96 @@ const config: NextConfig = {
           },
         ],
       },
+      // Homepage — was Netlify max-age=0; required for Cloudflare edge eligibility
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "homepage, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "homepage, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Contact page
+      {
+        source: "/contact",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "contact, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "contact, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
+      // Apps marketing pages (static copy; forms/APIs stay under /api)
+      {
+        source: "/apps/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+          {
+            key: "Cache-Tag",
+            value: "apps, content",
+          },
+          {
+            key: "Netlify-Cache-Tag",
+            value: "apps, content",
+          },
+          {
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
