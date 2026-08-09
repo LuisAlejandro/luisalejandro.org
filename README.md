@@ -17,6 +17,7 @@ Personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS.
 - **Content:** Cosmic CMS (`@cosmicjs/sdk`)
 - **Monitoring:** Sentry (`@sentry/nextjs`)
 - **Package manager:** npm (`package-lock.json`; Docker and local workflows)
+- **Dev image:** `dockershelf/node:22` via `Dockerfile` / `docker-compose.yml`
 
 ## Features
 
@@ -68,6 +69,10 @@ make test
 ```
 
 Release preflight runs `image` → `dependencies` → `build` → `format` → `lint` → `test` via `make release-preflight` before tagging.
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, quality checks, and pull request guidelines.
 
 ## CI
 
