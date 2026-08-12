@@ -10,10 +10,15 @@ on:
     branches:
       - develop
 
+concurrency:
+  group: pull-request-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7
@@ -48,34 +53,20 @@ jobs:
           echo "COSMIC_READ_KEY=${{ secrets.COSMIC_READ_KEY }}" >> .env
           echo "COSMIC_BUCKET_SLUG=${{ secrets.COSMIC_BUCKET_SLUG }}" >> .env
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+      - name: Build Docker image
+        run: make image
 
-      - name: Building docker image
-        uses: docker/build-push-action@v7
-        with:
-          tags: luisalejandro/luisalejandro.org:latest
-          file: Dockerfile
-          context: .
-          build-args: |
-            UID=${{ env.UID }}
-            GID=${{ env.GID }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          push: false
-          load: true
-
-      - name: Building project
-        run: |
-          make image
-          make dependencies
-          make build
+      - name: Install dependencies
+        run: make dependencies
 
       - name: Run lint
         run: make lint
 
       - name: Run tests
         run: make test
+
+      - name: Build production artifacts
+        run: make build
 
       - name: Tear down Docker
         if: always()
@@ -84,6 +75,7 @@ jobs:
   code-quality:
     name: Code Quality
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     container:
       image: semgrep/semgrep
     steps:
