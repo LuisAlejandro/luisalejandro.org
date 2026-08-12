@@ -105,7 +105,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.8.0",
     "postcss": "^8.5.26",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.6",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "update-browserslist-db": "^1.2.3"
   },
