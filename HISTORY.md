@@ -1,6 +1,56 @@
 # Changelog
 
 
+## 3.2.11 (2026-08-25)
+
+### Added
+
+* Schedule Actions cache purge every 3 days. [Luis Alejandro Martínez Faneyth]
+
+* Document gitchangelog commit tags and fix HISTORY.md release notes awk. [Luis Alejandro Martínez Faneyth]
+
+
+### Changed
+
+* Use default Next and TypeScript 6 for local builds. [Luis Alejandro Martínez Faneyth]
+
+* Present Agoras as a product on the listing page. [Luis Alejandro Martínez Faneyth]
+
+
+### Fixed
+
+* Ignore Next.js notFound signals in Sentry. [Luis Alejandro Martínez Faneyth]
+
+* Retry transient GitHub API errors in PR auto-merge. [Luis Alejandro Martínez Faneyth]
+
+* Use top-level getOctokit in pr-auto-merge updateBranch step. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+* Docs: note secret-free smoke-test surfaces in cloud instructions. [Cursor Agent]
+
+* Improving cache rules. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Removing yarn leftovers. [Luis Alejandro Martínez Faneyth]
+
+* Upgrade PR auto-merge to SHA-bound native-first controller. [Luis Alejandro Martínez Faneyth]
+
+* Fix: make ESLint 10 compatible with eslint-config-next. [Cursor Agent]
+
+* Fix: enable TypeScript 7 side-by-side with TS6 for Next.js and ESLint. [Cursor Agent]
+
+* Fix(deps): use TypeScript 7 side-by-side with TS6 for Next.js and ESLint. [Cursor Agent]
+
+* Fix: replace deluser/delgroup with userdel/groupdel in Dockerfiles. [Luis Alejandro Martínez Faneyth]
+
+* Chore: apply rosey-maintainer fleet sync. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.10 (2026-07-13)
 
 ### Other
@@ -85,7 +135,7 @@
 
 * Improving mcp robustness. [Luis Alejandro Martínez Faneyth]
 
-* Fix: pin sharp 0.35.2 via npm overrides for next.js compatibility. [Cursor Agent]
+* Fix: pin sharp 0.35.2 via yarn resolutions for next.js compatibility. [Cursor Agent]
 
 
 ## 3.2.3 (2026-06-24)
