@@ -8,6 +8,11 @@ updates:
     time: "01:00"
   cooldown:
     default-days: 14
+  ignore:
+    # typescript-eslint still requires typescript <6.1.0. Unfreeze when ESLint
+    # supports TypeScript 7.
+    - dependency-name: "typescript"
+    - dependency-name: "@typescript/native"
 
 - package-ecosystem: github-actions
   directory: "/"
