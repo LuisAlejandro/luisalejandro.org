@@ -1,12 +1,11 @@
 # Maintainer Guide
 
-Quick reminders for Luisalejandro. Procedures live in `.cursor/skills/`; fleet
-setup lives in **rosey-maintainer-tools**.
+Quick reminders for Luisalejandro.
 
 ## Feature work
 
-1. `rosey-brainstorm` → `rosey-plan` → `rosey-work` — brainstorm → plan → implement.
-2. `rosey-qa` → `rosey-pr` — QA, lint/build, open/update PR to `develop`.
+1. Plan and implement on a feature branch (`feature/*` → `develop`).
+2. Run QA, lint/build, open or update a PR to `develop`.
 
 Repeat until ready to ship.
 
@@ -27,14 +26,14 @@ Format: `[TAG] Imperative user-facing summary.` Non-user-facing work (deps, lint
 
 From **clean** `develop`:
 
-| Step | Command / skill |
+| Step | Command |
 |------|-----------------|
-| Interactive | `rosey-release` (default **patch**; `minor` / `major` when needed) |
-| Manual | `make release-preflight` then `make release-patch` (or `-minor` / `-major`) |
+| Preflight | `make release-preflight` |
+| Publish | `make release-patch` (or `release-minor` / `release-major`) |
 | Rollback | `VERSION=<version> make undo-release` |
 
 Preflight: `make image`, `make dependencies`, `make build`, `make format`, `make lint`, `make test`.
-Gate details, milestones, and workflow verification: `.cursor/skills/rosey-release/`.
+Release flow: `scripts/release.sh` (via Makefile `release-*` targets).
 Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
 
 ## PR CI (pointers)
@@ -43,8 +42,6 @@ Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
 - **Auto-merge** — `pr-auto-merge.yml` after that workflow succeeds; head
   `feature/**` or `dependabot/**` only. Actor allowlist: `dependabot[bot]`,
   `cursor[bot]`, `LuisAlejandro`, repository owner.
-  `rosey-qa` / `rosey-pr` do not merge or fix CI.
-- **Cursor CI fixes** — **rosey-maintainer-tools** `docs/cursor-pr-ci-automation.md`.
 
 ### Auto-merge behavior
 
@@ -64,7 +61,12 @@ Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
 
 ## One-time GitHub setup
 
-- `develop` — PR + checks from `pr.yml`; `rosey-maintain protect-github --apply`.
+- `develop` — PR + checks from `pr.yml`.
 - `master` — restrict pushes.
-- `release/*` — `push.yml` lists `release/**` and ends with **Release Gate** (manual patch).
+- `release/*` — `push.yml` lists `release/**`; release tooling waits for the whole **Push** workflow at the exact branch SHA.
 - Tags — restrict creation to maintainers.
+
+For Tetra cutovers, run `rosey-maintain protect-github --repo <repo> --trust-preflight`,
+open the check window with `--window open --apply`, then close it after a probe with
+one `--observed-check <context>` per live check-run name. Rollback cancels matching
+Push, Publish Release, and Artifacts runs, waits for terminal state, then deletes refs.
