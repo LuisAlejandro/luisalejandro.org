@@ -1,1 +1,1 @@
-_luisalejandro.org_ is a personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS. Content is sourced from Cosmic CMS and includes a blog, case studies, portfolio pages, and API routes for contact forms and app license integrations. The site is deployed on Vercel.
+_luisalejandro.org_ is a personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS. Content is sourced from Cosmic CMS and includes a blog, case studies, portfolio pages, and API routes for contact forms and app license integrations.

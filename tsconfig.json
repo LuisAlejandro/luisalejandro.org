@@ -9,7 +9,7 @@
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -26,6 +26,6 @@
       }
     ]
   },
-  "exclude": ["./node_modules/**/*", "./.next"],
+  "exclude": ["./node_modules/**/*", "./.next", "./rosey/design-system/**"],
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"]
 }

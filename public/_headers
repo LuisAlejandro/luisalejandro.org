@@ -1,0 +1,14 @@
+/llms.txt
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/ai.txt
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/.well-known/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon/*
+  Cache-Control: public, max-age=31536000, immutable

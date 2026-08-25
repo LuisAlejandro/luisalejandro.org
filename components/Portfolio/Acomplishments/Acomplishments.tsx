@@ -1,6 +1,7 @@
 import { Stars } from "@constants/constants";
 
 import { Section } from "@components/common/Layout/Section";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 
 import { Box } from "./Box";
 import { BoxNum } from "./BoxNum";
@@ -19,9 +20,7 @@ const Acomplishments = () => (
         ))}
       </Boxes>
     </Section>
-    <svg viewBox="0 0 1920 100">
-      <path fill="#f8d983" d="M960,50l960-50H0L960,50z" />
-    </svg>
+    <WaveDivider fill="#f8d983" />
   </>
 );
 

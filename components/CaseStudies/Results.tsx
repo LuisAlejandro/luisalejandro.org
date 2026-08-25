@@ -1,5 +1,6 @@
 import { Scene } from "react-scrollmagic";
 
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import ScrollTween from "./ScrollTween";
 
 interface ResultsProps {
@@ -13,9 +14,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
     id="results"
     className="w-full bg-gradient-to-tl from-gray-100 to-gray-300"
   >
-    <svg viewBox="0 0 1920 100">
-      <path fill="#333" d="M960,50l960-50H0L960,50z" />
-    </svg>
+    <WaveDivider fill="#333" />
     <Scene
       triggerElement="#results"
       duration="200%"
@@ -122,9 +121,7 @@ const Results = ({ Title, Content, links }: ResultsProps) => (
       <div className="lg:col-span-1"></div>
     </div>
 
-    <svg viewBox="0 0 1920 100">
-      <path fill="#aaa" d="M1920,0v100H0V0l960,50L1920,0z" />
-    </svg>
+    <WaveDivider fill="#aaa" inverted />
   </div>
 );
 

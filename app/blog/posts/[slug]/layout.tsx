@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
-import { getPostAndMorePosts } from "@lib/api";
+import { getPostAndMorePosts, getPublishedPostForTwin } from "@lib/api";
+import { stripHtmlToPlainText } from "@lib/plainText";
 
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
@@ -33,7 +34,7 @@ export async function generateMetadata({
   const post = data.post;
 
   // Clean and optimize description
-  const rawDescription = post.metadata?.teaser?.replace(/<[^>]*>/g, "") || "";
+  const rawDescription = stripHtmlToPlainText(post.metadata?.teaser || "");
   const optimizedDescription =
     rawDescription.length > 160
       ? rawDescription.substring(0, 157) + "..."
@@ -92,6 +93,45 @@ export async function generateMetadata({
   // Generate article schema-friendly publication date
   const publishedDate = new Date(post.created_at);
   const publishedISO = publishedDate.toISOString();
+
+  const publishedTwin = await getPublishedPostForTwin(slug);
+
+  const feedAlternates = {
+    "application/rss+xml": [
+      {
+        url: `${config.url}/blog/posts/feed.xml`,
+        title: "Luis Alejandro Blog RSS Feed",
+      },
+    ],
+    "application/atom+xml": [
+      {
+        url: `${config.url}/blog/posts/atom.xml`,
+        title: "Luis Alejandro Blog Atom Feed",
+      },
+    ],
+    "application/feed+json": [
+      {
+        url: `${config.url}/blog/posts/feed.json`,
+        title: "Luis Alejandro Blog JSON Feed",
+      },
+    ],
+    "application/xml": [
+      {
+        url: `${config.url}/sitemap.xml`,
+        title: "Sitemap",
+      },
+    ],
+    ...(publishedTwin
+      ? {
+          "text/markdown": [
+            {
+              url: `/blog/posts/${slug}.md`,
+              title: "Markdown twin",
+            },
+          ],
+        }
+      : {}),
+  };
 
   return {
     title: seoTitle,
@@ -198,32 +238,7 @@ export async function generateMetadata({
     manifest: `${config.url}/favicon/site.webmanifest`,
     alternates: {
       canonical: canonicalUrl,
-      types: {
-        "application/rss+xml": [
-          {
-            url: `${config.url}/blog/posts/feed.xml`,
-            title: "Luis Alejandro Blog RSS Feed",
-          },
-        ],
-        "application/atom+xml": [
-          {
-            url: `${config.url}/blog/posts/atom.xml`,
-            title: "Luis Alejandro Blog Atom Feed",
-          },
-        ],
-        "application/feed+json": [
-          {
-            url: `${config.url}/blog/posts/feed.json`,
-            title: "Luis Alejandro Blog JSON Feed",
-          },
-        ],
-        "application/xml": [
-          {
-            url: `${config.url}/sitemap.xml`,
-            title: "Sitemap",
-          },
-        ],
-      },
+      types: feedAlternates,
     },
     other: {
       // Google AdSense verification

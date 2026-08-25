@@ -2,21 +2,26 @@
 # -*- makefile -*-
 
 SHELL = bash -e
-img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
+export BASH_ENV := $(HOME)/.bash_env
 
+PROJECT_NAME ?= luisalejandro-org
 VERSION_TYPE ?= patch
 APP_NAME ?= luisalejandro.org
+img_hash = $(shell docker images -q luisalejandro/luisalejandro.org:latest)
+all_ps_hashes = $(shell docker ps -q)
 exec_on_docker = docker compose \
 	-p $(PROJECT_NAME) -f docker-compose.yml exec \
 	--user luisalejandro-org app
+
+.PHONY: help dependencies build serve console lint format test image start stop down destroy cataplum release release-patch release-minor release-major release-preflight undo-release
 
 help:
 	@echo "Available commands:"
 	@echo "  Docker commands:"
 	@echo "    image            - Build Docker image"
 	@echo "    start            - Start Docker containers"
-	@echo "    dependencies     - Install dependencies"
-	@echo "    build_production - Build production version"
+	@echo "    dependencies     - Install dependencies (npm ci)"
+	@echo "    build            - Build production version"
 	@echo "    serve            - Start development server"
 	@echo "    console          - Open bash console in container"
 	@echo "    stop             - Stop Docker containers"
@@ -26,6 +31,7 @@ help:
 	@echo ""
 	@echo "  Quality commands:"
 	@echo "    lint             - Run ESLint"
+	@echo "    format           - Run Prettier"
 	@echo "    test             - Run TypeScript type check"
 	@echo ""
 	@echo "  Release commands:"
@@ -33,35 +39,33 @@ help:
 	@echo "    release-patch    - Create a new patch release (x.x.X)"
 	@echo "    release-minor    - Create a new minor release (x.X.x)"
 	@echo "    release-major    - Create a new major release (X.x.x)"
-	@echo "    hotfix           - Create a new hotfix (always patch increment)"
+	@echo "    release-preflight - image → dependencies → build → format → lint → test"
+	@echo "    undo-release     - Roll back a botched release (VERSION=x.y.z)"
 	@echo ""
 	@echo "  Release with custom version type:"
 	@echo "    make release VERSION_TYPE=minor"
 	@echo ""
 
 dependencies: start
-	@$(exec_on_docker) yarn install
+	@$(exec_on_docker) npm ci
 
-build_production: start
-	@$(exec_on_docker) yarn run build
+build: start
+	@$(exec_on_docker) npm run build
 
 serve: start
-	@$(exec_on_docker) yarn dev
+	@$(exec_on_docker) npm run dev
 
 console: start
 	@$(exec_on_docker) bash
 
 lint: start
-	@$(exec_on_docker) yarn lint
+	@$(exec_on_docker) npm run lint
+
+format: start
+	@$(exec_on_docker) npm run format
 
 test: start
-	@$(exec_on_docker) yarn type-check
-
-# >>> rosey-maintainer:ops-docker BEGIN
-# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
-
-PROJECT_NAME ?= luisalejandro.org
-all_ps_hashes = $(shell docker ps -q)
+	@$(exec_on_docker) npm run type-check
 
 image:
 	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml build \
@@ -103,10 +107,6 @@ cataplum:
 	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml down \
 		--rmi all --remove-orphans --volumes
 	@docker system prune -a -f --volumes
-# <<< rosey-maintainer:ops-docker END
-
-# >>> rosey-maintainer:ops-release BEGIN
-# Managed by rosey-maintainer-tools 0.1.0. Do not edit directly.
 
 release:
 	@./scripts/release.sh $${VERSION_TYPE}
@@ -120,8 +120,14 @@ release-minor:
 release-major:
 	@./scripts/release.sh major $${APP_NAME}
 
-hotfix:
-	@./scripts/hotfix.sh $${APP_NAME}
-# <<< rosey-maintainer:ops-release END
+release-preflight:
+	@make image
+	@make dependencies
+	@make build
+	@make format
+	@make lint
+	@make test
 
-.PHONY: help dependencies build_production serve console lint test image start stop down destroy cataplum release release-patch release-minor release-major hotfix
+undo-release:
+	@: "$${VERSION:?Set VERSION=x.y.z before running make undo-release}"
+	@VERSION=$${VERSION} ./scripts/rollback.sh release

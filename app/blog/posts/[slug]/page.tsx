@@ -10,6 +10,7 @@ import markdownToHtml from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
 
 import { Section } from "@components/common/Layout/Section";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
 import PostContent from "@components/Post/PostContent";
@@ -32,15 +33,20 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
+  let post: any;
+  let morePosts: any[];
+  let allCategories: any[];
+  let blogPostingJsonLd: ReturnType<typeof generateBlogPostingJsonLd>;
+
   try {
     const data = await getPostAndMorePosts(slug);
-    const allCategories = (await getAllCategories()) || [];
+    allCategories = (await getAllCategories()) || [];
 
     if (!data?.post?.slug) {
       notFound();
     }
 
-    const post = {
+    post = {
       ...data.post,
       metadata: {
         ...data.post?.metadata,
@@ -49,50 +55,46 @@ export default async function PostPage({ params }: PostPageProps) {
       },
     };
 
-    const morePosts = data.morePosts || [];
-
-    // Generate JSON-LD structured data
-    const blogPostingJsonLd = generateBlogPostingJsonLd(post);
-
-    return (
-      <>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(blogPostingJsonLd),
-          }}
-        />
-        <div className="bg-gray-6 w-full mx-auto">
-          <Header />
-          <main className="bg-white pb-50">
-            <svg viewBox="0 0 1920 200">
-              <path fill="#ddd" d="M960,50l960-50H0L960,50z" />
-            </svg>
-            <Section grid overflowVisible oneColumn nopadding wide>
-              <PostContent
-                title={post.title}
-                coverImage={post.metadata.hero}
-                date={post.created_at}
-                id={post.id}
-                content={post.metadata.content}
-                categories={post.metadata.categories}
-                slug={post.slug}
-                excerpt={post.metadata.teaser}
-                morePosts={morePosts}
-                allCategories={allCategories}
-              />
-            </Section>
-          </main>
-          <Footer />
-        </div>
-      </>
-    );
+    morePosts = data.morePosts || [];
+    blogPostingJsonLd = generateBlogPostingJsonLd(post);
   } catch (error) {
     logError("blog-post-page", error, {
       slug,
     });
     throw error;
   }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogPostingJsonLd),
+        }}
+      />
+      <div className="bg-gray-6 w-full mx-auto">
+        <Header />
+        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
+          <WaveDivider variant="200" />
+          <Section grid overflowVisible oneColumn nopadding wide>
+            <PostContent
+              title={post.title}
+              coverImage={post.metadata.hero}
+              date={post.created_at}
+              id={post.id}
+              content={post.metadata.content}
+              categories={post.metadata.categories}
+              slug={post.slug}
+              excerpt={post.metadata.teaser}
+              morePosts={morePosts}
+              allCategories={allCategories}
+            />
+          </Section>
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
 }
 
 // Metadata is now handled by layout.tsx for better SEO optimization

@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { GalleryContainer } from "@components/common/Layout/GalleryContainer";
 
 export default function Gallery() {
-  const [imagesVisible, setImagesVisible] = useState(false);
   const [loadedImages, setLoadedImages] = useState(new Set<number>());
   const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
 
@@ -18,6 +17,8 @@ export default function Gallery() {
     { src: "/images/home/front-4.png", alt: "Gallery image 4" },
     { src: "/images/home/front-5.png", alt: "Gallery image 5" },
   ];
+  const imagesVisible =
+    frontList.length > 0 && loadedImages.size === frontList.length;
 
   const handleImageLoad = (index: number) => {
     setLoadedImages((prev) => {
@@ -43,12 +44,6 @@ export default function Gallery() {
     });
   }, []); // Run only once after initial render
 
-  useEffect(() => {
-    if (loadedImages.size === frontList.length) {
-      setImagesVisible(true);
-    }
-  }, [loadedImages.size, frontList.length]);
-
   return (
     <GalleryContainer>
       <ul className="columns-3 gap-4 w-full list-none p-0 m-0">
@@ -65,6 +60,7 @@ export default function Gallery() {
               alt={item.alt}
               width={300}
               height={200}
+              sizes="(max-width: 768px) 33vw, 300px"
               onLoad={() => handleImageLoad(index)}
               className="w-full h-auto mb-5 block rounded-lg"
             />

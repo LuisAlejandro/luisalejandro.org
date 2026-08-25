@@ -2,8 +2,9 @@ import cn from "classnames";
 import { motion } from "framer-motion";
 import React from "react";
 
-interface SlideshowWrapperProps
-  extends React.ComponentProps<typeof motion.div> {}
+interface SlideshowWrapperProps extends React.ComponentProps<
+  typeof motion.div
+> {}
 
 export const SlideshowWrapper = React.forwardRef<
   HTMLDivElement,

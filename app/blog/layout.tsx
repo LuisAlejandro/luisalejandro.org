@@ -140,6 +140,12 @@ export const metadata: Metadata = {
           title: "Sitemap",
         },
       ],
+      "text/markdown": [
+        {
+          url: "/blog.md",
+          title: "Markdown twin",
+        },
+      ],
     },
   },
   other: {

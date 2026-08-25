@@ -18,12 +18,10 @@
 # misc
 .DS_Store
 *.pem
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
 
 # local env files
 .env.local
@@ -52,5 +50,10 @@ DESIGN.md
 
 # Rosey Maintainer Tools
 rosey/maintainer-manifest.json
-
-.vscode/
+rosey/hindsight-pin
+.github/copilot-instructions.md
+.github/instructions/
+.github/skills/
+.github/agents/
+.github/hooks/
+.vscode/mcp.json

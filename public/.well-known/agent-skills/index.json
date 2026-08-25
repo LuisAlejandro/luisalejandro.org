@@ -1,0 +1,26 @@
+{
+  "$schema": "https://github.com/cloudflare/agent-skills-discovery-rfc/raw/v0.2.0/schemas/index.schema.json",
+  "skills": [
+    {
+      "name": "site-discovery",
+      "type": "skill-md",
+      "description": "Discover canonical luisalejandro.org surfaces — llms.txt, sitemap, feeds, API catalog, Agent Skills, and MCP.",
+      "url": "https://luisalejandro.org/.well-known/agent-skills/site-discovery/SKILL.md",
+      "sha256": "d32c949cbac7667b47c44706b8ae2182df3ce0387dc24d11a610cec1264cbb50"
+    },
+    {
+      "name": "blog-search",
+      "type": "skill-md",
+      "description": "Read-only blog post search via GET /api/search-posts?q= (128 character query cap).",
+      "url": "https://luisalejandro.org/.well-known/agent-skills/blog-search/SKILL.md",
+      "sha256": "2a068443d3aa8dede742a283e4c95704e5a1890329e26a235087ad3abfb7dfc3"
+    },
+    {
+      "name": "citation",
+      "type": "skill-md",
+      "description": "Citation and attribution rules for luisalejandro.org content in AI answers.",
+      "url": "https://luisalejandro.org/.well-known/agent-skills/citation/SKILL.md",
+      "sha256": "c8ac57d0450e568eee6f4e83a87ab4c2d61f51cf013076a99f2791d8e61c27f6"
+    }
+  ]
+}

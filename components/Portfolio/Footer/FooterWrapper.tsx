@@ -8,7 +8,7 @@ interface FooterWrapperProps extends React.HTMLAttributes<HTMLElement> {
 export const FooterWrapper = React.forwardRef<HTMLElement, FooterWrapperProps>(
   ({ children, className, ...props }, ref) => {
     return React.createElement(
-      "section",
+      "footer",
       {
         ...props,
         ref,

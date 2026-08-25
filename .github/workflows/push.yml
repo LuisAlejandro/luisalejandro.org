@@ -5,20 +5,37 @@ on:
     branches:
       - master
       - develop
+      - "release/**"
 
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Restoring node_modules cache
-        uses: actions/cache@v5
+      - name: Restore npm cache
+        uses: actions/cache@v6
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v6
+        with:
+          path: |
+            node_modules
+            */node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json', '**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Ensure npm cache dir exists
+        run: mkdir -p ~/.npm
 
       - name: Set environment variables
         run: |
@@ -46,4 +63,25 @@ jobs:
 
       - name: Building project
         run: |
-          make dependencies build_production
+          make image
+          make dependencies
+          make build
+
+      - name: Run lint
+        run: make lint
+
+      - name: Run tests
+        run: make test
+
+      - name: Tear down Docker
+        if: always()
+        run: make down
+
+  release-gate:
+    name: Release Gate
+    runs-on: ubuntu-24.04
+    needs: [build]
+    steps:
+      - name: Confirm all release checks passed
+        run: |
+          echo "Release gate passed for ${{ github.ref_name }}"

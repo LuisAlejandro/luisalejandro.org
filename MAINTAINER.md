@@ -1,111 +1,70 @@
-## Maintainer Notes
+# Maintainer Guide
 
-If you are reading this, you probably forgot how to release a new version. Keep
-reading.
+Quick reminders for Luisalejandro. Procedures live in `.cursor/skills/`; fleet
+setup lives in **rosey-maintainer-tools**.
 
-### Making a new release
+## Feature work
 
-1. Plan work from open issues. The release milestone is created later as
-   retroactive documentation for the version that ships.
-2. Start a feature branch from an up-to-date `develop`:
+1. `rosey-brainstorm` → `rosey-plan` → `rosey-work` — brainstorm → plan → implement.
+2. `rosey-qa` → `rosey-pr` — QA, lint/build, open/update PR to `develop`.
 
-        git checkout develop
-        git pull
-        git flow feature start <feature name>
+Repeat until ready to ship.
 
-   (`git flow feature start` creates and checks out `feature/<feature name>` from
-   `develop`. Equivalent: `git checkout -b feature/<feature name>`.)
+## Commit messages
 
-3. Implement the feature on that branch. Commit often. Do not leave uncommitted
-   changes when you push.
+Subjects feed `HISTORY.md` via gitchangelog, then GitHub release notes on `make release-*`.
 
-4. Push the branch and open a pull request against `develop`:
+| Tag | Section | Use for |
+| --- | ------- | ------- |
+| `[ADD]` | Added | New user-facing capability |
+| `[FIX]` | Fixed | Bug or broken behavior |
+| `[REF]` | Changed | Behavior change that is not a new feature |
+| `[DEL]` | Removed | Removal |
 
-        git push -u origin feature/<feature name>
-        gh pr create --base develop --head feature/<feature name> --title "..." --body "..."
+Format: `[TAG] Imperative user-facing summary.` Non-user-facing work (deps, lint, sync, CI): append `!cosmetic` / `!refactor` / `!wip`, or use a `CI:` prefix, so it is omitted from HISTORY. PR titles may stay Conventional-style; only commit subjects use these tags.
 
-   CI runs via `.github/workflows/pr.yml`. Fix failures on the feature branch;
-   the PR updates automatically on push. Rosey skills stop at PR create/update;
-   owner PRs are auto-approved and auto-merged by CI when configured.
-   Consumers report `pr_opened`; task completion is recorded only after the
-   linked GitHub issue closes on merge.
+## Release
 
-5. After the PR auto-merges into `develop`, sync locally:
+From **clean** `develop`:
 
-        git checkout develop
-        git pull
-        git branch -d feature/<feature name>
+| Step | Command / skill |
+|------|-----------------|
+| Interactive | `rosey-release` (default **patch**; `minor` / `major` when needed) |
+| Manual | `make release-preflight` then `make release-patch` (or `-minor` / `-major`) |
+| Rollback | `VERSION=<version> make undo-release` |
 
-6. Repeat steps 2-5 for every other feature you have planned for this release.
-7. When you're done with the features and ready to publish, ensure your working
-directory is clean and you're on the `develop` branch.
-8. For the Rosey weekly release, the Linux CodeCandidates producer posts a
-   `versionpromote` YAML message to `#rosey`. The macOS `versionpromote`
-   consumer runs `rosey-release` and reports `versionpromote_result` to
-   `#rosey-releases`.
+Preflight: `make image`, `make dependencies`, `make build`, `make format`, `make lint`, `make test`.
+Gate details, milestones, and workflow verification: `.cursor/skills/rosey-release/`.
+Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
 
-   The release creates a retroactive milestone for the next patch version,
-   assigns eligible parent issues (plus standalone issues with no parent/sub
-   relationship) closed since the previous closed milestone, and runs the patch
-   release script:
+## PR CI (pointers)
 
-        make release-patch
+- **Pull Request** — `.github/workflows/pr.yml` on PRs to `develop`.
+- **Auto-merge** — `pr-auto-merge.yml` after that workflow succeeds; head
+  `feature/**` or `dependabot/**` only. Actor allowlist: `dependabot[bot]`,
+  `cursor[bot]`, `LuisAlejandro`, repository owner.
+  `rosey-qa` / `rosey-pr` do not merge or fix CI.
+- **Cursor CI fixes** — **rosey-maintainer-tools** `docs/cursor-pr-ci-automation.md`.
 
-   `APP_NAME` is set in each repository's `Makefile` and passed to the release
-   script automatically for the GitHub release title. If there are no eligible
-   parent or standalone issues for the week, do not create an empty milestone
-   and do not publish a release. Sub-task issues close through PR merge
-   (`Closes #N`) and are not assigned to release milestones directly.
+### Auto-merge behavior
 
-   Manual maintainer releases may still use:
-   - `make release-minor` - for a minor release (new features)
-   - `make release-major` - for a major release (breaking changes)
+- Binds mutations to `workflow_run.head_sha`. Stale events exit with a notice.
+- Retries transient GitHub API errors (HTTP 429/5xx, network) on PR reads and
+  `updateBranch` with exponential backoff before failing the mutate job.
+- Behind base: arms native auto-merge, updates the branch with
+  `REPO_PERSONAL_ACCESS_TOKEN` + `expected_head_sha`, then waits for fresh CI.
+- Current head: native auto-merge + bot approval via `GITHUB_TOKEN`. If already
+  approved and REST+GraphQL report clean, uses SHA-guarded REST merge fallback.
+- Token boundary: PAT only on the `Update behind branch` step.
 
-   This script will automatically:
-   - Initialize git flow if needed
-   - Start the git flow release
-   - Bump the version number
-   - Update the changelog (HISTORY.md)
-   - Commit the changes
-   - Finish the git flow release with signed tags
-   - Push to GitHub
-   - Create a GitHub release (if GitHub CLI is installed and authenticated)
+## Before `make release-*`
 
-9. Close the milestone in GitHub on the same date as the release.
-10. Write about your new version in your blog. Tweet it, post it on facebook.
+- Tools: `git`, git-flow, Docker (running), `make`, `gh`, bumpversion, GPG (`user.signingkey`).
+- Clean working tree (release stops if format mutates files).
 
-### Making a new hotfix
+## One-time GitHub setup
 
-1. Create a new milestone in GitHub. Assign existing bugs to your new milestone.
-2. If you need to make code changes for the hotfix:
-
-        git flow hotfix start <version>
-        # Make your code changes here
-        git add .
-        git commit -S -m "Fix: description of your fix"
-
-3. Run the hotfix script (it will start the hotfix if not already started):
-
-        make hotfix
-
-   `APP_NAME` is set in the repository's `Makefile` and passed to the hotfix
-   script automatically for the GitHub release title.
-
-   The script will prompt you to confirm the new hotfix version before proceeding.
-
-   This script will automatically:
-   - Initialize git flow if needed
-   - Start the git flow hotfix with the new patch version
-   - Bump the patch version number
-   - Update the changelog (HISTORY.md)
-   - Commit the version changes
-   - Finish the git flow hotfix with signed tags
-   - Push to GitHub
-   - Create a GitHub release with "(Hotfix)" suffix (if GitHub CLI is installed and authenticated)
-
-   **Note**: If you've already started the hotfix manually (step 2), the script will fail at
-   the `git flow hotfix start` step. In this case, you'll need to finish manually or modify
-   the script to skip the start step.
-
-4. Close the milestone in GitHub.
-5. Write about your hotfix in your blog (if necessary). Notify users about the critical fix.
+- `develop` — PR + checks from `pr.yml`; `rosey-maintain protect-github --apply`.
+- `master` — restrict pushes.
+- `release/*` — `push.yml` lists `release/**` and ends with **Release Gate** (manual patch).
+- Tags — restrict creation to maintainers.

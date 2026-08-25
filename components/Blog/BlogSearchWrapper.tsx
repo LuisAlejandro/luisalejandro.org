@@ -15,6 +15,7 @@ interface BlogSearchWrapperProps {
 export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchError, setSearchError] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,18 +23,30 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
     if (!query || query.trim().length === 0) {
       setSearchQuery("");
       setSearchResults([]);
+      setSearchError(null);
       setIsSearching(false);
       return;
     }
 
     setIsLoading(true);
     setSearchQuery(query);
+    setSearchError(null);
 
     try {
       const response = await fetch(
         `/api/search-posts?q=${encodeURIComponent(query)}`
       );
       const data = await response.json();
+
+      if (!response.ok) {
+        setSearchResults([]);
+        setSearchError(
+          typeof data.error === "string" ? data.error : "Search failed"
+        );
+        setIsSearching(true);
+        return;
+      }
+
       const results = data.response || [];
       setSearchResults(results);
       setIsSearching(true);
@@ -48,6 +61,7 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
     } catch (error) {
       console.error("Search error:", error);
       setSearchResults([]);
+      setSearchError("Search failed");
       setIsSearching(true);
     } finally {
       setIsLoading(false);
@@ -58,6 +72,7 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
     if (value.trim().length === 0) {
       setSearchQuery("");
       setSearchResults([]);
+      setSearchError(null);
       setIsSearching(false);
     }
   }, []);
@@ -110,6 +125,7 @@ export default function BlogSearchWrapper({ posts }: BlogSearchWrapperProps) {
           isLoading={isLoading}
           results={searchResults}
           isSearching={isSearching}
+          searchError={searchError}
         />
       </Section>
 

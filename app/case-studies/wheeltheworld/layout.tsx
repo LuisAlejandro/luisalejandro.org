@@ -46,6 +46,13 @@ export const metadata: Metadata = {
     creator: "@LuisDevelops",
     images: [`${config.url}/images/case-studies/wheeltheworld-hero.png`],
   },
+  alternates: {
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/wheeltheworld.md", title: "Markdown twin" },
+      ],
+    },
+  },
   other: {
     // Sitemap reference
     sitemap: `${config.url}/sitemap.xml`,

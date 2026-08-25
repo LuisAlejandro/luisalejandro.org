@@ -6,8 +6,7 @@ import { logError } from "@lib/logger";
 import { compare, isAuthorizationValid, isSchemaValid } from "@lib/utils";
 import jwt from "jsonwebtoken";
 
-const BUCKET_SLUG =
-  process.env.WHOLMASTER_COSMIC_BUCKET_SLUG || "wholmaster-production";
+const BUCKET_SLUG = process.env.WHOLMASTER_COSMIC_BUCKET_SLUG;
 
 const READ_KEY = process.env.WHOLMASTER_COSMIC_READ_KEY;
 
@@ -68,7 +67,7 @@ export async function POST(request: NextRequest) {
     }
 
     const cosmic = createBucketClient({
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       readKey: READ_KEY || "",
       writeKey: WRITE_KEY || "",
     });
@@ -137,7 +136,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ token }, { headers: corsHeaders });
   } catch (error) {
     logError("wholmaster-token-api", error, {
-      bucketSlug: BUCKET_SLUG,
+      bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       hasWriteKey: !!WRITE_KEY,
       hasActivationSecret: !!ACTIVATION_SECRET,

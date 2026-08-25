@@ -7,8 +7,10 @@ services:
     volumes:
       - .:/home/luisalejandro-org/app
       - ~/.npm:/home/luisalejandro-org/.npm
-      - ~/.cache/yarn:/home/luisalejandro-org/.cache/yarn
     env_file:
       - .env
+    environment:
+      PORT: 3101
+      NODE_OPTIONS: "--max-old-space-size=4096"
     ports:
-      - "3000:3000"
+      - "3101:3101"

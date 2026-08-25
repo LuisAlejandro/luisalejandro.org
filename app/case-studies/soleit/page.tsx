@@ -14,6 +14,7 @@ import Product from "@components/CaseStudies/Product";
 import Results from "@components/CaseStudies/Results";
 import ScrollTween from "@components/CaseStudies/ScrollTween";
 import Why from "@components/CaseStudies/Why";
+import { WaveDivider } from "@components/common/Layout/WaveDivider";
 import Contact from "@components/Portfolio/Contact/Contact";
 import Footer from "@components/Portfolio/Footer/Footer";
 import Header from "@components/Portfolio/Header/Header";
@@ -35,9 +36,9 @@ const SoleitPage = () => {
 
   return (
     <div className="w-full">
-      <main>
+      <Header variant="case-studies" />
+      <main id="main-content" tabIndex={-1}>
         <div id="cases" className="bg-accent-7 text-gray-2">
-          <Header variant="case-studies" />
           <Controller>
             <div className="cases-content w-full text-lg font-main">
               <HeroIntro
@@ -90,15 +91,11 @@ const SoleitPage = () => {
                     paused
                     className="w-full page-hero bg-case-studies-soleit-hero relative"
                   >
-                    <svg viewBox="0 0 1920 100">
-                      <path fill="#333" d="M960,50l960-50H0L960,50z" />
-                    </svg>
+                    <WaveDivider fill="#333" />
 
                     <div className="h-96" />
 
-                    <svg viewBox="0 0 1920 100">
-                      <path fill="#333" d="M1920,0v100H0V0l960,50L1920,0z" />
-                    </svg>
+                    <WaveDivider fill="#333" inverted />
                   </ScrollTween>
                 )}
               </Scene>
@@ -377,9 +374,9 @@ const SoleitPage = () => {
             </div>
           </Controller>
           <Contact dark />
-          <Footer />
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

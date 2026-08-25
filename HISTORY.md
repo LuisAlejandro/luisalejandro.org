@@ -1,6 +1,181 @@
 # Changelog
 
 
+## 3.2.10 (2026-07-13)
+
+### Other
+
+* Fixing bugs. [Luis Alejandro Martínez Faneyth]
+
+* Chore: clean up eslint config rules. [Luis Alejandro Martínez Faneyth]
+
+* Fix: pin eslint to ^9.28.0 for plugin ecosystem compatibility. [Luis Alejandro Martínez Faneyth]
+
+* Style: prettier formatting. [Luis Alejandro Martínez Faneyth]
+
+* Fix: upgrade Docker Node 20 to 22 for ESLint 10 compat. [Luis Alejandro Martínez Faneyth]
+
+* Chore: update next-env.d.ts (auto-generated) [Luis Alejandro Martínez Faneyth]
+
+* Fix: increase Node.js heap size in Docker for build. [Luis Alejandro Martínez Faneyth]
+
+* Chore: apply rosey-maintainer fleet sync. [Luis Alejandro Martínez Faneyth]
+
+* Fix: add updateBranch fallback to auto-merge workflow. [Luis Alejandro Martínez Faneyth]
+
+* Fix: migrate tsconfig for TypeScript 6.0 compatibility. [Cursor Agent]
+
+* Fix: skip auto-merge for draft pull requests. [Luis Alejandro Martínez Faneyth]
+
+* Chore: update gitignore for Rosey agentic env. [Luis Alejandro Martínez Faneyth]
+
+* Fix: redesign homepage content sections (V2 design) [Luis Alejandro Martínez Faneyth]
+
+* Chore: maintainer sync follow-ups for env and Makefile. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer ops from rosey-maintainer-sync. [Luis Alejandro Martínez Faneyth]
+
+* Add .npmrc legacy-peer-deps for npm ci in CI. [Luis Alejandro Martínez Faneyth]
+
+* Chore: add CI npm cache restore and standardize on npm. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer ops from fleet-wide rosey-maintainer-sync. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.9 (2026-06-28)
+
+### Other
+
+* Fix postinstall for Docker CI browserslist update. [Luis Alejandro Martínez Faneyth]
+
+* Improving build system. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.8 (2026-06-28)
+
+### Other
+
+* Fix Spanish copy and grammar in X Aggregator. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.7 (2026-06-28)
+
+### Other
+
+* Add X Aggregator utility and fix MCP server-card version. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.6 (2026-06-28)
+
+### Other
+
+* Serve MCP server card from static prebuild artifact. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.5 (2026-06-27)
+
+### Other
+
+* Improving mcp data. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.4 (2026-06-27)
+
+### Other
+
+* Improving mcp robustness. [Luis Alejandro Martínez Faneyth]
+
+* Fix: pin sharp 0.35.2 via npm overrides for next.js compatibility. [Cursor Agent]
+
+
+## 3.2.3 (2026-06-24)
+
+### Other
+
+* Chore: apply prettier formatting to workflow files. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer workflows and fix release CI bootstrap. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.2 (2026-06-24)
+
+### Other
+
+* Improving cloudflare cache. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer release preflight and ops tooling. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.1 (2026-06-24)
+
+### Other
+
+* Format eslint.config.mjs with Prettier. [Luis Alejandro Martínez Faneyth]
+
+* Fixing lint errors. [Luis Alejandro Martínez Faneyth]
+
+* Improving cloudflare cache. [Luis Alejandro Martínez Faneyth]
+
+
+## 3.2.0 (2026-06-24)
+
+### Other
+
+* Chore: apply prettier formatting across repo. [Luis Alejandro Martínez Faneyth]
+
+* Fix: replace removed next lint with eslint for Next.js 16. [Luis Alejandro Martínez Faneyth]
+
+* Chore: export BASH_ENV in Makefile for bash recipe env. [Luis Alejandro Martínez Faneyth]
+
+* Fix: one-line post_bump_commands for bumpversion compatibility. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer ops and inline post_bump_commands parser. [Luis Alejandro Martínez Faneyth]
+
+* Feat(seo): add cache TTLs, CDN purge, and case study twins. [Luis Alejandro Martínez Faneyth]
+
+* Feat(seo): add markdown twins and AI crawl policy. [Luis Alejandro Martínez Faneyth]
+
+* Feat(seo): add agent discovery and WebMCP interactivity. [Luis Alejandro Martínez Faneyth]
+
+* Fix(seo): add semantic landmarks and accessibility shell. [Luis Alejandro Martínez Faneyth]
+
+* Chore: reassign dev port to 3101; use webpack in Docker dev. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync maintainer release scripts and CI workflows. [Luis Alejandro Martínez Faneyth]
+
+* Fix(seo): add homepage content for LLM discovery. [Luis Alejandro Martínez Faneyth]
+
+* Fix(seo): defer third-party scripts and tune homepage meta. [Luis Alejandro Martínez Faneyth]
+
+* Chore: maintainer sync toolkit 0.4.3. [Luis Alejandro Martínez Faneyth]
+
+* Fix(ci): allow production build when Cosmic credentials are unavailable. [Cursor Agent]
+
+* Chore: maintainer sync toolkit 0.4.2 — PR CI + auto-merge. [Luis Alejandro Martínez Faneyth]
+
+* Fix(ci): use Docker Compose-safe PROJECT_NAME. [Luis Alejandro Martínez Faneyth]
+
+* Chore: sync PR auto-merge, CodeQL PR gate, and maintainer files from rosey-maintain. [Luis Alejandro Martínez Faneyth]
+
+* Chore: Rosey maintainer fleet sync — release tooling, CI security, preflight. [Luis Alejandro Martínez Faneyth]
+
+* Chore: fleet release parity — gates, dependabot, hotfix removal. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Adding LLM SEO. [Luis Alejandro Martínez Faneyth]
+
+* Apply rosey maintainer fleet sync. [Luis Alejandro Martínez Faneyth]
+
+* Apply rosey maintainer fleet sync. [Luis Alejandro Martínez Faneyth]
+
+* Adding bumpversion config. [Luis Alejandro Martínez Faneyth]
+
+* Improving. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.1.17 (2026-02-16)
 
 ### Other
