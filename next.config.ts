@@ -24,6 +24,28 @@ const config: NextConfig = {
   },
   async headers() {
     return [
+      // Unpublished TikTok pull prefix — no directory listing, no CDN cache
+      {
+        source: "/files/videos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+          {
+            key: "CDN-Cache-Control",
+            value: "no-store",
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: "no-store",
+          },
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      },
       // Feeds — 1h CDN cache + purge tags (blog-listings in BLOG_PURGE_TAGS)
       {
         source: "/blog/posts/:feed((?:feed|atom)\\.xml|feed\\.json)",
