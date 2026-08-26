@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const title = "Agoras — publish to social networks you manage";
+const title = "Agoras — a desktop app for creators";
 const description =
   "Agoras is a desktop command-line app for creators. Authorize in the browser, then Share to TikTok from a localhost compose page before anything is uploaded.";
 const canonical = "https://luisalejandro.org/apps/agoras";

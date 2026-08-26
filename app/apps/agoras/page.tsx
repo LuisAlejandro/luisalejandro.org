@@ -4,11 +4,11 @@ export default function AgorasPage() {
       <header className="space-y-3">
         <h1 className="text-4xl font-light">Agoras</h1>
         <p className="text-lg leading-relaxed">
-          Agoras is a desktop app for creators who publish to social networks
-          they manage. It runs on your computer as a command-line tool. TikTok
-          posting uses Share to TikTok: you authorize in the browser, then
-          confirm each post on a localhost compose page before anything is
-          uploaded.
+          Agoras is a desktop app for creators. It runs on your computer as a
+          command-line tool. Each creator posts their own original content to
+          their own accounts. TikTok posting uses Share to TikTok: you
+          authorize in the browser, then confirm each post on a localhost
+          compose page before anything is uploaded.
         </p>
       </header>
 
