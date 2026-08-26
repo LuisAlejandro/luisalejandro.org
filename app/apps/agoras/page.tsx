@@ -59,9 +59,9 @@ export default function AgorasPage() {
           </li>
         </ol>
         <p>
-          Media must be a public HTTPS URL on a domain you verified with TikTok
-          (for example files hosted on this site). Do not put your client secret
-          on a public page.
+          Media may be a local file path (Agoras 2.2.0 file upload) or a public
+          HTTPS URL on a domain you verified with TikTok. Do not put your client
+          secret on a public page.
         </p>
       </section>
 
@@ -69,7 +69,7 @@ export default function AgorasPage() {
         <h2 className="text-2xl font-light">Example</h2>
         <pre className="overflow-x-auto rounded border border-neutral-200 bg-neutral-50 p-4 text-sm">
           <code>{`agoras tiktok video \\
-  --video-url "https://luisalejandro.org/files/videos/test.mp4" \\
+  --video-url "/absolute/path/to/video.mp4" \\
   --title "My video"`}</code>
         </pre>
         <p>
