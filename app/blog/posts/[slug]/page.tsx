@@ -88,6 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
               excerpt={post.metadata.teaser}
               morePosts={morePosts}
               allCategories={allCategories}
+              faqs={post.metadata.faqs}
             />
           </Section>
         </main>

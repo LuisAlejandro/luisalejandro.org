@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { experience } from "@constants/constants";
-import { generateHomepageJsonLd } from "@lib/structuredData";
+import { faqItems } from "@constants/homepageContent";
+import {
+  generateHomepageFaqJsonLd,
+  generateHomepageJsonLd,
+} from "@lib/structuredData";
 
 import HighlightText from "@components/common/HighlightText";
 import { Container } from "@components/common/Layout/Container";
@@ -32,6 +36,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const homepageJsonLd = generateHomepageJsonLd();
+  const homepageFaqJsonLd = generateHomepageFaqJsonLd(faqItems);
 
   return (
     <>
@@ -43,6 +48,14 @@ export default async function HomePage() {
             __html: JSON.stringify(homepageJsonLd),
           }}
         />
+        {homepageFaqJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(homepageFaqJsonLd),
+            }}
+          />
+        )}
         <Container>
           <article className="flex flex-col items-center justify-center w-full h-full pt-15">
             <div className="home inline-block w-full">
