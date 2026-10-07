@@ -34,12 +34,12 @@ From **clean** `develop`:
 
 Preflight: `make image`, `make dependencies`, `make build`, `make format`, `make lint`, `make test`.
 Release flow: `scripts/release.sh` (via Makefile `release-*` targets).
-Post-bump hooks: `.bumpversion.cfg` → `[rosey-maintainer]`.
+Post-bump hooks: `.bumpversion.cfg` → `[maintainer-tools]`.
 
 ## PR CI (pointers)
 
 - **Pull Request** — `.github/workflows/pr.yml` on PRs to `develop`.
-- **Cursor CI fixes** — **rosey-maintainer-tools** `docs/cursor-pr-ci-automation.md`. `rosey-lfg-quality` / `rosey-pr` do not merge or fix CI.
+- **Cursor CI fixes** — **maintainer-tools** `docs/cursor-pr-ci-automation.md`. `rosey-lfg-quality` / `rosey-pr` do not merge or fix CI.
 
 ## Before `make release-*`
 
