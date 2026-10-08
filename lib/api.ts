@@ -301,6 +301,7 @@ export async function getPostAndMorePosts(slug: any) {
         "metadata.content",
         "metadata.teaser",
         "metadata.categories",
+        "metadata.faqs",
         "created_at",
       ]);
     const morePosts = await getMorePosts(slug);
