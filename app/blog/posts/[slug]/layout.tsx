@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
 import { getPostAndMorePosts, getPublishedPostForTwin } from "@lib/api";
-import { stripHtmlToPlainText } from "@lib/plainText";
+import { stripHtmlToPlainText, truncateAtWord } from "@lib/plainText";
 
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
@@ -33,18 +33,15 @@ export async function generateMetadata({
 
   const post = data.post;
 
-  // Clean and optimize description
+  // Clean and optimize description (word boundary, surrogate-safe)
   const rawDescription = stripHtmlToPlainText(post.metadata?.teaser || "");
-  const optimizedDescription =
-    rawDescription.length > 160
-      ? rawDescription.substring(0, 157) + "..."
-      : rawDescription;
+  const optimizedDescription = truncateAtWord(rawDescription, 160);
 
   // Generate SEO-optimized title
   const postTitle = post.title;
   const seoTitle =
     postTitle.length > 60
-      ? `${postTitle.substring(0, 57)}... | Blog de Luis Alejandro`
+      ? `${truncateAtWord(postTitle, 57)} | Blog de Luis Alejandro`
       : `${postTitle} | Blog de Luis Alejandro`;
 
   // Extract categories for keywords

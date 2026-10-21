@@ -1,78 +1,107 @@
 import { NextResponse } from "next/server";
 
-import { canonicalHostnameUrl } from "@constants/constants";
+import {
+  canonicalHostnameUrl,
+  SITE_PROFILE_DATE_MODIFIED,
+} from "@constants/constants";
 import { getAllCategories, getAllPostsForHome } from "@lib/api";
 import { logError } from "@lib/logger";
+
+/** Every case study with a page in app/case-studies/. Kept in sync by hand. */
+const CASE_STUDIES = [
+  "expedia",
+  "soleit",
+  "dockershelf",
+  "canaima",
+  "wheeltheworld",
+];
+
+function absoluteUrl(path: string): string {
+  return `${canonicalHostnameUrl}${path}`;
+}
+
+/** Accepts only an ISO string we can trust; anything else means "omit lastmod". */
+function lastmod(...candidates: unknown[]): string {
+  for (const candidate of candidates) {
+    if (typeof candidate === "string" && candidate) {
+      const parsed = new Date(candidate);
+      if (!Number.isNaN(parsed.getTime())) {
+        return parsed.toISOString();
+      }
+    }
+  }
+  return "";
+}
+
+function lastmodTag(value: string): string {
+  return value ? `<lastmod>${value}</lastmod>` : "";
+}
+
+function imageTag(url: unknown): string {
+  if (typeof url !== "string" || !url) return "";
+  const src = url.startsWith("http") ? url : absoluteUrl(url);
+  return `<image:image><image:loc>${src}</image:loc></image:image>`;
+}
+
+function postItem(post: any): string {
+  const hero =
+    typeof post?.metadata?.hero === "object" ? post.metadata.hero?.url : post?.metadata?.hero;
+
+  return `<url>
+  <loc>${absoluteUrl(`/blog/posts/${post.slug}`)}</loc>
+  ${lastmodTag(lastmod(post.modified_at, post.created_at))}
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+  ${imageTag(hero)}
+</url>`;
+}
+
+function categoryItem(category: any): string {
+  return `<url>
+  <loc>${absoluteUrl(`/blog/category/${category.slug}`)}</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>`;
+}
+
+function caseStudyItem(slug: string): string {
+  return `<url>
+  <loc>${absoluteUrl(`/case-studies/${slug}`)}</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>`;
+}
 
 export async function GET() {
   try {
     const posts = await getAllPostsForHome();
     const categories = await getAllCategories();
-    const caseStudies = [
-      "expedia",
-      "soleit",
-      "dockershelf",
-      "canaima",
-      "wheeltheworld",
-      "collagelabs",
-    ];
 
-    const sitemapPostsItems = posts.map(
-      (post: any) => `<url>
-  <loc>${canonicalHostnameUrl}/blog/posts/${post.slug}</loc>
-  <lastmod>${post.created_at}</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>`
-    );
-
-    const sitemapCategoriesItems = categories.map(
-      (category: any) => `<url>
-  <loc>${canonicalHostnameUrl}/blog/category/${category.slug}</loc>
-  <lastmod>${new Date().toISOString()}</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.5</priority>
-</url>`
-    );
-
-    const sitemapCaseStudiesItems = caseStudies.map(
-      (caseStudy) => `<url>
-  <loc>${canonicalHostnameUrl}/case-studies/${caseStudy}</loc>
-  <lastmod>${new Date().toISOString()}</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.3</priority>
-</url>`
-    );
-
+    // Only declare the image namespace: it is the one this sitemap populates.
     const sitemapTemplate = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-      xmlns:xhtml="http://www.w3.org/1999/xhtml"
-      xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-      <url>
-          <loc>${canonicalHostnameUrl}</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.5</priority>
-      </url>
-      <url>
-          <loc>${canonicalHostnameUrl}/portfolio</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.3</priority>
-      </url>
-      ${sitemapCaseStudiesItems.join("")}
-      <url>
-          <loc>${canonicalHostnameUrl}/blog</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-          <changefreq>hourly</changefreq>
-          <priority>1.0</priority>
-      </url>
-      ${sitemapCategoriesItems.join("")}
-      ${sitemapPostsItems.join("")}
-  </urlset>`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+      <loc>${canonicalHostnameUrl}</loc>
+      ${lastmodTag(lastmod(SITE_PROFILE_DATE_MODIFIED))}
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+  </url>
+  <url>
+      <loc>${absoluteUrl("/portfolio")}</loc>
+      ${lastmodTag(lastmod(SITE_PROFILE_DATE_MODIFIED))}
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+  </url>
+  ${CASE_STUDIES.map(caseStudyItem).join("\n  ")}
+  <url>
+      <loc>${absoluteUrl("/blog")}</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+  </url>
+  ${categories.map(categoryItem).join("\n  ")}
+  ${posts.map(postItem).join("\n  ")}
+</urlset>`;
 
     return new NextResponse(sitemapTemplate, {
       headers: {

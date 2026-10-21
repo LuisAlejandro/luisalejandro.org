@@ -51,6 +51,7 @@ export async function getAllPostsForHome() {
         "metadata.categories",
         "metadata.teaser",
         "created_at",
+        "modified_at",
       ])
       .sort("-created_at");
     return data?.objects;
@@ -213,6 +214,7 @@ export async function getPublishedPostsForHomeTwin() {
         "metadata.categories",
         "metadata.teaser",
         "created_at",
+        "modified_at",
       ])
       .sort("-created_at");
     return data?.objects || [];
@@ -303,6 +305,7 @@ export async function getPostAndMorePosts(slug: any) {
         "metadata.categories",
         "metadata.faqs",
         "created_at",
+        "modified_at",
       ]);
     const morePosts = await getMorePosts(slug);
     return {
