@@ -39,6 +39,7 @@ export default function PostPreview({
       <article
         className={`${type} w-full p-0 my-[5px] mb-[20px] ${className}`}
         id={`post-${id}`}
+        lang="es"
       >
         <div className="bg relative inline-block align-top w-full h-[300px] sm:h-[250px] md:h-[270px] lg:h-[350px] rounded-t-[5px] blog-post-bg overflow-hidden">
           <Image
@@ -172,7 +173,7 @@ export default function PostPreview({
             ></span>
 
             <span className="description inline-block align-top w-full text-base font-light my-1">
-              Published{" "}
+              <span lang="en">Published</span>{" "}
               <time className="datetime" dateTime={date}>
                 {" "}
                 <FriendlyDate dateString={date} />

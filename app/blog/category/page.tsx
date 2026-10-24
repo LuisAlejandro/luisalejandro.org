@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { config } from "@constants/constants";
-import { getAllCategories } from "@lib/api";
+import { getPopulatedCategories } from "@lib/api";
 import { logError } from "@lib/logger";
 
 import { Section } from "@components/common/Layout/Section";
@@ -79,7 +79,7 @@ export default async function CategoriesPage() {
   let categories: any[];
 
   try {
-    categories = (await getAllCategories()) || [];
+    categories = (await getPopulatedCategories()) || [];
 
     if (!categories?.length) {
       notFound();

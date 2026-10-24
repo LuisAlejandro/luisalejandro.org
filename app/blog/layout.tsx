@@ -2,6 +2,25 @@ import { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
+/**
+ * Language strategy for the blog.
+ *
+ * The site ships a single root layout (`app/layout.tsx`) declaring lang="en",
+ * because the site chrome — navigation, footer, search, share labels — is
+ * English everywhere, including around Spanish articles. The Spanish content
+ * is marked instead: `lang="es"` on the post <main> and on every post card
+ * (PostPreview, PostPreviewMini, HeroPost, SearchResultItem), with the few
+ * English labels inside those regions marked `lang="en"`.
+ *
+ * Why not a second root layout with lang="es": two root layouts give correct
+ * <html lang> but make every navigation between the blog and the rest of the
+ * site a full page load. Google ignores the lang attribute for language
+ * detection and relies on content plus hreflang, so the only real beneficiaries
+ * are screen readers, spell-check, and translation prompts — all of which honor
+ * nested lang. See WCAG 3.1.1 and 3.1.2.
+ *
+ * Do not split this into multiple root layouts without accepting the reload.
+ */
 import "@styles/tailwind.css";
 import "yet-another-react-lightbox/styles.css";
 

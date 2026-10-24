@@ -38,7 +38,7 @@ export default function HeroPost({
 
   return (
     <div id="featured" className={`flex w-[94%] mx-auto ${className}`}>
-      <article className={`${type} w-full p-0 m-0`} id={`post-${id}`}>
+      <article className={`${type} w-full p-0 m-0`} id={`post-${id}`} lang="es">
         <div className="accent inline-block align-top w-[5%] h-[350px] p-0 m-0 text-[30px] text-white bg-[rgba(0,177,106,0.9)] rounded-l-[5px]">
           <AiFillStar className="m-[5px]" />
         </div>
@@ -181,7 +181,7 @@ export default function HeroPost({
             ></span>
 
             <span className="description inline-block align-top w-full text-base font-light my-1">
-              Published{" "}
+              <span lang="en">Published</span>{" "}
               <time className="datetime" dateTime={date}>
                 {" "}
                 <FriendlyDate dateString={date} />

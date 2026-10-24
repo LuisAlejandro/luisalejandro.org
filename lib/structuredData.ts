@@ -209,6 +209,7 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
       ),
       datePublished: post.created_at,
       ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
+      inLanguage: "es",
       author: {
         "@type": "Person",
         "@id": PERSON_ID,
@@ -236,6 +237,7 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
     "@type": "Blog",
     "@id": `${config.url}/blog`,
     mainEntityOfPage: `${config.url}/blog`,
+    inLanguage: "es",
     name: "Luis Alejandro - Software Development & Remote Work Insights",
     description:
       "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
@@ -263,6 +265,7 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
     ),
     datePublished: post.created_at,
     ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
+    inLanguage: "es",
     author: {
       "@type": "Person",
       "@id": PERSON_ID,

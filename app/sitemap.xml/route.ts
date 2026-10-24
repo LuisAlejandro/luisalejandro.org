@@ -4,7 +4,7 @@ import {
   canonicalHostnameUrl,
   SITE_PROFILE_DATE_MODIFIED,
 } from "@constants/constants";
-import { getAllCategories, getAllPostsForHome } from "@lib/api";
+import { getAllPostsForHome, getPopulatedCategories } from "@lib/api";
 import { logError } from "@lib/logger";
 
 /** Every case study with a page in app/case-studies/. Kept in sync by hand. */
@@ -75,7 +75,7 @@ function caseStudyItem(slug: string): string {
 export async function GET() {
   try {
     const posts = await getAllPostsForHome();
-    const categories = await getAllCategories();
+    const categories = await getPopulatedCategories();
 
     // Only declare the image namespace: it is the one this sitemap populates.
     const sitemapTemplate = `<?xml version="1.0" encoding="UTF-8"?>

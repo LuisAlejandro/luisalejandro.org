@@ -87,7 +87,7 @@ export default function PostContent({
           ></li>
 
           <li className="float-left w-full my-[5px] mx-0 p-0 text-[rgb(102,102,102)] text-xl font-light leading-6 text-justify">
-            by{" "}
+            <span lang="en">by</span>{" "}
             <Link
               href="/portfolio"
               title="About the author"
@@ -95,7 +95,7 @@ export default function PostContent({
             >
               Luis Alejandro
             </Link>
-            , on{" "}
+            <span lang="en">, on</span>{" "}
             <time className="datetime" dateTime={date}>
               {" "}
               <FriendlyDate dateString={date} />
@@ -117,7 +117,7 @@ export default function PostContent({
             </span>
 
             <span className="inline-block align-top w-full h-[20px] text-xs leading-[20px] text-center uppercase break-words">
-              Comments
+              <span lang="en">Comments</span>
             </span>
           </li>
 
