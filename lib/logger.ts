@@ -5,6 +5,26 @@ interface ErrorContext {
 }
 
 /**
+ * Next.js throws these to interrupt render for notFound()/forbidden()/
+ * unauthorized()/redirect(). They are control flow, not failures.
+ */
+function isNextNavigationError(error: unknown): boolean {
+  if (typeof error !== "object" || error === null || !("digest" in error)) {
+    return false;
+  }
+
+  const digest = (error as { digest?: unknown }).digest;
+  if (typeof digest !== "string") {
+    return false;
+  }
+
+  return (
+    digest.startsWith("NEXT_HTTP_ERROR_FALLBACK;") ||
+    digest.startsWith("NEXT_REDIRECT;")
+  );
+}
+
+/**
  * Centralized error logging utility
  * Logs to console in all environments
  * Sends to Sentry only in production
@@ -14,6 +34,13 @@ export function logError(
   error: unknown,
   metadata?: ErrorContext
 ): void {
+  // Do not log or report intentional App Router navigation signals.
+  // Pages wrap data fetching in try/catch and call notFound() inside; catching
+  // that throw would otherwise spam Sentry (and consoleLoggingIntegration).
+  if (isNextNavigationError(error)) {
+    return;
+  }
+
   let errorMessage: string;
   let errorStack: string | undefined;
 

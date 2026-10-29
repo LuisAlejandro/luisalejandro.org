@@ -150,6 +150,28 @@ interface BlogPost {
     teaser?: string;
     content?: string;
     categories?: string[];
+    faqs?: { question: string; answer: string }[];
+  };
+}
+
+export function generateHomepageFaqJsonLd(
+  faqItems: { question: string; answer: string }[]
+) {
+  if (!faqItems || faqItems.length === 0) {
+    return null;
+  }
+  return {
+    "@context": "https://schema.org/",
+    "@type": "FAQPage",
+    "@id": `${config.url}/#FAQPage`,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }
 
@@ -267,6 +289,26 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
       "@type": "ImageObject",
       "@id": `${config.url}${post.metadata.hero}`,
       url: `${config.url}${post.metadata.hero}`,
+    };
+  }
+
+  // Emit a FAQPage node in the post's @graph when it carries structured FAQs
+  if (post.metadata.faqs && post.metadata.faqs.length > 0) {
+    const faqPage = {
+      "@type": "FAQPage",
+      "@id": `${config.url}/blog/posts/${post.slug}/#FAQPage`,
+      mainEntity: post.metadata.faqs.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    };
+    return {
+      "@context": "https://schema.org/",
+      "@graph": [blogPosting, faqPage],
     };
   }
 

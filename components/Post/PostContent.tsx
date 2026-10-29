@@ -32,6 +32,7 @@ export default function PostContent({
   categories,
   morePosts,
   allCategories,
+  faqs,
 }: any) {
   const excerptText = excerpt.replace(/(<([^>]+)>)/gi, "");
   const canonicalUrl = `${canonicalHostnameUrl}/blog/posts/${slug}`;
@@ -228,6 +229,33 @@ export default function PostContent({
           })}
         </div>
       </article>
+
+      {faqs && faqs.length > 0 && (
+        <section
+          aria-labelledby="post-faq-heading"
+          className="inline-block align-top w-full my-10"
+        >
+          <h2
+            id="post-faq-heading"
+            className="text-3xl font-normal lg:font-light leading-4 mt-0 mb-8"
+          >
+            Frequently asked questions
+          </h2>
+          <div className="flex flex-col gap-4">
+            {faqs.map((item: { question: string; answer: string }) => (
+              <article
+                key={item.question}
+                className="rounded-lg border border-gray-300 p-5"
+              >
+                <h3 className="text-xl font-semibold mb-2">{item.question}</h3>
+                <p className="text-lg font-light leading-7 text-gray-700">
+                  {item.answer}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Google AdSense Banner Ad */}
       {ADSENSE_AD_SLOT_ID && <AdSenseBanner slotId={ADSENSE_AD_SLOT_ID} />}
