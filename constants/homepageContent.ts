@@ -11,7 +11,50 @@ export type FaqItem = {
   answer: string;
 };
 
+export type ServiceItem = {
+  num: string;
+  title: string;
+  description: string;
+  tags: string[];
+};
+
 export const philosophy = `I build production systems for SaaS and distributed-product teams who need a reliable remote engineer over the long haul. With ${experience}+ years of experience, my work centers on clear async communication, explicit ownership, and shipping maintainable APIs and services that stay dependable after launch. Whether integrating third-party platforms or scaling backend throughput, I treat remote collaboration as the default operating mode—not a compromise. Clients get consistent delivery, documented decisions, and maintainable codebases the next engineer can pick up without archaeology.`;
+
+export const servicesList: ServiceItem[] = [
+  {
+    num: "01",
+    title: "Backend architecture and APIs",
+    description:
+      "Type-safe APIs and microservices that the next engineer can pick up without archaeology. Documented decisions, clean patterns, and predictable throughput.",
+    tags: ["TypeScript", "Python", "Go", "FastAPI", "Django"],
+  },
+  {
+    num: "02",
+    title: "Third-party integrations",
+    description:
+      "Connecting products to external platforms at scale, such as the Expedia integration that took Wheel the World from roughly 1,000 to 600,000+ properties.",
+    tags: ["REST APIs", "Node.js", "Go", "Redis", "Stripe"],
+  },
+  {
+    num: "03",
+    title: "CI/CD hardening and legacy rescue",
+    description:
+      "Reliable delivery pipelines and step-by-step modernisation of legacy systems, without a high-risk big-bang rewrite.",
+    tags: ["CI/CD", "Docker", "GitHub Actions", "Google Cloud"],
+  },
+];
+
+export const sectionTitles = {
+  metrics: "Selected impact",
+  work: "Selected work",
+  services: "Services",
+  faq: "Working with me",
+  blog: "From the blog",
+  cta: "Next",
+  // Backward compatibility for components/Home/ until U9
+  philosophy: "How I work remotely",
+  proof: "Selected impact",
+};
 
 export const proofPoints: ProofPoint[] = [
   {
@@ -55,12 +98,6 @@ export const faqItems: FaqItem[] = [
     answer: `Visit the contact page at ${config.url}/contact to send a message with your project scope, timeline, and team context. I reply to serious contract and full-time remote inquiries within a few business days.`,
   },
 ];
-
-export const sectionTitles = {
-  philosophy: "How I work remotely",
-  proof: "Selected impact",
-  faq: "Frequently asked questions",
-};
 
 export const heroContent = {
   status: {
