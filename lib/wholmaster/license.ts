@@ -28,6 +28,8 @@ export type CertificatePayload = {
   fp: string[];
   seat: number;
   iat: number;
+  /** Lease expiry, ms since epoch. The desktop must renew before this or fall back to evaluation. */
+  exp: number;
 };
 
 function base64url(input: Buffer): string {

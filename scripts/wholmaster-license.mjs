@@ -142,7 +142,15 @@ function signFixture() {
   );
   const cert = sign(
     CERT_PREFIX,
-    { kid, lid: "fixture-lid", fp, seat: 1, iat: 1762473600 },
+    // exp is far in the future so the fixture never reads as an expired lease.
+    {
+      kid,
+      lid: "fixture-lid",
+      fp,
+      seat: 1,
+      iat: 1762473600,
+      exp: 4102444800000,
+    },
     privateKey
   );
 

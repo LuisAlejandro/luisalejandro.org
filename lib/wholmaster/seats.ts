@@ -19,11 +19,29 @@ import {
 export const RELEASE_LIMIT_PER_YEAR = 2;
 const YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
+/**
+ * How long a signed certificate stays valid. The desktop renews daily, so this is also the
+ * worst-case window for an outage to be invisible and for a revoked license to keep running.
+ */
+export const LEASE_MS = 7 * 24 * 60 * 60 * 1000;
+
+/** How many recent check-ins are kept per license, for spotting shared keys after the fact. */
+export const CHECKIN_HISTORY = 20;
+
 export type Activation = {
   fp: string[];
   secretHash: string;
   label: string;
   at: number;
+  seat: number;
+};
+
+/** One recorded check-in. The point of storing these is anomaly review, not enforcement. */
+export type Checkin = {
+  at: number;
+  ip: string;
+  fp: string[];
+  appVersion: string;
   seat: number;
 };
 
@@ -37,6 +55,8 @@ export type LicenseRecord = {
   licensedTo: string;
   activations: Activation[];
   releases: number[];
+  checkins: Checkin[];
+  lastCheckinAt: number;
 };
 
 function client(write: boolean) {
@@ -85,6 +105,8 @@ function toRecord(object: any): LicenseRecord {
     licensedTo: meta["licensed-to"] ?? object.title ?? "",
     activations: parseJson<Activation[]>(meta["activations"], []),
     releases: parseJson<number[]>(meta["releases"], []),
+    checkins: parseJson<Checkin[]>(meta["checkins"], []),
+    lastCheckinAt: Number(meta["last-checkin-at"] ?? 0),
   };
 }
 
@@ -104,6 +126,8 @@ export async function writeLicense(
       "licensed-to": record.licensedTo,
       activations: JSON.stringify(record.activations),
       releases: JSON.stringify(record.releases),
+      checkins: JSON.stringify(record.checkins),
+      "last-checkin-at": record.lastCheckinAt,
     },
   });
 }
@@ -162,12 +186,14 @@ export async function activate(input: ActivateInput): Promise<ActivateOutcome> {
     await writeLicense(record.id, record);
   }
 
+  const now = Date.now();
   const payload: CertificatePayload = {
     kid: input.kid,
     lid: input.lid,
     fp: input.fp,
     seat,
-    iat: Date.now(),
+    iat: now,
+    exp: now + LEASE_MS,
   };
   return {
     ok: true,
@@ -207,4 +233,67 @@ export async function deactivate(
 
 export function hashSecret(secret: string): string {
   return crypto.createHash("sha256").update(secret).digest("hex");
+}
+
+export type CheckinOutcome =
+  | { ok: true; certificate: string; seat: number; record: LicenseRecord }
+  | { ok: false; code: string; status: number };
+
+/**
+ * checkin renews one machine's lease. It refuses a license that is no longer active, which is how a
+ * refund or revocation takes effect: renewal simply stops and the machine decays to evaluation when
+ * its current lease runs out. No separate "killed" state, no abrupt lockout.
+ *
+ * The check-in is recorded before the new certificate is issued, so the anomaly data exists even for
+ * attempts that are refused.
+ */
+export async function checkin(input: {
+  record: LicenseRecord;
+  lid: string;
+  kid: string;
+  fp: string[];
+  ip: string;
+  appVersion: string;
+  privateKey: any;
+}): Promise<CheckinOutcome> {
+  const { record } = input;
+  const activation = record.activations.find((a) =>
+    fingerprintMatch(a.fp, input.fp)
+  );
+
+  record.checkins = [
+    ...record.checkins,
+    {
+      at: Date.now(),
+      ip: input.ip,
+      fp: input.fp,
+      appVersion: input.appVersion,
+      seat: activation?.seat ?? 0,
+    },
+  ].slice(-CHECKIN_HISTORY);
+  record.lastCheckinAt = Date.now();
+  await writeLicense(record.id, record);
+
+  if (record.status !== "active") {
+    return { ok: false, code: "not_active", status: 409 };
+  }
+  if (!activation) {
+    return { ok: false, code: "fingerprint_mismatch", status: 409 };
+  }
+
+  const now = Date.now();
+  const payload: CertificatePayload = {
+    kid: input.kid,
+    lid: input.lid,
+    fp: input.fp,
+    seat: activation.seat,
+    iat: now,
+    exp: now + LEASE_MS,
+  };
+  return {
+    ok: true,
+    certificate: signCertificate(payload, input.privateKey),
+    seat: activation.seat,
+    record,
+  };
 }
