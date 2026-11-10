@@ -18,8 +18,6 @@ export type ServiceItem = {
   tags: string[];
 };
 
-export const philosophy = `I build production systems for SaaS and distributed-product teams who need a reliable remote engineer over the long haul. With ${experience}+ years of experience, my work centers on clear async communication, explicit ownership, and shipping maintainable APIs and services that stay dependable after launch. Whether integrating third-party platforms or scaling backend throughput, I treat remote collaboration as the default operating mode—not a compromise. Clients get consistent delivery, documented decisions, and maintainable codebases the next engineer can pick up without archaeology.`;
-
 export const servicesList: ServiceItem[] = [
   {
     num: "01",
@@ -51,9 +49,6 @@ export const sectionTitles = {
   faq: "Working with me",
   blog: "From the blog",
   cta: "Next",
-  // Backward compatibility for components/Home/ until U9
-  philosophy: "How I work remotely",
-  proof: "Selected impact",
 };
 
 export const proofPoints: ProofPoint[] = [

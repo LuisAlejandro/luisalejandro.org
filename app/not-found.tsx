@@ -1,46 +1,35 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { Container } from "@components/common/Layout/Container";
-import { Footer } from "@components/common/Layout/Footer";
-import { Heading } from "@components/common/Layout/Heading";
-import { HomeSiteHeader } from "@components/common/Layout/HomeSiteHeader";
-import { SubHeading } from "@components/common/Layout/SubHeading";
-import ButtonBar from "@components/Home/ButtonBar";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 
 export default function NotFound() {
   return (
-    <>
-      <HomeSiteHeader />
-      <main id="main-content" tabIndex={-1}>
-        <Container>
-          <div
-            id="app"
-            className="flex flex-col items-center justify-center w-full h-full pt-15"
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <div className="px-gutter py-24 lg:py-36 flex flex-col items-center justify-center text-center min-h-[60vh]">
+        <span className="site-note text-signal mb-4">Error 404</span>
+        <h1 className="text-step-5 font-medium tracking-tight text-ink mb-6">
+          404
+        </h1>
+        <p className="text-step-1 text-ink-muted max-w-md mb-8">
+          The page you are looking for does not exist or has been moved.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-2.5 text-step-0 font-medium text-paper hover:bg-white transition-colors"
           >
-            <div className="home inline-block w-full">
-              <Link href="/">
-                <Image
-                  alt=""
-                  className="mx-auto"
-                  src="/images/logomin.svg"
-                  height={200}
-                  width={200}
-                  sizes="(max-width: 768px) 150px, 200px"
-                />
-              </Link>
-              <Heading className="!text-[10rem] !text-center !py-10">
-                404
-              </Heading>
-              <SubHeading className="!text-center !pb-40">
-                The page you are looking for does not exist.
-              </SubHeading>
-              <ButtonBar />
-            </div>
-          </div>
-        </Container>
-      </main>
-      <Footer />
-    </>
+            Return Home →
+          </Link>
+          <Link
+            href="/blog"
+            className="inline-flex items-center justify-center px-4 py-2.5 text-step-0 font-medium text-ink-muted hover:text-ink transition-colors"
+          >
+            Read the Blog
+          </Link>
+        </div>
+      </div>
+    </SiteShell>
   );
 }
