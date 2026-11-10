@@ -1,13 +1,13 @@
 # Luis Alejandro
 
-> Luis Alejandro Martínez Faneyth is a Maracay-based software engineer with 17+ years of experience who builds backends: type-safe APIs, third-party integrations, and open-source tools that stay dependable after launch.
+> Luis Alejandro Martínez Faneyth is a Maracay-based fullstack AI engineer with 17+ years of experience who ships full-stack products and AI agents that stay dependable after launch.
 
 This file is the preferred starting point for AI assistants, answer engines, and crawlers that need concise context about luisalejandro.org.
 
 ## Key Information
 
-- Remote-by-default backend engineer working across U.S. and European time zones from Maracay, Venezuela.
-- Core services: backend architecture and APIs, third-party integrations, CI/CD hardening and legacy rescue.
+- Remote-by-default fullstack AI engineer working across U.S. and European time zones from Maracay, Venezuela.
+- Core services: AI agents and LLM features, full-stack product builds, third-party integrations and delivery.
 - Author of open-source packages with 294K+ Dockershelf downloads and 60+ public GitHub projects.
 - Tech stack: TypeScript, Python, Go, Node.js, FastAPI, Django, Docker, Next.js, and Tailwind CSS.
 

@@ -42,8 +42,8 @@ function buildPersonNode(personUrl: string) {
       "@id": `${config.url}/images/me.svg`,
       url: `${config.url}/images/me.svg`,
     },
-    jobTitle: "Full Stack Software Engineer",
-    description: `${config.author.first_name} is a Venezuelan full stack software engineer with more than ${experience} years of experience in TypeScript, Python, Go, open source, CI/CD, and remote software development.`,
+    jobTitle: "Full Stack AI Engineer",
+    description: `${config.author.first_name} is a Venezuelan full stack AI engineer with more than ${experience} years of experience in TypeScript, Python, Go, AI agents and LLM integration, open source, CI/CD, and remote software development.`,
     email: `mailto:${config.author.email}`,
     nationality: {
       "@type": "Country",

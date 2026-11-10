@@ -20,24 +20,24 @@ export type ServiceItem = {
 export const servicesList: ServiceItem[] = [
   {
     num: "01",
-    title: "Backend architecture and APIs",
+    title: "AI agents and LLM features",
     description:
-      "Type-safe APIs and microservices that the next engineer can pick up without archaeology. Documented decisions, clean patterns, and predictable throughput.",
-    tags: ["TypeScript", "Python", "Go", "FastAPI", "Django"],
+      "Agent workflows, retrieval and model calls wired into real products, with tests and fallbacks so they keep working after the demo.",
+    tags: ["LLM APIs", "Agents", "RAG", "MCP", "Python"],
   },
   {
     num: "02",
-    title: "Third-party integrations",
+    title: "Full-stack product builds",
     description:
-      "Connecting products to external platforms at scale, such as the Expedia integration that took Wheel the World from roughly 1,000 to 600,000+ properties.",
-    tags: ["REST APIs", "Node.js", "Go", "Redis", "Stripe"],
+      "Next.js and React on the front, type-safe APIs in TypeScript, Python or Go behind it, shipped as one product the next engineer can pick up without archaeology.",
+    tags: ["TypeScript", "Next.js", "React", "FastAPI", "Go"],
   },
   {
     num: "03",
-    title: "CI/CD hardening and legacy rescue",
+    title: "Integrations and delivery",
     description:
-      "Reliable delivery pipelines and step-by-step modernisation of legacy systems, without a high-risk big-bang rewrite.",
-    tags: ["CI/CD", "Docker", "GitHub Actions", "Google Cloud"],
+      "Third-party platforms connected at scale, like the Expedia integration that took Wheel the World from about 1,000 to 600,000+ properties, on pipelines that ship safely.",
+    tags: ["REST APIs", "Stripe", "Docker", "GitHub Actions", "Google Cloud"],
   },
 ];
 
@@ -77,9 +77,9 @@ export const impactLead =
 
 export const faqItems: FaqItem[] = [
   {
-    question: "What backend frameworks and languages do you use?",
+    question: "What stack do you use?",
     answer:
-      "TypeScript, Python and Go. Node with Express, Django and FastAPI for APIs, and Go where throughput and predictable latency matter most.",
+      "TypeScript, Python and Go: Next.js and React on the front, Node, FastAPI and Go behind it, and LLM APIs with agent tooling where AI earns its place.",
   },
   {
     question: "Are you available for remote work?",
@@ -89,7 +89,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What types of engagements do you accept?",
     answer:
-      "Long-term remote contracts and focused projects: backend architecture, third-party integrations, CI/CD hardening, and legacy systems rescued without a big-bang rewrite.",
+      "Long-term remote contracts and focused projects: full-stack builds, AI features and agents, third-party integrations, and CI/CD hardening.",
   },
   {
     question: "How can I start a conversation?",
@@ -103,14 +103,14 @@ export const faqClaim = ["You bring the product.", "I make it hold."];
 
 export const heroContent = {
   status: {
-    role: "Luis Alejandro · software engineer",
+    role: "Luis Alejandro · fullstack AI engineer",
     location: "Base · 10.25° N, 67.60° W · Maracay",
     availability: "Open to remote work",
   },
   headline: {
-    lead: "I build backends.",
+    lead: "Prompt. Build. Test. Deploy.",
     typed:
-      "APIs, integrations and open source tools that stay dependable after launch.",
+      "Full-stack products and AI agents that stay dependable after launch.",
   },
   intro: `Keeping production calm since 2009.`,
   labels: [
@@ -122,17 +122,17 @@ export const heroContent = {
     primary: { label: "Let's talk", href: "/contact" },
     secondary: { label: "See the work", href: "/#work" },
   },
-  terrainNote: "terrain · point anywhere to raise the ground",
+  vortexNote: "main.go · point anywhere to steer the vortex",
 };
 
 export const ctaContent = {
-  lines: ["Have a backend", "that must hold?"],
+  lines: ["Have a product", "to ship with AI?"],
   primary: { label: "Send me the brief" },
   secondary: { label: "Read the blog", href: "/blog" },
 };
 
 export const footerContent = {
-  claim: "Got a backend that has to hold?",
+  claim: "Got a product that needs to ship?",
   claimLink: { label: "Let's talk.", href: "/contact" },
   wordmark: "Luis Alejandro",
   contactLinks: [

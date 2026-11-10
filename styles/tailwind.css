@@ -59,15 +59,17 @@
   --color-teal-custom: #1abc9c;
 
   /* redesign: tokens used only inside .site-shell (see DESIGN.md section 6) */
-  --color-paper: #0b0b0c;
-  --color-paper-raised: #151517;
-  --color-ink: #edede7;
-  --color-ink-muted: #8b8b85;
-  --color-rule: #edede71f;
-  --color-rule-strong: #edede74d;
-  --color-signal: #5b7cff;
-  --color-signal-ink: #0e0e0d;
-  --color-ink-strong: #ffffff;
+  /* Light theme, taken from the reference's own light palette; the accent is
+     crimson (4.6:1 as text on paper, white on it at 5.1:1). */
+  --color-paper: #f4f4f0;
+  --color-paper-raised: #ecece6;
+  --color-ink: #0e0e0d;
+  --color-ink-muted: #65655f;
+  --color-rule: #0e0e0d24;
+  --color-rule-strong: #0e0e0d52;
+  --color-signal: #d61f3a;
+  --color-signal-ink: #ffffff;
+  --color-ink-strong: #000000;
 
   /* Fluid scale solved against the reference at 1440px: 11.5 / 17.92 / 26 /
      40 / 70.1 / 120.7 / 177.6. The 390px end is 10.5 / 16 / 20 / 28 / 32 / 44. */
@@ -523,6 +525,60 @@ body:has(.site-shell) {
     }
   }
 
+  /* --- the face mark, plotted like the reference monogram -------------- */
+
+  .site-mark {
+    display: block;
+    width: auto;
+    height: 1em;
+    overflow: visible;
+  }
+
+  .site-mark path {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .site-mark .site-mark__brow {
+    stroke: none;
+  }
+
+  .site-mark.is-plotting :is(.site-mark__hair, .site-mark__glasses) {
+    animation: site-plot 1.2s var(--ease-site-in-out) both;
+  }
+
+  .site-mark.is-plotting .site-mark__glasses {
+    animation-delay: 0.18s;
+  }
+
+  .site-mark.is-plotting .site-mark__brow {
+    animation: site-brow-in 0.4s var(--ease-site-out) 0.9s both;
+  }
+
+  /* The right brow lifts once, flashing the accent, where the reference pops
+     its accent dot. */
+  .site-mark.is-plotting .site-mark__brow--right {
+    animation:
+      site-brow-in 0.4s var(--ease-site-out) 0.9s both,
+      site-brow-raise 0.7s var(--ease-site-in-out) 1.45s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-mark.is-plotting path {
+      animation: none !important;
+    }
+  }
+
+  .site-brand .site-mark {
+    font-size: 1.6rem;
+  }
+
   .site-brand {
     display: inline-flex;
     align-items: center;
@@ -708,7 +764,7 @@ body:has(.site-shell) {
     gap: 0.75rem;
   }
 
-  .site-terrain {
+  .site-vortex {
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -719,7 +775,7 @@ body:has(.site-shell) {
     transition: opacity 2s var(--ease-site-out);
   }
 
-  .site-terrain[data-on="true"] {
+  .site-vortex[data-on="true"] {
     opacity: 1;
   }
 
@@ -1339,10 +1395,7 @@ body:has(.site-shell) {
   }
 
   .site-preloader__mark {
-    font-size: clamp(3rem, 9vw, 7rem);
-    font-weight: 500;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
+    font-size: clamp(5rem, 16vw, 12rem);
   }
 
   .site-preloader__count {
@@ -1409,6 +1462,35 @@ body:has(.site-shell) {
     to {
       opacity: 1;
       filter: blur(0);
+    }
+  }
+
+  @keyframes site-plot {
+    0% {
+      stroke-dashoffset: 1;
+      fill-opacity: 0;
+    }
+    60% {
+      stroke-dashoffset: 0;
+      fill-opacity: 0;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      fill-opacity: 1;
+    }
+  }
+
+  @keyframes site-brow-in {
+    from {
+      opacity: 0;
+      transform: translateY(-40%);
+    }
+  }
+
+  @keyframes site-brow-raise {
+    50% {
+      fill: var(--color-signal);
+      transform: translateY(-55%) rotate(-8deg);
     }
   }
 

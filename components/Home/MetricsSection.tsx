@@ -32,8 +32,8 @@ export function MetricsSection() {
                 <span aria-hidden="true" className="site-wf-solid">
                   <span className="block">{row.metric}</span>
                 </span>
-                <span className="site-wf-dim site-note">{row.note}</span>
               </p>
+              <span className="site-wf-dim site-note">{row.note}</span>
             </div>
           </Reveal>
         ))}

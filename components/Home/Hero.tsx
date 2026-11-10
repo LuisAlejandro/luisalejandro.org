@@ -1,6 +1,6 @@
 "use client";
 
-import { HeroTerrain } from "@components/Home/HeroTerrain";
+import { HeroVortex } from "@components/Home/HeroVortex";
 import { HeroTyped } from "@components/Home/HeroTyped";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { heroContent } from "@constants/homepageContent";
@@ -9,7 +9,7 @@ import { contactAction } from "@constants/siteNavigation";
 export function Hero() {
   return (
     <section className="site-hero site-wrap">
-      <HeroTerrain />
+      <HeroVortex />
 
       {/* Status line: name and role, the base camp, availability. */}
       <div className="site-hero__top site-note relative z-10">
@@ -31,9 +31,9 @@ export function Hero() {
             <span>{label.text}</span>
           </p>
         ))}
-        <p className="site-hero__terrain-legend flex items-center gap-1.5">
+        <p className="flex items-center gap-1.5">
           <span className="site-accent">▲</span>
-          <span>{heroContent.terrainNote}</span>
+          <span>{heroContent.vortexNote}</span>
         </p>
       </div>
 

@@ -6,29 +6,9 @@ import Link from "next/link";
 import { SkipToContentLink } from "@components/common/Layout/SkipToContentLink";
 import { MobileMenu } from "@components/common/Site/MobileMenu";
 import { SiteButton } from "@components/common/Site/SiteButton";
+import { SiteMark } from "@components/common/Site/SiteMark";
 import { contactAction, siteNavItems } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
-
-/** The site mark: two angle brackets around a node. Drawn here, not traced. */
-function SiteMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 44 26"
-      width="44"
-      height="26"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="square"
-      className="site-brand__mark"
-    >
-      <path d="M14 5 5 13l9 8" />
-      <path d="M30 5l9 8-9 8" />
-      <circle cx="22" cy="13" r="2.6" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,10 +27,10 @@ export function SiteHeader() {
           className="site-brand"
           aria-label="Luis Alejandro — home"
         >
-          <SiteMark />
+          <SiteMark replayOnHover />
           <span className="site-note text-ink">Luis Alejandro</span>
           <span className="site-note site-brand__role">
-            / software engineer
+            / fullstack AI engineer
           </span>
         </Link>
 

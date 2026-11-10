@@ -1,4 +1,4 @@
-Luis Alejandro Martínez Faneyth is a Venezuelan software engineer based in Maracay, Venezuela (10.25° N, 67.60° W) who has worked remotely for more than a decade. He builds backends: type-safe APIs, third-party integrations, and open-source tools that stay dependable after launch.
+Luis Alejandro Martínez Faneyth is a Venezuelan fullstack AI engineer based in Maracay, Venezuela (10.25° N, 67.60° W) who has worked remotely for more than a decade. Prompt, build, test, deploy: he ships full-stack products and AI agents that stay dependable after launch.
 
 With {{experience}}+ years of professional experience across TypeScript, Python, and Go, his work is organised into the following sections on the home page.
 
@@ -27,15 +27,15 @@ With {{experience}}+ years of professional experience across TypeScript, Python,
 
 ## Services
 
-1. **Backend architecture and APIs.** Type-safe APIs and microservices the next engineer can pick up without archaeology, in TypeScript, Python, Go, FastAPI, and Django.
-2. **Third-party integrations.** Connecting products to external platforms at scale, such as the Expedia integration above.
-3. **CI/CD hardening and legacy rescue.** Reliable delivery pipelines and step-by-step modernisation without a high-risk big-bang rewrite.
+1. **AI agents and LLM features.** Agent workflows, retrieval and model calls wired into real products, with tests and fallbacks so they keep working after the demo.
+2. **Full-stack product builds.** Next.js and React on the front, type-safe APIs in TypeScript, Python or Go behind it.
+3. **Integrations and delivery.** Third-party platforms connected at scale, such as the Expedia integration above, on pipelines that ship safely.
 
 ## Working with me
 
-### What backend frameworks and languages do you use?
+### What stack do you use?
 
-TypeScript, Python and Go. Node with Express, Django and FastAPI for APIs, and Go where throughput and predictable latency matter most.
+TypeScript, Python and Go: Next.js and React on the front, Node, FastAPI and Go behind it, and LLM APIs with agent tooling where AI earns its place.
 
 ### Are you available for remote work?
 
@@ -43,7 +43,7 @@ Yes. More than a decade of remote work across US and European time zones, asynch
 
 ### What types of engagements do you accept?
 
-Long-term remote contracts and focused projects: backend architecture, third-party integrations, CI/CD hardening, and legacy systems rescued without a big-bang rewrite.
+Long-term remote contracts and focused projects: full-stack builds, AI features and agents, third-party integrations, and CI/CD hardening.
 
 ### How can I start a conversation?
 
@@ -51,7 +51,7 @@ Send your project scope, timeline and team context through the contact page. Ser
 
 ## Next
 
-- Have a backend that must hold? [Send the brief](https://luisalejandro.org/contact), or [read the blog](https://luisalejandro.org/blog).
+- Have a product to ship with AI? [Send the brief](https://luisalejandro.org/contact), or [read the blog](https://luisalejandro.org/blog).
 
 ## Elsewhere
 

@@ -246,14 +246,14 @@ Two design systems coexist until every route is migrated. Sections 1 to 5 descri
 
 | Utility | Use |
 | --- | --- |
-| `bg-paper` | Page background (`#0b0b0c`) |
-| `bg-paper-raised` | Raised surface: cards, dialogs (`#151517`) |
-| `text-ink` | Body and heading text (`#edede7`) |
-| `text-ink-muted` | Secondary text and labels (`#8b8b85`) |
+| `bg-paper` | Page background (`#f4f4f0`) |
+| `bg-paper-raised` | Raised surface: cards, dialogs (`#ecece6`) |
+| `text-ink` | Body and heading text (`#0e0e0d`) |
+| `text-ink-muted` | Secondary text and labels (`#65655f`) |
 | `border-rule`, `border-rule-strong` | Hairline dividers, and the stronger variant for hover or emphasis |
-| `text-signal`, `bg-signal` | The single blue accent (`#5b7cff`). Not named `accent-*`: `accent-2` and `accent-7` are old greys |
-| `text-signal-ink` | Text on a `bg-signal` surface (`#0e0e0d`) |
-| `bg-ink-strong` | Hover state for an `bg-ink` control (`#ffffff`) |
+| `text-signal`, `bg-signal` | The single crimson accent (`#d61f3a`: 4.6:1 as text on paper). Not named `accent-*`: `accent-2` and `accent-7` are old greys |
+| `text-signal-ink` | Text on a `bg-signal` surface (`#ffffff`, 5.1:1) |
+| `bg-ink-strong` | Hover state for an `bg-ink` control (`#000000`) |
 | `font-site`, `font-site-mono` | Geist for text, Geist Mono for labels |
 | `text-step-n1` | Small labels |
 | `text-step-0` | Body text (the shell default) |
@@ -278,11 +278,17 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 | Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
 | Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
 | Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
-| Effects | `.site-preloader`, `.site-gen-word` / `.site-gen-caret`, `.site-terrain`, `.site-process-line`, `.site-reveal` |
+| Effects | `.site-preloader`, `.site-mark` (plotted face mark), `.site-gen-word` / `.site-gen-caret`, `.site-vortex`, `.site-process-line`, `.site-reveal` |
 
 **Motion is CSS-first.** The header compacts, draws its ruler and fills its progress bar through `animation-timeline: scroll(root)`, with a `@supports` fallback that hides the progress bar. The work stage pins with `position: sticky`, and only a scroll listener picking the active index runs in JavaScript (`WorkSection`). Reveals stay in `Reveal` (IntersectionObserver). The preloader is pure CSS and is removed entirely under `prefers-reduced-motion`.
 
 **The pinned work stage degrades to a list.** `data-pinned` is set from `useSyncExternalStore` over `(min-width: 768px)` and `prefers-reduced-motion`; when it is false the same markup renders as stacked cards, so there is no second copy of the DOM.
+
+**The theme is light only.** Paper, ink and hairline values are the reference's own light palette; the accent is crimson rather than any of the reference's three accents.
+
+**The hero background is a vortex, not terrain.** `HeroVortex` sets a Go snippet in Geist Mono along concentric rings in ink at about 24% opacity. Each character is rasterised once into an atlas and stamped with `drawImage`, capped at 30fps and paused off-screen; reduced motion draws one still frame.
+
+**The face mark is `public/images/logomin.svg`, plotted.** `SiteMark` reuses its four paths: hair and glasses trace as outlines and then fill, the brows drop in, and the right brow lifts once in the accent. It replays when the pointer enters the brand link, and the preloader shows it large.
 
 **Nothing here may leak into a legacy route.** The parity classes are new names, the tokens are additive, and `SiteShell` is still the only element that carries `.site-shell`.
 

@@ -176,7 +176,7 @@ export function CommandPalette() {
         closePalette();
       }}
       onClose={closePalette}
-      className="m-auto w-full max-w-xl bg-transparent p-4 text-ink backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+      className="m-auto w-full max-w-xl bg-transparent p-4 text-ink backdrop:bg-ink/40 backdrop:backdrop-blur-sm"
       aria-label="Command Palette"
     >
       <div className="flex w-full flex-col overflow-hidden rounded-xl border border-rule-strong bg-paper-raised shadow-2xl">

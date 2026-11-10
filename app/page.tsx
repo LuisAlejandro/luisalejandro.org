@@ -18,7 +18,7 @@ import {
 } from "@lib/structuredData";
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0c",
+  themeColor: "#f4f4f0",
 };
 
 export const metadata: Metadata = {
