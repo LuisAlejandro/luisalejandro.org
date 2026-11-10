@@ -59,7 +59,7 @@ export function SiteFooter() {
                         className="text-step-n1 text-ink-muted hover:text-ink transition-colors inline-flex items-center gap-1"
                       >
                         <span>{item.label}</span>
-                        <span className="site-note text-[0.65rem]">↗</span>
+                        <span className="site-note">↗</span>
                       </a>
                     </li>
                   );
@@ -93,9 +93,7 @@ export function SiteFooter() {
                     className="text-step-n1 text-ink-muted hover:text-ink transition-colors inline-flex items-center gap-1"
                   >
                     <span>{social.label}</span>
-                    {social.external && (
-                      <span className="site-note text-[0.65rem]">↗</span>
-                    )}
+                    {social.external && <span className="site-note">↗</span>}
                   </a>
                 </li>
               ))}

@@ -1,9 +1,11 @@
+export type PixelEvent = "ClickHeaderStore" | "ClickHeaderContact";
+
 export type NavItem = {
   num: string;
   label: string;
   href: string;
   external?: boolean;
-  pixelEvent?: "ClickHeaderStore" | "ClickHeaderContact";
+  pixelEvent?: PixelEvent;
 };
 
 export const siteNavItems: NavItem[] = [
@@ -25,11 +27,7 @@ export const siteNavItems: NavItem[] = [
 ];
 
 export const siteSocialLinks = [
-  {
-    label: "GitHub",
-    href: "https://github.com/LuisAlejandro",
-    external: true,
-  },
+  { label: "GitHub", href: "https://github.com/LuisAlejandro", external: true },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/martinezfaneyth",
@@ -40,12 +38,14 @@ export const siteSocialLinks = [
     href: "https://www.youtube.com/@LuisDevelops",
     external: true,
   },
-  {
-    label: "RSS",
-    href: "/blog/posts/feed.xml",
-    external: false,
-  },
+  { label: "RSS", href: "/blog/posts/feed.xml", external: false },
 ];
+
+export const contactAction = {
+  label: "Let's talk",
+  href: "/contact",
+  pixelEvent: "ClickHeaderContact" as PixelEvent,
+};
 
 export type PaletteItem = {
   id: string;
@@ -55,38 +55,40 @@ export type PaletteItem = {
   external?: boolean;
   hint?: string;
   keywords?: string[];
-  pixelEvent?: "ClickHeaderStore" | "ClickHeaderContact";
+  pixelEvent?: PixelEvent;
 };
 
-export const paletteItems: PaletteItem[] = [
-  // Pages
-  { id: "home", label: "Home", group: "Go to", href: "/", hint: "/" },
-  {
-    id: "portfolio",
-    label: "Portfolio",
-    group: "Go to",
-    href: "/portfolio",
-    hint: "/portfolio",
-  },
-  { id: "blog", label: "Blog", group: "Go to", href: "/blog", hint: "/blog" },
-  {
+const pageHints: Record<
+  string,
+  { id: string; hint: string; keywords?: string[] }
+> = {
+  "/": { id: "home", hint: "/" },
+  "/portfolio": { id: "portfolio", hint: "/portfolio", keywords: ["work"] },
+  "/blog": { id: "blog", hint: "/blog", keywords: ["writing"] },
+  "https://store.luisalejandro.org/": {
     id: "store",
-    label: "Store",
-    group: "Go to",
-    href: "https://store.luisalejandro.org/",
-    external: true,
     hint: "store.luisalejandro.org ↗",
-    pixelEvent: "ClickHeaderStore",
   },
-  {
-    id: "contact",
-    label: "Contact",
-    group: "Go to",
-    href: "/contact",
-    hint: "/contact",
-    pixelEvent: "ClickHeaderContact",
+  "/contact": { id: "contact", hint: "/contact", keywords: ["hire", "email"] },
+};
+
+const socialHints: Record<string, { id: string; hint: string }> = {
+  "https://github.com/LuisAlejandro": {
+    id: "ext-github",
+    hint: "github.com ↗",
   },
-  // Home Sections
+  "https://www.linkedin.com/in/martinezfaneyth": {
+    id: "ext-linkedin",
+    hint: "linkedin.com ↗",
+  },
+  "https://www.youtube.com/@LuisDevelops": {
+    id: "ext-youtube",
+    hint: "youtube.com ↗",
+  },
+  "/blog/posts/feed.xml": { id: "ext-rss", hint: "feed.xml" },
+};
+
+const homeSections: PaletteItem[] = [
   {
     id: "sec-metrics",
     label: "Metrics & Impact",
@@ -127,36 +129,31 @@ export const paletteItems: PaletteItem[] = [
     hint: "#from-the-blog",
     keywords: ["posts", "writing"],
   },
-  // Elsewhere
-  {
-    id: "ext-github",
-    label: "GitHub",
-    group: "Elsewhere",
-    href: "https://github.com/LuisAlejandro",
-    external: true,
-    hint: "github.com ↗",
-  },
-  {
-    id: "ext-linkedin",
-    label: "LinkedIn",
-    group: "Elsewhere",
-    href: "https://www.linkedin.com/in/martinezfaneyth",
-    external: true,
-    hint: "linkedin.com ↗",
-  },
-  {
-    id: "ext-youtube",
-    label: "YouTube",
-    group: "Elsewhere",
-    href: "https://www.youtube.com/@LuisDevelops",
-    external: true,
-    hint: "youtube.com ↗",
-  },
-  {
-    id: "ext-rss",
-    label: "RSS Feed",
-    group: "Elsewhere",
-    href: "/blog/posts/feed.xml",
-    hint: "feed.xml",
-  },
+];
+
+// Derived from the header and footer lists, so the palette cannot drift from
+// the navigation it duplicates.
+export const paletteItems: PaletteItem[] = [
+  ...siteNavItems.map((item) => {
+    const meta = pageHints[item.href];
+    return {
+      id: meta?.id ?? item.label.toLowerCase(),
+      label: item.label,
+      group: "Go to" as const,
+      href: item.href,
+      external: item.external,
+      hint: meta?.hint,
+      keywords: meta?.keywords,
+      pixelEvent: item.pixelEvent,
+    };
+  }),
+  ...homeSections,
+  ...siteSocialLinks.map((social) => ({
+    id: socialHints[social.href]?.id ?? social.label.toLowerCase(),
+    label: social.label,
+    group: "Elsewhere" as const,
+    href: social.href,
+    external: social.external,
+    hint: socialHints[social.href]?.hint,
+  })),
 ];

@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
-
 import { Reveal } from "@components/common/Site/Reveal";
+import { SiteButton } from "@components/common/Site/SiteButton";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { sectionTitles } from "@constants/homepageContent";
-import { trackPixelEvent } from "@lib/pixel";
+import { contactAction } from "@constants/siteNavigation";
 
 export function CtaSection() {
   return (
-    <section className="px-gutter py-20 lg:py-32 border-b border-rule">
+    <section className="px-gutter py-section border-b border-rule">
       <SectionHeader
         num="06"
         label={sectionTitles.cta}
@@ -23,16 +22,14 @@ export function CtaSection() {
             Tell me what you&apos;re building.
           </h2>
 
-          <Link
-            href="/contact"
-            onClick={() => trackPixelEvent("ClickHeaderContact")}
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-3.5 text-step-0 font-medium text-paper hover:bg-white transition-colors group"
+          <SiteButton
+            href={contactAction.href}
+            size="lg"
+            tracking={contactAction.pixelEvent}
+            arrow
           >
-            <span>Let&apos;s talk</span>
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+            {contactAction.label}
+          </SiteButton>
         </div>
       </Reveal>
     </section>

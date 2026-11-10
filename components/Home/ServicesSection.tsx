@@ -4,7 +4,7 @@ import { sectionTitles, servicesList } from "@constants/homepageContent";
 
 export function ServicesSection() {
   return (
-    <section className="px-gutter py-16 lg:py-24 border-b border-rule">
+    <section className="px-gutter py-section border-b border-rule">
       <SectionHeader
         num="03"
         label={sectionTitles.services}
@@ -18,7 +18,7 @@ export function ServicesSection() {
             <div className="py-8 lg:py-12 flex flex-col md:flex-row md:items-start justify-between gap-6 lg:gap-12">
               {/* Number and Title */}
               <div className="md:w-1/2 flex items-baseline gap-4">
-                <span className="site-note text-signal font-medium text-[0.8rem]">
+                <span className="site-note text-signal font-medium">
                   {service.num}
                 </span>
                 <h3 className="text-step-2 lg:text-step-3 font-medium text-ink tracking-tight">
@@ -35,7 +35,7 @@ export function ServicesSection() {
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="site-note text-[0.7rem] px-2.5 py-1 rounded border border-rule text-ink-muted"
+                      className="site-note px-2.5 py-1 rounded border border-rule text-ink-muted"
                     >
                       {tag}
                     </span>

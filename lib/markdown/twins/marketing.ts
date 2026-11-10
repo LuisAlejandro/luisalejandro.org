@@ -1,5 +1,6 @@
-import { canonicalHostnameUrl } from "@constants/constants";
+import { canonicalHostnameUrl, experience } from "@constants/constants";
 import { getAllCategories, getPublishedPostsForHomeTwin } from "@lib/api";
+import { expandTwinTokens } from "@lib/markdown/expandTwinTokens";
 import { formatTwin } from "@lib/markdown/formatTwin";
 import { readSection } from "@lib/markdown/readSection";
 import markdownToHtml from "@lib/markdownToHtml";
@@ -31,7 +32,11 @@ async function formatBlogListing(posts: LlmsFullPost[]): Promise<string> {
 }
 
 export async function buildHomeTwin(): Promise<string> {
-  return formatTwin("Home", `${canonicalHostnameUrl}/`, readSection("home.md"));
+  return formatTwin(
+    "Home",
+    `${canonicalHostnameUrl}/`,
+    expandTwinTokens(readSection("home.md"), { experience })
+  );
 }
 
 export async function buildPortfolioTwin(): Promise<string> {

@@ -24,12 +24,15 @@ const roboto = Roboto({
   adjustFontFallback: true,
 });
 
+// Poppins and League Gothic are used only by gold-era routes. They stay
+// self-hosted, but are not preloaded: the redesigned shell renders neither,
+// and preloading them there competes with Geist for bandwidth.
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
   display: "swap",
-  preload: true,
+  preload: false,
   adjustFontFallback: true,
 });
 
@@ -37,7 +40,7 @@ const leagueGothic = League_Gothic({
   subsets: ["latin"],
   variable: "--font-league-gothic",
   display: "swap",
-  preload: true,
+  preload: false,
   adjustFontFallback: true,
 });
 

@@ -1,4 +1,5 @@
-import { canonicalHostnameUrl } from "@constants/constants";
+import { canonicalHostnameUrl, experience } from "@constants/constants";
+import { expandTwinTokens } from "@lib/markdown/expandTwinTokens";
 import { readSection } from "@lib/markdown/readSection";
 import markdownToHtml from "@lib/markdownToHtml";
 import { stripHtmlToPlainText } from "@lib/plainText";
@@ -46,7 +47,11 @@ export async function buildLlmsFull(
   posts: LlmsFullPost[] = []
 ): Promise<string> {
   const sections = [
-    formatSection("Home", `${canonicalHostnameUrl}/`, readSection("home.md")),
+    formatSection(
+      "Home",
+      `${canonicalHostnameUrl}/`,
+      expandTwinTokens(readSection("home.md"), { experience })
+    ),
     formatSection(
       "Portfolio",
       `${canonicalHostnameUrl}/portfolio`,

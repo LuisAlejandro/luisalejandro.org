@@ -67,6 +67,7 @@
   --color-rule-strong: #edede74d;
   --color-signal: #5b7cff;
   --color-signal-ink: #0e0e0d;
+  --color-ink-strong: #ffffff;
 
   --text-step-n1: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
   --text-step-n1--line-height: 1.4;

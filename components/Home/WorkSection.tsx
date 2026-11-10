@@ -8,7 +8,7 @@ import { sectionTitles } from "@constants/homepageContent";
 
 export function WorkSection() {
   return (
-    <section className="px-gutter py-16 lg:py-24 border-b border-rule">
+    <section className="px-gutter py-section border-b border-rule">
       <SectionHeader
         num="02"
         label={sectionTitles.work}
@@ -26,10 +26,10 @@ export function WorkSection() {
               key={project.visit}
               className="border-b border-rule/60 pb-12 last:border-b-0 last:pb-0 lg:pb-16"
             >
-              <article className="group flex flex-col lg:flex-row gap-8 lg:gap-12 items-start justify-between w-full min-w-0">
+              <article className="group flex flex-col lg:flex-row gap-col-gap items-start justify-between w-full min-w-0">
                 {/* Text content */}
                 <div className="flex flex-col max-w-xl w-full min-w-0">
-                  <div className="flex items-center gap-3 site-note text-[0.7rem] mb-3 w-full min-w-0">
+                  <div className="flex items-center gap-3 site-note mb-3 w-full min-w-0">
                     <span className="text-signal flex-shrink-0">{numStr}</span>
                     <span className="text-rule-strong flex-shrink-0">/</span>
                     <span className="truncate">{tagsStr}</span>
@@ -51,7 +51,7 @@ export function WorkSection() {
                   <div>
                     <Link
                       href={project.visit}
-                      className="inline-flex items-center gap-1.5 site-note text-[0.75rem] text-ink hover:text-signal transition-colors font-medium"
+                      className="inline-flex items-center gap-1.5 site-note text-ink hover:text-signal transition-colors font-medium"
                     >
                       <span>Read the case study</span>
                       <span>→</span>

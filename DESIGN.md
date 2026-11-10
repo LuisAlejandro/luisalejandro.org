@@ -253,6 +253,7 @@ Two design systems coexist until every route is migrated. Sections 1 to 5 descri
 | `border-rule`, `border-rule-strong` | Hairline dividers, and the stronger variant for hover or emphasis |
 | `text-signal`, `bg-signal` | The single blue accent (`#5b7cff`). Not named `accent-*`: `accent-2` and `accent-7` are old greys |
 | `text-signal-ink` | Text on a `bg-signal` surface (`#0e0e0d`) |
+| `bg-ink-strong` | Hover state for an `bg-ink` control (`#ffffff`) |
 | `font-site`, `font-site-mono` | Geist for text, Geist Mono for labels |
 | `text-step-n1` | Small labels |
 | `text-step-0` | Body text (the shell default) |
@@ -264,6 +265,8 @@ Two design systems coexist until every route is migrated. Sections 1 to 5 descri
 | `site-note` (class) | Small uppercase mono label in `ink-muted` |
 
 Inside the shell, `::selection` and the `:focus-visible` indicator use `signal`.
+
+Primary calls to action render through `SiteButton` (`components/common/Site/SiteButton.tsx`) in three sizes, so the pill is defined once. Nothing in the shell uses `hover:bg-white`, a raw `text-[…]` size, or a hand-rolled `py-16 lg:py-24` rhythm.
 
 ### Two rules that look odd on purpose
 

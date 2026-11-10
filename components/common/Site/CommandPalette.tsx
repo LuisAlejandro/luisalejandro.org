@@ -181,7 +181,7 @@ export function CommandPalette() {
     >
       <div className="flex w-full flex-col overflow-hidden rounded-xl border border-rule-strong bg-paper-raised shadow-2xl">
         <div className="flex items-center gap-3 border-b border-rule px-4 py-3">
-          <span className="site-note rounded border border-rule px-1.5 py-0.5 text-[0.7rem]">
+          <span className="site-note rounded border border-rule px-1.5 py-0.5">
             ⌘K
           </span>
           <input
@@ -202,7 +202,7 @@ export function CommandPalette() {
             type="button"
             onClick={closePalette}
             aria-label="Close palette"
-            className="site-note cursor-pointer rounded border border-rule px-1.5 py-0.5 text-[0.7rem] hover:border-rule-strong hover:text-ink"
+            className="site-note cursor-pointer rounded border border-rule px-1.5 py-0.5 hover:border-rule-strong hover:text-ink"
           >
             ESC
           </button>
@@ -223,9 +223,7 @@ export function CommandPalette() {
             >
               {groupedItems.map((group) => (
                 <li key={group.name} className="flex flex-col">
-                  <div className="site-note px-3 py-1.5 text-[0.7rem]">
-                    {group.name}
-                  </div>
+                  <div className="site-note px-3 py-1.5">{group.name}</div>
                   <ul className="flex flex-col gap-0.5">
                     {group.items.map((item) => {
                       const itemIndex = filteredItems.indexOf(item);
@@ -249,7 +247,7 @@ export function CommandPalette() {
                           <span className="text-step-n1">{item.label}</span>
                           {item.hint && (
                             <span
-                              className={`site-note text-[0.7rem] ${
+                              className={`site-note ${
                                 isSelected ? "text-paper/70" : "text-ink-muted"
                               }`}
                             >

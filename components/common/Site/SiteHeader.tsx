@@ -5,7 +5,8 @@ import Link from "next/link";
 
 import { SkipToContentLink } from "@components/common/Layout/SkipToContentLink";
 import { MobileMenu } from "@components/common/Site/MobileMenu";
-import { siteNavItems } from "@constants/siteNavigation";
+import { SiteButton } from "@components/common/Site/SiteButton";
+import { contactAction, siteNavItems } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
 export function SiteHeader() {
@@ -56,11 +57,11 @@ export function SiteHeader() {
                     onClick={handleClick}
                     className="group flex items-baseline gap-1.5 text-step-n1 font-medium text-ink-muted hover:text-ink transition-colors"
                   >
-                    <span className="site-note text-[0.7rem] text-ink-muted group-hover:text-signal">
+                    <span className="site-note text-ink-muted group-hover:text-signal">
                       {item.num}
                     </span>
                     <span>{item.label}</span>
-                    <span className="site-note text-[0.7rem] text-ink-muted group-hover:text-signal">
+                    <span className="site-note text-ink-muted group-hover:text-signal">
                       ↗
                     </span>
                   </a>
@@ -74,7 +75,7 @@ export function SiteHeader() {
                   onClick={handleClick}
                   className="group flex items-baseline gap-1.5 text-step-n1 font-medium text-ink-muted hover:text-ink transition-colors"
                 >
-                  <span className="site-note text-[0.7rem] text-ink-muted group-hover:text-signal">
+                  <span className="site-note text-ink-muted group-hover:text-signal">
                     {item.num}
                   </span>
                   <span>{item.label}</span>
@@ -89,7 +90,7 @@ export function SiteHeader() {
               type="button"
               onClick={handlePaletteClick}
               aria-label="Open command palette (⌘K)"
-              className="site-note flex items-center justify-center rounded border border-rule px-2 py-1 text-[0.75rem] text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
+              className="site-note flex items-center justify-center rounded border border-rule px-2 py-1 text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
             >
               ⌘K
             </button>
@@ -98,18 +99,18 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
-              className="site-note md:hidden flex items-center justify-center rounded border border-rule px-2.5 py-1 text-[0.75rem] text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
+              className="site-note md:hidden flex items-center justify-center rounded border border-rule px-2.5 py-1 text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
             >
               Menu
             </button>
 
-            <Link
-              href="/contact"
-              onClick={() => trackPixelEvent("ClickHeaderContact")}
-              className="inline-flex items-center justify-center rounded-full bg-ink px-4 py-1.5 text-step-n1 font-medium text-paper hover:bg-white transition-colors"
+            <SiteButton
+              href={contactAction.href}
+              size="sm"
+              tracking={contactAction.pixelEvent}
             >
-              Let&apos;s talk
-            </Link>
+              {contactAction.label}
+            </SiteButton>
           </div>
         </div>
       </header>

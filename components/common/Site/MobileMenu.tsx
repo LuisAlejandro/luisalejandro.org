@@ -3,8 +3,13 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
+import { SiteButton } from "@components/common/Site/SiteButton";
 import { lockPageScroll } from "@components/common/Site/overlayLock";
-import { siteNavItems, siteSocialLinks } from "@constants/siteNavigation";
+import {
+  contactAction,
+  siteNavItems,
+  siteSocialLinks,
+} from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
 type MobileMenuProps = {
@@ -105,16 +110,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </nav>
 
         <div className="mt-auto flex flex-col gap-4 border-t border-rule pt-6">
-          <Link
-            href="/contact"
-            onClick={() => {
-              trackPixelEvent("ClickHeaderContact");
-              onClose();
-            }}
-            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-step-0 font-medium text-paper hover:bg-white"
+          <SiteButton
+            href={contactAction.href}
+            size="lg"
+            tracking={contactAction.pixelEvent}
+            className="w-full"
           >
-            Let&apos;s talk
-          </Link>
+            {contactAction.label}
+          </SiteButton>
 
           <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
             {siteSocialLinks.map((social) => (

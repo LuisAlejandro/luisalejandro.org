@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { contactAction } from "@constants/siteNavigation";
 
 export default function NotFound() {
   return (
@@ -16,12 +18,9 @@ export default function NotFound() {
           The page you are looking for does not exist or has been moved.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-2.5 text-step-0 font-medium text-paper hover:bg-white transition-colors"
-          >
-            Return Home →
-          </Link>
+          <SiteButton href="/" arrow>
+            Return Home
+          </SiteButton>
           <Link
             href="/blog"
             className="inline-flex items-center justify-center px-4 py-2.5 text-step-0 font-medium text-ink-muted hover:text-ink transition-colors"

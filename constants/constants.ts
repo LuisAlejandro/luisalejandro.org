@@ -52,7 +52,9 @@ export const canonicalHostnameUrl =
   ENV_NAME === "local" ? "http://localhost:3101" : "https://luisalejandro.org";
 
 export const SITE_PROFILE_DATE_CREATED = "2020-01-15T08:00:00+00:00";
-export const SITE_PROFILE_DATE_MODIFIED = "2026-06-22T00:00:00+00:00";
+// Drives `dateModified` in the home and portfolio JSON-LD, and the `/` entry
+// in the sitemap. Bump it in the commit that changes public profile content.
+export const SITE_PROFILE_DATE_MODIFIED = "2026-11-10T00:00:00+00:00";
 
 export const config = {
   name: "Luis Alejandro",

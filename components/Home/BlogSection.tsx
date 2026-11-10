@@ -11,7 +11,7 @@ type PostItem = {
   title: string;
   created_at: string;
   metadata?: {
-    categories?: Array<{ title?: string; name?: string } | string>;
+    categories?: Array<{ id?: string; title?: string; slug?: string }>;
   };
 };
 
@@ -23,14 +23,14 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
   const displayPosts = posts.slice(0, 3);
 
   return (
-    <section className="px-gutter py-16 lg:py-24 border-b border-rule">
+    <section className="px-gutter py-section border-b border-rule">
       <SectionHeader
         num="05"
         label={sectionTitles.blog}
         note={
           <Link
             href="/blog"
-            className="site-note text-[0.75rem] text-ink hover:text-signal transition-colors inline-flex items-center gap-1 font-medium"
+            className="site-note text-ink hover:text-signal transition-colors inline-flex items-center gap-1 font-medium"
           >
             <span>All posts</span>
             <span>→</span>
@@ -59,11 +59,7 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
                 formattedDate = "";
               }
 
-              const mainCat = post.metadata?.categories?.[0];
-              const categoryLabel =
-                typeof mainCat === "string"
-                  ? mainCat
-                  : mainCat?.title || mainCat?.name;
+              const categoryLabel = post.metadata?.categories?.[0]?.title;
 
               return (
                 <article key={post.slug} className="group py-6 first:pt-0">
@@ -75,7 +71,7 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
                       {formattedDate && (
                         <time
                           dateTime={post.created_at}
-                          className="site-note text-[0.7rem] text-ink-muted w-28 flex-shrink-0"
+                          className="site-note text-ink-muted w-28 flex-shrink-0"
                         >
                           {formattedDate}
                         </time>
@@ -89,7 +85,7 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
                     </div>
 
                     {categoryLabel && (
-                      <span className="site-note text-[0.7rem] px-2.5 py-0.5 rounded border border-rule text-ink-muted group-hover:border-rule-strong group-hover:text-ink transition-colors flex-shrink-0 self-start md:self-auto">
+                      <span className="site-note px-2.5 py-0.5 rounded border border-rule text-ink-muted group-hover:border-rule-strong group-hover:text-ink transition-colors flex-shrink-0 self-start md:self-auto">
                         {categoryLabel}
                       </span>
                     )}
