@@ -4,6 +4,14 @@ export const BLOG_PURGE_TAGS = [
   "blog-listings",
 ] as const;
 
+// The home page now lists the latest posts, so a publish must invalidate it
+// too. next.config.ts tags `/` with `homepage` and `content`.
+export const CONTENT_PURGE_TAGS = [
+  ...BLOG_PURGE_TAGS,
+  "homepage",
+  "content",
+] as const;
+
 export type PurgeByTagsResult = {
   ok: boolean;
   reason?: "missing_env" | "rate_limited" | "upstream_error";

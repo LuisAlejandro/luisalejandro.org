@@ -35,7 +35,8 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const posts = (await getAllPostsForHome()) || [];
+  // The home page shows three entries; do not fetch the whole collection.
+  const posts = (await getAllPostsForHome(3)) || [];
   const homepageJsonLd = generateHomepageJsonLd();
   const homepageFaqJsonLd = generateHomepageFaqJsonLd(faqItems);
 

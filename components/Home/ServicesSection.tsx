@@ -14,8 +14,8 @@ export function ServicesSection() {
 
       <div className="flex flex-col divide-y divide-rule/60">
         {servicesList.map((service) => (
-          <Reveal key={service.num}>
-            <div className="py-8 lg:py-12 first:pt-0 last:pb-0 flex flex-col md:flex-row md:items-start justify-between gap-6 lg:gap-12">
+          <Reveal key={service.num} className="first:pt-0 last:pb-0">
+            <div className="py-8 lg:py-12 flex flex-col md:flex-row md:items-start justify-between gap-6 lg:gap-12">
               {/* Number and Title */}
               <div className="md:w-1/2 flex items-baseline gap-4">
                 <span className="site-note text-signal font-medium text-[0.8rem]">

@@ -22,8 +22,11 @@ export function WorkSection() {
           const tagsStr = project.tags.join(" · ").toUpperCase();
 
           return (
-            <Reveal key={project.visit}>
-              <article className="group flex flex-col lg:flex-row gap-8 lg:gap-12 items-start justify-between border-b border-rule/60 pb-12 lg:pb-16 last:border-b-0 last:pb-0 w-full min-w-0">
+            <Reveal
+              key={project.visit}
+              className="border-b border-rule/60 pb-12 last:border-b-0 last:pb-0 lg:pb-16"
+            >
+              <article className="group flex flex-col lg:flex-row gap-8 lg:gap-12 items-start justify-between w-full min-w-0">
                 {/* Text content */}
                 <div className="flex flex-col max-w-xl w-full min-w-0">
                   <div className="flex items-center gap-3 site-note text-[0.7rem] mb-3 w-full min-w-0">

@@ -1,65 +1,40 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ElementType,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
-  as?: ElementType;
-  delayMs?: number;
 };
 
-export function Reveal({
-  children,
-  className = "",
-  as: Component = "div",
-  delayMs = 0,
-}: RevealProps) {
-  const ref = useRef<HTMLElement>(null);
+export function Reveal({ children, className = "" }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<"initial" | "hidden" | "visible">(
     "initial"
   );
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
     const element = ref.current;
     if (!element) return;
 
-    // Element is initially hidden on client when motion is allowed
+    // Hidden is applied only after hydration, so the server HTML and a
+    // no-script visitor always show a complete page.
     setState("hidden");
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            if (delayMs > 0) {
-              setTimeout(() => {
-                setState("visible");
-              }, delayMs);
-            } else {
-              setState("visible");
-            }
+            setState("visible");
             observer.unobserve(entry.target);
           }
         }
       },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px",
-      }
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
     );
 
     observer.observe(element);
@@ -67,22 +42,15 @@ export function Reveal({
     return () => {
       observer.disconnect();
     };
-  }, [delayMs]);
-
-  const dataState = state === "initial" ? undefined : state;
-  const style =
-    delayMs > 0 && state === "hidden"
-      ? { transitionDelay: `${delayMs}ms` }
-      : undefined;
+  }, []);
 
   return (
-    <Component
+    <div
       ref={ref}
-      data-state={dataState}
-      style={style}
+      data-state={state === "initial" ? undefined : state}
       className={`site-reveal ${className}`}
     >
       {children}
-    </Component>
+    </div>
   );
 }

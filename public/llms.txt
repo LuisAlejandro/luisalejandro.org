@@ -1,14 +1,15 @@
 # Luis Alejandro
 
-> Luis Alejandro Martinez Faneyth is a remote full-stack software engineer with 16+ years of distributed systems expertise, specializing in TypeScript, Python, and Go.
+> Luis Alejandro Martínez Faneyth is a Maracay-based software engineer with 17+ years of experience who builds backends: type-safe APIs, third-party integrations, and open-source tools that stay dependable after launch.
 
 This file is the preferred starting point for AI assistants, answer engines, and crawlers that need concise context about luisalejandro.org.
 
 ## Key Information
 
-- Caracas-born developer focusing on robust, minimalist architecture and remote collaboration.
+- Remote-by-default backend engineer working across U.S. and European time zones from Maracay, Venezuela.
+- Core services: backend architecture and APIs, third-party integrations, CI/CD hardening and legacy rescue.
 - Author of open-source packages with 294K+ Dockershelf downloads and 60+ public GitHub projects.
-- Tech stack: Node.js, Next.js, Django, FastAPI, Go, Docker, and Tailwind CSS.
+- Tech stack: TypeScript, Python, Go, Node.js, FastAPI, Django, Docker, Next.js, and Tailwind CSS.
 
 ## Main Resources
 
@@ -19,7 +20,7 @@ This file is the preferred starting point for AI assistants, answer engines, and
 
 ## Canonical Site Sections
 
-- Home: https://luisalejandro.org/ — Biography, professional positioning, and primary navigation.
+- Home: https://luisalejandro.org/ — Positioning, measured impact, selected work, services, FAQ, and latest posts.
 - Portfolio: https://luisalejandro.org/portfolio — Skills, work history, case studies, and projects.
 - Blog: https://luisalejandro.org/blog — Technical posts about software development and engineering lessons.
 - Contact: https://luisalejandro.org/contact — Professional inquiries and hiring conversations.

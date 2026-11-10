@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
+import { lockPageScroll } from "@components/common/Site/overlayLock";
 import { siteNavItems, siteSocialLinks } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
@@ -12,124 +13,124 @@ type MobileMenuProps = {
 };
 
 export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    if (isOpen && !dialog.open) {
+      // showModal gives focus trapping and Escape for free, and keeps the
+      // overlay out of the sticky header's backdrop-filter containing block.
+      dialog.showModal();
+    } else if (!isOpen && dialog.open) {
+      dialog.close();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    // Lock body scroll
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    // Focus close button on open
-    closeBtnRef.current?.focus();
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = originalOverflow;
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
+    return lockPageScroll();
+  }, [isOpen]);
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Site Navigation"
+    <dialog
       ref={dialogRef}
-      className="fixed inset-0 z-50 flex flex-col bg-paper px-gutter py-4 text-ink overflow-y-auto"
+      aria-label="Site Navigation"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClose={onClose}
+      className="m-0 h-full max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-black/70"
     >
-      <div className="flex items-center justify-between pb-4 border-b border-rule">
-        <span className="site-note">Navigation</span>
-        <button
-          ref={closeBtnRef}
-          type="button"
-          onClick={onClose}
-          className="site-note px-3 py-1.5 rounded border border-rule hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
-          aria-label="Close menu"
-        >
-          Close [ESC]
-        </button>
-      </div>
+      <div
+        data-lenis-prevent
+        className="flex h-full flex-col overflow-y-auto px-gutter py-4"
+      >
+        <div className="flex items-center justify-between border-b border-rule pb-4">
+          <span className="site-note">Navigation</span>
+          <button
+            type="button"
+            onClick={onClose}
+            className="site-note cursor-pointer rounded border border-rule px-3 py-1.5 hover:border-rule-strong hover:text-ink"
+            aria-label="Close menu"
+          >
+            Close [ESC]
+          </button>
+        </div>
 
-      <nav className="flex flex-col py-8 gap-6" aria-label="Mobile Menu">
-        {siteNavItems.map((item) => {
-          const handleClick = () => {
-            if (item.pixelEvent) {
-              trackPixelEvent(item.pixelEvent);
+        <nav aria-label="Mobile Menu" className="flex flex-col gap-6 py-8">
+          {siteNavItems.map((item) => {
+            const handleClick = () => {
+              if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
+              onClose();
+            };
+
+            const className =
+              "group flex items-baseline justify-between border-b border-rule pb-3 text-step-2 font-medium hover:text-signal";
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleClick}
+                  className={className}
+                >
+                  <span>{item.label}</span>
+                  <span className="site-note group-hover:text-signal">
+                    {item.num} ↗
+                  </span>
+                </a>
+              );
             }
-            onClose();
-          };
 
-          if (item.external) {
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={handleClick}
-                className="group flex items-baseline justify-between text-step-2 font-medium border-b border-rule pb-3 hover:text-signal transition-colors"
+                className={className}
               >
                 <span>{item.label}</span>
-                <span className="site-note text-step-n1 group-hover:text-signal">
-                  {item.num} ↗
+                <span className="site-note group-hover:text-signal">
+                  {item.num}
                 </span>
-              </a>
+              </Link>
             );
-          }
+          })}
+        </nav>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={handleClick}
-              className="group flex items-baseline justify-between text-step-2 font-medium border-b border-rule pb-3 hover:text-signal transition-colors"
-            >
-              <span>{item.label}</span>
-              <span className="site-note text-step-n1 group-hover:text-signal">
-                {item.num}
-              </span>
-            </Link>
-          );
-        })}
-      </nav>
+        <div className="mt-auto flex flex-col gap-4 border-t border-rule pt-6">
+          <Link
+            href="/contact"
+            onClick={() => {
+              trackPixelEvent("ClickHeaderContact");
+              onClose();
+            }}
+            className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-step-0 font-medium text-paper hover:bg-white"
+          >
+            Let&apos;s talk
+          </Link>
 
-      <div className="mt-auto pt-6 border-t border-rule flex flex-col gap-4">
-        <Link
-          href="/contact"
-          onClick={() => {
-            trackPixelEvent("ClickHeaderContact");
-            onClose();
-          }}
-          className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-step-0 font-medium text-paper hover:bg-white transition-colors"
-        >
-          Let&apos;s talk
-        </Link>
-
-        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
-          {siteSocialLinks.map((social) => (
-            <a
-              key={social.href}
-              href={social.href}
-              target={social.external ? "_blank" : undefined}
-              rel={social.external ? "noopener noreferrer" : undefined}
-              className="site-note hover:text-ink transition-colors"
-            >
-              {social.label} {social.external ? "↗" : ""}
-            </a>
-          ))}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
+            {siteSocialLinks.map((social) => (
+              <a
+                key={social.href}
+                href={social.href}
+                target={social.external ? "_blank" : undefined}
+                rel={social.external ? "noopener noreferrer" : undefined}
+                className="site-note hover:text-ink"
+              >
+                {social.label} {social.external ? "↗" : ""}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

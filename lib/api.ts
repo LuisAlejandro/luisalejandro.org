@@ -35,9 +35,9 @@ export async function getAllPostsSlugs() {
   }
 }
 
-export async function getAllPostsForHome() {
+export async function getAllPostsForHome(limit?: number) {
   try {
-    const data = await cosmic.objects
+    const query = cosmic.objects
       .find({
         type: "posts",
         status:
@@ -54,6 +54,8 @@ export async function getAllPostsForHome() {
         "modified_at",
       ])
       .sort("-created_at");
+
+    const data = limit ? await query.limit(limit) : await query;
     return data?.objects;
   } catch (error) {
     logError("getAllPostsForHome", error, {

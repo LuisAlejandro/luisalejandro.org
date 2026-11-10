@@ -3,6 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import {
+  lockPageScroll,
+  scrollToSection,
+} from "@components/common/Site/overlayLock";
 import { paletteItems, type PaletteItem } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
@@ -17,7 +21,6 @@ export function CommandPalette() {
   const listRef = useRef<HTMLUListElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
-  // Filtered items
   const filteredItems = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return paletteItems;
@@ -33,8 +36,8 @@ export function CommandPalette() {
     });
   }, [query]);
 
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
     setSelectedIndex(0);
   };
 
@@ -49,27 +52,29 @@ export function CommandPalette() {
     setIsOpen(false);
   };
 
-  // Sync open state with native dialog
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    if (isOpen) {
-      if (!dialog.open) {
-        dialog.showModal();
-      }
-      inputRef.current?.focus();
-      document.body.style.overflow = "hidden";
-    } else {
-      if (dialog.open) {
-        dialog.close();
-      }
-      document.body.style.overflow = "";
-      lastFocusedElement.current?.focus();
+    if (isOpen && !dialog.open) {
+      dialog.showModal();
+    } else if (!isOpen && dialog.open) {
+      dialog.close();
     }
   }, [isOpen]);
 
-  // Global keyboard shortcut (⌘K / Ctrl+K) and custom event
+  useEffect(() => {
+    if (!isOpen) return;
+
+    inputRef.current?.focus();
+    const release = lockPageScroll();
+
+    return () => {
+      release();
+      lastFocusedElement.current?.focus();
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
@@ -95,11 +100,8 @@ export function CommandPalette() {
     };
   }, [isOpen]);
 
-  // Execute selected item
   const executeItem = (item: PaletteItem) => {
-    if (item.pixelEvent) {
-      trackPixelEvent(item.pixelEvent);
-    }
+    if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
 
     closePalette();
 
@@ -109,14 +111,9 @@ export function CommandPalette() {
     }
 
     if (item.href.startsWith("/#")) {
-      const hash = item.href.replace("/#", "");
       if (window.location.pathname === "/") {
-        const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-          window.history.pushState(null, "", `#${hash}`);
-          return;
-        }
+        scrollToSection(item.href.replace("/#", ""));
+        return;
       }
       router.push(item.href);
       return;
@@ -125,7 +122,6 @@ export function CommandPalette() {
     router.push(item.href);
   };
 
-  // Keyboard navigation within palette
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
@@ -148,46 +144,44 @@ export function CommandPalette() {
     }
   };
 
-  // Auto-scroll selected item into view
   useEffect(() => {
-    if (!listRef.current) return;
-    const selectedElement = listRef.current.querySelector<HTMLElement>(
-      `[data-index="${selectedIndex}"]`
-    );
-    if (selectedElement) {
-      selectedElement.scrollIntoView({ block: "nearest" });
-    }
-  }, [selectedIndex]);
+    if (!isOpen || !listRef.current) return;
+    listRef.current
+      .querySelector<HTMLElement>(`[data-index="${selectedIndex}"]`)
+      ?.scrollIntoView({ block: "nearest" });
+  }, [selectedIndex, isOpen]);
 
-  // Group items
   const groupedItems = useMemo(() => {
-    const groups: { name: "Go to" | "Elsewhere"; items: PaletteItem[] }[] = [];
     const gotoItems = filteredItems.filter((i) => i.group === "Go to");
     const elsewhereItems = filteredItems.filter((i) => i.group === "Elsewhere");
+    const groups: { name: "Go to" | "Elsewhere"; items: PaletteItem[] }[] = [];
 
-    if (gotoItems.length > 0) {
-      groups.push({ name: "Go to", items: gotoItems });
-    }
+    if (gotoItems.length > 0) groups.push({ name: "Go to", items: gotoItems });
     if (elsewhereItems.length > 0) {
       groups.push({ name: "Elsewhere", items: elsewhereItems });
     }
     return groups;
   }, [filteredItems]);
 
+  const selectedId =
+    filteredItems.length > 0
+      ? `palette-option-${filteredItems[selectedIndex]?.id}`
+      : undefined;
+
   return (
     <dialog
       ref={dialogRef}
-      onCancel={(e) => {
-        e.preventDefault();
+      onCancel={(event) => {
+        event.preventDefault();
         closePalette();
       }}
-      className="backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-transparent p-4 w-full max-w-xl m-auto fixed inset-0 z-50 overflow-visible open:flex open:flex-col items-center"
+      onClose={closePalette}
+      className="m-auto w-full max-w-xl bg-transparent p-4 text-ink backdrop:bg-black/70 backdrop:backdrop-blur-sm"
       aria-label="Command Palette"
     >
-      <div className="w-full bg-paper-raised border border-rule-strong rounded-xl shadow-2xl overflow-hidden flex flex-col text-ink">
-        {/* Search Input Bar */}
-        <div className="flex items-center border-b border-rule px-4 py-3 gap-3">
-          <span className="site-note text-[0.7rem] px-1.5 py-0.5 rounded border border-rule">
+      <div className="flex w-full flex-col overflow-hidden rounded-xl border border-rule-strong bg-paper-raised shadow-2xl">
+        <div className="flex items-center gap-3 border-b border-rule px-4 py-3">
+          <span className="site-note rounded border border-rule px-1.5 py-0.5 text-[0.7rem]">
             ⌘K
           </span>
           <input
@@ -197,24 +191,26 @@ export function CommandPalette() {
             onChange={handleQueryChange}
             onKeyDown={handleInputKeyDown}
             placeholder="Type a command or search..."
-            className="w-full bg-transparent text-step-0 text-ink placeholder:text-ink-muted outline-none border-none focus:ring-0"
-            aria-autocomplete="list"
+            role="combobox"
+            aria-expanded={true}
             aria-controls="palette-results"
+            aria-autocomplete="list"
+            aria-activedescendant={selectedId}
+            className="w-full border-none bg-transparent text-step-0 text-ink outline-none placeholder:text-ink-muted focus:ring-0"
           />
           <button
             type="button"
             onClick={closePalette}
             aria-label="Close palette"
-            className="site-note text-[0.7rem] px-1.5 py-0.5 rounded border border-rule hover:border-rule-strong hover:text-ink cursor-pointer"
+            className="site-note cursor-pointer rounded border border-rule px-1.5 py-0.5 text-[0.7rem] hover:border-rule-strong hover:text-ink"
           >
             ESC
           </button>
         </div>
 
-        {/* Results List */}
-        <div className="max-h-[60vh] overflow-y-auto p-2">
+        <div data-lenis-prevent className="max-h-[60vh] overflow-y-auto p-2">
           {filteredItems.length === 0 ? (
-            <div className="p-8 text-center text-ink-muted font-site-mono text-step-n1">
+            <div className="p-8 text-center font-site-mono text-step-n1 text-ink-muted">
               No matching results for &ldquo;{query}&rdquo;
             </div>
           ) : (
@@ -222,6 +218,7 @@ export function CommandPalette() {
               id="palette-results"
               ref={listRef}
               role="listbox"
+              aria-label="Commands"
               className="flex flex-col gap-1"
             >
               {groupedItems.map((group) => (
@@ -237,14 +234,15 @@ export function CommandPalette() {
                       return (
                         <li
                           key={item.id}
+                          id={`palette-option-${item.id}`}
                           role="option"
                           aria-selected={isSelected}
                           data-index={itemIndex}
                           onClick={() => executeItem(item)}
                           onMouseEnter={() => setSelectedIndex(itemIndex)}
-                          className={`flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer transition-colors ${
+                          className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 ${
                             isSelected
-                              ? "bg-ink text-paper font-medium"
+                              ? "bg-ink font-medium text-paper"
                               : "text-ink hover:bg-rule/40"
                           }`}
                         >

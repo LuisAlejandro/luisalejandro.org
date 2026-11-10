@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { purgeByTags as purgeCloudflareByTags } from "@lib/cloudflare/purgeByTags";
 import { logError } from "@lib/logger";
-import { BLOG_PURGE_TAGS, purgeByTags } from "@lib/netlify/purgeByTags";
+import { CONTENT_PURGE_TAGS, purgeByTags } from "@lib/netlify/purgeByTags";
 
 const MAX_REVALIDATE_ITEMS = 50;
 const SLUG_PATTERN = /^[a-z0-9-]+$/;
@@ -39,8 +39,10 @@ export async function POST(request: NextRequest) {
     revalidatePath("/");
     revalidatedPaths.push("/");
 
-    revalidatePath("/index.md");
-    revalidatedPaths.push("/index.md");
+    // `/index.md` is a rewrite alias (see next.config.ts); the real route is
+    // the twin handler, matching the other twin calls below.
+    revalidatePath("/markdown-twin");
+    revalidatedPaths.push("/markdown-twin");
 
     revalidatePath("/markdown-twin/blog");
     revalidatedPaths.push("/markdown-twin/blog");
@@ -93,7 +95,7 @@ export async function POST(request: NextRequest) {
     revalidatePath("/llms-full.txt");
     revalidatedPaths.push("/llms-full.txt");
 
-    const purgedTags = [...BLOG_PURGE_TAGS];
+    const purgedTags = [...CONTENT_PURGE_TAGS];
     const [netlifyPurge, cfPurge] = await Promise.all([
       purgeByTags(purgedTags),
       purgeCloudflareByTags(purgedTags),

@@ -8,15 +8,12 @@ type HeroTypedProps = {
 };
 
 export function HeroTyped({ lead, typed }: HeroTypedProps) {
-  const [displayed, setDisplayed] = useState(typed);
-  const [isTyping, setIsTyping] = useState(false);
+  const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
+    // Reduced motion is handled in CSS (`motion-reduce:` swaps the sizer in for
+    // the typed line), so this effect never has to set state up front.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
@@ -26,7 +23,6 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
       setDisplayed(typed.slice(0, index));
       if (index >= typed.length) {
         clearInterval(interval);
-        setIsTyping(false);
       }
     }, 32);
 
@@ -36,20 +32,23 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
   }, [typed]);
 
   return (
-    <h1 className="text-step-4 sm:text-step-5 font-medium tracking-tight text-ink leading-[1.02] max-w-[18ch] sm:max-w-[20ch]">
+    <h1 className="max-w-[18ch] text-step-4 font-medium leading-[1.02] tracking-tight text-ink sm:max-w-[20ch] sm:text-step-5">
       <span className="sr-only">
         {lead} {typed}
       </span>
       <span aria-hidden="true" className="block text-ink">
         {lead}
       </span>
-      <span aria-hidden="true" className="block text-ink-muted mt-2">
-        {displayed}
-        <span
-          className={`inline-block w-[3px] h-[0.85em] ml-1.5 align-baseline bg-signal ${
-            isTyping ? "opacity-100" : "animate-pulse"
-          }`}
-        />
+      {/* The invisible sizer holds the full sentence's height from first paint,
+          so typing never collapses the hero (and never shifts layout). */}
+      <span aria-hidden="true" className="mt-2 grid">
+        <span className="invisible col-start-1 row-start-1 text-ink-muted motion-reduce:visible">
+          {typed}
+        </span>
+        <span className="col-start-1 row-start-1 text-ink-muted motion-reduce:hidden">
+          {displayed}
+          <span className="ml-1.5 inline-block h-[0.85em] w-[3px] translate-y-[0.1em] animate-pulse bg-signal" />
+        </span>
       </span>
     </h1>
   );

@@ -1,52 +1,44 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+
+import {
+  registerSmoothScroller,
+  releaseSmoothScroller,
+  scrollToSection,
+} from "@components/common/Site/overlayLock";
 
 export function SmoothScroll() {
   useEffect(() => {
-    // Check user preference
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (prefersReducedMotion) return;
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-    });
+    const lenis = new Lenis({ autoRaf: true, duration: 1.2 });
+    registerSmoothScroller(lenis);
 
-    // Handle in-page smooth anchor jumps
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement)?.closest("a");
-      if (!target) return;
-      const href = target.getAttribute("href");
-      if (href && href.startsWith("/#")) {
-        const id = href.replace("/#", "");
-        const el = document.getElementById(id);
-        if (el && window.location.pathname === "/") {
-          e.preventDefault();
-          lenis.scrollTo(el, { offset: -80 });
-          window.history.pushState(null, "", `#${id}`);
-        }
-      }
+    // Let in-page anchors use the smooth scroller, which also clears the
+    // sticky header (a plain anchor jump hides the section label behind it).
+    const handleAnchorClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const link = target.closest("a");
+      const href = link?.getAttribute("href");
+      if (!href || !href.startsWith("/#")) return;
+      if (window.location.pathname !== "/") return;
+
+      event.preventDefault();
+      scrollToSection(href.replace("/#", ""));
     };
 
     document.addEventListener("click", handleAnchorClick);
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
+      releaseSmoothScroller(lenis);
       lenis.destroy();
     };
   }, []);
