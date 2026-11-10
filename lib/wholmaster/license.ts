@@ -131,11 +131,6 @@ export function verifyLicenseKey(
   return payload;
 }
 
-/** isNewFormatKey reports whether the artifact is a WMK1 key rather than a legacy blob. */
-export function isNewFormatKey(artifact: string): boolean {
-  return artifact.startsWith(KEY_PREFIX + ".");
-}
-
 /** fingerprintMatch applies the desktop rule: a majority of the stored hashes, at least two stored. */
 export function fingerprintMatch(
   stored: string[] | undefined,

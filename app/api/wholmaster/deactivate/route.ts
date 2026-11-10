@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { logError } from "@lib/logger";
 import { checkSlidingWindowRateLimit } from "@lib/rateLimit/slidingWindow";
 import {
-  isNewFormatKey,
   publicKeyOf,
   signingKey,
   verifyLicenseKey,
@@ -45,10 +44,6 @@ export async function POST(request: NextRequest) {
     if (!body || !(await schema.isValid(body))) {
       return fail(400, "invalid_body");
     }
-    if (!isNewFormatKey(body.key)) {
-      return fail(400, "invalid_key");
-    }
-
     const ip =
       request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
       "unknown";

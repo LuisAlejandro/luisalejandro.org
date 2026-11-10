@@ -73,21 +73,6 @@ export async function findLicenseByLid(
   return toRecord(object);
 }
 
-/** findLicenseBySlug loads the legacy record by the customer's username. */
-export async function findLicenseBySlug(
-  slug: string
-): Promise<LicenseRecord | null> {
-  const cosmic = client(false);
-  const data = await cosmic.objects
-    .find({ type: "licenses", slug })
-    .props(["id", "slug", "title", "metadata"])
-    .limit(1);
-
-  const object = data.objects?.[0];
-  if (!object) return null;
-  return toRecord(object);
-}
-
 function toRecord(object: any): LicenseRecord {
   const meta = object.metadata ?? {};
   return {

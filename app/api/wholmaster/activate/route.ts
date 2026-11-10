@@ -5,18 +5,13 @@ import * as yup from "yup";
 import { logError } from "@lib/logger";
 import { checkSlidingWindowRateLimit } from "@lib/rateLimit/slidingWindow";
 import {
-  isNewFormatKey,
   publicKeyOf,
   signingKey,
   verifyLicenseKey,
 } from "@lib/wholmaster/license";
-import { decodeLegacyKey, isLegacyPremium } from "@lib/wholmaster/legacy";
 import {
   activate as activateSeat,
   findLicenseByLid,
-  findLicenseBySlug,
-  writeLicense,
-  type LicenseRecord,
 } from "@lib/wholmaster/seats";
 
 export const runtime = "nodejs";
@@ -32,7 +27,6 @@ const schema = yup
     key: yup.string().required(),
     fp: yup.array().of(yup.string().required()).min(2).required(),
     label: yup.string().default(""),
-    user: yup.string().default(""),
   })
   .required();
 
@@ -51,6 +45,13 @@ export async function OPTIONS() {
   return new NextResponse(null, { status: 200, headers: corsHeaders });
 }
 
+/**
+ * Registers one machine against a license key and returns a signed activation certificate.
+ *
+ * The key is the only credential: it must verify against our own public key, so possession of a
+ * valid key plus rate limiting is the authentication (R19). Seat counting happens here, once per
+ * machine; the desktop verifies certificates offline from then on.
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => null);
@@ -77,40 +78,16 @@ export async function POST(request: NextRequest) {
       type: "spki",
     });
 
-    let record: LicenseRecord | null = null;
-    let keyPayload: { lid: string } | null = null;
+    const verified = verifyLicenseKey(body.key, publicKey);
+    if (!verified) return fail(400, "invalid_key");
 
-    if (isNewFormatKey(body.key)) {
-      const verified = verifyLicenseKey(body.key, publicKey);
-      if (!verified) return fail(400, "invalid_key");
-      keyPayload = { lid: verified.lid };
-      record = await findLicenseByLid(verified.lid);
-    } else {
-      // Legacy key: only the issuer can read it, and it never grants premium by itself.
-      const legacy = decodeLegacyKey(body.key);
-      if (!legacy || !isLegacyPremium(legacy)) {
-        return fail(409, "legacy_not_eligible");
-      }
-      record = body.user ? await findLicenseBySlug(body.user) : null;
-      if (!record) return fail(409, "legacy_not_eligible");
-      if (record.status !== "active") return fail(409, "not_active");
-      if (!record.lid) {
-        record.lid = `wm-${crypto.randomUUID()}`;
-      }
-      record.tier = "gym";
-      record.seats = record.seats || 2;
-      record.maxMajor = 1;
-      makeLicensedTo(record, legacy.name);
-      await writeLicense(record.id, record);
-      keyPayload = { lid: record.lid };
-    }
-
-    if (!record || !keyPayload) return fail(404, "not_found");
+    const record = await findLicenseByLid(verified.lid);
+    if (!record) return fail(404, "not_found");
 
     const secret = crypto.randomBytes(32).toString("base64url");
     const outcome = await activateSeat({
       record,
-      lid: keyPayload.lid,
+      lid: verified.lid,
       kid,
       fp: body.fp,
       label: body.label,
@@ -139,9 +116,4 @@ export async function POST(request: NextRequest) {
     logError("wholmaster-activate", error);
     return fail(500, "internal");
   }
-}
-
-function makeLicensedTo(record: LicenseRecord, name: string) {
-  if (name) record.licensedTo = name;
-  if (!record.licensedTo) record.licensedTo = "";
 }
