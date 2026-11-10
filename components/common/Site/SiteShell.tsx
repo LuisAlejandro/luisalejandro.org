@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { CommandPalette } from "@components/common/Site/CommandPalette";
 import { geistMono, geistSans } from "@components/common/Site/fonts";
 
 type SiteShellProps = {
@@ -16,6 +17,7 @@ export function SiteShell({ children, header, footer }: SiteShellProps) {
         {children}
       </main>
       {footer}
+      <CommandPalette />
     </div>
   );
 }
