@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import { BlogSection } from "@components/Home/BlogSection";
 import { CtaSection } from "@components/Home/CtaSection";
@@ -16,6 +16,10 @@ import {
   generateHomepageFaqJsonLd,
   generateHomepageJsonLd,
 } from "@lib/structuredData";
+
+export const viewport: Viewport = {
+  themeColor: "#0b0b0c",
+};
 
 export const metadata: Metadata = {
   alternates: {
