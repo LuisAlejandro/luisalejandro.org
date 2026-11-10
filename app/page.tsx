@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 
+import { Hero } from "@components/Home/Hero";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 import { faqItems } from "@constants/homepageContent";
 import {
   generateHomepageFaqJsonLd,
   generateHomepageJsonLd,
 } from "@lib/structuredData";
-
-import { SiteFooter } from "@components/common/Site/SiteFooter";
-import { SiteHeader } from "@components/common/Site/SiteHeader";
-import { SiteShell } from "@components/common/Site/SiteShell";
 
 export const metadata: Metadata = {
   alternates: {
@@ -43,7 +43,7 @@ export default async function HomePage() {
           }}
         />
       )}
-      <div className="w-full min-h-[50vh]" />
+      <Hero />
     </SiteShell>
   );
 }

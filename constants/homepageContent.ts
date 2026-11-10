@@ -61,3 +61,25 @@ export const sectionTitles = {
   proof: "Selected impact",
   faq: "Frequently asked questions",
 };
+
+export const heroContent = {
+  status: {
+    role: "LUIS ALEJANDRO · SOFTWARE ENGINEER",
+    location: "BASE · 10.25° N, 67.60° W · MARACAY, VENEZUELA",
+    availability: "OPEN TO REMOTE WORK",
+  },
+  headline: {
+    lead: "I build backends.",
+    typed:
+      "APIs, integrations and open source tools that stay dependable after launch.",
+  },
+  labels: [
+    { glyph: "●", text: `${experience}+ YEARS OF EXPERIENCE` },
+    { glyph: "◆", text: "60+ OPEN SOURCE PROJECTS" },
+    { glyph: "▲", text: "REMOTE BY DEFAULT" },
+  ],
+  actions: {
+    primary: { label: "Let's talk →", href: "/contact" },
+    secondary: { label: "See the work", href: "/#work" },
+  },
+};
