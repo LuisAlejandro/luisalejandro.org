@@ -57,9 +57,94 @@
   --color-orange-3: #f1b161;
   --color-gray-6: #ddd;
   --color-teal-custom: #1abc9c;
+
+  /* redesign: tokens used only inside .site-shell (see DESIGN.md section 6) */
+  --color-paper: #0b0b0c;
+  --color-paper-raised: #151517;
+  --color-ink: #edede7;
+  --color-ink-muted: #8b8b85;
+  --color-rule: #edede71f;
+  --color-rule-strong: #edede74d;
+  --color-signal: #5b7cff;
+  --color-signal-ink: #0e0e0d;
+
+  --text-step-n1: clamp(0.8rem, 0.78rem + 0.1vw, 0.875rem);
+  --text-step-n1--line-height: 1.4;
+  --text-step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-step-0--line-height: 1.55;
+  --text-step-1: clamp(1.25rem, 1.13rem + 0.6vw, 1.625rem);
+  --text-step-1--line-height: 1.3;
+  --text-step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.5rem);
+  --text-step-2--line-height: 1.1;
+  --text-step-3: clamp(2.2rem, 1.5rem + 3.2vw, 4.5rem);
+  --text-step-3--line-height: 1.05;
+  --text-step-4: clamp(3rem, 1.6rem + 6.6vw, 8.5rem);
+  --text-step-4--line-height: 1;
+  --text-step-5: clamp(3.6rem, 1.2rem + 11vw, 14rem);
+  --text-step-5--line-height: 0.95;
+
+  --spacing-gutter: clamp(16px, 2.2vw, 32px);
+  --spacing-section: clamp(88px, 11vw, 180px);
+  --spacing-col-gap: clamp(12px, 1.4vw, 24px);
+
+  --ease-site-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-site-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* redesign fonts: the Geist variables are set on .site-shell, not on :root,
+   where a normal theme token would resolve them to nothing. `inline` makes
+   font-site / font-site-mono emit the stack itself at the point of use. */
+@theme inline {
+  --font-site: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-site-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+}
+
+/* Unlayered on purpose: <body> gets its gold background from a utility class,
+   and only an unlayered rule outranks the utilities layer. Without it the gold
+   shows on overscroll behind a redesigned page. */
+body:has(.site-shell) {
+  background-color: var(--color-paper);
 }
 
 @layer components {
+  /* redesign shell: resets everything a page inherits from <body> */
+  .site-shell {
+    @apply font-site;
+    min-height: 100dvh;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-size: var(--text-step-0);
+    line-height: var(--text-step-0--line-height);
+    font-weight: 400;
+    cursor: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .site-shell ::selection {
+    background-color: var(--color-signal);
+    color: var(--color-signal-ink);
+  }
+
+  .site-shell :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  /* <main> is only the skip link's landing target, not a control */
+  .site-shell > main:focus-visible {
+    outline: none;
+  }
+
+  .site-note {
+    @apply font-site-mono;
+    font-size: var(--text-step-n1);
+    line-height: var(--text-step-n1--line-height);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
   .simple-3d-button {
     box-shadow:
       0 -4px 0 rgba(255, 255, 255, 0.2) inset,

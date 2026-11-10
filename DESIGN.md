@@ -230,3 +230,42 @@ No sitewide dark theme. Two explicit visual modes:
 - Post/content typography relies heavily on custom CSS classes instead of shared React components.
 - Accessibility states (focus, aria-expanded, keyboard traps) are not documented uniformly across interactive blog/share controls.
 - Apps and portfolio/blog share tokens but do not share a single app-shell abstraction.
+
+## 6. Redesign (in progress)
+
+Two design systems coexist until every route is migrated. Sections 1 to 5 describe the old gold one, which still governs every page that does not render `SiteShell`.
+
+### Scoping rule
+
+- The new look applies only inside `SiteShell` (`components/common/Site/SiteShell.tsx`), whose wrapper carries the `.site-shell` class.
+- `.site-shell` resets what a page inherits from `<body>`: background, text colour, the 24px text size, font, cursor.
+- `app/layout.tsx` and the `<body>` classes stay untouched until the last route is migrated. No existing token is changed and no Tailwind default key (`--font-sans`, `--font-mono`) is overridden.
+- New pages use only the tokens below: no gold-era token, no one-off hex value.
+
+### Tokens (`styles/tailwind.css`)
+
+| Utility | Use |
+| --- | --- |
+| `bg-paper` | Page background (`#0b0b0c`) |
+| `bg-paper-raised` | Raised surface: cards, dialogs (`#151517`) |
+| `text-ink` | Body and heading text (`#edede7`) |
+| `text-ink-muted` | Secondary text and labels (`#8b8b85`) |
+| `border-rule`, `border-rule-strong` | Hairline dividers, and the stronger variant for hover or emphasis |
+| `text-signal`, `bg-signal` | The single blue accent (`#5b7cff`). Not named `accent-*`: `accent-2` and `accent-7` are old greys |
+| `text-signal-ink` | Text on a `bg-signal` surface (`#0e0e0d`) |
+| `font-site`, `font-site-mono` | Geist for text, Geist Mono for labels |
+| `text-step-n1` | Small labels |
+| `text-step-0` | Body text (the shell default) |
+| `text-step-1` to `text-step-5` | Headings, up to the largest display size. Each step is fluid and sets its own line-height |
+| `px-gutter` | Page side padding |
+| `py-section` | Vertical spacing between sections |
+| `gap-col-gap` | Grid column gap |
+| `ease-site-out`, `ease-site-in-out` | Transition easings, with durations of 400, 800 or 1200 ms |
+| `site-note` (class) | Small uppercase mono label in `ink-muted` |
+
+Inside the shell, `::selection` and the `:focus-visible` indicator use `signal`.
+
+### Two rules that look odd on purpose
+
+- **Fonts sit in `@theme inline`.** The Geist CSS variables are set on the shell element by `components/common/Site/fonts.ts`, not on `<html>`, so untouched routes never request the font files. A normal theme token resolves on `:root`, where those variables do not exist; `inline` makes the utility emit the font stack at the point of use.
+- **`body:has(.site-shell)` is outside every `@layer`.** `<body>` gets its gold background from a utility class, and only an unlayered rule outranks the utilities layer. It stops gold showing on overscroll.
