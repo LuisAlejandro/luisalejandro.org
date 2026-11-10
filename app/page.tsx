@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import { BlogSection } from "@components/Home/BlogSection";
 import { CtaSection } from "@components/Home/CtaSection";
 import { FaqSection } from "@components/Home/FaqSection";
 import { Hero } from "@components/Home/Hero";
@@ -10,6 +11,7 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 import { faqItems } from "@constants/homepageContent";
+import { getAllPostsForHome } from "@lib/api";
 import {
   generateHomepageFaqJsonLd,
   generateHomepageJsonLd,
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
+  const posts = (await getAllPostsForHome()) || [];
   const homepageJsonLd = generateHomepageJsonLd();
   const homepageFaqJsonLd = generateHomepageFaqJsonLd(faqItems);
 
@@ -53,6 +56,7 @@ export default async function HomePage() {
       <WorkSection />
       <ServicesSection />
       <FaqSection />
+      <BlogSection posts={posts} />
       <CtaSection />
     </SiteShell>
   );

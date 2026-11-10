@@ -36,6 +36,12 @@ export async function POST(request: NextRequest) {
     revalidatePath("/blog");
     revalidatedPaths.push("/blog");
 
+    revalidatePath("/");
+    revalidatedPaths.push("/");
+
+    revalidatePath("/index.md");
+    revalidatedPaths.push("/index.md");
+
     revalidatePath("/markdown-twin/blog");
     revalidatedPaths.push("/markdown-twin/blog");
 
