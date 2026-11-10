@@ -145,6 +145,32 @@ body:has(.site-shell) {
     color: var(--color-ink-muted);
   }
 
+  /* Reveal on scroll: default is visible (SSR safe); data-state="hidden"
+     is applied only after client hydration when reduced motion is not requested. */
+  .site-reveal {
+    transition:
+      opacity 0.8s var(--ease-site-out),
+      transform 0.8s var(--ease-site-out);
+  }
+
+  .site-reveal[data-state="hidden"] {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .site-reveal[data-state="visible"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-reveal[data-state="hidden"] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
   .simple-3d-button {
     box-shadow:
       0 -4px 0 rgba(255, 255, 255, 0.2) inset,
