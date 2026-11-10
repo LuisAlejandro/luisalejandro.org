@@ -35,19 +35,23 @@ With {{experience}}+ years of professional experience across TypeScript, Python,
 
 ### What backend frameworks and languages do you use?
 
-TypeScript, Python, and Go. Backends mainly on Node.js with Express, Python with Django and FastAPI, and Go for highly concurrent microservices. FastAPI for lightweight type-safe API design, Go where throughput and predictable latency matter most.
+TypeScript, Python and Go. Node with Express, Django and FastAPI for APIs, and Go where throughput and predictable latency matter most.
 
 ### Are you available for remote work?
 
-Yes. More than a decade of remote work across U.S. and European time zones, asynchronous by default: written specs, recorded demos, clear handoffs, with overlap hours when real-time collaboration helps.
+Yes. More than a decade of remote work across US and European time zones, asynchronous by default, with overlap hours when real time helps.
 
 ### What types of engagements do you accept?
 
-Long-term remote contracts and focused project work for SaaS products, API platforms, and developer tooling: backend architecture, third-party integrations, CI/CD hardening, and rescuing legacy systems without a big-bang rewrite.
+Long-term remote contracts and focused projects: backend architecture, third-party integrations, CI/CD hardening, and legacy systems rescued without a big-bang rewrite.
 
-### How can I start a conversation about hiring you?
+### How can I start a conversation?
 
-Use the contact page at https://luisalejandro.org/contact with your project scope, timeline, and team context. Serious contract and full-time remote inquiries get a reply within a few business days.
+Send your project scope, timeline and team context through the contact page. Serious contract and full-time remote inquiries get a reply within a few business days.
+
+## Next
+
+- Have a backend that must hold? [Send the brief](https://luisalejandro.org/contact), or [read the blog](https://luisalejandro.org/blog).
 
 ## Elsewhere
 

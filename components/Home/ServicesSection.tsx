@@ -1,51 +1,58 @@
+import Link from "next/link";
+
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
-import { sectionTitles, servicesList } from "@constants/homepageContent";
+import {
+  sectionNotes,
+  sectionTitles,
+  servicesList,
+} from "@constants/homepageContent";
 
+/**
+ * 03 — one 12-column row per service. The row carries no card: hovering floods
+ * it with ink and swings the arrow round.
+ */
 export function ServicesSection() {
   return (
-    <section className="px-gutter py-section border-b border-rule">
+    <section className="site-section site-wrap">
       <SectionHeader
         num="03"
         label={sectionTitles.services}
-        note="CAPABILITIES"
+        note={
+          <Link href="/portfolio" className="site-link">
+            {sectionNotes.services}
+          </Link>
+        }
         id="services"
       />
 
-      <div className="flex flex-col divide-y divide-rule/60">
-        {servicesList.map((service) => (
-          <Reveal key={service.num} className="first:pt-0 last:pb-0">
-            <div className="py-8 lg:py-12 flex flex-col md:flex-row md:items-start justify-between gap-6 lg:gap-12">
-              {/* Number and Title */}
-              <div className="md:w-1/2 flex items-baseline gap-4">
-                <span className="site-note text-signal font-medium">
-                  {service.num}
-                </span>
-                <h3 className="text-step-2 lg:text-step-3 font-medium text-ink tracking-tight">
-                  {service.title}
-                </h3>
-              </div>
+      <Reveal>
+        <ol className="site-services">
+          {servicesList.map((service) => (
+            <li key={service.num} className="site-service">
+              <Link href="/portfolio" className="site-service__link">
+                <span className="site-service__n site-note">{service.num}</span>
 
-              {/* Description and tags */}
-              <div className="md:w-1/2 flex flex-col gap-4">
-                <p className="text-step-n1 text-ink-muted leading-relaxed">
-                  {service.description}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
+                <h3 className="site-service__title site-h2">{service.title}</h3>
+
+                <p className="site-service__body">{service.description}</p>
+
+                <ul className="site-service__tags">
                   {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="site-note px-2.5 py-1 rounded border border-rule text-ink-muted"
-                    >
+                    <li key={tag} className="site-note">
                       {tag}
-                    </span>
+                    </li>
                   ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+                </ul>
+
+                <span aria-hidden="true" className="site-service__arrow">
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </Reveal>
     </section>
   );
 }

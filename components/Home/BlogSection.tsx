@@ -19,33 +19,31 @@ type BlogSectionProps = {
   posts?: PostItem[];
 };
 
+/**
+ * 05 — dated rows on the 12-column grid: date, title, pillar. The title slides
+ * right and turns accent on hover.
+ */
 export function BlogSection({ posts = [] }: BlogSectionProps) {
   const displayPosts = posts.slice(0, 3);
 
   return (
-    <section className="px-gutter py-section border-b border-rule">
+    <section className="site-section site-wrap">
       <SectionHeader
         num="05"
         label={sectionTitles.blog}
         note={
-          <Link
-            href="/blog"
-            className="site-note text-ink hover:text-signal transition-colors inline-flex items-center gap-1 font-medium"
-          >
-            <span>All posts</span>
-            <span>→</span>
+          <Link href="/blog" className="site-link">
+            All posts →
           </Link>
         }
         id="from-the-blog"
       />
 
       {displayPosts.length === 0 ? (
-        <div className="py-8 site-note text-ink-muted">
-          No published posts yet.
-        </div>
+        <p className="site-note">No published posts yet.</p>
       ) : (
         <Reveal>
-          <div className="flex flex-col divide-y divide-rule/60">
+          <ul className="site-posts">
             {displayPosts.map((post) => {
               let formattedDate = "";
               try {
@@ -59,41 +57,34 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
                 formattedDate = "";
               }
 
-              const categoryLabel = post.metadata?.categories?.[0]?.title;
-
               return (
-                <article key={post.slug} className="group py-6 first:pt-0">
-                  <Link
-                    href={`/blog/posts/${post.slug}`}
-                    className="flex flex-col md:flex-row md:items-baseline justify-between gap-4"
-                  >
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6">
-                      {formattedDate && (
-                        <time
-                          dateTime={post.created_at}
-                          className="site-note text-ink-muted w-28 flex-shrink-0"
-                        >
-                          {formattedDate}
-                        </time>
-                      )}
-                      <h3
-                        lang="es"
-                        className="text-step-1 lg:text-step-2 font-medium text-ink group-hover:text-signal transition-colors tracking-tight"
+                <li key={post.slug}>
+                  <Link href={`/blog/posts/${post.slug}`} className="site-post">
+                    {formattedDate ? (
+                      <time
+                        dateTime={post.created_at}
+                        className="site-note site-post__date"
                       >
-                        {post.title}
-                      </h3>
-                    </div>
+                        {formattedDate}
+                      </time>
+                    ) : (
+                      <span className="site-post__date" />
+                    )}
 
-                    {categoryLabel && (
-                      <span className="site-note px-2.5 py-0.5 rounded border border-rule text-ink-muted group-hover:border-rule-strong group-hover:text-ink transition-colors flex-shrink-0 self-start md:self-auto">
-                        {categoryLabel}
+                    <h3 lang="es" className="site-post__title">
+                      {post.title}
+                    </h3>
+
+                    {post.metadata?.categories?.[0]?.title && (
+                      <span className="site-note site-post__pillar">
+                        {post.metadata.categories[0].title}
                       </span>
                     )}
                   </Link>
-                </article>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </Reveal>
       )}
     </section>

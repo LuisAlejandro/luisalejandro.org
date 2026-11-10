@@ -1,34 +1,45 @@
-"use client";
-
 import { Reveal } from "@components/common/Site/Reveal";
-import { SiteButton } from "@components/common/Site/SiteButton";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
-import { sectionTitles } from "@constants/homepageContent";
+import { SiteButton } from "@components/common/Site/SiteButton";
+import {
+  ctaContent,
+  sectionNotes,
+  sectionTitles,
+} from "@constants/homepageContent";
 import { contactAction } from "@constants/siteNavigation";
 
+/**
+ * 06 — the closing pair of lines at display size, then the two pills.
+ */
 export function CtaSection() {
   return (
-    <section className="px-gutter py-section border-b border-rule">
+    <section className="site-section site-wrap">
       <SectionHeader
         num="06"
         label={sectionTitles.cta}
-        note="INITIATE"
+        note={sectionNotes.cta}
         id="next"
       />
 
       <Reveal>
-        <div className="flex flex-col items-start max-w-3xl">
-          <h2 className="text-step-3 sm:text-step-4 lg:text-step-5 font-medium text-ink tracking-tight mb-8 leading-[1.05]">
-            Tell me what you&apos;re building.
-          </h2>
+        <h2 className="site-display site-cta__title text-ink">
+          {ctaContent.lines.map((line) => (
+            <span key={line} className="site-line-mask">
+              <span>{line}</span>
+            </span>
+          ))}
+        </h2>
 
+        <div className="site-cta__actions">
           <SiteButton
             href={contactAction.href}
-            size="lg"
             tracking={contactAction.pixelEvent}
             arrow
           >
-            {contactAction.label}
+            {ctaContent.primary.label}
+          </SiteButton>
+          <SiteButton href={ctaContent.secondary.href} variant="ghost">
+            {ctaContent.secondary.label}
           </SiteButton>
         </div>
       </Reveal>

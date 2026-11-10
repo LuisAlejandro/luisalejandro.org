@@ -1,40 +1,49 @@
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
-import { faqItems, sectionTitles } from "@constants/homepageContent";
+import {
+  faqClaim,
+  faqItems,
+  sectionNotes,
+  sectionTitles,
+} from "@constants/homepageContent";
 
+/**
+ * 04 — a two-line claim, a rule that draws across, then four steps marked with
+ * accent dots. The questions replace the reference's process steps.
+ */
 export function FaqSection() {
   return (
-    <section className="px-gutter py-section border-b border-rule">
+    <section className="site-section site-wrap">
       <SectionHeader
         num="04"
         label={sectionTitles.faq}
-        note="PROCESS & ENGAGEMENTS"
+        note={sectionNotes.faq}
         id="faq"
       />
 
       <Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-col-gap">
-          {faqItems.map((item, index) => {
-            const numStr = String(index + 1).padStart(2, "0");
+        <h2 className="site-h2 site-claim">
+          {faqClaim.map((line) => (
+            <span key={line} className="site-line-mask">
+              <span>{line}</span>
+            </span>
+          ))}
+        </h2>
 
-            return (
-              <div
-                key={index}
-                className="flex flex-col border-t border-rule/60 pt-6"
-              >
-                <div className="site-note text-signal font-medium mb-3">
-                  {numStr}
-                </div>
-                <h3 className="text-step-1 lg:text-step-2 font-medium text-ink tracking-tight mb-3">
-                  {item.question}
-                </h3>
-                <p className="text-step-n1 text-ink-muted leading-relaxed">
-                  {item.answer}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        <div className="site-process-line" />
+
+        <ol className="site-steps site-grid mt-10">
+          {faqItems.map((item, index) => (
+            <li key={item.question} className="site-step">
+              <span aria-hidden="true" className="site-step__dot" />
+              <span className="site-note">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="site-step__title">{item.question}</h3>
+              <p className="site-step__body">{item.answer}</p>
+            </li>
+          ))}
+        </ol>
       </Reveal>
     </section>
   );

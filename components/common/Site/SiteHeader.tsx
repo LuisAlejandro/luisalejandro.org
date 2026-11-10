@@ -9,6 +9,27 @@ import { SiteButton } from "@components/common/Site/SiteButton";
 import { contactAction, siteNavItems } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
+/** The site mark: two angle brackets around a node. Drawn here, not traced. */
+function SiteMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 44 26"
+      width="44"
+      height="26"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="square"
+      className="site-brand__mark"
+    >
+      <path d="M14 5 5 13l9 8" />
+      <path d="M30 5l9 8-9 8" />
+      <circle cx="22" cy="13" r="2.6" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,107 +39,109 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-rule bg-paper/90 backdrop-blur-md">
+      <header className="site-header site-wrap">
         <SkipToContentLink />
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-gutter py-3.5">
-          {/* Site mark */}
-          <Link
-            href="/"
-            className="group flex items-baseline gap-2 font-site-mono text-step-n1 tracking-wider text-ink transition-colors hover:text-signal"
-          >
-            <span className="font-semibold text-ink group-hover:text-signal">
-              LUIS ALEJANDRO
-            </span>
-            <span className="text-ink-muted">/</span>
-            <span className="text-ink-muted hidden sm:inline">
-              SOFTWARE ENGINEER
-            </span>
-          </Link>
 
-          {/* Desktop Navigation */}
-          <nav
-            aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-6"
-          >
-            {siteNavItems.map((item) => {
-              const handleClick = () => {
-                if (item.pixelEvent) {
-                  trackPixelEvent(item.pixelEvent);
-                }
-              };
+        <Link
+          href="/"
+          className="site-brand"
+          aria-label="Luis Alejandro — home"
+        >
+          <SiteMark />
+          <span className="site-note text-ink">Luis Alejandro</span>
+          <span className="site-note site-brand__role">
+            / software engineer
+          </span>
+        </Link>
 
-              if (item.external) {
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={handleClick}
-                    className="group flex items-baseline gap-1.5 text-step-n1 font-medium text-ink-muted hover:text-ink transition-colors"
-                  >
-                    <span className="site-note text-ink-muted group-hover:text-signal">
-                      {item.num}
-                    </span>
-                    <span>{item.label}</span>
-                    <span className="site-note text-ink-muted group-hover:text-signal">
-                      ↗
-                    </span>
-                  </a>
-                );
+        <nav aria-label="Main Navigation" className="site-nav">
+          {siteNavItems.map((item) => {
+            const handleClick = () => {
+              if (item.pixelEvent) {
+                trackPixelEvent(item.pixelEvent);
               }
+            };
 
+            const label = (
+              <>
+                <span className="site-note">{item.num}</span>
+                <span className="site-nav__label" data-label={item.label}>
+                  {item.label}
+                </span>
+              </>
+            );
+
+            if (item.external) {
               return (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={handleClick}
-                  className="group flex items-baseline gap-1.5 text-step-n1 font-medium text-ink-muted hover:text-ink transition-colors"
+                  className="site-nav__link"
                 >
-                  <span className="site-note text-ink-muted group-hover:text-signal">
-                    {item.num}
-                  </span>
-                  <span>{item.label}</span>
-                </Link>
+                  {label}
+                  <span className="site-note">↗</span>
+                </a>
               );
-            })}
-          </nav>
+            }
 
-          {/* Right side utilities: Palette trigger, Mobile trigger, CTA */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={handlePaletteClick}
-              aria-label="Open command palette (⌘K)"
-              className="site-note flex items-center justify-center rounded border border-rule px-2 py-1 text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
-            >
-              ⌘K
-            </button>
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={handleClick}
+                className="site-nav__link"
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
 
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open menu"
-              className="site-note md:hidden flex items-center justify-center rounded border border-rule px-2.5 py-1 text-ink-muted hover:border-rule-strong hover:text-ink transition-colors cursor-pointer"
-            >
-              Menu
-            </button>
+        <div className="site-tools">
+          <button
+            type="button"
+            onClick={handlePaletteClick}
+            aria-label="Open command palette (⌘K)"
+            className="site-tool site-tool--wide site-note"
+          >
+            ⌘K
+          </button>
 
-            <SiteButton
-              href={contactAction.href}
-              size="sm"
-              tracking={contactAction.pixelEvent}
-            >
-              {contactAction.label}
-            </SiteButton>
-          </div>
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
+            className="site-tool site-tool--menu site-note"
+          >
+            Menu
+          </button>
+
+          <SiteButton
+            href={contactAction.href}
+            size="sm"
+            tracking={contactAction.pixelEvent}
+          >
+            {contactAction.label}
+          </SiteButton>
+        </div>
+
+        {/* Ruler + scroll progress: drawn by CSS scroll timelines, so the header
+            needs no scroll listener and no client re-render. */}
+        <div aria-hidden="true" className="site-header__rule">
+          <span className="site-header__fill">
+            <span className="site-header__tag" />
+          </span>
         </div>
       </header>
 
-      {/* Rendered outside <header>: backdrop-blur on the header establishes a
-          containing block that would trap a fixed-position overlay. */}
+      {/* Rendered outside <header>: a fixed-position overlay inside it would be
+          clipped by the header's own stacking context. */}
       <MobileMenu
-        isOpen={mobileMenuOpen}
+        open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
       />
     </>

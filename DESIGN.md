@@ -266,7 +266,25 @@ Two design systems coexist until every route is migrated. Sections 1 to 5 descri
 
 Inside the shell, `::selection` and the `:focus-visible` indicator use `signal`.
 
-Primary calls to action render through `SiteButton` (`components/common/Site/SiteButton.tsx`) in three sizes, so the pill is defined once. Nothing in the shell uses `hover:bg-white`, a raw `text-[…]` size, or a hand-rolled `py-16 lg:py-24` rhythm.
+Primary calls to action render through `SiteButton` (`components/common/Site/SiteButton.tsx`) in two sizes (`sm` for the header, `md` everywhere else) and two variants (`solid`, `ghost`), so the pill is defined once. Nothing in the shell uses `hover:bg-white`, a raw `text-[…]` size, or a hand-rolled `py-16 lg:py-24` rhythm.
+
+### Parity layer
+
+The shell reproduces the measured geometry of the reference design (see `.mash/qa/parity-2026-11-10/parity-report.md`) through semantic `site-` classes in `styles/tailwind.css`. Every class is prefixed, so no legacy page can pick one up.
+
+| Group | Classes |
+| --- | --- |
+| Frame | `.site-wrap`, `.site-grid` (12 columns, 4 below 768px), `.site-section` (top padding only), `.site-section-head` (rule above the label), plus the two fixed hairlines drawn by `.site-shell::before/::after` |
+| Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
+| Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
+| Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
+| Effects | `.site-preloader`, `.site-gen-word` / `.site-gen-caret`, `.site-terrain`, `.site-process-line`, `.site-reveal` |
+
+**Motion is CSS-first.** The header compacts, draws its ruler and fills its progress bar through `animation-timeline: scroll(root)`, with a `@supports` fallback that hides the progress bar. The work stage pins with `position: sticky`, and only a scroll listener picking the active index runs in JavaScript (`WorkSection`). Reveals stay in `Reveal` (IntersectionObserver). The preloader is pure CSS and is removed entirely under `prefers-reduced-motion`.
+
+**The pinned work stage degrades to a list.** `data-pinned` is set from `useSyncExternalStore` over `(min-width: 768px)` and `prefers-reduced-motion`; when it is false the same markup renders as stacked cards, so there is no second copy of the DOM.
+
+**Nothing here may leak into a legacy route.** The parity classes are new names, the tokens are additive, and `SiteShell` is still the only element that carries `.site-shell`.
 
 ### Two rules that look odd on purpose
 

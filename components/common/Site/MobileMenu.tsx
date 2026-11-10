@@ -13,30 +13,30 @@ import {
 import { trackPixelEvent } from "@lib/pixel";
 
 type MobileMenuProps = {
-  isOpen: boolean;
+  open: boolean;
   onClose: () => void;
 };
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
 
-    if (isOpen && !dialog.open) {
+    if (open && !dialog.open) {
       // showModal gives focus trapping and Escape for free, and keeps the
-      // overlay out of the sticky header's backdrop-filter containing block.
+      // overlay out of the fixed header's containing block.
       dialog.showModal();
-    } else if (!isOpen && dialog.open) {
+    } else if (!open && dialog.open) {
       dialog.close();
     }
-  }, [isOpen]);
+  }, [open]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!open) return;
     return lockPageScroll();
-  }, [isOpen]);
+  }, [open]);
 
   return (
     <dialog
@@ -47,86 +47,87 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         onClose();
       }}
       onClose={onClose}
-      className="m-0 h-full max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-black/70"
+      className="site-menu"
     >
-      <div
-        data-lenis-prevent
-        className="flex h-full flex-col overflow-y-auto px-gutter py-4"
-      >
-        <div className="flex items-center justify-between border-b border-rule pb-4">
-          <span className="site-note">Navigation</span>
+      <div data-lenis-prevent className="flex h-full flex-col">
+        <div className="flex items-center justify-between border-b border-rule-strong pb-3">
+          <span className="site-note text-ink">Navigation</span>
           <button
             type="button"
             onClick={onClose}
-            className="site-note cursor-pointer rounded border border-rule px-3 py-1.5 hover:border-rule-strong hover:text-ink"
+            className="site-tool site-tool--wide site-note"
             aria-label="Close menu"
           >
-            Close [ESC]
+            Close
           </button>
         </div>
 
-        <nav aria-label="Mobile Menu" className="flex flex-col gap-6 py-8">
-          {siteNavItems.map((item) => {
-            const handleClick = () => {
-              if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
-              onClose();
-            };
+        <nav aria-label="Mobile Menu" className="flex flex-col py-8">
+          <ul className="site-menu__list">
+            {siteNavItems.map((item) => {
+              const handleClick = () => {
+                if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
+                onClose();
+              };
 
-            const className =
-              "group flex items-baseline justify-between border-b border-rule pb-3 text-step-2 font-medium hover:text-signal";
-
-            if (item.external) {
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleClick}
-                  className={className}
-                >
+              const label = (
+                <>
+                  <span className="site-note">{item.num}</span>
                   <span>{item.label}</span>
-                  <span className="site-note group-hover:text-signal">
-                    {item.num} ↗
-                  </span>
-                </a>
+                  {item.external && (
+                    <span className="site-note ml-auto">↗</span>
+                  )}
+                </>
               );
-            }
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleClick}
-                className={className}
-              >
-                <span>{item.label}</span>
-                <span className="site-note group-hover:text-signal">
-                  {item.num}
-                </span>
-              </Link>
-            );
-          })}
+              if (item.external) {
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleClick}
+                      className="site-menu__link"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={handleClick}
+                    className="site-menu__link"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
         <div className="mt-auto flex flex-col gap-4 border-t border-rule pt-6">
           <SiteButton
             href={contactAction.href}
-            size="lg"
             tracking={contactAction.pixelEvent}
             className="w-full"
           >
             {contactAction.label}
           </SiteButton>
 
-          <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             {siteSocialLinks.map((social) => (
               <a
                 key={social.href}
                 href={social.href}
                 target={social.external ? "_blank" : undefined}
                 rel={social.external ? "noopener noreferrer" : undefined}
-                className="site-note hover:text-ink"
+                className="site-note site-link"
               >
                 {social.label} {social.external ? "↗" : ""}
               </a>

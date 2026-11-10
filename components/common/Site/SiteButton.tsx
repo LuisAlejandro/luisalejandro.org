@@ -8,42 +8,71 @@ import { trackPixelEvent } from "@lib/pixel";
 type SiteButtonProps = {
   href: string;
   children: React.ReactNode;
-  size?: "sm" | "md" | "lg";
+  /** `sm` is the 36px header pill; `md` is the 52px page pill. */
+  size?: "sm" | "md";
+  variant?: "solid" | "ghost";
   tracking?: PixelEvent;
   arrow?: boolean;
   className?: string;
 };
 
-const sizes = {
-  sm: "px-4 py-1.5 text-step-n1",
-  md: "px-6 py-2.5 text-step-0",
-  lg: "px-8 py-3.5 text-step-0",
-};
-
 /**
- * The filled pill used for every primary call to action. One definition keeps
- * the five call sites from drifting apart in size and tracking.
+ * The pill used for every call to action. Geometry, tracking and the rising
+ * accent hover come from the reference; one definition keeps the call sites
+ * from drifting apart.
  */
 export function SiteButton({
   href,
   children,
   size = "md",
+  variant = "solid",
   tracking,
   arrow = false,
   className = "",
 }: SiteButtonProps) {
+  const external = href.startsWith("http");
+
+  const classes = [
+    "site-btn",
+    size === "sm" ? "site-btn--sm" : "",
+    variant === "ghost" ? "site-btn--ghost" : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const content = (
+    <>
+      <span>{children}</span>
+      {arrow && (
+        <span aria-hidden="true" className="site-btn__arrow">
+          →
+        </span>
+      )}
+    </>
+  );
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={tracking ? () => trackPixelEvent(tracking) : undefined}
+        className={classes}
+      >
+        {content}
+      </a>
+    );
+  }
+
   return (
     <Link
       href={href}
       onClick={tracking ? () => trackPixelEvent(tracking) : undefined}
-      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-ink font-medium text-paper hover:bg-ink-strong ${sizes[size]} ${className}`}
+      className={classes}
     >
-      <span>{children}</span>
-      {arrow && (
-        <span className="transition-transform group-hover:translate-x-1">
-          →
-        </span>
-      )}
+      {content}
     </Link>
   );
 }

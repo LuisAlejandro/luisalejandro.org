@@ -2,9 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-const COLS = 28;
-const ROWS = 16;
+const BANDS = 18;
+const SAMPLES = 160;
 
+/**
+ * The hero background: a topographic contour map that rises under the pointer.
+ * Hand-drawn on a 2D canvas — the reference uses WebGL for the same effect.
+ */
 export function HeroTerrain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -22,10 +26,15 @@ export function HeroTerrain() {
     let width = 0;
     let height = 0;
     let dpr = 1;
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
+    let centreX = 0;
+    let centreY = 0;
+    let pointX = -1e4;
+    let pointY = -1e4;
+    let targetX = -1e4;
+    let targetY = -1e4;
+    let frame = 0;
+    let visible = true;
+    let start = 0;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -37,127 +46,132 @@ export function HeroTerrain() {
         canvas.width = width;
         canvas.height = height;
       }
-      // Resizing resets the backing store; re-seed the pointer so the mesh is
-      // not shaped by a stale coordinate.
-      mouseX = targetMouseX = width / 2;
-      mouseY = targetMouseY = height / 2;
+      // The peak sits off-centre, behind the headline, not on the grid axis.
+      centreX = width * 0.6;
+      centreY = height * 0.56;
+      pointX = targetX;
+      pointY = targetY;
     };
 
-    const elevationAt = (
-      col: number,
-      depth: number,
-      time: number,
-      mX: number,
-      mY: number,
-      yBase: number
-    ) => {
-      const x = col * (width / (COLS - 1));
-      const dx = x - mX;
-      const dy = yBase - mY;
+    /** Radius of band `k` at angle `a`, with the pointer raising the ground. */
+    const radiusAt = (k: number, a: number, time: number) => {
+      const base = height * 0.024 + k * height * 0.033;
+      const wobble =
+        1 +
+        0.13 * Math.sin(a * 3 + time * 0.00016 + k * 0.15) +
+        0.07 * Math.sin(a * 5 - time * 0.00011) +
+        0.035 * Math.sin(a * 8 + k * 0.4);
+
+      // Distance from this sample to the pointer, in device pixels.
+      const x = centreX + Math.cos(a) * base * wobble;
+      const y = centreY + Math.sin(a) * base * wobble * 0.48;
+      const dx = x - pointX;
+      const dy = y - pointY;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      const influence = Math.max(0, 1 - distance / (width * 0.35));
+      const lift = Math.exp(-((distance / (height * 0.34)) ** 2));
 
-      return (
-        Math.sin(col * 0.4 + time * 0.0015 + depth * 0.3) * 12 * dpr * depth +
-        influence * 36 * dpr
-      );
+      return base * wobble + lift * height * 0.06;
     };
 
-    const drawFrame = (time: number, mX: number, mY: number) => {
-      if (width === 0 || height === 0) return;
+    const draw = (time: number) => {
+      if (!width || !height) return;
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = Math.max(1, dpr);
 
-      const cellWidth = width / (COLS - 1);
-      const horizonY = height * 0.15;
-      const groundHeight = height - horizonY;
+      const age = start === 0 ? 1 : Math.min(1, (time - start) / 1600);
 
-      const yBaseAt = (depth: number) =>
-        horizonY + groundHeight * Math.pow(depth, 1.8);
-
-      for (let row = 0; row < ROWS; row += 1) {
-        const depth = row / (ROWS - 1);
-        const yBase = yBaseAt(depth);
-
+      for (let k = 0; k < BANDS; k += 1) {
+        const depth = k / (BANDS - 1);
         ctx.beginPath();
-        for (let col = 0; col < COLS; col += 1) {
-          const x = col * cellWidth;
-          const y = yBase - elevationAt(col, depth, time, mX, mY, yBase);
-          if (col === 0) ctx.moveTo(x, y);
+        for (let s = 0; s <= SAMPLES; s += 1) {
+          const a = (s / SAMPLES) * Math.PI * 2;
+          const r = radiusAt(k, a, time);
+          const x = centreX + Math.cos(a) * r;
+          const y = centreY + Math.sin(a) * r * 0.48;
+          if (s === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = `rgba(91, 124, 255, ${0.03 + 0.12 * Math.pow(depth, 1.2)})`;
+        // Bands near the peak read brighter; the whole map fades in over 2s.
+        ctx.strokeStyle = `rgba(237, 237, 231, ${(0.05 + depth * 0.22) * age})`;
+        ctx.lineWidth = Math.max(1, dpr * (depth > 0.75 ? 1.15 : 1));
         ctx.stroke();
       }
 
-      for (let col = 0; col < COLS; col += 1) {
-        const x = col * cellWidth;
-
+      // One accent ring marks the raised ground under the pointer.
+      if (pointX > -1000) {
+        const near = Math.round(BANDS * 0.55);
         ctx.beginPath();
-        for (let row = 0; row < ROWS; row += 1) {
-          const depth = row / (ROWS - 1);
-          const yBase = yBaseAt(depth);
-          const y = yBase - elevationAt(col, depth, time, mX, mY, yBase);
-          if (row === 0) ctx.moveTo(x, y);
+        for (let s = 0; s <= SAMPLES; s += 1) {
+          const a = (s / SAMPLES) * Math.PI * 2;
+          const r = radiusAt(near, a, time);
+          const x = centreX + Math.cos(a) * r;
+          const y = centreY + Math.sin(a) * r * 0.48;
+          if (s === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
-        ctx.strokeStyle = "rgba(237, 237, 231, 0.04)";
+        ctx.strokeStyle = `rgba(91, 124, 255, ${0.28 * age})`;
         ctx.stroke();
       }
+    };
+
+    const loop = (time: number) => {
+      if (start === 0) start = time;
+      pointX += (targetX - pointX) * 0.08;
+      pointY += (targetY - pointY) * 0.08;
+      draw(time);
+      if (!prefersReducedMotion && visible) {
+        frame = window.requestAnimationFrame(loop);
+      }
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      targetX = (event.clientX - rect.left) * dpr;
+      targetY = (event.clientY - rect.top) * dpr;
+    };
+
+    const handlePointerLeave = () => {
+      targetX = -1e4;
+      targetY = -1e4;
     };
 
     resize();
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);
 
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      targetMouseX = (event.clientX - rect.left) * dpr;
-      targetMouseY = (event.clientY - rect.top) * dpr;
-    };
+    canvas.parentElement?.addEventListener("pointermove", handlePointerMove);
+    canvas.parentElement?.addEventListener("pointerleave", handlePointerLeave);
 
-    if (prefersReducedMotion) {
-      drawFrame(0, width / 2, height / 2);
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
+    const intersection = new IntersectionObserver(
+      (entries) => {
+        visible = entries.some((entry) => entry.isIntersecting);
+        if (visible && !prefersReducedMotion) {
+          window.cancelAnimationFrame(frame);
+          start = 0;
+          frame = window.requestAnimationFrame(loop);
+        }
+      },
+      { threshold: 0 }
+    );
+    intersection.observe(canvas);
 
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // Run the animation only while the hero is on screen: an off-screen canvas
-    // scheduling frames forever is pure battery cost.
-    let frameId = 0;
-    const render = (time: number) => {
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
-      drawFrame(time, mouseX, mouseY);
-      frameId = requestAnimationFrame(render);
-    };
-
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (frameId === 0) frameId = requestAnimationFrame(render);
-      } else if (frameId !== 0) {
-        cancelAnimationFrame(frameId);
-        frameId = 0;
-      }
-    });
-    intersectionObserver.observe(canvas);
+    // Paint-in is a CSS transition on the data attribute, so no state is needed.
+    canvas.dataset.on = "true";
+    frame = window.requestAnimationFrame(loop);
 
     return () => {
-      if (frameId !== 0) cancelAnimationFrame(frameId);
-      intersectionObserver.disconnect();
+      window.cancelAnimationFrame(frame);
       resizeObserver.disconnect();
-      window.removeEventListener("mousemove", handleMouseMove);
+      intersection.disconnect();
+      canvas.parentElement?.removeEventListener(
+        "pointermove",
+        handlePointerMove
+      );
+      canvas.parentElement?.removeEventListener(
+        "pointerleave",
+        handlePointerLeave
+      );
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 h-full w-full opacity-60"
-    />
-  );
+  return <canvas ref={canvasRef} aria-hidden="true" className="site-terrain" />;
 }

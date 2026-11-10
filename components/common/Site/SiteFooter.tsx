@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 
+import { config } from "@constants/constants";
+import { footerContent } from "@constants/homepageContent";
 import { siteNavItems, siteSocialLinks } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
+/**
+ * Footer: a claim with an inline accent link, three link columns, the wordmark
+ * set as large as the viewport allows, then the colophon row.
+ */
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
@@ -13,111 +19,144 @@ export function SiteFooter() {
   };
 
   return (
-    <footer className="w-full border-t border-rule bg-paper text-ink">
-      <div className="mx-auto max-w-[1440px] px-gutter py-16 lg:py-24">
-        {/* Top callout */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 border-b border-rule">
-          <div className="max-w-xl">
-            <span className="site-note mb-2 block">Next steps</span>
-            <h2 className="text-step-3 font-medium tracking-tight text-ink">
-              Got a system to build or scale?
-            </h2>
-          </div>
+    <footer className="site-footer site-wrap">
+      <div className="site-grid site-footer__top">
+        <p className="site-footer__claim text-ink">
+          {footerContent.claim}{" "}
           <Link
-            href="/contact"
+            href={footerContent.claimLink.href}
             onClick={() => trackPixelEvent("ClickHeaderContact")}
-            className="inline-flex items-center gap-2 text-step-1 font-medium text-ink hover:text-signal transition-colors group"
+            className="site-link site-link--inline site-accent"
           >
-            <span>Let&apos;s talk</span>
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
+            {footerContent.claimLink.label}
           </Link>
-        </div>
+        </p>
 
-        {/* Links grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {/* Site column */}
-          <div>
-            <h3 className="site-note mb-4 block">Site</h3>
-            <ul className="flex flex-col gap-2.5">
-              {siteNavItems.map((item) => {
-                const handleClick = () => {
-                  if (item.pixelEvent) {
-                    trackPixelEvent(item.pixelEvent);
-                  }
-                };
+        <div className="site-footer__col">
+          <p className="site-note">Site</p>
+          <ul>
+            {siteNavItems.map((item) => {
+              const handleClick = () => {
+                if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
+              };
 
-                if (item.external) {
-                  return (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={handleClick}
-                        className="text-step-n1 text-ink-muted hover:text-ink transition-colors inline-flex items-center gap-1"
-                      >
-                        <span>{item.label}</span>
-                        <span className="site-note">↗</span>
-                      </a>
-                    </li>
-                  );
-                }
-
+              if (item.external) {
                 return (
                   <li key={item.href}>
-                    <Link
+                    <a
                       href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={handleClick}
-                      className="text-step-n1 text-ink-muted hover:text-ink transition-colors"
+                      className="site-link text-step-0 text-ink"
                     >
                       {item.label}
-                    </Link>
+                      <span aria-hidden="true" className="ml-1.5">
+                        ↗
+                      </span>
+                    </a>
                   </li>
                 );
-              })}
-            </ul>
-          </div>
+              }
 
-          {/* Elsewhere column */}
-          <div>
-            <h3 className="site-note mb-4 block">Elsewhere</h3>
-            <ul className="flex flex-col gap-2.5">
-              {siteSocialLinks.map((social) => (
-                <li key={social.href}>
-                  <a
-                    href={social.href}
-                    target={social.external ? "_blank" : undefined}
-                    rel={social.external ? "noopener noreferrer" : undefined}
-                    className="text-step-n1 text-ink-muted hover:text-ink transition-colors inline-flex items-center gap-1"
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={handleClick}
+                    className="site-link text-step-0 text-ink"
                   >
-                    <span>{social.label}</span>
-                    {social.external && <span className="site-note">↗</span>}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
+              );
+            })}
+          </ul>
         </div>
 
-        {/* Bottom meta row */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-rule font-site-mono text-step-n1 text-ink-muted">
-          <div>
-            <span>© {currentYear} LUIS ALEJANDRO</span>
-            <span className="mx-2">·</span>
-            <span>DESIGNED AND BUILT IN MARACAY</span>
-          </div>
-          <div>
-            <button
-              type="button"
-              onClick={handlePaletteClick}
-              className="site-note hover:text-ink transition-colors cursor-pointer text-left"
-            >
-              PRESS ⌘K FOR PALETTE
-            </button>
-          </div>
+        <div className="site-footer__col">
+          <p className="site-note">Elsewhere</p>
+          <ul>
+            {siteSocialLinks.map((social) => (
+              <li key={social.href}>
+                <a
+                  href={social.href}
+                  target={social.external ? "_blank" : undefined}
+                  rel={social.external ? "noopener noreferrer" : undefined}
+                  className="site-link text-step-0 text-ink"
+                >
+                  {social.label}
+                  {social.external && (
+                    <span aria-hidden="true" className="ml-1.5">
+                      ↗
+                    </span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        <div className="site-footer__col">
+          <p className="site-note">Contact</p>
+          <ul>
+            {footerContent.contactLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => trackPixelEvent("ClickHeaderContact")}
+                  className="site-link text-step-0 text-ink"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a
+                href={`mailto:${config.author.email}`}
+                className="site-link text-step-0 text-ink"
+              >
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="site-footer__sign relative">
+        <p aria-hidden="true" className="site-footer__mark">
+          {footerContent.wordmark}
+        </p>
+      </div>
+
+      <div className="site-footer__bottom site-note">
+        <p className="flex flex-wrap gap-x-4">
+          <span>© {currentYear} Luis Alejandro</span>
+          <span>Designed and built in Maracay</span>
+        </p>
+
+        <button
+          type="button"
+          onClick={handlePaletteClick}
+          className="site-note cursor-pointer text-left hover:text-ink"
+        >
+          Press ⌘K for everything else
+        </button>
+
+        <nav aria-label="Document links" className="flex gap-4">
+          <Link
+            href={footerContent.markdownTwin.href}
+            className="site-link hover:text-ink"
+          >
+            {footerContent.markdownTwin.label}
+          </Link>
+          <Link
+            href="/blog/posts/feed.xml"
+            className="site-link hover:text-ink"
+          >
+            RSS
+          </Link>
+        </nav>
       </div>
     </footer>
   );
