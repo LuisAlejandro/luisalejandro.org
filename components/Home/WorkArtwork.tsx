@@ -172,13 +172,161 @@ const receiptPath = (w: number, h: number, tooth: number) => {
 
 const BARCODE = [2, 1, 3, 1, 1, 2, 1, 3, 2, 1, 1, 2, 3, 1, 2, 1, 1, 3, 1, 2];
 
+type Layer = "back" | "front";
+
+/** Voucher with a perforated stub; stamped when the booking lands. */
+function Voucher() {
+  return (
+    <g transform="translate(560 550) rotate(-5)">
+      <g
+        className="site-obj"
+        style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+      >
+        <rect x="5" y="5" width="360" height="150" fill={SHEET} stroke={RULE} />
+        <rect width="360" height="150" fill={SHEET} stroke={INK} />
+        <line
+          x1="268"
+          y1="10"
+          x2="268"
+          y2="140"
+          stroke={RULE}
+          strokeDasharray="3 4"
+        />
+        <circle cx="268" cy="0" r="6" fill={PANEL} stroke={INK} />
+        <circle cx="268" cy="150" r="6" fill={PANEL} stroke={INK} />
+        <Note x="16" y="24">
+          Hotel voucher
+        </Note>
+        <line x1="16" y1="34" x2="252" y2="34" stroke={RULE} />
+        <Note x="16" y="58" size={13} fill={INK} weight={500}>
+          Casa Miraflores
+        </Note>
+        <Note x="16" y="74">
+          madrid
+        </Note>
+        <Note x="16" y="100" size={8} fill={INK}>
+          in · 12 mar
+        </Note>
+        <Note x="120" y="100" size={8} fill={INK}>
+          out · 18 mar
+        </Note>
+        <Note x="16" y="122">
+          guest · wheel the world
+        </Note>
+        <Note x="16" y="138">
+          2 rooms · accessible
+        </Note>
+        <Note x="282" y="24" size={7}>
+          no. 0417
+        </Note>
+        {BARCODE.slice(0, 14).map((w, i) => (
+          <rect
+            key={i}
+            x={282 + BARCODE.slice(0, i).reduce((a, n) => a + n + 2, 0)}
+            y="40"
+            width={w}
+            height="62"
+            fill={INK}
+          />
+        ))}
+        <Note x="282" y="128" size={8} fill={INK}>
+          wtw
+        </Note>
+        <g transform="translate(176 74) rotate(-12)">
+          <g className="site-stamp" style={beat(0.66, 0.08)}>
+            <rect
+              x="-66"
+              y="-20"
+              width="132"
+              height="40"
+              fill={SHEET}
+              fillOpacity="0.4"
+              stroke={INK}
+              strokeWidth="1.6"
+            />
+            <rect
+              x="-61"
+              y="-15"
+              width="122"
+              height="30"
+              fill="none"
+              stroke={INK}
+              strokeWidth="0.8"
+            />
+            <Note x="0" y="5" size={13} fill={INK} anchor="middle" weight={600}>
+              confirmed
+            </Note>
+          </g>
+        </g>
+      </g>
+    </g>
+  );
+}
+
+/** Luggage tag: the trip's own label, flagged priority once booked. */
+function LuggageTag() {
+  const body = "M22 0H148L170 22V250H0V22Z";
+  return (
+    <g transform="translate(1112 198) rotate(-10)">
+      <g
+        className="site-obj"
+        style={{ "--tilt-in": "-5deg" } as React.CSSProperties}
+      >
+        <path
+          d="M85 17C78 -18 118 -42 142 -20"
+          fill="none"
+          stroke={INK}
+          strokeWidth="1.2"
+        />
+        <path d={body} transform="translate(4 4)" fill={SHEET} stroke={RULE} />
+        <path d={body} fill={SHEET} stroke={INK} />
+        <circle cx="85" cy="28" r="14" fill="none" stroke={RULE} />
+        <circle cx="85" cy="28" r="8" fill={PANEL} stroke={INK} />
+        <Note x="20" y="94" size={36} fill={INK} weight={600}>
+          mad
+        </Note>
+        <Note x="20" y="112">
+          madrid · barajas
+        </Note>
+        <line x1="20" y1="126" x2="150" y2="126" stroke={RULE} />
+        <Note x="20" y="148" size={9} fill={INK}>
+          wheel the world
+        </Note>
+        <Note x="20" y="166">
+          assist · wheelchair
+        </Note>
+        <g className="site-step-in" style={beat(0.52)}>
+          <rect x="20" y="180" width="66" height="17" fill={INK} />
+          <Note x="53" y="192" size={7} fill={PAPER} anchor="middle">
+            priority
+          </Note>
+        </g>
+        {BARCODE.slice(0, 16).map((w, i) => (
+          <rect
+            key={i}
+            x={20 + BARCODE.slice(0, i).reduce((a, n) => a + n + 2, 0)}
+            y="212"
+            width={w}
+            height="24"
+            fill={INK}
+          />
+        ))}
+      </g>
+    </g>
+  );
+}
+
 /**
  * Expedia, as a booking playing out on a desk: results load, one hotel gets
- * picked, the receipt prints, the voucher is stamped, the dates are circled,
- * and the figure lands.
+ * picked, the receipt prints, the voucher is stamped, the tag is flagged,
+ * the dates are circled, and the figure lands. The voucher is also drawn in
+ * a front layer above the title, so it can cross it.
  */
-function ExpediaArt() {
+function ExpediaArt({ layer = "back" }: { layer?: Layer }) {
   const hatch = `hatch-${useId().replace(/[^a-z0-9]/gi, "")}`;
+
+  if (layer === "front") return <Voucher />;
+
   const results = [
     ["Hotel Aurora", "step-free · roll-in shower", "$120"],
     ["Casa Miraflores", "lift · wide doors · grab bars", "$98"],
@@ -203,8 +351,8 @@ function ExpediaArt() {
         </pattern>
       </defs>
 
-      {/* Calendar page, pinned up behind everything */}
-      <g transform="translate(860 70) rotate(6)">
+      {/* Calendar page, behind the browser's top-right corner */}
+      <g transform="translate(700 64) rotate(6)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "4deg" } as React.CSSProperties}
@@ -273,8 +421,8 @@ function ExpediaArt() {
         </g>
       </g>
 
-      {/* Browser: the search results load and one hotel is picked */}
-      <g transform="translate(420 160) rotate(-2)">
+      {/* Browser, a size up: the search results load and one hotel is picked */}
+      <g transform="translate(250 168) rotate(-2) scale(1.12)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "-3deg" } as React.CSSProperties}
@@ -296,7 +444,6 @@ function ExpediaArt() {
           <Note x="74" y="17" size={7}>
             wheeltheworld.com/hotels?city=madrid
           </Note>
-
           <rect
             x="14"
             y="40"
@@ -312,7 +459,6 @@ function ExpediaArt() {
           <Note x="362" y="58" size={7} fill={PAPER} anchor="middle">
             accessible
           </Note>
-
           <Note x="14" y="90" size={7}>
             3 of 600,000+ properties
           </Note>
@@ -366,6 +512,8 @@ function ExpediaArt() {
           </g>
         </g>
       </g>
+
+      <LuggageTag />
 
       {/* Receipt: prints line by line */}
       <g transform="translate(140 540) rotate(4)">
@@ -449,106 +597,14 @@ function ExpediaArt() {
         </g>
       </g>
 
-      {/* Voucher with a perforated stub: stamped when the booking lands */}
-      <g transform="translate(560 600) rotate(-5)">
-        <g
-          className="site-obj"
-          style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
-        >
-          <rect
-            x="5"
-            y="5"
-            width="360"
-            height="150"
-            fill={SHEET}
-            stroke={RULE}
-          />
-          <rect width="360" height="150" fill={SHEET} stroke={INK} />
-          <line
-            x1="268"
-            y1="10"
-            x2="268"
-            y2="140"
-            stroke={RULE}
-            strokeDasharray="3 4"
-          />
-          <circle cx="268" cy="0" r="6" fill={PANEL} stroke={INK} />
-          <circle cx="268" cy="150" r="6" fill={PANEL} stroke={INK} />
-          <Note x="16" y="24">
-            Hotel voucher
-          </Note>
-          <line x1="16" y1="34" x2="252" y2="34" stroke={RULE} />
-          <Note x="16" y="58" size={13} fill={INK} weight={500}>
-            Casa Miraflores
-          </Note>
-          <Note x="16" y="74">
-            madrid
-          </Note>
-          <Note x="16" y="100" size={8} fill={INK}>
-            in · 12 mar
-          </Note>
-          <Note x="120" y="100" size={8} fill={INK}>
-            out · 18 mar
-          </Note>
-          <Note x="16" y="122">
-            guest · wheel the world
-          </Note>
-          <Note x="16" y="138">
-            2 rooms · accessible
-          </Note>
-          <Note x="282" y="24" size={7}>
-            no. 0417
-          </Note>
-          {BARCODE.slice(0, 14).map((w, i) => (
-            <rect
-              key={i}
-              x={282 + BARCODE.slice(0, i).reduce((a, n) => a + n + 2, 0)}
-              y="40"
-              width={w}
-              height="62"
-              fill={INK}
-            />
-          ))}
-          <Note x="282" y="128" size={8} fill={INK}>
-            wtw
-          </Note>
-          <g transform="translate(176 74) rotate(-12)">
-            <g className="site-stamp" style={beat(0.66, 0.08)}>
-              <rect
-                x="-66"
-                y="-20"
-                width="132"
-                height="40"
-                fill="none"
-                stroke={INK}
-                strokeWidth="1.6"
-              />
-              <rect
-                x="-61"
-                y="-15"
-                width="122"
-                height="30"
-                fill="none"
-                stroke={INK}
-                strokeWidth="0.8"
-              />
-              <Note
-                x="0"
-                y="5"
-                size={13}
-                fill={INK}
-                anchor="middle"
-                weight={600}
-              >
-                confirmed
-              </Note>
-            </g>
-          </g>
-        </g>
+      {/* The voucher's back copy is hidden on the pinned stage, where the
+          front layer draws it above the title. */}
+      <g className="site-art__lift">
+        <Voucher />
       </g>
 
-      {/* Room key card */}
-      <g transform="translate(1262 604) rotate(11)">
+      {/* Room key card, now where the figure was */}
+      <g transform="translate(960 650) rotate(11)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "6deg" } as React.CSSProperties}
@@ -585,43 +641,43 @@ function ExpediaArt() {
         </g>
       </g>
 
-      {/* The figure lands last */}
-      <g transform="translate(1010 690)">
+      {/* The figure, bigger, where the key card was; it lands last */}
+      <g transform="translate(1190 600)">
         <g className="site-rise" style={beat(0.84, 0.12)}>
           <text
             x="0"
-            y="40"
+            y="104"
             fill={ACCENT}
-            fontSize="64"
+            fontSize="124"
             fontWeight="500"
             letterSpacing="-0.045em"
           >
             39%
           </text>
-          <Note x="2" y="60">
+          <Note x="4" y="128" size={9}>
             more bookings · Q1 2023
           </Note>
         </g>
       </g>
 
       <Leader
-        d="M636 158v-24"
-        x={636}
-        y={126}
+        d="M491 160v-24"
+        x={491}
+        y={128}
         label="get /properties"
         anchor="middle"
         order={1}
       />
-      <Tip x={636} y={134} angle={-90} />
+      <Tip x={491} y={138} angle={-90} />
       <Leader
-        d="M560 690h-34v-22"
+        d="M560 612h-34v-22"
         x={526}
-        y={660}
+        y={582}
         label="hold + book"
         anchor="middle"
         order={2}
       />
-      <Tip x={526} y={668} angle={-90} />
+      <Tip x={526} y={590} angle={-90} />
     </>
   );
 }
@@ -1359,19 +1415,34 @@ function CanaimaArt() {
   );
 }
 
-type Entry = { Art: () => React.JSX.Element; view: string };
+type Entry = {
+  Art: (props: { layer?: Layer }) => React.JSX.Element | null;
+  view: string;
+  /** Draws part of itself again above the title on the pinned stage. */
+  front?: boolean;
+};
 
 /** Each drawing declares its own sheet: Expedia is laid out wide, for the
     full-bleed stage; the others still use the old 900×560 panel. */
 const ART: Record<string, Entry> = {
-  "/case-studies/expedia": { Art: ExpediaArt, view: "0 0 1600 900" },
+  "/case-studies/expedia": {
+    Art: ExpediaArt,
+    view: "0 0 1600 900",
+    front: true,
+  },
   "/case-studies/wheeltheworld": { Art: CicdArt, view: "0 0 900 560" },
   "/case-studies/soleit": { Art: SoleitArt, view: "0 0 900 560" },
   "/case-studies/dockershelf": { Art: DockershelfArt, view: "0 0 900 560" },
   "/case-studies/canaima": { Art: CanaimaArt, view: "0 0 900 560" },
 };
 
-export function WorkArtwork({ slug }: { slug: string }) {
+export function WorkArtwork({
+  slug,
+  layer = "back",
+}: {
+  slug: string;
+  layer?: Layer;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
   const entry = ART[slug];
@@ -1404,11 +1475,14 @@ export function WorkArtwork({ slug }: { slug: string }) {
   return (
     <div ref={ref} className="site-art" data-drawn={drawn}>
       <svg viewBox={entry.view} role="presentation" focusable="false">
-        <Art />
+        <Art layer={layer} />
       </svg>
     </div>
   );
 }
+
+/** True when the drawing has a layer that crosses in front of the title. */
+export const hasFrontLayer = (slug: string) => Boolean(ART[slug]?.front);
 
 /** True when an artwork exists for this project; the caller falls back to the shot. */
 export const hasArtwork = (slug: string) => Boolean(ART[slug]);

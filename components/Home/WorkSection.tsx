@@ -13,7 +13,11 @@ import Link from "next/link";
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
-import { WorkArtwork, hasArtwork } from "@components/Home/WorkArtwork";
+import {
+  WorkArtwork,
+  hasArtwork,
+  hasFrontLayer,
+} from "@components/Home/WorkArtwork";
 import { ProjectList } from "@constants/constants";
 import {
   sectionNotes,
@@ -162,10 +166,14 @@ export function WorkSection() {
                   </Link>
                 </div>
 
+                {hasFrontLayer(project.visit) && (
+                  <div className="site-ws__front" aria-hidden="true">
+                    <WorkArtwork slug={project.visit} layer="front" />
+                  </div>
+                )}
+
                 <h3 className="site-ws__title">
-                  <Link href={project.visit} className="site-link">
-                    {project.title}
-                  </Link>
+                  <Link href={project.visit}>{project.title}</Link>
                 </h3>
 
                 <div className="site-ws__info">
