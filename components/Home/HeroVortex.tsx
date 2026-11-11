@@ -41,7 +41,7 @@ const LINES = GO_SOURCE.split("\n")
   .map((line) => line.trim())
   .filter(Boolean);
 
-const RINGS = 30;
+const MAX_RINGS = 64;
 const RIPPLES = 16;
 const PX_TO_DESIGN = 2 / 1080;
 const RIPPLE_S = 1.8;
@@ -100,11 +100,11 @@ uniform vec2 uGrid;
 uniform float uDot;
 uniform vec2 uMouse;
 uniform float uMouseOn;
-uniform float uCharge[${RINGS}];
-uniform float uGather[${RINGS}];
+uniform float uCharge[${MAX_RINGS}];
+uniform float uGather[${MAX_RINGS}];
 uniform float uRipple[${RIPPLES}];
-uniform float uOffset[${RINGS}];
-uniform float uArrive[${RINGS}];
+uniform float uOffset[${MAX_RINGS}];
+uniform float uArrive[${MAX_RINGS}];
 uniform float uLight;
 
 out vec2 vUv;
@@ -201,10 +201,19 @@ type Ring = {
   bandSoft: number;
 };
 
-function buildRings(): Ring[] {
-  return Array.from({ length: RINGS }, (_, i) => {
-    const a = i / (RINGS - 1);
-    const radius = 0.06 + 1.39 * a;
+/**
+ * Rings are spaced the same way the reference spaces them (about 0.048 design
+ * units apart) and there are as many as the viewport needs: at rest the eye
+ * sits right of centre, so the far left corner is almost 3 units away.
+ */
+function buildRings(reach: number): Ring[] {
+  const count = Math.max(
+    30,
+    Math.min(MAX_RINGS, Math.ceil((30 * reach) / 1.45))
+  );
+  return Array.from({ length: count }, (_, i) => {
+    const a = i / (count - 1);
+    const radius = 0.06 + (reach - 0.06) * a;
     const size = 14 + 16 * a;
     return {
       radius,
@@ -311,6 +320,40 @@ function buildSlots(
   return { radius, theta, speed, size, glyph, ring, total };
 }
 
+const fitOf = (width: number, height: number) =>
+  width >= height ? [1, width / height] : [height / width, 1];
+
+/** Eye position at rest: right of centre on wide screens. */
+const restOf = (width: number, height: number) =>
+  width >= height
+    ? { x: 0.42, y: 0.02, zoom: 0.72 }
+    : { x: 0.28, y: 0.12, zoom: 0.62 };
+
+/**
+ * How far the rings must reach to cover every viewport corner from the eye at
+ * rest, in design units, with a little margin.
+ */
+function reachOf(width: number, height: number) {
+  const [fitX, fitY] = fitOf(width, height);
+  const base = restOf(width, height);
+  let reach = 0;
+  for (const [sx, sy] of [
+    [1, 1],
+    [-1, 1],
+    [1, -1],
+    [-1, -1],
+  ]) {
+    reach = Math.max(
+      reach,
+      Math.hypot(
+        (sx - base.x) / (fitX * base.zoom),
+        (sy - base.y) / (fitY * base.zoom)
+      )
+    );
+  }
+  return reach * 1.04;
+}
+
 function compile(gl: WebGL2RenderingContext) {
   const program = gl.createProgram();
   if (!program) return null;
@@ -370,60 +413,72 @@ export function HeroVortex() {
     const coarseTimer = window.setTimeout(() => setCoarse(isCoarse), 0);
 
     // --- geometry ---------------------------------------------------------
-    const rings = buildRings();
     const chars = Array.from(new Set(LINES.join("").split("")));
     const indexOf = new Map(chars.map((ch, i) => [ch, i]));
     const family =
       getComputedStyle(host).fontFamily || "ui-monospace, monospace";
     let atlas = buildAtlas(chars, family);
-    const slots = buildSlots(rings, (ch) => indexOf.get(ch) ?? 0, atlas.dot);
-    const arrive = new Float32Array(
-      rings.map(
-        (r) =>
-          RIPPLE_S *
-          inverseSmoothstep(
-            Math.min(1, Math.max(0, r.radius - RIPPLE_INNER) / RIPPLE_REACH)
-          )
-      )
-    );
 
     const vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
-    const attribute = (
-      name: string,
-      data: Float32Array,
-      size: number,
-      divisor: number
-    ) => {
+    const quad = (name: string, data: Float32Array) => {
       const loc = gl.getAttribLocation(program, name);
       if (loc < 0) return;
-      const buffer = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
       gl.enableVertexAttribArray(loc);
-      gl.vertexAttribPointer(loc, size, gl.FLOAT, false, 0, 0);
-      gl.vertexAttribDivisor(loc, divisor);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribDivisor(loc, 0);
     };
-    attribute(
+    quad(
       "aCorner",
       new Float32Array([
         -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5,
-      ]),
-      2,
-      0
+      ])
     );
-    attribute(
-      "aUv",
-      new Float32Array([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1]),
-      2,
-      0
-    );
-    attribute("aRadius", slots.radius, 1, 1);
-    attribute("aTheta", slots.theta, 1, 1);
-    attribute("aSpeed", slots.speed, 1, 1);
-    attribute("aSize", slots.size, 1, 1);
-    attribute("aGlyph", slots.glyph, 1, 1);
-    attribute("aRing", slots.ring, 1, 1);
+    quad("aUv", new Float32Array([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1]));
+
+    let rings: Ring[] = [];
+    let slotTotal = 0;
+    let instanceBuffers: WebGLBuffer[] = [];
+
+    /** Enough rings to cover every corner, rebuilt when the viewport moves. */
+    const buildGeometry = () => {
+      rings = buildRings(reachOf(width, height));
+      const slots = buildSlots(rings, (ch) => indexOf.get(ch) ?? 0, atlas.dot);
+      slotTotal = slots.total;
+
+      for (const buffer of instanceBuffers) gl.deleteBuffer(buffer);
+      instanceBuffers = [];
+      const instance = (name: string, data: Float32Array) => {
+        const loc = gl.getAttribLocation(program, name);
+        if (loc < 0) return;
+        const buffer = gl.createBuffer();
+        if (!buffer) return;
+        instanceBuffers.push(buffer);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 1, gl.FLOAT, false, 0, 0);
+        gl.vertexAttribDivisor(loc, 1);
+      };
+      instance("aRadius", slots.radius);
+      instance("aTheta", slots.theta);
+      instance("aSpeed", slots.speed);
+      instance("aSize", slots.size);
+      instance("aGlyph", slots.glyph);
+      instance("aRing", slots.ring);
+
+      const arrive = new Float32Array(MAX_RINGS);
+      rings.forEach((ring, i) => {
+        arrive[i] =
+          RIPPLE_S *
+          inverseSmoothstep(
+            Math.min(1, Math.max(0, ring.radius - RIPPLE_INNER) / RIPPLE_REACH)
+          );
+      });
+      gl.uniform1fv(gl.getUniformLocation(program, "uArrive"), arrive);
+    };
 
     const texture = gl.createTexture();
     const upload = () => {
@@ -461,7 +516,6 @@ export function HeroVortex() {
     const uLight = u("uLight");
     gl.uniform2f(u("uGrid"), ATLAS_COLS, atlas.rows);
     gl.uniform1f(u("uDot"), atlas.dot);
-    gl.uniform1fv(u("uArrive"), arrive);
     gl.uniform3f(u("uInk"), 14 / 255, 14 / 255, 13 / 255);
     gl.uniform1f(u("uOpacity"), OPACITY);
     gl.uniform1i(u("uAtlas"), 0);
@@ -478,12 +532,13 @@ export function HeroVortex() {
     // --- state ------------------------------------------------------------
     let width = 1;
     let height = 1;
+    let lastReach = 0;
     let fitX = 1;
     let fitY = 1;
     let time = 0;
     let last = performance.now();
     let frame = 0;
-    let onScreen = true;
+    const onScreen = true;
     let pageVisible = !document.hidden;
     let motion = !reduced.matches;
 
@@ -497,13 +552,13 @@ export function HeroVortex() {
     let charged = false;
     let progress = 0; // 0..1 over CHARGE_S while held
     let gatherSlow = 0;
-    const ringCharge = new Float32Array(RINGS);
-    const ringGather = new Float32Array(RINGS);
-    const chargeUniform = new Float32Array(RINGS);
-    const freeze = new Float32Array(RINGS);
-    const kick = new Float32Array(RINGS);
-    const kickSmooth = new Float32Array(RINGS);
-    const offsets = new Float32Array(RINGS);
+    const ringCharge = new Float32Array(MAX_RINGS);
+    const ringGather = new Float32Array(MAX_RINGS);
+    const chargeUniform = new Float32Array(MAX_RINGS);
+    const freeze = new Float32Array(MAX_RINGS);
+    const kick = new Float32Array(MAX_RINGS);
+    const kickSmooth = new Float32Array(MAX_RINGS);
+    const offsets = new Float32Array(MAX_RINGS);
     const rippleUniform = new Float32Array(RIPPLES).fill(-1);
     let velocity = 0;
     let spin = 0;
@@ -511,12 +566,6 @@ export function HeroVortex() {
 
     // Camera at rest: eye right of centre on wide screens.
     const camera = { x: 0, y: 0, zoom: 1, twist: 0, light: 0 };
-    const rest = () => {
-      const landscape = width >= height;
-      return landscape
-        ? { x: 0.42, y: 0.02, zoom: 0.72 }
-        : { x: 0.28, y: 0.12, zoom: 0.62 };
-    };
 
     const resize = () => {
       const rect = host.getBoundingClientRect();
@@ -527,19 +576,20 @@ export function HeroVortex() {
       canvas.height = Math.floor(height * dpr);
       gl.viewport(0, 0, canvas.width, canvas.height);
       // One design unit is half the longer side, so rings stay round.
-      const aspect = width / height;
-      if (aspect >= 1) {
-        fitX = 1;
-        fitY = aspect;
-      } else {
-        fitX = 1 / aspect;
-        fitY = 1;
+      [fitX, fitY] = fitOf(width, height);
+
+      // The rings must reach every corner from the eye at rest, and that reach
+      // changes with the viewport, so rebuild when it moves by more than 3%.
+      const reach = reachOf(width, height);
+      if (!rings.length || Math.abs(reach - lastReach) / reach > 0.03) {
+        lastReach = reach;
+        buildGeometry();
       }
     };
 
     /** Scroll through the pinned hero: centre, zoom, twist, then dissolve. */
     const updateCamera = () => {
-      const base = rest();
+      const base = restOf(width, height);
       let p = 0;
       if (pin && motion) {
         const rect = pin.getBoundingClientRect();
@@ -576,7 +626,7 @@ export function HeroVortex() {
       gl.bindVertexArray(vao);
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, texture);
-      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, slots.total);
+      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, slotTotal);
     };
 
     const step = (now: number) => {
@@ -614,7 +664,7 @@ export function HeroVortex() {
         ? RIPPLE_REACH * smoothstep(0, 1, sinceRelease / RIPPLE_S) +
           RIPPLE_INNER
         : Infinity;
-      for (let k = 0; k < RINGS; k += 1) {
+      for (let k = 0; k < rings.length; k += 1) {
         if (holding) {
           const f = 1 - Math.exp(-14 * dt);
           ringCharge[k] += (progress - ringCharge[k]) * f;
@@ -639,7 +689,7 @@ export function HeroVortex() {
       spin += (Math.min(40, velocity) - spin) * (1 - Math.exp(-4 * dt));
 
       const settle = 1 - Math.exp(-3 * dt);
-      for (let k = 0; k < RINGS; k += 1) {
+      for (let k = 0; k < rings.length; k += 1) {
         const r = rings[k];
         let push = 0;
         for (const ripple of ripples) {
@@ -666,7 +716,7 @@ export function HeroVortex() {
       frame = running() ? window.requestAnimationFrame(step) : 0;
     };
 
-    const running = () => onScreen && pageVisible && motion;
+    const running = () => onScreen && pageVisible && motion && inView();
     const wake = () => {
       if (running()) {
         if (!frame) {
@@ -679,6 +729,8 @@ export function HeroVortex() {
         updateCamera();
         render();
       }
+      // Off duty once the pinned hero has scrolled away entirely.
+      host.dataset.on = String(inView());
     };
 
     // --- pointer ----------------------------------------------------------
@@ -776,11 +828,11 @@ export function HeroVortex() {
       if (!frame) render();
     });
     resizeObserver.observe(host);
-    const intersection = new IntersectionObserver((entries) => {
-      onScreen = entries.some((entry) => entry.isIntersecting);
-      wake();
-    });
-    intersection.observe(host);
+    // The host is fixed, so it is always on screen; the pin decides when the
+    // field is on duty. Past the pin the layer must stop drawing over the page.
+    const intersection = new IntersectionObserver(() => wake());
+    if (pin) intersection.observe(pin);
+    const inView = () => (pin ? pin.getBoundingClientRect().bottom > 0 : true);
 
     // Glyph shapes need the real mono face, not its fallback.
     document.fonts.ready.then(() => {

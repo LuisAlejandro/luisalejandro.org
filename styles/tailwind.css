@@ -419,7 +419,9 @@ body:has(.site-shell) {
     color: var(--color-ink);
   }
 
-  /* Opaque band: the reference header is solid, not blurred. */
+  /* Opaque band. The reference fades it in over the first 80px of scroll, but
+     the vortex is now a layer above the page, so the band is always solid and
+     the nav never sits on moving glyphs. */
   .site-header::before {
     content: "";
     position: absolute;
@@ -492,12 +494,6 @@ body:has(.site-shell) {
       animation: site-hd-compact linear both;
       animation-timeline: scroll(root);
       animation-range: 0 160px;
-    }
-
-    .site-header::before {
-      animation: site-hd-band linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 80px;
     }
 
     .site-header__rule {
@@ -697,16 +693,13 @@ body:has(.site-shell) {
   /* --- hero ------------------------------------------------------------- */
 
   .site-hero {
-    /* isolation keeps the canvas' z-index:-1 above the shell background and
-       below the hero's own content. */
     position: relative;
-    isolation: isolate;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
     gap: 1.5rem;
     min-height: 100svh;
     padding-top: 6rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0;
     overflow: clip;
   }
 
@@ -743,14 +736,20 @@ body:has(.site-shell) {
     gap: 0.5rem 2rem;
   }
 
+  /* The closing row of the hero sits on its own paper strip, full bleed, so
+     the vortex never runs under the intro line or the buttons. */
   .site-hero__foot {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: end;
     gap: 1.5rem;
-    padding-top: 1.5rem;
+    margin-inline: calc(-1 * var(--spacing-gutter));
+    /* The hero's bottom padding moves in here so the strip reaches the page
+       edge and no rings show below it. */
+    padding: 1.5rem var(--spacing-gutter) 2rem;
     border-top: 1px solid var(--color-rule);
+    background: var(--color-paper);
   }
 
   .site-hero__intro {
@@ -764,12 +763,15 @@ body:has(.site-shell) {
     gap: 0.75rem;
   }
 
-  /* The vortex fills the hero behind its copy; WebGL draws into a canvas
-     appended inside. */
+  /* The vortex is a viewport layer, not a hero child: it has to sit above the
+     page so the next section can rise *through* its dissolving centre instead
+     of appearing below a blank screen. Header (z 50) and hero copy (z 6) stay
+     above it; everything else passes underneath. */
   .site-vortex {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 4;
+    pointer-events: none;
     opacity: 0;
     transition: opacity 0.6s var(--ease-site-out);
   }
@@ -782,9 +784,12 @@ body:has(.site-shell) {
     cursor: pointer;
   }
 
-  /* While the takeover runs the copy steps aside for the vortex. */
+  /* Hero copy sits above the vortex layer; it fades while the takeover runs. */
   .site-hero > :not(.site-vortex, .site-vortex-label) {
+    position: relative;
+    z-index: 6;
     opacity: var(--site-hero-copy, 1);
+    transition: opacity 0.3s linear;
   }
 
   /* "Click & hold": a small ink tag that trails the pointer by 20px. */
@@ -819,11 +824,29 @@ body:has(.site-shell) {
   .site-hero-pin {
     position: relative;
     height: 200svh;
+    /* No background: the section below rises underneath the vortex layer and
+       is seen through it once the centre dissolves. */
   }
 
   .site-hero-pin > .site-hero {
     position: sticky;
     top: 0;
+    /* sticky already forms a stacking context, so the hero must outrank the
+       vortex layer for its paper strips to cover the rings; wherever it has no
+       background the rings still show through. */
+    z-index: 6;
+  }
+
+  /* The next section starts one screen early and rides up over the pinned
+     hero, so the dissolve reveals it rather than empty paper. It carries its
+     own background and sits above the hero. */
+  .site-hero-pin + .site-section {
+    position: relative;
+    /* Below the vortex layer (z 4) so the rings pass over it, above the pinned
+       hero so it covers the hero as it arrives. */
+    z-index: 2;
+    margin-top: -100svh;
+    background: var(--color-paper);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -833,6 +856,10 @@ body:has(.site-shell) {
 
     .site-hero-pin > .site-hero {
       position: relative;
+    }
+
+    .site-hero-pin + .site-section {
+      margin-top: 0;
     }
   }
 
