@@ -2,18 +2,11 @@ import { ImageResponse } from "next/og";
 
 import { config } from "@constants/constants";
 import { getPostAndMorePosts } from "@lib/api";
-import { stripHtmlToPlainText } from "@lib/plainText";
+import { stripHtmlToPlainText, truncateAtWord } from "@lib/plainText";
 
-export const runtime = "edge";
-export const alt = "Luis Alejandro - Blog de Desarrollo de Software";
+export const alt = "Luis Alejandro · Field notes";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-
-function truncate(text: string, max: number): string {
-  const clean = text.trim();
-  if (clean.length <= max) return clean;
-  return `${clean.slice(0, max - 1).trimEnd()}…`;
-}
 
 export default async function OpengraphImage({
   params,
@@ -21,8 +14,8 @@ export default async function OpengraphImage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  let title = "Luis Alejandro - Blog de Desarrollo de Software";
-  let category = "Software Development";
+  let title = "Field notes";
+  let category = "Software";
   let teaser = "";
 
   try {
@@ -39,8 +32,8 @@ export default async function OpengraphImage({
     // Fall back to the default title/category if the post cannot be loaded.
   }
 
-  const displayTitle = truncate(title, 44);
-  const displayTeaser = truncate(teaser, 120);
+  const displayTitle = truncateAtWord(title, 80);
+  const displayTeaser = truncateAtWord(teaser, 140);
 
   return new ImageResponse(
     <div
@@ -50,61 +43,70 @@ export default async function OpengraphImage({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#222222",
-        color: "#ffffff",
+        backgroundColor: "#f4f4f0",
+        color: "#0e0e0d",
         padding: "64px 72px",
-        fontFamily: "sans-serif",
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        border: "1px solid #e2e2dc",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+      {/* Top rule + meta: role on the left, date/tag on the right */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderBottom: "1px solid #dcdcd5",
+          paddingBottom: "24px",
+          fontSize: "18px",
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+          color: "#65655f",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <span style={{ fontWeight: 700, color: "#0e0e0d" }}>
+            {config.author.name}
+          </span>
+          <span>/</span>
+          <span>Fullstack AI Engineer</span>
+        </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            width: "56px",
-            height: "56px",
-            borderRadius: "50%",
-            backgroundColor: "#f8d983",
-            color: "#222222",
-            fontSize: "28px",
-            fontWeight: 700,
-          }}
-        >
-          LA
-        </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: "22px", fontWeight: 600, color: "#f8d983" }}>
-            Luis Alejandro
-          </div>
-          <div style={{ fontSize: "18px", color: "#c0cece" }}>
-            Blog de Desarrollo de Software
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-        <div
-          style={{
-            display: "inline-flex",
-            alignSelf: "flex-start",
-            padding: "10px 20px",
-            borderRadius: "9999px",
-            backgroundColor: "#da8244",
+            gap: "8px",
+            backgroundColor: "#d61f3a",
             color: "#ffffff",
-            fontSize: "20px",
+            padding: "6px 14px",
+            borderRadius: "999px",
+            fontSize: "14px",
             fontWeight: 600,
-            textTransform: "uppercase",
+            letterSpacing: "0.04em",
           }}
         >
           {category}
         </div>
+      </div>
+
+      {/* Center: display title and excerpt */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          marginTop: "16px",
+          marginBottom: "16px",
+        }}
+      >
         <div
           style={{
-            fontSize: "56px",
-            lineHeight: 1.1,
-            fontWeight: 700,
-            maxWidth: "1000px",
+            fontSize: displayTitle.length > 50 ? "52px" : "64px",
+            lineHeight: 1.05,
+            fontWeight: 600,
+            letterSpacing: "-0.04em",
+            color: "#0e0e0d",
+            maxWidth: "1060px",
           }}
         >
           {displayTitle}
@@ -112,9 +114,9 @@ export default async function OpengraphImage({
         {displayTeaser ? (
           <div
             style={{
-              fontSize: "24px",
-              lineHeight: 1.4,
-              color: "#c0cece",
+              fontSize: "22px",
+              lineHeight: 1.35,
+              color: "#65655f",
               maxWidth: "960px",
             }}
           >
@@ -123,18 +125,26 @@ export default async function OpengraphImage({
         ) : null}
       </div>
 
+      {/* Foot rule: domain and reference */}
       <div
         style={{
           display: "flex",
+          justifyContent: "space-between",
           alignItems: "center",
-          gap: "12px",
-          fontSize: "20px",
-          color: "#aaaaaa",
+          borderTop: "1px solid #dcdcd5",
+          paddingTop: "24px",
+          fontSize: "18px",
+          color: "#65655f",
+          letterSpacing: "0.02em",
         }}
       >
-        <span>{config.author.name}</span>
-        <span style={{ color: "#f8d983" }}>·</span>
-        <span>{config.url}</span>
+        <div style={{ display: "flex", gap: "16px" }}>
+          <span>luisalejandro.org/blog</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <span style={{ color: "#d61f3a" }}>●</span>
+          <span>Field notes</span>
+        </div>
       </div>
     </div>,
     { ...size }
