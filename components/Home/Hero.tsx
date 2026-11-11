@@ -41,9 +41,11 @@ export function Hero() {
         </div>
 
         <div className="site-hero__foot relative z-10">
-          <p className="site-lead-type site-hero__intro">{heroContent.intro}</p>
+          <p className="site-lead-type site-hero__intro" data-bp="p.intro">
+            {heroContent.intro}
+          </p>
 
-          <div className="site-hero__ctas">
+          <div className="site-hero__ctas" data-bp="nav.cta">
             <SiteButton
               href={contactAction.href}
               tracking={contactAction.pixelEvent}

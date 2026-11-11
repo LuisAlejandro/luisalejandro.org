@@ -112,6 +112,13 @@ body:has(.site-shell) {
 
 /* Registered so the preloader counter and the header progress tag can animate
    an integer and render it through `counter()`. */
+/* Hero headline ink: 0 is an outline, 1 is solid. Registered so it tweens. */
+@property --site-fill {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
 @property --site-n {
   syntax: "<integer>";
   inherits: false;
@@ -719,6 +726,94 @@ body:has(.site-shell) {
   .site-hero__human {
     display: block;
     margin-left: -0.05em;
+    color: color-mix(
+      in srgb,
+      var(--color-ink) calc(var(--site-fill) * 100%),
+      transparent
+    );
+    -webkit-text-stroke: calc((1 - var(--site-fill)) * 1.5px) var(--color-ink);
+  }
+
+  /* Each lead word rises out of its own mask; the padding keeps descenders
+     and the tight tracking's overhang inside the clip. */
+  .site-intro-word {
+    display: inline-block;
+    overflow: clip;
+    vertical-align: top;
+    padding: 0 0.04em 0.12em;
+    margin: 0 -0.04em -0.12em;
+  }
+
+  .site-intro-word > span {
+    display: inline-block;
+  }
+
+  /* Intro measuring layer: guides, selection boxes and their size labels.
+     Built and removed by HeroTyped; purely decorative. */
+  /* Doubled class: must beat the hero copy rule below, which would otherwise
+     make this layer a relative grid item. */
+  .site-hero > .site-bp.site-bp {
+    position: absolute;
+    inset: 0;
+    z-index: 11; /* above the copy's z-10 */
+    pointer-events: none;
+  }
+
+  .site-bp__box {
+    position: absolute;
+    outline: 1px dashed
+      color-mix(in oklab, var(--color-signal) 70%, transparent);
+    outline-offset: 4px;
+    background: color-mix(in oklab, var(--color-signal) 4%, transparent);
+  }
+
+  .site-bp__box::before,
+  .site-bp__box::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: solid var(--color-signal);
+  }
+
+  .site-bp__box::before {
+    top: -8px;
+    left: -8px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .site-bp__box::after {
+    right: -8px;
+    bottom: -8px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .site-bp__label {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: -4px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    color: var(--color-signal);
+  }
+
+  .site-bp__guide {
+    position: absolute;
+    background: color-mix(in oklab, var(--color-signal) 45%, transparent);
+  }
+
+  .site-bp__guide--h {
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform-origin: left center;
+  }
+
+  .site-bp__guide--v {
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform-origin: center top;
   }
 
   .site-hero__machine {
@@ -890,7 +985,7 @@ body:has(.site-shell) {
        run together, because a trailing space inside an inline-block collapses. */
     white-space: pre;
     will-change: filter, opacity;
-    animation: site-word-in 0.5s var(--ease-site-out) both;
+    animation: site-word-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .site-gen-caret {
@@ -1737,11 +1832,13 @@ body:has(.site-shell) {
   @keyframes site-word-in {
     from {
       opacity: 0;
-      filter: blur(6px);
+      filter: blur(8px);
+      transform: translateY(20%);
     }
     to {
       opacity: 1;
       filter: blur(0);
+      transform: none;
     }
   }
 
