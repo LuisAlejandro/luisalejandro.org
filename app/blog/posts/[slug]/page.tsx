@@ -1,27 +1,32 @@
+import type { Viewport } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ArticleToc } from "@components/Blog/ArticleToc";
+import { formatPostDate } from "@components/Blog/YearArchive";
+import { SiteButton } from "@components/common/Site/SiteButton";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 import {
-  getAllCategories,
   getAllPostsSlugs,
+  getBlogArchive,
   getPostAndMorePosts,
 } from "@lib/api";
+import { buildArchive, entryNumber, nextOlder } from "@lib/blogArchive";
 import { logError } from "@lib/logger";
-import markdownToHtml from "@lib/markdownToHtml";
+import { markdownToArticle } from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
-
-import { Section } from "@components/common/Layout/Section";
-import { WaveDivider } from "@components/common/Layout/WaveDivider";
-import Footer from "@components/Portfolio/Footer/Footer";
-import Header from "@components/Portfolio/Header/Header";
-import PostContent from "@components/Post/PostContent";
-
-import "highlight.js/styles/default.css";
 
 interface PostPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
+
+export const viewport: Viewport = {
+  themeColor: "#f4f4f0",
+};
 
 export async function generateStaticParams() {
   const posts = await getAllPostsSlugs();
@@ -33,70 +38,169 @@ export async function generateStaticParams() {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
+
   let post: any;
-  let morePosts: any[];
-  let allCategories: any[];
-  let blogPostingJsonLd: ReturnType<typeof generateBlogPostingJsonLd>;
-
+  let archive: Awaited<ReturnType<typeof getBlogArchive>>["archive"];
   try {
-    const data = await getPostAndMorePosts(slug);
-    allCategories = (await getAllCategories()) || [];
-
-    if (!data?.post?.slug) {
-      notFound();
-    }
-
-    post = {
-      ...data.post,
-      metadata: {
-        ...data.post?.metadata,
-        teaser: await markdownToHtml(data.post?.metadata?.teaser || ""),
-        content: await markdownToHtml(data.post?.metadata?.content || ""),
-      },
-    };
-
-    morePosts = data.morePosts || [];
-    blogPostingJsonLd = generateBlogPostingJsonLd(post);
+    const [data, blog] = await Promise.all([
+      getPostAndMorePosts(slug),
+      getBlogArchive(),
+    ]);
+    post = data?.post;
+    archive = blog.archive;
   } catch (error) {
-    logError("blog-post-page", error, {
-      slug,
-    });
+    logError("blog-post-page", error, { slug });
     throw error;
   }
 
+  if (!post?.slug) notFound();
+
+  // A post missing from the list (a draft outside local) still renders, from
+  // its own data, without a number or a next post.
+  const listed = archive.rows.find((entry) => entry.slug === slug);
+  const row = listed ?? buildArchive([post]).rows[0];
+  const next = nextOlder(archive.rows, slug);
+
+  const { html, toc } = await markdownToArticle(post.metadata?.content || "");
+  const faqs: { question: string; answer: string }[] =
+    post.metadata?.faqs || [];
+  const jsonLd = generateBlogPostingJsonLd(post);
+
   return (
-    <>
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogPostingJsonLd),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="bg-gray-6 w-full mx-auto">
-        <Header />
-        {/* Spanish article inside English site chrome; see app/blog/layout.tsx. */}
-        <main id="main-content" tabIndex={-1} className="bg-white pb-50" lang="es">
-          <WaveDivider variant="200" />
-          <Section grid overflowVisible oneColumn nopadding wide>
-            <PostContent
-              title={post.title}
-              coverImage={post.metadata.hero}
-              date={post.created_at}
-              id={post.id}
-              content={post.metadata.content}
-              categories={post.metadata.categories}
-              slug={post.slug}
-              excerpt={post.metadata.teaser}
-              morePosts={morePosts}
-              allCategories={allCategories}
-              faqs={post.metadata.faqs}
-            />
-          </Section>
-        </main>
-        <Footer />
-      </div>
-    </>
+
+      <article className="site-article site-wrap">
+        <header className="site-article__head">
+          <div className="site-blog-head__top site-note">
+            <nav aria-label="Breadcrumb">
+              <Link href="/" className="site-link">
+                Home
+              </Link>{" "}
+              /{" "}
+              <Link href="/blog" className="site-link">
+                Blog
+              </Link>
+              {row.category && (
+                <>
+                  {" "}
+                  /{" "}
+                  <Link
+                    href={`/blog/category/${row.category.slug}`}
+                    className="site-link text-ink"
+                    lang="es"
+                  >
+                    {row.category.title}
+                  </Link>
+                </>
+              )}
+            </nav>
+            {listed && <span>{entryNumber(row.number)}</span>}
+          </div>
+
+          <h1 className="site-article__title" lang="es">
+            {post.title}
+          </h1>
+          {row.teaser && (
+            <p className="site-lead-type site-article__desc" lang="es">
+              {row.teaser}
+            </p>
+          )}
+
+          <dl className="site-article__meta">
+            {row.category && (
+              <div>
+                <dt className="site-note">Topic</dt>
+                <dd lang="es">{row.category.title}</dd>
+              </div>
+            )}
+            <div>
+              <dt className="site-note">Published</dt>
+              <dd>
+                <time dateTime={row.date}>{formatPostDate(row.date)}</time>
+              </dd>
+            </div>
+            <div>
+              <dt className="site-note">Reading</dt>
+              <dd>{row.minutes} min</dd>
+            </div>
+            <div>
+              <dt className="site-note">Words</dt>
+              <dd>{row.words.toLocaleString("en-US")}</dd>
+            </div>
+          </dl>
+        </header>
+
+        {row.cover && (
+          <figure className="site-cover">
+            <img src={row.cover} alt="" fetchPriority="high" decoding="async" />
+            <figcaption className="site-note">
+              fig. 00 · <span lang="es">{post.title}</span>
+            </figcaption>
+          </figure>
+        )}
+
+        <div className="site-article__body" data-toc={toc.length > 0}>
+          {toc.length > 0 && <ArticleToc toc={toc} />}
+          <div
+            className="site-prose"
+            lang="es"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </div>
+
+        {faqs.length > 0 && (
+          <section className="site-article__faq" aria-labelledby="post-faq">
+            <h2 id="post-faq" className="site-note text-ink">
+              FAQ
+            </h2>
+            <dl lang="es">
+              {faqs.map((faq) => (
+                <div key={faq.question}>
+                  <dt>{faq.question}</dt>
+                  <dd>{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
+        <footer className="site-article__foot">
+          <div className="site-author">
+            <p className="site-note">Written by</p>
+            <p className="site-author__name">Luis Alejandro</p>
+            <p className="site-author__bio">
+              Fullstack AI engineer. Full-stack products and AI agents that stay
+              dependable after launch.
+            </p>
+            <SiteButton href="/contact" arrow>
+              Work with me
+            </SiteButton>
+          </div>
+
+          {next && (
+            <Link href={`/blog/posts/${next.slug}`} className="site-next">
+              <span className="site-note">
+                Next post
+                {next.category && (
+                  <>
+                    {" · "}
+                    <span lang="es">{next.category.title}</span>
+                  </>
+                )}
+              </span>
+              <span className="site-next__title" lang="es">
+                {next.title}
+              </span>
+            </Link>
+          )}
+        </footer>
+      </article>
+    </SiteShell>
   );
 }
 
-// Metadata is now handled by layout.tsx for better SEO optimization
+// Metadata is handled by layout.tsx
