@@ -22,6 +22,19 @@ export function SmoothScroll() {
     // Let in-page anchors use the smooth scroller, which also clears the
     // sticky header (a plain anchor jump hides the section label behind it).
     const handleAnchorClick = (event: MouseEvent) => {
+      // Leave ⌘/Ctrl/Shift/Alt-click to the browser so new tabs and downloads
+      // keep working, and never fight another handler that already acted.
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
       const target = event.target;
       if (!(target instanceof Element)) return;
 

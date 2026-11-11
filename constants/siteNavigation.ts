@@ -91,7 +91,7 @@ const socialHints: Record<string, { id: string; hint: string }> = {
 const homeSections: PaletteItem[] = [
   {
     id: "sec-metrics",
-    label: "Metrics & Impact",
+    label: "Selected impact",
     group: "Go to",
     href: "/#metrics",
     hint: "#metrics",
@@ -99,7 +99,7 @@ const homeSections: PaletteItem[] = [
   },
   {
     id: "sec-work",
-    label: "Selected Work",
+    label: "Selected work",
     group: "Go to",
     href: "/#work",
     hint: "#work",
@@ -123,7 +123,7 @@ const homeSections: PaletteItem[] = [
   },
   {
     id: "sec-blog",
-    label: "Latest Articles",
+    label: "From the blog",
     group: "Go to",
     href: "/#from-the-blog",
     hint: "#from-the-blog",

@@ -384,6 +384,8 @@ export function HeroVortex() {
   const [hovering, setHovering] = useState(false);
   const [hold, setHold] = useState<HoldState>("idle");
   const [coarse, setCoarse] = useState(false);
+  // Bumped after a lost WebGL context is restored, which rebuilds the effect.
+  const [epoch, setEpoch] = useState(0);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -516,7 +518,19 @@ export function HeroVortex() {
     const uLight = u("uLight");
     gl.uniform2f(u("uGrid"), ATLAS_COLS, atlas.rows);
     gl.uniform1f(u("uDot"), atlas.dot);
-    gl.uniform3f(u("uInk"), 14 / 255, 14 / 255, 13 / 255);
+    // Read the ink token so the field cannot drift from the stylesheet.
+    const inkProbe = document.createElement("span");
+    inkProbe.style.color = "var(--color-ink)";
+    host.appendChild(inkProbe);
+    const ink = getComputedStyle(inkProbe).color.match(/[\d.]+/g) ?? [];
+    host.removeChild(inkProbe);
+    const inkRgb = ink.slice(0, 3).map((channel) => Number(channel) / 255);
+    gl.uniform3f(
+      u("uInk"),
+      inkRgb[0] ?? 0.05,
+      inkRgb[1] ?? 0.05,
+      inkRgb[2] ?? 0.05
+    );
     gl.uniform1f(u("uOpacity"), OPACITY);
     gl.uniform1i(u("uAtlas"), 0);
 
@@ -538,7 +552,6 @@ export function HeroVortex() {
     let time = 0;
     let last = performance.now();
     let frame = 0;
-    const onScreen = true;
     let pageVisible = !document.hidden;
     let motion = !reduced.matches;
 
@@ -605,10 +618,11 @@ export function HeroVortex() {
       camera.twist = -1.2 * dive;
       const lightPx = (Math.hypot(width, height) / 2) * open;
       camera.light = lightPx / (0.5 * Math.max(width, height) * camera.zoom);
-      stage.style.setProperty(
-        "--site-hero-copy",
-        String(Math.max(0, 1 - 1.5 * centreIn))
-      );
+      const copy = Math.max(0, 1 - 1.5 * centreIn);
+      stage.style.setProperty("--site-hero-copy", String(copy));
+      // At zero the copy is invisible but still focusable and clickable, so the
+      // stylesheet hides it from pointer and assistive input as well.
+      stage.dataset.copyHidden = String(copy === 0);
     };
 
     const render = () => {
@@ -716,7 +730,7 @@ export function HeroVortex() {
       frame = running() ? window.requestAnimationFrame(step) : 0;
     };
 
-    const running = () => onScreen && pageVisible && motion && inView();
+    const running = () => pageVisible && motion && inView();
     const wake = () => {
       if (running()) {
         if (!frame) {
@@ -726,11 +740,19 @@ export function HeroVortex() {
       } else {
         window.cancelAnimationFrame(frame);
         frame = 0;
-        updateCamera();
-        render();
+        // Only paint when the frame can actually change: below the hero the
+        // canvas is hidden, and redrawing it per scroll event is wasted work.
+        if (inView()) {
+          updateCamera();
+          render();
+        }
       }
       // Off duty once the pinned hero has scrolled away entirely.
-      host.dataset.on = String(inView());
+      const visible = inView();
+      host.dataset.on = String(visible);
+      stage.dataset.copyHidden = String(
+        !visible || stage.dataset.copyHidden === "true"
+      );
     };
 
     // --- pointer ----------------------------------------------------------
@@ -823,6 +845,28 @@ export function HeroVortex() {
       { signal }
     );
 
+    canvas.addEventListener(
+      "webglcontextlost",
+      (event) => {
+        // Keep the canvas recoverable, then stop pretending it is on duty.
+        event.preventDefault();
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+        host.dataset.on = "false";
+        if (labelRef.current) labelRef.current.dataset.dead = "true";
+      },
+      { signal }
+    );
+    canvas.addEventListener(
+      "webglcontextrestored",
+      () => {
+        // Everything on the GL object is gone; remount the effect to rebuild it.
+        if (labelRef.current) delete labelRef.current.dataset.dead;
+        setEpoch((value) => value + 1);
+      },
+      { signal }
+    );
+
     const resizeObserver = new ResizeObserver(() => {
       resize();
       if (!frame) render();
@@ -863,7 +907,7 @@ export function HeroVortex() {
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       if (canvas.parentNode === host) host.removeChild(canvas);
     };
-  }, []);
+  }, [epoch]);
 
   const text = hold === "idle" && coarse ? "Tap & hold" : LABELS[hold];
 

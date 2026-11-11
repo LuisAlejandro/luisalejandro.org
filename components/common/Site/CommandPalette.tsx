@@ -214,6 +214,8 @@ export function CommandPalette() {
               No matching results for &ldquo;{query}&rdquo;
             </div>
           ) : (
+            // A listbox may only own options and groups, so the outer item is
+            // presentational and each inner list is the labelled group.
             <ul
               id="palette-results"
               ref={listRef}
@@ -222,9 +224,19 @@ export function CommandPalette() {
               className="flex flex-col gap-1"
             >
               {groupedItems.map((group) => (
-                <li key={group.name} className="flex flex-col">
-                  <div className="site-note px-3 py-1.5">{group.name}</div>
-                  <ul className="flex flex-col gap-0.5">
+                <li
+                  key={group.name}
+                  role="presentation"
+                  className="flex flex-col"
+                >
+                  <div className="site-note px-3 py-1.5" aria-hidden="true">
+                    {group.name}
+                  </div>
+                  <ul
+                    role="group"
+                    aria-label={group.name}
+                    className="flex flex-col gap-0.5"
+                  >
                     {group.items.map((item) => {
                       const itemIndex = filteredItems.indexOf(item);
                       const isSelected = itemIndex === selectedIndex;

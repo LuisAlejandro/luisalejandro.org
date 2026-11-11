@@ -29,7 +29,7 @@ export function MetricsSection() {
                 <span aria-hidden="true" className="site-outline">
                   {row.metric}
                 </span>
-                <span aria-hidden="true" className="site-wf-solid">
+                <span className="site-wf-solid">
                   <span className="block">{row.metric}</span>
                 </span>
               </p>

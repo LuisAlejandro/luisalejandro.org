@@ -22,7 +22,9 @@ export function modifiedDate(post: {
   modified_at?: string;
 }): string | undefined {
   const created = post.created_at ? new Date(post.created_at).getTime() : NaN;
-  const modified = post.modified_at ? new Date(post.modified_at).getTime() : NaN;
+  const modified = post.modified_at
+    ? new Date(post.modified_at).getTime()
+    : NaN;
 
   if (Number.isNaN(modified)) return undefined;
   if (!Number.isNaN(created) && modified <= created) return undefined;
@@ -99,7 +101,7 @@ export function generateHomepageJsonLd() {
         "@type": "ProfilePage",
         "@id": `${config.url}/#ProfilePage`,
         url: config.url,
-        name: `${config.author.first_name} - Software Engineer`,
+        name: `${config.author.first_name} - Full Stack AI Engineer`,
         description: config.description,
         dateCreated: SITE_PROFILE_DATE_CREATED,
         dateModified: SITE_PROFILE_DATE_MODIFIED,
@@ -127,7 +129,7 @@ export function generatePortfolioJsonLd() {
         "@type": "ProfilePage",
         "@id": `${portfolioUrl}#ProfilePage`,
         url: portfolioUrl,
-        name: `Portfolio | ${config.author.first_name} - Software Engineer`,
+        name: `Portfolio | ${config.author.first_name} - Full Stack AI Engineer`,
         description: portfolioDescription,
         isPartOf: {
           "@id": websiteId,

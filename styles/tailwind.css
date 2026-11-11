@@ -69,7 +69,6 @@
   --color-rule-strong: #0e0e0d52;
   --color-signal: #d61f3a;
   --color-signal-ink: #ffffff;
-  --color-ink-strong: #000000;
 
   /* Fluid scale solved against the reference at 1440px: 11.5 / 17.92 / 26 /
      40 / 70.1 / 120.7 / 177.6. The 390px end is 10.5 / 16 / 20 / 28 / 32 / 44. */
@@ -247,12 +246,6 @@ body:has(.site-shell) {
     letter-spacing: -0.045em;
   }
 
-  .site-h3 {
-    font-size: var(--text-step-2);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
   .site-lead-type {
     font-size: var(--text-step-1);
     line-height: 1.35;
@@ -283,6 +276,9 @@ body:has(.site-shell) {
   }
 
   .site-section-head {
+    /* Clears the fixed header for native hash jumps and the scrollIntoView
+       fallback, which have no Lenis offset of their own. */
+    scroll-margin-top: 5.5rem;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -590,11 +586,6 @@ body:has(.site-shell) {
     white-space: nowrap;
   }
 
-  .site-brand__mark {
-    flex: none;
-    color: var(--color-ink);
-  }
-
   .site-brand__role {
     color: var(--color-ink-muted);
   }
@@ -798,6 +789,13 @@ body:has(.site-shell) {
     transition: opacity 0.3s linear;
   }
 
+  /* Once the takeover has faded the copy out it is invisible, so it must also
+     stop capturing clicks and tab stops over the section arriving beneath. */
+  .site-hero[data-copy-hidden="true"] > :not(.site-vortex, .site-vortex-label) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   /* "Click & hold": a small ink tag that trails the pointer by 20px. */
   .site-vortex-label {
     position: absolute;
@@ -816,6 +814,17 @@ body:has(.site-shell) {
 
   .site-vortex-label[data-visible="true"] {
     opacity: 1;
+  }
+
+  /* Never invite a hold on a renderer that cannot respond. */
+  .site-vortex-label[data-dead="true"] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-vortex-label {
+      display: none;
+    }
   }
 
   /* Touch has no pointer to trail: the tag sits fixed under the header. */
@@ -1200,7 +1209,7 @@ body:has(.site-shell) {
     z-index: 2;
   }
 
-  .site-ws[data-pinned="true"] .site-ws__item > * {
+  .site-ws[data-pinned="true"] .site-ws__item[data-current="true"] > * {
     will-change: opacity, transform;
     transition:
       opacity 0.8s var(--ease-site-out),

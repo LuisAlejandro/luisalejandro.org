@@ -2,6 +2,8 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
+import { ProjectList } from "@constants/constants";
+
 /**
  * Project artwork drawn as a technical collage: outlined UI fragments with
  * micro labels, dimension and leader lines with arrowheads, elements that
@@ -2233,37 +2235,34 @@ function CanaimaArt({ layer = "back" }: { layer?: Layer }) {
 
 type Entry = {
   Art: (props: { layer?: Layer }) => React.JSX.Element | null;
+  /** Sheet the scene is drawn on; the stage renders it full-bleed. */
   view: string;
-  /** Draws part of itself again above the title on the pinned stage. */
-  front?: boolean;
 };
 
+/** Project slugs that have a drawing; anything else falls back to the shot. */
+type Slug = (typeof ProjectList)[number]["visit"];
+
 /** All five drawings share the wide sheet and the stage's scroll progress. */
-const ART: Record<string, Entry> = {
+const ART: Partial<Record<Slug, Entry>> = {
   "/case-studies/expedia": {
     Art: ExpediaArt,
     view: "0 0 1600 900",
-    front: true,
   },
   "/case-studies/wheeltheworld": {
     Art: CicdArt,
     view: "0 0 1600 900",
-    front: true,
   },
   "/case-studies/soleit": {
     Art: SoleitArt,
     view: "0 0 1600 900",
-    front: true,
   },
   "/case-studies/dockershelf": {
     Art: DockershelfArt,
     view: "0 0 1600 900",
-    front: true,
   },
   "/case-studies/canaima": {
     Art: CanaimaArt,
     view: "0 0 1600 900",
-    front: true,
   },
 };
 
@@ -2276,7 +2275,7 @@ export function WorkArtwork({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
-  const entry = ART[slug];
+  const entry = ART[slug as Slug];
   const Art = entry?.Art;
 
   useEffect(() => {
@@ -2312,8 +2311,8 @@ export function WorkArtwork({
   );
 }
 
-/** True when the drawing has a layer that crosses in front of the title. */
-export const hasFrontLayer = (slug: string) => Boolean(ART[slug]?.front);
-
 /** True when an artwork exists for this project; the caller falls back to the shot. */
-export const hasArtwork = (slug: string) => Boolean(ART[slug]);
+export const hasArtwork = (slug: string) => Boolean(ART[slug as Slug]);
+
+/** Every drawing crosses the title, so the front layer follows the same test. */
+export const hasFrontLayer = hasArtwork;

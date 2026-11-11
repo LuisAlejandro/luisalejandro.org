@@ -8,8 +8,8 @@ export default function NotFound() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <section className="site-section site-wrap pb-24 min-h-[70svh]">
         <div className="site-section-head site-note">
-          <h2>[404] Not found</h2>
-          <div className="text-ink-muted">Nothing at this address</div>
+          <p>[404] Not found</p>
+          <p className="text-ink-muted">Nothing at this address</p>
         </div>
 
         <div className="flex flex-col items-start gap-8">

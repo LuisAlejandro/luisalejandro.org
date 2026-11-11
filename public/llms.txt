@@ -1,6 +1,6 @@
 # Luis Alejandro
 
-> Luis Alejandro Martínez Faneyth is a Maracay-based fullstack AI engineer with 17+ years of experience who ships full-stack products and AI agents that stay dependable after launch.
+> Luis Alejandro Martínez Faneyth is a Maracay-based fullstack AI engineer with more than a decade of experience who ships full-stack products and AI agents that stay dependable after launch.
 
 This file is the preferred starting point for AI assistants, answer engines, and crawlers that need concise context about luisalejandro.org.
 

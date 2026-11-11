@@ -55,7 +55,9 @@ export async function getAllPostsForHome(limit?: number) {
       ])
       .sort("-created_at");
 
-    const data = limit ? await query.limit(limit) : await query;
+    // A zero/negative limit must not fall through to the whole collection.
+    const take = typeof limit === "number" ? limit : 0;
+    const data = take > 0 ? await query.limit(take) : await query;
     return data?.objects;
   } catch (error) {
     logError("getAllPostsForHome", error, {

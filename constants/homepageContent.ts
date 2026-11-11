@@ -119,7 +119,6 @@ export const heroContent = {
     { glyph: "▲", text: "Remote by default" },
   ],
   actions: {
-    primary: { label: "Let's talk", href: "/contact" },
     secondary: { label: "See the work", href: "/#work" },
   },
   vortexNote: "main.go · click & hold anywhere",

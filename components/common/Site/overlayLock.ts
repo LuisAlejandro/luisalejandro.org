@@ -58,6 +58,9 @@ export function scrollToSection(id: string): boolean {
   if (!element) return false;
 
   if (scroller) {
+    // Callers can reach this while an overlay still holds the scroll lock, and
+    // Lenis ignores scrollTo while stopped: start it so the jump always runs.
+    scroller.start();
     scroller.scrollTo(element, { offset: -80 });
   } else {
     element.scrollIntoView();

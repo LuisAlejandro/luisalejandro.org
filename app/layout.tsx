@@ -8,6 +8,7 @@ import {
   ENV_NAME,
   GA_MEASUREMENT_ID,
   config,
+  experience,
 } from "@constants/constants";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
@@ -44,9 +45,9 @@ const leagueGothic = League_Gothic({
   adjustFontFallback: true,
 });
 
-const siteTitle = "Luis Alejandro | Full Stack Developer & Open Source Expert";
-const siteDescription =
-  "Venezuelan full-stack software engineer with 16+ years of remote expertise in TypeScript, Python, and Go. Discover my open-source projects, tools, and developer blog.";
+const siteTitle =
+  "Luis Alejandro | Full Stack AI Engineer & Open Source Expert";
+const siteDescription = `Venezuelan full-stack AI engineer with more than ${experience} years of remote experience in TypeScript, Python, Go and LLM integration. Open-source projects, agent tooling and a developer blog.`;
 
 export const metadata: Metadata = {
   title: siteTitle,
