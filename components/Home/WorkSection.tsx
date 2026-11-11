@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
+import { WorkArtwork, hasArtwork } from "@components/Home/WorkArtwork";
 import { ProjectList } from "@constants/constants";
 import {
   sectionNotes,
@@ -164,13 +165,17 @@ export function WorkSection() {
                   tabIndex={-1}
                   aria-hidden="true"
                 >
-                  <Image
-                    src={project.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 62vw"
-                    className="object-cover"
-                  />
+                  {hasArtwork(project.visit) ? (
+                    <WorkArtwork slug={project.visit} />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 62vw"
+                      className="object-cover"
+                    />
+                  )}
                 </Link>
               </div>
             </div>

@@ -419,9 +419,9 @@ body:has(.site-shell) {
     color: var(--color-ink);
   }
 
-  /* Opaque band. The reference fades it in over the first 80px of scroll, but
-     the vortex is now a layer above the page, so the band is always solid and
-     the nav never sits on moving glyphs. */
+  /* The band stays transparent over the hero, so the vortex runs behind the
+     nav, and fades in over the first 80px of scroll like the reference: past
+     that the header floats over content and needs its own ground. */
   .site-header::before {
     content: "";
     position: absolute;
@@ -494,6 +494,12 @@ body:has(.site-shell) {
       animation: site-hd-compact linear both;
       animation-timeline: scroll(root);
       animation-range: 0 160px;
+    }
+
+    .site-header::before {
+      animation: site-hd-band linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
     }
 
     .site-header__rule {
@@ -1129,6 +1135,50 @@ body:has(.site-shell) {
     pointer-events: none;
   }
 
+  /* --- project artwork: technical collage ------------------------------ */
+
+  .site-art {
+    position: absolute;
+    inset: 0;
+  }
+
+  .site-art svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Fragments settle in one after another; leaders draw themselves. */
+  .site-art__frag {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .site-art[data-drawn="true"] .site-art__frag {
+    animation: site-art-in 0.6s var(--ease-site-out) calc(var(--i, 0) * 80ms)
+      both;
+  }
+
+  .site-art__lead {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  .site-art[data-drawn="true"] .site-art__lead {
+    animation: site-art-draw 0.9s var(--ease-site-in-out)
+      calc(360ms + var(--i, 0) * 80ms) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-art__frag,
+    .site-art__lead {
+      opacity: 1 !important;
+      transform: none !important;
+      stroke-dashoffset: 0 !important;
+      animation: none !important;
+    }
+  }
+
   /* --- 03: services rows ------------------------------------------------ */
 
   .site-services {
@@ -1537,6 +1587,19 @@ body:has(.site-shell) {
   }
 
   /* --- motion keyframes ------------------------------------------------- */
+
+  @keyframes site-art-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes site-art-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
 
   @keyframes site-word-in {
     from {
