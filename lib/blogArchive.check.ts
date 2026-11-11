@@ -96,3 +96,41 @@ assert.equal(nextOlder(archive.rows, "a")?.slug, "c");
 assert.equal(nextOlder(archive.rows, "missing"), undefined);
 
 console.log("blogArchive: ok");
+
+// Article renderer.
+(async () => {
+  const { markdownToArticle } = await import("./markdownToHtml");
+  const { html, toc } = await markdownToArticle(
+    [
+      "## ¿Qué es esto?",
+      "### Paso",
+      "### Paso",
+      '<span class="figure figure-right-40" data-figure-src="https://cdn.example/a.jpg" data-figure-href="https://imgix.example/a.jpg" data-figure-alt="Diagrama &quot;x&quot;"></span>',
+      '<span class="figure" data-figure-src="https://cdn.example/b.jpg"></span>',
+      "```ts\nconst a = 1;\n```",
+      "```\nplain text\n```",
+      "| a | b |\n| - | - |\n| 1 | 2 |",
+    ].join("\n\n")
+  );
+  assert.deepEqual(toc, [
+    { id: "que-es-esto", text: "¿Qué es esto?", depth: 2 },
+    { id: "paso", text: "Paso", depth: 3 },
+    { id: "paso-2", text: "Paso", depth: 3 },
+  ]);
+  assert.match(html, /<h2 id="que-es-esto">/);
+  assert.match(
+    html,
+    /<figure class="site-fig site-fig--right-40"><img src="https:\/\/imgix.example\/a.jpg" alt="Diagrama &quot;x&quot;"/
+  );
+  assert.match(html, /fig\. 01 · Diagrama/);
+  assert.match(
+    html,
+    /<figure class="site-fig site-fig--100"><img src="https:\/\/cdn.example\/b.jpg" alt=""/
+  );
+  assert.match(html, /<figcaption class="site-note">fig\. 02<\/figcaption>/);
+  assert.match(html, /<code class="hljs language-ts">.*hljs-keyword/s);
+  assert.match(html, /plain text/);
+  assert.match(html, /<div class="site-prose__table"><table>/);
+  assert.deepEqual((await markdownToArticle("Solo texto.")).toc, []);
+  console.log("markdownToArticle: ok");
+})();
