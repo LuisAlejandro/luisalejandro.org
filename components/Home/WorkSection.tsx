@@ -132,31 +132,54 @@ export function WorkSection() {
             </ol>
           </div>
 
-          {projects.map((project, index) => (
-            <div
-              key={project.visit}
-              className="site-ws__item"
-              data-current={index === current}
-            >
-              <div className="site-ws__text">
-                <div className="site-ws__meta site-note">
-                  <span>
-                    {pad(index + 1)} / {pad(COUNT)}
-                  </span>
-                  <span>Case study</span>
+          {projects.map((project, index) => {
+            const hidden = pinned && index !== current;
+            return (
+              <div
+                key={project.visit}
+                className="site-ws__item"
+                data-current={index === current}
+                inert={hidden}
+              >
+                <div className="site-ws__art">
+                  <Link
+                    href={project.visit}
+                    className="absolute inset-0 block"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    {hasArtwork(project.visit) ? (
+                      <WorkArtwork slug={project.visit} />
+                    ) : (
+                      <Image
+                        src={project.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 62vw"
+                        className="object-cover"
+                      />
+                    )}
+                  </Link>
                 </div>
 
-                <h3 className="site-ws__title site-h3">
+                <h3 className="site-ws__title">
                   <Link href={project.visit} className="site-link">
                     {project.title}
                   </Link>
                 </h3>
 
-                <p className="site-ws__client site-note">
-                  {project.tags.join(" · ")}
-                </p>
-
-                <p className="site-ws__summary">{project.description}</p>
+                <div className="site-ws__info">
+                  <div className="site-ws__meta site-note">
+                    <span>
+                      {pad(index + 1)} / {pad(COUNT)}
+                    </span>
+                    <span>Case study</span>
+                  </div>
+                  <p className="site-ws__summary">{project.description}</p>
+                  <p className="site-ws__client site-note">
+                    {project.tags.join(" · ")}
+                  </p>
+                </div>
 
                 <div className="site-ws__actions">
                   <SiteButton href={project.visit} variant="ghost">
@@ -164,29 +187,8 @@ export function WorkSection() {
                   </SiteButton>
                 </div>
               </div>
-
-              <div className="site-ws__art">
-                <Link
-                  href={project.visit}
-                  className="absolute inset-0 block"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                >
-                  {hasArtwork(project.visit) ? (
-                    <WorkArtwork slug={project.visit} />
-                  ) : (
-                    <Image
-                      src={project.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 62vw"
-                      className="object-cover"
-                    />
-                  )}
-                </Link>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

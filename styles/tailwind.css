@@ -975,6 +975,7 @@ body:has(.site-shell) {
     position: relative;
   }
 
+  /* Stacked (phones, reduced motion): art, title, info, button. */
   .site-ws__stage {
     display: flex;
     flex-direction: column;
@@ -983,7 +984,7 @@ body:has(.site-shell) {
 
   .site-ws__item {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 1.25rem;
   }
 
@@ -1019,18 +1020,16 @@ body:has(.site-shell) {
     -webkit-text-stroke: 1px var(--color-rule-strong);
   }
 
+  .site-ws__title {
+    font-size: var(--text-step-2);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
   .site-ws__meta {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-  }
-
-  .site-ws__title {
-    margin-top: 0.9rem;
-  }
-
-  .site-ws__client {
-    margin-top: 0.5rem;
   }
 
   .site-ws__summary {
@@ -1039,11 +1038,14 @@ body:has(.site-shell) {
     color: var(--color-ink-muted);
   }
 
+  .site-ws__client {
+    margin-top: 0.75rem;
+  }
+
   .site-ws__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1.5rem;
   }
 
   .site-ws__stages ol {
@@ -1079,7 +1081,9 @@ body:has(.site-shell) {
     color: var(--color-signal);
   }
 
-  /* Pinned only when JS says the viewport and motion budget allow it. */
+  /* Pinned: one full-bleed sheet. Drawing across the whole width, title in
+     the middle, counter top-left, description top-right, rail bottom-left,
+     button bottom-right. */
   .site-ws[data-pinned="true"] {
     height: calc(var(--site-ws-count, 4) * 100svh);
   }
@@ -1093,43 +1097,98 @@ body:has(.site-shell) {
     grid-template-rows: auto 1fr auto;
     column-gap: var(--spacing-col-gap);
     row-gap: 1.5rem;
-    padding-block: 1.5rem;
-  }
-
-  .site-ws[data-pinned="true"] .site-ws__count {
-    display: block;
-    grid-area: 1 / 1 / auto / span 4;
-  }
-
-  .site-ws[data-pinned="true"] .site-ws__stages {
-    display: block;
-    grid-area: 3 / 1 / auto / span 4;
+    margin-inline: calc(-1 * var(--spacing-gutter));
+    padding: 1.5rem var(--spacing-gutter);
+    background: var(--color-paper-raised);
+    overflow: hidden;
   }
 
   .site-ws[data-pinned="true"] .site-ws__item {
     display: contents;
   }
 
-  .site-ws[data-pinned="true"] .site-ws__text {
-    grid-area: 2 / 1 / auto / span 4;
-    align-self: center;
+  .site-ws[data-pinned="true"] .site-ws__count {
+    display: block;
+    grid-area: 1 / 1 / 2 / 5;
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__stages {
+    display: block;
+    grid-area: 3 / 1 / 4 / 5;
+    align-self: end;
+    position: relative;
+    z-index: 2;
   }
 
   .site-ws[data-pinned="true"] .site-ws__art {
-    grid-area: 1 / 5 / span 3 / span 8;
-    align-self: center;
+    grid-area: 1 / 1 / -1 / -1;
+    margin: -1.5rem calc(-1 * var(--spacing-gutter));
+    aspect-ratio: auto;
+    background: none;
+    border-radius: 0;
+    z-index: 0;
   }
 
-  .site-ws[data-pinned="true"] :is(.site-ws__text, .site-ws__art) {
+  .site-ws[data-pinned="true"] .site-ws__title {
+    grid-area: 2 / 1 / 3 / -1;
+    align-self: center;
+    justify-self: center;
+    max-width: 16ch;
+    position: relative;
+    z-index: 1;
+    font-size: clamp(3rem, 7vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    text-align: center;
+    text-wrap: balance;
+    /* A thin knockout in the sheet tone keeps the letters clear of the
+       drawing they cross. */
+    text-shadow:
+      4px 0 var(--color-paper-raised),
+      -4px 0 var(--color-paper-raised),
+      0 4px var(--color-paper-raised),
+      0 -4px var(--color-paper-raised),
+      3px 3px var(--color-paper-raised),
+      -3px 3px var(--color-paper-raised),
+      3px -3px var(--color-paper-raised),
+      -3px -3px var(--color-paper-raised);
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__info {
+    grid-area: 1 / 9 / 2 / -1;
+    justify-self: end;
+    max-width: 36ch;
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__meta {
+    display: none;
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__summary {
+    margin-top: 0;
+    color: var(--color-ink);
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__actions {
+    grid-area: 3 / 9 / 4 / -1;
+    justify-self: end;
+    align-self: end;
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-ws[data-pinned="true"] .site-ws__item > * {
     will-change: opacity, transform;
     transition:
       opacity 0.8s var(--ease-site-out),
       transform 0.8s var(--ease-site-out);
   }
 
-  .site-ws[data-pinned="true"]
-    .site-ws__item:not([data-current="true"])
-    :is(.site-ws__text, .site-ws__art) {
+  .site-ws[data-pinned="true"] .site-ws__item:not([data-current="true"]) > * {
     opacity: 0;
     transform: translateY(12px);
     pointer-events: none;

@@ -204,7 +204,7 @@ function ExpediaArt() {
       </defs>
 
       {/* Calendar page, pinned up behind everything */}
-      <g transform="translate(566 18) rotate(6)">
+      <g transform="translate(860 70) rotate(6)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "4deg" } as React.CSSProperties}
@@ -274,7 +274,7 @@ function ExpediaArt() {
       </g>
 
       {/* Browser: the search results load and one hotel is picked */}
-      <g transform="translate(54 44) rotate(-2)">
+      <g transform="translate(420 160) rotate(-2)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "-3deg" } as React.CSSProperties}
@@ -368,7 +368,7 @@ function ExpediaArt() {
       </g>
 
       {/* Receipt: prints line by line */}
-      <g transform="translate(34 238) rotate(4)">
+      <g transform="translate(140 540) rotate(4)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "5deg" } as React.CSSProperties}
@@ -450,7 +450,7 @@ function ExpediaArt() {
       </g>
 
       {/* Voucher with a perforated stub: stamped when the booking lands */}
-      <g transform="translate(336 270) rotate(-5)">
+      <g transform="translate(560 600) rotate(-5)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
@@ -548,7 +548,7 @@ function ExpediaArt() {
       </g>
 
       {/* Room key card */}
-      <g transform="translate(698 302) rotate(11)">
+      <g transform="translate(1262 604) rotate(11)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "6deg" } as React.CSSProperties}
@@ -586,7 +586,7 @@ function ExpediaArt() {
       </g>
 
       {/* The figure lands last */}
-      <g transform="translate(690 470)">
+      <g transform="translate(1010 690)">
         <g className="site-rise" style={beat(0.84, 0.12)}>
           <text
             x="0"
@@ -605,25 +605,23 @@ function ExpediaArt() {
       </g>
 
       <Leader
-        d="M210 40v-22"
-        x={210}
-        y={12}
+        d="M636 158v-24"
+        x={636}
+        y={126}
         label="get /properties"
         anchor="middle"
         order={1}
       />
-      <Tip x={210} y={22} angle={-90} />
+      <Tip x={636} y={134} angle={-90} />
       <Leader
-        d="M336 352h-22v-18"
-        x={314}
-        y={322}
+        d="M560 690h-34v-22"
+        x={526}
+        y={660}
         label="hold + book"
         anchor="middle"
         order={2}
       />
-      <Tip x={314} y={336} angle={-90} />
-
-      <Sheet />
+      <Tip x={526} y={668} angle={-90} />
     </>
   );
 }
@@ -1361,18 +1359,23 @@ function CanaimaArt() {
   );
 }
 
-const ART: Record<string, () => React.JSX.Element> = {
-  "/case-studies/expedia": ExpediaArt,
-  "/case-studies/wheeltheworld": CicdArt,
-  "/case-studies/soleit": SoleitArt,
-  "/case-studies/dockershelf": DockershelfArt,
-  "/case-studies/canaima": CanaimaArt,
+type Entry = { Art: () => React.JSX.Element; view: string };
+
+/** Each drawing declares its own sheet: Expedia is laid out wide, for the
+    full-bleed stage; the others still use the old 900×560 panel. */
+const ART: Record<string, Entry> = {
+  "/case-studies/expedia": { Art: ExpediaArt, view: "0 0 1600 900" },
+  "/case-studies/wheeltheworld": { Art: CicdArt, view: "0 0 900 560" },
+  "/case-studies/soleit": { Art: SoleitArt, view: "0 0 900 560" },
+  "/case-studies/dockershelf": { Art: DockershelfArt, view: "0 0 900 560" },
+  "/case-studies/canaima": { Art: CanaimaArt, view: "0 0 900 560" },
 };
 
 export function WorkArtwork({ slug }: { slug: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
-  const Art = ART[slug];
+  const entry = ART[slug];
+  const Art = entry?.Art;
 
   useEffect(() => {
     const host = ref.current;
@@ -1400,7 +1403,7 @@ export function WorkArtwork({ slug }: { slug: string }) {
 
   return (
     <div ref={ref} className="site-art" data-drawn={drawn}>
-      <svg viewBox="0 0 900 560" role="presentation" focusable="false">
+      <svg viewBox={entry.view} role="presentation" focusable="false">
         <Art />
       </svg>
     </div>
