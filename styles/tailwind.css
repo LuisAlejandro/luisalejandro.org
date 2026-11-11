@@ -1952,6 +1952,11 @@ body:has(.site-shell) {
     }
   }
 
+  /* Pages that end on a list rather than the subscribe block. */
+  .site-blog-tail {
+    padding-bottom: var(--spacing-section);
+  }
+
   /* --- blog: topics and subscribe ------------------------------------ */
 
   .site-topics {

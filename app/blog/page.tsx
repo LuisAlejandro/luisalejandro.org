@@ -10,8 +10,8 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 import { siteSocialLinks } from "@constants/siteNavigation";
-import { getAllCategories, getAllPostsForHome } from "@lib/api";
-import { buildArchive, entryNumber, type CosmicPost } from "@lib/blogArchive";
+import { getBlogArchive } from "@lib/api";
+import { entryNumber } from "@lib/blogArchive";
 import { logError } from "@lib/logger";
 import { generateBlogJsonLd } from "@lib/structuredData";
 
@@ -23,22 +23,17 @@ const linkedin = siteSocialLinks.find((link) => link.label === "LinkedIn");
 const rss = "/blog/posts/feed.xml";
 
 export default async function BlogPage() {
-  let posts: CosmicPost[] = [];
-  let categories: Awaited<ReturnType<typeof getAllCategories>> = [];
-
+  let data: Awaited<ReturnType<typeof getBlogArchive>>;
   try {
-    [posts, categories] = await Promise.all([
-      getAllPostsForHome() as Promise<CosmicPost[]>,
-      getAllCategories(),
-    ]);
+    data = await getBlogArchive();
   } catch (error) {
     logError("blog-page", error);
     throw error;
   }
 
-  const { rows, topics, specs } = buildArchive(posts ?? [], categories);
+  const { rows, topics, specs } = data.archive;
   const [latest, ...rest] = rows;
-  const blogJsonLd = generateBlogJsonLd((posts ?? []) as never);
+  const blogJsonLd = generateBlogJsonLd(data.posts as never);
 
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>

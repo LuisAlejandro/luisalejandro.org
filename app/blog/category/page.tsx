@@ -2,15 +2,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { TopicCards } from "@components/Blog/TopicCards";
+import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 import { config } from "@constants/constants";
-import { getPopulatedCategories } from "@lib/api";
+import { getBlogArchive } from "@lib/api";
 import { logError } from "@lib/logger";
-
-import { Section } from "@components/common/Layout/Section";
-import { WaveDivider } from "@components/common/Layout/WaveDivider";
-import LazyImagesLoader from "@components/LazyImagesLoader";
-import Footer from "@components/Portfolio/Footer/Footer";
-import Header from "@components/Portfolio/Header/Header";
 
 // Metadata for the categories page
 export const metadata: Metadata = {
@@ -76,70 +75,48 @@ export const metadata: Metadata = {
 };
 
 export default async function CategoriesPage() {
-  let categories: any[];
-
+  let archive: Awaited<ReturnType<typeof getBlogArchive>>["archive"];
   try {
-    categories = (await getPopulatedCategories()) || [];
-
-    if (!categories?.length) {
-      notFound();
-    }
+    ({ archive } = await getBlogArchive());
   } catch (error) {
-    logError("blog-category-index-page", error);
+    logError("blog-categories-page", error);
     throw error;
   }
 
+  if (archive.topics.length === 0) notFound();
+
   return (
-    <div className="bg-gray-6 text-black w-full my-0 mx-auto">
-      <Header />
-      <main id="main-content" tabIndex={-1} className="bg-white pb-50">
-        <WaveDivider variant="200" />
-        <Section grid overflowVisible oneColumn nopadding wide>
-          <div className="w-full px-[2%] py-8">
-            <h1 className="text-4xl font-light leading-4 mt-0 mb-8 text-center">
-              Blog Categories
-            </h1>
-            <p className="text-lg font-light text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-              Explore posts organized by topics. Click on any category to see
-              all related articles.
-            </p>
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <section className="site-blog-head site-wrap">
+        <div className="site-blog-head__top site-note">
+          <nav aria-label="Breadcrumb">
+            <Link href="/" className="site-link">
+              Home
+            </Link>{" "}
+            /{" "}
+            <Link href="/blog" className="site-link">
+              Blog
+            </Link>{" "}
+            / <span className="text-ink">Topics</span>
+          </nav>
+          <span>[Topics]</span>
+        </div>
+        <h1 className="site-blog-head__title">
+          <span className="site-display">Topics.</span>
+          <span className="site-lead-type site-blog-head__lead">
+            {archive.topics.length} topics across {archive.specs.entries} posts.
+          </span>
+        </h1>
+      </section>
 
-            <div className="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto">
-              {categories.map((category: any) => {
-                return (
-                  <Link
-                    key={category.id}
-                    href={`/blog/category/${category.slug}`}
-                    className={`
-                      inline-block align-top font-normal
-                      bg-[rgb(210,210,210)] text-[rgb(90,90,90)]
-                      rounded-md transition-all duration-300 ease-in-out
-                      hover:bg-[rgb(248,217,131)] hover:text-black
-                      active:scale-95 active:bg-white
-                      text-base px-4 py-2
-                    `}
-                    title={`View all posts in the "${category.title}" category`}
-                    rel="tag"
-                  >
-                    {category.title}
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="text-center mt-12">
-              <Link
-                href="/blog"
-                className="inline-block text-lg text-[rgb(90,90,90)] hover:text-black transition-colors duration-200 underline"
-              >
-                ← Back to all posts
-              </Link>
-            </div>
-          </div>
-        </Section>
-        <LazyImagesLoader />
-      </main>
-      <Footer />
-    </div>
+      <section className="site-section site-wrap site-blog-tail">
+        <SectionHeader
+          num="01"
+          label="All topics"
+          note="by number of entries"
+        />
+        <TopicCards topics={archive.topics} />
+      </section>
+    </SiteShell>
   );
 }

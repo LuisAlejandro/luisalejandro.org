@@ -3,6 +3,7 @@ import { createBucketClient } from "@cosmicjs/sdk";
 import { ENV_NAME } from "@constants/constants";
 import { logError } from "@lib/logger";
 import { sanitizeSearchQuery } from "@lib/searchQuery";
+import { buildArchive, type CosmicPost } from "@lib/blogArchive";
 
 const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG;
 
@@ -553,4 +554,16 @@ export async function getPopulatedCategories() {
     logError("getPopulatedCategories", error, {});
     return [];
   }
+}
+
+/** Posts and categories, derived once into the blog's archive, topics and specs. */
+export async function getBlogArchive() {
+  const [posts, categories] = await Promise.all([
+    getAllPostsForHome(),
+    getAllCategories(),
+  ]);
+  return {
+    posts: (posts ?? []) as CosmicPost[],
+    archive: buildArchive((posts ?? []) as CosmicPost[], categories),
+  };
 }

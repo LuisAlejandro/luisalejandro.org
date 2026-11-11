@@ -1,17 +1,16 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { config } from "@constants/constants";
-import { getAllPostsForCategory } from "@lib/api";
-import { logError } from "@lib/logger";
+import Link from "next/link";
 
-import MoreStories from "@components/Blog/MoreStories";
-import { Section } from "@components/common/Layout/Section";
-import { WaveDivider } from "@components/common/Layout/WaveDivider";
-import LazyImagesLoader from "@components/LazyImagesLoader";
-import Footer from "@components/Portfolio/Footer/Footer";
-import Header from "@components/Portfolio/Header/Header";
-import BlogCategoryClient from "@side-effects/Blog/BlogCategoryClient";
+import { YearArchive } from "@components/Blog/YearArchive";
+import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
+import { config } from "@constants/constants";
+import { getBlogArchive } from "@lib/api";
+import { logError } from "@lib/logger";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -40,41 +39,61 @@ export async function generateMetadata({
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
-  let categoryPosts: any[];
-  let categoryName: string;
 
+  let archive: Awaited<ReturnType<typeof getBlogArchive>>["archive"];
   try {
-    const result = (await getAllPostsForCategory(slug)) || {};
-    categoryPosts = result.categoryPosts;
-    categoryName = result.categoryName;
-
-    if (!categoryPosts || !categoryName) {
-      notFound();
-    }
+    ({ archive } = await getBlogArchive());
   } catch (error) {
-    logError("blog-category-page", error, {
-      slug,
-    });
+    logError("blog-category-page", error, { slug });
     throw error;
   }
 
+  // Only categories with published posts have a page; an emptied or deleted
+  // category stops resolving instead of rendering an empty archive.
+  const topic = archive.topics.find((t) => t.slug === slug);
+  if (!topic) notFound();
+
+  const rows = archive.rows.filter((row) => row.category?.slug === slug);
+
   return (
-    <div className="bg-gray-6 text-black w-full my-0 mx-auto">
-      <Header />
-      <main id="main-content" tabIndex={-1} className="bg-white pb-50">
-        <BlogCategoryClient />
-        <WaveDivider variant="200" />
-        <Section grid overflowVisible oneColumn nopadding wide>
-          <h1 className="text-4xl font-light leading-4 mt-0 mb-[10px]">
-            Posts related to {categoryName}
-          </h1>
-        </Section>
-        <Section grid overflowVisible oneColumn nopadding wide>
-          {categoryPosts?.length > 0 && <MoreStories posts={categoryPosts} />}
-        </Section>
-        <LazyImagesLoader />
-      </main>
-      <Footer />
-    </div>
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <section className="site-blog-head site-wrap">
+        <div className="site-blog-head__top site-note">
+          <nav aria-label="Breadcrumb">
+            <Link href="/" className="site-link">
+              Home
+            </Link>{" "}
+            /{" "}
+            <Link href="/blog" className="site-link">
+              Blog
+            </Link>{" "}
+            /{" "}
+            <span className="text-ink" lang="es">
+              {topic.title}
+            </span>
+          </nav>
+          <span>[Topic]</span>
+          <Link href="/blog/category" className="site-link hidden sm:inline">
+            All topics →
+          </Link>
+        </div>
+        <h1 className="site-blog-head__title">
+          <span className="site-h1" lang="es">
+            {topic.title}
+          </span>
+          <span className="site-lead-type site-blog-head__lead">
+            {topic.count} {topic.count === 1 ? "entry" : "entries"} ·{" "}
+            <Link href="/blog" className="site-link">
+              all {archive.specs.entries} posts →
+            </Link>
+          </span>
+        </h1>
+      </section>
+
+      <section className="site-section site-wrap site-blog-tail">
+        <SectionHeader num="01" label="Index" note="newest first" />
+        <YearArchive rows={rows} />
+      </section>
+    </SiteShell>
   );
 }
