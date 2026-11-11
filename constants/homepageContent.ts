@@ -122,7 +122,7 @@ export const heroContent = {
     primary: { label: "Let's talk", href: "/contact" },
     secondary: { label: "See the work", href: "/#work" },
   },
-  vortexNote: "main.go · point anywhere to steer the vortex",
+  vortexNote: "main.go · click & hold anywhere",
 };
 
 export const ctaContent = {

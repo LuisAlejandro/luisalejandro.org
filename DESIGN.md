@@ -286,7 +286,7 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 
 **The theme is light only.** Paper, ink and hairline values are the reference's own light palette; the accent is crimson rather than any of the reference's three accents.
 
-**The hero background is a vortex, not terrain.** `HeroVortex` sets a Go snippet in Geist Mono along concentric rings in ink at about 24% opacity. Each character is rasterised once into an atlas and stamped with `drawImage`, capped at 30fps and paused off-screen; reduced motion draws one still frame.
+**The hero background is a vortex, not terrain.** `HeroVortex` is a WebGL2 reproduction of the spiral on contentarchitecture.dev, with our ink-on-paper colours and Go source in place of their text. Thirty rings alternate direction and turn faster toward the eye; each carries text only inside a soft-edged band and dots elsewhere. The pointer dissolves nearby glyphs into dots, click-and-hold charges and freezes the rings, release sends a ripple outward, and a ripple also plays on load. The hero is pinned in `.site-hero-pin` for one extra screen so scrolling can centre, zoom, twist and dissolve the field. Without WebGL2 the hero is plain paper; reduced motion draws one still frame and drops the pin.
 
 **The face mark is `public/images/logomin.svg`, plotted.** `SiteMark` reuses its four paths: hair and glasses trace as outlines and then fill, the brows drop in, and the right brow lifts once in the accent. It replays when the pointer enters the brand link, and the preloader shows it large.
 
