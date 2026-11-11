@@ -5,9 +5,8 @@ import { useEffect, useId, useRef, useState } from "react";
 /**
  * Project artwork drawn as a technical collage: outlined UI fragments with
  * micro labels, dimension and leader lines with arrowheads, elements that
- * overlap and run past the sheet edge, and one accent element per panel.
- * Nothing raster, nothing traced — every path is drawn from the project's own
- * facts.
+ * overlap and run past the sheet edge, with accent reserved for verified
+ * figures. Objects are illustrative, not screenshots or operational records.
  */
 
 const INK = "var(--color-ink)";
@@ -109,49 +108,6 @@ function Tip({
       strokeWidth="1"
       transform={`translate(${x} ${y}) rotate(${angle})`}
     />
-  );
-}
-
-function Dimension({
-  x1,
-  x2,
-  y,
-  label,
-  order = 0,
-}: {
-  x1: number;
-  x2: number;
-  y: number;
-  label: string;
-  order?: number;
-}) {
-  return (
-    <g {...frag(order)}>
-      <path
-        d={`M${x1} ${y}h${x2 - x1}`}
-        stroke={MUTED}
-        strokeWidth="1"
-        fill="none"
-      />
-      <path
-        d={`M${x1} ${y - 5}v10M${x2} ${y - 5}v10`}
-        stroke={MUTED}
-        strokeWidth="1"
-        fill="none"
-      />
-      <Note x={(x1 + x2) / 2} y={y - 8} anchor="middle">
-        {label}
-      </Note>
-    </g>
-  );
-}
-
-/** Sheet corner marks, as on a drawing. */
-function Sheet() {
-  return (
-    <g stroke={RULE} strokeWidth="1" fill="none">
-      <path d="M34 58h-9M34 58v-9M866 58h9M866 58v-9M34 502h-9M34 502v9M866 502h9M866 502v9" />
-    </g>
   );
 }
 
@@ -1176,538 +1132,1101 @@ function CicdArt({ layer = "back" }: { layer?: Layer }) {
   );
 }
 
-/** Soleit: a desktop shell around a pressure map. */
-function SoleitArt() {
+/** A clinical-review sheet on a real clipboard, lifted over the title. */
+function SoleitReport() {
   return (
-    <>
-      <g {...frag(0)}>
+    <g transform="translate(530 552) rotate(-5)">
+      <g
+        className="site-obj"
+        style={{ "--tilt-in": "-5deg" } as React.CSSProperties}
+      >
         <rect
-          x="30"
-          y="52"
-          width="470"
-          height="316"
-          fill="none"
-          stroke={RULE}
+          x="-10"
+          y="-9"
+          width="410"
+          height="237"
+          rx="8"
+          fill={SHEET}
+          stroke={INK}
         />
-        <line x1="30" y1="82" x2="500" y2="82" stroke={RULE} />
-        <circle cx="46" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <circle cx="58" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <circle cx="70" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <Note x="265" y="71" anchor="middle">
-          Soleit · desktop
+        <rect x="3" y="3" width="388" height="214" fill={SHEET} stroke={RULE} />
+        <rect width="386" height="211" fill={SHEET} stroke={INK} />
+        <path d="M146 0v-12q0-8 8-8h70q8 0 8 8V0" fill={SHEET} stroke={INK} />
+        <rect
+          x="135"
+          y="-7"
+          width="106"
+          height="17"
+          rx="4"
+          fill={SHEET}
+          stroke={INK}
+        />
+        <circle cx="188" cy="-12" r="3" fill="none" stroke={INK} />
+        <Note x="20" y="33" size={8}>
+          Soleit / clinical review
         </Note>
-
-        <line x1="150" y1="82" x2="150" y2="368" stroke={RULE} />
-        {["patients", "scans", "reports", "settings"].map((item, i) => (
-          <g key={item}>
-            {i === 1 && (
-              <rect
-                x="38"
-                y={112 + i * 28 - 11}
-                width="104"
-                height="17"
-                fill="none"
-                stroke={RULE}
-              />
-            )}
-            <Note x="48" y={112 + i * 28} size={9} fill={i === 1 ? INK : MUTED}>
-              {item}
+        <Note x="20" y="58" size={18} fill={INK} weight={500}>
+          Scan report
+        </Note>
+        <line x1="20" y1="70" x2="365" y2="70" stroke={RULE} />
+        {[
+          ["Capture", "acquired"],
+          ["Analysis", "ready for review"],
+          ["Record", "saved"],
+        ].map(([k, v], i) => (
+          <g
+            key={k}
+            className="site-step-in"
+            style={beat(0.4 + i * 0.12, 0.08)}
+            data-story={`report-${i}`}
+          >
+            <Note x="20" y={94 + i * 25} size={9}>
+              {k}
             </Note>
+            <Note x="364" y={94 + i * 25} size={9} fill={INK} anchor="end">
+              {v}
+            </Note>
+            <path d={`M20 ${103 + i * 25}H365`} stroke={RULE} />
           </g>
         ))}
+        <Note x="20" y="193" size={7}>
+          clinician / signature
+        </Note>
+        <path d="M176 193H365" stroke={RULE} />
+        <path
+          className="site-draw"
+          style={beat(0.8, 0.12)}
+          d="M188 185q8-24 11-9t8-4q8-14 7 6t12-5q3 22 17 8t11 0q20-13 39-4"
+          fill="none"
+          stroke={INK}
+          pathLength={1}
+        />
+      </g>
+    </g>
+  );
+}
 
-        {/* pressure map: concentric contours with the three sensor readings */}
-        <g>
-          {[58, 44, 30, 16].map((rx, i) => (
-            <ellipse
-              key={rx}
-              cx="318"
-              cy="176"
-              rx={rx}
-              ry={rx * 1.28}
-              fill="none"
-              stroke={i === 0 ? INK : RULE}
-            />
+/** Soleit: an insole is captured, the desktop app analyses it, a report fills. */
+function SoleitArt({ layer = "back" }: { layer?: Layer }) {
+  if (layer === "front") return <SoleitReport />;
+
+  // Schematic shapes, not patient measurements or a clinical conclusion.
+  const sole =
+    "M90 8C133 0 161 31 156 73 154 109 125 136 125 167 128 204 121 234 92 239 65 244 48 225 50 197 52 161 66 140 57 116 43 77 50 30 72 15Z";
+  return (
+    <>
+      {/* Desktop app: native window controls, sidebar, contour scan and status. */}
+      <g transform="translate(226 164) rotate(-3)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+        >
+          <rect
+            x="5"
+            y="5"
+            width="650"
+            height="286"
+            rx="6"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="650" height="286" rx="6" fill={SHEET} stroke={INK} />
+          <path d="M0 28H650M116 28V286" stroke={INK} fill="none" />
+          {[15, 28, 41].map((x) => (
+            <circle key={x} cx={x} cy="14" r="3.2" fill="none" stroke={INK} />
           ))}
-          {[
-            [300, 132, "11"],
-            [352, 178, "38"],
-            [304, 226, "24"],
-          ].map(([cx, cy, value]) => (
-            <g key={`${cx}-${cy}`}>
-              <circle
-                cx={cx as number}
-                cy={cy as number}
-                r="4.4"
-                fill={PAPER}
-                stroke={MUTED}
-              />
-              <circle
-                cx={cx as number}
-                cy={cy as number}
-                r="1.5"
-                fill={MUTED}
-              />
-              <Note x={(cx as number) + 9} y={(cy as number) - 6} size={7}>
-                {value as string}
+          <Note x="325" y="18" size={8} anchor="middle">
+            Soleit · desktop / Electron
+          </Note>
+          {["Patients", "Scans", "Reports", "Settings"].map((label, i) => (
+            <g key={label}>
+              {i === 1 && (
+                <rect
+                  x="10"
+                  y={53 + i * 33}
+                  width="95"
+                  height="25"
+                  rx="3"
+                  fill={INK}
+                />
+              )}
+              <Note
+                x="23"
+                y={70 + i * 33}
+                size={8}
+                fill={i === 1 ? PAPER : MUTED}
+              >
+                {label}
               </Note>
             </g>
           ))}
-        </g>
-
-        <line x1="182" y1="244" x2="468" y2="244" stroke={RULE} />
-        <Note x="182" y="266">
-          scan · left foot · 42 kg
-        </Note>
-        <Note x="182" y="286">
-          pressure map · 3 sensors
-        </Note>
-        <path d="M182 306h286v34H182z" fill="none" stroke={RULE} />
-        <Note x="196" y="328" size={9} fill={INK}>
-          run diagnosis
-        </Note>
-      </g>
-
-      <g {...frag(1)}>
-        <rect
-          x="536"
-          y="86"
-          width="330"
-          height="150"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="554" y="108">
-          Result
-        </Note>
-        <line x1="554" y1="120" x2="848" y2="120" stroke={RULE} />
-        <circle cx="572" cy="146" r="8" fill="none" stroke={INK} />
-        <path d="M568 146l3 3 5-6" fill="none" stroke={INK} />
-        <Note x="592" y="150" size={11} fill={INK}>
-          Diagnosis issued
-        </Note>
-        <Note x="554" y="176">
-          plantar pressure · within range
-        </Note>
-        <line x1="554" y1="190" x2="848" y2="190" stroke={RULE} />
-        <Note x="554" y="212">
-          export · pdf · for the clinic
-        </Note>
-      </g>
-
-      <g {...frag(2)}>
-        <rect
-          x="536"
-          y="268"
-          width="330"
-          height="132"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="554" y="290">
-          Milestone
-        </Note>
-        <line x1="554" y1="302" x2="848" y2="302" stroke={RULE} />
-        <Note x="554" y="330" size={11} fill={INK}>
-          Growth stage funded
-        </Note>
-        <Note x="554" y="352">
-          the app that helped get them there
-        </Note>
-      </g>
-
-      <g {...frag(3)}>
-        <rect
-          x="30"
-          y="392"
-          width="330"
-          height="96"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="48" y="414">
-          Shell
-        </Note>
-        <line x1="48" y1="426" x2="342" y2="426" stroke={RULE} />
-        <Note x="48" y="448" size={9} fill={INK}>
-          electron · ionic react
-        </Note>
-        <Note x="48" y="468">
-          express · sequelize · python
-        </Note>
-      </g>
-
-      <Leader d="M468 323h20" x={494} y={326} label="ionic ui" order={4} />
-      <Tip x={486} y={323} angle={180} />
-      <Leader
-        d="M700 86v-22"
-        x={700}
-        y={56}
-        label="diagnosis"
-        anchor="middle"
-        order={5}
-      />
-      <Tip x={700} y={64} angle={-90} />
-      <Leader d="M392 196h26v-16" x={418} y={166} label="sensors" order={6} />
-      <Tip x={418} y={182} angle={-90} />
-
-      <Dimension
-        x1={536}
-        x2={866}
-        y={452}
-        label="one desktop install"
-        order={7}
-      />
-      <Sheet />
-    </>
-  );
-}
-
-/** Dockershelf: layers, pulls, and a size comparison. */
-function DockershelfArt() {
-  return (
-    <>
-      <g {...frag(0)}>
-        <rect
-          x="30"
-          y="54"
-          width="320"
-          height="252"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="48" y="76">
-          Image · layers
-        </Note>
-        <line x1="48" y1="88" x2="332" y2="88" stroke={RULE} />
-        {[
-          ["app", 96, 210],
-          ["runtime", 138, 240],
-          ["base · debian", 180, 270],
-        ].map(([label, y, w]) => (
-          <g key={label as string}>
-            <path
-              d={`M48 ${y as number}l34 -16h${w as number}l-34 16z`}
-              fill="none"
-              stroke={RULE}
-            />
-            <rect
-              x="48"
-              y={(y as number) + 2}
-              width={w as number}
-              height="30"
-              fill="none"
-              stroke={RULE}
-            />
-            <Note x={58} y={(y as number) + 22} size={9} fill={INK}>
-              {label as string}
+          <Note x="135" y="54" size={8}>
+            Capture / left foot
+          </Note>
+          <Note x="630" y="54" size={7} anchor="end">
+            schematic · not patient data
+          </Note>
+          <path d="M136 65H630" stroke={RULE} />
+          <g transform="translate(218 80) scale(.64)">
+            <path d={sole} fill={PANEL} stroke={RULE} />
+            {[1, 0.78, 0.56].map((scale, i) => (
+              <g
+                key={scale}
+                transform={`translate(${(1 - scale) * 94} ${(1 - scale) * 118}) scale(${scale})`}
+              >
+                <path
+                  className="site-draw"
+                  style={beat(0.1 + i * 0.12, 0.12)}
+                  d={sole}
+                  fill="none"
+                  stroke={INK}
+                  strokeWidth="1.5"
+                  pathLength={1}
+                  data-story={`contour-${i}`}
+                />
+              </g>
+            ))}
+          </g>
+          <Note x="395" y="98" size={8}>
+            device
+          </Note>
+          <Note x="616" y="98" size={8} fill={INK} anchor="end">
+            connected
+          </Note>
+          <path d="M395 109H616" stroke={RULE} />
+          <Note x="395" y="130" size={8}>
+            capture
+          </Note>
+          <Note x="616" y="130" size={8} anchor="end">
+            waiting
+          </Note>
+          <g className="site-step-in" style={beat(0.38)}>
+            <rect x="535" y="116" width="85" height="18" fill={SHEET} />
+            <Note x="616" y="130" size={8} fill={INK} anchor="end">
+              complete
             </Note>
           </g>
-        ))}
-        <Note x="48" y="248">
-          deb stable + sid
-        </Note>
-        <Note x="48" y="270">
-          built + tested weekly
-        </Note>
-        <Note x="48" y="292">
-          lean by default
-        </Note>
-      </g>
-
-      <g {...frag(1)}>
-        <rect
-          x="386"
-          y="54"
-          width="484"
-          height="188"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="404" y="76">
-          Terminal
-        </Note>
-        <line x1="404" y1="88" x2="852" y2="88" stroke={RULE} />
-        {[
-          "$ docker pull dockershelf/python",
-          "  pulling from library/python",
-          "  digest: sha256:9f2c…41ab",
-          "  status: verified",
-        ].map((line, i) => (
-          <Note
-            key={line}
-            x="404"
-            y={112 + i * 20}
-            size={9}
-            fill={i === 0 ? INK : MUTED}
-          >
-            {line}
+          <path d="M395 141H616" stroke={RULE} />
+          <Note x="395" y="162" size={8}>
+            analysis
           </Note>
-        ))}
-        <text
-          x="404"
-          y="224"
-          fill={ACCENT}
-          fontSize="40"
-          fontWeight="500"
-          letterSpacing="-0.04em"
-        >
-          294K
-        </text>
-        <Note x="512" y="222" size={9}>
-          pulls
-        </Note>
-      </g>
-
-      <g {...frag(2)}>
-        <rect
-          x="386"
-          y="266"
-          width="484"
-          height="152"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="404" y="288">
-          Size against the official image
-        </Note>
-        <line x1="404" y1="300" x2="852" y2="300" stroke={RULE} />
-        <Note x="404" y="322">
-          official
-        </Note>
-        <rect
-          x="470"
-          y="312"
-          width="356"
-          height="14"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="404" y="352">
-          ours
-        </Note>
-        <rect x="470" y="342" width="89" height="14" fill={INK} />
-        <Note x="404" y="386">
-          roughly four times smaller
-        </Note>
-      </g>
-
-      <g {...frag(3)}>
-        <rect
-          x="30"
-          y="330"
-          width="320"
-          height="118"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="48" y="352">
-          CI · weekly
-        </Note>
-        <line x1="48" y1="364" x2="332" y2="364" stroke={RULE} />
-        {Array.from({ length: 12 }, (_, i) => (
-          <path
-            key={i}
-            d={`M${52 + i * 24} 388v${i === 11 ? 16 : 12}`}
-            stroke={i === 11 ? INK : RULE}
-            strokeWidth="2"
+          <g className="site-step-in" style={beat(0.54)}>
+            <Note x="616" y="162" size={8} fill={INK} anchor="end">
+              ready
+            </Note>
+          </g>
+          <rect
+            x="136"
+            y="246"
+            width="494"
+            height="24"
+            rx="3"
             fill="none"
+            stroke={INK}
           />
-        ))}
-        <Note x="48" y="428">
-          every tag tested before it ships
-        </Note>
+          <Note x="383" y="262" size={8} anchor="middle">
+            capture → analyse → review
+          </Note>
+          <g className="site-step-in" style={beat(0.7)}>
+            <rect x="136" y="246" width="494" height="24" rx="3" fill={INK} />
+            <Note x="383" y="262" size={8} fill={PAPER} anchor="middle">
+              report ready for clinician review
+            </Note>
+          </g>
+        </g>
       </g>
 
-      <Leader
-        d="M600 54v-22"
-        x={600}
-        y={24}
-        label="docker hub"
-        anchor="middle"
-        order={4}
-      />
-      <Tip x={600} y={32} angle={-90} />
-      <Leader
-        d="M824 312v-18"
-        x={824}
-        y={280}
-        label="size"
-        anchor="end"
-        order={5}
-      />
-      <Tip x={824} y={302} angle={-90} />
+      {/* Physical insole with printed trace lines and three illustrative nodes. */}
+      <g transform="translate(928 154) rotate(13)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "6deg" } as React.CSSProperties}
+        >
+          <path
+            d={sole}
+            transform="translate(5 5) scale(1.1)"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <path
+            d={sole}
+            transform="scale(1.1)"
+            fill={SHEET}
+            stroke={INK}
+            strokeWidth="1.3"
+          />
+          <path
+            d="M98 251V203L77 171V62M98 203l30-36V78M77 136h51"
+            fill="none"
+            stroke={RULE}
+          />
+          {[
+            [76, 72, "A"],
+            [129, 111, "B"],
+            [98, 216, "C"],
+          ].map(([x, y, label], i) => (
+            <g key={label}>
+              <circle cx={x} cy={y} r="10" fill={SHEET} stroke={INK} />
+              <g
+                className="site-step-in"
+                style={beat(0.08 + i * 0.12)}
+                data-story={`node-${label}`}
+              >
+                <circle cx={x} cy={y} r="5" fill={INK} />
+              </g>
+              <Note x={Number(x) + 15} y={Number(y) - 8} size={7}>
+                {String(label)}
+              </Note>
+            </g>
+          ))}
+          <Note x="93" y="281" size={7} anchor="middle">
+            scan illustration
+          </Note>
+        </g>
+      </g>
 
-      <Dimension x1={470} x2={826} y={452} label="official image" order={6} />
-      <Sheet />
+      {/* Hardware bridge card: the Python driver embedded in Electron. */}
+      <g transform="translate(1220 250) rotate(7)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "4deg" } as React.CSSProperties}
+        >
+          <rect width="275" height="172" rx="4" fill={SHEET} stroke={INK} />
+          <Note x="16" y="24" size={8}>
+            Device bridge
+          </Note>
+          <path d="M16 35H259" stroke={RULE} />
+          <rect
+            x="16"
+            y="54"
+            width="100"
+            height="48"
+            fill="none"
+            stroke={RULE}
+          />
+          <Note x="66" y="82" size={9} fill={INK} anchor="middle">
+            Python
+          </Note>
+          <path
+            className="site-draw"
+            style={beat(0.2, 0.18)}
+            d="M116 78h42"
+            stroke={INK}
+            fill="none"
+            pathLength={1}
+          />
+          <path d="M153 74l5 4-5 4" stroke={INK} fill="none" />
+          <rect
+            x="158"
+            y="54"
+            width="101"
+            height="48"
+            fill="none"
+            stroke={RULE}
+          />
+          <Note x="208" y="82" size={9} fill={INK} anchor="middle">
+            Electron
+          </Note>
+          <Note x="16" y="131" size={7}>
+            hardware → endpoints → app
+          </Note>
+          <Note x="16" y="151" size={7}>
+            Ionic React / Node.js
+          </Note>
+        </g>
+      </g>
+
+      {/* Measuring tape, with a curled end and an exposed spool. */}
+      <g transform="translate(136 666) rotate(7)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "4deg" } as React.CSSProperties}
+        >
+          <path
+            d="M0 0H255Q305 0 305 42V93H273V42Q273 33 255 33H0Z"
+            fill={SHEET}
+            stroke={INK}
+          />
+          {Array.from({ length: 25 }, (_, i) => (
+            <path
+              key={i}
+              d={`M${8 + i * 10} 0v${i % 5 === 0 ? 15 : 8}`}
+              stroke={INK}
+            />
+          ))}
+          {[0, 5, 10, 15, 20].map((n) => (
+            <Note key={n} x={8 + n * 10} y="27" size={6.5}>
+              {String(n)}
+            </Note>
+          ))}
+          <rect
+            x="-7"
+            y="-2"
+            width="12"
+            height="37"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <circle cx="290" cy="98" r="33" fill={SHEET} stroke={INK} />
+          {[23, 14, 5].map((r) => (
+            <circle key={r} cx="290" cy="98" r={r} fill="none" stroke={RULE} />
+          ))}
+          <Note x="12" y="57" size={7}>
+            measure / fit / review
+          </Note>
+        </g>
+      </g>
+      <g className="site-art__lift">
+        <SoleitReport />
+      </g>
+      <g transform="translate(1135 721)">
+        <g
+          className="site-rise"
+          style={beat(0.88, 0.1)}
+          data-story="soleit-outcome"
+        >
+          <text
+            y="25"
+            fill={INK}
+            fontSize="41"
+            fontWeight="500"
+            letterSpacing="-.04em"
+          >
+            scan → report
+          </text>
+          <Note x="2" y="49" size={8}>
+            a desktop workflow for the clinic
+          </Note>
+        </g>
+      </g>
     </>
   );
 }
 
-/** Canaima: a distribution built on Debian, shipped to public offices. */
-function CanaimaArt() {
+/** An actual shelf, with crates sliding onto it as the builds pass. */
+function DockershelfRack() {
   return (
-    <>
-      <g {...frag(0)}>
-        <rect
-          x="30"
-          y="52"
-          width="470"
-          height="196"
+    <g transform="translate(424 556) rotate(-3)">
+      <g
+        className="site-obj"
+        style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+      >
+        {/* Angle-iron uprights, shelf lip, bolt heads and braces. */}
+        <path d="M0 0h14v228H0ZM686 0h14v228h-14Z" fill={SHEET} stroke={INK} />
+        {[12, 70, 128, 186, 216].flatMap((y) =>
+          [7, 693].map((x) => (
+            <circle
+              key={`${x}-${y}`}
+              cx={x}
+              cy={y}
+              r="2"
+              fill="none"
+              stroke={INK}
+            />
+          ))
+        )}
+        <path
+          d="M14 213h672M14 186l40 27m632-27-40 27"
           fill="none"
           stroke={RULE}
         />
-        <line x1="30" y1="82" x2="500" y2="82" stroke={RULE} />
-        <circle cx="46" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <circle cx="58" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <circle cx="70" cy="67" r="3.4" fill="none" stroke={MUTED} />
-        <Note x="46" y="108" size={9} fill={INK}>
-          $ apt-get install canaima-desktop
-        </Note>
-        {[
-          "reading package lists…",
-          "building dependency tree…",
-          "unpacking canaima-desktop (4.1)",
-          "setting up… done",
-        ].map((line, i) => (
-          <Note key={line} x="46" y={132 + i * 20} size={9}>
-            {line}
-          </Note>
-        ))}
-        <Note x="46" y="226" size={9} fill={INK}>
-          $ _
-        </Note>
-      </g>
-
-      <g {...frag(1)}>
-        <rect
-          x="536"
-          y="52"
-          width="334"
-          height="150"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="554" y="74">
-          Package
-        </Note>
-        <line x1="554" y1="86" x2="852" y2="86" stroke={RULE} />
-        <Note x="554" y="110" size={11} fill={INK}>
-          canaima-desktop_4.1_amd64.deb
-        </Note>
-        <Note x="554" y="132">
-          debian base · python · django
-        </Note>
-        <line x1="554" y1="146" x2="852" y2="146" stroke={RULE} />
-        <Note x="554" y="168">
-          packaging · bash · python
-        </Note>
-        <Note x="554" y="188">
-          signed · versioned · shipped
-        </Note>
-      </g>
-
-      <g {...frag(2)}>
-        <rect
-          x="30"
-          y="272"
-          width="320"
-          height="196"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="48" y="294">
-          Menu
-        </Note>
-        <line x1="48" y1="306" x2="332" y2="306" stroke={RULE} />
-        {["internet", "office", "education", "system"].map((item, i) => (
-          <g key={item}>
-            {i === 2 && (
-              <rect
-                x="40"
-                y={332 + i * 26 - 11}
-                width="96"
-                height="17"
+        {["python", "node", "debian"].map((name, i) => (
+          <g key={name} transform={`translate(${38 + i * 214} 26)`}>
+            <g
+              data-story={`crate-${name}`}
+              style={{
+                transform: `translateX(calc((1 - clamp(0, (var(--p) - ${0.08 + i * 0.15}) / 0.2, 1)) * -120px))`,
+              }}
+            >
+              <path d="M0 18 22 0H198L176 18Z" fill={SHEET} stroke={INK} />
+              <path d="M176 18 198 0V146L176 164Z" fill={SHEET} stroke={INK} />
+              <rect y="18" width="176" height="146" fill={SHEET} stroke={INK} />
+              <path
+                d="M0 30H176M0 151H176M12 18V164M164 18V164M0 73H176M0 119H176"
                 fill="none"
                 stroke={RULE}
               />
-            )}
-            <Note x="48" y={332 + i * 26} size={9} fill={i === 2 ? INK : MUTED}>
-              {item}
-            </Note>
+              <path
+                d="m12 31 152 119M12 151 164 31"
+                fill="none"
+                stroke={RULE}
+              />
+              <rect
+                x="27"
+                y="53"
+                width="122"
+                height="62"
+                fill={SHEET}
+                stroke={INK}
+              />
+              <Note x="88" y="73" size={7} anchor="middle">
+                dockershelf
+              </Note>
+              <Note
+                x="88"
+                y="96"
+                size={15}
+                fill={INK}
+                anchor="middle"
+                weight={500}
+              >
+                {name}
+              </Note>
+              {[
+                [6, 24],
+                [170, 24],
+                [6, 158],
+                [170, 158],
+              ].map(([x, y]) => (
+                <circle key={`${x}-${y}`} cx={x} cy={y} r="1.5" fill={INK} />
+              ))}
+              <g className="site-step-in" style={beat(0.25 + i * 0.15)}>
+                <rect
+                  x="128"
+                  y="125"
+                  width="35"
+                  height="16"
+                  fill={SHEET}
+                  stroke={INK}
+                />
+                <path d="m134 132 4 4 7-8" fill="none" stroke={INK} />
+                <Note x="150" y="136" size={6}>
+                  ok
+                </Note>
+              </g>
+            </g>
           </g>
         ))}
-        <Note x="48" y="446">
-          free software by default
+        <path d="M-12 191H712v19H-12Z" fill={SHEET} stroke={INK} />
+        <path d="M-12 197H712" stroke={RULE} />
+        <Note x="350" y="205" size={7} anchor="middle">
+          Debian stable + sid / amd64 + arm64
         </Note>
       </g>
+    </g>
+  );
+}
 
-      <g {...frag(3)}>
-        <rect
-          x="386"
-          y="268"
-          width="484"
-          height="170"
-          fill="none"
-          stroke={RULE}
-        />
-        <Note x="404" y="290">
-          Timeline
-        </Note>
-        <line x1="404" y1="302" x2="852" y2="302" stroke={RULE} />
-        <path d="M404 352h448" stroke={RULE} strokeWidth="1" fill="none" />
-        {[
-          [404, "2009"],
-          [556, "2012"],
-          [708, "2016"],
-          [852, "2020"],
-        ].map(([x, year], i) => (
-          <g key={year as string}>
+/** Dockershelf: assemble the shelf, verify a pull, tick the weekly builds. */
+function DockershelfArt({ layer = "back" }: { layer?: Layer }) {
+  if (layer === "front") return <DockershelfRack />;
+  return (
+    <>
+      {/* Terminal session, with layered downloads rather than fake log metrics. */}
+      <g transform="translate(230 160) rotate(-3)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+        >
+          <rect
+            x="5"
+            y="5"
+            width="640"
+            height="281"
+            rx="6"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="640" height="281" rx="6" fill={SHEET} stroke={INK} />
+          <path d="M0 29H640" stroke={INK} />
+          {[16, 29, 42].map((x) => (
+            <circle key={x} cx={x} cy="14" r="3.2" fill="none" stroke={INK} />
+          ))}
+          <Note x="320" y="18" size={8} anchor="middle">
+            dockershelf / terminal
+          </Note>
+          <Note x="20" y="59" size={11} fill={INK}>
+            $ docker pull dockershelf/python
+          </Note>
+          <Note x="20" y="82" size={8}>
+            Debian-based images / build + test + publish
+          </Note>
+          {["base", "runtime", "packages"].map((name, i) => (
+            <g key={name}>
+              <Note x="20" y={116 + i * 31} size={9}>
+                {name}
+              </Note>
+              <rect
+                x="132"
+                y={105 + i * 31}
+                width="374"
+                height="11"
+                rx="2"
+                fill="none"
+                stroke={RULE}
+              />
+              <path
+                className="site-draw"
+                style={beat(0.12 + i * 0.12, 0.2)}
+                d={`M136 ${110.5 + i * 31}H502`}
+                pathLength={1}
+                stroke={INK}
+                strokeWidth="5"
+              />
+              <g className="site-step-in" style={beat(0.32 + i * 0.12)}>
+                <Note x="618" y={116 + i * 31} size={8} fill={INK} anchor="end">
+                  verified
+                </Note>
+              </g>
+            </g>
+          ))}
+          <path d="M20 204H620" stroke={RULE} />
+          <g
+            className="site-step-in"
+            style={beat(0.6)}
+            data-story="pull-verified"
+          >
+            <Note x="20" y="229" size={10} fill={INK}>
+              status: downloaded and verified
+            </Note>
+            <Note x="20" y="253" size={8}>
+              weekly builds / tests pass before publication
+            </Note>
+          </g>
+        </g>
+      </g>
+
+      {/* A steel ruler and size specimen: four units against one. */}
+      <g transform="translate(1195 236) rotate(8)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "5deg" } as React.CSSProperties}
+        >
+          <rect
+            x="-5"
+            y="-5"
+            width="290"
+            height="237"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="280" height="227" fill={SHEET} stroke={INK} />
+          <Note x="16" y="25" size={8}>
+            Image size / specimen
+          </Note>
+          <path d="M16 37H264" stroke={RULE} />
+          <Note x="16" y="61" size={8}>
+            official Python / Node
+          </Note>
+          <rect
+            x="16"
+            y="75"
+            width="240"
+            height="28"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <path d="M76 75V103M136 75V103M196 75V103" stroke={RULE} />
+          <Note x="16" y="129" size={8}>
+            dockershelf equivalent
+          </Note>
+          <rect x="16" y="143" width="60" height="28" fill={INK} />
+          <rect
+            x="9"
+            y="192"
+            width="255"
+            height="23"
+            rx="2"
+            fill={SHEET}
+            stroke={INK}
+          />
+          {Array.from({ length: 25 }, (_, i) => (
             <path
-              d={`M${x} 346v12`}
-              stroke={i === 0 ? ACCENT : RULE}
-              strokeWidth="1"
+              key={i}
+              d={`M${16 + i * 10} 192v${i % 5 === 0 ? 14 : 7}`}
+              stroke={INK}
+            />
+          ))}
+          <g className="site-step-in" style={beat(0.72)}>
+            <Note x="122" y="161" size={11} fill={INK}>
+              ≈ 4× smaller
+            </Note>
+          </g>
+        </g>
+      </g>
+
+      {/* Build docket, clipped to a slim board. */}
+      <g transform="translate(937 143) rotate(6)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "4deg" } as React.CSSProperties}
+        >
+          <rect
+            x="-6"
+            y="-5"
+            width="213"
+            height="247"
+            rx="4"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <rect width="200" height="234" fill={SHEET} stroke={RULE} />
+          <rect
+            x="62"
+            y="-9"
+            width="76"
+            height="16"
+            rx="3"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <Note x="16" y="33" size={8}>
+            Build docket
+          </Note>
+          <path d="M16 45H184" stroke={RULE} />
+          {["Debian stable", "Debian sid", "amd64", "arm64"].map((label, i) => (
+            <g key={label}>
+              <rect
+                x="16"
+                y={63 + i * 30}
+                width="11"
+                height="11"
+                fill="none"
+                stroke={INK}
+              />
+              <Note x="37" y={72 + i * 30} size={8}>
+                {label}
+              </Note>
+              <path
+                className="site-draw"
+                style={beat(0.28 + i * 0.12)}
+                d={`M18 ${68 + i * 30}l3 3 5-7`}
+                fill="none"
+                stroke={INK}
+                pathLength={1}
+              />
+            </g>
+          ))}
+          <Note x="16" y="214" size={7}>
+            publish only if tests pass
+          </Note>
+        </g>
+      </g>
+
+      {/* A weekly calendar strip with six successive build checks. */}
+      <g transform="translate(123 635) rotate(5)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "5deg" } as React.CSSProperties}
+        >
+          <rect
+            x="4"
+            y="4"
+            width="230"
+            height="163"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="230" height="163" fill={SHEET} stroke={INK} />
+          {Array.from({ length: 7 }, (_, i) => (
+            <circle
+              key={i}
+              cx={22 + i * 31}
+              cy="10"
+              r="3"
+              fill={PANEL}
+              stroke={INK}
+            />
+          ))}
+          <Note x="16" y="40" size={10} fill={INK}>
+            Weekly build + test
+          </Note>
+          <path d="M16 53H214" stroke={RULE} />
+          {Array.from({ length: 6 }, (_, i) => (
+            <g key={i}>
+              <rect
+                x={18 + (i % 3) * 69}
+                y={69 + Math.floor(i / 3) * 37}
+                width="58"
+                height="27"
+                fill="none"
+                stroke={RULE}
+              />
+              <Note
+                x={24 + (i % 3) * 69}
+                y={86 + Math.floor(i / 3) * 37}
+                size={6.5}
+              >{`W${i + 1}`}</Note>
+              <path
+                className="site-draw"
+                style={beat(0.5 + i * 0.055, 0.06)}
+                d={`M${50 + (i % 3) * 69} ${82 + Math.floor(i / 3) * 37}l3 3 7-9`}
+                pathLength={1}
+                fill="none"
+                stroke={INK}
+              />
+            </g>
+          ))}
+        </g>
+      </g>
+      <g className="site-art__lift">
+        <DockershelfRack />
+      </g>
+      <g transform="translate(1200 676)">
+        <g
+          className="site-rise"
+          style={beat(0.86, 0.12)}
+          data-story="dockershelf-outcome"
+        >
+          <text
+            y="62"
+            fill={ACCENT}
+            fontSize="102"
+            fontWeight="500"
+            letterSpacing="-.045em"
+          >
+            294K
+          </text>
+          <Note x="4" y="87" size={9}>
+            Python image downloads
+          </Note>
+          <Note x="4" y="105" size={7}>
+            reported in the case study
+          </Note>
+        </g>
+      </g>
+    </>
+  );
+}
+
+/** Institutional deployment note, stamped in ink rather than a copied seal. */
+function CanaimaMemo() {
+  return (
+    <g transform="translate(530 551) rotate(-5)">
+      <g
+        className="site-obj"
+        style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+      >
+        <path d="M5 5H362L395 38V233H5Z" fill={SHEET} stroke={RULE} />
+        <path d="M0 0H357L390 33V228H0Z" fill={SHEET} stroke={INK} />
+        <path d="M357 0V33H390" fill={PANEL} stroke={INK} />
+        <Note x="20" y="27" size={8}>
+          Canaima GNU/Linux
+        </Note>
+        <Note x="20" y="52" size={17} fill={INK} weight={500}>
+          Deployment record
+        </Note>
+        <path d="M20 66H370" stroke={RULE} />
+        {["Schools", "Universities", "Public offices"].map((label, i) => (
+          <g
+            key={label}
+            className="site-step-in"
+            style={beat(0.4 + i * 0.13)}
+            data-story={`deployment-${i}`}
+          >
+            <rect
+              x="20"
+              y={82 + i * 29}
+              width="12"
+              height="12"
               fill="none"
+              stroke={INK}
+            />
+            <path d={`M23 ${87 + i * 29}l3 3 5-7`} fill="none" stroke={INK} />
+            <Note x="43" y={92 + i * 29} size={10} fill={INK}>
+              {label}
+            </Note>
+            <path d={`M20 ${104 + i * 29}H370`} stroke={RULE} />
+          </g>
+        ))}
+        <Note x="20" y="205" size={7}>
+          Debian-based / built to be shared
+        </Note>
+        <g transform="translate(281 171) rotate(-10)">
+          <g
+            className="site-stamp"
+            style={beat(0.78, 0.1)}
+            data-story="free-software-stamp"
+          >
+            <rect
+              x="-79"
+              y="-18"
+              width="158"
+              height="36"
+              fill={SHEET}
+              stroke={INK}
+              strokeWidth="1.5"
+            />
+            <rect
+              x="-74"
+              y="-13"
+              width="148"
+              height="26"
+              fill="none"
+              stroke={INK}
+              strokeWidth=".7"
+            />
+            <Note x="0" y="4" size={12} fill={INK} anchor="middle" weight={600}>
+              software libre
+            </Note>
+          </g>
+        </g>
+      </g>
+    </g>
+  );
+}
+
+/** Canaima: build packages and an ISO, ship the disc, boot the desktop. */
+function CanaimaArt({ layer = "back" }: { layer?: Layer }) {
+  if (layer === "front") return <CanaimaMemo />;
+  return (
+    <>
+      {/* Canaima Semilla, the Debian-based package and image build system. */}
+      <g transform="translate(225 164) rotate(-4)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "-4deg" } as React.CSSProperties}
+        >
+          <rect
+            x="5"
+            y="5"
+            width="640"
+            height="286"
+            rx="6"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="640" height="286" rx="6" fill={SHEET} stroke={INK} />
+          <path d="M0 29H640" stroke={INK} />
+          {[16, 29, 42].map((x) => (
+            <circle key={x} cx={x} cy="14" r="3.2" fill="none" stroke={INK} />
+          ))}
+          <Note x="320" y="18" size={8} anchor="middle">
+            Canaima Semilla / build log
+          </Note>
+          <Note x="20" y="59" size={11} fill={INK}>
+            Debian packages → ISO image
+          </Note>
+          {[
+            "Preparing the Debian base",
+            "Building packages",
+            "Assembling the ISO image",
+            "Including Cunaguaro browser",
+            "Ready for distribution",
+          ].map((label, i) => (
+            <g
+              key={label}
+              className="site-step-in"
+              style={beat(0.05 + i * 0.12)}
+              data-story={`build-line-${i}`}
+            >
+              <Note
+                x="20"
+                y={91 + i * 25}
+                size={9}
+                fill={i === 4 ? INK : MUTED}
+              >
+                {label}
+              </Note>
+              <Note x="618" y={91 + i * 25} size={8} anchor="end">
+                ok
+              </Note>
+            </g>
+          ))}
+          <rect
+            x="20"
+            y="232"
+            width="600"
+            height="12"
+            rx="2"
+            fill="none"
+            stroke={RULE}
+          />
+          <path
+            className="site-draw"
+            style={beat(0.1, 0.55)}
+            d="M25 238H615"
+            pathLength={1}
+            stroke={INK}
+            strokeWidth="6"
+            data-story="install-progress"
+          />
+          <Note x="20" y="270" size={7}>
+            build system / packages + images / several architectures
+          </Note>
+        </g>
+      </g>
+
+      {/* Optical disc in a thumb-cut paper sleeve; its printed face turns. */}
+      <g transform="translate(947 170) rotate(8)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "6deg" } as React.CSSProperties}
+        >
+          <rect
+            x="-5"
+            y="67"
+            width="230"
+            height="191"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <circle cx="110" cy="112" r="105" fill={SHEET} stroke={INK} />
+          <g
+            data-story="disc-turn"
+            style={{
+              transformBox: "fill-box",
+              transformOrigin: "center",
+              transform:
+                "rotate(calc((1 - clamp(0, (var(--p) - .1) / .55, 1)) * -80deg))",
+            }}
+          >
+            <circle cx="110" cy="112" r="99" fill="none" stroke={RULE} />
+            <circle cx="110" cy="112" r="88" fill="none" stroke={RULE} />
+            <path
+              d="M20 69 88 95M26 53 92 91M46 29 98 86M152 205 127 137M169 196 131 135"
+              stroke={RULE}
             />
             <Note
-              x={x as number}
-              y="376"
-              size={i === 0 ? 13 : 9}
-              fill={i === 0 ? ACCENT : MUTED}
-              weight={i === 0 ? 500 : undefined}
+              x="110"
+              y="64"
+              size={14}
+              fill={INK}
+              anchor="middle"
+              weight={500}
             >
-              {year as string}
+              Canaima 3.0
+            </Note>
+            <Note x="110" y="80" size={7} anchor="middle">
+              GNU / Linux
+            </Note>
+            <circle cx="110" cy="112" r="26" fill={PANEL} stroke={INK} />
+            <circle cx="110" cy="112" r="10" fill={SHEET} stroke={INK} />
+            <Note x="110" y="171" size={7} anchor="middle">
+              Debian base / freely shareable
             </Note>
           </g>
-        ))}
-        <Note x="404" y="404">
-          public administration · several projects
-        </Note>
-        <Note x="404" y="424">
-          start of the distribution
-        </Note>
+          <path
+            d="M0 113H77a33 33 0 0 0 66 0H220V252H0Z"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <Note x="18" y="204" size={10} fill={INK}>
+            Installation media
+          </Note>
+          <Note x="18" y="226" size={7}>
+            .iso / Canaima Semilla
+          </Note>
+          <path d="M18 237H202" stroke={RULE} />
+        </g>
       </g>
 
-      <Leader
-        d="M700 52v-22"
-        x={700}
-        y={24}
-        label="debian"
-        anchor="middle"
-        order={4}
-      />
-      <Tip x={700} y={30} angle={-90} />
-      <Leader
-        d="M180 468v18"
-        x={180}
-        y={502}
-        label="desktop"
-        anchor="middle"
-        order={5}
-      />
-      <Tip x={180} y={486} angle={90} />
+      {/* Parcel: fold lines, sealing tape, package label and barcode. */}
+      <g transform="translate(1258 270) rotate(9)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "4deg" } as React.CSSProperties}
+        >
+          <path d="M0 20 35 0H225L190 20Z" fill={SHEET} stroke={INK} />
+          <path d="M190 20 225 0V173L190 193Z" fill={SHEET} stroke={INK} />
+          <rect y="20" width="190" height="173" fill={SHEET} stroke={INK} />
+          <path d="M78 20 113 0h32L110 20v173H78Z" fill={PANEL} stroke={RULE} />
+          <rect
+            x="13"
+            y="66"
+            width="163"
+            height="104"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <Note x="24" y="87" size={8}>
+            Debian package
+          </Note>
+          <Note x="24" y="110" size={18} fill={INK} weight={500}>
+            .deb
+          </Note>
+          <Note x="24" y="128" size={7}>
+            Canaima repository
+          </Note>
+          {BARCODE.slice(0, 17).map((w, i) => (
+            <rect
+              key={i}
+              x={24 + BARCODE.slice(0, i).reduce((sum, v) => sum + v + 2, 0)}
+              y="141"
+              width={w}
+              height="16"
+              fill={INK}
+            />
+          ))}
+        </g>
+      </g>
 
-      <Sheet />
+      {/* A desktop menu, not a second browser window. */}
+      <g transform="translate(130 624) rotate(5)">
+        <g
+          className="site-obj"
+          style={{ "--tilt-in": "5deg" } as React.CSSProperties}
+        >
+          <rect
+            x="5"
+            y="5"
+            width="245"
+            height="190"
+            rx="3"
+            fill={SHEET}
+            stroke={RULE}
+          />
+          <rect width="245" height="190" rx="3" fill={SHEET} stroke={INK} />
+          <rect width="245" height="28" fill={INK} />
+          <Note x="15" y="19" size={8} fill={PAPER}>
+            Aplicaciones
+          </Note>
+          {["Cunaguaro", "Oficina", "Educación", "Sistema"].map((label, i) => (
+            <g key={label}>
+              <rect
+                x="14"
+                y={43 + i * 33}
+                width="15"
+                height="14"
+                fill="none"
+                stroke={RULE}
+              />
+              <Note x="41" y={54 + i * 33} size={9} fill={INK}>
+                {label}
+              </Note>
+              <path
+                d={`M222 ${46 + i * 33}l4 4-4 4`}
+                stroke={INK}
+                fill="none"
+              />
+            </g>
+          ))}
+          <g
+            className="site-step-in"
+            style={beat(0.82)}
+            data-story="desktop-ready"
+          >
+            <rect x="8" y="103" width="229" height="28" rx="2" fill={INK} />
+            <Note x="41" y="122" size={9} fill={PAPER}>
+              Educación
+            </Note>
+            <path d="m222 113 4 4-4 4" stroke={PAPER} fill="none" />
+          </g>
+        </g>
+      </g>
+      <g className="site-art__lift">
+        <CanaimaMemo />
+      </g>
+      <g transform="translate(1202 686)">
+        <g
+          className="site-rise"
+          style={beat(0.88, 0.1)}
+          data-story="canaima-outcome"
+        >
+          <text
+            y="65"
+            fill={ACCENT}
+            fontSize="104"
+            fontWeight="500"
+            letterSpacing="-.045em"
+          >
+            110K
+          </text>
+          <Note x="3" y="90" size={9}>
+            Canaima 3.0 downloads / first month
+          </Note>
+        </g>
+      </g>
     </>
   );
 }
@@ -1719,8 +2238,7 @@ type Entry = {
   front?: boolean;
 };
 
-/** Each drawing declares its own sheet: Expedia is laid out wide, for the
-    full-bleed stage; the others still use the old 900×560 panel. */
+/** All five drawings share the wide sheet and the stage's scroll progress. */
 const ART: Record<string, Entry> = {
   "/case-studies/expedia": {
     Art: ExpediaArt,
@@ -1732,9 +2250,21 @@ const ART: Record<string, Entry> = {
     view: "0 0 1600 900",
     front: true,
   },
-  "/case-studies/soleit": { Art: SoleitArt, view: "0 0 900 560" },
-  "/case-studies/dockershelf": { Art: DockershelfArt, view: "0 0 900 560" },
-  "/case-studies/canaima": { Art: CanaimaArt, view: "0 0 900 560" },
+  "/case-studies/soleit": {
+    Art: SoleitArt,
+    view: "0 0 1600 900",
+    front: true,
+  },
+  "/case-studies/dockershelf": {
+    Art: DockershelfArt,
+    view: "0 0 1600 900",
+    front: true,
+  },
+  "/case-studies/canaima": {
+    Art: CanaimaArt,
+    view: "0 0 1600 900",
+    front: true,
+  },
 };
 
 export function WorkArtwork({
