@@ -5,7 +5,6 @@ import { getPostAndMorePosts, getPublishedPostForTwin } from "@lib/api";
 import { stripHtmlToPlainText, truncateAtWord } from "@lib/plainText";
 
 import "@styles/tailwind.css";
-import "yet-another-react-lightbox/styles.css";
 
 interface PostLayoutProps {
   children: React.ReactNode;

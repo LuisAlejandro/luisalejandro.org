@@ -22,7 +22,6 @@ import { config } from "@constants/constants";
  * Do not split this into multiple root layouts without accepting the reload.
  */
 import "@styles/tailwind.css";
-import "yet-another-react-lightbox/styles.css";
 
 export const metadata: Metadata = {
   title:
@@ -221,8 +220,6 @@ export default async function BlogLayout({
       <link rel="dns-prefetch" href="https://imgix.cosmicjs.com" />
       <link rel="preconnect" href="https://cdn.cosmicjs.com" />
       <link rel="dns-prefetch" href="https://cdn.cosmicjs.com" />
-      <link rel="preconnect" href="https://disqus.com" />
-      <link rel="dns-prefetch" href="https://disqus.com" />
       {children}
     </>
   );
