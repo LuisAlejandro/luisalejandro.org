@@ -50,6 +50,9 @@ export async function getAllPostsForHome(limit?: number) {
         "metadata.hero",
         "metadata.categories",
         "metadata.teaser",
+        // Bodies feed the blog's word totals and reading times; pages pass
+        // only derived rows to the client.
+        "metadata.content",
         "created_at",
         "modified_at",
       ])
@@ -401,7 +404,7 @@ export async function getAllCategories() {
       .find({
         type: "categories",
       })
-      .props(["id", "title", "slug"]);
+      .props(["id", "title", "slug", "content"]);
     return data?.objects.length ? data?.objects : [];
   } catch (error) {
     // Don't throw if an slug doesn't exist
