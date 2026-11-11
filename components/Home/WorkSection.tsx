@@ -69,7 +69,13 @@ export function WorkSection() {
       const span = rect.height - window.innerHeight;
       if (span <= 0) return;
       const progress = Math.min(1, Math.max(0, -rect.top / span));
-      setCurrent(Math.min(COUNT - 1, Math.floor(progress * COUNT)));
+      const scaled = progress * COUNT;
+      const index = Math.min(COUNT - 1, Math.floor(scaled));
+      // Each project's own story runs over the first 70% of its slot, then
+      // holds its finished state while the next one crossfades in.
+      const local = Math.min(1, Math.max(0, (scaled - index) / 0.7));
+      root.style.setProperty("--art-progress", local.toFixed(3));
+      setCurrent(index);
     };
 
     const schedule = () => {
@@ -81,6 +87,7 @@ export function WorkSection() {
     window.addEventListener("resize", schedule);
 
     return () => {
+      root.style.removeProperty("--art-progress");
       window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);

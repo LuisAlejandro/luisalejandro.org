@@ -1179,6 +1179,52 @@ body:has(.site-shell) {
     }
   }
 
+  /* --- artwork stories ----------------------------------------------------
+     The pinned stage writes --art-progress (0→1 across a project's slot); each
+     element declares when its beat starts (--at) and how long it takes
+     (--span). Outside the pinned stage the variable is absent and every panel
+     shows its finished state. Positioning lives on an outer <g transform>,
+     these classes only animate an inner group. */
+
+  .site-art {
+    --p: var(--art-progress, 1);
+    --t: clamp(0, (var(--p) - var(--at, 0)) / var(--span, 0.06), 1);
+  }
+
+  .site-art :is(.site-obj, .site-step-in, .site-stamp, .site-draw, .site-rise) {
+    --t: clamp(0, (var(--p) - var(--at, 0)) / var(--span, 0.06), 1);
+  }
+
+  /* Objects arrive a few degrees off their resting tilt and settle. */
+  .site-obj {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: rotate(
+      calc((1 - clamp(0, var(--p) * 4, 1)) * var(--tilt-in, 3deg))
+    );
+  }
+
+  .site-step-in {
+    opacity: var(--t);
+  }
+
+  .site-stamp {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: var(--t);
+    transform: scale(calc(1.35 - 0.35 * var(--t)));
+  }
+
+  .site-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: calc(1 - var(--t));
+  }
+
+  .site-rise {
+    opacity: var(--t);
+    transform: translateY(calc((1 - var(--t)) * 14px));
+  }
+
   /* --- 03: services rows ------------------------------------------------ */
 
   .site-services {
