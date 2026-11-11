@@ -10,6 +10,25 @@ import { stripHtmlToPlainText } from "@lib/plainText";
 const portfolioDescription =
   "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.";
 
+/** The one canonical @id for the site's Person entity. */
+const PERSON_ID = `${config.url}/#Person`;
+
+/**
+ * dateModified only when the post was genuinely revised. Emitting a copy of
+ * datePublished tells crawlers nothing and hides real updates.
+ */
+export function modifiedDate(post: {
+  created_at?: string;
+  modified_at?: string;
+}): string | undefined {
+  const created = post.created_at ? new Date(post.created_at).getTime() : NaN;
+  const modified = post.modified_at ? new Date(post.modified_at).getTime() : NaN;
+
+  if (Number.isNaN(modified)) return undefined;
+  if (!Number.isNaN(created) && modified <= created) return undefined;
+  return post.modified_at;
+}
+
 function buildPersonNode(personUrl: string) {
   return {
     "@type": "Person",
@@ -145,6 +164,7 @@ interface BlogPost {
   slug: string;
   title: string;
   created_at: string;
+  modified_at?: string;
   metadata: {
     hero?: string;
     teaser?: string;
@@ -188,10 +208,11 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
         160
       ),
       datePublished: post.created_at,
-      dateModified: post.created_at,
+      ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
+      inLanguage: "es",
       author: {
         "@type": "Person",
-        "@id": `${config.url}/portfolio`,
+        "@id": PERSON_ID,
         name: config.author.name,
         url: `${config.url}/portfolio`,
       },
@@ -216,12 +237,13 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
     "@type": "Blog",
     "@id": `${config.url}/blog`,
     mainEntityOfPage: `${config.url}/blog`,
+    inLanguage: "es",
     name: "Luis Alejandro - Software Development & Remote Work Insights",
     description:
       "Software development blog by Venezuelan engineer. TypeScript, Python, Golang tutorials. Remote work tips, open source insights & tech discoveries.",
     publisher: {
       "@type": "Person",
-      "@id": `${config.url}/portfolio`,
+      "@id": PERSON_ID,
       name: config.author.name,
       url: `${config.url}/portfolio`,
     },
@@ -242,10 +264,11 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
       160
     ),
     datePublished: post.created_at,
-    dateModified: post.created_at,
+    ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
+    inLanguage: "es",
     author: {
       "@type": "Person",
-      "@id": `${config.url}/about/#Person`,
+      "@id": PERSON_ID,
       name: config.author.name,
       url: config.url,
       image: {

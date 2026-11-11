@@ -51,6 +51,7 @@ export async function getAllPostsForHome() {
         "metadata.categories",
         "metadata.teaser",
         "created_at",
+        "modified_at",
       ])
       .sort("-created_at");
     return data?.objects;
@@ -213,6 +214,7 @@ export async function getPublishedPostsForHomeTwin() {
         "metadata.categories",
         "metadata.teaser",
         "created_at",
+        "modified_at",
       ])
       .sort("-created_at");
     return data?.objects || [];
@@ -303,6 +305,7 @@ export async function getPostAndMorePosts(slug: any) {
         "metadata.categories",
         "metadata.faqs",
         "created_at",
+        "modified_at",
       ]);
     const morePosts = await getMorePosts(slug);
     return {
@@ -510,6 +513,37 @@ export async function searchPosts(
     if (options?.signalUpstreamFailure) {
       throw error;
     }
+    return [];
+  }
+}
+
+/**
+ * Categories that at least one post actually references.
+ *
+ * Cosmic keeps category records that no longer have posts — and at least two of
+ * them no longer resolve by slug, so `/blog/category/<slug>` returns 404 for
+ * them. Listing or linking those advertises dead URLs, so both the sitemap and
+ * the category index use this instead of getAllCategories().
+ */
+export async function getPopulatedCategories() {
+  try {
+    const [categories, posts] = await Promise.all([
+      getAllCategories(),
+      getAllPostsForHome(),
+    ]);
+
+    const used = new Set<string>();
+    for (const post of posts ?? []) {
+      for (const category of post?.metadata?.categories ?? []) {
+        if (category?.slug) used.add(category.slug);
+      }
+    }
+
+    return (categories ?? []).filter(
+      (category: any) => category?.slug && used.has(category.slug)
+    );
+  } catch (error) {
+    logError("getPopulatedCategories", error, {});
     return [];
   }
 }

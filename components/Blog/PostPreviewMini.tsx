@@ -12,7 +12,7 @@ export default function PostPreviewMini({
 }: any) {
   return (
     <>
-      <article className={`${type} w-full p-0 my-0`} id={`post-${id}`}>
+      <article className={`${type} w-full p-0 my-0`} id={`post-${id}`} lang="es">
         <div className="data inline-block align-top w-full">
           <Link
             href={`/blog/posts/${slug}`}
@@ -30,7 +30,7 @@ export default function PostPreviewMini({
             ></span>
 
             <span className="description inline-block align-top w-full text-base font-light my-1">
-              Published{" "}
+              <span lang="en">Published</span>{" "}
               <time className="datetime" dateTime={date}>
                 {" "}
                 <FriendlyDate dateString={date} />

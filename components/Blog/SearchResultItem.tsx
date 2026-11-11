@@ -20,6 +20,7 @@ export default function SearchResultItem({
     <Link
       href={`/blog/posts/${slug}`}
       className="block w-full bg-[#f9f9f9] rounded-lg p-4 transition-all duration-200 hover:bg-[#fbfbfb]border border-gray-200 group"
+      lang="es"
     >
       <h3 className="text-[rgb(90,90,90)] text-xl leading-4 font-light mb-2 group-hover:text-black transition-colors">
         {title}
@@ -29,7 +30,7 @@ export default function SearchResultItem({
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
       <div className="text-[rgb(90,90,90)] text-base font-light my-0">
-        Published <FriendlyDate dateString={date} />.
+        <span lang="en">Published</span> <FriendlyDate dateString={date} />.
       </div>
     </Link>
   );

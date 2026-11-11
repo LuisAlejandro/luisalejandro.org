@@ -74,7 +74,8 @@ export default async function PostPage({ params }: PostPageProps) {
       />
       <div className="bg-gray-6 w-full mx-auto">
         <Header />
-        <main id="main-content" tabIndex={-1} className="bg-white pb-50">
+        {/* Spanish article inside English site chrome; see app/blog/layout.tsx. */}
+        <main id="main-content" tabIndex={-1} className="bg-white pb-50" lang="es">
           <WaveDivider variant="200" />
           <Section grid overflowVisible oneColumn nopadding wide>
             <PostContent
