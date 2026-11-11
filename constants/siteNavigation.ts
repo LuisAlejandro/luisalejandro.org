@@ -50,12 +50,15 @@ export const contactAction = {
 export type PaletteItem = {
   id: string;
   label: string;
-  group: "Go to" | "Elsewhere";
+  /** "Posts" entries come from the search endpoint, not this file. */
+  group: "Go to" | "Elsewhere" | "Posts";
   href: string;
   external?: boolean;
   hint?: string;
   keywords?: string[];
   pixelEvent?: PixelEvent;
+  /** Language of the label when it is not English. */
+  lang?: string;
 };
 
 const pageHints: Record<

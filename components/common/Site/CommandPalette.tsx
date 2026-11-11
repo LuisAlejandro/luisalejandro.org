@@ -10,6 +10,17 @@ import {
 import { paletteItems, type PaletteItem } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
+type SearchedPost = {
+  slug: string;
+  title: string;
+  metadata?: { categories?: { title?: string }[] };
+};
+
+const MIN_SEARCH = 2;
+const MAX_POSTS = 8;
+const SEARCH_DELAY_MS = 200;
+const NO_POSTS: PaletteItem[] = [];
+
 export function CommandPalette() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -21,20 +32,67 @@ export function CommandPalette() {
   const listRef = useRef<HTMLUListElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
+  // Post search answers for one query at a time; a result or an error only
+  // counts while it still matches what is typed, so nothing needs resetting.
+  const [found, setFound] = useState<{ q: string; items: PaletteItem[] }>();
+  const [failed, setFailed] = useState<string>();
+  const term = query.trim();
+  const searching = isOpen && term.length >= MIN_SEARCH;
+  const posts = searching && found?.q === term ? found.items : NO_POSTS;
+  const searchFailed = searching && failed === term;
+  const searchPending = searching && found?.q !== term && !searchFailed;
+
+  useEffect(() => {
+    if (!searching) return;
+
+    const controller = new AbortController();
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch(
+          `/api/search-posts?q=${encodeURIComponent(term)}`,
+          { signal: controller.signal }
+        );
+        if (!response.ok) throw new Error(String(response.status));
+        const data: { response?: SearchedPost[] } = await response.json();
+        setFound({
+          q: term,
+          items: (data.response ?? []).slice(0, MAX_POSTS).map((post) => ({
+            id: `post-${post.slug}`,
+            label: post.title,
+            group: "Posts",
+            href: `/blog/posts/${post.slug}`,
+            hint: post.metadata?.categories?.[0]?.title,
+            lang: "es",
+          })),
+        });
+      } catch {
+        if (!controller.signal.aborted) setFailed(term);
+      }
+    }, SEARCH_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
+  }, [searching, term]);
+
   const filteredItems = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return paletteItems;
 
-    return paletteItems.filter((item) => {
-      const matchLabel = item.label.toLowerCase().includes(q);
-      const matchHref = item.href.toLowerCase().includes(q);
-      const matchHint = item.hint?.toLowerCase().includes(q);
-      const matchKeywords = item.keywords?.some((k) =>
-        k.toLowerCase().includes(q)
-      );
-      return matchLabel || matchHref || matchHint || matchKeywords;
-    });
-  }, [query]);
+    return [
+      ...paletteItems.filter((item) => {
+        const matchLabel = item.label.toLowerCase().includes(q);
+        const matchHref = item.href.toLowerCase().includes(q);
+        const matchHint = item.hint?.toLowerCase().includes(q);
+        const matchKeywords = item.keywords?.some((k) =>
+          k.toLowerCase().includes(q)
+        );
+        return matchLabel || matchHref || matchHint || matchKeywords;
+      }),
+      ...posts,
+    ];
+  }, [query, posts]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -154,12 +212,14 @@ export function CommandPalette() {
   const groupedItems = useMemo(() => {
     const gotoItems = filteredItems.filter((i) => i.group === "Go to");
     const elsewhereItems = filteredItems.filter((i) => i.group === "Elsewhere");
-    const groups: { name: "Go to" | "Elsewhere"; items: PaletteItem[] }[] = [];
+    const postItems = filteredItems.filter((i) => i.group === "Posts");
+    const groups: { name: PaletteItem["group"]; items: PaletteItem[] }[] = [];
 
     if (gotoItems.length > 0) groups.push({ name: "Go to", items: gotoItems });
     if (elsewhereItems.length > 0) {
       groups.push({ name: "Elsewhere", items: elsewhereItems });
     }
+    if (postItems.length > 0) groups.push({ name: "Posts", items: postItems });
     return groups;
   }, [filteredItems]);
 
@@ -190,7 +250,7 @@ export function CommandPalette() {
             value={query}
             onChange={handleQueryChange}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type a command or search..."
+            placeholder="Type a command or search posts..."
             role="combobox"
             aria-expanded={true}
             aria-controls="palette-results"
@@ -210,9 +270,12 @@ export function CommandPalette() {
 
         <div data-lenis-prevent className="max-h-[60vh] overflow-y-auto p-2">
           {filteredItems.length === 0 ? (
-            <div className="p-8 text-center font-site-mono text-step-n1 text-ink-muted">
-              No matching results for &ldquo;{query}&rdquo;
-            </div>
+            !searchPending &&
+            !searchFailed && (
+              <div className="p-8 text-center font-site-mono text-step-n1 text-ink-muted">
+                No matching results for &ldquo;{query}&rdquo;
+              </div>
+            )
           ) : (
             // A listbox may only own options and groups, so the outer item is
             // presentational and each inner list is the labelled group.
@@ -256,7 +319,9 @@ export function CommandPalette() {
                               : "text-ink hover:bg-rule/40"
                           }`}
                         >
-                          <span className="text-step-n1">{item.label}</span>
+                          <span className="text-step-n1" lang={item.lang}>
+                            {item.label}
+                          </span>
                           {item.hint && (
                             <span
                               className={`site-note ${
@@ -273,6 +338,14 @@ export function CommandPalette() {
                 </li>
               ))}
             </ul>
+          )}
+          {(searchPending || searchFailed) && (
+            <p
+              role="status"
+              className="px-3 py-2 font-site-mono text-step-n1 text-ink-muted"
+            >
+              {searchPending ? "Searching posts…" : "Post search unavailable"}
+            </p>
           )}
         </div>
       </div>
