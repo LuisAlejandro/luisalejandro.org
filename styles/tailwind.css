@@ -3117,7 +3117,7 @@ body:has(.site-shell) {
       margin-top: 0;
     }
     .site-project-head--detail .site-project-tags {
-      justify-content: start;
+      max-width: none;
     }
     .site-project-story {
       grid-template-columns: minmax(0, 1fr);
