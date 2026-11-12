@@ -3,7 +3,7 @@ import { unstable_cache } from "next/cache";
 
 import { ENV_NAME } from "@constants/constants";
 import { logError } from "@lib/logger";
-import { sanitizeSearchQuery } from "@lib/searchQuery";
+import { accentInsensitivePattern } from "@lib/searchQuery";
 import { buildArchive, type CosmicPost } from "@lib/blogArchive";
 
 const BUCKET_SLUG = process.env.COSMIC_BUCKET_SLUG;
@@ -343,7 +343,8 @@ export async function searchPosts(
   options?: { signalUpstreamFailure?: boolean }
 ) {
   try {
-    const searchQuery = sanitizeSearchQuery(query);
+    // Accent-insensitive, so "analisis" finds "análisis" and vice versa.
+    const searchQuery = accentInsensitivePattern(query);
 
     if (!searchQuery) {
       return [];

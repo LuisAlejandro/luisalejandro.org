@@ -7,9 +7,9 @@ import Link from "next/link";
 import { SkipToContentLink } from "@components/common/Layout/SkipToContentLink";
 import { MobileMenu } from "@components/common/Site/MobileMenu";
 import { SiteButton } from "@components/common/Site/SiteButton";
+import { SiteLink } from "@components/common/Site/SiteLink";
 import { SiteMark } from "@components/common/Site/SiteMark";
 import { contactAction, siteNavItems } from "@constants/siteNavigation";
-import { trackPixelEvent } from "@lib/pixel";
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,49 +36,21 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main Navigation" className="site-nav">
-          {siteNavItems.map((item) => {
-            const handleClick = () => {
-              if (item.pixelEvent) {
-                trackPixelEvent(item.pixelEvent);
-              }
-            };
-
-            const label = (
-              <>
-                <span className="site-note">{item.num}</span>
-                <span className="site-nav__label" data-label={item.label}>
-                  {item.label}
-                </span>
-              </>
-            );
-
-            if (item.external) {
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleClick}
-                  className="site-nav__link"
-                >
-                  {label}
-                  <span className="site-note">↗</span>
-                </a>
-              );
-            }
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleClick}
-                className="site-nav__link"
-              >
-                {label}
-              </Link>
-            );
-          })}
+          {siteNavItems.map((item) => (
+            <SiteLink
+              key={item.href}
+              href={item.href}
+              external={item.external}
+              pixelEvent={item.pixelEvent}
+              className="site-nav__link"
+            >
+              <span className="site-note">{item.num}</span>
+              <span className="site-nav__label" data-label={item.label}>
+                {item.label}
+              </span>
+              {item.external && <span className="site-note">↗</span>}
+            </SiteLink>
+          ))}
         </nav>
 
         <div className="site-tools">

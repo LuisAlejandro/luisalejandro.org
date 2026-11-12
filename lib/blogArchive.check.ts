@@ -14,6 +14,10 @@ import {
   readingMinutes,
   type CosmicPost,
 } from "./blogArchive";
+import {
+  accentInsensitivePattern,
+  MAX_SEARCH_QUERY_LENGTH,
+} from "./searchQuery";
 
 const post = (
   slug: string,
@@ -212,6 +216,34 @@ const run = async () => {
   assert.equal(inline.toc[0].id, "que-es-docker");
   console.log("markdownToArticle: ok");
 };
+
+// --- search matches across accents ---------------------------------------
+function checkSearch() {
+  // A query typed without accents matches the accented word.
+  const plain = accentInsensitivePattern("analisis");
+  assert.ok(plain);
+  assert.ok(new RegExp(plain, "i").test("Análisis de riesgo"));
+
+  // And the accented query still matches the unaccented text.
+  const accented = accentInsensitivePattern("Dócker");
+  assert.ok(accented);
+  assert.ok(new RegExp(accented, "i").test("docker images"));
+
+  // Case is handled by the caller's flag; regex metacharacters stay literal.
+  assert.equal(accentInsensitivePattern("a.b"), "[aàáâãäå]\\.b");
+  assert.equal(accentInsensitivePattern("   "), null);
+  assert.equal(
+    accentInsensitivePattern("x".repeat(MAX_SEARCH_QUERY_LENGTH + 1)),
+    null
+  );
+
+  // A space must survive so multi-word queries keep working.
+  assert.equal(accentInsensitivePattern("ab c"), "[aàáâãäå]b [cç]");
+
+  console.log("searchQuery: ok");
+}
+
+checkSearch();
 
 run().catch((error) => {
   console.error(error);

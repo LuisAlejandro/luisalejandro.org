@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { openPalette } from "@components/common/Site/overlayLock";
+import { SiteLink } from "@components/common/Site/SiteLink";
 import { config } from "@constants/constants";
 import { footerContent } from "@constants/homepageContent";
 import { siteNavItems, siteSocialLinks } from "@constants/siteNavigation";
@@ -36,42 +37,23 @@ export function SiteFooter() {
         <div className="site-footer__col">
           <p className="site-note">Site</p>
           <ul>
-            {siteNavItems.map((item) => {
-              const handleClick = () => {
-                if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
-              };
-
-              if (item.external) {
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={handleClick}
-                      className="site-link text-step-0 text-ink"
-                    >
-                      {item.label}
-                      <span aria-hidden="true" className="ml-1.5">
-                        ↗
-                      </span>
-                    </a>
-                  </li>
-                );
-              }
-
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={handleClick}
-                    className="site-link text-step-0 text-ink"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+            {siteNavItems.map((item) => (
+              <li key={item.href}>
+                <SiteLink
+                  href={item.href}
+                  external={item.external}
+                  pixelEvent={item.pixelEvent}
+                  className="site-link text-step-0 text-ink"
+                >
+                  {item.label}
+                  {item.external && (
+                    <span aria-hidden="true" className="ml-1.5">
+                      ↗
+                    </span>
+                  )}
+                </SiteLink>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -80,10 +62,9 @@ export function SiteFooter() {
           <ul>
             {siteSocialLinks.map((social) => (
               <li key={social.href}>
-                <a
+                <SiteLink
                   href={social.href}
-                  target={social.external ? "_blank" : undefined}
-                  rel={social.external ? "noopener noreferrer" : undefined}
+                  external={social.external}
                   className="site-link text-step-0 text-ink"
                 >
                   {social.label}
@@ -92,7 +73,7 @@ export function SiteFooter() {
                       ↗
                     </span>
                   )}
-                </a>
+                </SiteLink>
               </li>
             ))}
           </ul>

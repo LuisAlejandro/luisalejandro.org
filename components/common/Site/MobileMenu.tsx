@@ -4,13 +4,13 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 
 import { SiteButton } from "@components/common/Site/SiteButton";
+import { SiteLink } from "@components/common/Site/SiteLink";
 import { lockPageScroll } from "@components/common/Site/overlayLock";
 import {
   contactAction,
   siteNavItems,
   siteSocialLinks,
 } from "@constants/siteNavigation";
-import { trackPixelEvent } from "@lib/pixel";
 
 type MobileMenuProps = {
   open: boolean;
@@ -64,50 +64,23 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
         <nav aria-label="Mobile Menu" className="flex flex-col py-8">
           <ul className="site-menu__list">
-            {siteNavItems.map((item) => {
-              const handleClick = () => {
-                if (item.pixelEvent) trackPixelEvent(item.pixelEvent);
-                onClose();
-              };
-
-              const label = (
-                <>
+            {siteNavItems.map((item) => (
+              <li key={item.href}>
+                <SiteLink
+                  href={item.href}
+                  external={item.external}
+                  pixelEvent={item.pixelEvent}
+                  className="site-menu__link"
+                  onNavigate={onClose}
+                >
                   <span className="site-note">{item.num}</span>
                   <span>{item.label}</span>
                   {item.external && (
                     <span className="site-note ml-auto">↗</span>
                   )}
-                </>
-              );
-
-              if (item.external) {
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={handleClick}
-                      className="site-menu__link"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                );
-              }
-
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={handleClick}
-                    className="site-menu__link"
-                  >
-                    {label}
-                  </Link>
-                </li>
-              );
-            })}
+                </SiteLink>
+              </li>
+            ))}
           </ul>
         </nav>
 

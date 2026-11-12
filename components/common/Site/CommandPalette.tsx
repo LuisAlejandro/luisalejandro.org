@@ -22,6 +22,17 @@ const SEARCH_DELAY_MS = 200;
 const MAX_QUERY = 128;
 const NO_POSTS: PaletteItem[] = [];
 
+/**
+ * Advertises the palette's post search to agent runtimes that read WebMCP
+ * annotations: read-only, one query string, forwarded to GET /api/search-posts.
+ * An agent may search; only a human picks the result.
+ */
+const searchWebMcp = {
+  toolname: "searchBlogPosts",
+  tooldescription:
+    'Read-only blog search by query string (max 128 chars). Type in the palette input, which queries GET /api/search-posts?q=. Returns {"response":[...]} on success; 400 {"error":"Query too long"} when over limit.',
+} as Record<string, string>;
+
 export function CommandPalette() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -249,7 +260,10 @@ export function CommandPalette() {
       aria-label="Command Palette"
     >
       <div className="flex w-full flex-col overflow-hidden rounded-xl border border-rule-strong bg-paper-raised shadow-2xl">
-        <div className="flex items-center gap-3 border-b border-rule px-4 py-3">
+        <div
+          className="flex items-center gap-3 border-b border-rule px-4 py-3"
+          {...searchWebMcp}
+        >
           <span className="site-note rounded border border-rule px-1.5 py-0.5">
             ⌘K
           </span>
@@ -268,6 +282,10 @@ export function CommandPalette() {
             }
             aria-autocomplete="list"
             aria-activedescendant={selectedId}
+            {...({
+              toolparamdescription:
+                "Search query for blog posts by title, teaser, or category (maps to GET /api/search-posts?q=).",
+            } as Record<string, string>)}
             className="w-full border-none bg-transparent text-step-0 text-ink outline-none placeholder:text-ink-muted focus:ring-0"
           />
           <button
