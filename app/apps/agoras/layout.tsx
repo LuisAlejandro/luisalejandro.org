@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 
 const title = "Agoras — a desktop app for creators";
 const description =
@@ -17,11 +20,7 @@ export const metadata: Metadata = {
     siteName: "Agoras",
     type: "website",
   },
-  twitter: {
-    card: "summary",
-    title,
-    description,
-  },
+  twitter: { card: "summary", title, description },
 };
 
 export default function AgorasLayout({
@@ -30,28 +29,8 @@ export default function AgorasLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen w-full flex-col bg-white text-neutral-900">
-      <header className="flex w-full flex-wrap items-center justify-between gap-4 border-b border-neutral-200 px-6 py-4">
-        <Link href="/apps/agoras" className="text-lg font-medium">
-          Agoras
-        </Link>
-        <nav className="flex gap-4 text-sm" aria-label="Agoras legal">
-          <Link href="/apps/agoras/privacy">Privacy Policy</Link>
-          <Link href="/apps/agoras/terms">Terms of Service</Link>
-        </nav>
-      </header>
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className="mx-auto w-full max-w-3xl flex-1 px-6 py-10"
-      >
-        {children}
-      </main>
-      <footer className="flex w-full flex-wrap gap-4 border-t border-neutral-200 px-6 py-4 text-sm">
-        <Link href="/apps/agoras/privacy">Privacy Policy</Link>
-        <Link href="/apps/agoras/terms">Terms of Service</Link>
-        <a href="https://agoras.luisalejandro.org">Documentation</a>
-      </footer>
-    </div>
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <div className="site-doc site-wrap">{children}</div>
+    </SiteShell>
   );
 }

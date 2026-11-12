@@ -2,64 +2,55 @@
 
 import CookieConsent from "react-cookie-consent";
 
+/**
+ * A small pill in the corner rather than a card over the page. Copy, storage
+ * and the accept action are unchanged; only the size and placement moved.
+ */
 export default function CookieConsentWrapper() {
   return (
     <CookieConsent
-      buttonText="Got it!"
-      style={{
-        display: "flex",
-        background: "#505859",
-        color: "#fff",
-        padding: "1.2em",
-        position: "fixed",
-        right: "1em",
-        bottom: "1em",
-        fontSize: "16px",
-        lineHeight: "1.5em",
-        maxWidth: "24em",
-        borderRadius: "5px",
-        zIndex: 9999,
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        alignItems: "baseline",
-        opacity: "0.9",
-        transition: "opacity 1s ease",
-      }}
-      contentStyle={{
-        margin: "0 0 1em 0",
-      }}
-      buttonStyle={{
-        background: "#6c7777",
-        color: "#fff",
-        borderColor: "transparent",
-        borderRadius: "5px",
-        padding: ".4em .8em",
-        fontSize: "1em",
-        lineHeight: "1.5em",
-        fontWeight: "700",
-        borderWidth: "2px",
-        borderStyle: "solid",
-        textAlign: "center",
-        margin: "0",
-        minWidth: "140px",
-      }}
-      customButtonWrapperAttributes={{
-        style: {
-          textAlign: "center",
-          display: "inline",
-          width: "100%",
-        },
-      }}
-      disableStyles={true}
+      buttonText="Got it"
+      disableStyles
       location="none"
       hideOnAccept={false}
+      style={{
+        position: "fixed",
+        right: "0.75rem",
+        bottom: "0.75rem",
+        zIndex: 60,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.75rem",
+        flexWrap: "wrap",
+        maxWidth: "21rem",
+        padding: "0.5rem 0.5rem 0.5rem 0.85rem",
+        borderRadius: "999px",
+        border: "1px solid #0e0e0d52",
+        background: "#f4f4f0",
+        color: "#0e0e0d",
+        fontSize: "0.78rem",
+        lineHeight: "1.35",
+        boxShadow: "0 6px 20px rgba(0, 0, 0, 0.12)",
+      }}
+      contentStyle={{ margin: 0, flex: "1 1 12rem" }}
+      buttonStyle={{
+        border: 0,
+        borderRadius: "999px",
+        padding: "0.35rem 0.8rem",
+        background: "#d61f3a",
+        color: "#f4f4f0",
+        fontSize: "0.78rem",
+        fontWeight: 600,
+        cursor: "pointer",
+        justifySelf: "end",
+      }}
+      customButtonWrapperAttributes={{ style: { margin: 0 } }}
       onAccept={() => {
-        const elm = document.querySelector<HTMLElement>(".CookieConsent")!;
-        elm.style.opacity = "0";
+        const elm = document.querySelector<HTMLElement>(".CookieConsent");
+        if (elm) elm.style.opacity = "0";
       }}
     >
-      This website uses cookies to ensure you get the best experience on our
-      website.
+      Cookies, for analytics.
     </CookieConsent>
   );
 }

@@ -180,7 +180,9 @@ No sitewide dark theme. Two explicit visual modes:
 - **Topic archives (`app/blog/category/`):** the same year-grouped archive filtered by category, prerendered per topic.
 - **Posts (`app/blog/posts/[slug]/`):** two-column reading layout — sticky TOC, `site-prose` typography, server-rendered figures and highlighted code, author card, next-in-archive card.
 - **Case studies (`app/case-studies/*/`):** long-form dossiers inside `SiteShell`, composed from `CaseStudyHead`, `CaseStudySection`, `CaseStudyStats`, and the `CaseStudyMedia` helpers. Four numbered sections (Problem, Challenge, Product, Results) with a sticky label column, real HTML for comparison bars, static captioned galleries, and CSS scroll-driven reveals. The scroll-tween stack, canvas charts, and lightbox were retired with the old client pages.
-- **Contact (`app/contact/`):** form-first page using shared `Contact` component.
+- **Contact (`app/contact/`):** shell page — kicker, oversized headline, lead, brief guidance, then a restyled form (`components/common/Site/ContactForm.tsx`). Validation and reCAPTCHA are unchanged; the client no longer signs a bearer token, because a `NEXT_PUBLIC_` signing key is public. `/api/contact` trusts schema validation plus reCAPTCHA and applies a per-IP limit.
+- **App pages (`app/apps/agoras/`):** Agoras documentation and its legal pages inside `SiteShell` via `.site-doc`.
+- **Offline activation (`app/wholmaster/activate/`):** shell page whose request/response flow is unchanged.
 
 ### Responsive behavior
 
@@ -278,6 +280,7 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 | Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
 | Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
 | Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
+| Contact and docs | `.site-contact-head*`, `.site-contact-form*`, `.site-contact-facts`, `.site-doc*` |
 | Case studies | `.site-case-head*`, `.site-case-eyebrow`, `.site-case-title`, `.site-case-facts`, `.site-case-hero`, `.site-case-section*`, `.site-case-figure*`, `.site-case-video`, `.site-case-gallery`, `.site-case-stats*`, `.site-case-bars*` |
 | Portfolio | `.site-project-head*`, `.site-project-spec`, `.site-project-grid` / `.site-project-card*`, `.site-project-tags`, `.site-project-title`, `.site-project-shot*`, `.site-project-story*`, `.site-project-sources`, `.site-project-end` |
 | Blog | `.site-blog-head*`, `.site-kicker`, `.site-spec`, `.site-pills` / `.site-pill`, `.site-feat*`, `.site-year*` / `.site-entry*`, `.site-topic*`, `.site-subscribe`, `.site-article*`, `.site-toc*`, `.site-prose*` / `.site-code` / `.site-fig*`, `.site-author`, `.site-next` |

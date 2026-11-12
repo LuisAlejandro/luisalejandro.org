@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
+
 /**
  * Offline activation page. The operator copies the request code from the desktop app (which has no
  * internet), submits it here from a device that does, and pastes the returned certificate back into
@@ -72,57 +76,56 @@ export default function ActivatePage() {
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-16">
-      <h1 className="text-2xl font-semibold">Activate Wholmaster offline</h1>
-      <p className="mt-2 text-sm text-gray-600">
-        On the computer running Wholmaster, choose Activate offline and copy the
-        request code. Paste it below, then copy the response code back into the
-        app.
-      </p>
-
-      <label className="mt-8 block text-sm font-medium" htmlFor="request-code">
-        Request code
-      </label>
-      <textarea
-        id="request-code"
-        className="mt-2 w-full rounded border p-3 font-mono text-xs"
-        rows={4}
-        value={requestCode}
-        onChange={(event) => setRequestCode(event.target.value)}
-      />
-
-      <button
-        type="button"
-        className="mt-4 rounded bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-        onClick={submit}
-        disabled={busy || requestCode.trim() === ""}
-      >
-        {busy ? "Activating…" : "Activate"}
-      </button>
-
-      {error ? (
-        <p className="mt-4 text-sm text-red-600" role="alert">
-          {error}
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <section className="site-doc site-wrap">
+        <h1 className="site-h2">Activate Wholmaster offline</h1>
+        <p className="site-lead-type">
+          On the computer running Wholmaster, choose Activate offline and copy
+          the request code. Paste it below, then copy the response code back
+          into the app.
         </p>
-      ) : null}
 
-      {responseCode ? (
-        <>
-          <label
-            className="mt-8 block text-sm font-medium"
-            htmlFor="response-code"
-          >
-            Response code — paste this into the app
-          </label>
-          <textarea
-            id="response-code"
-            className="mt-2 w-full rounded border p-3 font-mono text-xs"
-            rows={4}
-            readOnly
-            value={responseCode}
-          />
-        </>
-      ) : null}
-    </main>
+        <label className="site-note mt-10 block" htmlFor="request-code">
+          Request code
+        </label>
+        <textarea
+          id="request-code"
+          className="site-doc__code"
+          rows={4}
+          value={requestCode}
+          onChange={(event) => setRequestCode(event.target.value)}
+        />
+
+        <button
+          type="button"
+          className="site-btn mt-8"
+          onClick={submit}
+          disabled={busy || requestCode.trim() === ""}
+        >
+          {busy ? "Activating…" : "Activate"}
+        </button>
+
+        {error ? (
+          <p className="site-contact-form__error" role="alert">
+            {error}
+          </p>
+        ) : null}
+
+        {responseCode ? (
+          <>
+            <label className="site-note mt-8 block" htmlFor="response-code">
+              Response code — paste this into the app
+            </label>
+            <textarea
+              id="response-code"
+              className="site-doc__code"
+              rows={4}
+              readOnly
+              value={responseCode}
+            />
+          </>
+        ) : null}
+      </section>
+    </SiteShell>
   );
 }
