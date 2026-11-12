@@ -174,7 +174,8 @@ No sitewide dark theme. Two explicit visual modes:
 ### Page structure
 
 - **Home (`app/page.tsx`):** centered logo, intro copy with highlighted phrases and inline links, photo gallery, button bar, footer.
-- **Portfolio (`app/portfolio/`):** stacked sections on gold background with animated background and multiple content bands.
+- **Portfolio (`app/portfolio/`):** project archive inside `SiteShell` — editorial head with live project count and year range, a two-column image-led index of the ten non-case-study projects (newest first), and a closing contact band. Case studies are not listed here; the homepage owns them.
+- **Project pages (`app/portfolio/[slug]/`):** prerendered per project from `lib/portfolio.ts` — breadcrumb, oversized title, tags, hero screenshot, story with logo/year rail, optional sources marked archived or external, remaining screenshots.
 - **Blog (`app/blog/`):** editorial index inside `SiteShell` — header with live specs, topic pills, featured entry, year-grouped archive, topic cards, subscribe block. All figures derive from `lib/blogArchive.ts`.
 - **Topic archives (`app/blog/category/`):** the same year-grouped archive filtered by category, prerendered per topic.
 - **Posts (`app/blog/posts/[slug]/`):** two-column reading layout — sticky TOC, `site-prose` typography, server-rendered figures and highlighted code, author card, next-in-archive card.
@@ -277,6 +278,7 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 | Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
 | Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
 | Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
+| Portfolio | `.site-project-head*`, `.site-project-spec`, `.site-project-grid` / `.site-project-card*`, `.site-project-tags`, `.site-project-title`, `.site-project-shot*`, `.site-project-story*`, `.site-project-sources`, `.site-project-end` |
 | Blog | `.site-blog-head*`, `.site-kicker`, `.site-spec`, `.site-pills` / `.site-pill`, `.site-feat*`, `.site-year*` / `.site-entry*`, `.site-topic*`, `.site-subscribe`, `.site-article*`, `.site-toc*`, `.site-prose*` / `.site-code` / `.site-fig*`, `.site-author`, `.site-next` |
 | Syntax tokens | `--color-syn-keyword`, `--color-syn-string`, `--color-syn-number`, `--color-syn-title`, `--color-syn-attr` (ink code blocks) |
 | Effects | `.site-preloader`, `.site-mark` (plotted face mark), `.site-gen-word` / `.site-gen-caret`, `.site-vortex`, `.site-process-line`, `.site-reveal` |

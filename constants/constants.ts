@@ -1,15 +1,3 @@
-import { FaAws } from "react-icons/fa";
-import {
-  SiDocker,
-  SiGit,
-  SiGithub,
-  SiGo,
-  SiIonic,
-  SiNextdotjs,
-  SiPython,
-  SiTypescript,
-} from "react-icons/si";
-
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
@@ -90,15 +78,9 @@ export const config = {
 
 export const experience = new Date().getFullYear() - 2009;
 
-export const Stars = [
-  { number: experience, text: "Years of experience" },
-  { number: 60, text: "Open Source Projects" },
-  { number: 20, text: "Clients" },
-  { number: 190, text: "Github Stars" },
-];
-
 export const GalleryList = [
   {
+    slug: "leadbox-build-queue",
     name: "Leadbox build queue",
     year: 2018,
     shortDescription:
@@ -117,6 +99,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "aguilas-ldap-single-sign-on",
     name: "Aguilas LDAP Single Sign On",
     year: 2012,
     shortDescription: "A web-based LDAP user management system",
@@ -140,6 +123,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "howlermonkey-cve-indexer",
     name: "HowlerMonkey CVE indexer",
     year: 2020,
     shortDescription:
@@ -163,6 +147,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "hunting-bears-blog",
     name: "Hunting Bears Blog",
     year: 2010,
     shortDescription: "My personal blog from 2010 to 2015",
@@ -190,6 +175,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "marvin-video-generator",
     name: "Marvin video generator",
     year: 2018,
     shortDescription:
@@ -218,6 +204,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "american-eagle-outfitters-panama",
     name: "American Eagle Outfitters Panamá website",
     year: 2015,
     shortDescription: "An e-commerce website for a local clothing brand",
@@ -237,6 +224,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "gin-burdon",
     name: "Gin Burdon website",
     year: 2019,
     shortDescription: "A wordpress website for a local gin brand",
@@ -256,6 +244,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "recetags",
     name: "Recetags website",
     year: 2020,
     shortDescription: "A wordpress website for a local recipe blog",
@@ -275,6 +264,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "leadbox-website",
     name: "Leadbox website",
     year: 2019,
     shortDescription:
@@ -295,6 +285,7 @@ export const GalleryList = [
     },
   },
   {
+    slug: "btech-watches",
     name: "Btech watches website",
     year: 2014,
     shortDescription: "An e-commerce website for a local watch brand",
@@ -312,72 +303,6 @@ export const GalleryList = [
       logo: "/images/other/logo-btech.png",
       hero: ["/images/other/btech-1.png", "/images/other/btech-3.png"],
     },
-  },
-];
-
-export const Skills = [
-  {
-    slug: "typescript",
-    Component: SiTypescript,
-    title: "Typescript",
-    description:
-      "I've used typescript to develop Desktop/Mobile apps, web development and REST apis.",
-  },
-  {
-    slug: "python",
-    Component: SiPython,
-    title: "Python",
-    description:
-      "I use python for scripting, cli interfaces and REST api development.",
-  },
-  {
-    slug: "golang",
-    Component: SiGo,
-    title: "Golang",
-    description:
-      "Go is my go-to language when efficiency and speed 💨 is needed.",
-  },
-  {
-    slug: "ionic",
-    Component: SiIonic,
-    title: "Ionic/React",
-    description:
-      "Ionic/React has allowed me to develop desktop, mobile and web applications.",
-  },
-  {
-    slug: "nextjs",
-    Component: SiNextdotjs,
-    title: "Next.js",
-    description:
-      "Is so easy to develop static sites with Next.js, I always recommend it.",
-  },
-  {
-    slug: "docker",
-    Component: SiDocker,
-    title: "Docker/k8s",
-    description:
-      "I use containerization in all my projects. I believe in reproducible development environments.",
-  },
-  {
-    slug: "aws",
-    Component: FaAws,
-    title: "AWS/GCP",
-    description:
-      "I've used S3, EC2 and Beanstalk when lauching client apps, but my favourite is GCP.",
-  },
-  {
-    slug: "ga",
-    Component: SiGithub,
-    title: "Github Actions",
-    description:
-      "I ❤️ (LOVE!) automation. I don't want to be doing manual stuff all the time.",
-  },
-  {
-    slug: "git",
-    Component: SiGit,
-    title: "Git",
-    description:
-      "Team work and order is important to me, therefore I put almost everything I do into git.",
   },
 ];
 
@@ -422,36 +347,5 @@ export const ProjectList = [
     image: "/images/case-studies/thumbnails/canaima.png",
     tags: ["Debian", "Packaging", "Python", "Django", "Bash"],
     visit: "/case-studies/canaima",
-  },
-];
-
-export const TimeLineData = [
-  {
-    year: 2009,
-    text: "Started working in a government agency (Venezuela) as a Linux distribution developer.",
-  },
-  {
-    year: 2017,
-    text: "Worked with Guayoyo cybersecurity experts (Uruguay) as a Python developer.",
-  },
-  {
-    year: 2018,
-    text: "Worked with Leadbox automotive dealership websites (Canada) as a Fullstack developer.",
-  },
-  {
-    year: 2019,
-    text: "Founded Collage Labs mobile & web solutions (Venezuela).",
-  },
-  {
-    year: 2019,
-    text: "Worked with Webuzz digital marketing (Spain) as Wordpress developer.",
-  },
-  {
-    year: 2020,
-    text: "Worked with Soleit startup (Chile) as Fullstack Developer.",
-  },
-  {
-    year: 2022,
-    text: "Worked with Wheel The World startup (Chile) as a Senior Sofware Engineer.",
   },
 ];

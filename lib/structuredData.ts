@@ -1,15 +1,13 @@
 import {
   config,
   experience,
-  ProjectList,
   SITE_PROFILE_DATE_CREATED,
   SITE_PROFILE_DATE_MODIFIED,
 } from "@constants/constants";
 import type { CosmicPost } from "@lib/blogArchive";
 import { plainTeaser, stripHtmlToPlainText } from "@lib/plainText";
 
-const portfolioDescription =
-  "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.";
+import { portfolioDescription, portfolioProjects } from "@lib/portfolio";
 
 /** The one canonical @id for the site's Person entity. */
 const PERSON_ID = `${config.url}/#Person`;
@@ -125,35 +123,36 @@ export function generatePortfolioJsonLd() {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      buildPersonNode(portfolioUrl),
+      buildPersonNode(config.url),
       {
-        "@type": "ProfilePage",
-        "@id": `${portfolioUrl}#ProfilePage`,
+        "@type": "CollectionPage",
+        "@id": `${portfolioUrl}#CollectionPage`,
         url: portfolioUrl,
-        name: `Portfolio | ${config.author.first_name} - Full Stack AI Engineer`,
+        name: `Project Archive | ${config.author.first_name}`,
         description: portfolioDescription,
         isPartOf: {
           "@id": websiteId,
         },
-        mainEntity: {
+        about: {
           "@id": personId,
         },
+        mainEntity: { "@id": `${portfolioUrl}#Projects` },
       },
       {
         "@type": "ItemList",
-        "@id": `${portfolioUrl}#CaseStudies`,
-        name: "Case Studies",
-        description:
-          "Selected software engineering projects and case studies from Luis Alejandro's portfolio.",
-        itemListElement: ProjectList.map((project, index) => ({
+        "@id": `${portfolioUrl}#Projects`,
+        name: "Project Archive",
+        description: portfolioDescription,
+        numberOfItems: portfolioProjects.length,
+        itemListElement: portfolioProjects.map((project, index) => ({
           "@type": "ListItem",
           position: index + 1,
           item: {
             "@type": "CreativeWork",
-            name: project.title,
-            description: project.description,
-            url: `${config.url}${project.visit}`,
-            image: `${config.url}${project.image}`,
+            name: project.name,
+            description: project.shortDescription,
+            url: `${config.url}/portfolio/${project.slug}`,
+            image: `${config.url}${project.images.thumbnail}`,
             keywords: project.tags.join(", "),
           },
         })),
