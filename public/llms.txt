@@ -21,9 +21,12 @@ This file is the preferred starting point for AI assistants, answer engines, and
 ## Canonical Site Sections
 
 - Home: https://luisalejandro.org/ — Positioning, measured impact, selected work, services, FAQ, and latest posts.
-- Portfolio: https://luisalejandro.org/portfolio — Skills, work history, case studies, and projects.
+- About: https://luisalejandro.org/about — Career changelog from 2009 to today, principles, toolbox, and FAQ.
+- Portfolio: https://luisalejandro.org/portfolio — The project archive: ten projects with screenshots, stack, and outcomes.
+- Case studies: https://luisalejandro.org/case-studies — Long-form dossiers on Expedia, Wheel The World, Soleit, Dockershelf, and Canaima.
 - Blog: https://luisalejandro.org/blog — Technical posts about software development and engineering lessons.
-- Contact: https://luisalejandro.org/contact — Professional inquiries and hiring conversations.
+- Contact: https://luisalejandro.org/contact — A brief or a 30-minute call (https://cal.com/martinezfaneyth). Replies within 3 business days.
+- Privacy: https://luisalejandro.org/privacy — What the contact form keeps, and the analytics and cookie policy.
 
 ## Case Studies
 

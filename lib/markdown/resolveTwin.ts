@@ -3,11 +3,13 @@ import { buildBlogCategoryTwin } from "@lib/markdown/twins/blogCategory";
 import { buildBlogPostTwin } from "@lib/markdown/twins/blogPost";
 import { buildCaseStudyTwin } from "@lib/markdown/twins/caseStudy";
 import {
+  buildAboutTwin,
   buildBlogCategoryIndexTwin,
   buildBlogIndexTwin,
   buildContactTwin,
   buildHomeTwin,
   buildPortfolioTwin,
+  buildPrivacyTwin,
   buildPortfolioProjectTwin,
 } from "@lib/markdown/twins/marketing";
 
@@ -34,6 +36,14 @@ export async function resolveTwinMarkdown(
 
   if (pathSegments.length === 2 && first === "portfolio" && second) {
     return buildPortfolioProjectTwin(second);
+  }
+
+  if (pathSegments.length === 1 && first === "about") {
+    return buildAboutTwin();
+  }
+
+  if (pathSegments.length === 1 && first === "privacy") {
+    return buildPrivacyTwin();
   }
 
   if (pathSegments.length === 1 && first === "contact") {

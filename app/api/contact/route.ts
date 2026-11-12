@@ -10,9 +10,33 @@ const schema = yup
     contactName: yup.string().required(),
     contactEmail: yup.string().required(),
     contactMessage: yup.string().required(),
+    company: yup.string().max(160).default(""),
+    needs: yup.array(yup.string().required()).default([]),
+    timeline: yup.string().default(""),
+    nda: yup.boolean().default(false),
+    consent: yup.boolean().required(),
     token: yup.string(),
   })
   .required();
+
+/**
+ * The email template renders one message body, so the brief's structured fields
+ * are folded into it. Keeps the SES template and the lead record unchanged.
+ */
+function briefForEmail(body: {
+  contactMessage: string;
+  company?: string;
+  needs?: string[];
+  timeline?: string;
+  nda?: boolean;
+}): string {
+  const lines = [body.contactMessage.trim()];
+  if (body.company) lines.push("", `Company: ${body.company}`);
+  if (body.needs?.length) lines.push(`Needs: ${body.needs.join(", ")}`);
+  if (body.timeline) lines.push(`Timeline: ${body.timeline}`);
+  if (body.nda) lines.push("NDA requested before details");
+  return lines.join("\n");
+}
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
@@ -60,6 +84,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid body" }, { status: 400 });
     }
 
+    if (body.consent !== true) {
+      return NextResponse.json(
+        { error: "Consent missing", code: "consent_required" },
+        { status: 400 }
+      );
+    }
+
     // The captcha is the gate whenever it is configured; the token itself buys
     // nothing, because a client-held signing key would be public.
     if (process.env.RECAPTCHA_API_SECRET) {
@@ -74,7 +105,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    await initLeadWorkflow(body);
+    await initLeadWorkflow({ ...body, contactMessage: briefForEmail(body) });
     return NextResponse.json({ sent: true });
   } catch (error) {
     logError("contact-api", error, { hasBody: !!request.body });

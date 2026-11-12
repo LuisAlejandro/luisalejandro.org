@@ -81,6 +81,48 @@ export async function buildPortfolioProjectTwin(
   );
 }
 
+export async function buildAboutTwin(): Promise<string> {
+  // Derived from the same facts the page renders, so the twin cannot drift.
+  const body = [
+    "## Positioning",
+    "",
+    `Venezuelan full-stack AI engineer, ${experience} years of shipping products for remote teams. Based in Maracay; remote by contract.`,
+    "",
+    "## Changelog",
+    "",
+    "- v0.1 · 2009 — Canaima GNU/Linux: Debian packaging, ISO builds and infrastructure for a Venezuelan government distribution.",
+    "- v1.0 · 2017 — Cybersecurity in Uruguay: a CVE, CPE and CWE indexer behind a Flask API on Azure Kubernetes.",
+    "- v2.0 · 2018 — Leadbox, Canada: a courier-broker-worker build queue for more than a hundred dealership sites.",
+    "- v3.0 · 2019 — Founded Collage Labs; WordPress and e-commerce work with agencies in Spain.",
+    "- v4.0 · 2020 — Soleit, Chile: an Electron and Ionic React desktop app, REST API and a driver for a closed-source 3D scanner.",
+    "- v5.0 · 2022 — Wheel The World: the Expedia integration that reached 600,000+ accessible properties (+39% bookings) and a CI/CD rebuild from 40 to 10 minute deploys.",
+    "- v6.0 · now — AI engineering in production: agents, retrieval and model calls with tests, fallbacks and cost limits.",
+    "",
+    "## Elsewhere",
+    "",
+    `- [Call](https://cal.com/martinezfaneyth) — 30 minutes.`,
+    `- [Contact](${canonicalHostnameUrl}/contact) — send a brief.`,
+  ].join("\n");
+  return formatTwin("About", `${canonicalHostnameUrl}/about`, body);
+}
+
+export async function buildPrivacyTwin(): Promise<string> {
+  const body = [
+    "## The contact form",
+    "",
+    "A brief keeps your name, email, company if given, needs, timeline, NDA preference and the brief text. Used only to reply and to keep the lead on record. Sent through Amazon SES; submissions pass through Google reCAPTCHA.",
+    "",
+    "## Analytics and cookies",
+    "",
+    "Analytics runs only after accepting the cookie prompt and only when a measurement key is configured. One cookie remembers that acceptance. No advertising network, no ad slot, no cross-site advertising pixel.",
+    "",
+    "## Your data",
+    "",
+    "Write to luis@luisalejandro.org for a copy or deletion; requests are answered within 30 days.",
+  ].join("\n");
+  return formatTwin("Privacy", `${canonicalHostnameUrl}/privacy`, body);
+}
+
 export async function buildContactTwin(): Promise<string> {
   return formatTwin(
     "Contact",

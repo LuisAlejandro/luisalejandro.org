@@ -115,6 +115,34 @@ export function generateHomepageJsonLd() {
   };
 }
 
+/**
+ * The about page is the person's own record: a ProfilePage whose main entity is
+ * the site's single Person node, with the same @id the home page uses.
+ */
+export function generateAboutJsonLd() {
+  const aboutUrl = `${config.url}/about`;
+  const personId = `${config.url}/#Person`;
+  const websiteId = `${config.url}/#WebSite`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildPersonNode(aboutUrl),
+      {
+        "@type": "ProfilePage",
+        "@id": `${aboutUrl}#ProfilePage`,
+        url: aboutUrl,
+        name: `About | ${config.author.first_name}`,
+        description: `Career, principles and toolbox of ${config.author.first_name}, a Venezuelan full-stack AI engineer with ${experience} years of remote product work.`,
+        dateCreated: SITE_PROFILE_DATE_CREATED,
+        dateModified: SITE_PROFILE_DATE_MODIFIED,
+        isPartOf: { "@id": websiteId },
+        mainEntity: { "@id": personId },
+      },
+    ],
+  };
+}
+
 export function generatePortfolioJsonLd() {
   const portfolioUrl = `${config.url}/portfolio`;
   const personId = `${config.url}/#Person`;

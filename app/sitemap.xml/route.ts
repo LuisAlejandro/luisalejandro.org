@@ -46,7 +46,9 @@ function imageTag(url: unknown): string {
 
 function postItem(post: any): string {
   const hero =
-    typeof post?.metadata?.hero === "object" ? post.metadata.hero?.url : post?.metadata?.hero;
+    typeof post?.metadata?.hero === "object"
+      ? post.metadata.hero?.url
+      : post?.metadata?.hero;
 
   return `<url>
   <loc>${absoluteUrl(`/blog/posts/${post.slug}`)}</loc>
@@ -95,6 +97,17 @@ export async function GET() {
       <priority>0.8</priority>
   </url>
   ${portfolioProjects.map((project) => `<url><loc>${absoluteUrl(`/portfolio/${project.slug}`)}</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>`).join("\n  ")}
+  <url>
+      <loc>${absoluteUrl("/about")}</loc>
+      ${lastmodTag(lastmod(SITE_PROFILE_DATE_MODIFIED))}
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+  </url>
+  <url>
+      <loc>${absoluteUrl("/privacy")}</loc>
+      <changefreq>yearly</changefreq>
+      <priority>0.2</priority>
+  </url>
   ${CASE_STUDIES.map(caseStudyItem).join("\n  ")}
   <url>
       <loc>${absoluteUrl("/blog")}</loc>

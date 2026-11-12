@@ -8,22 +8,12 @@ export type NavItem = {
   pixelEvent?: PixelEvent;
 };
 
+// Store and Contact are not chrome: the store is gone, and "Let's talk" already
+// carries contact on every page. About joins the row instead.
 export const siteNavItems: NavItem[] = [
   { num: "01", label: "Portfolio", href: "/portfolio" },
   { num: "02", label: "Blog", href: "/blog" },
-  {
-    num: "03",
-    label: "Store",
-    href: "https://store.luisalejandro.org/",
-    external: true,
-    pixelEvent: "ClickHeaderStore",
-  },
-  {
-    num: "04",
-    label: "Contact",
-    href: "/contact",
-    pixelEvent: "ClickHeaderContact",
-  },
+  { num: "03", label: "About", href: "/about" },
 ];
 
 export const siteSocialLinks = [
@@ -70,11 +60,7 @@ const pageHints: Record<
   "/": { id: "home", hint: "/" },
   "/portfolio": { id: "portfolio", hint: "/portfolio", keywords: ["work"] },
   "/blog": { id: "blog", hint: "/blog", keywords: ["writing"] },
-  "https://store.luisalejandro.org/": {
-    id: "store",
-    hint: "store.luisalejandro.org ↗",
-  },
-  "/contact": { id: "contact", hint: "/contact", keywords: ["hire", "email"] },
+  "/about": { id: "about", hint: "/about", keywords: ["bio", "story"] },
 };
 
 const socialHints: Record<string, { id: string; hint: string }> = {
@@ -153,6 +139,32 @@ export const paletteItems: PaletteItem[] = [
     };
   }),
   ...homeSections,
+  {
+    id: "contact",
+    label: "Contact",
+    group: "Go to" as const,
+    href: "/contact",
+    hint: "/contact",
+    keywords: ["hire", "email", "brief", "call"],
+    pixelEvent: "ClickHeaderContact" as PixelEvent,
+  },
+  {
+    id: "privacy",
+    label: "Privacy",
+    group: "Go to" as const,
+    href: "/privacy",
+    hint: "/privacy",
+    keywords: ["data", "cookies", "gdpr"],
+  },
+  {
+    id: "cal",
+    label: "Book a call",
+    group: "Elsewhere" as const,
+    href: "https://cal.com/martinezfaneyth",
+    external: true,
+    hint: "cal.com ↗",
+    keywords: ["call", "meeting", "schedule"],
+  },
   ...siteSocialLinks.map((social) => ({
     id: socialHints[social.href]?.id ?? social.label.toLowerCase(),
     label: social.label,
