@@ -253,14 +253,8 @@ export default async function RootLayout({
             </Script>
           </>
         )}
-        {ADSENSE_PUBLISHER_ID && ENV_NAME !== "local" && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
-            crossOrigin="anonymous"
-            strategy="lazyOnload"
-          />
-        )}
+        {/* No ad units remain anywhere on the site, so the ad loader is gone
+            too; the verification meta tag above is what AdSense needs. */}
         <Suspense fallback={null}>
           <MetaPixel />
         </Suspense>
