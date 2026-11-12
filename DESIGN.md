@@ -179,7 +179,7 @@ No sitewide dark theme. Two explicit visual modes:
 - **Blog (`app/blog/`):** editorial index inside `SiteShell` — header with live specs, topic pills, featured entry, year-grouped archive, topic cards, subscribe block. All figures derive from `lib/blogArchive.ts`.
 - **Topic archives (`app/blog/category/`):** the same year-grouped archive filtered by category, prerendered per topic.
 - **Posts (`app/blog/posts/[slug]/`):** two-column reading layout — sticky TOC, `site-prose` typography, server-rendered figures and highlighted code, author card, next-in-archive card.
-- **Case studies (`app/case-studies/*/`):** dark header variant and full-width narrative sections.
+- **Case studies (`app/case-studies/*/`):** long-form dossiers inside `SiteShell`, composed from `CaseStudyHead`, `CaseStudySection`, `CaseStudyStats`, and the `CaseStudyMedia` helpers. Four numbered sections (Problem, Challenge, Product, Results) with a sticky label column, real HTML for comparison bars, static captioned galleries, and CSS scroll-driven reveals. The scroll-tween stack, canvas charts, and lightbox were retired with the old client pages.
 - **Contact (`app/contact/`):** form-first page using shared `Contact` component.
 
 ### Responsive behavior
@@ -278,6 +278,7 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 | Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
 | Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
 | Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
+| Case studies | `.site-case-head*`, `.site-case-eyebrow`, `.site-case-title`, `.site-case-facts`, `.site-case-hero`, `.site-case-section*`, `.site-case-figure*`, `.site-case-video`, `.site-case-gallery`, `.site-case-stats*`, `.site-case-bars*` |
 | Portfolio | `.site-project-head*`, `.site-project-spec`, `.site-project-grid` / `.site-project-card*`, `.site-project-tags`, `.site-project-title`, `.site-project-shot*`, `.site-project-story*`, `.site-project-sources`, `.site-project-end` |
 | Blog | `.site-blog-head*`, `.site-kicker`, `.site-spec`, `.site-pills` / `.site-pill`, `.site-feat*`, `.site-year*` / `.site-entry*`, `.site-topic*`, `.site-subscribe`, `.site-article*`, `.site-toc*`, `.site-prose*` / `.site-code` / `.site-fig*`, `.site-author`, `.site-next` |
 | Syntax tokens | `--color-syn-keyword`, `--color-syn-string`, `--color-syn-number`, `--color-syn-title`, `--color-syn-attr` (ink code blocks) |

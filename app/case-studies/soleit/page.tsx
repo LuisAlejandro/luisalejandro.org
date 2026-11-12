@@ -1,384 +1,154 @@
-"use client";
-
-import { useState } from "react";
-import PhotoAlbum from "react-photo-album";
-import "react-photo-album/rows.css";
-import { Controller, Scene } from "react-scrollmagic";
-import Lightbox from "yet-another-react-lightbox";
+import type { Metadata } from "next";
 
 import SoleitWhy from "@assets/images/soleit-why.svg";
 
-import Challenge from "@components/CaseStudies/Challenge";
-import HeroIntro from "@components/CaseStudies/HeroIntro";
-import Product from "@components/CaseStudies/Product";
-import Results from "@components/CaseStudies/Results";
-import ScrollTween from "@components/CaseStudies/ScrollTween";
-import Why from "@components/CaseStudies/Why";
-import { WaveDivider } from "@components/common/Layout/WaveDivider";
-import Contact from "@components/Portfolio/Contact/Contact";
-import Footer from "@components/Portfolio/Footer/Footer";
-import Header from "@components/Portfolio/Header/Header";
+import {
+  CaseStudyGallery,
+  CaseStudyHero,
+  CaseStudyVideo,
+} from "@components/common/Site/CaseStudyMedia";
+import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
+import { CaseStudySection } from "@components/common/Site/CaseStudySection";
+import { CaseStudyStats } from "@components/common/Site/CaseStudyStats";
+import { SiteFooter } from "@components/common/Site/SiteFooter";
+import { SiteHeader } from "@components/common/Site/SiteHeader";
+import { SiteShell } from "@components/common/Site/SiteShell";
 
-const SoleitPage = () => {
-  const [index, setIndex] = useState(-1);
+const gallery = [
+  "/images/case-studies/soleit-gallery-1.png",
+  "/images/case-studies/soleit-gallery-2.png",
+  "/images/case-studies/soleit-gallery-3.png",
+  "/images/case-studies/soleit-gallery-4.png",
+  "/images/case-studies/soleit-gallery-5.png",
+  "/images/case-studies/soleit-gallery-6.png",
+  "/images/case-studies/soleit-gallery-7.png",
+  "/images/case-studies/soleit-gallery-8.png",
+  "/images/case-studies/soleit-gallery-9.png",
+];
 
-  const galleryUrlList = [
-    "/images/case-studies/soleit-gallery-1.png",
-    "/images/case-studies/soleit-gallery-2.png",
-    "/images/case-studies/soleit-gallery-3.png",
-    "/images/case-studies/soleit-gallery-4.png",
-    "/images/case-studies/soleit-gallery-5.png",
-    "/images/case-studies/soleit-gallery-6.png",
-    "/images/case-studies/soleit-gallery-7.png",
-    "/images/case-studies/soleit-gallery-8.png",
-    "/images/case-studies/soleit-gallery-9.png",
-  ];
-
-  return (
-    <div className="w-full">
-      <Header variant="case-studies" />
-      <main id="main-content" tabIndex={-1}>
-        <div id="cases" className="bg-accent-7 text-gray-2">
-          <Controller>
-            <div className="cases-content w-full text-lg font-main">
-              <HeroIntro
-                Subtitle={() => "Soleit"}
-                Title={() => "A desktop app for kinesiology"}
-                Description={() => (
-                  <>
-                    The first automated biomechanical design software. An
-                    easier, more accurate, faster process to generate motion
-                    analysis and personalized insole 3D model.
-                  </>
-                )}
-                team={[
-                  "Luis Martínez",
-                  "Saraí Santiago",
-                  "Israel Lugo",
-                  "Sergi Prats",
-                ]}
-                deliverables={[
-                  "A REST api",
-                  "A desktop app",
-                  "A hardware driver",
-                ]}
-                links={[
-                  {
-                    text: "Client site",
-                    url: "https://soleit.app/en/how-it-works/",
-                  },
-                ]}
-                year={2021}
-              />
-              <Scene
-                triggerElement="#why"
-                duration="100%"
-                triggerHook="1"
-                offset={-100}
-              >
-                {(progress: any) => (
-                  <ScrollTween
-                    to={{
-                      top: "-300px",
-                      backgroundPositionY: "100%",
-                    }}
-                    from={{
-                      top: "0px",
-                      backgroundPositionY: "0%",
-                    }}
-                    ease="Expo.EaseIn"
-                    totalProgress={progress}
-                    paused
-                    className="w-full page-hero bg-case-studies-soleit-hero relative"
-                  >
-                    <WaveDivider fill="#333" />
-
-                    <div className="h-96" />
-
-                    <WaveDivider fill="#333" inverted />
-                  </ScrollTween>
-                )}
-              </Scene>
-              <Why
-                Title={() => "The Problem"}
-                Content={() => (
-                  <>
-                    <p className="py-5">
-                      This client had plans for growing its current portfolio in
-                      Chile and expanding to the United States with a Series B
-                      round of investors. To achieve those important goals, they
-                      needed to get rid of many of their manual processes and
-                      automate them. Also, many of these algorithms were
-                      scattered in different places and needed to be unified in
-                      a single app.
-                    </p>
-
-                    <p className="py-5">
-                      As the diagnosis of feet is a very important part of the
-                      product, the client needed a way to connect the hardware
-                      to the app. The hardware was a 3D scanner that was
-                      connected to a computer via USB. The app needed to be able
-                      to communicate with the hardware and receive the data from
-                      the scanner.
-                    </p>
-
-                    <p className="py-5">
-                      The client had a very clear idea of what they wanted to
-                      achieve, but they needed help to make it happen. They
-                      needed a team that could help them with the architecture,
-                      the development, and the deployment of the app.
-                    </p>
-                  </>
-                )}
-                ImageComponent={(props: any) => <SoleitWhy {...props} />}
-                ImageUseEffect={() => {
-                  const backgroundPos = { x: 0, y: 0 };
-                  const womanPos = { x: 0, y: 0 };
-                  const cactusPos = { x: 0, y: 0 };
-                  const manPos = { x: 0, y: 0 };
-
-                  const moveBackground = function (x: any, y: any) {
-                    const el = document.querySelector(
-                      "#why-background"
-                    ) as HTMLElement;
-                    if (!el) return;
-
-                    backgroundPos.x = Number(
-                      (x / window.innerWidth).toFixed(2)
-                    );
-
-                    backgroundPos.y = Number(
-                      (y / window.innerHeight).toFixed(2)
-                    );
-
-                    el.style.transform = `translate(${
-                      20 * backgroundPos.x + 0
-                    }px, ${20 * backgroundPos.y + 0}px) rotateZ(0deg)`;
-                  };
-
-                  const moveWoman = function (x: any, y: any) {
-                    const el = document.querySelector(
-                      "#why-woman"
-                    ) as HTMLElement;
-                    if (!el) return;
-
-                    womanPos.x = Number((x / window.innerWidth).toFixed(2));
-
-                    womanPos.y = Number((y / window.innerHeight).toFixed(2));
-
-                    el.style.transform = `translate(${10 * womanPos.x - 0}px, ${
-                      10 * womanPos.y + 0
-                    }px) rotateZ(0deg)`;
-                  };
-
-                  const moveCactus = function (x: any, y: any) {
-                    const el = document.querySelector(
-                      "#why-cactus"
-                    ) as HTMLElement;
-                    if (!el) return;
-
-                    cactusPos.x = Number((x / window.innerWidth).toFixed(2));
-
-                    cactusPos.y = Number((y / window.innerHeight).toFixed(2));
-
-                    el.style.transform = `translate(${-10 * cactusPos.x - 0}px, ${
-                      -10 * cactusPos.y + 0
-                    }px) rotateZ(0deg)`;
-                  };
-
-                  const moveMan = function (x: any, y: any) {
-                    const el = document.querySelector(
-                      "#why-man"
-                    ) as HTMLElement;
-                    if (!el) return;
-
-                    manPos.x = Number((x / window.innerWidth).toFixed(2));
-
-                    manPos.y = Number((y / window.innerHeight).toFixed(2));
-
-                    el.style.transform = `translate(${-20 * manPos.x + 0}px, ${
-                      -20 * manPos.y + 0
-                    }px) rotateZ(0deg)`;
-                  };
-
-                  const mousemoveCallback = (e: any) => {
-                    moveBackground(e.clientX, e.clientY);
-                    moveWoman(e.clientX, e.clientY);
-                    moveCactus(e.clientX, e.clientY);
-                    moveMan(e.clientX, e.clientY);
-                  };
-
-                  document.addEventListener("mousemove", mousemoveCallback);
-
-                  return () => {
-                    document.removeEventListener(
-                      "mousemove",
-                      mousemoveCallback
-                    );
-                  };
-                }}
-              />
-              <Challenge
-                Title={() => "The Challenge"}
-                Content={() => (
-                  <>
-                    <p className="py-5">
-                      The application needed to be a desktop app as part of the
-                      bussiness model was to sell the access as a subscription.
-                      The client wanted to avoid the possibility of the users to
-                      share their credentials with other people. To achieve
-                      this, the app needed to be a desktop app that could be
-                      installed in the user&apos;s computer. This way, the app
-                      could be used only by the person that bought the
-                      subscription.
-                    </p>
-
-                    <p className="py-5">
-                      The app needed to be able to communicate with the
-                      hardware. We only had a low level driver from the
-                      manufactirer that allowed us to make very basic operations
-                      on the scanner, so a lot of work was needed to make the
-                      scanner work as expected. The fact that it was a closed
-                      source driver made the process even harder.
-                    </p>
-
-                    <p className="py-5"></p>
-                  </>
-                )}
-                bgImgClass="lg:bg-case-studies-soleit-challenge"
-              />
-              <Product
-                Title={() => "The Product"}
-                Content={() => (
-                  <>
-                    <p className="py-5">
-                      The app was developed using{" "}
-                      <b className="font-black">Electron</b>, a framework that
-                      allows to create desktop apps using web technologies. As a
-                      frontend language we selected{" "}
-                      <b className="font-black">Ionic React</b>, so that the
-                      client could build the application for mobile devices in
-                      the future. The backend was developed using{" "}
-                      <b className="font-black">Node.js</b> and{" "}
-                      <b className="font-black">Express.js</b>. The database was
-                      a <b className="font-black">PostgreSQL database</b> hosted
-                      in <b className="font-black">AWS</b>. It also had
-                      connections with the propietary software that made the
-                      diagnosis of the feet, which was accessed through{" "}
-                      <b className="font-black">DynamoDB</b>, and it was also
-                      integrated with the S3 bucket where the auxiliary files
-                      were stored.
-                    </p>
-
-                    <p className="py-5">
-                      The hardware driver was embedded in the electron window
-                      and was written in python. It exposed a couple of
-                      endpoints that allowed the app to communicate with the
-                      hardware.
-                    </p>
-
-                    <p className="py-5">
-                      The app allows Soleit to make new foot diagnoses, but
-                      also, manage users, doctors, materials, directions and
-                      more.
-                    </p>
-                  </>
-                )}
-                videoUrl="/images/case-studies/soleit-product.mov"
-              />
-              <Results
-                Title={() => "The Results"}
-                Content={() => (
-                  <>
-                    <p className="py-5">
-                      Soleit is now able to make diagnoses in a{" "}
-                      <b className="font-black">more efficient way</b>, allowing
-                      them to grow their business and expand to new markets.
-                      They have made a{" "}
-                      <b className="font-black">lot of sales</b> and are now
-                      looking to improve some of the features of the app.
-                    </p>
-
-                    <div className="flex flex-col md:flex-row justify-center items-center">
-                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                          more than
-                        </div>
-
-                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
-                          1000
-                        </div>
-
-                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                          diagnosed
-                        </div>
-
-                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                          patients
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col w-50 lg:w-80 p-8 m-8 rounded-3xl bg-white">
-                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                          more than
-                        </div>
-
-                        <div className="font-display font-black text-7xl lg:text-9xl leading-none text-center">
-                          20
-                          <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                            sold
-                          </div>
-                        </div>
-
-                        <div className="font-main font-light tracking-tighter text-xl lg:text-3xl text-center">
-                          subscriptions
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="py-5">
-                      Here are some of the screenshots of the app:
-                    </p>
-
-                    <div className="py-5">
-                      <PhotoAlbum
-                        photos={galleryUrlList.map((url) => ({
-                          src: url,
-                          width: 1080,
-                          height: 800,
-                        }))}
-                        layout="rows"
-                        targetRowHeight={150}
-                        onClick={({ index }) => setIndex(index)}
-                      />
-                      <Lightbox
-                        slides={galleryUrlList.map((url) => ({
-                          src: url,
-                          width: 1080,
-                          height: 800,
-                        }))}
-                        open={index >= 0}
-                        index={index}
-                        close={() => setIndex(-1)}
-                      />
-                    </div>
-                  </>
-                )}
-                links={[
-                  {
-                    text: "Client site",
-                    url: "https://soleit.app/en/how-it-works/",
-                  },
-                ]}
-              />
-            </div>
-          </Controller>
-          <Contact dark />
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Soleit desktop app | Luis Alejandro",
+  description:
+    "An Electron and Ionic React desktop app for biomechanical diagnosis: REST API, hardware driver, and 3D insole modelling for the Soleit startup.",
+  alternates: { canonical: "/case-studies/soleit" },
+  openGraph: {
+    images: [
+      {
+        url: "/images/case-studies/soleit-hero.png",
+        alt: "Soleit desktop app",
+      },
+    ],
+  },
 };
 
-export default SoleitPage;
+export default function SoleitPage() {
+  return (
+    <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
+      <CaseStudyHead
+        year={2021}
+        subtitle="Soleit"
+        title="A desktop app for kinesiology"
+        description="The first automated biomechanical design software. An easier, more accurate, faster process to generate motion analysis and personalized insole 3D model."
+        team={["Luis Martínez", "Saraí Santiago", "Israel Lugo", "Sergi Prats"]}
+        deliverables={["A REST api", "A desktop app", "A hardware driver"]}
+        links={[
+          { text: "Client site", url: "https://soleit.app/en/how-it-works/" },
+        ]}
+      />
+
+      <CaseStudyHero
+        src="/images/case-studies/soleit-hero.png"
+        alt="Soleit desktop application"
+      />
+
+      <CaseStudySection index="01" label="Problem">
+        <div className="site-case-figure">
+          <SoleitWhy aria-hidden="true" />
+        </div>
+        <p>
+          This client had plans for growing its current portfolio in Chile and
+          expanding to the United States with a Series B round of investors. To
+          achieve those important goals, they needed to get rid of many of their
+          manual processes and automate them. Also, many of these algorithms
+          were scattered in different places and needed to be unified in a
+          single app.
+        </p>
+        <p>
+          As the diagnosis of feet is a very important part of the product, the
+          client needed a way to connect the hardware to the app. The hardware
+          was a 3D scanner that was connected to a computer via USB. The app
+          needed to be able to communicate with the hardware and receive the
+          data from the scanner.
+        </p>
+        <p>
+          The client had a very clear idea of what they wanted to achieve, but
+          they needed help to make it happen. They needed a team that could help
+          them with the architecture, the development, and the deployment of the
+          app.
+        </p>
+      </CaseStudySection>
+
+      <CaseStudySection index="02" label="Challenge">
+        <p>
+          The application needed to be a desktop app as part of the bussiness
+          model was to sell the access as a subscription. The client wanted to
+          avoid the possibility of the users to share their credentials with
+          other people. To achieve this, the app needed to be a desktop app that
+          could be installed in the user&apos;s computer. This way, the app
+          could be used only by the person that bought the subscription.
+        </p>
+        <p>
+          The app needed to be able to communicate with the hardware. We only
+          had a low level driver from the manufactirer that allowed us to make
+          very basic operations on the scanner, so a lot of work was needed to
+          make the scanner work as expected. The fact that it was a closed
+          source driver made the process even harder.
+        </p>
+      </CaseStudySection>
+
+      <CaseStudySection index="03" label="Product">
+        <p>
+          The app was developed using <b>Electron</b>, a framework that allows
+          to create desktop apps using web technologies. As a frontend language
+          we selected <b>Ionic React</b>, so that the client could build the
+          application for mobile devices in the future. The backend was
+          developed using <b>Node.js</b> and <b>Express.js</b>. The database was
+          a <b>PostgreSQL database</b> hosted in <b>AWS</b>. It also had
+          connections with the propietary software that made the diagnosis of
+          the feet, which was accessed through <b>DynamoDB</b>, and it was also
+          integrated with the S3 bucket where the auxiliary files were stored.
+        </p>
+        <p>
+          The hardware driver was embedded in the electron window and was
+          written in python. It exposed a couple of endpoints that allowed the
+          app to communicate with the hardware.
+        </p>
+        <p>
+          The app allows Soleit to make new foot diagnoses, but also, manage
+          users, doctors, materials, directions and more.
+        </p>
+        <CaseStudyVideo
+          src="/images/case-studies/soleit-product.mov"
+          label="Soleit app walkthrough"
+        />
+      </CaseStudySection>
+
+      <CaseStudySection index="04" label="Results">
+        <p>
+          Soleit is now able to make diagnoses in a <b>more efficient way</b>,
+          allowing them to grow their business and expand to new markets. They
+          have made a <b>lot of sales</b> and are now looking to improve some of
+          the features of the app.
+        </p>
+        <CaseStudyStats
+          items={[
+            { value: "1000", lines: ["more than", "diagnosed patients"] },
+            { value: "20", lines: ["more than", "sold subscriptions"] },
+          ]}
+        />
+        <p>Here are some of the screenshots of the app:</p>
+        <CaseStudyGallery images={gallery} name="Soleit" />
+      </CaseStudySection>
+    </SiteShell>
+  );
+}
