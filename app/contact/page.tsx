@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { HeroTyped } from "@components/Home/HeroTyped";
-import { HeroVortex } from "@components/Home/HeroVortex";
 import { ContactForm } from "@components/common/Site/ContactForm";
 import { CopyEmail, LocalTime } from "@components/common/Site/ContactLive";
+import { PageHero } from "@components/common/Site/PageHero";
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
@@ -145,32 +143,12 @@ export default function ContactPage() {
         />
       )}
 
-      {/* Hero: the reference lays its own field behind this; ours is the
-          home page's vortex, held inside the hero rather than pinned. */}
-      <section className="site-hero site-hero--page site-wrap">
-        <HeroVortex />
-
-        <nav aria-label="Breadcrumb" className="site-note site-contact-crumbs">
-          <Link href="/" className="site-link">
-            Home
-          </Link>
-          <span aria-hidden="true">/</span>
-          <span className="text-ink" aria-current="page">
-            Contact
-          </span>
-        </nav>
-
-        <p className="site-note site-contact-index">[Contact / 04]</p>
-
-        <HeroTyped lead={lead} typed={typed} />
-
-        <div className="site-hero__notes site-note">
-          <p className="flex items-center gap-1.5">
-            <span className="site-accent">◆</span>
-            <span>Machine · generated · {typed.split(" ").length} tokens</span>
-          </p>
-        </div>
-
+      <PageHero
+        crumb="Contact"
+        index="[Contact / 04]"
+        lead={lead}
+        typed={typed}
+      >
         <dl className="site-contact-spec">
           <div>
             <dt className="site-note">Email</dt>
@@ -213,7 +191,7 @@ export default function ContactPage() {
             Book a 30-min call
           </SiteButton>
         </div>
-      </section>
+      </PageHero>
 
       {/* 01 — the brief: a claim, then the form beside its live payload. */}
       <section className="site-section site-wrap">
