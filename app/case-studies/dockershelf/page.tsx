@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { config } from "@constants/constants";
+
 import DockershelfWhy from "@assets/images/dockershelf-why.svg";
 
 import {
@@ -18,8 +20,29 @@ export const metadata: Metadata = {
   title: "Dockershelf | Luis Alejandro",
   description:
     "Dockershelf: Debian-based Docker images built from scratch, tested weekly in GitHub Actions, and roughly four times smaller than the official ones.",
-  alternates: { canonical: "/case-studies/dockershelf" },
+  keywords: [
+    "Dockershelf",
+    "Docker images",
+    "containerization",
+    "DevOps",
+    "programming languages",
+    "development tools",
+    "automation",
+    "case study",
+    "Luis Alejandro",
+    "software architecture",
+    "CI/CD",
+  ],
+  alternates: {
+    canonical: `${config.url}/case-studies/dockershelf`,
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/dockershelf.md", title: "Markdown twin" },
+      ],
+    },
+  },
   openGraph: {
+    type: "article",
     images: [
       {
         url: "/images/case-studies/dockershelf-hero.png",

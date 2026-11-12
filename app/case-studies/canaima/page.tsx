@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { config } from "@constants/constants";
+
 import CanaimaWhy from "@assets/images/canaima-why.svg";
 
 import {
@@ -29,8 +31,28 @@ export const metadata: Metadata = {
   title: "Canaima GNU/Linux case study | Luis Alejandro",
   description:
     "Leading development of Canaima GNU/Linux, a Debian-based distribution built for Venezuelan public administration, schools and universities.",
-  alternates: { canonical: "/case-studies/canaima" },
+  keywords: [
+    "Canaima GNU/Linux",
+    "Linux distribution",
+    "Debian",
+    "Venezuelan government",
+    "open source",
+    "software development",
+    "case study",
+    "Luis Alejandro",
+    "system administration",
+    "package management",
+  ],
+  alternates: {
+    canonical: `${config.url}/case-studies/canaima`,
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/canaima.md", title: "Markdown twin" },
+      ],
+    },
+  },
   openGraph: {
+    type: "article",
     images: [
       {
         url: "/images/case-studies/canaima-hero.jpg",

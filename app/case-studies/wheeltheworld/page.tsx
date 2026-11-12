@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { config } from "@constants/constants";
+
 import WheelTheWorldWhy from "@assets/images/wheeltheworld-why.svg";
 
 import {
@@ -17,8 +19,29 @@ export const metadata: Metadata = {
   title: "CI/CD rebuild at Wheel The World | Luis Alejandro",
   description:
     "Rebuilding Wheel The World's CI/CD pipeline with Docker and GitHub Actions: deploys from 40 to 10 minutes, tests from 20 to 5 minutes, images from 1.5GB to 200MB.",
-  alternates: { canonical: "/case-studies/wheeltheworld" },
+  keywords: [
+    "Wheel the World",
+    "accessible travel",
+    "disability inclusion",
+    "travel technology",
+    "accessibility",
+    "inclusive design",
+    "web development",
+    "case study",
+    "Luis Alejandro",
+    "social impact",
+    "assistive technology",
+  ],
+  alternates: {
+    canonical: `${config.url}/case-studies/wheeltheworld`,
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/wheeltheworld.md", title: "Markdown twin" },
+      ],
+    },
+  },
   openGraph: {
+    type: "article",
     images: [
       {
         url: "/images/case-studies/wheeltheworld-hero.png",

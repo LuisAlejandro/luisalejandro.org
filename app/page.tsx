@@ -10,6 +10,7 @@ import { WorkSection } from "@components/Home/WorkSection";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { config } from "@constants/constants";
 import { faqItems } from "@constants/homepageContent";
 import { getAllPostsForHome } from "@lib/api";
 import {
@@ -23,6 +24,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   alternates: {
+    canonical: config.url,
     types: {
       "text/markdown": [
         {

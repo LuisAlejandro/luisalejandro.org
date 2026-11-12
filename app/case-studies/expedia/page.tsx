@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { config } from "@constants/constants";
+
 import ExpediaWhy from "@assets/images/expedia-why.svg";
 
 import {
@@ -17,8 +19,29 @@ export const metadata: Metadata = {
   title: "Expedia API integration | Luis Alejandro",
   description:
     "Integrating the Expedia hotel database at Wheel The World: a Go content indexer, booking and shopping providers, and a matching algorithm.",
-  alternates: { canonical: "/case-studies/expedia" },
+  keywords: [
+    "Expedia",
+    "travel technology",
+    "software engineering",
+    "scalable systems",
+    "user experience",
+    "web development",
+    "case study",
+    "Luis Alejandro",
+    "frontend development",
+    "travel industry",
+    "performance optimization",
+  ],
+  alternates: {
+    canonical: `${config.url}/case-studies/expedia`,
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/expedia.md", title: "Markdown twin" },
+      ],
+    },
+  },
   openGraph: {
+    type: "article",
     images: [
       {
         url: "/images/case-studies/expedia-hero.png",

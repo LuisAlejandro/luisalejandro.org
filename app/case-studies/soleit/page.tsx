@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { config } from "@constants/constants";
+
 import SoleitWhy from "@assets/images/soleit-why.svg";
 
 import {
@@ -30,8 +32,29 @@ export const metadata: Metadata = {
   title: "Soleit desktop app | Luis Alejandro",
   description:
     "An Electron and Ionic React desktop app for biomechanical diagnosis: REST API, hardware driver, and 3D insole modelling for the Soleit startup.",
-  alternates: { canonical: "/case-studies/soleit" },
+  keywords: [
+    "Soleit",
+    "kinesiology",
+    "biomechanics",
+    "Electron",
+    "Ionic React",
+    "hardware integration",
+    "foot diagnosis",
+    "desktop app",
+    "case study",
+    "Luis Alejandro",
+    "Python",
+  ],
+  alternates: {
+    canonical: `${config.url}/case-studies/soleit`,
+    types: {
+      "text/markdown": [
+        { url: "/case-studies/soleit.md", title: "Markdown twin" },
+      ],
+    },
+  },
   openGraph: {
+    type: "article",
     images: [
       {
         url: "/images/case-studies/soleit-hero.png",

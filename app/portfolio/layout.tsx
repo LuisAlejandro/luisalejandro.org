@@ -13,6 +13,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${config.url}/portfolio`,
     types: {
+      "application/rss+xml": [
+        { url: `${config.url}/blog/posts/feed.xml`, title: "RSS feed" },
+      ],
+      "application/atom+xml": [
+        { url: `${config.url}/blog/posts/atom.xml`, title: "Atom feed" },
+      ],
+      "application/feed+json": [
+        { url: `${config.url}/blog/posts/feed.json`, title: "JSON feed" },
+      ],
+      "application/xml": [
+        { url: `${config.url}/sitemap.xml`, title: "Sitemap" },
+      ],
       "text/markdown": [{ url: "/portfolio.md", title: "Markdown twin" }],
     },
   },

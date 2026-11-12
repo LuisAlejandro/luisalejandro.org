@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+
+import { config } from "@constants/constants";
 import Link from "next/link";
 
 import { ContactForm } from "@components/common/Site/ContactForm";
@@ -11,7 +13,12 @@ export const metadata: Metadata = {
   title: "Contact | Luis Alejandro",
   description:
     "Send a brief: what you are building, the stack, and the timeline. Remote full-stack and AI engineering work, worldwide.",
-  alternates: { canonical: "/contact" },
+  alternates: {
+    canonical: `${config.url}/contact`,
+    types: {
+      "text/markdown": [{ url: "/contact.md", title: "Markdown twin" }],
+    },
+  },
 };
 
 const linkedin = siteSocialLinks.find((link) => link.label === "LinkedIn");
