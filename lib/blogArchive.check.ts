@@ -7,6 +7,8 @@ import assert from "node:assert/strict";
 
 import {
   buildArchive,
+  entryNumber,
+  formatPostDate,
   groupByYear,
   nextOlder,
   readingMinutes,
@@ -17,13 +19,15 @@ const post = (
   slug: string,
   date: string,
   category?: string,
-  words = 50
+  words = 50,
+  hero?: { url?: string; imgix_url?: string }
 ): CosmicPost => ({
   id: slug,
   slug,
   title: `Title ${slug}`,
   created_at: date,
   metadata: {
+    hero,
     teaser: "**Bold** teaser",
     content: Array(words).fill("palabra").join(" "),
     categories: category ? [{ slug: category, title: `Old ${category}` }] : [],
@@ -32,8 +36,11 @@ const post = (
 
 const archive = buildArchive(
   [
-    post("a", "2025-01-01T00:00:00Z", "dev"),
-    post("c", "2026-03-01T00:00:00Z", "dev"),
+    post("a", "2025-01-01T00:00:00Z", "dev", 50, {
+      url: "https://cdn/x.jpg",
+      imgix_url: "https://imgix/x.jpg",
+    }),
+    post("c", "2026-03-01T00:00:00Z", "dev", 50, { url: "https://cdn/y.jpg" }),
     post("b", "2025-06-01T00:00:00Z", "ops"),
     post("d", "2025-07-01T00:00:00Z", "gone"),
     post("e", "2026-01-01T00:00:00Z"),
@@ -89,16 +96,64 @@ assert.deepEqual(archive.specs, {
   last: "2026-03-01T00:00:00Z",
 });
 assert.equal(archive.rows[0].teaser, "Bold teaser");
+assert.equal(archive.rows[0].cover, "https://cdn/y.jpg");
+assert.equal(
+  archive.rows.find((r) => r.slug === "a")?.cover,
+  "https://imgix/x.jpg"
+);
+assert.equal(archive.rows.find((r) => r.slug === "b")?.cover, undefined);
 assert.equal(readingMinutes(50), 1);
 assert.equal(readingMinutes(1593), 8);
 assert.equal(nextOlder(archive.rows, "c")?.slug, "e");
 assert.equal(nextOlder(archive.rows, "a")?.slug, "c");
 assert.equal(nextOlder(archive.rows, "missing"), undefined);
 
+// A post in two topics belongs to both archives and both counts.
+const twoTopics: CosmicPost = {
+  id: "m",
+  slug: "m",
+  title: "Two topics",
+  created_at: "2026-05-05T00:00:00Z",
+  metadata: {
+    teaser: "both",
+    content: "palabra",
+    categories: [
+      { slug: "x", title: "Old x" },
+      { slug: "y", title: "Old y" },
+    ],
+  },
+};
+const multi = buildArchive(
+  [twoTopics],
+  [
+    { slug: "x", title: "X" },
+    { slug: "y", title: "Y" },
+  ]
+);
+assert.deepEqual(
+  multi.topics.map((t) => t.slug),
+  ["x", "y"]
+);
+
+const empty = buildArchive([]);
+assert.deepEqual(empty.rows, []);
+assert.equal(empty.topics.length, 0);
+assert.deepEqual(empty.specs, {
+  entries: 0,
+  words: 0,
+  since: "",
+  last: undefined,
+});
+
+assert.equal(entryNumber(1), "#001");
+assert.equal(entryNumber(1234), "#1234");
+assert.equal(formatPostDate("2026-03-01T00:00:00Z").length > 0, true);
+assert.equal(formatPostDate("not-a-date"), "");
+
 console.log("blogArchive: ok");
 
 // Article renderer.
-(async () => {
+const run = async () => {
   const { markdownToArticle } = await import("./markdownToHtml");
   const { html, toc } = await markdownToArticle(
     [
@@ -108,7 +163,7 @@ console.log("blogArchive: ok");
       '<span class="figure figure-right-40" data-figure-src="https://cdn.example/a.jpg" data-figure-href="https://imgix.example/a.jpg" data-figure-alt="Diagrama &quot;x&quot;"></span>',
       '<span class="figure" data-figure-src="https://cdn.example/b.jpg"></span>',
       "```ts\nconst a = 1;\n```",
-      "```\nplain text\n```",
+      '```\n<script>alert(1)</script> & "q"\n```',
       "| a | b |\n| - | - |\n| 1 | 2 |",
     ].join("\n\n")
   );
@@ -128,9 +183,37 @@ console.log("blogArchive: ok");
     /<figure class="site-fig site-fig--100"><img src="https:\/\/cdn.example\/b.jpg" alt=""/
   );
   assert.match(html, /<figcaption class="site-note">fig\. 02<\/figcaption>/);
+  assert.match(
+    html,
+    /<div class="site-prose__scroll"[^>]*role="region"[^>]*tabindex="0">/
+  );
   assert.match(html, /<code class="hljs language-ts">.*hljs-keyword/s);
-  assert.match(html, /plain text/);
-  assert.match(html, /<div class="site-prose__table"><table>/);
+  // Unlabelled fences are escaped, not injected: no raw script tag survives.
+  assert.doesNotMatch(html, /<script>alert/);
+  assert.match(
+    html,
+    /&lt;script&gt;alert\(1\)&lt;\/script&gt; &amp; &quot;q&quot;/
+  );
+  assert.match(
+    html,
+    /<div class="site-prose__table"[^>]*role="region"[^>]*><table>/
+  );
   assert.deepEqual((await markdownToArticle("Solo texto.")).toc, []);
+
+  // A figure marker with no image must not emit an empty src.
+  const noSrc = await markdownToArticle(
+    '<span class="figure figure-right-40" data-figure-alt="x"></span>'
+  );
+  assert.doesNotMatch(noSrc.html, /src=""/);
+
+  // A heading with inline HTML keeps its full label and a stable id.
+  const inline = await markdownToArticle("## ¿Qué es <em>Docker</em>?");
+  assert.equal(inline.toc[0].text, "¿Qué es Docker?");
+  assert.equal(inline.toc[0].id, "que-es-docker");
   console.log("markdownToArticle: ok");
-})();
+};
+
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

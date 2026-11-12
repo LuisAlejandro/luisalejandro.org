@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
-import { getPostAndMorePosts, getPublishedPostForTwin } from "@lib/api";
-import { stripHtmlToPlainText, truncateAtWord } from "@lib/plainText";
+import { getPost, getPublishedPostForTwin } from "@lib/api";
+import { plainTeaser, truncateAtWord } from "@lib/plainText";
 
 import "@styles/tailwind.css";
 
@@ -20,9 +20,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const data = await getPostAndMorePosts(slug);
+  const post = await getPost(slug);
 
-  if (!data?.post) {
+  if (!post) {
     return {
       title: "Post Not Found | Blog de Luis Alejandro",
       description:
@@ -30,10 +30,8 @@ export async function generateMetadata({
     };
   }
 
-  const post = data.post;
-
   // Clean and optimize description (word boundary, surrogate-safe)
-  const rawDescription = stripHtmlToPlainText(post.metadata?.teaser || "");
+  const rawDescription = plainTeaser(post.metadata?.teaser || "");
   const optimizedDescription = truncateAtWord(rawDescription, 160);
 
   // Generate SEO-optimized title

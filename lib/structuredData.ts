@@ -5,7 +5,8 @@ import {
   SITE_PROFILE_DATE_CREATED,
   SITE_PROFILE_DATE_MODIFIED,
 } from "@constants/constants";
-import { stripHtmlToPlainText } from "@lib/plainText";
+import type { CosmicPost } from "@lib/blogArchive";
+import { plainTeaser, stripHtmlToPlainText } from "@lib/plainText";
 
 const portfolioDescription =
   "Full stack developer portfolio: Expedia API (39% booking boost), Dockershelf (294K+ downloads), Canaima Linux (220K+ users). 60+ open source projects.";
@@ -161,21 +162,6 @@ export function generatePortfolioJsonLd() {
   };
 }
 
-interface BlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  created_at: string;
-  modified_at?: string;
-  metadata: {
-    hero?: string;
-    teaser?: string;
-    content?: string;
-    categories?: string[];
-    faqs?: { question: string; answer: string }[];
-  };
-}
-
 export function generateHomepageFaqJsonLd(
   faqItems: { question: string; answer: string }[]
 ) {
@@ -197,6 +183,29 @@ export function generateHomepageFaqJsonLd(
   };
 }
 
+/** JSON-LD reads the post exactly as Cosmic returns it. */
+type BlogPost = CosmicPost;
+
+/** Absolute URL for a hero that may be an object, a path or an absolute URL. */
+function heroUrl(
+  hero: NonNullable<CosmicPost["metadata"]>["hero"]
+): string | undefined {
+  const raw = typeof hero === "string" ? hero : hero?.imgix_url || hero?.url;
+  if (!raw) return undefined;
+  return raw.startsWith("http") ? raw : `${config.url}${raw}`;
+}
+
+const categoryNames = (post: BlogPost): string[] =>
+  (post.metadata?.categories ?? [])
+    .map((category) =>
+      typeof category === "string" ? category : category?.title
+    )
+    .filter((name): name is string => Boolean(name));
+
+/** Schema descriptions want prose, so markdown is stripped, not truncated. */
+const description = (teaser?: string) =>
+  plainTeaser(teaser || "").substring(0, 160);
+
 export function generateBlogJsonLd(posts: BlogPost[]) {
   const blogPosts = posts.map((post) => {
     const blogPost: any = {
@@ -205,10 +214,7 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
       mainEntityOfPage: `${config.url}/blog/posts/${post.slug}`,
       headline: post.title,
       name: post.title,
-      description: stripHtmlToPlainText(post.metadata.teaser || "").substring(
-        0,
-        160
-      ),
+      description: description(post.metadata?.teaser),
       datePublished: post.created_at,
       ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
       inLanguage: "es",
@@ -219,16 +225,12 @@ export function generateBlogJsonLd(posts: BlogPost[]) {
         url: `${config.url}/portfolio`,
       },
       url: `${config.url}/blog/posts/${post.slug}`,
-      keywords: post.metadata.categories || [],
+      keywords: categoryNames(post),
     };
 
-    // Only add image if it exists
-    if (post.metadata.hero) {
-      blogPost.image = {
-        "@type": "ImageObject",
-        "@id": `${config.url}${post.metadata.hero}`,
-        url: `${config.url}${post.metadata.hero}`,
-      };
+    const image = heroUrl(post.metadata?.hero);
+    if (image) {
+      blogPost.image = { "@type": "ImageObject", "@id": image, url: image };
     }
 
     return blogPost;
@@ -261,10 +263,7 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
     mainEntityOfPage: `${config.url}/blog/posts/${post.slug}`,
     headline: post.title,
     name: post.title,
-    description: stripHtmlToPlainText(post.metadata.teaser || "").substring(
-      0,
-      160
-    ),
+    description: description(post.metadata?.teaser),
     datePublished: post.created_at,
     ...(modifiedDate(post) ? { dateModified: modifiedDate(post) } : {}),
     inLanguage: "es",
@@ -300,25 +299,17 @@ export function generateBlogPostingJsonLd(post: BlogPost) {
         name: config.author.name,
       },
     },
-    about:
-      post.metadata.categories?.map((category) => ({
-        "@type": "Thing",
-        name: category,
-      })) || [],
-    keywords: post.metadata.categories || [],
+    about: categoryNames(post).map((name) => ({ "@type": "Thing", name })),
+    keywords: categoryNames(post),
   };
 
-  // Only add image if it exists
-  if (post.metadata.hero) {
-    blogPosting.image = {
-      "@type": "ImageObject",
-      "@id": `${config.url}${post.metadata.hero}`,
-      url: `${config.url}${post.metadata.hero}`,
-    };
+  const image = heroUrl(post.metadata?.hero);
+  if (image) {
+    blogPosting.image = { "@type": "ImageObject", "@id": image, url: image };
   }
 
   // Emit a FAQPage node in the post's @graph when it carries structured FAQs
-  if (post.metadata.faqs && post.metadata.faqs.length > 0) {
+  if (post.metadata?.faqs && post.metadata.faqs.length > 0) {
     const faqPage = {
       "@type": "FAQPage",
       "@id": `${config.url}/blog/posts/${post.slug}/#FAQPage`,

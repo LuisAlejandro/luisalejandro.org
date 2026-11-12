@@ -1,5 +1,5 @@
 import { canonicalHostnameUrl, experience } from "@constants/constants";
-import { getAllCategories, getPublishedPostsForHomeTwin } from "@lib/api";
+import { getBlogArchive, getPublishedPostsForHomeTwin } from "@lib/api";
 import { expandTwinTokens } from "@lib/markdown/expandTwinTokens";
 import { formatTwin } from "@lib/markdown/formatTwin";
 import { readSection } from "@lib/markdown/readSection";
@@ -62,15 +62,14 @@ export async function buildBlogIndexTwin(): Promise<string> {
 }
 
 export async function buildBlogCategoryIndexTwin(): Promise<string> {
-  const categories = (await getAllCategories()) || [];
-  const lines = categories.map(
-    (category: { title?: string; slug?: string }) => {
-      const title = category.title || category.slug || "Category";
-      const slug = category.slug || "";
-      const url = `${canonicalHostnameUrl}/blog/category/${slug}`;
-      return `- [${title}](${url})`;
-    }
-  );
+  // Same source as the HTML: only topics with published posts have pages.
+  const { archive } = await getBlogArchive();
+  const lines = archive.topics.map((topic) => {
+    const url = `${canonicalHostnameUrl}/blog/category/${topic.slug}`;
+    return `- [${topic.title}](${url}) — ${topic.count} ${
+      topic.count === 1 ? "entry" : "entries"
+    }`;
+  });
   const body =
     lines.length > 0
       ? `## Categories\n\n${lines.join("\n")}`

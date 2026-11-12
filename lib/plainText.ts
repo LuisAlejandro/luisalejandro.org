@@ -33,3 +33,23 @@ export function truncateAtWord(text: string, max: number): string {
 
   return `${cut.replace(/[\s,;:.\u2013\u2014-]+$/u, "")}…`;
 }
+
+/**
+ * One line of plain text from a markdown or HTML teaser.
+ *
+ * Markdown is removed structurally (links and images first, then line-leading
+ * heading, quote and list markers) so `snake_case`, `C#` and `a > b` survive;
+ * stripping those characters anywhere mangles ordinary prose.
+ */
+export function plainTeaser(teaser = ""): string {
+  return stripHtmlToPlainText(teaser)
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/^\s{0,3}#{1,6}\s+/gm, "")
+    .replace(/^\s{0,3}>\s?/gm, "")
+    .replace(/^\s{0,3}[-*+]\s+/gm, "")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}

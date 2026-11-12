@@ -1,5 +1,6 @@
 "use client";
 
+import { openPalette } from "@components/common/Site/overlayLock";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -14,7 +15,7 @@ export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handlePaletteClick = () => {
-    window.dispatchEvent(new CustomEvent("site:open-palette"));
+    openPalette();
   };
 
   return (

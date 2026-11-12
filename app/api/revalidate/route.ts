@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 import { purgeByTags as purgeCloudflareByTags } from "@lib/cloudflare/purgeByTags";
@@ -32,6 +32,9 @@ export async function POST(request: NextRequest) {
     const body: RevalidateRequestBody = await request.json();
 
     const revalidatedPaths: string[] = [];
+
+    // The derived blog archive is cached under this tag.
+    revalidateTag("blog-listings", "max");
 
     revalidatePath("/blog");
     revalidatedPaths.push("/blog");

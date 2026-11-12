@@ -36,10 +36,21 @@ type HastNode = {
   children?: HastNode[];
 };
 
+/** All text inside a node, including raw inline HTML and footnote markers. */
 const text = (node: HastNode): string =>
   node.type === "text"
     ? (node.value ?? "")
-    : (node.children ?? []).map(text).join("");
+    : node.type === "raw"
+      ? stripHtmlToPlainText(node.value ?? "")
+      : (node.children ?? []).map(text).join("");
+
+/** Footnote reference nodes (`[^1]`) carry no readable heading text. */
+const headingText = (node: HastNode): string =>
+  (node.children ?? [])
+    .filter((child) => child.properties?.dataFootnoteRef === undefined)
+    .map(text)
+    .join("")
+    .trim();
 
 /** ASCII slug: accents folded, everything else collapsed to dashes. */
 export const slugify = (value: string) =>
@@ -58,9 +69,10 @@ const escapeHtml = (value: string) =>
     .replace(/>/g, "&gt;");
 
 // Legacy Cosmic figure marker: an empty span carrying the image in data
-// attributes, e.g. class="figure figure-right-40".
-const FIGURE =
-  /^\s*<span class="figure(?:\s+figure-(100|(?:left|right)-(?:20|30|40)))?"([^>]*)><\/span>\s*$/;
+// attributes, e.g. class="figure figure-right-40". Matched on class tokens so
+// an extra class or single quotes still convert.
+const FIGURE_CLASS = /(?:^|\s)figure(?:\s|$)/;
+const FIGURE = /^\s*<span\s+([^>]*)>\s*<\/span>\s*$/i;
 const decode = (value: string) =>
   value
     .replace(/&quot;/g, '"')
@@ -69,9 +81,29 @@ const decode = (value: string) =>
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
 const attr = (attrs: string, name: string) =>
-  decode(attrs.match(new RegExp(`${name}="([^"]*)"`))?.[1] ?? "");
+  decode(
+    attrs.match(new RegExp(`${name}\\s*=\\s*["']([^"']*)["']`, "i"))?.[1] ?? ""
+  );
 
-// Markdown keeps the inline span inside a paragraph, split into raw open and
+/** `figure-right-40` and friends drive the float; anything else is full width. */
+const figureSize = (classes: string) =>
+  classes.match(/figure-(100|(?:left|right)-(?:20|30|40))/)?.[1] ?? "100";
+
+/** A figure marker, or undefined when the span is not one. */
+function parseFigure(raw: string) {
+  const match = raw.match(FIGURE);
+  if (!match) return undefined;
+  const attrs = match[1];
+  const classes = attr(attrs, "class");
+  if (!FIGURE_CLASS.test(classes)) return undefined;
+  return {
+    src: attr(attrs, "data-figure-href") || attr(attrs, "data-figure-src"),
+    alt: stripHtmlToPlainText(attr(attrs, "data-figure-alt")),
+    size: figureSize(classes),
+  };
+}
+
+// Markdown keeps an inline span inside a paragraph, split into raw open and
 // close tags; a paragraph made only of raw HTML is joined back for matching.
 const rawOnly = (node: HastNode) =>
   node.tagName === "p" &&
@@ -98,13 +130,17 @@ function articleTransform(toc: TocEntry[]) {
       node.children = children.map((child) => {
         const raw = child.type === "raw" ? child.value : rawOnly(child);
         if (raw) {
-          const match = raw.match(FIGURE);
-          if (!match) return child;
+          const figure = parseFigure(raw);
+          if (!figure) return child;
+          // No image means no figure: an empty src would request the page URL.
+          if (!figure.src) {
+            logError("markdownToArticle", new Error("figure without image"), {
+              attrs: raw.slice(0, 120),
+            });
+            return { type: "text", value: "" };
+          }
           figures += 1;
-          const [, size = "100", attrs] = match;
-          const src =
-            attr(attrs, "data-figure-href") || attr(attrs, "data-figure-src");
-          const alt = stripHtmlToPlainText(attr(attrs, "data-figure-alt"));
+          const { src, alt, size } = figure;
           const caption = `fig. ${String(figures).padStart(2, "0")}${alt ? ` · ${truncateAtWord(alt, 90)}` : ""}`;
           return {
             type: "raw",
@@ -115,7 +151,7 @@ function articleTransform(toc: TocEntry[]) {
         if (child.type !== "element") return child;
 
         if (child.tagName === "h2" || child.tagName === "h3") {
-          const label = text(child).trim();
+          const label = headingText(child);
           const base = slugify(label);
           const seen = used.get(base) ?? 0;
           used.set(base, seen + 1);
@@ -129,7 +165,12 @@ function articleTransform(toc: TocEntry[]) {
           return {
             type: "element",
             tagName: "div",
-            properties: { className: ["site-prose__table"] },
+            properties: {
+              className: ["site-prose__table"],
+              tabIndex: 0,
+              role: "region",
+              "aria-label": "Table",
+            },
             children: [child],
           };
         }
@@ -149,7 +190,7 @@ function articleTransform(toc: TocEntry[]) {
               : escapeHtml(source);
           return {
             type: "raw",
-            value: `<pre class="site-code"><code class="hljs${language ? ` language-${escapeHtml(language)}` : ""}">${body}</code></pre>`,
+            value: `<div class="site-prose__scroll" role="region" aria-label="Code sample" tabindex="0"><pre class="site-code"><code class="hljs${language ? ` language-${escapeHtml(language)}` : ""}">${body}</code></pre></div>`,
           };
         }
 

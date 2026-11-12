@@ -1,9 +1,9 @@
-import type { Viewport } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { PaletteSearchButton } from "@components/Blog/PaletteSearchButton";
 import { TopicCards } from "@components/Blog/TopicCards";
-import { formatPostDate, YearArchive } from "@components/Blog/YearArchive";
+import { coverVariant, YearArchive } from "@components/Blog/YearArchive";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
@@ -11,13 +11,9 @@ import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 import { siteSocialLinks } from "@constants/siteNavigation";
 import { getBlogArchive } from "@lib/api";
-import { entryNumber } from "@lib/blogArchive";
+import { entryNumber, formatPostDate } from "@lib/blogArchive";
 import { logError } from "@lib/logger";
 import { generateBlogJsonLd } from "@lib/structuredData";
-
-export const viewport: Viewport = {
-  themeColor: "#f4f4f0",
-};
 
 const linkedin = siteSocialLinks.find((link) => link.label === "LinkedIn");
 const rss = "/blog/posts/feed.xml";
@@ -32,8 +28,12 @@ export default async function BlogPage() {
   }
 
   const { rows, topics, specs } = data.archive;
+  // Cosmic errors surface as an empty collection; a blog with no entries is a
+  // 404 here, so an outage never publishes "0 entries" as fact.
+  if (rows.length === 0) notFound();
+
   const [latest, ...rest] = rows;
-  const blogJsonLd = generateBlogJsonLd(data.posts as never);
+  const blogJsonLd = generateBlogJsonLd(data.posts);
 
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
@@ -130,8 +130,10 @@ export default async function BlogPage() {
             {latest.cover && (
               <figure className="site-feat__cover">
                 <img
-                  src={latest.cover}
+                  src={coverVariant(latest.cover, 1200)}
                   alt=""
+                  width={1200}
+                  height={900}
                   fetchPriority="high"
                   decoding="async"
                 />

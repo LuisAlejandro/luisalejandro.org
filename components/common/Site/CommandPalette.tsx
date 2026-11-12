@@ -19,6 +19,7 @@ type SearchedPost = {
 const MIN_SEARCH = 2;
 const MAX_POSTS = 8;
 const SEARCH_DELAY_MS = 200;
+const MAX_QUERY = 128;
 const NO_POSTS: PaletteItem[] = [];
 
 export function CommandPalette() {
@@ -32,21 +33,26 @@ export function CommandPalette() {
   const listRef = useRef<HTMLUListElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
 
-  // Post search answers for one query at a time; a result or an error only
-  // counts while it still matches what is typed, so nothing needs resetting.
-  const [found, setFound] = useState<{ q: string; items: PaletteItem[] }>();
-  const [failed, setFailed] = useState<string>();
-  const term = query.trim();
+  // One record per query: either results or a failure, never both. Keeping them
+  // together is what stops a stale error from rendering beside live results.
+  const [outcome, setOutcome] = useState<{
+    q: string;
+    items?: PaletteItem[];
+    failed?: true;
+  }>();
+  const term = query.trim().slice(0, MAX_QUERY);
   const searching = isOpen && term.length >= MIN_SEARCH;
-  const posts = searching && found?.q === term ? found.items : NO_POSTS;
-  const searchFailed = searching && failed === term;
-  const searchPending = searching && found?.q !== term && !searchFailed;
+  const current = searching && outcome?.q === term ? outcome : undefined;
+  const posts = current?.items ?? NO_POSTS;
+  const searchFailed = Boolean(current?.failed);
+  const searchPending = searching && !current;
 
   useEffect(() => {
     if (!searching) return;
 
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
+      const deadline = window.setTimeout(() => controller.abort(), 5000);
       try {
         const response = await fetch(
           `/api/search-posts?q=${encodeURIComponent(term)}`,
@@ -54,7 +60,7 @@ export function CommandPalette() {
         );
         if (!response.ok) throw new Error(String(response.status));
         const data: { response?: SearchedPost[] } = await response.json();
-        setFound({
+        setOutcome({
           q: term,
           items: (data.response ?? []).slice(0, MAX_POSTS).map((post) => ({
             id: `post-${post.slug}`,
@@ -62,11 +68,14 @@ export function CommandPalette() {
             group: "Posts",
             href: `/blog/posts/${post.slug}`,
             hint: post.metadata?.categories?.[0]?.title,
+            hintLang: "es",
             lang: "es",
           })),
         });
       } catch {
-        if (!controller.signal.aborted) setFailed(term);
+        if (!controller.signal.aborted) setOutcome({ q: term, failed: true });
+      } finally {
+        window.clearTimeout(deadline);
       }
     }, SEARCH_DELAY_MS);
 
@@ -248,12 +257,15 @@ export function CommandPalette() {
             ref={inputRef}
             type="text"
             value={query}
+            maxLength={MAX_QUERY}
             onChange={handleQueryChange}
             onKeyDown={handleInputKeyDown}
             placeholder="Type a command or search posts..."
             role="combobox"
-            aria-expanded={true}
-            aria-controls="palette-results"
+            aria-expanded={filteredItems.length > 0}
+            aria-controls={
+              filteredItems.length > 0 ? "palette-results" : undefined
+            }
             aria-autocomplete="list"
             aria-activedescendant={selectedId}
             className="w-full border-none bg-transparent text-step-0 text-ink outline-none placeholder:text-ink-muted focus:ring-0"
@@ -324,6 +336,7 @@ export function CommandPalette() {
                           </span>
                           {item.hint && (
                             <span
+                              lang={item.hintLang}
                               className={`site-note ${
                                 isSelected ? "text-paper/70" : "text-ink-muted"
                               }`}
@@ -339,12 +352,20 @@ export function CommandPalette() {
               ))}
             </ul>
           )}
-          {(searchPending || searchFailed) && (
-            <p
-              role="status"
-              className="px-3 py-2 font-site-mono text-step-n1 text-ink-muted"
-            >
-              {searchPending ? "Searching posts…" : "Post search unavailable"}
+          <p role="status" className="sr-only">
+            {searchPending
+              ? "Searching posts…"
+              : searchFailed
+                ? "Post search unavailable"
+                : posts.length > 0
+                  ? `${posts.length} ${
+                      posts.length === 1 ? "post" : "posts"
+                    } found`
+                  : ""}
+          </p>
+          {searchFailed && (
+            <p className="px-3 py-2 font-site-mono text-step-n1 text-ink-muted">
+              Post search unavailable
             </p>
           )}
         </div>

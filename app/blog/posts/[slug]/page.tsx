@@ -1,19 +1,19 @@
-import type { Viewport } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleToc } from "@components/Blog/ArticleToc";
-import { formatPostDate } from "@components/Blog/YearArchive";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { getAllPostsSlugs, getBlogArchive, getPost } from "@lib/api";
 import {
-  getAllPostsSlugs,
-  getBlogArchive,
-  getPostAndMorePosts,
-} from "@lib/api";
-import { buildArchive, entryNumber, nextOlder } from "@lib/blogArchive";
+  buildArchive,
+  entryNumber,
+  formatPostDate,
+  nextOlder,
+  type CosmicPost,
+} from "@lib/blogArchive";
 import { logError } from "@lib/logger";
 import { markdownToArticle } from "@lib/markdownToHtml";
 import { generateBlogPostingJsonLd } from "@lib/structuredData";
@@ -23,10 +23,6 @@ interface PostPageProps {
     slug: string;
   }>;
 }
-
-export const viewport: Viewport = {
-  themeColor: "#f4f4f0",
-};
 
 export async function generateStaticParams() {
   const posts = await getAllPostsSlugs();
@@ -39,14 +35,11 @@ export async function generateStaticParams() {
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
 
-  let post: any;
+  let post: CosmicPost | undefined;
   let archive: Awaited<ReturnType<typeof getBlogArchive>>["archive"];
   try {
-    const [data, blog] = await Promise.all([
-      getPostAndMorePosts(slug),
-      getBlogArchive(),
-    ]);
-    post = data?.post;
+    const [data, blog] = await Promise.all([getPost(slug), getBlogArchive()]);
+    post = data as CosmicPost | undefined;
     archive = blog.archive;
   } catch (error) {
     logError("blog-post-page", error, { slug });
@@ -55,10 +48,13 @@ export default async function PostPage({ params }: PostPageProps) {
 
   if (!post?.slug) notFound();
 
-  // A post missing from the list (a draft outside local) still renders, from
-  // its own data, without a number or a next post.
+  // The archive carries every published post, so a published post always has a
+  // row; a draft outside local falls back to its own record. Either way there
+  // is a row — a missing one is a 404, never a dereference of undefined.
   const listed = archive.rows.find((entry) => entry.slug === slug);
   const row = listed ?? buildArchive([post]).rows[0];
+  if (!row) notFound();
+
   const next = nextOlder(archive.rows, slug);
 
   const { html, toc } = await markdownToArticle(post.metadata?.content || "");
@@ -75,7 +71,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
       <article className="site-article site-wrap">
         <header className="site-article__head">
-          <div className="site-blog-head__top site-note">
+          <div className="site-kicker site-note">
             <nav aria-label="Breadcrumb">
               <Link href="/" className="site-link">
                 Home
@@ -184,7 +180,7 @@ export default async function PostPage({ params }: PostPageProps) {
           {next && (
             <Link href={`/blog/posts/${next.slug}`} className="site-next">
               <span className="site-note">
-                Next post
+                Next in the archive
                 {next.category && (
                   <>
                     {" · "}

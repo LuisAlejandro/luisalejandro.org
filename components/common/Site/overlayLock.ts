@@ -68,3 +68,7 @@ export function scrollToSection(id: string): boolean {
   window.history.pushState(null, "", `#${id}`);
   return true;
 }
+
+/** Opens the site command palette; the event name stays in one place. */
+export const openPalette = () =>
+  window.dispatchEvent(new CustomEvent("site:open-palette"));

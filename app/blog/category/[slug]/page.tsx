@@ -37,6 +37,11 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const { archive } = await getBlogArchive();
+  return archive.topics.map((topic) => ({ slug: topic.slug }));
+}
+
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
 
@@ -48,12 +53,20 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     throw error;
   }
 
-  // Only categories with published posts have a page; an emptied or deleted
-  // category stops resolving instead of rendering an empty archive.
+  // Only categories with published posts have a page. An empty archive means
+  // Cosmic answered with nothing, which is an outage, not a deleted category:
+  // 404ing here would let a transient failure be cached as "this page is gone".
+  if (archive.rows.length === 0) {
+    throw new Error("Blog archive unavailable");
+  }
+
   const topic = archive.topics.find((t) => t.slug === slug);
   if (!topic) notFound();
 
-  const rows = archive.rows.filter((row) => row.category?.slug === slug);
+  // A post can carry several topics; it belongs in each of their archives.
+  const rows = archive.rows.filter((row) =>
+    row.categories.some((category) => category.slug === slug)
+  );
 
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>

@@ -59,6 +59,8 @@ export type PaletteItem = {
   pixelEvent?: PixelEvent;
   /** Language of the label when it is not English. */
   lang?: string;
+  /** Language of the hint when it differs from the label's. */
+  hintLang?: string;
 };
 
 const pageHints: Record<

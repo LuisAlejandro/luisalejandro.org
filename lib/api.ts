@@ -1,4 +1,5 @@
 import { createBucketClient } from "@cosmicjs/sdk";
+import { unstable_cache } from "next/cache";
 
 import { ENV_NAME } from "@constants/constants";
 import { logError } from "@lib/logger";
@@ -51,9 +52,6 @@ export async function getAllPostsForHome(limit?: number) {
         "metadata.hero",
         "metadata.categories",
         "metadata.teaser",
-        // Bodies feed the blog's word totals and reading times; pages pass
-        // only derived rows to the client.
-        "metadata.content",
         "created_at",
         "modified_at",
       ])
@@ -134,43 +132,6 @@ export async function getPostsByIds(ids: string[]) {
       hasReadKey: !!READ_KEY,
     });
     return [];
-  }
-}
-
-export async function getMorePosts(slug: any) {
-  try {
-    const moreObjects = await cosmic.objects
-      .find({
-        type: "posts",
-        status:
-          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
-        slug: {
-          $ne: slug,
-        },
-      })
-      .props([
-        "id",
-        "title",
-        "slug",
-        "metadata.hero",
-        "metadata.content",
-        "metadata.teaser",
-        "metadata.categories",
-        "created_at",
-      ])
-      .sort("random")
-      .limit(4);
-    return moreObjects?.objects.length ? moreObjects?.objects : [];
-  } catch (error) {
-    // Don't throw if there are no more posts
-    if (is404(error)) return [];
-    logError("getMorePosts", error, {
-      slug,
-      bucketSlug: BUCKET_SLUG || "",
-      hasReadKey: !!READ_KEY,
-      envName: ENV_NAME,
-    });
-    throw error;
   }
 }
 
@@ -295,7 +256,11 @@ export async function getPublishedPostsForCategoryTwin(categorySlug: string) {
   }
 }
 
-export async function getPostAndMorePosts(slug: any) {
+/**
+ * One published post. The article page, its metadata and its social card read
+ * only this record; the next post comes from the archive, not a second query.
+ */
+export async function getPost(slug: string) {
   try {
     const object = await cosmic.objects
       .find({
@@ -315,78 +280,12 @@ export async function getPostAndMorePosts(slug: any) {
         "created_at",
         "modified_at",
       ]);
-    const morePosts = await getMorePosts(slug);
-    return {
-      post: object?.objects.length ? object?.objects[0] : undefined,
-      morePosts,
-    };
+    return object?.objects.length ? object.objects[0] : undefined;
   } catch (error) {
-    // Don't throw if an slug doesn't exist
-    if (is404(error))
-      return {
-        post: undefined,
-        morePosts: [],
-      };
-    logError("getPostAndMorePosts", error, {
+    // Don't throw if a slug doesn't exist
+    if (is404(error)) return undefined;
+    logError("getPost", error, {
       slug,
-      bucketSlug: BUCKET_SLUG || "",
-      hasReadKey: !!READ_KEY,
-      envName: ENV_NAME,
-    });
-    throw error;
-  }
-}
-
-export async function getAllPostsForCategory(categorySlug: any) {
-  if (!hasCosmicCredentials()) {
-    return {
-      categoryPosts: [],
-      categoryName: undefined,
-    };
-  }
-
-  try {
-    const categoryDetails = await getCategoryDetails(categorySlug);
-
-    if (!categoryDetails)
-      return {
-        categoryPosts: [],
-        categoryName: undefined,
-      };
-
-    const data = await cosmic.objects
-      .find({
-        type: "posts",
-        status:
-          ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
-        "metadata.categories": {
-          $in: [categoryDetails.id],
-        },
-      })
-      .props([
-        "id",
-        "title",
-        "slug",
-        "metadata.hero",
-        "metadata.content",
-        "metadata.teaser",
-        "metadata.categories",
-        "created_at",
-      ]);
-
-    return {
-      categoryPosts: data?.objects.length ? data?.objects : [],
-      categoryName: categoryDetails.title || undefined,
-    };
-  } catch (error) {
-    // Don't throw if an slug doesn't exist
-    if (is404(error))
-      return {
-        categoryPosts: [],
-        categoryName: undefined,
-      };
-    logError("getAllPostsForCategory", error, {
-      categorySlug,
       bucketSlug: BUCKET_SLUG || "",
       hasReadKey: !!READ_KEY,
       envName: ENV_NAME,
@@ -556,14 +455,44 @@ export async function getPopulatedCategories() {
   }
 }
 
-/** Posts and categories, derived once into the blog's archive, topics and specs. */
-export async function getBlogArchive() {
-  const [posts, categories] = await Promise.all([
-    getAllPostsForHome(),
-    getAllCategories(),
-  ]);
-  return {
-    posts: (posts ?? []) as CosmicPost[],
-    archive: buildArchive((posts ?? []) as CosmicPost[], categories),
-  };
+/** Post bodies are only needed where word totals and reading times render. */
+async function getAllPostsWithBody() {
+  const query = cosmic.objects
+    .find({
+      type: "posts",
+      status:
+        ENV_NAME !== "local" ? "published" : { $in: ["published", "draft"] },
+    })
+    .props([
+      "id",
+      "slug",
+      "title",
+      "metadata.hero",
+      "metadata.categories",
+      "metadata.teaser",
+      "metadata.content",
+      "created_at",
+      "modified_at",
+    ])
+    .sort("-created_at");
+
+  const data = await query;
+  return (data?.objects ?? []) as CosmicPost[];
 }
+
+/**
+ * The blog's derived archive, topics and specs. Cached so the 34 prerendered
+ * post pages and every category page share one collection fetch instead of one
+ * each; `blog-listings` is purged by the revalidate route.
+ */
+export const getBlogArchive = unstable_cache(
+  async () => {
+    const [posts, categories] = await Promise.all([
+      getAllPostsWithBody(),
+      getAllCategories(),
+    ]);
+    return { posts, archive: buildArchive(posts, categories) };
+  },
+  ["blog-archive"],
+  { tags: ["blog-listings"] }
+);

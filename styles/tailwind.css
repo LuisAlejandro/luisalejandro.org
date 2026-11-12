@@ -68,6 +68,12 @@
   --color-rule: #0e0e0d24;
   --color-rule-strong: #0e0e0d52;
   --color-signal: #d61f3a;
+  /* Syntax tokens for ink code blocks; named so DESIGN.md has a table row. */
+  --color-syn-keyword: #ff8a9b;
+  --color-syn-string: #c5e3a8;
+  --color-syn-number: #f3c98b;
+  --color-syn-title: #a9cdfa;
+  --color-syn-attr: #e9dcae;
   --color-signal-ink: #ffffff;
 
   /* Fluid scale solved against the reference at 1440px: 11.5 / 17.92 / 26 /
@@ -1645,6 +1651,14 @@ body:has(.site-shell) {
     padding-top: 7.5rem;
   }
 
+  .site-kicker {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-rule-strong);
+  }
+
   .site-blog-head__top {
     display: flex;
     justify-content: space-between;
@@ -1836,10 +1850,13 @@ body:has(.site-shell) {
     margin-bottom: 1.5rem;
   }
 
+  /* The year is the archive's only grouping label, so it must be readable:
+     an outline-only numeral measured near 2:1, far below the 4.5:1 floor. */
   .site-year__n {
     font-size: var(--text-step-4);
     line-height: 0.85;
     letter-spacing: -0.05em;
+    color: var(--color-ink-muted);
   }
 
   .site-entries {
@@ -2157,6 +2174,11 @@ body:has(.site-shell) {
   .site-toc__link:focus-visible,
   .site-toc__link[aria-current="true"] {
     color: var(--color-ink);
+    /* Colour alone is not a state cue: mark the row too. */
+    box-shadow: inset 2px 0 0 var(--color-signal);
+    padding-left: 0.6rem;
+    margin-left: -0.6rem;
+    font-weight: 500;
   }
 
   .site-toc__link[aria-current="true"] .site-note {
@@ -2279,41 +2301,49 @@ body:has(.site-shell) {
   .site-code .hljs-selector-tag,
   .site-code .hljs-meta,
   .site-code .hljs-doctag {
-    color: #ff8a9b;
+    color: var(--color-syn-keyword);
   }
 
   .site-code .hljs-string,
   .site-code .hljs-regexp,
   .site-code .hljs-addition {
-    color: #c5e3a8;
+    color: var(--color-syn-string);
   }
 
   .site-code .hljs-number,
   .site-code .hljs-literal,
   .site-code .hljs-symbol {
-    color: #f3c98b;
+    color: var(--color-syn-number);
   }
 
   .site-code .hljs-title,
   .site-code .hljs-section,
   .site-code .hljs-built_in,
   .site-code .hljs-type {
-    color: #a9cdfa;
+    color: var(--color-syn-title);
   }
 
   .site-code .hljs-attr,
   .site-code .hljs-attribute,
   .site-code .hljs-variable,
   .site-code .hljs-name {
-    color: #e9dcae;
+    color: var(--color-syn-attr);
   }
 
   .site-code .hljs-deletion {
-    color: #ff8a9b;
+    color: var(--color-syn-keyword);
   }
 
-  .site-prose__table {
+  .site-prose__table,
+  .site-prose__scroll {
     overflow-x: auto;
+  }
+
+  /* Both wrappers are focusable scroll containers; show where focus went. */
+  .site-prose__table:focus-visible,
+  .site-prose__scroll:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
   }
 
   .site-prose table {

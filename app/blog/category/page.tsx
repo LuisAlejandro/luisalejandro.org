@@ -83,6 +83,8 @@ export default async function CategoriesPage() {
     throw error;
   }
 
+  // An empty archive is a Cosmic outage, not "no topics exist".
+  if (archive.rows.length === 0) throw new Error("Blog archive unavailable");
   if (archive.topics.length === 0) notFound();
 
   return (

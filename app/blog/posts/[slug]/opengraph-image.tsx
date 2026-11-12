@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 
 import { config } from "@constants/constants";
-import { getPostAndMorePosts } from "@lib/api";
-import { stripHtmlToPlainText, truncateAtWord } from "@lib/plainText";
+import { getPost } from "@lib/api";
+import { plainTeaser, truncateAtWord } from "@lib/plainText";
 
 export const alt = "Luis Alejandro · Field notes";
 export const size = { width: 1200, height: 630 };
@@ -19,14 +19,14 @@ export default async function OpengraphImage({
   let teaser = "";
 
   try {
-    const data = await getPostAndMorePosts(slug);
-    if (data?.post) {
-      title = data.post.title || title;
-      const cats = data.post.metadata?.categories || [];
+    const post = await getPost(slug);
+    if (post) {
+      title = post.title || title;
+      const cats = post.metadata?.categories || [];
       if (cats.length > 0 && cats[0]?.title) {
         category = cats[0].title;
       }
-      teaser = stripHtmlToPlainText(data.post.metadata?.teaser || "");
+      teaser = plainTeaser(post.metadata?.teaser || "");
     }
   } catch {
     // Fall back to the default title/category if the post cannot be loaded.

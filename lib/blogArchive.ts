@@ -1,4 +1,6 @@
-import { stripHtmlToPlainText } from "@lib/plainText";
+import { format, parseISO } from "date-fns";
+
+import { plainTeaser, stripHtmlToPlainText } from "@lib/plainText";
 
 /**
  * The blog's derived view of Cosmic data. Every figure the blog shows (entry
@@ -23,6 +25,7 @@ export type CosmicPost = {
     categories?: CosmicCategory[];
     teaser?: string;
     content?: string;
+    faqs?: { question: string; answer: string }[];
   };
 };
 
@@ -36,6 +39,8 @@ export type BlogRow = {
   year: string;
   /** 1 is the oldest post, so numbers stay stable as new posts arrive. */
   number: number;
+  /** Every category the post carries; `category` is the first, for display. */
+  categories: BlogCategory[];
   category?: BlogCategory;
   teaser: string;
   cover?: string;
@@ -68,15 +73,13 @@ export function countWords(text = ""): number {
 export const readingMinutes = (words: number) =>
   Math.max(1, Math.round(words / WORDS_PER_MINUTE));
 
-/** Teasers arrive as markdown or HTML; rows need one line of plain text. */
-export function plainTeaser(teaser = ""): string {
-  return stripHtmlToPlainText(teaser)
-    .replace(/[*_`#>[\]]|\(https?:[^)]*\)/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 export const entryNumber = (n: number) => `#${String(n).padStart(3, "0")}`;
+
+/** date-fns `format` throws on an invalid date; one bad record must not 500. */
+export const formatPostDate = (iso: string) => {
+  const date = parseISO(iso);
+  return Number.isNaN(date.getTime()) ? "" : format(date, "dd MMM yyyy");
+};
 
 export function buildArchive(
   posts: CosmicPost[],
@@ -97,12 +100,17 @@ export function buildArchive(
 
   const rows: BlogRow[] = oldestFirst
     .map((post, index) => {
-      const embedded = post.metadata?.categories?.find((c) => c?.slug);
-      // The category list is the source of truth for titles (renames); the
-      // embedded copy only covers a category the list did not return.
-      const source = embedded?.slug
-        ? (known.get(embedded.slug) ?? embedded)
-        : undefined;
+      // A post may carry several categories; each one keeps it in that
+      // archive and counts toward that topic.
+      const categories: BlogCategory[] = (post.metadata?.categories ?? [])
+        .filter((c) => Boolean(c?.slug))
+        .map((c) => {
+          const named = known.get(c.slug as string) ?? c;
+          return {
+            slug: c.slug as string,
+            title: named.title || (c.slug as string),
+          };
+        });
       const words = countWords(post.metadata?.content);
       const hero = post.metadata?.hero;
       return {
@@ -112,10 +120,8 @@ export function buildArchive(
         date: post.created_at,
         year: post.created_at.slice(0, 4),
         number: index + 1,
-        category:
-          source?.slug && source.title
-            ? { slug: source.slug, title: source.title }
-            : undefined,
+        categories,
+        category: categories[0],
         teaser: plainTeaser(post.metadata?.teaser),
         cover: hero?.imgix_url || hero?.url,
         words,
@@ -126,20 +132,21 @@ export function buildArchive(
 
   const bySlug = new Map<string, BlogTopic>();
   for (const row of rows) {
-    if (!row.category) continue;
-    const topic = bySlug.get(row.category.slug);
-    if (topic) {
-      topic.count += 1;
-      continue;
+    for (const category of row.categories) {
+      const topic = bySlug.get(category.slug);
+      if (topic) {
+        topic.count += 1;
+        continue;
+      }
+      // Rows are newest first, so the first row seen is the latest post.
+      const own = plainTeaser(known.get(category.slug)?.content);
+      bySlug.set(category.slug, {
+        ...category,
+        count: 1,
+        latest: row,
+        description: own || `Latest: ${row.title}`,
+      });
     }
-    // Rows are newest first, so the first row seen is the latest post.
-    const own = plainTeaser(known.get(row.category.slug)?.content);
-    bySlug.set(row.category.slug, {
-      ...row.category,
-      count: 1,
-      latest: row,
-      description: own || `Latest: ${row.title}`,
-    });
   }
 
   const topics = [...bySlug.values()].sort(

@@ -67,6 +67,9 @@ format: start
 test: start
 	@$(exec_on_docker) npm run type-check
 
+check: start
+	@$(exec_on_docker) npm run check:blog
+
 image:
 	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml build \
 		--build-arg UID=$(shell id -u) \

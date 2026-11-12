@@ -8,9 +8,9 @@ import { config } from "@constants/constants";
  * The site ships a single root layout (`app/layout.tsx`) declaring lang="en",
  * because the site chrome — navigation, footer, search, share labels — is
  * English everywhere, including around Spanish articles. The Spanish content
- * is marked instead: `lang="es"` on the post <main> and on every post card
- * (PostPreview, PostPreviewMini, HeroPost, SearchResultItem), with the few
- * English labels inside those regions marked `lang="en"`.
+ * is marked instead: `lang="es"` on the article prose and on every Spanish
+ * title, teaser and category name, with the English labels around them left
+ * in the site language.
  *
  * Why not a second root layout with lang="es": two root layouts give correct
  * <html lang> but make every navigation between the blog and the rest of the
@@ -192,7 +192,7 @@ export const metadata: Metadata = {
     "msapplication-square310x310logo": `${config.url}/favicon/mstile-310x310.png`,
     "msapplication-wide310x150logo": `${config.url}/favicon/mstile-310x150.png`,
     "msapplication-TileImage": `${config.url}/favicon/mstile-310x310.png`,
-    "msapplication-TileColor": "#f8d983",
+    "msapplication-TileColor": "#f4f4f0",
     "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
 
     // Facebook metadata
@@ -206,7 +206,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1.0,
   userScalable: true,
-  themeColor: "#f8d983",
+  themeColor: "#f4f4f0",
 };
 
 export default async function BlogLayout({

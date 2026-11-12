@@ -48,14 +48,17 @@ export function ArticleToc({ toc }: { toc: TocEntry[] }) {
   }, [toc]);
 
   // Only the top level is numbered; deeper headings sit indented under it.
-  const numbers = toc.map(
-    (entry, index) =>
-      entry.depth === top &&
-      toc.slice(0, index + 1).filter((e) => e.depth === top).length
-  );
+  // One fold, so no counter is mutated while React renders.
+  const numbers = toc.reduce<{ list: number[]; n: number }>(
+    (acc, entry) =>
+      entry.depth === top
+        ? { list: [...acc.list, acc.n + 1], n: acc.n + 1 }
+        : { list: [...acc.list, 0], n: acc.n },
+    { list: [], n: 0 }
+  ).list;
 
   return (
-    <aside className="site-toc">
+    <nav className="site-toc" aria-label="Contents">
       <p className="site-note text-ink">Contents</p>
       <ol>
         {toc.map((entry, index) => {
@@ -82,6 +85,6 @@ export function ArticleToc({ toc }: { toc: TocEntry[] }) {
           );
         })}
       </ol>
-    </aside>
+    </nav>
   );
 }

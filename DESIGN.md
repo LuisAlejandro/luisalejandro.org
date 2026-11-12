@@ -141,13 +141,11 @@ No sitewide dark theme. Two explicit visual modes:
 
 ### Blog components (`components/Blog/`)
 
-- **`HeroPost`:** featured post layout with green accent rail, cover image, category pill, share/reaction controls, and data panel using `.blog-data-container-big`.
-- **`PostPreview` / `MoreStories` / `SearchBar` / `SearchResultItem`:** listing and search surfaces.
-- **Blog chrome classes** in `styles/tailwind.css`:
-  - `.blog-category-button`
-  - `.blog-data-container`, `.blog-data-container-big`
-  - `.blog-post-bg`, `.blog-post-bg-dark`
-  - `.blog-socialpop`
+- **`YearArchive`:** the year-grouped archive rows, shared by the index and every topic archive; also exports `coverVariant` for sized imgix covers.
+- **`TopicCards`:** one card per populated Cosmic category, with its live count.
+- **`ArticleToc`:** the article's sticky contents list and scroll-spy (client).
+- **`PaletteSearchButton`:** opens the command palette, where posts are searchable.
+- The legacy blog chrome (`.blog-*`, `PostContent`, `htmlRenderer`, `HeroPost`, `PostPreview*`, `MoreStories`, `SearchBar`, `SearchResultItem`, `DeferredCommentCount`, Disqus, AdSense banners) was deleted in the blog redesign; there are no comments or ad slots on blog routes.
 
 ### Post content (`components/Post/`, `.post-content` rules)
 
@@ -177,8 +175,9 @@ No sitewide dark theme. Two explicit visual modes:
 
 - **Home (`app/page.tsx`):** centered logo, intro copy with highlighted phrases and inline links, photo gallery, button bar, footer.
 - **Portfolio (`app/portfolio/`):** stacked sections on gold background with animated background and multiple content bands.
-- **Blog (`app/blog/`):** index with featured hero post, previews, category navigation, and search.
-- **Posts (`app/blog/posts/[slug]/`):** cover image, metadata, rendered CMS HTML via `PostContent`, related stories, comments integration.
+- **Blog (`app/blog/`):** editorial index inside `SiteShell` — header with live specs, topic pills, featured entry, year-grouped archive, topic cards, subscribe block. All figures derive from `lib/blogArchive.ts`.
+- **Topic archives (`app/blog/category/`):** the same year-grouped archive filtered by category, prerendered per topic.
+- **Posts (`app/blog/posts/[slug]/`):** two-column reading layout — sticky TOC, `site-prose` typography, server-rendered figures and highlighted code, author card, next-in-archive card.
 - **Case studies (`app/case-studies/*/`):** dark header variant and full-width narrative sections.
 - **Contact (`app/contact/`):** form-first page using shared `Contact` component.
 
@@ -278,6 +277,8 @@ The shell reproduces the measured geometry of the reference design (see `.mash/q
 | Type roles | `.site-display`, `.site-h1`, `.site-h2`, `.site-h3`, `.site-lead-type` — each sets its own size, tracking and line-height. The base heading rule uses `:where()` so a role class always wins |
 | Buttons and links | `.site-btn` (+ `--ghost`, `--sm`), `.site-tool`, `.site-link`, `.site-link--inline` |
 | Sections | `.site-hero*`, `.site-wf-*`, `.site-ws*`, `.site-service*`, `.site-claim` / `.site-step*`, `.site-post*`, `.site-footer*` |
+| Blog | `.site-blog-head*`, `.site-kicker`, `.site-spec`, `.site-pills` / `.site-pill`, `.site-feat*`, `.site-year*` / `.site-entry*`, `.site-topic*`, `.site-subscribe`, `.site-article*`, `.site-toc*`, `.site-prose*` / `.site-code` / `.site-fig*`, `.site-author`, `.site-next` |
+| Syntax tokens | `--color-syn-keyword`, `--color-syn-string`, `--color-syn-number`, `--color-syn-title`, `--color-syn-attr` (ink code blocks) |
 | Effects | `.site-preloader`, `.site-mark` (plotted face mark), `.site-gen-word` / `.site-gen-caret`, `.site-vortex`, `.site-process-line`, `.site-reveal` |
 
 **Motion is CSS-first.** The header compacts, draws its ruler and fills its progress bar through `animation-timeline: scroll(root)`, with a `@supports` fallback that hides the progress bar. The work stage pins with `position: sticky`, and only a scroll listener picking the active index runs in JavaScript (`WorkSection`). Reveals stay in `Reveal` (IntersectionObserver). The preloader is pure CSS and is removed entirely under `prefers-reduced-motion`.

@@ -23,7 +23,9 @@ export async function buildBlogCategoryTwin(
   const { categoryPosts, categoryName } =
     (await getPublishedPostsForCategoryTwin(categorySlug)) || {};
 
-  if (!categoryName) {
+  // The HTML route 404s for a topic with no published posts; a twin that
+  // answered 200 for the same URL would advertise a dead link.
+  if (!categoryName || (categoryPosts || []).length === 0) {
     return null;
   }
 

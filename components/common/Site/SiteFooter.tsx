@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { openPalette } from "@components/common/Site/overlayLock";
 import { config } from "@constants/constants";
 import { footerContent } from "@constants/homepageContent";
 import { siteNavItems, siteSocialLinks } from "@constants/siteNavigation";
@@ -15,7 +16,7 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   const handlePaletteClick = () => {
-    window.dispatchEvent(new CustomEvent("site:open-palette"));
+    openPalette();
   };
 
   return (

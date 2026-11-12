@@ -1,10 +1,19 @@
 import Link from "next/link";
-import { format, parseISO } from "date-fns";
 
-import { entryNumber, groupByYear, type BlogRow } from "@lib/blogArchive";
+import {
+  entryNumber,
+  formatPostDate,
+  groupByYear,
+  type BlogRow,
+} from "@lib/blogArchive";
 
-export const formatPostDate = (iso: string) =>
-  format(parseISO(iso), "dd MMM yyyy");
+/** imgix renders on demand; ask for the size actually drawn. */
+export const coverVariant = (url: string | undefined, width: number) =>
+  !url
+    ? ""
+    : url.includes("imgix.cosmicjs.com")
+      ? `${url.split("?")[0]}?w=${width}&auto=format,compress&q=70`
+      : url;
 
 /**
  * The archive: one outlined year per group, then dated rows on the 12-column
