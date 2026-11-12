@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1106.0",
-    "@cosmicjs/sdk": "^2.1.0",
+    "@cosmicjs/sdk": "^2.4.0",
     "@ctrl/react-adsense": "^2.1.0",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.7.1",
