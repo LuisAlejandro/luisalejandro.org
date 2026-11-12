@@ -189,8 +189,10 @@ export function generatePortfolioJsonLd() {
   };
 }
 
+/** A visible FAQ as FAQPage; `path` is the page it sits on (home by default). */
 export function generateHomepageFaqJsonLd(
-  faqItems: { question: string; answer: string }[]
+  faqItems: { question: string; answer: string }[],
+  path = "/"
 ) {
   if (!faqItems || faqItems.length === 0) {
     return null;
@@ -198,7 +200,7 @@ export function generateHomepageFaqJsonLd(
   return {
     "@context": "https://schema.org/",
     "@type": "FAQPage",
-    "@id": `${config.url}/#FAQPage`,
+    "@id": `${config.url}${path}#FAQPage`,
     mainEntity: faqItems.map((item) => ({
       "@type": "Question",
       name: item.question,

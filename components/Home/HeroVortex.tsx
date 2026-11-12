@@ -872,11 +872,16 @@ export function HeroVortex() {
       if (!frame) render();
     });
     resizeObserver.observe(host);
-    // The host is fixed, so it is always on screen; the pin decides when the
-    // field is on duty. Past the pin the layer must stop drawing over the page.
+    // On the home page the host is fixed, so it is always on screen and the
+    // pin decides when the field is on duty. A page hero without a pin holds
+    // the field inside itself, so the hero's own visibility decides.
+    const duty = pin ?? stage;
     const intersection = new IntersectionObserver(() => wake());
-    if (pin) intersection.observe(pin);
-    const inView = () => (pin ? pin.getBoundingClientRect().bottom > 0 : true);
+    intersection.observe(duty);
+    const inView = () => {
+      const rect = duty.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
+    };
 
     // Glyph shapes need the real mono face, not its fallback.
     document.fonts.ready.then(() => {
