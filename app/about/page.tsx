@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { FaqList } from "@components/common/Site/FaqList";
+import { PageEnd } from "@components/common/Site/PageEnd";
 import { PageHero } from "@components/common/Site/PageHero";
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
@@ -259,8 +261,13 @@ export default function AboutPage() {
         />
       ))}
 
-      <PageHero crumb="About" index="[About / 03]" lead={lead} typed={typed}>
-        <dl className="site-contact-spec site-contact-spec--even">
+      <PageHero
+        trail={[{ label: "About" }]}
+        index="[About / 03]"
+        lead={lead}
+        typed={typed}
+      >
+        <dl className="site-spec">
           {facts.map((fact) => (
             <div key={fact.label}>
               <dt className="site-note">{fact.label}</dt>
@@ -423,7 +430,9 @@ export default function AboutPage() {
               <dd>
                 <ul className="site-about-tools__stack" role="list">
                   {row.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="site-pill">
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </dd>
@@ -477,42 +486,16 @@ export default function AboutPage() {
             </>
           }
         />
-        <div className="site-contact-faqs">
-          {faq.map((item) => (
-            <details key={item.question} className="site-contact-faq">
-              <summary>
-                <span className="site-h3">{item.question}</span>
-                <span aria-hidden="true" className="site-contact-faq__icon" />
-              </summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList items={faq} />
       </section>
 
-      {/* 07 — next: a display claim and the two ways to act on it. */}
-      <section className="site-section site-wrap">
-        <SectionHeader num="07" label="Next" note="30 minutes" />
-        <Reveal>
-          <h2 className="site-display site-about-next">
-            {lines(["That's me.", "Your turn."])}
-          </h2>
-        </Reveal>
-        <div className="site-hero__ctas site-about-next__actions">
-          <a
-            href={cal}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-btn"
-          >
-            <span>Book a 30-min call</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href="/files/resume.pdf" className="site-btn site-btn--ghost">
-            <span>Download CV (PDF)</span>
-          </a>
-        </div>
-      </section>
+      <PageEnd
+        num="07"
+        note="30 minutes"
+        lines={["That's me.", "Your turn."]}
+        primary={{ label: "Book a 30-min call", href: cal }}
+        secondary={{ label: "Download CV (PDF)", href: "/files/resume.pdf" }}
+      />
     </SiteShell>
   );
 }

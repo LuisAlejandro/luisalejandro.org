@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { TopicCards } from "@components/Blog/TopicCards";
+import { DetailHead } from "@components/common/Site/DetailHead";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
@@ -89,26 +89,13 @@ export default async function CategoriesPage() {
 
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
-      <section className="site-blog-head site-wrap">
-        <div className="site-blog-head__top site-note">
-          <nav aria-label="Breadcrumb">
-            <Link href="/" className="site-link">
-              Home
-            </Link>{" "}
-            /{" "}
-            <Link href="/blog" className="site-link">
-              Blog
-            </Link>{" "}
-            / <span className="text-ink">Topics</span>
-          </nav>
-          <span>[Topics]</span>
-        </div>
-        <h1 className="site-blog-head__title">
-          <span className="site-display">Topics.</span>
-          <span className="site-lead-type site-blog-head__lead">
-            {archive.topics.length} topics across {archive.specs.entries} posts.
-          </span>
-        </h1>
+      <section className="site-wrap">
+        <DetailHead
+          trail={[{ label: "Blog", href: "/blog" }, { label: "Topics" }]}
+          index="[Blog / Topics]"
+          title="Topics."
+          lead={`${archive.topics.length} topics across ${archive.specs.entries} posts.`}
+        />
       </section>
 
       <section className="site-section site-wrap site-blog-tail">

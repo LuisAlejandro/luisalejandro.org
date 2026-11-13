@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@components/common/Site/ContactForm";
 import { CopyEmail, LocalTime } from "@components/common/Site/ContactLive";
 import { PageHero } from "@components/common/Site/PageHero";
+import { FaqList } from "@components/common/Site/FaqList";
 import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
@@ -144,12 +145,12 @@ export default function ContactPage() {
       )}
 
       <PageHero
-        crumb="Contact"
+        trail={[{ label: "Contact" }]}
         index="[Contact / 04]"
         lead={lead}
         typed={typed}
       >
-        <dl className="site-contact-spec">
+        <dl className="site-spec">
           <div>
             <dt className="site-note">Email</dt>
             <dd>
@@ -183,11 +184,10 @@ export default function ContactPage() {
         </dl>
 
         <div className="site-hero__ctas">
-          <a href="#the-brief" className="site-btn">
-            <span>Write a brief</span>
-            <span aria-hidden="true">↓</span>
-          </a>
-          <SiteButton href={cal} variant="ghost">
+          <SiteButton href="#the-brief" arrow>
+            Write a brief
+          </SiteButton>
+          <SiteButton href={cal} variant="ghost" arrow>
             Book a 30-min call
           </SiteButton>
         </div>
@@ -258,15 +258,9 @@ export default function ContactPage() {
               ))}
             </ol>
             <div className="site-contact-ticket__foot">
-              <a
-                href={cal}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="site-btn site-btn--paper"
-              >
-                <span>Pick a slot</span>
-                <span aria-hidden="true">↗</span>
-              </a>
+              <SiteButton href={cal} variant="paper" arrow>
+                Pick a slot
+              </SiteButton>
               <span className="site-note">UTC−4</span>
             </div>
           </div>
@@ -349,17 +343,7 @@ export default function ContactPage() {
             </>
           }
         />
-        <div className="site-contact-faqs">
-          {faq.map((item) => (
-            <details key={item.question} className="site-contact-faq">
-              <summary>
-                <span className="site-h3">{item.question}</span>
-                <span aria-hidden="true" className="site-contact-faq__icon" />
-              </summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList items={faq} />
       </section>
     </SiteShell>
   );

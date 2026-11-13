@@ -364,6 +364,15 @@ body:has(.site-shell) {
     transform: translate(3px) rotate(-45deg);
   }
 
+  /* ↗ and ↓ already point where they go: they nudge that way instead. */
+  .site-btn:hover .site-btn__arrow[data-kind="external"] {
+    transform: translate(2px, -2px);
+  }
+
+  .site-btn:hover .site-btn__arrow[data-kind="down"] {
+    transform: translateY(3px);
+  }
+
   /* --- round header controls ------------------------------------------- */
 
   .site-tool {
@@ -1635,74 +1644,6 @@ body:has(.site-shell) {
 
   /* --- blog: index head ---------------------------------------------- */
 
-  .site-blog-head {
-    display: grid;
-    gap: clamp(2rem, 4vw, 3.5rem);
-    padding-top: 7.5rem;
-  }
-
-  .site-kicker {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-
-  .site-blog-head__top {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-
-  .site-blog-head__title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35em;
-  }
-
-  .site-blog-head__sub {
-    max-width: 22ch;
-    font-weight: 400;
-  }
-
-  .site-blog-head__foot {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--spacing-col-gap);
-    row-gap: 2rem;
-    align-items: end;
-  }
-
-  .site-blog-head__lead {
-    grid-column: 1 / span 5;
-    max-width: 40ch;
-    color: var(--color-ink-muted);
-  }
-
-  .site-spec {
-    grid-column: 7 / span 6;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .site-spec dd {
-    margin-top: 0.4rem;
-    font-size: var(--text-step-1);
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .site-blog-head__actions {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
   .site-btn__kbd {
     font-family: var(--font-site-mono);
     font-size: 0.75rem;
@@ -1723,29 +1664,53 @@ body:has(.site-shell) {
     width: max-content;
   }
 
+  /* One pill everywhere: topic filters, form chips, tags and tool lists.
+     Selected = ink fill; only links and buttons react to the pointer. */
   .site-pill {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.55rem 1rem;
+    height: 2.625rem;
+    padding-inline: 1rem;
     border-radius: 999px;
     box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+    color: var(--color-ink);
+    font-size: var(--text-step-0);
+    line-height: 1;
     white-space: nowrap;
     transition:
-      background-color 0.3s var(--ease-site-out),
-      color 0.3s var(--ease-site-out);
+      background-color 0.25s var(--ease-site-out),
+      color 0.25s var(--ease-site-out),
+      box-shadow 0.25s var(--ease-site-out);
   }
 
-  .site-pill:hover,
-  .site-pill:focus-visible,
-  .site-pill[aria-current="page"] {
+  a.site-pill:hover,
+  button.site-pill:hover {
+    box-shadow: inset 0 0 0 1px var(--color-ink);
+  }
+
+  .site-pill:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  button.site-pill {
+    cursor: pointer;
+  }
+
+  .site-pill[aria-current="page"],
+  .site-pill[aria-pressed="true"] {
     background: var(--color-ink);
     color: var(--color-paper);
+    box-shadow: inset 0 0 0 1px var(--color-ink);
   }
 
-  .site-pill:hover .site-note,
-  .site-pill:focus-visible .site-note,
-  .site-pill[aria-current="page"] .site-note {
+  .site-pill .site-note {
+    color: var(--color-ink-muted);
+  }
+
+  .site-pill[aria-current="page"] .site-note,
+  .site-pill[aria-pressed="true"] .site-note {
     color: inherit;
     opacity: 0.65;
   }
@@ -1811,15 +1776,13 @@ body:has(.site-shell) {
     color: var(--color-ink-muted);
   }
 
-  .site-feat__meta,
-  .site-article__meta {
+  .site-feat__meta {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem 2.5rem;
   }
 
-  .site-feat__meta dd,
-  .site-article__meta dd {
+  .site-feat__meta dd {
     margin-top: 0.3rem;
   }
 
@@ -2022,17 +1985,11 @@ body:has(.site-shell) {
   }
 
   @media (width <= 767px) {
-    .site-blog-head__lead,
-    .site-spec,
     .site-feat__cover,
     .site-feat__body,
     .site-subscribe > h2,
     .site-subscribe__body {
       grid-column: 1 / -1;
-    }
-
-    .site-spec {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .site-entry__n,
@@ -2056,14 +2013,6 @@ body:has(.site-shell) {
   }
 
   @media (768px <= width <= 1023px) {
-    .site-blog-head__lead {
-      grid-column: 1 / -1;
-    }
-
-    .site-spec {
-      grid-column: 1 / -1;
-    }
-
     .site-feat__cover {
       grid-column: 1 / -1;
     }
@@ -2075,14 +2024,9 @@ body:has(.site-shell) {
 
   /* --- blog: article ---------------------------------------------------- */
 
+  /* The head carries the top spacing, as on every other detail page. */
   .site-article {
-    padding-top: 7.5rem;
     padding-bottom: var(--spacing-section);
-  }
-
-  .site-article__head {
-    display: grid;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   /* Spanish titles are long; this sits between the h1 and h2 roles. */
@@ -2091,16 +2035,6 @@ body:has(.site-shell) {
     font-size: clamp(2.25rem, 1.2rem + 4.2vw, 5rem);
     line-height: 0.98;
     letter-spacing: -0.045em;
-  }
-
-  .site-article__desc {
-    max-width: 52ch;
-    color: var(--color-ink-muted);
-  }
-
-  .site-article__meta {
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-rule);
   }
 
   .site-cover {
@@ -2865,42 +2799,6 @@ body:has(.site-shell) {
 
 /* Area C: project catalogue. No selectors escape the redesigned shell. */
 .site-shell {
-  .site-project-head {
-    padding-top: clamp(7rem, 12vw, 12rem);
-  }
-  .site-project-head__title {
-    margin: 3rem 0;
-    font-size: clamp(5rem, 13vw, 13rem);
-    line-height: 0.88;
-    letter-spacing: -0.065em;
-  }
-  .site-project-head__outline {
-    color: transparent;
-    -webkit-text-stroke: 1px var(--color-ink-muted);
-  }
-  .site-project-head__foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 3rem;
-    padding-bottom: 4rem;
-  }
-  .site-project-head__foot > p {
-    max-width: 32ch;
-  }
-  .site-project-spec {
-    display: flex;
-    gap: 3rem;
-  }
-  .site-project-spec dd {
-    margin-top: 0.75rem;
-    font-size: clamp(1.3rem, 2.4vw, 2.5rem);
-    letter-spacing: -0.05em;
-    white-space: nowrap;
-  }
-  .site-project-index {
-    padding-top: 2rem;
-  }
   .site-project-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2985,33 +2883,10 @@ body:has(.site-shell) {
   .site-project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.5rem;
     list-style: none;
     margin-top: 1.25rem;
     padding-left: 0;
-  }
-  .site-project-tags li {
-    border: 1px solid var(--color-rule-strong);
-    border-radius: 2rem;
-    padding: 0.3rem 0.65rem;
-    font: 0.75rem/1.4 var(--font-site-mono);
-    color: var(--color-ink-muted);
-  }
-  .site-project-head--detail .site-project-head__foot {
-    align-items: start;
-  }
-  .site-project-head--detail .site-project-tags {
-    max-width: 24rem;
-    margin-top: 0;
-    justify-content: end;
-  }
-  .site-project-title {
-    margin: 3rem 0 2.5rem;
-    max-width: 16ch;
-    font-size: clamp(3rem, 7vw, 8rem);
-    letter-spacing: -0.06em;
-    line-height: 1;
-    overflow-wrap: break-word;
   }
   .site-project-shot {
     position: relative;
@@ -3078,36 +2953,13 @@ body:has(.site-shell) {
   .site-project-screens > .site-section-head {
     margin-bottom: 2rem;
   }
-  .site-project-end {
-    padding-top: 5rem;
-    padding-bottom: 7rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-  .site-project-end h2 {
-    margin: 1rem 0 2rem;
-  }
-  .site-project-end > p {
-    margin-bottom: 1.5rem;
-  }
   @media (max-width: 767px) {
-    .site-project-head__foot {
-      flex-direction: column;
-      align-items: start;
-      gap: 2rem;
-      padding-bottom: 3rem;
-    }
-    .site-project-head__title {
-      font-size: clamp(4.5rem, 15vw, 7rem);
-    }
     .site-project-grid {
       grid-template-columns: minmax(0, 1fr);
       gap: 3rem;
     }
     .site-project-card:nth-child(even) {
       margin-top: 0;
-    }
-    .site-project-head--detail .site-project-tags {
-      max-width: none;
     }
     .site-project-story {
       grid-template-columns: minmax(0, 1fr);
@@ -3116,13 +2968,6 @@ body:has(.site-shell) {
     }
     .site-project-story__meta {
       display: none;
-    }
-    .site-project-title {
-      max-width: none;
-    }
-    .site-project-end {
-      padding-top: 3rem;
-      padding-bottom: 4rem;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -3138,47 +2983,6 @@ body:has(.site-shell) {
 
 /* Area D: case study dossiers. Shell-scoped like the rest of the redesign. */
 .site-shell {
-  .site-case-head {
-    padding-top: clamp(7rem, 12vw, 12rem);
-  }
-  .site-case-eyebrow {
-    margin-top: 3rem;
-    color: var(--color-signal);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-  .site-case-title {
-    margin: 1rem 0 2.5rem;
-    max-width: 22ch;
-    font-size: clamp(3rem, 7.5vw, 8.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.06em;
-    overflow-wrap: break-word;
-  }
-  .site-case-head__foot {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    gap: clamp(2rem, 6vw, 6rem);
-    align-items: start;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid var(--color-rule-strong);
-  }
-  .site-case-lead {
-    max-width: 40ch;
-  }
-  .site-case-facts {
-    display: grid;
-    gap: 1.25rem;
-  }
-  .site-case-facts dd {
-    margin-top: 0.4rem;
-    line-height: 1.5;
-  }
-  .site-case-facts__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
   .site-case-hero {
     position: relative;
     aspect-ratio: 16 / 7;
@@ -3189,42 +2993,6 @@ body:has(.site-shell) {
   }
   .site-case-hero img {
     object-fit: cover;
-  }
-  .site-case-section {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    gap: clamp(2rem, 6vw, 7rem);
-    padding-top: clamp(4rem, 8vw, 7rem);
-  }
-  .site-case-section:last-of-type {
-    padding-bottom: clamp(4rem, 8vw, 7rem);
-  }
-  .site-case-section__label {
-    position: sticky;
-    top: 6rem;
-    align-self: start;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-  .site-case-section__index {
-    color: var(--color-signal);
-  }
-  .site-case-section__body {
-    min-width: 0;
-    max-width: 46rem;
-    /* In-page anchors must clear the fixed header, as on the blog. */
-    scroll-margin-top: 6rem;
-  }
-  .site-case-section__body h2 {
-    margin-bottom: 1.5rem;
-  }
-  .site-case-section__body p {
-    margin-bottom: 1.15rem;
-    line-height: 1.7;
-    color: var(--color-ink);
-  }
-  .site-case-section__body b {
-    font-weight: 600;
   }
   .site-case-figure,
   .site-case-video,
@@ -3318,7 +3086,7 @@ body:has(.site-shell) {
      reduced-motion users lose nothing. */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      .site-case-section__body {
+      .site-doc-section__body {
         animation: site-case-rise linear both;
         animation-timeline: view();
         animation-range: entry 5% cover 25%;
@@ -3327,19 +3095,8 @@ body:has(.site-shell) {
   }
 
   @media (max-width: 767px) {
-    .site-case-head__foot {
-      grid-template-columns: minmax(0, 1fr);
-      padding-bottom: 3rem;
-    }
     .site-case-hero {
       aspect-ratio: 4 / 3;
-    }
-    .site-case-section {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.5rem;
-    }
-    .site-case-section__label {
-      position: static;
     }
     .site-case-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3354,7 +3111,7 @@ body:has(.site-shell) {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .site-case-section__body {
+    .site-doc-section__body {
       animation: none !important;
     }
   }
@@ -3373,15 +3130,6 @@ body:has(.site-shell) {
 
 /* Area E: page heads shared by about and privacy; the activation error. */
 .site-shell {
-  .site-contact-head {
-    padding-top: clamp(7rem, 12vw, 12rem);
-  }
-  .site-contact-title {
-    margin: 3rem 0 2.5rem;
-    font-size: clamp(3.2rem, 8vw, 9rem);
-    line-height: 0.95;
-    letter-spacing: -0.06em;
-  }
   .site-contact-form__error {
     min-height: 1.25rem;
     margin-top: 0.35rem;
@@ -3458,39 +3206,6 @@ body:has(.site-shell) {
    reference's own page. Same shell scope. */
 .site-shell {
   /* --- privacy sheet ----------------------------------------------------- */
-  .site-contact-title__lead {
-    display: block;
-    margin-top: 1.5rem;
-    max-width: 46ch;
-    letter-spacing: -0.02em;
-  }
-  .site-contact-section {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    gap: clamp(2rem, 6vw, 7rem);
-    padding-top: clamp(3.5rem, 7vw, 6rem);
-  }
-  .site-contact-section:last-of-type {
-    padding-bottom: clamp(3rem, 6vw, 5rem);
-  }
-  .site-contact-section__label {
-    position: sticky;
-    top: 6rem;
-    align-self: start;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-  .site-contact-section__body {
-    min-width: 0;
-    max-width: 46rem;
-  }
-  .site-contact-section__body h2 {
-    margin-bottom: 1.5rem;
-  }
-  .site-contact-section__body p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
-  }
 
   /* --- contact: hero ---------------------------------------------------- */
 
@@ -3525,40 +3240,47 @@ body:has(.site-shell) {
   .site-hero--page .site-hero__ctas {
     margin-top: 2rem;
   }
-  .site-contact-crumbs {
+  .site-crumbs {
     display: flex;
     gap: 0.5rem;
   }
-  .site-contact-index {
+  .site-page-index {
     margin-top: 5rem;
   }
 
   /* The spec strip: columns sized by their content, split by hairlines. */
-  .site-contact-spec {
+  /* The spec strip: facts under every title, split by hairlines. Cells size
+     to their content; a wide cell takes the room a long value needs. */
+  .site-spec {
     display: flex;
     flex-wrap: wrap;
     margin-top: 2.8rem;
     border-top: 1px solid var(--color-rule);
   }
-  .site-contact-spec > div {
+  .site-spec > div {
+    min-width: 11rem;
     padding: 1rem 3rem 1rem 1rem;
     border-left: 1px solid var(--color-rule);
   }
-  .site-contact-spec > div:first-child {
-    min-width: min(100%, 22.5rem);
+  .site-spec > div:first-child {
     padding-left: 0;
     border-left: 0;
   }
-  .site-contact-spec dt {
+  .site-spec > .site-spec__wide {
+    flex: 1 1 22rem;
+  }
+  .site-spec dt {
     margin-bottom: 0.3rem;
   }
-  .site-contact-spec dd {
+  .site-spec dd {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.4rem 0.7rem;
+    font-variant-numeric: tabular-nums;
   }
   /* The dot stays beside its value, which wraps on its own. */
-  .site-contact-spec dd > span:last-child {
+  .site-spec dd > span:last-child {
     min-width: 0;
   }
   .site-contact-copy {
@@ -3675,27 +3397,6 @@ body:has(.site-shell) {
     gap: 0.5rem;
     padding: 1rem 0 1.4rem;
   }
-  .site-contact-chip {
-    height: 2.8rem;
-    padding-inline: 1.05rem;
-    border: 1px solid var(--color-rule-strong);
-    border-radius: 999px;
-    color: var(--color-ink);
-    cursor: pointer;
-    transition:
-      background 0.2s linear,
-      color 0.2s linear,
-      border-color 0.2s linear;
-  }
-  .site-contact-chip:hover {
-    border-color: var(--color-ink);
-  }
-  .site-contact-chip[aria-pressed="true"] {
-    background: var(--color-ink);
-    border-color: var(--color-ink);
-    color: var(--color-paper);
-  }
-  .site-contact-chip:focus-visible,
   .site-contact-check input:focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 2px;
@@ -3934,13 +3635,13 @@ body:has(.site-shell) {
 
   /* --- contact: 05 before you write ------------------------------------ */
 
-  .site-contact-faqs {
+  .site-faq-list {
     border-bottom: 1px solid var(--color-rule);
   }
-  .site-contact-faq {
+  .site-faq-list__item {
     border-top: 1px solid var(--color-rule);
   }
-  .site-contact-faq summary {
+  .site-faq-list__item summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3949,21 +3650,21 @@ body:has(.site-shell) {
     list-style: none;
     cursor: pointer;
   }
-  .site-contact-faq summary::-webkit-details-marker {
+  .site-faq-list__item summary::-webkit-details-marker {
     display: none;
   }
-  .site-contact-faq summary:focus-visible {
+  .site-faq-list__item summary:focus-visible {
     outline: 2px solid var(--color-signal);
     outline-offset: 4px;
   }
-  .site-contact-faq__icon {
+  .site-faq-list__icon {
     position: relative;
     flex: none;
     width: 17px;
     height: 17px;
   }
-  .site-contact-faq__icon::before,
-  .site-contact-faq__icon::after {
+  .site-faq-list__icon::before,
+  .site-faq-list__icon::after {
     content: "";
     position: absolute;
     inset: 8px 0 auto;
@@ -3971,41 +3672,33 @@ body:has(.site-shell) {
     background: var(--color-ink);
     transition: transform 0.4s var(--ease-site-out);
   }
-  .site-contact-faq__icon::after {
+  .site-faq-list__icon::after {
     transform: rotate(90deg);
   }
-  .site-contact-faq[open] .site-contact-faq__icon::after {
+  .site-faq-list__item[open] .site-faq-list__icon::after {
     transform: rotate(0deg);
   }
-  .site-contact-faq p {
+  .site-faq-list__item p {
     max-width: 40em;
     padding-bottom: 1.75rem;
     color: var(--color-ink-muted);
   }
 
   @media (max-width: 767px) {
-    .site-contact-section {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1.25rem;
-    }
-    .site-contact-section__label {
-      position: static;
-    }
-
-    .site-contact-index {
+    .site-page-index {
       margin-top: 3rem;
     }
-    .site-contact-spec {
+    .site-spec {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .site-contact-spec > div,
-    .site-contact-spec > div:first-child {
+    .site-spec > div,
+    .site-spec > div:first-child {
       min-width: 0;
       padding: 1rem 0.75rem 1rem 0;
       border-left: 0;
     }
-    .site-contact-spec > div:first-child {
+    .site-spec > .site-spec__wide {
       grid-column: 1 / -1;
     }
     .site-contact-form,
@@ -4040,9 +3733,8 @@ body:has(.site-shell) {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .site-contact-chip,
-    .site-contact-faq__icon::before,
-    .site-contact-faq__icon::after,
+    .site-faq-list__icon::before,
+    .site-faq-list__icon::after,
     .site-contact-readout__meter > span,
     .site-contact-channel__arrow {
       transition: none;
@@ -4069,13 +3761,6 @@ body:has(.site-shell) {
 
 .site-shell {
   /* The about strip keeps even columns; contact's sizes to content. */
-  .site-contact-spec--even {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-  .site-contact-spec--even > div:first-child {
-    min-width: 0;
-  }
 
   /* --- 01 story ---------------------------------------------------------- */
 
@@ -4270,14 +3955,6 @@ body:has(.site-shell) {
     padding: 0;
     list-style: none;
   }
-  .site-about-tools__stack > li {
-    display: inline-flex;
-    align-items: center;
-    height: 2.55rem;
-    padding-inline: 1rem;
-    border: 1px solid var(--color-rule-strong);
-    border-radius: 999px;
-  }
   .site-about-tools__foot {
     margin-top: 1.5rem;
   }
@@ -4320,15 +3997,7 @@ body:has(.site-shell) {
 
   /* --- 07 next ------------------------------------------------------------ */
 
-  .site-about-next__actions {
-    margin-top: 2.1rem;
-    padding-bottom: 0.5rem;
-  }
-
   @media (max-width: 767px) {
-    .site-contact-spec--even {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
     .site-about-portrait,
     .site-about-story__text,
     .site-about-log__v,
@@ -4374,6 +4043,88 @@ body:has(.site-shell) {
   @media (prefers-reduced-motion: reduce) {
     .site-about-off__title {
       transition: none;
+    }
+  }
+}
+
+/* Consistency pass: the parts every inner page shares. Shell-scoped. */
+.site-shell {
+  /* --- detail head: posts, projects, case studies, topics ---------------- */
+
+  /* Same top and crumb rhythm as the index hero, so the trail and the index
+     sit at the same height on every inner page. */
+  .site-detail-head {
+    padding-top: 7rem;
+  }
+  .site-detail-head__eyebrow {
+    margin-top: 1.25rem;
+  }
+  .site-detail-head > h1 {
+    margin-top: 1.25rem;
+  }
+  .site-detail-head__eyebrow + h1 {
+    margin-top: 0.75rem;
+  }
+  .site-detail-title {
+    max-width: 18ch;
+    font-size: clamp(3rem, 7.5vw, 6.75rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    overflow-wrap: break-word;
+  }
+  .site-detail-head__lead {
+    max-width: 40ch;
+    margin-top: 2rem;
+    color: var(--color-ink-muted);
+  }
+  .site-detail-head > .site-spec {
+    margin-bottom: 3rem;
+  }
+
+  /* --- index hero: the one sentence under the title --------------------- */
+
+  .site-page-intro {
+    max-width: 42ch;
+    margin-top: 1.5rem;
+    color: var(--color-ink-muted);
+  }
+  .site-hero--page .site-pills {
+    margin-top: 2rem;
+  }
+
+  /* --- reading sections: case studies, privacy -------------------------- */
+
+  .site-doc-section__claim {
+    grid-column: 1 / -1;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+  .site-doc-section__body {
+    grid-column: 5 / span 7;
+    min-width: 0;
+    scroll-margin-top: 6rem;
+  }
+  .site-doc-section__body > p {
+    margin-bottom: 1.15rem;
+    line-height: 1.7;
+  }
+  .site-doc-section__body b {
+    font-weight: 600;
+  }
+
+  /* --- page end ------------------------------------------------------------ */
+
+  .site-page-end__actions {
+    margin-top: 2.1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .site-detail-head {
+      padding-top: 6rem;
+    }
+    .site-doc-section__body {
+      grid-column: 1 / -1;
     }
   }
 }

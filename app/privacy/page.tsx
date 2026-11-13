@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { DocSection } from "@components/common/Site/DocSection";
+import { PageEnd } from "@components/common/Site/PageEnd";
+import { PageHero } from "@components/common/Site/PageHero";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -71,65 +73,29 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
-      <section className="site-contact-head site-wrap">
-        <div className="site-kicker site-note">
-          <nav aria-label="Breadcrumb">
-            <Link href="/" className="site-link">
-              Home
-            </Link>{" "}
-            /{" "}
-            <span className="text-ink" aria-current="page">
-              Privacy
-            </span>
-          </nav>
-          <span>[Privacy / 05]</span>
-        </div>
-
-        <h1 className="site-contact-title">
-          <span className="site-display">Privacy.</span>
-          <br />
-          <span className="site-contact-title__lead site-lead-type">
-            A brief, and nothing else. What this site keeps, and why.
-          </span>
-        </h1>
-      </section>
+      <PageHero
+        trail={[{ label: "Privacy" }]}
+        index="[Privacy / 05]"
+        lead="Privacy."
+        typed="A brief, and nothing else. What this site keeps, and why."
+        still
+      />
 
       {sections.map((section) => (
-        <section
-          key={section.id}
-          className="site-wrap site-contact-section"
-          aria-labelledby={section.id}
-        >
-          <div className="site-contact-section__label">
-            <p className="site-note">
-              <span className="site-case-section__index">{section.num}</span>{" "}
-              {section.title}
-            </p>
-          </div>
-          <div className="site-contact-section__body">
-            <h2 id={section.id} className="site-h2">
-              {section.title}
-            </h2>
-            {section.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
+        <DocSection key={section.id} num={section.num} label={section.title}>
+          {section.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </DocSection>
       ))}
 
-      <section className="site-wrap site-project-end">
-        <p className="site-note">
-          Revision · this page describes the site as it is deployed
-        </p>
-        <h2 className="site-h2">Questions about your data?</h2>
-        <p>
-          Write to{" "}
-          <a href={`mailto:${email}`} className="site-link">
-            {email}
-          </a>
-          .
-        </p>
-      </section>
+      <PageEnd
+        num="06"
+        note="Revision · as deployed"
+        lines={["Questions about", "your data?"]}
+        primary={{ label: "Write to me", href: `mailto:${email}` }}
+        secondary={{ label: "Send a brief", href: "/contact" }}
+      />
     </SiteShell>
   );
 }

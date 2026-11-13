@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { PaletteSearchButton } from "@components/Blog/PaletteSearchButton";
 import { TopicCards } from "@components/Blog/TopicCards";
 import { coverVariant, YearArchive } from "@components/Blog/YearArchive";
+import { PageHero } from "@components/common/Site/PageHero";
+import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
@@ -42,57 +44,37 @@ export default async function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
 
-      <section className="site-blog-head site-wrap">
-        <div className="site-blog-head__top site-note">
-          <nav aria-label="Breadcrumb">
-            <Link href="/" className="site-link">
-              Home
-            </Link>{" "}
-            / <span className="text-ink">Blog</span>
-          </nav>
-          <span>[Blog / 02]</span>
-          <span className="hidden sm:inline">Notes from current work</span>
-        </div>
-
-        <h1 className="site-blog-head__title">
-          <span className="site-display">Field notes.</span>
-          <span className="site-h2 site-blog-head__sub">
-            Software engineering, applied AI, and production systems.
-          </span>
-        </h1>
-
-        <div className="site-blog-head__foot">
-          <p className="site-lead-type site-blog-head__lead">
-            Notes on full-stack architecture, AI engineering, and dependable
-            systems from more than a decade of remote work: TypeScript, Python,
-            Go, and agent workflows.
-          </p>
-
-          <dl className="site-spec">
-            <div>
-              <dt className="site-note">Entries</dt>
-              <dd>{String(specs.entries).padStart(2, "0")}</dd>
-            </div>
-            <div>
-              <dt className="site-note">Words</dt>
-              <dd>{specs.words.toLocaleString("en-US")}</dd>
-            </div>
-            <div>
-              <dt className="site-note">Since</dt>
-              <dd>{specs.since || "—"}</dd>
-            </div>
-            <div>
-              <dt className="site-note">Last entry</dt>
-              <dd>{specs.last ? formatPostDate(specs.last) : "—"}</dd>
-            </div>
-          </dl>
-
-          <div className="site-blog-head__actions">
-            <PaletteSearchButton />
-            <SiteButton href={rss} variant="ghost">
-              RSS
-            </SiteButton>
+      <PageHero
+        trail={[{ label: "Blog" }]}
+        index="[Blog / 02]"
+        lead="Field notes."
+        typed="Software engineering, applied AI, and production systems."
+        intro="Notes on full-stack architecture, AI engineering, and dependable systems from more than a decade of remote work: TypeScript, Python, Go, and agent workflows."
+      >
+        <dl className="site-spec">
+          <div>
+            <dt className="site-note">Entries</dt>
+            <dd>{String(specs.entries).padStart(2, "0")}</dd>
           </div>
+          <div>
+            <dt className="site-note">Words</dt>
+            <dd>{specs.words.toLocaleString("en-US")}</dd>
+          </div>
+          <div>
+            <dt className="site-note">Since</dt>
+            <dd>{specs.since || "—"}</dd>
+          </div>
+          <div>
+            <dt className="site-note">Last entry</dt>
+            <dd>{specs.last ? formatPostDate(specs.last) : "—"}</dd>
+          </div>
+        </dl>
+
+        <div className="site-hero__ctas">
+          <PaletteSearchButton />
+          <SiteButton href={rss} variant="ghost" arrow>
+            RSS
+          </SiteButton>
         </div>
 
         {topics.length > 0 && (
@@ -117,7 +99,7 @@ export default async function BlogPage() {
             </ul>
           </nav>
         )}
-      </section>
+      </PageHero>
 
       {latest && (
         <section className="site-section site-wrap">
@@ -197,22 +179,31 @@ export default async function BlogPage() {
       <section className="site-section site-wrap">
         <SectionHeader num="03" label="Subscribe" note="RSS · LinkedIn" />
         <div className="site-subscribe">
-          <h2 className="site-h2">No schedule. No newsletter spam.</h2>
+          <Reveal>
+            <h2 className="site-h2">
+              <span className="site-line-mask">
+                <span>No schedule.</span>
+              </span>
+              <span className="site-line-mask">
+                <span>No newsletter spam.</span>
+              </span>
+            </h2>
+          </Reveal>
           <div className="site-subscribe__body">
             <p className="site-lead-type">
               New entries land in the RSS feed the day they publish. Want a
               topic covered, or have a project behind the question? Write to me.
             </p>
-            <div className="site-blog-head__actions">
+            <div className="site-hero__ctas">
               <SiteButton href={rss} arrow>
                 RSS feed
               </SiteButton>
               {linkedin && (
-                <SiteButton href={linkedin.href} variant="ghost">
-                  LinkedIn ↗
+                <SiteButton href={linkedin.href} variant="ghost" arrow>
+                  LinkedIn
                 </SiteButton>
               )}
-              <SiteButton href="/contact" variant="ghost">
+              <SiteButton href="/contact" variant="ghost" arrow>
                 Suggest a topic
               </SiteButton>
             </div>

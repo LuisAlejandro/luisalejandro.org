@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { SiteButton } from "@components/common/Site/SiteButton";
+import { PageEnd } from "@components/common/Site/PageEnd";
+import { PageHero } from "@components/common/Site/PageHero";
+import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -23,52 +25,37 @@ export default function PortfolioPage() {
           ),
         }}
       />
-      <section className="site-project-head site-wrap">
-        <div className="site-kicker site-note">
-          <nav aria-label="Breadcrumb">
-            <Link href="/" className="site-link">
-              Home
-            </Link>{" "}
-            / <span className="text-ink">Portfolio</span>
-          </nav>
-          <span>[Portfolio / 01]</span>
-        </div>
-        <h1 className="site-project-head__title site-display">
-          Built.
-          <br />
-          <span className="site-project-head__outline">Not imagined.</span>
-        </h1>
-        <div className="site-project-head__foot">
-          <p className="site-lead-type">
-            Websites, tools, and the systems behind them.
-            <br />
-            An archive of things I helped bring to life.
-          </p>
-          <dl className="site-project-spec">
-            <div>
-              <dt className="site-note">Projects</dt>
-              <dd>{String(portfolioProjects.length).padStart(2, "0")}</dd>
-            </div>
-            <div>
-              <dt className="site-note">Archive</dt>
-              <dd>
-                {firstYear}—{lastYear}
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-      <section
-        className="site-wrap site-project-index"
-        aria-labelledby="project-index-title"
+      <PageHero
+        trail={[{ label: "Portfolio" }]}
+        index="[Portfolio / 01]"
+        lead="Built."
+        typed="Not imagined."
+        intro="Websites, tools, and the systems behind them: an archive of things I helped bring to life."
       >
-        <div className="site-section-head site-note">
-          <h2 id="project-index-title">Project index</h2>
-          <span>
-            Newest first / {String(portfolioProjects.length).padStart(2, "0")}{" "}
-            entries
-          </span>
-        </div>
+        <dl className="site-spec">
+          <div>
+            <dt className="site-note">Projects</dt>
+            <dd>{String(portfolioProjects.length).padStart(2, "0")}</dd>
+          </div>
+          <div>
+            <dt className="site-note">Archive</dt>
+            <dd>
+              {firstYear}—{lastYear}
+            </dd>
+          </div>
+          <div>
+            <dt className="site-note">Order</dt>
+            <dd>Newest first</dd>
+          </div>
+        </dl>
+      </PageHero>
+
+      <section className="site-section site-wrap">
+        <SectionHeader
+          num="01"
+          label="Project index"
+          note={`${String(portfolioProjects.length).padStart(2, "0")} entries`}
+        />
         <ol className="site-project-grid" role="list">
           {portfolioProjects.map((project, index) => (
             <li key={project.slug} className="site-project-card">
@@ -110,20 +97,25 @@ export default function PortfolioPage() {
                 role="list"
               >
                 {project.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
+                  <li key={tag} className="site-pill">
+                    {tag}
+                  </li>
                 ))}
               </ul>
             </li>
           ))}
         </ol>
       </section>
-      <section className="site-wrap site-project-end">
-        <p className="site-note">Have something worth building?</p>
-        <h2 className="site-h2">Let’s make it real.</h2>
-        <SiteButton href="/contact" arrow>
-          Let’s talk
-        </SiteButton>
-      </section>
+      <PageEnd
+        num="02"
+        note="30 minutes"
+        lines={["Let's make", "it real."]}
+        primary={{ label: "Let's talk", href: "/contact" }}
+        secondary={{
+          label: "Book a 30-min call",
+          href: "https://cal.com/martinezfaneyth",
+        }}
+      />
     </SiteShell>
   );
 }

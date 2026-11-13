@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { YearArchive } from "@components/Blog/YearArchive";
+import { DetailHead } from "@components/common/Site/DetailHead";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
@@ -70,37 +71,25 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
-      <section className="site-blog-head site-wrap">
-        <div className="site-blog-head__top site-note">
-          <nav aria-label="Breadcrumb">
-            <Link href="/" className="site-link">
-              Home
-            </Link>{" "}
-            /{" "}
-            <Link href="/blog" className="site-link">
-              Blog
-            </Link>{" "}
-            /{" "}
-            <span className="text-ink" lang="es">
-              {topic.title}
-            </span>
-          </nav>
-          <span>[Topic]</span>
-          <Link href="/blog/category" className="site-link hidden sm:inline">
-            All topics →
-          </Link>
-        </div>
-        <h1 className="site-blog-head__title">
-          <span className="site-h1" lang="es">
-            {topic.title}
-          </span>
-          <span className="site-lead-type site-blog-head__lead">
-            {topic.count} {topic.count === 1 ? "entry" : "entries"} ·{" "}
-            <Link href="/blog" className="site-link">
-              all {archive.specs.entries} posts →
-            </Link>
-          </span>
-        </h1>
+      <section className="site-wrap">
+        <DetailHead
+          trail={[
+            { label: "Blog", href: "/blog" },
+            { label: "Topics", href: "/blog/category" },
+            { label: topic.title, lang: "es" },
+          ]}
+          index="[Blog / Topic]"
+          title={topic.title}
+          lang="es"
+          lead={
+            <>
+              {topic.count} {topic.count === 1 ? "entry" : "entries"} ·{" "}
+              <Link href="/blog" className="site-link" lang="en">
+                all {archive.specs.entries} posts →
+              </Link>
+            </>
+          }
+        />
       </section>
 
       <section className="site-section site-wrap site-blog-tail">

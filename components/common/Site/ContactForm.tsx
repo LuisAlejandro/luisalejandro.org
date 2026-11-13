@@ -300,7 +300,7 @@ export function ContactForm() {
                     type="button"
                     aria-pressed={on}
                     onClick={() => toggleNeed(need)}
-                    className="site-contact-chip"
+                    className="site-pill"
                   >
                     {need}
                   </button>
@@ -327,7 +327,7 @@ export function ContactForm() {
                       });
                       refresh();
                     }}
-                    className="site-contact-chip"
+                    className="site-pill"
                   >
                     {option}
                   </button>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ArticleToc } from "@components/Blog/ArticleToc";
+import { DetailHead } from "@components/common/Site/DetailHead";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
@@ -70,49 +71,28 @@ export default async function PostPage({ params }: PostPageProps) {
       />
 
       <article className="site-article site-wrap">
-        <header className="site-article__head">
-          <div className="site-kicker site-note">
-            <nav aria-label="Breadcrumb">
-              <Link href="/" className="site-link">
-                Home
-              </Link>{" "}
-              /{" "}
-              <Link href="/blog" className="site-link">
-                Blog
-              </Link>
-              {row.category && (
-                <>
-                  {" "}
-                  /{" "}
-                  <Link
-                    href={`/blog/category/${row.category.slug}`}
-                    className="site-link text-ink"
-                    lang="es"
-                  >
-                    {row.category.title}
-                  </Link>
-                </>
-              )}
-            </nav>
-            {listed && <span>{entryNumber(row.number)}</span>}
-          </div>
-
-          <h1 className="site-article__title" lang="es">
-            {post.title}
-          </h1>
-          {row.teaser && (
-            <p className="site-lead-type site-article__desc" lang="es">
-              {row.teaser}
-            </p>
-          )}
-
-          <dl className="site-article__meta">
-            {row.category && (
-              <div>
-                <dt className="site-note">Topic</dt>
-                <dd lang="es">{row.category.title}</dd>
-              </div>
-            )}
+        <DetailHead
+          trail={[
+            { label: "Blog", href: "/blog" },
+            ...(row.category
+              ? [
+                  {
+                    label: row.category.title,
+                    href: `/blog/category/${row.category.slug}`,
+                    lang: "es",
+                  },
+                ]
+              : []),
+            { label: "Entry" },
+          ]}
+          index={`[Blog / ${listed ? entryNumber(row.number) : "Draft"}]`}
+          eyebrow={row.category?.title}
+          title={post.title}
+          size="article"
+          lang="es"
+          lead={row.teaser || undefined}
+        >
+          <dl className="site-spec">
             <div>
               <dt className="site-note">Published</dt>
               <dd>
@@ -128,7 +108,7 @@ export default async function PostPage({ params }: PostPageProps) {
               <dd>{row.words.toLocaleString("en-US")}</dd>
             </div>
           </dl>
-        </header>
+        </DetailHead>
 
         {row.cover && (
           <figure className="site-cover">

@@ -11,6 +11,7 @@ import {
 } from "@components/common/Site/CaseStudyMedia";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
+import { PageEnd } from "@components/common/Site/PageEnd";
 import { CaseStudyStats } from "@components/common/Site/CaseStudyStats";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
@@ -182,6 +183,13 @@ export default function CanaimaPage() {
 
         <CaseStudyGallery images={gallery} name="Canaima GNU/Linux" />
       </CaseStudySection>
+      <PageEnd
+        num="05"
+        note="30 minutes"
+        lines={["A problem", "like this one?"]}
+        primary={{ label: "Let's talk", href: "/contact" }}
+        secondary={{ label: "More work", href: "/portfolio" }}
+      />
     </SiteShell>
   );
 }
