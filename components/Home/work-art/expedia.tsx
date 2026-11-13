@@ -496,7 +496,7 @@ export function ExpediaArt({ layer = "back" }: { layer?: Layer }) {
       </g>
 
       {/* The figure, bigger, where the key card was; it lands last */}
-      <g transform="translate(1190 600)">
+      <g className="site-art__figure" transform="translate(1190 600)">
         <g className="site-rise" style={beat(0.84, 0.12)}>
           <text
             x="0"

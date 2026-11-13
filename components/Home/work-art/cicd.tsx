@@ -484,7 +484,7 @@ export function CicdArt({ layer = "back" }: { layer?: Layer }) {
         <CicdContainer />
       </g>
 
-      <g transform="translate(1128 692)">
+      <g className="site-art__figure" transform="translate(1128 692)">
         <g className="site-rise" style={beat(0.88, 0.1)} data-cicd="outcome">
           <text
             y="48"

@@ -334,7 +334,7 @@ export function CanaimaArt({ layer = "back" }: { layer?: Layer }) {
       <g className="site-art__lift">
         <CanaimaMemo />
       </g>
-      <g transform="translate(1202 686)">
+      <g className="site-art__figure" transform="translate(1202 686)">
         <g
           className="site-rise"
           style={beat(0.88, 0.1)}

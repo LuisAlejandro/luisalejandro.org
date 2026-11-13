@@ -363,7 +363,7 @@ export function DockershelfArt({ layer = "back" }: { layer?: Layer }) {
       <g className="site-art__lift">
         <DockershelfRack />
       </g>
-      <g transform="translate(1200 676)">
+      <g className="site-art__figure" transform="translate(1200 676)">
         <g
           className="site-rise"
           style={beat(0.86, 0.12)}

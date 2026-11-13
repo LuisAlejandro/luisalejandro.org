@@ -379,7 +379,7 @@ export function SoleitArt({ layer = "back" }: { layer?: Layer }) {
       <g className="site-art__lift">
         <SoleitReport />
       </g>
-      <g transform="translate(1135 721)">
+      <g className="site-art__figure" transform="translate(1135 721)">
         <g
           className="site-rise"
           style={beat(0.88, 0.1)}

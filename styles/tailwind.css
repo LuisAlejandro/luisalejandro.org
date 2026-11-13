@@ -4131,15 +4131,28 @@ body:has(.site-shell) {
   }
   /* The drawing is set larger than the cell; whatever runs past the edge
      is cut by the cell, never by the page. */
+  /* In the grid the drawing is a crowd, not a diagram: each object grows
+     around its own centre until they overlap, the headline figures and the
+     callouts that would point at the wrong place are dropped, and the cell
+     cuts whatever runs past its edge. Only unpositioned wrappers are scaled,
+     so every object keeps its place. */
   .site-wcard__art .site-art svg {
-    /* Every drawing keeps its headline figure lower right, so the zoom is
-       anchored there: the outer objects overflow, the figure stays in. */
-    transform: scale(1.35);
-    transform-origin: 78% 62%;
+    transform: scale(1.12);
     transition: transform 1.2s var(--ease-site-out);
   }
   .site-wcard:is(:hover, :focus-visible) .site-art svg {
-    transform: scale(1.4);
+    transform: scale(1.18);
+  }
+  .site-wcard__art .site-art svg > g[transform] > g:not([transform]),
+  .site-wcard__art .site-art svg > g:not([transform]) {
+    transform-box: fill-box;
+    transform-origin: center;
+    scale: 1.7;
+  }
+  .site-wcard__art .site-art__figure,
+  .site-wcard__art .site-art svg > path,
+  .site-wcard__art .site-art svg > g:has(> .site-art__lead) {
+    display: none;
   }
   .site-wcard__head {
     display: flex;
@@ -4154,10 +4167,6 @@ body:has(.site-shell) {
     font-size: var(--text-step-1);
     line-height: 1.15;
     letter-spacing: -0.02em;
-    transition: color 0.3s linear;
-  }
-  .site-wcard:is(:hover, :focus-visible) .site-wcard__title {
-    color: var(--color-signal);
   }
   .site-wcard__more {
     flex: none;
