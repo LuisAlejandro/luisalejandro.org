@@ -4100,6 +4100,17 @@ body:has(.site-shell) {
     min-width: 0;
     background: var(--color-paper);
   }
+  /* A checkerboard: every other cell is ink. The drawings take all their
+     colours from these tokens, so swapping them inverts the whole cell. */
+  .site-wgrid > li:nth-child(odd) {
+    --color-paper: #0e0e0d;
+    --color-paper-raised: #1a1a18;
+    --color-ink: #f4f4f0;
+    --color-ink-muted: #9b9b93;
+    --color-rule: #f4f4f024;
+    --color-rule-strong: #f4f4f052;
+    color: var(--color-ink);
+  }
   .site-wcard {
     display: flex;
     flex-direction: column;
@@ -4118,11 +4129,17 @@ body:has(.site-shell) {
     aspect-ratio: 16 / 10;
     overflow: hidden;
   }
+  /* The drawing is set larger than the cell; whatever runs past the edge
+     is cut by the cell, never by the page. */
   .site-wcard__art .site-art svg {
+    /* Every drawing keeps its headline figure lower right, so the zoom is
+       anchored there: the outer objects overflow, the figure stays in. */
+    transform: scale(1.35);
+    transform-origin: 78% 62%;
     transition: transform 1.2s var(--ease-site-out);
   }
   .site-wcard:is(:hover, :focus-visible) .site-art svg {
-    transform: scale(1.04);
+    transform: scale(1.4);
   }
   .site-wcard__head {
     display: flex;
@@ -4152,8 +4169,14 @@ body:has(.site-shell) {
   .site-wcard:is(:hover, :focus-visible) .site-wcard__more > span {
     transform: translateX(3px);
   }
+  /* The number sits over the drawing, so it carries the cell's tone. */
   .site-wgrid .site-project-card__number {
-    background: none;
+    background: var(--color-paper);
+    color: var(--color-ink-muted);
+    transition: background-color 0.3s linear;
+  }
+  .site-wcard:is(:hover, :focus-visible) .site-project-card__number {
+    background: var(--color-paper-raised);
   }
   /* The kept cell: same box, its number only, waiting for the sixth. */
   .site-wgrid__empty .site-project-card__number {
@@ -4189,9 +4212,11 @@ body:has(.site-shell) {
     }
   }
 
+  /* Narrow cells: the label goes under the name instead of crowding it. */
   @media (max-width: 1023px) {
-    .site-wgrid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .site-wcard__head {
+      flex-direction: column;
+      gap: 0.4rem;
     }
   }
   @media (max-width: 767px) {

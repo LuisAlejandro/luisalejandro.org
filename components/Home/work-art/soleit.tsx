@@ -318,42 +318,60 @@ export function SoleitArt({ layer = "back" }: { layer?: Layer }) {
         </g>
       </g>
 
-      {/* Measuring tape, with a curled end and an exposed spool. */}
+      {/* Measuring tape: a rounded case with its spool and lock, and a
+          straight blade run out of the mouth to the hook at its tip. */}
       <g transform="translate(136 666) rotate(7)">
         <g
           className="site-obj"
           style={{ "--tilt-in": "4deg" } as React.CSSProperties}
         >
-          <path
-            d="M0 0H255Q305 0 305 42V93H273V42Q273 33 255 33H0Z"
+          {/* blade */}
+          <rect
+            x="0"
+            y="40"
+            width="234"
+            height="22"
             fill={SHEET}
             stroke={INK}
           />
-          {Array.from({ length: 25 }, (_, i) => (
+          {Array.from({ length: 23 }, (_, i) => (
             <path
               key={i}
-              d={`M${8 + i * 10} 0v${i % 5 === 0 ? 15 : 8}`}
+              d={`M${10 + i * 10} 40v${i % 5 === 0 ? 12 : 6}`}
               stroke={INK}
             />
           ))}
           {[0, 5, 10, 15, 20].map((n) => (
-            <Note key={n} x={8 + n * 10} y="27" size={6.5}>
+            <Note key={n} x={12 + n * 10} y="59" size={6.5}>
               {String(n)}
             </Note>
           ))}
+          {/* hook at the tip */}
+          <path d="M0 36h-6v30h6" fill={SHEET} stroke={INK} />
+          {/* case, lock and spool */}
           <rect
-            x="-7"
-            y="-2"
-            width="12"
-            height="37"
+            x="230"
+            y="-30"
+            width="100"
+            height="100"
+            rx="22"
             fill={SHEET}
             stroke={INK}
           />
-          <circle cx="290" cy="98" r="33" fill={SHEET} stroke={INK} />
-          {[23, 14, 5].map((r) => (
-            <circle key={r} cx="290" cy="98" r={r} fill="none" stroke={RULE} />
-          ))}
-          <Note x="12" y="57" size={7}>
+          <rect
+            x="252"
+            y="-38"
+            width="30"
+            height="8"
+            rx="3"
+            fill={SHEET}
+            stroke={INK}
+          />
+          <circle cx="282" cy="20" r="32" fill="none" stroke={RULE} />
+          <circle cx="282" cy="20" r="14" fill="none" stroke={RULE} />
+          <circle cx="282" cy="20" r="4" fill={INK} />
+          <path d="M230 40v22" stroke={INK} />
+          <Note x="0" y="88" size={7}>
             measure / fit / review
           </Note>
         </g>
