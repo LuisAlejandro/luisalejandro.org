@@ -13,8 +13,12 @@ import {
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
+/** A 3 × 2 sheet: five case studies and one cell kept for the next. */
+const CELLS = 6;
+
 /**
- * 02 — the five case studies as a grid. Each card carries its drawing at rest;
+ * 02 — the case studies as a sheet of cells sharing one set of hairlines,
+ * like a spreadsheet: drawing, name and link all sit inside the cell. Each card carries its drawing at rest;
  * hovering or focusing the card replays the drawing's story. The pinned,
  * scroll-driven version lives on the portfolio.
  */
@@ -54,6 +58,17 @@ export function WorkGrid() {
                 </span>
               </div>
             </Link>
+          </li>
+        ))}
+        {Array.from({ length: CELLS - ProjectList.length }, (_, i) => (
+          <li
+            key={`empty-${i}`}
+            className="site-wgrid__empty"
+            aria-hidden="true"
+          >
+            <span className="site-project-card__number site-note">
+              /{pad(ProjectList.length + i + 1)}
+            </span>
           </li>
         ))}
       </ol>
