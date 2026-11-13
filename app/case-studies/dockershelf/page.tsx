@@ -61,7 +61,7 @@ export default function DockershelfPage() {
         subtitle="Dockershelf"
         title="Reliable docker images"
         description="Dockershelf is a repository that serves as a collector for docker recipes that are universal, efficient and slim. We keep adding “shelves”, which are holders for the different versions of a popular language or application. Images are updated, tested and published weekly via a Github Actions workflow."
-        team={["Luis Martínez"]}
+        team={["Luis Alejandro Martínez"]}
         deliverables={[
           "Debian images",
           "Python images",

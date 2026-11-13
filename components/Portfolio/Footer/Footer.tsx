@@ -44,7 +44,7 @@ const Footer = () => {
               "lg:text-lg lg:leading-7.5"
             )}
           >
-            &copy; {new Date().getFullYear()} Luis Martínez. All rights
+            &copy; {new Date().getFullYear()} Luis Alejandro Martínez. All rights
             reserved.
           </p>
         </div>

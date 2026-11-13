@@ -61,7 +61,7 @@ export default function WheelTheWorldPage() {
         title="A faster, stronger pipeline"
         description="Wheel The World had a problem: their CI/CD pipeline was slow, unreproducible and unreliable. I helped them build a new one from scratch, using Github Actions and Docker."
         team={[
-          "Luis Martínez",
+          "Luis Alejandro Martínez",
           "Fede Carossino",
           "Gonzalo Rodríguez",
           "Sebastián Vinci",

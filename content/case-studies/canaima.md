@@ -8,7 +8,7 @@ Canaima GNU/Linux is a free and open-source Linux distribution that is based on 
 
 **Team:**
 
-- Luis Martínez
+- Luis Alejandro Martínez
 - Carlos Parra
 - Erick Birbe
 - Sasha Solano

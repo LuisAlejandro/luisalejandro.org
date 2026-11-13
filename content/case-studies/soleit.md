@@ -8,7 +8,7 @@ The first automated biomechanical design software. An easier, more accurate, fas
 
 **Team:**
 
-- Luis Martínez
+- Luis Alejandro Martínez
 - Saraí Santiago
 - Israel Lugo
 - Sergi Prats

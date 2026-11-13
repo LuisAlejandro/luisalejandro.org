@@ -8,7 +8,7 @@ Wheel The World had a problem: their CI/CD pipeline was slow, unreproducible and
 
 **Team:**
 
-- Luis Martínez
+- Luis Alejandro Martínez
 - Fede Carossino
 - Gonzalo Rodríguez
 - Sebastián Vinci

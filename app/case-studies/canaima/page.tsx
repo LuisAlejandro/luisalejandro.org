@@ -72,7 +72,7 @@ export default function CanaimaPage() {
         title="A Venezuelan Linux Distribution"
         description="Canaima GNU/Linux is a free and open-source Linux distribution that is based on the Debian architecture."
         team={[
-          "Luis Martínez",
+          "Luis Alejandro Martínez",
           "Carlos Parra",
           "Erick Birbe",
           "Sasha Solano",

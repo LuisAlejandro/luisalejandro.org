@@ -73,7 +73,7 @@ export default function SoleitPage() {
         subtitle="Soleit"
         title="A desktop app for kinesiology"
         description="The first automated biomechanical design software. An easier, more accurate, faster process to generate motion analysis and personalized insole 3D model."
-        team={["Luis Martínez", "Saraí Santiago", "Israel Lugo", "Sergi Prats"]}
+        team={["Luis Alejandro Martínez", "Saraí Santiago", "Israel Lugo", "Sergi Prats"]}
         deliverables={["A REST api", "A desktop app", "A hardware driver"]}
         links={[
           { text: "Client site", url: "https://soleit.app/en/how-it-works/" },

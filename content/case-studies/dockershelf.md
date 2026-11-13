@@ -8,7 +8,7 @@ Dockershelf is a repository that serves as a collector for docker recipes that a
 
 **Team:**
 
-- Luis Martínez
+- Luis Alejandro Martínez
 
 **Deliverables:**
 

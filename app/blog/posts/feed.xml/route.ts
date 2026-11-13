@@ -19,7 +19,7 @@ export async function GET() {
       link: canonicalHostnameUrl,
       image: `${canonicalHostnameUrl}/favicon/android-chrome-512x512.png`,
       favicon: `${canonicalHostnameUrl}/favicon/favicon.png`,
-      copyright: `All rights reserved ${new Date().getFullYear()}, Luis Martínez`,
+      copyright: `All rights reserved ${new Date().getFullYear()}, Luis Alejandro Martínez`,
       updated: new Date(),
       generator: "Feed for Node.js",
       feedLinks: {
@@ -28,7 +28,7 @@ export async function GET() {
         json: `${canonicalHostnameUrl}/blog/posts/feed.json`,
       },
       author: {
-        name: "Luis Martínez",
+        name: "Luis Alejandro Martínez",
         email: "luis@luisalejandro.org",
         link: `${canonicalHostnameUrl}/portfolio`,
       },

@@ -60,7 +60,7 @@ export default function ExpediaPage() {
         subtitle="Expedia API integration"
         title="A larger hotel database to book from"
         description="On 2022, Wheel the World pursued a commercial agreement with Expedia to integrate their hotel database booking and shopping features. I was in charge of developing several components to make this integration possible."
-        team={["Luis Martínez"]}
+        team={["Luis Alejandro Martínez"]}
         deliverables={[
           "An expedia content indexer",
           "A booking module",

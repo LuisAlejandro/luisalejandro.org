@@ -8,7 +8,7 @@ On 2022, Wheel the World pursued a commercial agreement with Expedia to integrat
 
 **Team:**
 
-- Luis Martínez
+- Luis Alejandro Martínez
 
 **Deliverables:**
 

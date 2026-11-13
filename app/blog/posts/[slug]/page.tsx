@@ -147,7 +147,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <footer className="site-article__foot">
           <div className="site-author">
             <p className="site-note">Written by</p>
-            <p className="site-author__name">Luis Alejandro</p>
+            <p className="site-author__name">Luis Alejandro Martínez</p>
             <p className="site-author__bio">
               Fullstack AI engineer. Full-stack products and AI agents that stay
               dependable after launch.
