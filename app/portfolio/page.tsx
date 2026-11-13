@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { WorkSection } from "@components/Home/WorkSection";
 import { PageEnd } from "@components/common/Site/PageEnd";
 import { PageHero } from "@components/common/Site/PageHero";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { ProjectList } from "@constants/constants";
 import { portfolioProjects } from "@lib/portfolio";
 import { generatePortfolioJsonLd } from "@lib/structuredData";
 
@@ -34,6 +36,10 @@ export default function PortfolioPage() {
       >
         <dl className="site-spec">
           <div>
+            <dt className="site-note">Case studies</dt>
+            <dd>{String(ProjectList.length).padStart(2, "0")}</dd>
+          </div>
+          <div>
             <dt className="site-note">Projects</dt>
             <dd>{String(portfolioProjects.length).padStart(2, "0")}</dd>
           </div>
@@ -50,9 +56,11 @@ export default function PortfolioPage() {
         </dl>
       </PageHero>
 
+      <WorkSection num="01" label="Case studies" id="case-studies" />
+
       <section className="site-section site-wrap">
         <SectionHeader
-          num="01"
+          num="02"
           label="Project index"
           note={`${String(portfolioProjects.length).padStart(2, "0")} entries`}
         />
@@ -78,7 +86,7 @@ export default function PortfolioPage() {
                     sizes="(max-width: 767px) 90vw, 44vw"
                   />
                   <span className="site-project-card__arrow" aria-hidden="true">
-                    ↗
+                    →
                   </span>
                 </div>
                 <div className="site-project-card__heading">
@@ -107,7 +115,7 @@ export default function PortfolioPage() {
         </ol>
       </section>
       <PageEnd
-        num="02"
+        num="03"
         note="30 minutes"
         lines={["Let's make", "it real."]}
         primary={{ label: "Let's talk", href: "/contact" }}

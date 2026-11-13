@@ -55,9 +55,15 @@ const ART: Partial<Record<Slug, Entry>> = {
 export function WorkArtwork({
   slug,
   layer = "back",
+  play = "scroll",
 }: {
   slug: string;
   layer?: Layer;
+  /**
+   * `scroll` draws in once in view and follows the stage's progress; `hover`
+   * rests finished and replays the story while its card is hovered.
+   */
+  play?: "scroll" | "hover";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [drawn, setDrawn] = useState(false);
@@ -66,7 +72,7 @@ export function WorkArtwork({
 
   useEffect(() => {
     const host = ref.current;
-    if (!host || !Art) return;
+    if (!host || !Art || play === "hover") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       window.requestAnimationFrame(() => setDrawn(true));
       return;
@@ -84,12 +90,12 @@ export function WorkArtwork({
     );
     observer.observe(host);
     return () => observer.disconnect();
-  }, [Art]);
+  }, [Art, play]);
 
   if (!Art) return null;
 
   return (
-    <div ref={ref} className="site-art" data-drawn={drawn}>
+    <div ref={ref} className="site-art" data-drawn={drawn} data-play={play}>
       <svg viewBox={entry.view} role="presentation" focusable="false">
         <Art layer={layer} />
       </svg>

@@ -34,8 +34,20 @@ for (const project of GalleryList) {
   assert.ok(!ProjectList.some((p) => p.visit === `/portfolio/${project.slug}`));
 }
 const graph = generatePortfolioJsonLd()["@graph"];
-const list = graph.find((node) => node["@type"] === "ItemList");
-assert.ok(list && "itemListElement" in list);
-assert.equal(list.itemListElement?.length, 10);
-assert.ok(!JSON.stringify(graph).includes("/case-studies/"));
+const byId = (suffix: string) =>
+  graph.find((node) => String(node["@id"] ?? "").endsWith(suffix));
+// The page shows the five case studies, then the ten-project archive; each
+// list carries exactly its own entries.
+const archive = byId("#Projects");
+assert.ok(archive && "itemListElement" in archive);
+assert.equal(archive.itemListElement?.length, 10);
+assert.ok(!JSON.stringify(archive).includes("/case-studies/"));
+const studies = byId("#CaseStudies");
+assert.ok(studies && "itemListElement" in studies);
+assert.equal(studies.itemListElement?.length, ProjectList.length);
+assert.ok(
+  studies.itemListElement?.every((entry) =>
+    entry.item.url.includes("/case-studies/")
+  )
+);
 console.log("portfolio: ok");

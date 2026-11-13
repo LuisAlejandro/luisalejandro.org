@@ -19,11 +19,7 @@ import {
   hasFrontLayer,
 } from "@components/Home/WorkArtwork";
 import { ProjectList } from "@constants/constants";
-import {
-  sectionNotes,
-  sectionTitles,
-  workIntro,
-} from "@constants/homepageContent";
+import { sectionNotes, workIntro } from "@constants/homepageContent";
 
 const projects = ProjectList;
 const COUNT = projects.length;
@@ -51,11 +47,19 @@ function pinnedSnapshot() {
   );
 }
 
+type WorkSectionProps = {
+  num: string;
+  label: string;
+  /** Anchor for the section head. */
+  id: string;
+};
+
 /**
- * 02 — the signature piece: one stage held in place while the five projects
- * advance through it, with a running counter and a segment rail.
+ * The signature piece: one stage held in place while the five case studies
+ * advance through it, with a running counter and a segment rail. It lives on
+ * the portfolio; the home page shows the same five as a grid.
  */
-export function WorkSection() {
+export function WorkSection({ num, label, id }: WorkSectionProps) {
   const pinned = useSyncExternalStore(subscribe, pinnedSnapshot, () => false);
   const rootRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
@@ -100,12 +104,7 @@ export function WorkSection() {
 
   return (
     <section className="site-section site-wrap">
-      <SectionHeader
-        num="02"
-        label={sectionTitles.work}
-        note={sectionNotes.work}
-        id="work"
-      />
+      <SectionHeader num={num} label={label} note={sectionNotes.work} id={id} />
 
       <Reveal>
         <p className="site-lead-type text-ink mb-10 max-w-[46ch]">

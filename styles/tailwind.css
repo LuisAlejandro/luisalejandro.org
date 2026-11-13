@@ -860,40 +860,30 @@ body:has(.site-shell) {
     gap: 0.75rem;
   }
 
-  /* The vortex is a viewport layer, not a hero child: it has to sit above the
-     page so the next section can rise *through* its dissolving centre instead
-     of appearing below a blank screen. Header (z 50) and hero copy (z 6) stay
-     above it; everything else passes underneath. */
+  /* The vortex sits inside its hero, behind the copy: texture, not the
+     subject. It is quiet and fades out before the hero's edge. */
   .site-vortex {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: 4;
+    z-index: 0;
     pointer-events: none;
     opacity: 0;
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 98%);
     transition: opacity 0.6s var(--ease-site-out);
   }
 
   .site-vortex[data-on="true"] {
-    opacity: 1;
+    opacity: 0.45;
   }
 
   .site-hero {
     cursor: pointer;
   }
 
-  /* Hero copy sits above the vortex layer; it fades while the takeover runs. */
+  /* Hero copy sits above the vortex layer. */
   .site-hero > :not(.site-vortex, .site-vortex-label) {
     position: relative;
     z-index: 6;
-    opacity: var(--site-hero-copy, 1);
-    transition: opacity 0.3s linear;
-  }
-
-  /* Once the takeover has faded the copy out it is invisible, so it must also
-     stop capturing clicks and tab stops over the section arriving beneath. */
-  .site-hero[data-copy-hidden="true"] > :not(.site-vortex, .site-vortex-label) {
-    visibility: hidden;
-    pointer-events: none;
   }
 
   /* "Click & hold": a small ink tag that trails the pointer by 20px. */
@@ -932,50 +922,6 @@ body:has(.site-shell) {
     top: 5.5rem;
     right: var(--spacing-gutter);
     left: auto;
-  }
-
-  /* The hero is held for one extra screen of scroll while the vortex takes
-     over: it centres, zooms, twists and dissolves from the eye outward. */
-  .site-hero-pin {
-    position: relative;
-    height: 200svh;
-    /* No background: the section below rises underneath the vortex layer and
-       is seen through it once the centre dissolves. */
-  }
-
-  .site-hero-pin > .site-hero {
-    position: sticky;
-    top: 0;
-    /* sticky already forms a stacking context, so the hero must outrank the
-       vortex layer for its paper strips to cover the rings; wherever it has no
-       background the rings still show through. */
-    z-index: 6;
-  }
-
-  /* The next section starts one screen early and rides up over the pinned
-     hero, so the dissolve reveals it rather than empty paper. It carries its
-     own background and sits above the hero. */
-  .site-hero-pin + .site-section {
-    position: relative;
-    /* Below the vortex layer (z 4) so the rings pass over it, above the pinned
-       hero so it covers the hero as it arrives. */
-    z-index: 2;
-    margin-top: -100svh;
-    background: var(--color-paper);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .site-hero-pin {
-      height: auto;
-    }
-
-    .site-hero-pin > .site-hero {
-      position: relative;
-    }
-
-    .site-hero-pin + .site-section {
-      margin-top: 0;
-    }
   }
 
   .site-accent {
@@ -3217,17 +3163,6 @@ body:has(.site-shell) {
     padding-top: 7rem;
     padding-bottom: 2rem;
   }
-  /* Quieter than on home, where it is the subject: here it is texture behind
-     copy, and it fades out before the hero's edge instead of being cut. */
-  .site-hero--page > .site-vortex {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 98%);
-  }
-  .site-hero--page > .site-vortex[data-on="true"] {
-    opacity: 0.45;
-  }
   .site-hero--page .site-hero__title {
     margin-top: 1.25rem;
   }
@@ -4125,6 +4060,138 @@ body:has(.site-shell) {
     }
     .site-doc-section__body {
       grid-column: 1 / -1;
+    }
+  }
+}
+
+/* Home: the five case studies as a grid, each drawing replaying on hover.
+   Registering the progress lets a hover animation drive the same story the
+   portfolio's pinned stage drives with scroll; at rest it is 1, finished. */
+@property --art-progress {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@keyframes site-art-play {
+  from {
+    --art-progress: 0;
+  }
+  to {
+    --art-progress: 1;
+  }
+}
+
+.site-shell {
+  .site-wgrid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 3.5rem var(--spacing-col-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-wgrid > li {
+    grid-column: span 2;
+    min-width: 0;
+  }
+  .site-wgrid > li:nth-child(n + 4) {
+    grid-column: span 3;
+  }
+  .site-wcard {
+    display: block;
+  }
+  .site-wcard:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 0.5rem;
+  }
+  .site-wcard__art {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-rule);
+  }
+  .site-wcard__art .site-art svg {
+    transition: transform 1.2s var(--ease-site-out);
+  }
+  .site-wcard:is(:hover, :focus-visible) .site-art svg {
+    transform: scale(1.04);
+  }
+  .site-wcard__more {
+    flex: none;
+  }
+  .site-wcard__more > span {
+    display: inline-block;
+    transition: transform 0.4s var(--ease-site-out);
+  }
+  .site-wcard:is(:hover, :focus-visible) .site-wcard__more > span {
+    transform: translateX(3px);
+  }
+  .site-wcard__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-top: 1.1rem;
+  }
+  .site-wcard__title {
+    font-size: var(--text-step-1);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    transition: color 0.3s linear;
+  }
+  .site-wcard:is(:hover, :focus-visible) .site-wcard__title {
+    color: var(--color-signal);
+  }
+  .site-wgrid__more {
+    margin-top: 3.5rem;
+  }
+
+  /* At rest the drawing is complete; on hover it is drawn again from blank. */
+  .site-art[data-play="hover"] .site-art__frag {
+    opacity: 1;
+    transform: none;
+  }
+  .site-art[data-play="hover"] .site-art__lead {
+    stroke-dashoffset: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .site-wcard:is(:hover, :focus-visible) .site-art[data-play="hover"] {
+      animation: site-art-play 2.8s cubic-bezier(0.45, 0, 0.55, 1) both;
+    }
+    .site-wcard:is(:hover, :focus-visible)
+      .site-art[data-play="hover"]
+      .site-art__frag {
+      animation: site-art-in 0.6s var(--ease-site-out) calc(var(--i, 0) * 80ms)
+        both;
+    }
+    .site-wcard:is(:hover, :focus-visible)
+      .site-art[data-play="hover"]
+      .site-art__lead {
+      animation: site-art-draw 0.9s var(--ease-site-in-out)
+        calc(360ms + var(--i, 0) * 80ms) both;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .site-wgrid > li,
+    .site-wgrid > li:nth-child(n + 4) {
+      grid-column: span 3;
+    }
+  }
+  @media (max-width: 767px) {
+    .site-wgrid {
+      row-gap: 2.5rem;
+    }
+    .site-wgrid > li,
+    .site-wgrid > li:nth-child(n + 4) {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-wcard__art .site-art svg {
+      transition: none;
     }
   }
 }

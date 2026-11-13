@@ -6,7 +6,7 @@ import { FaqSection } from "@components/Home/FaqSection";
 import { Hero } from "@components/Home/Hero";
 import { MetricsSection } from "@components/Home/MetricsSection";
 import { ServicesSection } from "@components/Home/ServicesSection";
-import { WorkSection } from "@components/Home/WorkSection";
+import { WorkGrid } from "@components/Home/WorkGrid";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -60,7 +60,7 @@ export default async function HomePage() {
       )}
       <Hero />
       <MetricsSection />
-      <WorkSection />
+      <WorkGrid />
       <ServicesSection />
       <FaqSection />
       <BlogSection posts={posts} />

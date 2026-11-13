@@ -390,7 +390,6 @@ export function HeroVortex() {
   useEffect(() => {
     const host = hostRef.current;
     const stage = host?.closest<HTMLElement>(".site-hero");
-    const pin = host?.closest<HTMLElement>(".site-hero-pin");
     if (!host || !stage) return;
 
     const canvas = document.createElement("canvas");
@@ -600,29 +599,12 @@ export function HeroVortex() {
       }
     };
 
-    /** Scroll through the pinned hero: centre, zoom, twist, then dissolve. */
+    /** The field holds still at rest: eye right of centre on wide screens. */
     const updateCamera = () => {
       const base = restOf(width, height);
-      let p = 0;
-      if (pin && motion) {
-        const rect = pin.getBoundingClientRect();
-        const span = rect.height - window.innerHeight;
-        p = span > 0 ? Math.min(1, Math.max(0, -rect.top / span)) : 0;
-      }
-      const centreIn = smoothstep(0.02, 0.3, p);
-      const dive = Math.min(1, Math.max(0, (p - 0.02) / 0.92)) ** 1.3;
-      const open = Math.min(1, Math.max(0, (p - 0.35) / 0.59)) ** 1.6;
-      camera.x = base.x * (1 - centreIn);
-      camera.y = base.y * (1 - centreIn);
-      camera.zoom = base.zoom * (6 / base.zoom) ** dive;
-      camera.twist = -1.2 * dive;
-      const lightPx = (Math.hypot(width, height) / 2) * open;
-      camera.light = lightPx / (0.5 * Math.max(width, height) * camera.zoom);
-      const copy = Math.max(0, 1 - 1.5 * centreIn);
-      stage.style.setProperty("--site-hero-copy", String(copy));
-      // At zero the copy is invisible but still focusable and clickable, so the
-      // stylesheet hides it from pointer and assistive input as well.
-      stage.dataset.copyHidden = String(copy === 0);
+      camera.x = base.x;
+      camera.y = base.y;
+      camera.zoom = base.zoom;
     };
 
     const render = () => {
@@ -747,12 +729,8 @@ export function HeroVortex() {
           render();
         }
       }
-      // Off duty once the pinned hero has scrolled away entirely.
-      const visible = inView();
-      host.dataset.on = String(visible);
-      stage.dataset.copyHidden = String(
-        !visible || stage.dataset.copyHidden === "true"
-      );
+      // Off duty once the hero has scrolled away entirely.
+      host.dataset.on = String(inView());
     };
 
     // --- pointer ----------------------------------------------------------
@@ -872,14 +850,12 @@ export function HeroVortex() {
       if (!frame) render();
     });
     resizeObserver.observe(host);
-    // On the home page the host is fixed, so it is always on screen and the
-    // pin decides when the field is on duty. A page hero without a pin holds
-    // the field inside itself, so the hero's own visibility decides.
-    const duty = pin ?? stage;
+    // The field lives inside its hero, so the hero's visibility decides
+    // whether it is on duty.
     const intersection = new IntersectionObserver(() => wake());
-    intersection.observe(duty);
+    intersection.observe(stage);
     const inView = () => {
-      const rect = duty.getBoundingClientRect();
+      const rect = stage.getBoundingClientRect();
       return rect.bottom > 0 && rect.top < window.innerHeight;
     };
 
@@ -908,7 +884,6 @@ export function HeroVortex() {
       abort.abort();
       resizeObserver.disconnect();
       intersection.disconnect();
-      stage.style.removeProperty("--site-hero-copy");
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       if (canvas.parentNode === host) host.removeChild(canvas);
     };

@@ -1,6 +1,7 @@
 import {
   config,
   experience,
+  ProjectList,
   SITE_PROFILE_DATE_CREATED,
   SITE_PROFILE_DATE_MODIFIED,
 } from "@constants/constants";
@@ -165,6 +166,25 @@ export function generatePortfolioJsonLd() {
           "@id": personId,
         },
         mainEntity: { "@id": `${portfolioUrl}#Projects` },
+        hasPart: { "@id": `${portfolioUrl}#CaseStudies` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${portfolioUrl}#CaseStudies`,
+        name: "Case studies",
+        numberOfItems: ProjectList.length,
+        itemListElement: ProjectList.map((study, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "CreativeWork",
+            name: study.title,
+            description: study.description,
+            url: `${config.url}${study.visit}`,
+            image: `${config.url}${study.image}`,
+            keywords: study.tags.join(", "),
+          },
+        })),
       },
       {
         "@type": "ItemList",

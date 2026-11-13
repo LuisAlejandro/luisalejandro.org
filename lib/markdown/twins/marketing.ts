@@ -1,4 +1,8 @@
-import { canonicalHostnameUrl, experience } from "@constants/constants";
+import {
+  canonicalHostnameUrl,
+  experience,
+  ProjectList,
+} from "@constants/constants";
 import { getBlogArchive, getPublishedPostsForHomeTwin } from "@lib/api";
 import { expandTwinTokens } from "@lib/markdown/expandTwinTokens";
 import { formatTwin } from "@lib/markdown/formatTwin";
@@ -41,12 +45,17 @@ export async function buildHomeTwin(): Promise<string> {
 }
 
 export async function buildPortfolioTwin(): Promise<string> {
-  const body = portfolioProjects
+  const studies = ProjectList.map(
+    (study) =>
+      `### [${study.title}](${canonicalHostnameUrl}${study.visit})\n\n${study.description}\n\nTechnologies: ${study.tags.join(", ")}`
+  ).join("\n\n");
+  const archive = portfolioProjects
     .map(
       (project) =>
-        `## [${project.name}](${canonicalHostnameUrl}/portfolio/${project.slug}) — ${project.year}\n\n${project.shortDescription}\n\nTechnologies: ${project.tags.join(", ")}`
+        `### [${project.name}](${canonicalHostnameUrl}/portfolio/${project.slug}) — ${project.year}\n\n${project.shortDescription}\n\nTechnologies: ${project.tags.join(", ")}`
     )
     .join("\n\n");
+  const body = `## Case studies\n\n${studies}\n\n## Project archive\n\n${archive}`;
   return formatTwin(
     "Project Archive",
     `${canonicalHostnameUrl}/portfolio`,
