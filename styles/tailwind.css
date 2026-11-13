@@ -4137,11 +4137,11 @@ body:has(.site-shell) {
      cuts whatever runs past its edge. Only unpositioned wrappers are scaled,
      so every object keeps its place. */
   .site-wcard__art .site-art svg {
-    transform: scale(1.12);
+    transform: translate(var(--art-dx, 0), var(--art-dy, 0)) scale(1.12);
     transition: transform 1.2s var(--ease-site-out);
   }
   .site-wcard:is(:hover, :focus-visible) .site-art svg {
-    transform: scale(1.18);
+    transform: translate(var(--art-dx, 0), var(--art-dy, 0)) scale(1.18);
   }
   .site-wcard__art .site-art svg > g[transform] > g:not([transform]),
   .site-wcard__art .site-art svg > g:not([transform]) {

@@ -66,6 +66,7 @@ export function WorkArtwork({
   play?: "scroll" | "hover";
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const [drawn, setDrawn] = useState(false);
   const entry = ART[slug as Slug];
   const Art = entry?.Art;
@@ -92,11 +93,50 @@ export function WorkArtwork({
     return () => observer.disconnect();
   }, [Art, play]);
 
+  // In the grid the objects are enlarged and the headline figure is hidden,
+  // which leaves each drawing heavier on one side. Centre the drawing on the
+  // area-weighted centre of its visible objects, so the big pieces and the
+  // small ones balance around the middle of the cell.
+  useEffect(() => {
+    const host = ref.current;
+    const svg = svgRef.current;
+    if (play !== "hover" || !host || !svg) return;
+    let dx = 0;
+    let dy = 0;
+    const centre = () => {
+      const box = host.getBoundingClientRect();
+      let mass = 0;
+      let x = 0;
+      let y = 0;
+      for (const group of svg.querySelectorAll(":scope > g")) {
+        const rect = group.getBoundingClientRect();
+        const area = rect.width * rect.height;
+        if (!area) continue;
+        mass += area;
+        x += area * (rect.left + rect.width / 2);
+        y += area * (rect.top + rect.height / 2);
+      }
+      if (!mass) return;
+      dx += box.left + box.width / 2 - x / mass;
+      dy += box.top + box.height / 2 - y / mass;
+      host.style.setProperty("--art-dx", `${dx.toFixed(1)}px`);
+      host.style.setProperty("--art-dy", `${dy.toFixed(1)}px`);
+    };
+    const observer = new ResizeObserver(centre);
+    observer.observe(host);
+    return () => observer.disconnect();
+  }, [play]);
+
   if (!Art) return null;
 
   return (
     <div ref={ref} className="site-art" data-drawn={drawn} data-play={play}>
-      <svg viewBox={entry.view} role="presentation" focusable="false">
+      <svg
+        ref={svgRef}
+        viewBox={entry.view}
+        role="presentation"
+        focusable="false"
+      >
         <Art layer={layer} />
       </svg>
     </div>
