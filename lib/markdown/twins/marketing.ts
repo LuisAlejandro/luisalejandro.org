@@ -9,7 +9,7 @@ import { formatTwin } from "@lib/markdown/formatTwin";
 import { readSection } from "@lib/markdown/readSection";
 import markdownToHtml from "@lib/markdownToHtml";
 import { stripHtmlToPlainText } from "@lib/plainText";
-import { getPortfolioProject, portfolioProjects } from "@lib/portfolio";
+import { portfolioProjects } from "@lib/portfolio";
 
 import type { LlmsFullPost } from "@lib/llms/buildLlmsFull";
 
@@ -49,43 +49,23 @@ export async function buildPortfolioTwin(): Promise<string> {
     (study) =>
       `### [${study.title}](${canonicalHostnameUrl}${study.visit})\n\n${study.description}\n\nTechnologies: ${study.tags.join(", ")}`
   ).join("\n\n");
+  // Each project lives as a row on the portfolio, so its twin entry carries
+  // the whole project rather than a link to a page of its own.
   const archive = portfolioProjects
-    .map(
-      (project) =>
-        `### [${project.name}](${canonicalHostnameUrl}/portfolio/${project.slug}) — ${project.year}\n\n${project.shortDescription}\n\nTechnologies: ${project.tags.join(", ")}`
-    )
+    .map((project) => {
+      const sources = project.sources
+        .map(
+          (source) =>
+            `- [${source.name}${source.url.includes("web.archive.org") ? " (archived)" : ""}](${source.url})`
+        )
+        .join("\n");
+      return `### [${project.name}](${canonicalHostnameUrl}/portfolio#${project.slug}) — ${project.year}\n\n${project.shortDescription}\n\n${stripHtmlToPlainText(project.description)}\n\nTechnologies: ${project.tags.join(", ")}${sources ? `\n\n${sources}` : ""}`;
+    })
     .join("\n\n");
   const body = `## Case studies\n\n${studies}\n\n## Project archive\n\n${archive}`;
   return formatTwin(
     "Project Archive",
     `${canonicalHostnameUrl}/portfolio`,
-    body
-  );
-}
-
-export async function buildPortfolioProjectTwin(
-  slug: string
-): Promise<string | null> {
-  const project = getPortfolioProject(slug);
-  if (!project) return null;
-  const images = project.images.hero
-    .map(
-      (src, index) =>
-        `![${project.name} — screenshot ${index + 1}](${canonicalHostnameUrl}${src})`
-    )
-    .join("\n\n");
-  const sources = project.sources
-    .map(
-      (source) =>
-        `- [${source.name}${source.url.includes("web.archive.org") ? " (archived)" : ""}](${source.url})`
-    )
-    .join("\n");
-  // Existing descriptions contain trusted inline HTML; remove tags for the text twin.
-  const description = stripHtmlToPlainText(project.description);
-  const body = `${project.year} · ${project.tags.join(", ")}\n\n${project.shortDescription}\n\n${description}\n\n${images}${sources ? `\n\n## Sources\n\n${sources}` : ""}\n\n[All projects](${canonicalHostnameUrl}/portfolio)`;
-  return formatTwin(
-    project.name,
-    `${canonicalHostnameUrl}/portfolio/${project.slug}`,
     body
   );
 }

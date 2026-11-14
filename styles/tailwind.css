@@ -2736,37 +2736,6 @@ body:has(.site-shell) {
 
 /* Area C: project catalogue. No selectors escape the redesigned shell. */
 .site-shell {
-  .site-project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 5rem 2.5rem;
-    margin-top: 2rem;
-    list-style: none;
-    padding-left: 0;
-  }
-  .site-project-card {
-    min-width: 0;
-  }
-  .site-project-card:nth-child(even) {
-    margin-top: 5rem;
-  }
-  .site-project-card__link {
-    display: block;
-    color: var(--color-ink);
-    text-decoration: none;
-  }
-  .site-project-card__image {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: var(--color-paper-raised);
-    border: 1px solid var(--color-rule);
-  }
-  .site-project-card__image img {
-    object-fit: contain;
-    padding: clamp(1rem, 3vw, 3rem);
-    transition: transform 0.45s ease;
-  }
   .site-project-card__number {
     position: absolute;
     top: 1rem;
@@ -2774,48 +2743,6 @@ body:has(.site-shell) {
     z-index: 1;
     background: var(--color-paper);
     padding: 0.2rem 0.4rem;
-  }
-  .site-project-card__arrow {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: var(--color-ink);
-    color: var(--color-paper);
-    font-size: 1.4rem;
-    transition: background 0.2s ease;
-  }
-  .site-project-card__link:hover img {
-    transform: scale(1.025);
-  }
-  .site-project-card__link:hover .site-project-card__arrow {
-    background: var(--color-signal);
-  }
-  .site-project-card__link:focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 0.5rem;
-  }
-  .site-project-card__heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    gap: 1.5rem;
-    margin: 1.4rem 0 0.8rem;
-  }
-  .site-project-card__heading h3 {
-    max-width: 22ch;
-  }
-  .site-project-card__heading > span {
-    padding-top: 0.5rem;
-  }
-  .site-project-card__description {
-    max-width: 48ch;
-    color: var(--color-ink-muted);
-    line-height: 1.6;
   }
   .site-project-tags {
     display: flex;
@@ -2836,85 +2763,7 @@ body:has(.site-shell) {
     object-fit: contain;
     padding: clamp(0.75rem, 3vw, 3rem);
   }
-  .site-project-story {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: clamp(2rem, 7vw, 8rem);
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-  .site-project-story > div {
-    min-width: 0;
-    max-width: 48rem;
-  }
-  .site-project-story__meta {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 2rem;
-  }
-  .site-project-logo {
-    object-fit: contain;
-    object-position: left;
-  }
-  .site-project-story__meta dd {
-    font-size: 2rem;
-    margin-top: 0.5rem;
-  }
-  .site-project-prose {
-    margin-top: 2rem;
-  }
-  .site-project-sources {
-    margin-top: 3rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-rule-strong);
-  }
-  .site-project-sources ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 1rem;
-  }
-  .site-project-sources li {
-    border-bottom: 1px solid var(--color-rule);
-  }
-  .site-project-sources a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-  .site-project-screens {
-    padding-bottom: 2rem;
-  }
-  .site-project-screens > .site-section-head {
-    margin-bottom: 2rem;
-  }
-  @media (max-width: 767px) {
-    .site-project-grid {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 3rem;
-    }
-    .site-project-card:nth-child(even) {
-      margin-top: 0;
-    }
-    .site-project-story {
-      grid-template-columns: minmax(0, 1fr);
-      padding-top: 2rem;
-      padding-bottom: 3rem;
-    }
-    .site-project-story__meta {
-      display: none;
-    }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .site-project-card__image img,
-    .site-project-card__arrow {
-      transition: none;
-    }
-    .site-project-card__link:hover img {
-      transform: none;
-    }
   }
 }
 
@@ -4342,5 +4191,89 @@ body:has(.site-shell) {
   /* While a row closes, its plus is already a plus again. */
   .site-faq-list__item[open][data-closing] .site-faq-list__icon::after {
     transform: rotate(90deg);
+  }
+}
+
+/* Portfolio: the project archive. Blog-archive rows that open in place to
+   the whole project, with the FAQ's plus and its smooth height. */
+.site-shell {
+  /* Clears the fixed header when a row is opened from its anchor. */
+  .site-pentry {
+    scroll-margin-top: 5.5rem;
+  }
+  .site-pentry > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .site-pentry > summary::-webkit-details-marker {
+    display: none;
+  }
+  .site-pentry > summary:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 4px;
+  }
+  /* The plus sits where the blog's arrow does, and turns to a minus. */
+  .site-pentry .site-entry__arrow {
+    align-self: center;
+  }
+  .site-pentry[open]:not([data-closing]) .site-faq-list__icon::after {
+    transform: rotate(0deg);
+  }
+  /* An open row keeps its title in place and lets the whole teaser show. */
+  .site-pentry[open] .site-entry__title {
+    transform: none;
+  }
+  .site-pentry[open] .site-entry__desc {
+    -webkit-line-clamp: unset;
+  }
+
+  .site-pentry__body {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--spacing-col-gap);
+    row-gap: 2rem;
+    padding-bottom: 3rem;
+  }
+  .site-pentry__text {
+    grid-column: 4 / span 5;
+    min-width: 0;
+  }
+  .site-pentry__text .site-prose {
+    color: var(--color-ink-muted);
+  }
+  .site-pentry__text .site-project-tags {
+    margin-top: 1.5rem;
+  }
+  .site-pentry__sources {
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-rule);
+  }
+  .site-pentry__sources li {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .site-pentry__sources a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+  }
+  .site-pentry__shots {
+    grid-column: 9 / span 4;
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .site-pentry__shots .site-project-shot {
+    margin: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .site-pentry__text,
+    .site-pentry__shots {
+      grid-column: 1 / -1;
+    }
   }
 }

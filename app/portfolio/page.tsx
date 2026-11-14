@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-
 import { WorkSection } from "@components/Home/WorkSection";
+import { ProjectArchive } from "@components/common/Site/ProjectArchive";
 import { PageEnd } from "@components/common/Site/PageEnd";
 import { PageHero } from "@components/common/Site/PageHero";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
@@ -12,7 +10,7 @@ import { ProjectList } from "@constants/constants";
 import { portfolioProjects } from "@lib/portfolio";
 import { generatePortfolioJsonLd } from "@lib/structuredData";
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
   const firstYear = portfolioProjects.at(-1)?.year;
   const lastYear = portfolioProjects[0]?.year;
 
@@ -64,59 +62,7 @@ export default function PortfolioPage() {
           label="Project index"
           note={`${String(portfolioProjects.length).padStart(2, "0")} entries`}
         />
-        <ol className="site-project-grid" role="list">
-          {portfolioProjects.map((project, index) => (
-            <li
-              key={project.slug}
-              className="site-project-card"
-              data-reveal="up"
-            >
-              <Link
-                href={`/portfolio/${project.slug}`}
-                className="site-project-card__link"
-                aria-labelledby={`project-${project.slug}`}
-              >
-                <div className="site-project-card__image">
-                  <span
-                    className="site-project-card__number site-note"
-                    aria-hidden="true"
-                  >
-                    /{String(index + 1).padStart(2, "0")}
-                  </span>
-                  <Image
-                    src={project.images.thumbnail}
-                    alt=""
-                    fill
-                    sizes="(max-width: 767px) 90vw, 44vw"
-                  />
-                  <span className="site-project-card__arrow" aria-hidden="true">
-                    →
-                  </span>
-                </div>
-                <div className="site-project-card__heading">
-                  <h3 id={`project-${project.slug}`} className="site-h3">
-                    {project.name}
-                  </h3>
-                  <span className="site-note">{project.year}</span>
-                </div>
-              </Link>
-              <p className="site-project-card__description">
-                {project.shortDescription}
-              </p>
-              <ul
-                className="site-project-tags"
-                aria-label="Technologies"
-                role="list"
-              >
-                {project.tags.map((tag) => (
-                  <li key={tag} className="site-pill">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+        <ProjectArchive projects={portfolioProjects} />
       </section>
       <PageEnd
         num="03"

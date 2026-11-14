@@ -6,7 +6,6 @@ import {
 } from "@constants/constants";
 import { getAllPostsForHome, getPopulatedCategories } from "@lib/api";
 import { logError } from "@lib/logger";
-import { portfolioProjects } from "@lib/portfolio";
 
 /** Every case study with a page in app/case-studies/. Kept in sync by hand. */
 const CASE_STUDIES = [
@@ -96,7 +95,6 @@ export async function GET() {
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
   </url>
-  ${portfolioProjects.map((project) => `<url><loc>${absoluteUrl(`/portfolio/${project.slug}`)}</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>`).join("\n  ")}
   <url>
       <loc>${absoluteUrl("/about")}</loc>
       ${lastmodTag(lastmod(SITE_PROFILE_DATE_MODIFIED))}

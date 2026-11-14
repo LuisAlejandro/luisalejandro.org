@@ -11,6 +11,7 @@ export function FaqList({ items }: FaqListProps) {
           key={item.question}
           className="site-faq-list__item"
           data-reveal="up"
+          data-smooth
         >
           <summary>
             <span className="site-h3">{item.question}</span>

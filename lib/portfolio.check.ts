@@ -3,24 +3,18 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 import { GalleryList, ProjectList } from "@constants/constants";
-import { getPortfolioProject, portfolioProjects } from "@lib/portfolio";
+import { portfolioProjects } from "@lib/portfolio";
 import { generatePortfolioJsonLd } from "@lib/structuredData";
 
 assert.equal(portfolioProjects.length, 10);
 assert.equal(new Set(portfolioProjects.map((p) => p.slug)).size, 10);
-assert.equal(getPortfolioProject("missing-project"), undefined);
-assert.equal(getPortfolioProject("constructor"), undefined);
 assert.deepEqual(
   portfolioProjects.map((p) => p.year),
   [...GalleryList.map((p) => p.year)].sort((a, b) => b - a)
 );
 for (const project of GalleryList) {
   assert.match(project.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-  assert.equal(
-    getPortfolioProject(project.slug),
-    project,
-    "preserve original content"
-  );
+  assert.ok(portfolioProjects.includes(project), "preserve original content");
   for (const src of [
     project.images.thumbnail,
     project.images.logo,
@@ -31,7 +25,8 @@ for (const project of GalleryList) {
       `Missing asset: ${src}`
     );
   }
-  assert.ok(!ProjectList.some((p) => p.visit === `/portfolio/${project.slug}`));
+  // Projects are rows on /portfolio, never pages: nothing links to one.
+  assert.ok(!ProjectList.some((p) => p.visit.startsWith("/portfolio/")));
 }
 const graph = generatePortfolioJsonLd()["@graph"];
 const byId = (suffix: string) =>

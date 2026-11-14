@@ -303,6 +303,22 @@ const config: NextConfig = {
       },
     ];
   },
+  // Projects no longer have pages of their own: each is a row on the
+  // portfolio that opens in place. Old links land on that row.
+  async redirects() {
+    return [
+      {
+        source: "/portfolio/:slug.md",
+        destination: "/portfolio.md",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/:slug",
+        destination: "/portfolio#:slug",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return {
       afterFiles: [

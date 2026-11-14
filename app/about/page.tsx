@@ -117,7 +117,7 @@ const changelog = [
     body: "Worked with Guayoyo's security team: a CVE, CPE and CWE indexer behind a Flask API on Azure Kubernetes, one source of truth for vulnerability data.",
     tags: ["Python", "Flask", "MongoDB", "Azure"],
     link: {
-      href: "/portfolio/howlermonkey-cve-indexer",
+      href: "/portfolio#howlermonkey-cve-indexer",
       label: "See the project",
     },
   },
@@ -127,7 +127,7 @@ const changelog = [
     title: "Leadbox, Canada",
     body: "Full-stack at an automotive dealership platform: a build queue that let any developer deploy more than a hundred sites, and a video generator that produced campaigns in minutes.",
     tags: ["Python", "Bash", "systemd", "Angular"],
-    link: { href: "/portfolio/leadbox-build-queue", label: "See the project" },
+    link: { href: "/portfolio#leadbox-build-queue", label: "See the project" },
   },
   {
     version: "v3.0",

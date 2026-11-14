@@ -59,8 +59,8 @@ function magnetic() {
 }
 
 /**
- * FAQ rows open and close by animating their height, the answer fading in
- * from 10px above. The native <details> element stays in charge of state,
+ * Disclosure rows (FAQs, the project archive) open and close by animating
+ * their height, the content fading in from 10px above. The native <details> element stays in charge of state,
  * so keyboard and assistive technology behave exactly as before.
  */
 function smoothDetails() {
@@ -72,7 +72,7 @@ function smoothDetails() {
     if (
       !summary ||
       !(details instanceof HTMLDetailsElement) ||
-      !details.classList.contains("site-faq-list__item")
+      !details.hasAttribute("data-smooth")
     )
       return;
     const answer = summary.nextElementSibling as HTMLElement | null;
@@ -146,12 +146,36 @@ function smoothDetails() {
 }
 
 /**
+ * A link to a row's anchor (`/portfolio#leadbox-build-queue`, which is where
+ * the old project pages now redirect) opens that row, then brings it into
+ * view. Runs on load and whenever the hash changes.
+ */
+function openFromHash() {
+  const open = () => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!(target instanceof HTMLDetailsElement)) return;
+    target.open = true;
+    requestAnimationFrame(() =>
+      target.scrollIntoView({ block: "start", behavior: "auto" })
+    );
+    target.querySelector("summary")?.focus({ preventScroll: true });
+  };
+  open();
+  window.addEventListener("hashchange", open);
+  return () => window.removeEventListener("hashchange", open);
+}
+
+/**
  * Pointer and disclosure interactions taken from the reference: magnetic
  * buttons for a mouse, and FAQ rows that open smoothly. Both are skipped
  * entirely under reduced motion; the FAQ keeps its native instant toggle.
  */
 export function SiteInteractions() {
   const pathname = usePathname();
+
+  useEffect(() => openFromHash(), [pathname]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

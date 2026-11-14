@@ -7,8 +7,5 @@ export const portfolioProjects = [...GalleryList].sort(
   (a, b) => b.year - a.year
 );
 
-export const getPortfolioProject = (slug: string) =>
-  portfolioProjects.find((project) => project.slug === slug);
-
 export const portfolioDescription =
   "A project archive of web products, developer tools, automation, and open-source work by Luis Alejandro. Explore the original screenshots, technologies, and project stories.";

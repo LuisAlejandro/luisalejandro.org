@@ -10,7 +10,6 @@ import {
   buildHomeTwin,
   buildPortfolioTwin,
   buildPrivacyTwin,
-  buildPortfolioProjectTwin,
 } from "@lib/markdown/twins/marketing";
 
 export async function resolveTwinMarkdown(
@@ -32,10 +31,6 @@ export async function resolveTwinMarkdown(
 
   if (pathSegments.length === 1 && first === "portfolio") {
     return buildPortfolioTwin();
-  }
-
-  if (pathSegments.length === 2 && first === "portfolio" && second) {
-    return buildPortfolioProjectTwin(second);
   }
 
   if (pathSegments.length === 1 && first === "about") {

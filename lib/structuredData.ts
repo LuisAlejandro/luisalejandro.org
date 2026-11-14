@@ -199,7 +199,7 @@ export function generatePortfolioJsonLd() {
             "@type": "CreativeWork",
             name: project.name,
             description: project.shortDescription,
-            url: `${config.url}/portfolio/${project.slug}`,
+            url: `${config.url}/portfolio#${project.slug}`,
             image: `${config.url}${project.images.thumbnail}`,
             keywords: project.tags.join(", "),
           },
