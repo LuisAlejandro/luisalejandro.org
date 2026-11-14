@@ -1565,17 +1565,25 @@ body:has(.site-shell) {
   }
 
   /* Topic pills: one line that scrolls sideways rather than wrapping. */
-  .site-pills {
-    margin-inline: calc(-1 * var(--spacing-gutter));
-    padding: 0.25rem var(--spacing-gutter) 0.5rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
+  /* Topic pills wrap onto as many lines as they need, inside the page's
+     margins; a sideways scroll hid most topics past the right edge. */
   .site-pills ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* A topic name longer than the screen wraps inside its pill. */
+  .site-pills .site-pill {
+    max-width: 100%;
+    height: auto;
+    min-height: 2.625rem;
+    padding-block: 0.55rem;
+    white-space: normal;
+    line-height: 1.2;
   }
 
   /* One pill everywhere: topic filters, form chips, tags and tool lists.
