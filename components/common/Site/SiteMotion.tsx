@@ -25,15 +25,20 @@ function splitLines(heading: HTMLElement) {
   }
   const source = heading.dataset.revealText;
 
+  // Words are measured inside one block-level wrapper, so a heading that is
+  // itself a flex or grid container cannot turn each word into its own item.
   heading.textContent = "";
+  const measure = document.createElement("span");
+  measure.style.display = "block";
+  heading.append(measure);
   const spans: { span: HTMLSpanElement; word: string }[] = [];
   source.split("\n").forEach((segment, s) => {
-    if (s > 0) heading.append(document.createElement("br"));
+    if (s > 0) measure.append(document.createElement("br"));
     const words = segment.trim().split(/\s+/).filter(Boolean);
     words.forEach((word, i) => {
       const span = document.createElement("span");
       span.textContent = i < words.length - 1 ? `${word} ` : word;
-      heading.append(span);
+      measure.append(span);
       spans.push({ span, word });
     });
   });
