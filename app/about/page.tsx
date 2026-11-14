@@ -5,6 +5,7 @@ import { FaqList } from "@components/common/Site/FaqList";
 import { PageEnd } from "@components/common/Site/PageEnd";
 import { PageHero } from "@components/common/Site/PageHero";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { SiteMark } from "@components/common/Site/SiteMark";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -290,12 +291,10 @@ export default function AboutPage() {
               <span className="site-note site-accent site-about-portrait__dim">
                 ↤ 4 : 5 ↦
               </span>
-              <span aria-hidden="true" className="site-about-portrait__mono">
-                LA
-              </span>
+              <SiteMark className="site-about-portrait__mark" />
             </div>
             <figcaption className="site-note">
-              fig. 01 · monogram · Luis Alejandro
+              fig. 01 · the mark · Luis Alejandro
             </figcaption>
           </figure>
 

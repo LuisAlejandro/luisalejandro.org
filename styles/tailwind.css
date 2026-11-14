@@ -3533,13 +3533,17 @@ body:has(.site-shell) {
     right: 0;
     text-align: center;
   }
-  .site-about-portrait__mono {
-    font-size: var(--text-step-4);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--color-signal);
+  /* The face mark, as large as the frame allows, plotted when the portrait
+     rises into view (the parent reveal holds it until then). */
+  .site-about-portrait__mark {
+    width: 62%;
+    height: auto;
+    color: var(--color-ink);
+  }
+  .site-about-portrait[data-reveal-state="hidden"]
+    .site-about-portrait__mark
+    path {
+    animation-play-state: paused;
   }
   .site-about-portrait figcaption {
     margin-top: 0.75rem;
