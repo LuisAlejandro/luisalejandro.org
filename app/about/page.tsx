@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FaqList } from "@components/common/Site/FaqList";
 import { PageEnd } from "@components/common/Site/PageEnd";
 import { PageHero } from "@components/common/Site/PageHero";
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
@@ -241,13 +240,6 @@ const jsonLd = [
   generateHomepageFaqJsonLd(faq, "/about"),
 ];
 
-const lines = (text: string[]) =>
-  text.map((line) => (
-    <span key={line} className="site-line-mask">
-      <span>{line}</span>
-    </span>
-  ));
-
 export default function AboutPage() {
   return (
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
@@ -267,7 +259,7 @@ export default function AboutPage() {
         lead={lead}
         typed={typed}
       >
-        <dl className="site-spec">
+        <dl className="site-spec" data-bp="dl.spec">
           {facts.map((fact) => (
             <div key={fact.label}>
               <dt className="site-note">{fact.label}</dt>
@@ -292,7 +284,7 @@ export default function AboutPage() {
       <section className="site-section site-wrap">
         <SectionHeader num="01" label="Long story short" note="Maracay, VE" />
         <div className="site-grid site-about-story">
-          <figure className="site-about-portrait">
+          <figure className="site-about-portrait" data-reveal="up">
             <div className="site-about-portrait__frame">
               <span className="site-note site-accent site-about-portrait__dim">
                 ↤ 4 : 5 ↦
@@ -307,30 +299,25 @@ export default function AboutPage() {
           </figure>
 
           <div className="site-about-story__text">
-            <Reveal>
-              <p className="site-h3 site-about-story__lead">
-                {lines([
-                  "At 22 I shook hands with my country's president.",
-                  "Two years later I was unemployed,",
-                  "with a wife and a daughter.",
-                ])}
-              </p>
-            </Reveal>
+            <p className="site-h3 site-about-story__lead" data-reveal="lines">
+              At 22 I shook hands with my country&apos;s president. Two years
+              later I was unemployed, with a wife and a daughter.
+            </p>
             <div className="site-about-story__body">
               {story.map((beat) => (
-                <p key={beat.note}>
+                <p key={beat.note} data-reveal="up">
                   <span className="site-note site-accent site-about-story__note">
                     {beat.note}
                   </span>
                   {beat.body}
                 </p>
               ))}
-              <p>
+              <p data-reveal="up">
                 One rule above everything: moral leadership comes before
                 technical leadership. Honesty, transparency, and saying so when
                 I&apos;m wrong.
               </p>
-              <p className="site-about-story__quote">
+              <p className="site-about-story__quote" data-reveal="up">
                 <em>
                   Working for a Linux distribution was my dream job, and I can
                   still say it was the happiest I&apos;ve been with a job.
@@ -348,9 +335,14 @@ export default function AboutPage() {
           label="Changelog"
           note="git log --reverse --oneline"
         />
+        <div className="site-process-line" data-draw />
         <ol className="site-about-log">
           {changelog.map((entry) => (
-            <li key={entry.version} className="site-about-log__entry site-grid">
+            <li
+              key={entry.version}
+              className="site-about-log__entry site-grid"
+              data-reveal="up"
+            >
               <span className="site-note site-about-log__v">
                 {entry.version}
                 {entry.head && <span className="site-accent"> (HEAD)</span>}
@@ -406,7 +398,7 @@ export default function AboutPage() {
           </div>
         ))}
         <div className="site-grid site-about-principles">
-          <p className="site-lead-type">
+          <p className="site-lead-type" data-reveal="up">
             A strong pipeline catches bugs before people do and gives the whole
             team its time back. On a new project I&apos;m the one checking that
             containers are in place and the build is as fast as the resources
@@ -425,7 +417,11 @@ export default function AboutPage() {
         />
         <dl className="site-about-tools">
           {toolbox.map((row) => (
-            <div key={row.group} className="site-about-tools__row site-grid">
+            <div
+              key={row.group}
+              className="site-about-tools__row site-grid"
+              data-reveal="up"
+            >
               <dt className="site-note text-ink">{row.group}</dt>
               <dd>
                 <ul className="site-about-tools__stack" role="list">
@@ -439,7 +435,7 @@ export default function AboutPage() {
             </div>
           ))}
         </dl>
-        <p className="site-note site-about-tools__foot">
+        <p className="site-note site-about-tools__foot" data-reveal="up">
           Industries so far: government · cybersecurity · automotive ·
           healthtech · travel &amp; accessibility · e-commerce · developer
           tooling
@@ -459,7 +455,7 @@ export default function AboutPage() {
         />
         <ul className="site-about-off site-grid" role="list">
           {offTheClock.map((item, index) => (
-            <li key={item.href}>
+            <li key={item.href} data-reveal="up">
               <Link href={item.href} className="site-about-off__link">
                 <span className="site-note site-accent">
                   {String(index + 1).padStart(2, "0")}

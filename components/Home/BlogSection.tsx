@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { sectionTitles } from "@constants/homepageContent";
 
@@ -42,50 +41,48 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
       {displayPosts.length === 0 ? (
         <p className="site-note">No published posts yet.</p>
       ) : (
-        <Reveal>
-          <ul className="site-posts">
-            {displayPosts.map((post) => {
-              let formattedDate = "";
-              try {
-                if (post.created_at) {
-                  formattedDate = format(
-                    parseISO(post.created_at),
-                    "dd MMM yyyy"
-                  ).toUpperCase();
-                }
-              } catch {
-                formattedDate = "";
+        <ul className="site-posts">
+          {displayPosts.map((post) => {
+            let formattedDate = "";
+            try {
+              if (post.created_at) {
+                formattedDate = format(
+                  parseISO(post.created_at),
+                  "dd MMM yyyy"
+                ).toUpperCase();
               }
+            } catch {
+              formattedDate = "";
+            }
 
-              return (
-                <li key={post.slug}>
-                  <Link href={`/blog/posts/${post.slug}`} className="site-post">
-                    {formattedDate ? (
-                      <time
-                        dateTime={post.created_at}
-                        className="site-note site-post__date"
-                      >
-                        {formattedDate}
-                      </time>
-                    ) : (
-                      <span className="site-post__date" />
-                    )}
+            return (
+              <li key={post.slug} data-reveal="up">
+                <Link href={`/blog/posts/${post.slug}`} className="site-post">
+                  {formattedDate ? (
+                    <time
+                      dateTime={post.created_at}
+                      className="site-note site-post__date"
+                    >
+                      {formattedDate}
+                    </time>
+                  ) : (
+                    <span className="site-post__date" />
+                  )}
 
-                    <h3 lang="es" className="site-post__title">
-                      {post.title}
-                    </h3>
+                  <h3 lang="es" className="site-post__title">
+                    {post.title}
+                  </h3>
 
-                    {post.metadata?.categories?.[0]?.title && (
-                      <span className="site-note site-post__pillar">
-                        {post.metadata.categories[0].title}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
+                  {post.metadata?.categories?.[0]?.title && (
+                    <span className="site-note site-post__pillar">
+                      {post.metadata.categories[0].title}
+                    </span>
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </section>
   );

@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { WorkArtwork } from "@components/Home/WorkArtwork";
@@ -32,15 +31,16 @@ export function WorkGrid() {
         id="work"
       />
 
-      <Reveal>
-        <p className="site-lead-type text-ink mb-10 max-w-[46ch]">
-          {workIntro}
-        </p>
-      </Reveal>
+      <p
+        className="site-lead-type text-ink mb-10 max-w-[46ch]"
+        data-reveal="up"
+      >
+        {workIntro}
+      </p>
 
       <ol className="site-wgrid" role="list">
         {ProjectList.map((project, index) => (
-          <li key={project.visit}>
+          <li key={project.visit} data-reveal="up">
             <Link href={project.visit} className="site-wcard">
               <div className="site-wcard__art">
                 <span

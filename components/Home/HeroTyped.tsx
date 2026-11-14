@@ -200,8 +200,10 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
         words.slice(0, -1).reduce((sum, w, i) => sum + gapAfter(w, i), 0) +
         WORD_MS;
       const fadeAt = start + TYPE_AT + typedFor - 600;
+      // Everything that supports the title rises once the line is typed: the
+      // notes, the intro, the spec strip, the actions and the topic pills.
       const fades = hero.querySelectorAll(
-        ".site-hero__notes > p, .site-hero__intro, .site-hero__ctas"
+        ".site-hero__notes > p, .site-hero__intro, .site-page-intro, .site-spec, .site-hero__ctas, .site-pills"
       );
       fades.forEach((f, i) =>
         play(

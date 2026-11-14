@@ -1,4 +1,4 @@
-import { Reveal } from "@components/common/Site/Reveal";
+import { Fragment } from "react";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import {
@@ -21,28 +21,27 @@ export function CtaSection() {
         id="next"
       />
 
-      <Reveal>
-        <h2 className="site-display site-cta__title text-ink">
-          {ctaContent.lines.map((line) => (
-            <span key={line} className="site-line-mask">
-              <span>{line}</span>
-            </span>
-          ))}
-        </h2>
+      <h2 className="site-display site-cta__title text-ink" data-reveal="lines">
+        {ctaContent.lines.map((line, i) => (
+          <Fragment key={line}>
+            {i > 0 && <br />}
+            {line}
+          </Fragment>
+        ))}
+      </h2>
 
-        <div className="site-cta__actions">
-          <SiteButton
-            href={contactAction.href}
-            tracking={contactAction.pixelEvent}
-            arrow
-          >
-            {ctaContent.primary.label}
-          </SiteButton>
-          <SiteButton href={ctaContent.secondary.href} variant="ghost">
-            {ctaContent.secondary.label}
-          </SiteButton>
-        </div>
-      </Reveal>
+      <div className="site-cta__actions" data-reveal="up">
+        <SiteButton
+          href={contactAction.href}
+          tracking={contactAction.pixelEvent}
+          arrow
+        >
+          {ctaContent.primary.label}
+        </SiteButton>
+        <SiteButton href={ctaContent.secondary.href} variant="ghost">
+          {ctaContent.secondary.label}
+        </SiteButton>
+      </div>
     </section>
   );
 }

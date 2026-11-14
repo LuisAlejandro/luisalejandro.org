@@ -1,4 +1,5 @@
-import { Reveal } from "@components/common/Site/Reveal";
+import { Fragment } from "react";
+
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 
@@ -28,16 +29,15 @@ export function PageEnd({
   return (
     <section className="site-section site-wrap site-page-end">
       <SectionHeader num={num} label="Next" note={note} />
-      <Reveal>
-        <p className="site-display site-page-end__claim">
-          {lines.map((line) => (
-            <span key={line} className="site-line-mask">
-              <span>{line}</span>
-            </span>
-          ))}
-        </p>
-      </Reveal>
-      <div className="site-hero__ctas site-page-end__actions">
+      <p className="site-display site-page-end__claim" data-reveal="lines">
+        {lines.map((line, i) => (
+          <Fragment key={line}>
+            {i > 0 && <br />}
+            {line}
+          </Fragment>
+        ))}
+      </p>
+      <div className="site-hero__ctas site-page-end__actions" data-reveal="up">
         <SiteButton href={primary.href} arrow>
           {primary.label}
         </SiteButton>

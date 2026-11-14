@@ -11,7 +11,7 @@ export function TopicCards({ topics }: { topics: BlogTopic[] }) {
   return (
     <ul className="site-topics">
       {topics.map((topic, index) => (
-        <li key={topic.slug} className="site-topic">
+        <li key={topic.slug} className="site-topic" data-reveal="up">
           <span className="site-note">
             {String(index + 1).padStart(2, "0")}
           </span>

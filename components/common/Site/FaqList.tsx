@@ -7,7 +7,11 @@ export function FaqList({ items }: FaqListProps) {
   return (
     <div className="site-faq-list">
       {items.map((item) => (
-        <details key={item.question} className="site-faq-list__item">
+        <details
+          key={item.question}
+          className="site-faq-list__item"
+          data-reveal="up"
+        >
           <summary>
             <span className="site-h3">{item.question}</span>
             <span aria-hidden="true" className="site-faq-list__icon" />

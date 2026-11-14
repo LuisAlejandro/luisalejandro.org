@@ -1472,10 +1472,6 @@ body:has(.site-shell) {
     transition: transform 1.2s var(--ease-site-in-out);
   }
 
-  .site-reveal[data-state="hidden"] .site-process-line {
-    transform: scaleX(0);
-  }
-
   .site-steps {
     row-gap: 2.5rem;
   }
@@ -2392,11 +2388,6 @@ body:has(.site-shell) {
   .site-line-mask > span {
     display: block;
     transform: translateY(0);
-    transition: transform 1.2s var(--ease-site-in-out);
-  }
-
-  .site-reveal[data-state="hidden"] .site-line-mask > span {
-    transform: translateY(110%);
   }
 
   /* --- 06: closing call to action -------------------------------------- */
@@ -4241,5 +4232,83 @@ body:has(.site-shell) {
     .site-wcard__art .site-art svg {
       transition: none;
     }
+  }
+}
+
+/* Entrance motion (after the reference's motion script). Nothing here hides
+   anything until SiteMotion marks it, after hydration, and never under
+   reduced motion, so the server HTML is always complete. */
+@keyframes site-draw-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes site-dim-note {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.15;
+  }
+}
+
+.site-shell {
+  /* M1 — rise and fade: 48px, 1.3s power3.out, staggered by SiteMotion. */
+  [data-reveal="up"][data-reveal-state] {
+    transition:
+      opacity 1.3s cubic-bezier(0.33, 1, 0.68, 1) var(--reveal-delay, 0ms),
+      transform 1.3s cubic-bezier(0.33, 1, 0.68, 1) var(--reveal-delay, 0ms),
+      visibility 0s linear var(--reveal-delay, 0ms);
+  }
+  [data-reveal="up"][data-reveal-state="hidden"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(48px);
+    transition: none;
+  }
+
+  /* M4 — each rendered line rises out of its mask, 70ms apart, 1.1s
+     expo.out. The masks are built by SiteMotion from the real line breaks. */
+  [data-reveal="lines"] .site-line-mask {
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+  [data-reveal="lines"][data-reveal-state] .site-line-mask > span {
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1)
+      calc(var(--line, 0) * 70ms);
+  }
+  [data-reveal="lines"][data-reveal-state="hidden"] .site-line-mask > span {
+    transform: translateY(110%);
+    transition: none;
+  }
+
+  /* M5 — drawn lines grow with scroll (and shrink back), from 90% to 45% of
+     the viewport. Without scroll timelines the line is simply drawn. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-draw] {
+        transform-origin: left center;
+        animation: site-draw-in linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 55%;
+        transition: none;
+      }
+
+      /* M6 — principles: the side notes fade back as their word fills. */
+      .site-about-wf__dim {
+        animation: site-dim-note linear both;
+        animation-timeline: view();
+        animation-range: cover 30% cover 45%;
+      }
+    }
+  }
+
+  /* The changelog's drawn line sits directly on top of the list's rule. */
+  .site-about-log {
+    border-top: 0;
   }
 }

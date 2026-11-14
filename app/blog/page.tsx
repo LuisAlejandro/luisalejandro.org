@@ -5,7 +5,6 @@ import { PaletteSearchButton } from "@components/Blog/PaletteSearchButton";
 import { TopicCards } from "@components/Blog/TopicCards";
 import { coverVariant, YearArchive } from "@components/Blog/YearArchive";
 import { PageHero } from "@components/common/Site/PageHero";
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
@@ -51,7 +50,7 @@ export default async function BlogPage() {
         typed="Software engineering, applied AI, and production systems."
         intro="Notes on full-stack architecture, AI engineering, and dependable systems from more than a decade of remote work: TypeScript, Python, Go, and agent workflows."
       >
-        <dl className="site-spec">
+        <dl className="site-spec" data-bp="dl.spec">
           <div>
             <dt className="site-note">Entries</dt>
             <dd>{String(specs.entries).padStart(2, "0")}</dd>
@@ -108,7 +107,11 @@ export default async function BlogPage() {
             label="Latest entry"
             note={entryNumber(latest.number)}
           />
-          <Link href={`/blog/posts/${latest.slug}`} className="site-feat">
+          <Link
+            href={`/blog/posts/${latest.slug}`}
+            className="site-feat"
+            data-reveal="up"
+          >
             {latest.cover && (
               <figure className="site-feat__cover">
                 <img
@@ -179,17 +182,12 @@ export default async function BlogPage() {
       <section className="site-section site-wrap">
         <SectionHeader num="03" label="Subscribe" note="RSS · LinkedIn" />
         <div className="site-subscribe">
-          <Reveal>
-            <h2 className="site-h2">
-              <span className="site-line-mask">
-                <span>No schedule.</span>
-              </span>
-              <span className="site-line-mask">
-                <span>No newsletter spam.</span>
-              </span>
-            </h2>
-          </Reveal>
-          <div className="site-subscribe__body">
+          <h2 className="site-h2" data-reveal="lines">
+            No schedule.
+            <br />
+            No newsletter spam.
+          </h2>
+          <div className="site-subscribe__body" data-reveal="up">
             <p className="site-lead-type">
               New entries land in the RSS feed the day they publish. Want a
               topic covered, or have a project behind the question? Write to me.

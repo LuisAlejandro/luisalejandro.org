@@ -4,7 +4,6 @@ import { ContactForm } from "@components/common/Site/ContactForm";
 import { CopyEmail, LocalTime } from "@components/common/Site/ContactLive";
 import { PageHero } from "@components/common/Site/PageHero";
 import { FaqList } from "@components/common/Site/FaqList";
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
@@ -150,7 +149,7 @@ export default function ContactPage() {
         lead={lead}
         typed={typed}
       >
-        <dl className="site-spec">
+        <dl className="site-spec" data-bp="dl.spec">
           <div>
             <dt className="site-note">Email</dt>
             <dd>
@@ -201,19 +200,9 @@ export default function ContactPage() {
           label="The brief"
           note="≈ 2 min · 6 fields"
         />
-        <Reveal>
-          <h2 className="site-h2 site-contact-claim">
-            {[
-              "Tell me what you're",
-              "building. I'll tell",
-              "you what it takes.",
-            ].map((line) => (
-              <span key={line} className="site-line-mask">
-                <span>{line}</span>
-              </span>
-            ))}
-          </h2>
-        </Reveal>
+        <h2 className="site-h2 site-contact-claim" data-reveal="lines">
+          Tell me what you&apos;re building. I&apos;ll tell you what it takes.
+        </h2>
         <ContactForm />
       </section>
 
@@ -226,23 +215,23 @@ export default function ContactPage() {
         />
         <div className="site-grid site-contact-call">
           <div className="site-contact-call__intro">
-            <Reveal>
-              <h2 className="site-h1">
-                {["Thirty", "minutes.", "No slides."].map((line) => (
-                  <span key={line} className="site-line-mask">
-                    <span>{line}</span>
-                  </span>
-                ))}
-              </h2>
-            </Reveal>
-            <p className="site-lead-type site-contact-call__lead">
+            <h2
+              className="site-h1 site-contact-call__title"
+              data-reveal="lines"
+            >
+              Thirty minutes. No slides.
+            </h2>
+            <p
+              className="site-lead-type site-contact-call__lead"
+              data-reveal="up"
+            >
               Bring the brief, or just the problem. By the end of the call
               you&apos;ll know whether I&apos;m the right person for it, and
               when I could start.
             </p>
           </div>
 
-          <div className="site-contact-ticket">
+          <div className="site-contact-ticket" data-reveal="up">
             <div className="site-contact-ticket__head site-note">
               <span>Call · 30 min</span>
               <span>Cal.com · video</span>
@@ -274,22 +263,20 @@ export default function ContactPage() {
           label="What happens next"
           note={`${steps.length} steps`}
         />
-        <Reveal>
-          <div className="site-process-line" />
-          <ol className="site-steps site-grid site-contact-steps">
-            {steps.map((step, index) => (
-              <li key={step.title} className="site-step">
-                <span aria-hidden="true" className="site-step__dot" />
-                <span className="site-note site-contact-steps__meta">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <span className="site-accent">{step.when}</span>
-                </span>
-                <h3 className="site-step__title">{step.title}</h3>
-                <p className="site-step__body">{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </Reveal>
+        <div className="site-process-line" data-draw />
+        <ol className="site-steps site-grid site-contact-steps">
+          {steps.map((step, index) => (
+            <li key={step.title} className="site-step" data-reveal="up">
+              <span aria-hidden="true" className="site-step__dot" />
+              <span className="site-note site-contact-steps__meta">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span className="site-accent">{step.when}</span>
+              </span>
+              <h3 className="site-step__title">{step.title}</h3>
+              <p className="site-step__body">{step.body}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {/* 04 — elsewhere: one full-width row per channel. */}
@@ -303,7 +290,7 @@ export default function ContactPage() {
           {channels.map((channel) => {
             const external = isExternal(channel.href);
             return (
-              <li key={channel.label}>
+              <li key={channel.label} data-reveal="up">
                 <a
                   href={channel.href}
                   className="site-contact-channel site-grid"

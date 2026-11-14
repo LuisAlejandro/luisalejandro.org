@@ -34,7 +34,7 @@ export default function PortfolioPage() {
         typed="Not imagined."
         intro="Websites, tools, and the systems behind them: an archive of things I helped bring to life."
       >
-        <dl className="site-spec">
+        <dl className="site-spec" data-bp="dl.spec">
           <div>
             <dt className="site-note">Case studies</dt>
             <dd>{String(ProjectList.length).padStart(2, "0")}</dd>
@@ -66,7 +66,11 @@ export default function PortfolioPage() {
         />
         <ol className="site-project-grid" role="list">
           {portfolioProjects.map((project, index) => (
-            <li key={project.slug} className="site-project-card">
+            <li
+              key={project.slug}
+              className="site-project-card"
+              data-reveal="up"
+            >
               <Link
                 href={`/portfolio/${project.slug}`}
                 className="site-project-card__link"

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 
 type DocSectionProps = {
@@ -23,13 +22,13 @@ export function DocSection({ num, label, note, children }: DocSectionProps) {
     <section className="site-section site-wrap site-doc-section">
       <SectionHeader num={num} label={label} note={note} id={id} />
       <div className="site-grid">
-        <Reveal className="site-doc-section__claim">
-          <p className="site-h2" aria-hidden="true">
-            <span className="site-line-mask">
-              <span>{label}</span>
-            </span>
-          </p>
-        </Reveal>
+        <p
+          className="site-h2 site-doc-section__claim"
+          aria-hidden="true"
+          data-reveal="lines"
+        >
+          {label}
+        </p>
         <div className="site-doc-section__body">{children}</div>
       </div>
     </section>

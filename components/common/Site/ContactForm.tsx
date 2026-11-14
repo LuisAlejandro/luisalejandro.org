@@ -113,7 +113,11 @@ function Readout({ values }: { values: Partial<FormValues> }) {
   const ready = filled === required.length;
 
   return (
-    <aside className="site-contact-readout" aria-label="Brief preview">
+    <aside
+      className="site-contact-readout"
+      aria-label="Brief preview"
+      data-reveal="up"
+    >
       <div className="site-contact-readout__bar site-note">
         <span className="text-ink">brief.json</span>
         <span className="site-contact-readout__status" data-ready={ready}>
@@ -223,7 +227,7 @@ export function ContactForm() {
           noValidate
           {...contactWebMcp}
         >
-          <div className="site-contact-field">
+          <div className="site-contact-field" data-reveal="up">
             <label htmlFor="contactName" className="site-contact-field__label">
               <FieldLabel num="01" label="Your name" hint="Required" />
             </label>
@@ -248,7 +252,7 @@ export function ContactForm() {
             )}
           </div>
 
-          <div className="site-contact-field">
+          <div className="site-contact-field" data-reveal="up">
             <label htmlFor="contactEmail" className="site-contact-field__label">
               <FieldLabel num="02" label="Email" hint="Required" />
             </label>
@@ -274,7 +278,7 @@ export function ContactForm() {
             )}
           </div>
 
-          <div className="site-contact-field">
+          <div className="site-contact-field" data-reveal="up">
             <label htmlFor="company" className="site-contact-field__label">
               <FieldLabel num="03" label="Agency or company" hint="Optional" />
             </label>
@@ -287,7 +291,7 @@ export function ContactForm() {
             />
           </div>
 
-          <fieldset className="site-contact-field">
+          <fieldset className="site-contact-field" data-reveal="up">
             <legend className="site-contact-field__label">
               <FieldLabel num="04" label="What do you need?" hint="Pick any" />
             </legend>
@@ -309,7 +313,7 @@ export function ContactForm() {
             </div>
           </fieldset>
 
-          <fieldset className="site-contact-field">
+          <fieldset className="site-contact-field" data-reveal="up">
             <legend className="site-contact-field__label">
               <FieldLabel num="05" label="Timeline" hint="Pick one" />
             </legend>
@@ -336,7 +340,7 @@ export function ContactForm() {
             </div>
           </fieldset>
 
-          <div className="site-contact-field">
+          <div className="site-contact-field" data-reveal="up">
             <label
               htmlFor="contactMessage"
               className="site-contact-field__label"
@@ -367,7 +371,7 @@ export function ContactForm() {
             )}
           </div>
 
-          <div className="site-contact-checks">
+          <div className="site-contact-checks" data-reveal="up">
             <label className="site-contact-check">
               <input
                 type="checkbox"
@@ -412,7 +416,7 @@ export function ContactForm() {
             </div>
           )}
 
-          <div className="site-contact-submit">
+          <div className="site-contact-submit" data-reveal="up">
             <button
               type="submit"
               className="site-btn"

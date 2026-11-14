@@ -39,11 +39,11 @@ export function MetricsSection() {
         ))}
       </div>
 
-      <Reveal>
-        <div className="site-manifesto-body site-grid">
-          <p className="site-lead-type text-ink">{impactLead}</p>
-        </div>
-      </Reveal>
+      <div className="site-manifesto-body site-grid">
+        <p className="site-lead-type text-ink" data-reveal="up">
+          {impactLead}
+        </p>
+      </div>
     </section>
   );
 }

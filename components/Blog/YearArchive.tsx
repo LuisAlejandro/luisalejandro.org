@@ -38,7 +38,7 @@ export function YearArchive({ rows }: { rows: BlogRow[] }) {
           </h3>
           <ol className="site-entries">
             {group.rows.map((row) => (
-              <li key={row.slug}>
+              <li key={row.slug} data-reveal="up">
                 <Link href={`/blog/posts/${row.slug}`} className="site-entry">
                   <span className="site-entry__n site-note">
                     {entryNumber(row.number)}

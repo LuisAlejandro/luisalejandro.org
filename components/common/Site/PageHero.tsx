@@ -63,7 +63,11 @@ export function PageHero({
         </>
       )}
 
-      {intro && <p className="site-lead-type site-page-intro">{intro}</p>}
+      {intro && (
+        <p className="site-lead-type site-page-intro" data-bp="p.intro">
+          {intro}
+        </p>
+      )}
 
       {children}
     </section>
