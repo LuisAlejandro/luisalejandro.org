@@ -33,6 +33,7 @@ export function DockershelfRack() {
           <g key={name} transform={`translate(${38 + i * 214} 26)`}>
             <g
               data-story={`crate-${name}`}
+              data-slide
               style={{
                 transform: `translateX(calc((1 - clamp(0, (var(--p) - ${0.08 + i * 0.15}) / 0.2, 1)) * -120px))`,
               }}

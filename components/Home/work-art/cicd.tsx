@@ -22,6 +22,7 @@ export function CicdContainer() {
       >
         <g
           data-cicd="cargo"
+          data-slide
           style={{
             transform:
               "translateX(calc((1 - clamp(0, (var(--p) - 0.28) / 0.42, 1)) * -110px))",

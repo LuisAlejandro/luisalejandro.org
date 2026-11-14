@@ -192,8 +192,10 @@ export function CanaimaArt({ layer = "back" }: { layer?: Layer }) {
           <g
             data-story="disc-turn"
             style={{
-              transformBox: "fill-box",
-              transformOrigin: "center",
+              // Turn about the disc's hub, not the middle of its printed
+              // face, which is off-centre and made the whole disc wobble.
+              transformBox: "view-box",
+              transformOrigin: "110px 112px",
               transform:
                 "rotate(calc((1 - clamp(0, (var(--p) - .1) / .55, 1)) * -80deg))",
             }}

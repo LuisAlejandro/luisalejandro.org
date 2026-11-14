@@ -4129,10 +4129,12 @@ body:has(.site-shell) {
      so every object keeps its place. */
   .site-wcard__art .site-art svg {
     transform: translate(var(--art-dx, 0), var(--art-dy, 0)) scale(1.12);
-    transition: transform 1.2s var(--ease-site-out);
   }
-  .site-wcard:is(:hover, :focus-visible) .site-art svg {
-    transform: translate(var(--art-dx, 0), var(--art-dy, 0)) scale(1.18);
+  /* Objects hold still in the grid: no tilt, no slide, no zoom. Only what
+     happens inside an object plays on hover (ticks, bars, stamps, hands). */
+  .site-wcard__art .site-obj,
+  .site-wcard__art [data-slide] {
+    transform: none !important;
   }
   .site-wcard__art .site-art svg > g[transform] > g:not([transform]),
   .site-wcard__art .site-art svg > g:not([transform]) {
@@ -4200,12 +4202,6 @@ body:has(.site-shell) {
     }
     .site-wcard:is(:hover, :focus-visible)
       .site-art[data-play="hover"]
-      .site-art__frag {
-      animation: site-art-in 0.6s var(--ease-site-out) calc(var(--i, 0) * 80ms)
-        both;
-    }
-    .site-wcard:is(:hover, :focus-visible)
-      .site-art[data-play="hover"]
       .site-art__lead {
       animation: site-art-draw 0.9s var(--ease-site-in-out)
         calc(360ms + var(--i, 0) * 80ms) both;
@@ -4228,8 +4224,7 @@ body:has(.site-shell) {
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .site-wcard,
-    .site-wcard__art .site-art svg {
+    .site-wcard {
       transition: none;
     }
   }
