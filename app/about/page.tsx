@@ -291,7 +291,7 @@ export default function AboutPage() {
               <span className="site-note site-accent site-about-portrait__dim">
                 ↤ 4 : 5 ↦
               </span>
-              <SiteMark className="site-about-portrait__mark" />
+              <SiteMark className="site-about-portrait__mark" plot="reveal" />
             </div>
             <figcaption className="site-note">
               fig. 01 · the mark · Luis Alejandro

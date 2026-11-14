@@ -545,6 +545,21 @@ body:has(.site-shell) {
     animation: site-plot 1.2s var(--ease-site-in-out) both;
   }
 
+  /* Large marks (the about portrait) plot slower, so the trace reads. */
+  .site-about-portrait__mark.is-plotting
+    :is(.site-mark__hair, .site-mark__glasses) {
+    animation-duration: 2.4s;
+  }
+  .site-about-portrait__mark.is-plotting .site-mark__glasses {
+    animation-delay: 0.35s;
+  }
+  .site-about-portrait__mark.is-plotting .site-mark__brow {
+    animation-delay: 1.8s;
+  }
+  .site-about-portrait__mark.is-plotting .site-mark__brow--right {
+    animation-delay: 1.8s, 2.4s;
+  }
+
   .site-mark.is-plotting .site-mark__glasses {
     animation-delay: 0.18s;
   }
@@ -3540,10 +3555,13 @@ body:has(.site-shell) {
     height: auto;
     color: var(--color-ink);
   }
-  .site-about-portrait[data-reveal-state="hidden"]
-    .site-about-portrait__mark
-    path {
-    animation-play-state: paused;
+  /* Before it plots, the mark is blank paper: nothing drawn, nothing filled. */
+  .site-mark.is-waiting path {
+    stroke-dashoffset: 1;
+    fill-opacity: 0;
+  }
+  .site-mark.is-waiting .site-mark__brow {
+    opacity: 0;
   }
   .site-about-portrait figcaption {
     margin-top: 0.75rem;

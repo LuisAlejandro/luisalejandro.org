@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Paths copied from public/images/logomin.svg: hair, left brow, right brow,
 // glasses. viewBox 0 0 100 100.
@@ -17,6 +17,12 @@ type SiteMarkProps = {
   className?: string;
   /** Replay the plot when the pointer enters the closest link or button. */
   replayOnHover?: boolean;
+  /**
+   * `load` plots on mount (the header). `reveal` waits until the mark is
+   * well inside the viewport and its container has faded most of the way
+   * in, so the drawing is actually seen.
+   */
+  plot?: "load" | "reveal";
 };
 
 /**
@@ -27,8 +33,35 @@ type SiteMarkProps = {
 export function SiteMark({
   className = "",
   replayOnHover = false,
+  plot = "load",
 }: SiteMarkProps) {
   const ref = useRef<SVGSVGElement>(null);
+  // A revealed mark starts blank (outlines undrawn) and plots once seen.
+  const [plotting, setPlotting] = useState(plot === "load");
+
+  useEffect(() => {
+    const svg = ref.current;
+    if (plot !== "reveal" || !svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = requestAnimationFrame(() => setPlotting(true));
+      return () => cancelAnimationFrame(frame);
+    }
+    let timer = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        // The portrait rises over 1.3s; start drawing once it is mostly in.
+        timer = window.setTimeout(() => setPlotting(true), 550);
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(svg);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
+  }, [plot]);
 
   useEffect(() => {
     const svg = ref.current;
@@ -51,7 +84,7 @@ export function SiteMark({
       ref={ref}
       aria-hidden="true"
       viewBox="0 0 100 100"
-      className={`site-mark is-plotting ${className}`}
+      className={`site-mark ${plotting ? "is-plotting" : "is-waiting"} ${className}`}
     >
       <path className="site-mark__hair" d={HAIR} pathLength={1} />
       <path className="site-mark__brow" d={BROW_LEFT} pathLength={1} />
