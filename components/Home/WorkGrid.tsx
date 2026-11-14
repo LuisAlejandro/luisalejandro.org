@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { WorkArtwork } from "@components/Home/WorkArtwork";
+import { Arrow } from "@components/common/Site/Arrow";
 import { ProjectList } from "@constants/constants";
 import {
   sectionNotes,
@@ -40,7 +41,7 @@ function WorkCell({
       <div className="site-wcard__head">
         <Title className="site-wcard__title">{title}</Title>
         <span className="site-note site-wcard__more">
-          Case study <span aria-hidden="true">→</span>
+          Case study <Arrow size="sm" />
         </span>
       </div>
     </>

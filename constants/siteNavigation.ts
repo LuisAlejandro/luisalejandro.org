@@ -66,15 +66,15 @@ const pageHints: Record<
 const socialHints: Record<string, { id: string; hint: string }> = {
   "https://github.com/LuisAlejandro": {
     id: "ext-github",
-    hint: "github.com ↗",
+    hint: "github.com",
   },
   "https://www.linkedin.com/in/martinezfaneyth": {
     id: "ext-linkedin",
-    hint: "linkedin.com ↗",
+    hint: "linkedin.com",
   },
   "https://www.youtube.com/@LuisDevelops": {
     id: "ext-youtube",
-    hint: "youtube.com ↗",
+    hint: "youtube.com",
   },
   "/blog/posts/feed.xml": { id: "ext-rss", hint: "feed.xml" },
 };
@@ -162,7 +162,7 @@ export const paletteItems: PaletteItem[] = [
     group: "Elsewhere" as const,
     href: "https://cal.com/martinezfaneyth",
     external: true,
-    hint: "cal.com ↗",
+    hint: "cal.com",
     keywords: ["call", "meeting", "schedule"],
   },
   ...siteSocialLinks.map((social) => ({

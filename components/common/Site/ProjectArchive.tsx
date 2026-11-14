@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import markdownToHtml from "@lib/markdownToHtml";
 import type { PortfolioProject } from "@lib/portfolio";
+import { Arrow } from "@components/common/Site/Arrow";
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
@@ -110,8 +111,9 @@ export async function ProjectArchive({
                                   {source.name}
                                   <span className="site-note">
                                     {source.url.includes("web.archive.org")
-                                      ? "Archived ↗"
-                                      : "External ↗"}
+                                      ? "Archived"
+                                      : "External"}{" "}
+                                    <Arrow kind="external" size="sm" />
                                     <span className="sr-only">
                                       {" "}
                                       (opens in a new tab)

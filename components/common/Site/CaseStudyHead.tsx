@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { DetailHead } from "@components/common/Site/DetailHead";
+import { Arrow } from "@components/common/Site/Arrow";
 
 type CaseStudyHeadProps = {
   year: number;
@@ -59,7 +60,7 @@ export function CaseStudyHead({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {link.text} ↗
+                    {link.text} <Arrow kind="external" />
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 ))}

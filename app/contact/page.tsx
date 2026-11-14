@@ -9,6 +9,7 @@ import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { Arrow } from "@components/common/Site/Arrow";
 import { siteSocialLinks } from "@constants/siteNavigation";
 import { generateHomepageFaqJsonLd } from "@lib/structuredData";
 
@@ -306,12 +307,11 @@ export default function ContactPage() {
                   <span className="site-contact-channel__body">
                     {channel.body}
                   </span>
-                  <span
-                    aria-hidden="true"
+                  <Arrow
+                    href={channel.href}
+                    size="lg"
                     className="site-contact-channel__arrow"
-                  >
-                    {external ? "↗" : "→"}
-                  </span>
+                  />
                 </a>
               </li>
             );

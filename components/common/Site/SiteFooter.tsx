@@ -44,13 +44,9 @@ export function SiteFooter() {
                   external={item.external}
                   pixelEvent={item.pixelEvent}
                   className="site-link text-step-0 text-ink"
+                  arrow={item.external}
                 >
                   {item.label}
-                  {item.external && (
-                    <span aria-hidden="true" className="ml-1.5">
-                      ↗
-                    </span>
-                  )}
                 </SiteLink>
               </li>
             ))}
@@ -66,13 +62,9 @@ export function SiteFooter() {
                   href={social.href}
                   external={social.external}
                   className="site-link text-step-0 text-ink"
+                  arrow={social.external}
                 >
                   {social.label}
-                  {social.external && (
-                    <span aria-hidden="true" className="ml-1.5">
-                      ↗
-                    </span>
-                  )}
                 </SiteLink>
               </li>
             ))}

@@ -10,6 +10,7 @@ import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { Arrow } from "@components/common/Site/Arrow";
 import { siteSocialLinks } from "@constants/siteNavigation";
 import { getBlogArchive } from "@lib/api";
 import { entryNumber, formatPostDate } from "@lib/blogArchive";
@@ -152,7 +153,7 @@ export default async function BlogPage() {
                 </div>
               </dl>
               <span className="site-feat__cta">
-                Read the entry <span aria-hidden="true">→</span>
+                Read the entry <Arrow />
               </span>
             </div>
           </Link>

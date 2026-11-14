@@ -7,6 +7,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
+import { Arrow } from "@components/common/Site/Arrow";
 import { RECAPTCHA_API_KEY } from "@constants/constants";
 
 /**
@@ -425,9 +426,7 @@ export function ContactForm() {
               <span>
                 {status === "sending" ? "Sending…" : "Send the brief"}
               </span>
-              <span aria-hidden="true" className="site-btn__arrow">
-                →
-              </span>
+              <Arrow kind="internal" className="site-btn__arrow" />
             </button>
             <p className="site-note">Reply within 3 business days</p>
           </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
+import { Arrow } from "@components/common/Site/Arrow";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { SiteLink } from "@components/common/Site/SiteLink";
 import { lockPageScroll } from "@components/common/Site/overlayLock";
@@ -76,7 +77,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                   <span className="site-note">{item.num}</span>
                   <span>{item.label}</span>
                   {item.external && (
-                    <span className="site-note ml-auto">↗</span>
+                    <Arrow kind="external" size="sm" className="ml-auto" />
                   )}
                 </SiteLink>
               </li>
@@ -102,7 +103,8 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                 rel={social.external ? "noopener noreferrer" : undefined}
                 className="site-note site-link"
               >
-                {social.label} {social.external ? "↗" : ""}
+                {social.label}
+                {social.external && <Arrow kind="external" size="sm" />}
               </a>
             ))}
           </div>

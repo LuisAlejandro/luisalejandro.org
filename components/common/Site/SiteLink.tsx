@@ -6,6 +6,8 @@ import Link from "next/link";
 import type { PixelEvent } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
+import { Arrow, type ArrowSize } from "./Arrow";
+
 type SiteLinkProps = {
   href: string;
   external?: boolean;
@@ -14,6 +16,9 @@ type SiteLinkProps = {
   className?: string;
   /** Runs after the click (closing the mobile menu, for example). */
   onNavigate?: () => void;
+  /** Append the arrow for this destination (↗ for external links). */
+  arrow?: boolean;
+  arrowSize?: ArrowSize;
   children: ReactNode;
 };
 
@@ -29,8 +34,23 @@ export function SiteLink({
   pixelEvent,
   className,
   onNavigate,
+  arrow = false,
+  arrowSize = "md",
   children,
 }: SiteLinkProps) {
+  const content = (
+    <>
+      {children}
+      {arrow && (
+        <Arrow
+          kind={external ? "external" : undefined}
+          href={href}
+          size={arrowSize}
+        />
+      )}
+    </>
+  );
+
   const handleClick = () => {
     if (pixelEvent) trackPixelEvent(pixelEvent);
     onNavigate?.();
@@ -45,14 +65,14 @@ export function SiteLink({
         onClick={handleClick}
         className={className}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <Link href={href} onClick={handleClick} className={className}>
-      {children}
+      {content}
     </Link>
   );
 }

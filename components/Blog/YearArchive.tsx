@@ -6,6 +6,7 @@ import {
   groupByYear,
   type BlogRow,
 } from "@lib/blogArchive";
+import { Arrow } from "@components/common/Site/Arrow";
 
 /** imgix renders on demand; ask for the size actually drawn. */
 export const coverVariant = (url: string | undefined, width: number) =>
@@ -61,9 +62,7 @@ export function YearArchive({ rows }: { rows: BlogRow[] }) {
                     )}
                     <span>{row.minutes} min</span>
                   </span>
-                  <span className="site-entry__arrow" aria-hidden="true">
-                    →
-                  </span>
+                  <Arrow className="site-entry__arrow" />
                   {row.cover && (
                     <span className="site-entry__thumb" aria-hidden="true">
                       <img

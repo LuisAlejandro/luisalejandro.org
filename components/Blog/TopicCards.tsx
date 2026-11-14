@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { BlogTopic } from "@lib/blogArchive";
+import { Arrow } from "@components/common/Site/Arrow";
 
 /**
  * One card per category with published posts, straight from Cosmic: the title
@@ -25,7 +26,8 @@ export function TopicCards({ topics }: { topics: BlogTopic[] }) {
             href={`/blog/category/${topic.slug}`}
             className="site-note site-link site-topic__link"
           >
-            {topic.count} {topic.count === 1 ? "entry" : "entries"} →
+            {topic.count} {topic.count === 1 ? "entry" : "entries"}{" "}
+            <Arrow size="sm" />
           </Link>
         </li>
       ))}

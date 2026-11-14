@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { YearArchive } from "@components/Blog/YearArchive";
+import { Arrow } from "@components/common/Site/Arrow";
 import { DetailHead } from "@components/common/Site/DetailHead";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
@@ -81,15 +82,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           index="[Blog / Topic]"
           title={topic.title}
           lang="es"
-          lead={
-            <>
-              {topic.count} {topic.count === 1 ? "entry" : "entries"} ·{" "}
-              <Link href="/blog" className="site-link" lang="en">
-                all {archive.specs.entries} posts →
-              </Link>
-            </>
-          }
-        />
+          lead={`${topic.count} ${topic.count === 1 ? "entry" : "entries"} in this topic.`}
+        >
+          <p className="site-detail-head__more">
+            <Link href="/blog" className="site-note site-link">
+              All {archive.specs.entries} posts <Arrow size="sm" />
+            </Link>
+          </p>
+        </DetailHead>
       </section>
 
       <section className="site-section site-wrap site-blog-tail">

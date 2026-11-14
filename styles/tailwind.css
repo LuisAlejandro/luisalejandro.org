@@ -355,24 +355,6 @@ body:has(.site-shell) {
     margin-left: 0.25rem;
   }
 
-  .site-btn__arrow {
-    display: inline-block;
-    transition: transform 0.4s var(--ease-site-out);
-  }
-
-  .site-btn:hover .site-btn__arrow {
-    transform: translate(3px) rotate(-45deg);
-  }
-
-  /* ↗ and ↓ already point where they go: they nudge that way instead. */
-  .site-btn:hover .site-btn__arrow[data-kind="external"] {
-    transform: translate(2px, -2px);
-  }
-
-  .site-btn:hover .site-btn__arrow[data-kind="down"] {
-    transform: translateY(3px);
-  }
-
   /* --- round header controls ------------------------------------------- */
 
   .site-tool {
@@ -1427,16 +1409,6 @@ body:has(.site-shell) {
   .site-service__arrow {
     grid-area: 1 / 12;
     justify-self: end;
-    font-size: var(--text-step-2);
-    transition:
-      transform 0.8s var(--ease-site-in-out),
-      color 0.4s var(--ease-site-out);
-  }
-
-  .site-service__link:hover .site-service__arrow,
-  .site-service__link:focus-visible .site-service__arrow {
-    color: var(--color-signal);
-    transform: rotate(-45deg);
   }
 
   .site-service__link:hover :is(.site-note, .site-service__body),
@@ -1816,17 +1788,12 @@ body:has(.site-shell) {
   .site-entry__arrow {
     grid-column: 12 / span 1;
     justify-self: end;
-    transition: transform 0.4s var(--ease-site-out);
   }
 
   .site-entry:hover .site-entry__title,
   .site-entry:focus-visible .site-entry__title {
     color: var(--color-signal);
     transform: translateX(1rem);
-  }
-
-  .site-entry:hover .site-entry__arrow {
-    transform: translate(3px) rotate(-45deg);
   }
 
   /* The cover only exists for pointers that can hover; it sits beside the
@@ -3396,16 +3363,10 @@ body:has(.site-shell) {
   .site-contact-channel__arrow {
     grid-column: 12;
     justify-self: end;
-    font-size: var(--text-step-2);
-    line-height: 1;
-    transition: transform 0.4s var(--ease-site-out);
   }
   .site-contact-channel:hover .site-contact-channel__handle,
   .site-contact-channel:focus-visible .site-contact-channel__handle {
     color: var(--color-signal);
-  }
-  .site-contact-channel:hover .site-contact-channel__arrow {
-    transform: translateX(4px);
   }
 
   /* --- contact: 05 before you write ------------------------------------ */
@@ -3510,8 +3471,7 @@ body:has(.site-shell) {
   @media (prefers-reduced-motion: reduce) {
     .site-faq-list__icon::before,
     .site-faq-list__icon::after,
-    .site-contact-readout__meter > span,
-    .site-contact-channel__arrow {
+    .site-contact-readout__meter > span {
       transition: none;
     }
   }
@@ -4031,13 +3991,6 @@ body:has(.site-shell) {
   .site-wcard__more {
     flex: none;
   }
-  .site-wcard__more > span {
-    display: inline-block;
-    transition: transform 0.4s var(--ease-site-out);
-  }
-  .site-wcard:is(:hover, :focus-visible) .site-wcard__more > span {
-    transform: translateX(3px);
-  }
   /* The number sits over the drawing, so it carries the cell's tone. */
   .site-wgrid .site-project-card__number {
     background: var(--color-paper);
@@ -4274,6 +4227,60 @@ body:has(.site-shell) {
     .site-pentry__text,
     .site-pentry__shots {
       grid-column: 1 / -1;
+    }
+  }
+}
+
+/* Arrows (the rules approved in .mash/qa/arrows.md). Every interface arrow is
+   an <Arrow>: glyph by destination (R1), three sizes (R2), the colour of its
+   link (R3), and one motion per glyph when its link or row is hovered or
+   focused (R4). Prose arrows are plain text and never move. */
+.site-shell {
+  .site-arrow {
+    display: inline-block;
+    color: inherit;
+    line-height: 1;
+    transition: transform 0.4s var(--ease-site-out);
+  }
+  .site-arrow[data-size="lg"] {
+    font-size: var(--text-step-2);
+  }
+  .site-arrow[data-size="sm"] {
+    font-family: var(--font-site-mono);
+    font-size: var(--text-step-n1);
+  }
+
+  :is(a, button, summary, .site-wcard):is(:hover, :focus-visible)
+    .site-arrow[data-kind="internal"] {
+    transform: translate(3px) rotate(-45deg);
+  }
+  :is(a, button, summary, .site-wcard):is(:hover, :focus-visible)
+    .site-arrow[data-kind="external"] {
+    transform: translate(2px, -2px);
+  }
+  :is(a, button, summary, .site-wcard):is(:hover, :focus-visible)
+    .site-arrow[data-kind="down"] {
+    transform: translateY(3px);
+  }
+
+  /* R3: small mono links are muted and turn ink with their arrow. */
+  a.site-note:is(:hover, :focus-visible),
+  .site-note a:is(:hover, :focus-visible),
+  a:is(:hover, :focus-visible) .site-note:has(> .site-arrow),
+  .site-wcard:is(:hover, :focus-visible) .site-wcard__more,
+  .site-about-off__link:is(:hover, :focus-visible) .site-about-off__more {
+    color: var(--color-ink);
+  }
+
+  /* Spacing between a label and its arrow. */
+  .site-arrow:not(:first-child) {
+    margin-left: 0.15em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-arrow {
+      transition: none;
+      transform: none !important;
     }
   }
 }

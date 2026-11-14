@@ -54,7 +54,7 @@ export const sectionTitles = {
 export const sectionNotes = {
   metrics: "fig. 01 · shipped, then measured",
   work: "Five builds, in order",
-  services: "See the portfolio →",
+  services: "See the portfolio",
   faq: "Typical reply: 3 business days",
   cta: "3 business days",
 };

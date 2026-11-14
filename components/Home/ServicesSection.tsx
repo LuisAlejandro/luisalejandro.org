@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { Arrow } from "@components/common/Site/Arrow";
 import {
   sectionNotes,
   sectionTitles,
@@ -19,7 +20,7 @@ export function ServicesSection() {
         label={sectionTitles.services}
         note={
           <Link href="/portfolio" className="site-link">
-            {sectionNotes.services}
+            {sectionNotes.services} <Arrow size="sm" />
           </Link>
         }
         id="services"
@@ -43,9 +44,11 @@ export function ServicesSection() {
                 ))}
               </ul>
 
-              <span aria-hidden="true" className="site-service__arrow">
-                →
-              </span>
+              <Arrow
+                href="/portfolio"
+                size="lg"
+                className="site-service__arrow"
+              />
             </Link>
           </li>
         ))}

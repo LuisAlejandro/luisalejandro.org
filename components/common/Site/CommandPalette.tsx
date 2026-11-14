@@ -9,6 +9,7 @@ import {
 } from "@components/common/Site/overlayLock";
 import { paletteItems, type PaletteItem } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
+import { Arrow } from "@components/common/Site/Arrow";
 
 type SearchedPost = {
   slug: string;
@@ -360,6 +361,12 @@ export function CommandPalette() {
                               }`}
                             >
                               {item.hint}
+                              {item.external && (
+                                <>
+                                  {" "}
+                                  <Arrow kind="external" size="sm" />
+                                </>
+                              )}
                             </span>
                           )}
                         </li>

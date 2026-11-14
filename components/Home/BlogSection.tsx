@@ -2,6 +2,7 @@ import Link from "next/link";
 import { format, parseISO } from "date-fns";
 
 import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { Arrow } from "@components/common/Site/Arrow";
 import { sectionTitles } from "@constants/homepageContent";
 
 type PostItem = {
@@ -32,7 +33,7 @@ export function BlogSection({ posts = [] }: BlogSectionProps) {
         label={sectionTitles.blog}
         note={
           <Link href="/blog" className="site-link">
-            All posts →
+            All posts <Arrow size="sm" />
           </Link>
         }
         id="from-the-blog"

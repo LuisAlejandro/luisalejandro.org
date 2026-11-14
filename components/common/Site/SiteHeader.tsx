@@ -7,6 +7,7 @@ import Link from "next/link";
 import { SkipToContentLink } from "@components/common/Layout/SkipToContentLink";
 import { MobileMenu } from "@components/common/Site/MobileMenu";
 import { SiteButton } from "@components/common/Site/SiteButton";
+import { Arrow } from "@components/common/Site/Arrow";
 import { SiteLink } from "@components/common/Site/SiteLink";
 import { SiteMark } from "@components/common/Site/SiteMark";
 import { contactAction, siteNavItems } from "@constants/siteNavigation";
@@ -48,7 +49,7 @@ export function SiteHeader() {
               <span className="site-nav__label" data-label={item.label}>
                 {item.label}
               </span>
-              {item.external && <span className="site-note">↗</span>}
+              {item.external && <Arrow kind="external" size="sm" />}
             </SiteLink>
           ))}
         </nav>

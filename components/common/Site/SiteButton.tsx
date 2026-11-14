@@ -5,6 +5,8 @@ import Link from "next/link";
 import type { PixelEvent } from "@constants/siteNavigation";
 import { trackPixelEvent } from "@lib/pixel";
 
+import { Arrow, arrowKind } from "./Arrow";
+
 type SiteButtonProps = {
   href: string;
   children: React.ReactNode;
@@ -16,20 +18,6 @@ type SiteButtonProps = {
   arrow?: boolean;
   className?: string;
 };
-
-/**
- * Where a link goes decides how it opens and which arrow it carries, so the
- * same kind of action looks the same everywhere: → stays on the site, ↗ leaves
- * it, ↓ moves down the page or downloads a file.
- */
-function kindOf(href: string) {
-  if (href.startsWith("#") || href.startsWith("/files/")) return "down";
-  if (/^https?:/.test(href)) return "external";
-  if (href.startsWith("mailto:")) return "mail";
-  return "internal";
-}
-
-const GLYPH = { down: "↓", external: "↗", mail: "→", internal: "→" } as const;
 
 /**
  * The pill used for every call to action. Geometry, tracking and the rising
@@ -45,7 +33,12 @@ export function SiteButton({
   arrow = false,
   className = "",
 }: SiteButtonProps) {
-  const kind = kindOf(href);
+  const kind = arrowKind(href);
+  const mail = href.startsWith("mailto:");
+  // R5: a solid button always points; a ghost one only when it leaves the
+  // page (↗) or goes down it (↓), so the solid button beside it stays the one
+  // that points.
+  const showArrow = arrow && (variant !== "ghost" || kind !== "internal");
 
   const classes = [
     "site-btn",
@@ -61,18 +54,14 @@ export function SiteButton({
   const content = (
     <>
       <span>{children}</span>
-      {arrow && (
-        <span aria-hidden="true" className="site-btn__arrow" data-kind={kind}>
-          {GLYPH[kind]}
-        </span>
-      )}
+      {showArrow && <Arrow kind={kind} className="site-btn__arrow" />}
     </>
   );
 
   // Off-site, mail and file links are plain anchors: client routing only
-  // applies to pages of this site.
+  // applies to pages of this site. Mail opens an app, not a tab.
   if (kind !== "internal" && !href.startsWith("#")) {
-    const external = kind === "external";
+    const external = kind === "external" && !mail;
     return (
       <a
         href={href}

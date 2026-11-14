@@ -8,6 +8,7 @@ import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+import { Arrow } from "@components/common/Site/Arrow";
 import {
   generateAboutJsonLd,
   generateHomepageFaqJsonLd,
@@ -363,7 +364,7 @@ export default function AboutPage() {
                     href={entry.link.href}
                     className="site-note site-link site-about-log__link"
                   >
-                    {entry.link.label} →
+                    {entry.link.label} <Arrow size="sm" />
                   </Link>
                 )}
               </div>
@@ -449,7 +450,7 @@ export default function AboutPage() {
           label="Off the clock"
           note={
             <Link href="/blog" className="site-link">
-              All posts →
+              All posts <Arrow size="sm" />
             </Link>
           }
         />
@@ -463,7 +464,7 @@ export default function AboutPage() {
                 <h3 className="site-h3 site-about-off__title">{item.title}</h3>
                 <p className="site-about-off__body">{item.body}</p>
                 <span className="site-note site-about-off__more">
-                  Read on the blog (ES) →
+                  Read on the blog (ES) <Arrow size="sm" />
                 </span>
               </Link>
             </li>
