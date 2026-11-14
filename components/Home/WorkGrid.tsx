@@ -12,6 +12,41 @@ import {
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
+/** One cell's contents: the drawing with its number, then the name row. */
+function WorkCell({
+  slug,
+  num,
+  title,
+  copy = false,
+}: {
+  slug: string;
+  num: string;
+  title: string;
+  /** The inverted copy carries no heading, so the name is announced once. */
+  copy?: boolean;
+}) {
+  const Title = copy ? "p" : "h3";
+  return (
+    <>
+      <div className="site-wcard__art">
+        <span
+          className="site-project-card__number site-note"
+          aria-hidden="true"
+        >
+          /{num}
+        </span>
+        <WorkArtwork slug={slug} play="hover" />
+      </div>
+      <div className="site-wcard__head">
+        <Title className="site-wcard__title">{title}</Title>
+        <span className="site-note site-wcard__more">
+          Case study <span aria-hidden="true">→</span>
+        </span>
+      </div>
+    </>
+  );
+}
+
 /** A 3 × 2 sheet: five case studies and one cell kept for the next. */
 const CELLS = 6;
 
@@ -42,20 +77,20 @@ export function WorkGrid() {
         {ProjectList.map((project, index) => (
           <li key={project.visit} data-reveal="up">
             <Link href={project.visit} className="site-wcard">
-              <div className="site-wcard__art">
-                <span
-                  className="site-project-card__number site-note"
-                  aria-hidden="true"
-                >
-                  /{pad(index + 1)}
-                </span>
-                <WorkArtwork slug={project.visit} play="hover" />
-              </div>
-              <div className="site-wcard__head">
-                <h3 className="site-wcard__title">{project.title}</h3>
-                <span className="site-note site-wcard__more">
-                  Case study <span aria-hidden="true">→</span>
-                </span>
+              <WorkCell
+                slug={project.visit}
+                num={pad(index + 1)}
+                title={project.title}
+              />
+              {/* The ink copy the curtain reveals: the same cell inverted,
+                  uncovered from the left so the flip follows the sweep. */}
+              <div className="site-wcard__ink" aria-hidden="true" inert>
+                <WorkCell
+                  slug={project.visit}
+                  num={pad(index + 1)}
+                  title={project.title}
+                  copy
+                />
               </div>
             </Link>
           </li>

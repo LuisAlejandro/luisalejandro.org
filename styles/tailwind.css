@@ -4091,25 +4091,43 @@ body:has(.site-shell) {
     min-width: 0;
     background: var(--color-paper);
   }
-  /* A checkerboard: every other cell is ink. The drawings take all their
-     colours from these tokens, so swapping them inverts the whole cell. */
-  .site-wgrid > li:nth-child(odd) {
-    --color-paper: #0e0e0d;
-    --color-paper-raised: #1a1a18;
-    --color-ink: #f4f4f0;
-    --color-ink-muted: #9b9b93;
-    --color-rule: #f4f4f024;
-    --color-rule-strong: #f4f4f052;
-    color: var(--color-ink);
-  }
   .site-wcard {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     height: 100%;
-    transition: background-color 0.3s linear;
+    color: var(--color-ink);
   }
-  .site-wcard:is(:hover, :focus-visible) {
-    background: var(--color-paper-raised);
+  /* Curtain: an inverted copy of the cell is uncovered from the left on
+     hover and covered again towards the right when the pointer leaves, as
+     the service rows fill. Everything in the copy takes its colours from the
+     swapped tokens, so the drawing flips exactly where the ink has reached. */
+  .site-wcard__ink {
+    position: absolute;
+    inset: 0;
+    /* Above the light copy's number, which sits at z-index 1. */
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    background: #0e0e0d;
+    pointer-events: none;
+    /* At rest the ink is a sliver at the left edge, closed. */
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.55s var(--ease-site-in-out);
+  }
+  /* Only the ground turns black: the objects keep their own white sheets and
+     ink lines. The name row and the number sit on the ink, so they invert. */
+  .site-wcard__ink :is(.site-wcard__head, .site-project-card__number) {
+    --color-paper: #0e0e0d;
+    --color-ink: #f4f4f0;
+    --color-ink-muted: #9b9b93;
+    --color-rule: #f4f4f024;
+    color: var(--color-ink);
+  }
+  /* In: the right edge sweeps from left to right. */
+  .site-wcard:is(:hover, :focus-visible) .site-wcard__ink {
+    clip-path: inset(0 0 0 0);
   }
   .site-wcard:focus-visible {
     outline: 2px solid var(--color-signal);
@@ -4175,10 +4193,6 @@ body:has(.site-shell) {
   .site-wgrid .site-project-card__number {
     background: var(--color-paper);
     color: var(--color-ink-muted);
-    transition: background-color 0.3s linear;
-  }
-  .site-wcard:is(:hover, :focus-visible) .site-project-card__number {
-    background: var(--color-paper-raised);
   }
   /* The kept cell: same box, its number only, waiting for the sixth. */
   .site-wgrid__empty .site-project-card__number {
