@@ -10,6 +10,9 @@ export const CASE_STUDY_SLUGS = new Set([
   "soleit",
   "dockershelf",
   "canaima",
+  "mash",
+  "wholmaster",
+  "shoky",
 ]);
 
 export function isCaseStudySlug(slug: string): boolean {

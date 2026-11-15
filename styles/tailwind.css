@@ -2812,6 +2812,40 @@ body:has(.site-shell) {
   .site-case-stats dd {
     margin-top: 0.5rem;
   }
+  /* "At a glance": figures that stand in for a missing illustration, set as
+     ruled spec rows (value large, label muted beside it). */
+  .site-case-glance {
+    margin-bottom: 2.5rem;
+    border-top: 1px solid var(--color-ink);
+  }
+  .site-case-glance > .site-note {
+    padding-top: 0.75rem;
+  }
+  .site-case-glance dl {
+    margin: 0.75rem 0 0;
+  }
+  .site-case-glance dl > div {
+    display: grid;
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: baseline;
+    padding-block: 1rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .site-case-glance__value {
+    font-size: var(--text-step-2);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .site-case-glance dd {
+    color: var(--color-ink-muted);
+  }
+  @media (max-width: 767px) {
+    .site-case-glance dl > div {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 0.35rem;
+    }
+  }
   .site-case-bars ul {
     padding-left: 0;
     list-style: none;

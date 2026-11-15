@@ -14,6 +14,9 @@ const CASE_STUDIES = [
   "dockershelf",
   "canaima",
   "wheeltheworld",
+  "mash",
+  "wholmaster",
+  "shoky",
 ];
 
 function absoluteUrl(path: string): string {
