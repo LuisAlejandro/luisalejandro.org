@@ -2,6 +2,7 @@ export const BLOG_PURGE_TAGS = [
   "blog-posts",
   "blog-index",
   "blog-listings",
+  "homepage",
 ] as const;
 
 export type PurgeByTagsResult = {

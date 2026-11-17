@@ -16,7 +16,9 @@ const config: NextConfig = {
     formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    qualities: [75, 85, 90, 95, 100],
+    // Only the qualities the code actually requests — extra entries would add
+    // whole new cache-key families per image without any visual gain.
+    qualities: [75, 85],
   },
   async headers() {
     return [
@@ -121,11 +123,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
@@ -151,11 +153,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
@@ -181,11 +183,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
@@ -211,11 +213,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
@@ -241,11 +243,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
@@ -271,11 +273,11 @@ const config: NextConfig = {
           },
           {
             key: "CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, max-age=3600, stale-while-revalidate=86400",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
           },
           {
             key: "Cache-Tag",
