@@ -20,8 +20,8 @@ export default function AgorasPage() {
         </pre>
         <p>
           Full setup, credentials, and network guides:{" "}
-          <a className="underline" href="https://agoras.luisalejandro.org">
-            agoras.luisalejandro.org
+          <a className="underline" href="https://agoras.dev">
+            agoras.dev
           </a>
           .
         </p>

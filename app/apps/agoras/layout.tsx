@@ -50,7 +50,7 @@ export default function AgorasLayout({
       <footer className="flex w-full flex-wrap gap-4 border-t border-neutral-200 px-6 py-4 text-sm">
         <Link href="/apps/agoras/privacy">Privacy Policy</Link>
         <Link href="/apps/agoras/terms">Terms of Service</Link>
-        <a href="https://agoras.luisalejandro.org">Documentation</a>
+        <a href="https://agoras.dev">Documentation</a>
       </footer>
     </div>
   );
