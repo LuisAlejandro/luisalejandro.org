@@ -2,12 +2,16 @@ import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
-import { GalleryList, ProjectList } from "@constants/constants";
+import {
+  GalleryList,
+  ProjectList,
+  RecentProjectList,
+} from "@constants/constants";
 import { portfolioProjects } from "@lib/portfolio";
 import { generatePortfolioJsonLd } from "@lib/structuredData";
 
-assert.equal(portfolioProjects.length, 10);
-assert.equal(new Set(portfolioProjects.map((p) => p.slug)).size, 10);
+assert.equal(portfolioProjects.length, 13);
+assert.equal(new Set(portfolioProjects.map((p) => p.slug)).size, 13);
 assert.deepEqual(
   portfolioProjects.map((p) => p.year),
   [...GalleryList.map((p) => p.year)].sort((a, b) => b - a)
@@ -31,15 +35,18 @@ for (const project of GalleryList) {
 const graph = generatePortfolioJsonLd()["@graph"];
 const byId = (suffix: string) =>
   graph.find((node) => String(node["@id"] ?? "").endsWith(suffix));
-// The page shows the five case studies, then the ten-project archive; each
-// list carries exactly its own entries.
+// The page shows the case studies, then the project archive; each list
+// carries exactly its own entries.
 const archive = byId("#Projects");
 assert.ok(archive && "itemListElement" in archive);
-assert.equal(archive.itemListElement?.length, 10);
+assert.equal(archive.itemListElement?.length, 13);
 assert.ok(!JSON.stringify(archive).includes("/case-studies/"));
 const studies = byId("#CaseStudies");
 assert.ok(studies && "itemListElement" in studies);
-assert.equal(studies.itemListElement?.length, ProjectList.length);
+assert.equal(
+  studies.itemListElement?.length,
+  RecentProjectList.length + ProjectList.length
+);
 assert.ok(
   studies.itemListElement?.every((entry) =>
     entry.item.url.includes("/case-studies/")

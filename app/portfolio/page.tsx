@@ -1,3 +1,4 @@
+import { WorkGrid } from "@components/Home/WorkGrid";
 import { WorkSection } from "@components/Home/WorkSection";
 import { ProjectArchive } from "@components/common/Site/ProjectArchive";
 import { PageEnd } from "@components/common/Site/PageEnd";
@@ -6,7 +7,8 @@ import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
-import { ProjectList } from "@constants/constants";
+import { ProjectList, RecentProjectList } from "@constants/constants";
+import { sectionNotes, workIntro } from "@constants/homepageContent";
 import { portfolioProjects } from "@lib/portfolio";
 import { generatePortfolioJsonLd } from "@lib/structuredData";
 
@@ -35,7 +37,12 @@ export default async function PortfolioPage() {
         <dl className="site-spec" data-bp="dl.spec">
           <div>
             <dt className="site-note">Case studies</dt>
-            <dd>{String(ProjectList.length).padStart(2, "0")}</dd>
+            <dd>
+              {String(RecentProjectList.length + ProjectList.length).padStart(
+                2,
+                "0"
+              )}
+            </dd>
           </div>
           <div>
             <dt className="site-note">Projects</dt>
@@ -56,16 +63,26 @@ export default async function PortfolioPage() {
 
       <WorkSection num="01" label="Case studies" id="case-studies" />
 
+      <WorkGrid
+        num="02"
+        label="Selected work"
+        id="selected-work"
+        projects={ProjectList}
+        intro={workIntro}
+        note={sectionNotes.work}
+        more={false}
+      />
+
       <section className="site-section site-wrap">
         <SectionHeader
-          num="02"
+          num="03"
           label="Project index"
           note={`${String(portfolioProjects.length).padStart(2, "0")} entries`}
         />
         <ProjectArchive projects={portfolioProjects} />
       </section>
       <PageEnd
-        num="03"
+        num="04"
         note="30 minutes"
         lines={["Let's make", "it real."]}
         primary={{ label: "Let's talk", href: "/contact" }}

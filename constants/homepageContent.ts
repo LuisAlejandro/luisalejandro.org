@@ -36,7 +36,7 @@ export const servicesList: ServiceItem[] = [
     num: "03",
     title: "Integrations and delivery",
     description:
-      "Third-party platforms connected at scale, like the Expedia integration that took Wheel the World from about 1,000 to 600,000+ properties, on pipelines that ship safely.",
+      "Third-party platforms connected at scale, like the Expedia integration that took Wheel the World from about 2,000 to 600,000+ properties, on pipelines that ship safely.",
     tags: ["REST APIs", "Stripe", "Docker", "GitHub Actions", "Google Cloud"],
   },
 ];
@@ -54,6 +54,7 @@ export const sectionTitles = {
 export const sectionNotes = {
   metrics: "fig. 01 · shipped, then measured",
   work: "Five builds, in order",
+  recentWork: "Six builds, 2025 – 2026",
   services: "See the portfolio",
   faq: "Typical reply: 3 business days",
   cta: "3 business days",
@@ -71,6 +72,9 @@ export const impactRows: ImpactRow[] = [
 
 export const workIntro =
   "Five builds I can talk about: a booking engine that carried accessible inventory at scale, a pipeline rescue, a desktop diagnostic tool, an image library half a million pulls deep, and a distribution that shipped to public offices.";
+
+export const recentWorkIntro =
+  "Six recent builds: an IDE nobody can lock me out of, gym software that runs offline, a workspace twenty-five engineers fork, an agent incubator with one approver, a blog written by nine agents and signed by one person, and a trading loop built to say no.";
 
 export const impactLead =
   "Three numbers from work that shipped. The Dockershelf images are roughly a quarter the size of the official ones, the Expedia integration put 600,000 accessible properties on the map, and the rest is open source you can read tonight.";

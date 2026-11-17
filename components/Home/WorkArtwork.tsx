@@ -2,13 +2,19 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-import { ProjectList } from "@constants/constants";
+import { ProjectList, RecentProjectList } from "@constants/constants";
 
+import { BlogSystemArt } from "./work-art/blogsystem";
+import { BotanasArt } from "./work-art/botanas";
 import { CanaimaArt } from "./work-art/canaima";
 import { CicdArt } from "./work-art/cicd";
 import { DockershelfArt } from "./work-art/dockershelf";
 import { ExpediaArt } from "./work-art/expedia";
+import { MashArt } from "./work-art/mash";
+import { ShokyArt } from "./work-art/shoky";
 import { SoleitArt } from "./work-art/soleit";
+import { TetraArt } from "./work-art/tetra";
+import { WholmasterArt } from "./work-art/wholmaster";
 import type { Layer } from "./work-art/shared";
 
 /**
@@ -26,10 +32,18 @@ type Entry = {
 };
 
 /** Project slugs that have a drawing; anything else falls back to the shot. */
-type Slug = (typeof ProjectList)[number]["visit"];
+type Slug = (typeof ProjectList | typeof RecentProjectList)[number]["visit"];
 
-/** All five drawings share the wide sheet and the stage's scroll progress. */
+const WIDE = "0 0 1600 900";
+
+/** Every drawing shares the wide sheet and the stage's scroll progress. */
 const ART: Partial<Record<Slug, Entry>> = {
+  "/case-studies/mash": { Art: MashArt, view: WIDE },
+  "/case-studies/wholmaster": { Art: WholmasterArt, view: WIDE },
+  "/case-studies/shoky": { Art: ShokyArt, view: WIDE },
+  "/case-studies/tetra": { Art: TetraArt, view: WIDE },
+  "/case-studies/blog-system": { Art: BlogSystemArt, view: WIDE },
+  "/case-studies/botanas": { Art: BotanasArt, view: WIDE },
   "/case-studies/expedia": {
     Art: ExpediaArt,
     view: "0 0 1600 900",

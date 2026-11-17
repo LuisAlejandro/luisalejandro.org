@@ -18,10 +18,10 @@ import {
   hasArtwork,
   hasFrontLayer,
 } from "@components/Home/WorkArtwork";
-import { ProjectList } from "@constants/constants";
-import { sectionNotes, workIntro } from "@constants/homepageContent";
+import { RecentProjectList } from "@constants/constants";
+import { recentWorkIntro, sectionNotes } from "@constants/homepageContent";
 
-const projects = ProjectList;
+const projects = RecentProjectList;
 const COUNT = projects.length;
 const pad = (value: number) => String(value).padStart(2, "0");
 
@@ -55,9 +55,9 @@ type WorkSectionProps = {
 };
 
 /**
- * The signature piece: one stage held in place while the five case studies
- * advance through it, with a running counter and a segment rail. It lives on
- * the portfolio; the home page shows the same five as a grid.
+ * The signature piece: one stage held in place while the six newest case
+ * studies advance through it, with a running counter and a segment rail. It
+ * lives on the portfolio; the earlier five follow it there as a grid.
  */
 export function WorkSection({ num, label, id }: WorkSectionProps) {
   const pinned = useSyncExternalStore(subscribe, pinnedSnapshot, () => false);
@@ -104,11 +104,16 @@ export function WorkSection({ num, label, id }: WorkSectionProps) {
 
   return (
     <section className="site-section site-wrap">
-      <SectionHeader num={num} label={label} note={sectionNotes.work} id={id} />
+      <SectionHeader
+        num={num}
+        label={label}
+        note={sectionNotes.recentWork}
+        id={id}
+      />
 
       <Reveal>
         <p className="site-lead-type text-ink mb-10 max-w-[46ch]">
-          {workIntro}
+          {recentWorkIntro}
         </p>
       </Reveal>
 

@@ -5,7 +5,7 @@ With {{experience}}+ years of professional experience across TypeScript, Python,
 ## On this page
 
 - [Selected impact](https://luisalejandro.org/#metrics) — measured results from shipped work.
-- [Selected work](https://luisalejandro.org/#work) — five case studies with links.
+- [Selected work](https://luisalejandro.org/#work) — six case studies with links.
 - [Services](https://luisalejandro.org/#services) — what engagements look like.
 - [Working with me](https://luisalejandro.org/#faq) — stack, availability, and engagement types.
 - [From the blog](https://luisalejandro.org/#from-the-blog) — the latest three posts.
@@ -14,16 +14,19 @@ With {{experience}}+ years of professional experience across TypeScript, Python,
 ## Selected impact
 
 - 294K+ downloads of Dockershelf, lean Python, Node, and Debian Docker images roughly four times smaller than the official alternatives.
-- 39% booking increase for Wheel the World after the Expedia API integration took their accessible hotel inventory from roughly 1,000 to 600,000+ properties.
+- 39% booking increase for Wheel the World after the Expedia API integration took their accessible hotel inventory from roughly 2,000 to 600,000+ properties, a 300-fold increase.
 - 60+ open-source projects on GitHub, shipped so other teams can adopt them without vendor lock-in.
 
 ## Selected work
 
-- [Expedia API Integration](https://luisalejandro.org/case-studies/expedia) — end-to-end shopping and booking engines for Wheel The World; bookings up 39% in Q1 2023.
-- [Wheel The World CI/CD](https://luisalejandro.org/case-studies/wheeltheworld) — cost and reliability work on their delivery pipeline.
-- [Soleit desktop app](https://luisalejandro.org/case-studies/soleit) — Electron and Ionic React diagnostic tool for foot health.
-- [Dockershelf](https://luisalejandro.org/case-studies/dockershelf) — lightweight, reliable Dockerfiles built and tested weekly.
-- [Canaima GNU/Linux](https://luisalejandro.org/case-studies/canaima) — Linux distribution for Venezuelan public administration.
+- [Mash](https://luisalejandro.org/case-studies/mash) — a desktop workspace for AI-assisted coding: terminal, editor and agents in one app, every tool pinned.
+- [Whol Master](https://luisalejandro.org/case-studies/wholmaster) — offline gym management with biometric entrance; in daily use at one gym for over a year.
+- [Shoky](https://luisalejandro.org/case-studies/shoky) — a forkable multi-repo agent workspace that about 25 engineers work from.
+- [Tetra](https://luisalejandro.org/case-studies/tetra) — a two-host agent incubator: 35 scheduled jobs and one human approver.
+- [The blog system](https://luisalejandro.org/case-studies/blog-system) — nine agents turn a premise into a sourced article under one byline.
+- [Botanas](https://luisalejandro.org/case-studies/botanas) — a trading research loop built to refuse overfit strategies.
+
+Earlier case studies (Expedia API Integration, Wheel The World CI/CD, Soleit, Dockershelf, Canaima GNU/Linux) are on the [portfolio](https://luisalejandro.org/portfolio#selected-work).
 
 ## Services
 

@@ -4,11 +4,11 @@ import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import { WorkArtwork } from "@components/Home/WorkArtwork";
 import { Arrow } from "@components/common/Site/Arrow";
-import { ProjectList } from "@constants/constants";
+import { RecentProjectList } from "@constants/constants";
 import {
+  recentWorkIntro,
   sectionNotes,
   sectionTitles,
-  workIntro,
 } from "@constants/homepageContent";
 
 const pad = (value: number) => String(value).padStart(2, "0");
@@ -48,34 +48,52 @@ function WorkCell({
   );
 }
 
-/** A 3 × 2 sheet: five case studies and one cell kept for the next. */
-const CELLS = 6;
+/** The sheet is three cells wide; a short last row is padded with kept cells. */
+const COLUMNS = 3;
+
+type WorkProject = { title: string; visit: string };
+
+type WorkGridProps = {
+  num?: string;
+  label?: string;
+  id?: string;
+  projects?: readonly WorkProject[];
+  intro?: string;
+  note?: string;
+  /** The home page links on to the portfolio; the portfolio itself does not. */
+  more?: boolean;
+};
 
 /**
- * 02 — the case studies as a sheet of cells sharing one set of hairlines,
- * like a spreadsheet: drawing, name and link all sit inside the cell. Each card carries its drawing at rest;
- * hovering or focusing the card replays the drawing's story. The pinned,
- * scroll-driven version lives on the portfolio.
+ * Case studies as a sheet of cells sharing one set of hairlines, like a
+ * spreadsheet: drawing, name and link all sit inside the cell. Each card
+ * carries its drawing at rest; hovering or focusing the card sweeps an ink
+ * curtain across it and replays the drawing's story. The home page shows the
+ * six newest; the portfolio follows its pinned stage with the earlier five.
  */
-export function WorkGrid() {
+export function WorkGrid({
+  num = "02",
+  label = sectionTitles.work,
+  id = "work",
+  projects = RecentProjectList,
+  intro = recentWorkIntro,
+  note = sectionNotes.recentWork,
+  more = true,
+}: WorkGridProps) {
+  const empty = (COLUMNS - (projects.length % COLUMNS)) % COLUMNS;
   return (
     <section className="site-section site-wrap">
-      <SectionHeader
-        num="02"
-        label={sectionTitles.work}
-        note={sectionNotes.work}
-        id="work"
-      />
+      <SectionHeader num={num} label={label} note={note} id={id} />
 
       <p
         className="site-lead-type text-ink mb-10 max-w-[46ch]"
         data-reveal="up"
       >
-        {workIntro}
+        {intro}
       </p>
 
       <ol className="site-wgrid" role="list">
-        {ProjectList.map((project, index) => (
+        {projects.map((project, index) => (
           <li key={project.visit} data-reveal="up">
             <Link href={project.visit} className="site-wcard">
               <WorkCell
@@ -96,24 +114,26 @@ export function WorkGrid() {
             </Link>
           </li>
         ))}
-        {Array.from({ length: CELLS - ProjectList.length }, (_, i) => (
+        {Array.from({ length: empty }, (_, i) => (
           <li
             key={`empty-${i}`}
             className="site-wgrid__empty"
             aria-hidden="true"
           >
             <span className="site-project-card__number site-note">
-              /{pad(ProjectList.length + i + 1)}
+              /{pad(projects.length + i + 1)}
             </span>
           </li>
         ))}
       </ol>
 
-      <div className="site-wgrid__more">
-        <SiteButton href="/portfolio#case-studies" variant="ghost" arrow>
-          The full stories, in the portfolio
-        </SiteButton>
-      </div>
+      {more && (
+        <div className="site-wgrid__more">
+          <SiteButton href="/portfolio#case-studies" variant="ghost" arrow>
+            The full stories, in the portfolio
+          </SiteButton>
+        </div>
+      )}
     </section>
   );
 }

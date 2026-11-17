@@ -2,6 +2,7 @@ import {
   canonicalHostnameUrl,
   experience,
   ProjectList,
+  RecentProjectList,
 } from "@constants/constants";
 import { getBlogArchive, getPublishedPostsForHomeTwin } from "@lib/api";
 import { expandTwinTokens } from "@lib/markdown/expandTwinTokens";
@@ -45,10 +46,12 @@ export async function buildHomeTwin(): Promise<string> {
 }
 
 export async function buildPortfolioTwin(): Promise<string> {
-  const studies = ProjectList.map(
-    (study) =>
-      `### [${study.title}](${canonicalHostnameUrl}${study.visit})\n\n${study.description}\n\nTechnologies: ${study.tags.join(", ")}`
-  ).join("\n\n");
+  const studies = [...RecentProjectList, ...ProjectList]
+    .map(
+      (study) =>
+        `### [${study.title}](${canonicalHostnameUrl}${study.visit})\n\n${study.description}\n\nTechnologies: ${study.tags.join(", ")}`
+    )
+    .join("\n\n");
   // Each project lives as a row on the portfolio, so its twin entry carries
   // the whole project rather than a link to a page of its own.
   const archive = portfolioProjects
