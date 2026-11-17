@@ -80,6 +80,88 @@ export const experience = new Date().getFullYear() - 2009;
 
 export const GalleryList = [
   {
+    slug: "mash-website",
+    name: "Mash website",
+    year: 2026,
+    shortDescription:
+      "The product site and user guide for Mash, in English and Spanish",
+    description:
+      "Mash is a desktop workspace for AI-assisted coding, and it needed a place to explain itself without a manual. I built the site as a **Next.js** application that tells the product story with real captures of the app, and put the user guide beside it with **Fumadocs**: installation, first launch, workspaces, agents and sessions, the editor, terminal tools, keyboard reference and troubleshooting, with a static search index generated from the same content. Every page ships in **English and Spanish** from one set of components, and the brand marks are generated from the artwork in the app repository rather than drawn by hand, so the site cannot drift from the product. The optional blog runs on **Drizzle** with **better-auth** and is off unless the environment configures it, which keeps a marketing site from carrying an admin surface it does not need.",
+    tags: ["next.js", "fumadocs", "typescript", "drizzle", "netlify"],
+    sources: [
+      {
+        name: "website",
+        url: "https://letsma.sh",
+      },
+      {
+        name: "user guide",
+        url: "https://letsma.sh/docs/",
+      },
+      {
+        name: "source code",
+        url: "https://github.com/LuisAlejandro/mash-website",
+      },
+    ],
+    images: {
+      thumbnail: "/images/other/mash-website-thumb.png",
+      logo: "/images/other/logo-mash-website.png",
+      hero: [
+        "/images/other/mash-website-home.png",
+        "/images/other/mash-website-docs.png",
+      ],
+    },
+  },
+  {
+    slug: "listen-for-work",
+    name: "Listen for Work",
+    year: 2026,
+    shortDescription:
+      "An agent skill that hunts jobs weekly and tailors a LaTeX CV to the role",
+    description:
+      "Job hunting is the same search every week with a different answer, so I wrote it once as an **agent skill** in the Agent Skills format and let it run on a schedule. It reads a LinkedIn export, keeps a candidate profile, scans the job boards that do not hide behind a login, ranks each role against the profile, and writes a dated digest that lands in the chat the agent already talks to. For the roles that score high enough, it produces a **tailored LaTeX CV**: a XeLaTeX kit with fonts and a Docker image that compiles the PDF, so the output is a real document and not a rewritten paragraph. The skill ships a Monday morning schedule, and because it is plain `SKILL.md`, the same folder runs in **Hermes**, **Claude Code**, **Cursor**, **Codex** and **OpenCode** without a port. It does not invent experience and it does not write cover letters; that boundary is written into the skill.",
+    tags: ["agent skill", "latex", "docker", "shell", "hermes"],
+    sources: [
+      {
+        name: "source code",
+        url: "https://github.com/LuisAlejandro/listen-for-work",
+      },
+    ],
+    images: {
+      thumbnail: "/images/other/listen-for-work.svg",
+      logo: "/images/other/listen-for-work.svg",
+      hero: ["/images/other/listen-for-work.svg"],
+    },
+  },
+  {
+    slug: "agoras",
+    name: "Agoras",
+    year: 2022,
+    shortDescription:
+      "A command line utility to publish and delete posts on ten social networks",
+    description:
+      "Agoras is a **Python CLI** that publishes and deletes posts on ten networks from one place: X, Facebook, Instagram, LinkedIn, Discord, YouTube, TikTok, Threads, Telegram and WhatsApp. The command surface is platform-first (`agoras <platform> <action>`), the content itself travels as **YAML** files, and the networks that support it go through an interactive **OAuth** flow with a local callback server while the rest use CLI credentials. The project grew into a modular architecture of **five packages** on PyPI, so a pipeline can install only the platform it needs, and it is accompanied by a [GitHub Actions](https://github.com/LuisAlejandro/agoras-actions) repository that drops the same tool into a workflow. It is documented, versioned and released like a library, because it is one: over 1,900 commits and nineteen releases since 2022.",
+    tags: ["python", "cli", "pypi", "oauth", "yaml", "docker"],
+    sources: [
+      {
+        name: "source code",
+        url: "https://github.com/LuisAlejandro/agoras",
+      },
+      {
+        name: "documentation",
+        url: "https://agoras.luisalejandro.org",
+      },
+      {
+        name: "pypi",
+        url: "https://pypi.org/project/agoras/",
+      },
+    ],
+    images: {
+      thumbnail: "/images/other/agoras-thumb.png",
+      logo: "/images/other/logo-agoras.png",
+      hero: ["/images/other/agoras-docs.png", "/images/other/agoras-usage.png"],
+    },
+  },
+  {
     slug: "leadbox-build-queue",
     name: "Leadbox build queue",
     year: 2018,

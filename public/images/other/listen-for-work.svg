@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 625" width="1000" height="625" role="img" aria-label="Listen for Work">
+  <!-- Placeholder card: the project has no capture yet. Replace with a real screenshot. -->
+  <rect width="1000" height="625" fill="#ede4ce"/>
+  <rect x="0.5" y="0.5" width="999" height="624" fill="none" stroke="#d0bb57"/>
+  <text x="72" y="250" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="700" fill="#3c3c3c">
+    Listen for Work
+  </text>
+  <text x="72" y="318" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="300" fill="#5a5a5a">
+    A weekly job-hunt skill for agent harnesses.
+  </text>
+  <text x="72" y="356" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="300" fill="#5a5a5a">
+    Scans boards, ranks matches, writes the digest,
+  </text>
+  <text x="72" y="394" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="300" fill="#5a5a5a">
+    and tailors a LaTeX CV to the role.
+  </text>
+  <line x1="72" y1="470" x2="928" y2="470" stroke="#d0bb57" stroke-width="1"/>
+  <text x="72" y="516" font-family="Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#5a5a5a">
+    SKILL · MIT · 2026
+  </text>
+</svg>
