@@ -1,4 +1,3 @@
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import {
   impactLead,
@@ -23,19 +22,22 @@ export function MetricsSection() {
 
       <div>
         {impactRows.map((row, index) => (
-          <Reveal key={row.metric}>
-            <div className="site-wf-row" data-i={index}>
-              <p className="site-wf-line site-h1">
-                <span aria-hidden="true" className="site-outline">
-                  {row.metric}
-                </span>
-                <span className="site-wf-solid">
-                  <span className="block">{row.metric}</span>
-                </span>
-              </p>
-              <span className="site-wf-dim site-note">{row.note}</span>
-            </div>
-          </Reveal>
+          <div
+            key={row.metric}
+            className="site-wf-row"
+            data-i={index}
+            data-reveal="up"
+          >
+            <p className="site-wf-line site-h1">
+              <span aria-hidden="true" className="site-outline">
+                {row.metric}
+              </span>
+              <span className="site-wf-solid">
+                <span className="block">{row.metric}</span>
+              </span>
+            </p>
+            <span className="site-wf-dim site-note">{row.note}</span>
+          </div>
         ))}
       </div>
 

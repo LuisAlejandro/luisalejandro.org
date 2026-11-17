@@ -11,28 +11,6 @@ export function CaseStudyHero({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-/** Supporting screenshot or illustration beside the narrative. */
-export function CaseStudyImage({
-  src,
-  alt,
-  caption,
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-}) {
-  return (
-    <figure className="site-case-figure">
-      <div className="site-case-figure__frame">
-        <Image src={src} alt={alt} width={1200} height={750} />
-      </div>
-      {caption && (
-        <figcaption className="site-note text-ink-muted">{caption}</figcaption>
-      )}
-    </figure>
-  );
-}
-
 /**
  * Product clip. Muted autoplay matches how these were already shown; controls
  * stay available so anyone can stop it.

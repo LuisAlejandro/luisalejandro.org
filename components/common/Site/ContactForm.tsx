@@ -1,7 +1,6 @@
 "use client";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useForm } from "react-hook-form";
@@ -194,8 +193,15 @@ export function ContactForm() {
     try {
       // No token is signed here: the captcha response is the gate, and the
       // server validates the body. A client-held signing key would be public.
-      const response = await axios.post("/api/contact", { ...data, token });
-      if (response.data?.sent) {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, token }),
+      });
+      const result = (await response.json().catch(() => null)) as {
+        sent?: boolean;
+      } | null;
+      if (result?.sent) {
         setStatus("sent");
         return;
       }

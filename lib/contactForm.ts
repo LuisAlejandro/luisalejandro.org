@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { logError } from "@lib/logger";
 import {
   addSpreadsheetRow,
@@ -12,14 +10,12 @@ import {
 
 export async function verifyCaptcha(token: any) {
   try {
-    const res = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_API_SECRET}&response=${token}`
+    const res = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_API_SECRET}&response=${token}`,
+      { method: "POST" }
     );
-    if (res.data.success) {
-      return true;
-    } else {
-      return false;
-    }
+    const result = (await res.json()) as { success?: boolean };
+    return result.success === true;
   } catch (error) {
     logError("verify-captcha", error);
     return false;

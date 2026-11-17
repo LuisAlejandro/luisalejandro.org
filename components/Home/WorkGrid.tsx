@@ -5,13 +5,12 @@ import { SiteButton } from "@components/common/Site/SiteButton";
 import { WorkArtwork } from "@components/Home/WorkArtwork";
 import { Arrow } from "@components/common/Site/Arrow";
 import { RecentProjectList } from "@constants/constants";
+import { pad } from "@lib/format";
 import {
   recentWorkIntro,
   sectionNotes,
   sectionTitles,
 } from "@constants/homepageContent";
-
-const pad = (value: number) => String(value).padStart(2, "0");
 
 /** One cell's contents: the drawing with its number, then the name row. */
 function WorkCell({

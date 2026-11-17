@@ -2,14 +2,7 @@ export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const RECAPTCHA_API_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_API_KEY;
 
-export const DISQUS_SHORTNAME = process.env.NEXT_PUBLIC_DISQUS_SHORTNAME;
-
 export const ADSENSE_PUBLISHER_ID = "ca-pub-6592430305679345";
-
-export const ADSENSE_AD_SLOT_ID = "9548934338";
-export const ADSENSE_AD_SLOT_ID_FRONT = "1356218158";
-export const ADSENSE_AD_SLOT_ID_HERO = "5791960741";
-export const ADSENSE_AD_SLOT_ID_CONTENT_TOP = "2153189944";
 
 export const META_PIXEL_ID = "882829394312249";
 
@@ -29,11 +22,9 @@ export const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET;
 export const AWS_REGION = "us-east-1";
 export const CONTACT_FORM_NAME = "luisalejandro-contactform";
 export const SES_WELCOME_SENDER_EMAIL = "luis@luisalejandro.org";
-export const SES_WELCOME_SENDER_NAME = "Luis Alejandro";
 export const SES_WELCOME_TEMPLATE_ID = "luisalejandro-welcome";
 export const SES_COMPANY_LIST_EMAIL = "contact@luisalejandro.org";
 export const SES_COMPANY_SENDER_EMAIL = "no-reply@luisalejandro.org";
-export const SES_COMPANY_SENDER_NAME = "Website Contact Form";
 export const SES_COMPANY_TEMPLATE_ID = "luisalejandro-company";
 
 export const canonicalHostnameUrl =

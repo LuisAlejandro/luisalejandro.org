@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-import { Reveal } from "@components/common/Site/Reveal";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
 import { SiteButton } from "@components/common/Site/SiteButton";
 import {
@@ -20,11 +19,10 @@ import {
 } from "@components/Home/WorkArtwork";
 import { RecentProjectList } from "@constants/constants";
 import { recentWorkIntro, sectionNotes } from "@constants/homepageContent";
+import { pad } from "@lib/format";
 
 const projects = RecentProjectList;
 const COUNT = projects.length;
-const pad = (value: number) => String(value).padStart(2, "0");
-
 function subscribe(onChange: () => void) {
   const wide = window.matchMedia("(min-width: 768px)");
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -111,11 +109,12 @@ export function WorkSection({ num, label, id }: WorkSectionProps) {
         id={id}
       />
 
-      <Reveal>
-        <p className="site-lead-type text-ink mb-10 max-w-[46ch]">
-          {recentWorkIntro}
-        </p>
-      </Reveal>
+      <p
+        className="site-lead-type text-ink mb-10 max-w-[46ch]"
+        data-reveal="up"
+      >
+        {recentWorkIntro}
+      </p>
 
       <div
         ref={rootRef}

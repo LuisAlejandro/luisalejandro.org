@@ -4,8 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { Arrow } from "@components/common/Site/Arrow";
-
-const pad = (value: number) => String(value).padStart(2, "0");
+import { pad } from "@lib/format";
 
 // 8x8 Bayer matrix for ordered dithering.
 const BAYER = [

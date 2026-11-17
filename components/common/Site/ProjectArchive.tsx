@@ -2,8 +2,7 @@ import markdownToHtml from "@lib/markdownToHtml";
 import type { PortfolioProject } from "@lib/portfolio";
 import { Arrow } from "@components/common/Site/Arrow";
 import { ProjectShots } from "@components/common/Site/ProjectShots";
-
-const pad = (value: number) => String(value).padStart(2, "0");
+import { pad } from "@lib/format";
 
 /**
  * The project archive: dated rows, newest first, each row labelled with its

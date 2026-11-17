@@ -9,7 +9,7 @@ Personal website and portfolio for Luis Alejandro Martínez Faneyth (`luisalejan
 - **App/product:** `luisalejandro.org` — personal site, portfolio, blog, case studies, contact, and app pages.
 - **UI surface:** Next.js 16 App Router, React 19, TypeScript.
 - **App root:** repository root (`.`).
-- **Styling:** Tailwind CSS v4 via `@import "tailwindcss"` in `styles/tailwind.css`; the `@theme` block defines the paper/ink palette, the fluid type scale, spacing and easings; the `site-` class layer carries the design system's structure; `classnames` for conditional classes; `@tailwindcss/forms` for form defaults.
+- **Styling:** Tailwind CSS v4 via `@import "tailwindcss"` in `styles/tailwind.css`; the `@theme` block defines the paper/ink palette, the fluid type scale, spacing and easings; the `site-` class layer carries the design system's structure; No CSS-in-JS and no class-merge helper: variants are literal class strings.
 - **Component model:** React function components and `forwardRef` primitives under `components/`; route shells in `app/`; side-effect wrappers in `side-effects/`.
 - **Source paths:**
   - Global tokens and all component CSS: `styles/tailwind.css`
