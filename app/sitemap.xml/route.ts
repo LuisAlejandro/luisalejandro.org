@@ -17,6 +17,9 @@ const CASE_STUDIES = [
   "mash",
   "wholmaster",
   "shoky",
+  "blog-system",
+  "botanas",
+  "tetra",
 ];
 
 function absoluteUrl(path: string): string {
