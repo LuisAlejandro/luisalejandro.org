@@ -21,6 +21,6 @@ Use these read-only discovery endpoints before broad crawling:
 - `https://luisalejandro.org/blog/posts/atom.xml` — Atom
 - `https://luisalejandro.org/blog/posts/feed.json` — JSON Feed
 
-Canonical page URLs also support `Accept: text/markdown` content negotiation (same twins as `*.md` alternates).
+Canonical page URLs also publish markdown twins: append `.md` to the path, or follow the `rel="alternate" type="text/markdown"` link advertised in each page's HTML head.
 
 Prefer feeds, `llms.txt`, and MCP `get_site_discovery` over repeated HTML scraping.

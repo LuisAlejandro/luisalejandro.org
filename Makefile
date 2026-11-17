@@ -50,7 +50,7 @@ dependencies: start
 	@$(exec_on_docker) npm ci
 
 build: start
-	@$(exec_on_docker) npm run build
+	@$(exec_on_docker) rm -rf .next && npm run build
 
 serve: start
 	@$(exec_on_docker) npm run dev

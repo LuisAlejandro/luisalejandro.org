@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { purgeByTags as purgeCloudflareByTags } from "@lib/cloudflare/purgeByTags";
 import { logError } from "@lib/logger";
-import { CONTENT_PURGE_TAGS, purgeByTags } from "@lib/netlify/purgeByTags";
+import { BLOG_PURGE_TAGS, purgeByTags } from "@lib/netlify/purgeByTags";
 
 const MAX_REVALIDATE_ITEMS = 50;
 const SLUG_PATTERN = /^[a-z0-9-]+$/;
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
     revalidatePath("/llms-full.txt");
     revalidatedPaths.push("/llms-full.txt");
 
-    const purgedTags = [...CONTENT_PURGE_TAGS];
+    const purgedTags = [...BLOG_PURGE_TAGS];
     const [netlifyPurge, cfPurge] = await Promise.all([
       purgeByTags(purgedTags),
       purgeCloudflareByTags(purgedTags),

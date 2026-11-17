@@ -1,11 +1,8 @@
-// The home page now lists the latest posts, so a publish must invalidate it
-// too. next.config.ts tags `/` with `homepage` and `content`.
-export const CONTENT_PURGE_TAGS = [
+export const BLOG_PURGE_TAGS = [
   "blog-posts",
   "blog-index",
   "blog-listings",
   "homepage",
-  "content",
 ] as const;
 
 export type PurgeByTagsResult = {

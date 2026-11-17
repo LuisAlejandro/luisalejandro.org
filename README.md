@@ -23,7 +23,7 @@ Personal website and portfolio built with Next.js, TypeScript, and Tailwind CSS.
 
 - Portfolio, blog, and case-study pages with Cosmic-backed content
 - Contact form with reCAPTCHA, AWS SES, Mailchimp, and Google Sheets integrations
-- License activation APIs for Wholmaster and Gymcontrol apps
+- License activation API for the Gymcontrol app
 - Disqus comments, analytics, agent discovery surfaces, and on-demand revalidation API routes
 
 ## Local development

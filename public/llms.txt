@@ -51,7 +51,7 @@ This file is the preferred starting point for AI assistants, answer engines, and
 - Agent skills index: https://luisalejandro.org/.well-known/agent-skills/index.json
 - MCP server card: https://luisalejandro.org/.well-known/mcp/server-card.json
 - MCP transport (read-only): https://luisalejandro.org/api/mcp
-- Markdown negotiation: send `Accept: text/markdown` on canonical page URLs (e.g. `/`, `/portfolio`, `/blog/posts/{slug}`) to receive markdown twins without the `.md` suffix
+- Markdown twins: append `.md` to any canonical page URL (e.g. `/index.md`, `/portfolio.md`, `/blog/posts/{slug}.md`) or follow the `rel="alternate" type="text/markdown"` link advertised on each page
 
 ## Content Use Guidance
 
