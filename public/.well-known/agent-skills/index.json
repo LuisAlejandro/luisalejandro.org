@@ -6,7 +6,7 @@
       "type": "skill-md",
       "description": "Discover canonical luisalejandro.org surfaces — llms.txt, sitemap, feeds, API catalog, Agent Skills, and MCP.",
       "url": "https://luisalejandro.org/.well-known/agent-skills/site-discovery/SKILL.md",
-      "sha256": "d32c949cbac7667b47c44706b8ae2182df3ce0387dc24d11a610cec1264cbb50"
+      "sha256": "4ec05bffa0f3cd1c195da476861ff2bf4fa1cec9ecc74ae1b65445446b858c7f"
     },
     {
       "name": "blog-search",
