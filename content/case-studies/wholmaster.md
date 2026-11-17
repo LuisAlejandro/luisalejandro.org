@@ -51,7 +51,7 @@ A first-run onboarding wizard walks a new gym through its basic data, branded co
 
 | Metric | Value |
 | ------------------------------ | ------------------------------------ |
-| Months in daily use at one gym | 14 |
+| Days in daily use at one gym | 400+ |
 | Fingerprint readers validated | 4 |
 | Commits from first line to today | ~1.2K |
 | Languages for front desk staff | 5 |

@@ -157,13 +157,13 @@ export default function ExpediaPage() {
         <p>
           The integration was a success. Expedia quickly certified the
           integration and allowed Wheel the World to increase their hotel
-          database from a couple of thousand hotels to more than 600k hotels.
-          This allowed Wheel the World to increase their sales by 39% on the
-          first quarter of 2023.
+          database from about 2,000 hotels to more than 600k hotels, a 300-fold
+          increase. This allowed Wheel the World to increase their sales by 39%
+          on the first quarter of 2023.
         </p>
         <CaseStudyStats
           items={[
-            { value: "600K", lines: ["hotels to", "choose from"] },
+            { value: "300×", lines: ["the hotel inventory,", "2K to 600K"] },
             { value: "39%", lines: ["increase in", "bookings"] },
           ]}
         />

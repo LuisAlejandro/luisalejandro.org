@@ -73,7 +73,12 @@ export default function SoleitPage() {
         subtitle="Soleit"
         title="A desktop app for kinesiology"
         description="The first automated biomechanical design software. An easier, more accurate, faster process to generate motion analysis and personalized insole 3D model."
-        team={["Luis Alejandro Martínez", "Saraí Santiago", "Israel Lugo", "Sergi Prats"]}
+        team={[
+          "Luis Alejandro Martínez",
+          "Saraí Santiago",
+          "Israel Lugo",
+          "Sergi Prats",
+        ]}
         deliverables={["A REST api", "A desktop app", "A hardware driver"]}
         links={[
           { text: "Client site", url: "https://soleit.app/en/how-it-works/" },
@@ -161,13 +166,14 @@ export default function SoleitPage() {
         <p>
           Soleit is now able to make diagnoses in a <b>more efficient way</b>,
           allowing them to grow their business and expand to new markets. They
-          have made a <b>lot of sales</b> and are now looking to improve some of
-          the features of the app.
+          have made a <b>lot of sales</b>, the app helped the company{" "}
+          <b>raise funding</b> for its growth stage, and they are now looking to
+          improve some of the features of the app.
         </p>
         <CaseStudyStats
           items={[
-            { value: "1000", lines: ["more than", "diagnosed patients"] },
-            { value: "20", lines: ["more than", "sold subscriptions"] },
+            { value: "1,000+", lines: ["patients", "diagnosed"] },
+            { value: "20+", lines: ["clinic subscriptions", "sold"] },
           ]}
         />
         <p>Here are some of the screenshots of the app:</p>

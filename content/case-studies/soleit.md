@@ -49,12 +49,12 @@ _[Image: Product demo video — /images/case-studies/soleit-product.mov]_
 
 ## The Results
 
-Soleit is now able to make diagnoses in a **more efficient way**, allowing them to grow their business and expand to new markets. They have made a **lot of sales** and are now looking to improve some of the features of the app.
+Soleit is now able to make diagnoses in a **more efficient way**, allowing them to grow their business and expand to new markets. They have made a **lot of sales**, the app helped the company **raise funding** for its growth stage, and they are now looking to improve some of the features of the app.
 
 | Metric             | Value          |
 | ------------------ | -------------- |
-| Diagnosed patients | more than 1000 |
-| Sold subscriptions | more than 20   |
+| Patients diagnosed | 1,000+         |
+| Subscriptions sold | 20+            |
 
 Here are some of the screenshots of the app:
 

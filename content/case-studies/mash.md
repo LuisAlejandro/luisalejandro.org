@@ -51,7 +51,7 @@ Mash's first public release shipped on 26 October 2026 and it is still measured 
 | Metric | Value |
 | -------------------------- | ----------------------------------- |
 | Views on the launch post | 12K |
-| Releases in the first 3 weeks | 10 |
+| Releases in the first 3 weeks | 10 (one every 2 days) |
 | Components in the pin manifest | 65 |
 | Languages in the app's UI | 15 |
 

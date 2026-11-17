@@ -83,7 +83,7 @@ export default function WholmasterPage() {
       <CaseStudySection index="01" label="Problem">
         <CaseStudyGlance
           items={[
-            { value: "14 months", label: "in daily use at a real gym" },
+            { value: "400+ days", label: "in daily use at a real gym" },
             { value: "1.2K", label: "commits from the first line to today" },
             { value: "5", label: "languages for front desk staff" },
             { value: "4", label: "fingerprint readers validated" },
@@ -185,7 +185,7 @@ export default function WholmasterPage() {
         </p>
         <CaseStudyStats
           items={[
-            { value: "14", lines: ["months in daily", "use at one gym"] },
+            { value: "400+", lines: ["days in daily use", "at one gym"] },
             {
               value: "4",
               lines: ["fingerprint readers", "validated on hardware"],

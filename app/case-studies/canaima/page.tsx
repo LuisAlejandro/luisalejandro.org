@@ -168,8 +168,8 @@ export default function CanaimaPage() {
 
         <CaseStudyStats
           items={[
-            { value: "110K", lines: ["downloads on", "Canaima 3.0"] },
-            { value: "150K", lines: ["downloads on", "Canaima 3.1"] },
+            { value: "480K", lines: ["downloads across", "three releases"] },
+            { value: "2×", lines: ["downloads from", "3.0 to 4.0"] },
             { value: "220K", lines: ["downloads on", "Canaima 4.0"] },
           ]}
         />

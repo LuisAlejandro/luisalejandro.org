@@ -59,5 +59,5 @@ By reducing the aount of time it takes to deploy and the weight of the images, w
 
 | Metric                                | Value |
 | ------------------------------------- | ----- |
-| Reduction in costs for GitHub Actions | ~75%  |
-| Reduction in image size               | ~86%  |
+| Faster deploys, 40 to 10 minutes      | 4×    |
+| Smaller images, 1.5 GB to 200 MB      | 7.5×  |

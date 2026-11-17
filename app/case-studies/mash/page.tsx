@@ -191,7 +191,10 @@ export default function MashPage() {
         <CaseStudyStats
           items={[
             { value: "12K", lines: ["views on the", "launch announcement"] },
-            { value: "10", lines: ["releases in", "the first 3 weeks"] },
+            {
+              value: "2 days",
+              lines: ["between releases,", "10 in three weeks"],
+            },
           ]}
         />
         <p>

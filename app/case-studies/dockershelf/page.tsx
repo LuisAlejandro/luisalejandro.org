@@ -190,9 +190,9 @@ export default function DockershelfPage() {
 
         <CaseStudyStats
           items={[
-            { value: "220K", lines: ["downloads on", "debian images"] },
+            { value: "569K", lines: ["downloads across", "all images"] },
             { value: "294K", lines: ["downloads on", "python images"] },
-            { value: "55K", lines: ["downloads on", "node images"] },
+            { value: "~4×", lines: ["smaller than the", "official images"] },
           ]}
         />
 

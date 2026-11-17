@@ -175,10 +175,10 @@ export default function WheelTheWorldPage() {
         <CaseStudyStats
           items={[
             {
-              value: "~75%",
-              lines: ["reduction in costs", "for github actions"],
+              value: "4×",
+              lines: ["faster deploys,", "40 to 10 minutes"],
             },
-            { value: "~86%", lines: ["reduction in", "image size"] },
+            { value: "7.5×", lines: ["smaller images,", "1.5 GB to 200 MB"] },
           ]}
         />
       </CaseStudySection>

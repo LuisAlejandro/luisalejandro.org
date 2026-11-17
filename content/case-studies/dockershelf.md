@@ -55,6 +55,7 @@ My intention with dockershelf was to be a personal project, but it turned out to
 | Downloads on debian images | 220K  |
 | Downloads on python images | 294K  |
 | Downloads on node images   | 55K   |
+| Downloads across all images | 569K |
 
 The difference in size between the official images and the dockershelf ones are significant. The Python and Node images are 4 times smaller, making them faster to download and use. Although not as small as Alpine, they are still a good alternative for those who need a Debian based image.
 

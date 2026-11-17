@@ -57,6 +57,7 @@ Canaima enjoyed a lot of popularity in Venezuela. It was used in schools, univer
 | Canaima 3.0 | 110K      |
 | Canaima 3.1 | 150K      |
 | Canaima 4.0 | 220K      |
+| All three   | 480K      |
 
 As a Canaima developer, I was able to assist to the 12th annual debian developers conference, which was held in Managua, Nicaragua. I was able to meet other Debian developers, including the creator of Live Build, which was the base for Canaima Semilla.
 
