@@ -4,11 +4,6 @@
   /* breakpoint */
   --breakpoint-xs: 450px;
 
-  /* font */
-  --font-display: var(--font-league-gothic), sans-serif;
-  --font-title: var(--font-poppins), sans-serif;
-  --font-main: var(--font-roboto), sans-serif;
-
   /* shadow */
   --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
@@ -17,32 +12,7 @@
   --grid-template-columns-16: repeat(16, minmax(0, 1fr));
   --grid-column-span-16: span 16 / span 16;
 
-  /* background image */
-
-  /* font sizes */
-
-  /* custom colors */
-  --color-orange: #da8244;
-  --color-gold: #f8d983;
-  --color-gold-dark: #d0bb57;
-  --color-gray-3: #5a5a5a;
-  --color-blue-gray: #abb7b7;
-  --color-blue-gray-light: #c0cece;
-  --color-custom-beige: #f2d9a0;
-  --color-custom-beige-light: #ede4ce;
-  --color-accent-2: #eaeaea;
-  --color-accent-7: #333333;
-  --color-gray-1: #3c3c3c;
-  --color-bright-gold: #f5cc6a;
-  --color-gray-2: #222222;
-  --color-gray-4: #303030;
-  --color-gray-5: #aaaaaa;
-  --color-orange-2: #e68449;
-  --color-orange-3: #f1b161;
-  --color-gray-6: #ddd;
-  --color-teal-custom: #1abc9c;
-
-  /* redesign: tokens used only inside .site-shell (see DESIGN.md section 6) */
+  /* Tokens and scale for the site system (see DESIGN.md section 2) */
   /* Light theme, taken from the reference's own light palette; the accent is
      crimson (4.6:1 as text on paper, white on it at 5.1:1). */
   --color-paper: #f4f4f0;
@@ -93,9 +63,8 @@
   --font-site-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
-/* Unlayered on purpose: <body> gets its gold background from a utility class,
-   and only an unlayered rule outranks the utilities layer. Without it the gold
-   shows on overscroll behind a redesigned page. */
+/* The shell paints the page; this also covers the overscroll area behind it.
+   Unlayered so it outranks the utilities layer. */
 body:has(.site-shell) {
   background-color: var(--color-paper);
 }

@@ -1,7 +1,5 @@
 "use client";
 
-import { Section } from "@components/common/Layout/Section";
-
 export default function AgorasPrivacyPage() {
   return (
     <div className="w-full mx-auto">
@@ -50,7 +48,7 @@ export default function AgorasPrivacyPage() {
           }
         }
       `}</style>
-      <Section overflowVisible>
+      <section className="w-full relative overflow-visible">
         <div className="termspriv">
           <h1>Privacy Policy</h1>
 
@@ -535,7 +533,7 @@ export default function AgorasPrivacyPage() {
             .
           </p>
         </div>
-      </Section>
+      </section>
     </div>
   );
 }

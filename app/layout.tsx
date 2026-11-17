@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { League_Gothic, Poppins, Roboto } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
 
@@ -15,35 +14,6 @@ import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 import MetaPixel from "@side-effects/MetaPixel";
 
 import "@styles/tailwind.css";
-
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-// Poppins and League Gothic are used only by gold-era routes. They stay
-// self-hosted, but are not preloaded: the redesigned shell renders neither,
-// and preloading them there competes with Geist for bandwidth.
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap",
-  preload: false,
-  adjustFontFallback: true,
-});
-
-const leagueGothic = League_Gothic({
-  subsets: ["latin"],
-  variable: "--font-league-gothic",
-  display: "swap",
-  preload: false,
-  adjustFontFallback: true,
-});
 
 const siteTitle =
   "Luis Alejandro | Full Stack AI Engineer & Open Source Expert";
@@ -232,10 +202,9 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${poppins.variable} ${leagueGothic.variable}`}
       prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# dcterms: http://purl.org/dc/terms/#"
     >
-      <body className="bg-bright-gold text-gray-2 cursor-default overflow-x-hidden text-2xl font-main">
+      <body className="cursor-default overflow-x-hidden antialiased">
         {children}
         {GA_MEASUREMENT_ID && ENV_NAME !== "local" && (
           <>
