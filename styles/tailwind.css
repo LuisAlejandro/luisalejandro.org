@@ -4262,7 +4262,7 @@ body:has(.site-shell) {
     padding-bottom: 3rem;
   }
   .site-pentry__text {
-    grid-column: 4 / span 5;
+    grid-column: 4 / span 4;
     min-width: 0;
   }
   .site-pentry__text .site-prose {
@@ -4287,14 +4287,117 @@ body:has(.site-shell) {
     gap: 1rem;
     padding: 0.85rem 0;
   }
+  /* The screenshots: one fixed 16:10 frame, a scroll-snap filmstrip, so the
+     row is as tall as its text however many images a project has. */
   .site-pentry__shots {
-    grid-column: 9 / span 4;
-    display: grid;
-    gap: 1rem;
-    align-content: start;
+    grid-column: 8 / span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
   }
-  .site-pentry__shots .site-project-shot {
+  .site-pentry__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    border: 1px solid var(--color-rule);
+  }
+  .site-pentry__track::-webkit-scrollbar {
+    display: none;
+  }
+  .site-pentry__track:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 4px;
+  }
+  .site-pentry__track .site-project-shot {
+    flex: 0 0 100%;
     margin: 0;
+    border: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .site-pentry__track .site-project-shot img {
+    object-fit: cover;
+    object-position: top center;
+    padding: 0;
+  }
+  /* Ghosted white dither over the real image; hover wipes it off. Hidden
+     until painted, so the image shows if the canvas never draws. */
+  .site-pentry__track canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.7s var(--ease-site-in-out);
+  }
+  .site-pentry__track canvas[data-ready] {
+    opacity: 1;
+  }
+  .site-pentry__track .site-project-shot:hover canvas {
+    clip-path: inset(0 0 0 100%);
+  }
+  /* No hover on touch, so show the real thing. */
+  @media (hover: none) {
+    .site-pentry__track canvas[data-ready] {
+      opacity: 0;
+    }
+  }
+  .site-pentry__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .site-pentry__ticks {
+    display: flex;
+    gap: 6px;
+  }
+  .site-pentry__ticks span {
+    width: 28px;
+    height: 2px;
+    background: var(--color-rule-strong);
+    transition: background 0.3s var(--ease-site-out);
+  }
+  .site-pentry__ticks span[data-on] {
+    background: var(--color-ink);
+  }
+  .site-pentry__nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .site-pentry__nav button {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+  .site-pentry__nav button:hover {
+    box-shadow: inset 0 0 0 1px var(--color-ink);
+  }
+  .site-pentry__nav button:focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+  .site-pentry__prev {
+    scale: -1 1;
+  }
+  /* Carousel arrows nudge along their direction instead of the → lift. */
+  .site-pentry__nav button:is(:hover, :focus-visible) .site-arrow[data-kind] {
+    transform: translate(3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-pentry__track canvas,
+    .site-pentry__ticks span {
+      transition: none;
+    }
   }
 
   @media (max-width: 1023px) {
