@@ -43,6 +43,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Mash working directories: designs, plans, QA reports and run state are
+# working artifacts, not source. Formatting them would rewrite them in place.
+.mash/
+
 # Misc
 *.tgz
 *.tar.gz
