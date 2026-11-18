@@ -22,14 +22,20 @@ This file is the preferred starting point for AI assistants, answer engines, and
 
 - Home: https://luisalejandro.org/ — Positioning, measured impact, selected work, services, FAQ, and latest posts.
 - About: https://luisalejandro.org/about — Career changelog from 2009 to today, principles, toolbox, and FAQ.
-- Portfolio: https://luisalejandro.org/portfolio — The project archive: ten projects with screenshots, stack, and outcomes.
-- Case studies: https://luisalejandro.org/case-studies — Long-form dossiers on Expedia, Wheel The World, Soleit, Dockershelf, and Canaima.
+- Portfolio: https://luisalejandro.org/portfolio — The project archive: thirteen projects with screenshots, stack, and outcomes.
+- Case studies: https://luisalejandro.org/case-studies — Long-form dossiers on Mash, Whol Master, Shoky, Tetra, the blog system, Botanas, Expedia, Wheel The World, Soleit, Dockershelf, and Canaima.
 - Blog: https://luisalejandro.org/blog — Technical posts about software development and engineering lessons.
 - Contact: https://luisalejandro.org/contact — A brief or a 30-minute call (https://cal.com/martinezfaneyth). Replies within 3 business days.
 - Privacy: https://luisalejandro.org/privacy — What the contact form keeps, and the analytics and cookie policy.
 
 ## Case Studies
 
+- Mash: https://luisalejandro.org/case-studies/mash — A desktop workspace for AI-assisted coding; terminal, editor and agents in one app, every tool pinned.
+- Whol Master: https://luisalejandro.org/case-studies/wholmaster — Offline gym management with biometric entrance, in daily use at one gym for over a year.
+- Shoky: https://luisalejandro.org/case-studies/shoky — A forkable multi-repo agent workspace that about 25 engineers work from.
+- Tetra: https://luisalejandro.org/case-studies/tetra — A two-host agent incubator: 35 scheduled jobs and one human approver.
+- The blog system: https://luisalejandro.org/case-studies/blog-system — Nine agents turn a premise into a sourced, published article under one byline.
+- Botanas: https://luisalejandro.org/case-studies/botanas — A trading research loop over Freqtrade built to refuse overfit strategies.
 - Expedia API Integration: https://luisalejandro.org/case-studies/expedia — Booking engine integration work for Wheel The World.
 - Wheel The World CI/CD: https://luisalejandro.org/case-studies/wheeltheworld — CI/CD reliability and cost optimization work.
 - Soleit Desktop App: https://luisalejandro.org/case-studies/soleit — Electron and Ionic React diagnostic desktop application.

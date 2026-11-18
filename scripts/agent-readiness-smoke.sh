@@ -14,48 +14,25 @@ pass() {
 
 echo "Agent readiness smoke against ${BASE_URL}"
 
-# AE1: homepage markdown negotiation
-markdown_type=$(curl -sI -H "Accept: text/markdown" "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${markdown_type}" == *"text/markdown"* ]] || fail "homepage Accept markdown Content-Type (${markdown_type:-missing})"
-pass "homepage markdown negotiation"
+# AE1: markdown twins are served directly (Accept negotiation was removed in
+# 459fe6f, so the twins are the surface that has to hold).
+twin_type=$(curl -sI "${BASE_URL}/portfolio.md" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
+[[ "${twin_type}" == *"text/markdown"* ]] || fail "portfolio twin Content-Type (${twin_type:-missing})"
+pass "portfolio markdown twin"
+
+case_twin_type=$(curl -sI "${BASE_URL}/case-studies/tetra.md" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
+[[ "${case_twin_type}" == *"text/markdown"* ]] || fail "case-study twin Content-Type (${case_twin_type:-missing})"
+pass "case-study markdown twin"
 
 # AE2: browser HTML unchanged
 html_type=$(curl -sI "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
 [[ "${html_type}" == *"text/html"* ]] || fail "homepage default HTML Content-Type (${html_type:-missing})"
 pass "homepage HTML default"
 
-vary_accept=$(curl -sI "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="vary" {print tolower($2); exit}')
-[[ "${vary_accept}" == *"accept"* ]] || fail "homepage Vary Accept (${vary_accept:-missing})"
-pass "homepage Vary Accept"
-
-# Accept q-value preference (markdown wins when q higher)
-q_markdown_type=$(curl -sI -H "Accept: text/html;q=0.9, text/markdown;q=1" "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${q_markdown_type}" == *"text/markdown"* ]] || fail "Accept q-value markdown preference (${q_markdown_type:-missing})"
-pass "Accept q-value markdown preference"
-
-tie_markdown_type=$(curl -sI -H "Accept: text/markdown, text/html" "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${tie_markdown_type}" == *"text/markdown"* ]] || fail "Accept equal-q tie prefers first listed type (${tie_markdown_type:-missing})"
-pass "Accept equal-q tie-break"
-
-q_zero_type=$(curl -sI -H "Accept: text/markdown;q=0" "${BASE_URL}/" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${q_zero_type}" == *"text/html"* ]] || fail "Accept q=0 rejects markdown (${q_zero_type:-missing})"
-pass "Accept q=0 rejects markdown"
-
-# Secondary negotiated surface
-portfolio_type=$(curl -sI -H "Accept: text/markdown" "${BASE_URL}/portfolio" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${portfolio_type}" == *"text/markdown"* ]] || fail "portfolio markdown negotiation (${portfolio_type:-missing})"
-pass "portfolio markdown negotiation"
-
-# Unsupported path must not fake markdown
-unknown_type=$(curl -sI -H "Accept: text/markdown" "${BASE_URL}/this-page-does-not-exist" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${unknown_type}" != *"text/markdown"* ]] || fail "unsupported path returned markdown (${unknown_type})"
-pass "unsupported path no false markdown"
-
-invalid_blog_status=$(curl -sI -H "Accept: text/markdown" "${BASE_URL}/blog/category/foo/bar" | tr -d '\r' | awk 'tolower($1) ~ /^http/ {print $2; exit}')
-invalid_blog_type=$(curl -sI -H "Accept: text/markdown" "${BASE_URL}/blog/category/foo/bar" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2); exit}')
-[[ "${invalid_blog_status}" == "404" ]] || fail "invalid blog path status (${invalid_blog_status:-missing})"
-[[ "${invalid_blog_type}" == *"text/markdown"* ]] || fail "invalid blog path markdown 404 type (${invalid_blog_type:-missing})"
-pass "invalid twin path markdown 404"
+# A twin that does not exist must not answer with markdown.
+missing_status=$(curl -s -o /dev/null -w '%{http_code}' "${BASE_URL}/this-page-does-not-exist.md")
+[[ "${missing_status}" == "404" ]] || fail "missing twin status (${missing_status})"
+pass "missing twin 404"
 
 # AE4: API catalog
 catalog_json=$(curl -s "${BASE_URL}/.well-known/api-catalog")
