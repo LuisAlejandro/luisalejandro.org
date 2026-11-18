@@ -61,7 +61,10 @@ export function SiteHeader() {
             aria-label="Open command palette (⌘K)"
             className="site-tool site-tool--wide site-note"
           >
-            ⌘K
+            <span className="site-tool__kbd">⌘K</span>
+            <span className="site-tool__find" aria-hidden="true">
+              ⌕
+            </span>
           </button>
 
           <button

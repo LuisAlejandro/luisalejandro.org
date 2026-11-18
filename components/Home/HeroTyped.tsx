@@ -104,6 +104,9 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
 
       // Lay one measuring box over each marked element, with guides along its
       // top, bottom and right edges.
+      // Phones get the boxes only: labels and guides would cover the copy
+      // they are meant to measure, and the hero is already tall there.
+      const compact = window.matchMedia("(max-width: 767px)").matches;
       layer = document.createElement("div");
       layer.className = "site-bp";
       layer.setAttribute("aria-hidden", "true");
@@ -118,15 +121,17 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
         const box = document.createElement("div");
         box.className = "site-bp__box";
         box.style.cssText = `left:${r.left - frameRect.left}px;top:${r.top - frameRect.top}px;width:${r.width}px;height:${r.height}px`;
-        const label = document.createElement("span");
-        label.className = "site-bp__label site-note";
-        box.append(label);
+        if (!compact) {
+          const label = document.createElement("span");
+          label.className = "site-bp__label site-note";
+          box.append(label);
+          labels.push({
+            el: label,
+            text: `${el.dataset.bp} · ${Math.round(r.width)}×${Math.round(r.height)}`,
+          });
+        }
         layer!.append(box);
         boxes.push(box);
-        labels.push({
-          el: label,
-          text: `${el.dataset.bp} · ${Math.round(r.width)}×${Math.round(r.height)}`,
-        });
         rows.add(Math.round(r.top - frameRect.top));
         rows.add(Math.round(r.bottom - frameRect.top));
         columns.add(Math.round(r.right - frameRect.left));
@@ -139,8 +144,8 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
         layer!.append(line);
         return line;
       };
-      const guidesH = [...rows].map((y) => guide("h", y));
-      const guidesV = [...columns].map((x) => guide("v", x));
+      const guidesH = compact ? [] : [...rows].map((y) => guide("h", y));
+      const guidesV = compact ? [] : [...columns].map((x) => guide("v", x));
       hero.append(layer);
 
       // Lead words rise line by line: group them by their rendered row.
@@ -219,7 +224,9 @@ export function HeroTyped({ lead, typed }: HeroTypedProps) {
       );
 
       // Then the measuring layer retracts and goes.
-      const exitAt = fadeAt + FADE_MS + (fades.length - 1) * FADE_STAGGER + 200;
+      const exitAt = compact
+        ? fadeAt + 500
+        : fadeAt + FADE_MS + (fades.length - 1) * FADE_STAGGER + 200;
       labels.forEach(({ el }, i) =>
         play(
           el,

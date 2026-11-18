@@ -14,14 +14,16 @@ const BAYER = [
   61, 29, 53, 21,
 ];
 // Ghosted white: a lifted, flattened tone curve dithered to two near-whites.
-const DARK = [205, 205, 196];
+const DARK = [198, 198, 189];
 const LIGHT = [250, 250, 247];
-const DOT = 2; // CSS px per dither dot
+/** CSS px per dither dot: finer where the frame is small. */
+const dotSize = (width: number) => (width < 1024 ? 1.5 : 2);
 
 /** Paints `img` (as object-fit: cover, top) into `canvas` as a two-tone dither. */
 function dither(canvas: HTMLCanvasElement, img: HTMLImageElement) {
-  const w = Math.round(canvas.clientWidth / DOT);
-  const h = Math.round(canvas.clientHeight / DOT);
+  const dot = dotSize(canvas.clientWidth);
+  const w = Math.round(canvas.clientWidth / dot);
+  const h = Math.round(canvas.clientHeight / dot);
   if (!w || !h || !img.naturalWidth) return;
   canvas.width = w;
   canvas.height = h;
