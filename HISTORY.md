@@ -1,6 +1,225 @@
 # Changelog
 
 
+## 4.0.0 (2026-11-18)
+
+### Added
+
+* Renew licenses with a daily check-in and a short lease. [Luis Alejandro Martínez Faneyth]
+
+* Generate the desktop verifier constants instead of hand-editing them. [Luis Alejandro Martínez Faneyth]
+
+* Technical collage illustrations for the six newer case studies. [Luis Alejandro Martínez Faneyth]
+
+* Case studies for Tetra, the blog system and Botanas. [Luis Alejandro Martínez Faneyth]
+
+* Mash website, Listen for Work and Agoras in the gallery. [Luis Alejandro Martínez Faneyth]
+
+* Case studies for Mash, Shoky and Whol Master. [Luis Alejandro Martínez Faneyth]
+
+* Magnetic buttons and smooth FAQ rows. [Luis Alejandro Martínez Faneyth]
+
+* Entrance motion after the reference: rise, lines, drawn rules. [Luis Alejandro Martínez Faneyth]
+
+* Add about and privacy pages, and a fuller brief on contact. [Luis Alejandro Martínez Faneyth]
+
+* Search blog posts from the command palette. [Luis Alejandro Martínez Faneyth]
+
+* Hero intro with measuring guides and line rise. [Luis Alejandro Martínez Faneyth]
+
+* Draw the other four project panels in the same register. [Luis Alejandro Martínez Faneyth]
+
+* Home route metadata, dark theme-color, and updated LLM corpus. [Luis Alejandro Martínez Faneyth]
+
+* Section 05: Latest published blog entries with on-demand revalidation. [Luis Alejandro Martínez Faneyth]
+
+* Numbered home sections: metrics, work, services, FAQ, and CTA. [Luis Alejandro Martínez Faneyth]
+
+* Editorial hero section with typed headline and reactive terrain canvas. [Luis Alejandro Martínez Faneyth]
+
+* Smooth scroll and reveal motion helpers for the redesign. [Luis Alejandro Martínez Faneyth]
+
+* Accessible command palette with keyboard shortcut. [Luis Alejandro Martínez Faneyth]
+
+* Site header, mobile navigation, and footer for the redesign. [Luis Alejandro Martínez Faneyth]
+
+* Dark design foundation and site shell for the redesign. [Luis Alejandro Martínez Faneyth]
+
+* Offline activation page for Wholmaster licenses. [Luis Alejandro Martínez Faneyth]
+
+* Issue Wholmaster licenses with Ed25519 keys and seat-counted activation. [Luis Alejandro Martínez Faneyth]
+
+* Dynamic OpenGraph images and FAQ metadata projection for blog posts. [Luis Alejandro Martínez Faneyth]
+
+* Render FAQPage JSON-LD and visible FAQ section for blog posts. [Luis Alejandro Martínez Faneyth]
+
+* Design system overview. [Luis Alejandro Martínez Faneyth]
+
+* Unpublished TikTok video GET prefix. [Luis Alejandro Martínez Faneyth]
+
+
+### Changed
+
+* Serve Geist from the repository instead of Google Fonts. [Luis Alejandro Martínez Faneyth]
+
+* Document only the system the site renders. [Luis Alejandro Martínez Faneyth]
+
+* Document the work sheet, the pinned stage and the archive's filmstrip. [Luis Alejandro Martínez Faneyth]
+
+* Point Agoras documentation links at agoras.dev. [Luis Alejandro Martínez Faneyth]
+
+* Cache HTML for 24h at the CDN layer. [Luis Alejandro Martínez Faneyth]
+
+* Lead the case-study results with the ratio the numbers prove. [Luis Alejandro Martínez Faneyth]
+
+* Lead the work sections with the six newest case studies. [Luis Alejandro Martínez Faneyth]
+
+* Turn the project index into a ghosted filmstrip. [Luis Alejandro Martínez Faneyth]
+
+* Show the about portrait's mark as a static draft. [Luis Alejandro Martínez Faneyth]
+
+* Put the face mark in the about portrait frame. [Luis Alejandro Martínez Faneyth]
+
+* One arrow: glyph by destination, three sizes, one motion each. [Luis Alejandro Martínez Faneyth]
+
+* Fold the ten small projects into an expanding archive. [Luis Alejandro Martínez Faneyth]
+
+* Light work-grid cells with a left-to-right ink curtain. [Luis Alejandro Martínez Faneyth]
+
+* Hold the work-grid objects still; play only their insides. [Luis Alejandro Martínez Faneyth]
+
+* Crowd the work-grid drawings and drop their figures. [Luis Alejandro Martínez Faneyth]
+
+* Checker the work grid, enlarge its drawings, fix the tape. [Luis Alejandro Martínez Faneyth]
+
+* Lay the home work grid out as a 3 × 2 sheet. [Luis Alejandro Martínez Faneyth]
+
+* Move the case-study stage to the portfolio; grid on home. [Luis Alejandro Martínez Faneyth]
+
+* Give every inner page the same frame. [Luis Alejandro Martínez Faneyth]
+
+* Rebuild the about page on the reference's layout. [Luis Alejandro Martínez Faneyth]
+
+* Rebuild the contact page on the reference's layout. [Luis Alejandro Martínez Faneyth]
+
+* Close the deferred list: accents, shared links, artwork, agent search. [Luis Alejandro Martínez Faneyth]
+
+* Finish the redesign: contact, app pages, and site chrome. [Luis Alejandro Martínez Faneyth]
+
+* Read the case studies as dossier pages, not parallax scenes. [Luis Alejandro Martínez Faneyth]
+
+* Align project tags left and finish the portfolio notes. [Luis Alejandro Martínez Faneyth]
+
+* Redesign the portfolio as a project archive with per-project pages. [Luis Alejandro Martínez Faneyth]
+
+* Remove Disqus preconnect, lightbox CSS and dead blog utilities. [Luis Alejandro Martínez Faneyth]
+
+* Modernize blog post social share cards with the new design palette. [Luis Alejandro Martínez Faneyth]
+
+* Rebuild the post page as a clean reading layout. [Luis Alejandro Martínez Faneyth]
+
+* Move blog topic archives onto the new site shell. [Luis Alejandro Martínez Faneyth]
+
+* Rebuild the blog index as a live, year-grouped archive. [Luis Alejandro Martínez Faneyth]
+
+* Complete the remaining work-slide illustrations. [Luis Alejandro Martínez Faneyth]
+
+* Illustrate the CI/CD work slide as a release story. [Luis Alejandro Martínez Faneyth]
+
+* Rebalance the wide Expedia illustration. [Luis Alejandro Martínez Faneyth]
+
+* Spread the work stage across the full width with the title centred. [Luis Alejandro Martínez Faneyth]
+
+* Redraw the Expedia panel as solid objects with a scroll story. [Luis Alejandro Martínez Faneyth]
+
+* Transparent header band, and a sample collage for the first project. [Luis Alejandro Martínez Faneyth]
+
+* Rebuild the hero vortex as a faithful WebGL reproduction. [Luis Alejandro Martínez Faneyth]
+
+* Light theme, crimson accent, vortex hero and plotted mark. [Luis Alejandro Martínez Faneyth]
+
+* Consolidate nav and CTA definitions, adopt the token scale, refresh agent copy. [Luis Alejandro Martínez Faneyth]
+
+* Mark Spanish blog content and drop the X Aggregator app. [Luis Alejandro Martínez Faneyth]
+
+
+### Fixed
+
+* Pin ESLint 9 and keep it out of the working directories. [Luis Alejandro Martínez Faneyth]
+
+* Run the production build inside the container. [Luis Alejandro Martínez Faneyth]
+
+* Keep the formatter out of the working directories. [Luis Alejandro Martínez Faneyth]
+
+* Point discovery copy at the eleven case studies. [Luis Alejandro Martínez Faneyth]
+
+* Six things the small and mid widths got wrong. [Luis Alejandro Martínez Faneyth]
+
+* Reconcile the lockfile with the redesign's dependencies. [Luis Alejandro Martínez Faneyth]
+
+* Keep agent-skills index hash in sync with SKILL.md. [Luis Alejandro Martínez Faneyth]
+
+* Wrap the blog's topic pills inside the page. [Luis Alejandro Martínez Faneyth]
+
+* Let the about portrait's mark plot where it can be seen. [Luis Alejandro Martínez Faneyth]
+
+* Keep split headlines on their real lines inside flex headings. [Luis Alejandro Martínez Faneyth]
+
+* Balance the work-grid drawings in their cells. [Luis Alejandro Martínez Faneyth]
+
+* Credit the author as Luis Alejandro Martínez. [Luis Alejandro Martínez Faneyth]
+
+* Restore the metadata the redesign had dropped. [Luis Alejandro Martínez Faneyth]
+
+* Blog QA pass: cached archive, real types, reachable controls. [Luis Alejandro Martínez Faneyth]
+
+* Close the final QA findings for the redesign. [Luis Alejandro Martínez Faneyth]
+
+* Fill the hero with the vortex and reveal the next section through it. [Luis Alejandro Martínez Faneyth]
+
+* Match the home page to the reference design. [Luis Alejandro Martínez Faneyth]
+
+* Overlay scroll containment, hero layout stability, and cache invalidation. [Luis Alejandro Martínez Faneyth]
+
+* Sitemap accuracy and structured data identity. [Luis Alejandro Martínez Faneyth]
+
+
+### Removed
+
+* Cut the dead code and dependencies the redesign left behind. [Luis Alejandro Martínez Faneyth]
+
+* Drop the last two unreferenced components of the old era. [Luis Alejandro Martínez Faneyth]
+
+* Remove the gold-era components, palette and fonts. [Luis Alejandro Martínez Faneyth]
+
+* Remove Accept-based markdown negotiation. [Luis Alejandro Martínez Faneyth]
+
+* Remove the Wholmaster licence endpoints. [Luis Alejandro Martínez Faneyth]
+
+* Remove the legacy Wholmaster activation endpoints. [Luis Alejandro Martínez Faneyth]
+
+* Remove the AdSense loader: no ad unit is left to serve. [Luis Alejandro Martínez Faneyth]
+
+* Retire legacy blog components, AdSense banners, Disqus and unused CSS. [Luis Alejandro Martínez Faneyth]
+
+* Gold-era home parts; move the 404 page onto the new shell. [Luis Alejandro Martínez Faneyth]
+
+* Remove public TikTok /files/videos host. [Luis Alejandro Martínez Faneyth]
+
+* Stop automatic pull request merges. [Luis Alejandro Martínez Faneyth]
+
+
+### Other
+
+* Fix(ci): clear .next before Docker production build (Turbopack font cache) [Cursor Agent]
+
+* Fix(ci): sync package-lock.json with googleapis@175.0.0. [Cursor Agent]
+
+* Update. [Luis Alejandro Martínez Faneyth]
+
+* Chore: ignore .vscode directory. [Luis Alejandro Martínez Faneyth]
+
+
 ## 3.2.11 (2026-08-25)
 
 ### Added
