@@ -91,7 +91,7 @@ export function WholmasterCard() {
   );
 }
 
-/** Whol Master: the front desk app, a fingerprint at the door, a ledger that never leaves. */
+/** Wholmaster: the front desk app, a fingerprint at the door, a ledger that never leaves. */
 export function WholmasterArt({ layer = "back" }: { layer?: Layer }) {
   if (layer === "front") return <WholmasterCard />;
 
@@ -100,7 +100,7 @@ export function WholmasterArt({ layer = "back" }: { layer?: Layer }) {
     <>
       {/* The front desk: members list, quick renew, an entrance log. */}
       <Obj x={214} y={150} r={-3} tilt={-4}>
-        <Win w={650} h={300} title="whol master · front desk · offline" />
+        <Win w={650} h={300} title="Wholmaster · front desk · offline" />
         <path d="M0 28H650M116 28V300" stroke={INK} fill="none" />
         {["Members", "Payments", "Shop", "Entrance", "Reports"].map(
           (label, i) => (

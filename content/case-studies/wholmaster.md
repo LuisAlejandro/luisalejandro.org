@@ -1,8 +1,8 @@
 # Gym software that never phones home
 
-Whol Master
+Wholmaster
 
-Whol Master is a gym management platform that runs on the front desk's own computer: members, subscriptions, payments, shop sales, reports and biometric entrance control, with an embedded database instead of a cloud account. One gym in Maracay has been running it for over a year.
+Wholmaster is a gym management platform that runs on the front desk's own computer: members, subscriptions, payments, shop sales, reports and biometric entrance control, with an embedded database instead of a cloud account. One gym in Maracay has been running it for over a year.
 
 **Year:** 2025
 
@@ -39,15 +39,15 @@ Around that sits the unglamorous part: an Electron app distributed for Windows, 
 
 ## The Product
 
-Whol Master is one desktop application made of cooperating processes: an **Electron** shell that boots a **Go REST API**, a **SvelteKit** admin interface served from the same install, and optional hardware services for the fingerprint interface and the numpad bridge. Data lives in embedded SQLite, so a backup is a file copy.
+Wholmaster is one desktop application made of cooperating processes: an **Electron** shell that boots a **Go REST API**, a **SvelteKit** admin interface served from the same install, and optional hardware services for the fingerprint interface and the numpad bridge. Data lives in embedded SQLite, so a backup is a file copy.
 
-The modules cover the whole front desk: members and their documents, subscriptions and billing cycles, packages and services, payments with a quick renew action, a shop point of sale with stock, analytics with revenue, churn and cohort views, entrance logging with biometric matching, WhatsApp campaigns for birthdays and expiry reminders, and the reports exported to CSV and PDF. Optional Stripe autopay collects recurring dues into the gym's own Stripe account without Whol Master ever holding member money.
+The modules cover the whole front desk: members and their documents, subscriptions and billing cycles, packages and services, payments with a quick renew action, a shop point of sale with stock, analytics with revenue, churn and cohort views, entrance logging with biometric matching, WhatsApp campaigns for birthdays and expiry reminders, and the reports exported to CSV and PDF. Optional Stripe autopay collects recurring dues into the gym's own Stripe account without Wholmaster ever holding member money.
 
 A first-run onboarding wizard walks a new gym through its basic data, branded colours, admin user, cycles, services and packages, so an install ends in a usable system rather than an empty database. The user manual is generated from the same codebase and ships inside the app, in Spanish and English, because the person installing this is a gym owner, not an IT department.
 
 ## The Results
 
-**Bahia's Gym**, in Maracay, Venezuela, has been running Whol Master for more than a year. The abandoned program is gone, the payment history came across, and the front desk works when the internet does not. That is the result I care about most: a small business replaced software nobody could fix with software it owns.
+**Bahia's Gym**, in Maracay, Venezuela, has been running Wholmaster for more than a year. The abandoned program is gone, the payment history came across, and the front desk works when the internet does not. That is the result I care about most: a small business replaced software nobody could fix with software it owns.
 
 | Metric | Value |
 | ------------------------------ | ------------------------------------ |

@@ -438,7 +438,7 @@ export const RecentProjectList = [
     visit: "/case-studies/mash",
   },
   {
-    title: "Whol Master",
+    title: "Wholmaster",
     description:
       "Gym management that runs on the front desk's own computer, with biometric entrance and no cloud account. One gym has used it daily for over a year.",
     image: "/images/banner.png",
@@ -446,7 +446,7 @@ export const RecentProjectList = [
     visit: "/case-studies/wholmaster",
   },
   {
-    title: "Shoky",
+    title: "Shoky Enterprise Harness",
     description:
       "A forkable meta-workspace for multi-repo projects, with agent skills, per-repo memory and a local container stack. About 25 engineers work from it.",
     image: "/images/banner.png",
@@ -454,7 +454,7 @@ export const RecentProjectList = [
     visit: "/case-studies/shoky",
   },
   {
-    title: "Tetra",
+    title: "Tetra Incubator system",
     description:
       "A two-host agent incubator: 35 scheduled jobs research and build, Discord carries the work, and one person approves it.",
     image: "/images/banner.png",
@@ -462,7 +462,7 @@ export const RecentProjectList = [
     visit: "/case-studies/tetra",
   },
   {
-    title: "The blog system",
+    title: "The Writing Council",
     description:
       "Nine agents turn a one-line premise into a sourced, published article, checked against a claim pack, under one human byline.",
     image: "/images/banner.png",
@@ -470,7 +470,7 @@ export const RecentProjectList = [
     visit: "/case-studies/blog-system",
   },
   {
-    title: "Botanas",
+    title: "Botanas Benchmark",
     description:
       "A trading research loop over Freqtrade that refuses overfit strategies: five walk-forward passes, a drawdown-adjusted gate and nine stress regimes.",
     image: "/images/banner.png",

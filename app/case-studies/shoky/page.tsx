@@ -11,7 +11,7 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
-const title = "Shoky case study | Luis Alejandro";
+const title = "Shoky Enterprise Harness case study | Luis Alejandro";
 const description =
   "Shoky is a reusable meta-workspace for multi-repo AI-first teams: agent workflow skills, per-repo memory and a generated container stack, used by ~25 engineers.";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "Shoky",
+    "Shoky Enterprise Harness",
     "agentic workspace",
     "AI-first teams",
     "multi-repo",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: `${config.url}/images/banner.png`,
         width: 1024,
         height: 576,
-        alt: "Shoky case study",
+        alt: "Shoky Enterprise Harness case study",
       },
     ],
   },
@@ -66,9 +66,9 @@ export default function ShokyPage() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <CaseStudyHead
         year={2026}
-        subtitle="Shoky"
+        subtitle="Shoky Enterprise Harness"
         title="One workspace for every project"
-        description="Shoky is a reusable meta-workspace for small multi-repo projects: a forkable template that brings the agent workflow, per-repo memory and a local container stack with it. Around 25 engineers at Shokworks work from it, across five client projects."
+        description="Shoky is a reusable meta-workspace for small multi-repo projects: a forkable template that brings the agent workflow, per-repo memory and a local container stack with it. Around 25 engineers use it across five client projects."
         team={["Luis Alejandro Martínez"]}
         deliverables={[
           "Forkable workspace template",
@@ -76,7 +76,7 @@ export default function ShokyPage() {
           "Memory Bank contract",
           "Docker stack scaffolding",
         ]}
-        links={[{ text: "Shokworks", url: "https://www.shokworks.com" }]}
+        links={[]}
       />
 
       <CaseStudySection index="01" label="Problem">
@@ -92,13 +92,13 @@ export default function ShokyPage() {
           ]}
         />
         <p>
-          Shokworks had two phases of the same problem. First, the teams were
-          not using AI at all. Then, once they started, each developer used
-          their own personal account and their own habits, so every project
-          began with a different setup and nobody could say what a good one
-          looked like. Rules were copied from repo to repo, there was no shared
-          memory between sessions, and there was no agreed path from an idea to
-          a merged pull request.
+          The teams faced two phases of the same problem. First, they were not
+          using AI at all. Then, once they started, each developer used their
+          own personal account and their own habits, so every project began with
+          a different setup and nobody could say what a good one looked like.
+          Rules were copied from repo to repo, there was no shared memory
+          between sessions, and there was no agreed path from an idea to a
+          merged pull request.
         </p>
         <p>
           The projects make this worse. They are <b>small multi-repo systems</b>
@@ -184,12 +184,12 @@ export default function ShokyPage() {
 
       <CaseStudySection index="04" label="Results">
         <p>
-          Shoky is the standard at Shokworks, where I lead AI-first
-          implementation. Around <b>25 engineers</b> work from forks of it, and
-          it has been the starting point for <b>five client projects</b>. The
-          engineers are not the only ones affected: the clients get a project
-          whose conventions are written down from the first commit instead of
-          living in one person&apos;s head.
+          Shoky is the standard workspace for the teams where I lead AI
+          adoption. Around <b>25 engineers</b> work from forks of it, and it has
+          been the starting point for <b>five client projects</b>. The engineers
+          are not the only ones affected: the clients get a project whose
+          conventions are written down from the first commit instead of living
+          in one person&apos;s head.
         </p>
         <CaseStudyStats
           items={[

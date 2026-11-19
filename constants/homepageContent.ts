@@ -65,9 +65,9 @@ export const sectionNotes = {
  * measurement's source, printed in the margin like a figure caption.
  */
 export const impactRows: ImpactRow[] = [
-  { metric: "294K downloads", note: "dockershelf · docker hub" },
+  { metric: "~5.9M computers", note: "canaima · pre-installed" },
   { metric: "39% more bookings", note: "wheel the world · Q1 2023" },
-  { metric: "60+ open projects", note: "github.com/LuisAlejandro" },
+  { metric: "~25 engineers", note: "shoky · five client projects" },
 ];
 
 export const workIntro =
@@ -77,7 +77,7 @@ export const recentWorkIntro =
   "Six recent builds: an IDE nobody can lock me out of, gym software that runs offline, a workspace twenty-five engineers fork, an agent incubator with one approver, a blog written by nine agents and signed by one person, and a trading loop built to say no.";
 
 export const impactLead =
-  "Three numbers from work that shipped. The Dockershelf images are roughly a quarter the size of the official ones, the Expedia integration put 600,000 accessible properties on the map, and the rest is open source you can read tonight.";
+  "Canaima GNU/Linux came pre-installed on computers distributed through two Venezuelan programs. Wheel the World grew bookings after expanding its hotel inventory through Expedia. Engineers across five client projects use Shoky as their starting point for AI-assisted development.";
 
 export const faqItems: FaqItem[] = [
   {

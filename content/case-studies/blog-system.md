@@ -1,6 +1,6 @@
 # Nine agents, one signature
 
-The blog system
+The Writing Council
 
 A writing system that turns a one-line premise into a published, sourced article: specialized agents for research, drafting, fact-grounding and a de-AI editing pass, then CMS publishing and a social queue. Every post still ships under one human byline.
 

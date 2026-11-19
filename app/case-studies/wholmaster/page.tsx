@@ -11,15 +11,15 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
-const title = "Whol Master case study | Luis Alejandro";
+const title = "Wholmaster case study | Luis Alejandro";
 const description =
-  "Whol Master is offline-first gym management software: desktop app, embedded database and biometric entrance control, in daily use at a gym for over a year.";
+  "Wholmaster is offline-first gym management software: desktop app, embedded database and biometric entrance control, in daily use at a gym for over a year.";
 
 export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "Whol Master",
+    "Wholmaster",
     "gym management software",
     "offline first",
     "Electron",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: `${config.url}/images/banner.png`,
         width: 1024,
         height: 576,
-        alt: "Whol Master case study",
+        alt: "Wholmaster case study",
       },
     ],
   },
@@ -67,9 +67,9 @@ export default function WholmasterPage() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <CaseStudyHead
         year={2025}
-        subtitle="Whol Master"
+        subtitle="Wholmaster"
         title="Gym software that never phones home"
-        description="Whol Master is a gym management platform that runs on the front desk's own computer: members, subscriptions, payments, shop sales, reports and biometric entrance control, with an embedded database instead of a cloud account. One gym in Maracay has been running it for over a year."
+        description="Wholmaster is a gym management platform that runs on the front desk's own computer: members, subscriptions, payments, shop sales, reports and biometric entrance control, with an embedded database instead of a cloud account. One gym in Maracay has been running it for over a year."
         team={["Luis Alejandro Martínez"]}
         deliverables={[
           "Electron desktop app",
@@ -148,7 +148,7 @@ export default function WholmasterPage() {
 
       <CaseStudySection index="03" label="Product">
         <p>
-          Whol Master is one desktop application made of cooperating processes:
+          Wholmaster is one desktop application made of cooperating processes:
           an <b>Electron</b> shell that boots a <b>Go REST API</b>, a{" "}
           <b>SvelteKit</b> admin interface served from the same install, and
           optional hardware services for the fingerprint interface and the
@@ -162,8 +162,8 @@ export default function WholmasterPage() {
           revenue, churn and cohort views, entrance logging with biometric
           matching, WhatsApp campaigns for birthdays and expiry reminders, and
           the reports exported to CSV and PDF. Optional Stripe autopay collects
-          recurring dues into the gym&apos;s own Stripe account without Whol
-          Master ever holding member money.
+          recurring dues into the gym&apos;s own Stripe account without
+          Wholmaster ever holding member money.
         </p>
         <p>
           A first-run onboarding wizard walks a new gym through its basic data,
@@ -177,8 +177,8 @@ export default function WholmasterPage() {
 
       <CaseStudySection index="04" label="Results">
         <p>
-          <b>Bahia&apos;s Gym</b>, in Maracay, Venezuela, has been running Whol
-          Master for more than a year. The abandoned program is gone, the
+          <b>Bahia&apos;s Gym</b>, in Maracay, Venezuela, has been running
+          Wholmaster for more than a year. The abandoned program is gone, the
           payment history came across, and the front desk works when the
           internet does not. That is the result I care about most: a small
           business replaced software nobody could fix with software it owns.

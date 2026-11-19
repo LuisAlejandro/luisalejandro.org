@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 
 import { ProjectList, RecentProjectList } from "@constants/constants";
+import { flatLay } from "@lib/flatLay";
 
 import { BlogSystemArt } from "./work-art/blogsystem";
 import { BotanasArt } from "./work-art/botanas";
@@ -107,38 +108,39 @@ export function WorkArtwork({
     return () => observer.disconnect();
   }, [Art, play]);
 
-  // In the grid the objects are enlarged and the headline figure is hidden,
-  // which leaves each drawing heavier on one side. Centre the drawing on the
-  // area-weighted centre of its visible objects, so the big pieces and the
-  // small ones balance around the middle of the cell.
+  // In the grid the drawing is a flat lay: every object goes square to the
+  // cell at one shared scale, in two rows (see flatLay). Placement is in
+  // sheet units and the cell is always 16:10, so it runs once.
   useEffect(() => {
-    const host = ref.current;
     const svg = svgRef.current;
-    if (play !== "hover" || !host || !svg) return;
-    let dx = 0;
-    let dy = 0;
-    const centre = () => {
-      const box = host.getBoundingClientRect();
-      let mass = 0;
-      let x = 0;
-      let y = 0;
-      for (const group of svg.querySelectorAll(":scope > g")) {
-        const rect = group.getBoundingClientRect();
-        const area = rect.width * rect.height;
-        if (!area) continue;
-        mass += area;
-        x += area * (rect.left + rect.width / 2);
-        y += area * (rect.top + rect.height / 2);
+    if (play !== "hover" || !svg) return;
+    const objects = [
+      ...svg.querySelectorAll<SVGGElement>(
+        ":scope > g[transform]:not(.site-art__figure), :scope > .site-art__lift > g"
+      ),
+    ];
+    const lift = objects.findIndex((g) =>
+      g.parentElement?.classList.contains("site-art__lift")
+    );
+    const { width, height } = svg.getBoundingClientRect();
+    if (!width || lift < 0) return;
+    const sheet = svg.viewBox.baseVal;
+    const visible = (sheet.width * height) / width;
+    const { scale, place } = flatLay(
+      objects.map((g) => g.getBBox()),
+      lift,
+      {
+        x: sheet.x,
+        y: sheet.y + (sheet.height - visible) / 2,
+        width: sheet.width,
+        height: visible,
       }
-      if (!mass) return;
-      dx += box.left + box.width / 2 - x / mass;
-      dy += box.top + box.height / 2 - y / mass;
-      host.style.setProperty("--art-dx", `${dx.toFixed(1)}px`);
-      host.style.setProperty("--art-dy", `${dy.toFixed(1)}px`);
-    };
-    const observer = new ResizeObserver(centre);
-    observer.observe(host);
-    return () => observer.disconnect();
+    );
+    objects.forEach((g, i) => {
+      const [x, y] = place[i];
+      g.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+    });
+    return () => objects.forEach((g) => g.style.removeProperty("transform"));
   }, [play]);
 
   if (!Art) return null;

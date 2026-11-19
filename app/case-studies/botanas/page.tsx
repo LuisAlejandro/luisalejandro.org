@@ -11,7 +11,7 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
-const title = "Botanas case study | Luis Alejandro";
+const title = "Botanas Benchmark case study | Luis Alejandro";
 const description =
   "An automated trading research loop over Freqtrade: hyperopt in five walk-forward passes, a Calmar-based overfit gate, nine historical stress regimes and an agent pair that proposes each change. It traded real money.";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "Botanas",
+    "Botanas Benchmark",
     "Freqtrade",
     "algorithmic trading",
     "walk-forward analysis",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: `${config.url}/images/banner.png`,
         width: 1024,
         height: 576,
-        alt: "Botanas case study",
+        alt: "Botanas Benchmark case study",
       },
     ],
   },
@@ -66,7 +66,7 @@ export default function BotanasPage() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <CaseStudyHead
         year={2025}
-        subtitle="Botanas"
+        subtitle="Botanas Benchmark"
         title="A strategy that has to prove itself"
         description="An automated trading research loop over Freqtrade: hyperopt in five walk-forward passes, a drawdown-adjusted gate that refuses to deploy overfit parameters, nine historical stress regimes, and an agent pair that proposes and implements each change. It traded real money."
         team={["Luis Alejandro Martínez"]}

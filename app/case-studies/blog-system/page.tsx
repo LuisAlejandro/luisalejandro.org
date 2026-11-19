@@ -11,7 +11,7 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
-const title = "Blog system case study | Luis Alejandro";
+const title = "The Writing Council case study | Luis Alejandro";
 const description =
   "A writing system that turns a one-line premise into a published, sourced article: specialized agents for research, drafting, fact-grounding and a de-AI editing pass, then CMS publishing and a social queue.";
 
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: `${config.url}/images/banner.png`,
         width: 1024,
         height: 576,
-        alt: "Blog system case study",
+        alt: "The Writing Council case study",
       },
     ],
   },
@@ -67,7 +67,7 @@ export default function BlogSystemPage() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <CaseStudyHead
         year={2025}
-        subtitle="The blog system"
+        subtitle="The Writing Council"
         title="Nine agents, one signature"
         description="A writing system that turns a one-line premise into a published, sourced article: specialized agents for research, drafting, fact-grounding and a de-AI editing pass, then CMS publishing and a social queue. Every post still ships under one human byline."
         team={["Luis Alejandro Martínez"]}

@@ -1,6 +1,6 @@
 # A strategy that has to prove itself
 
-Botanas
+Botanas Benchmark
 
 An automated trading research loop over Freqtrade: hyperopt in five walk-forward passes, a drawdown-adjusted gate that refuses to deploy overfit parameters, nine historical stress regimes, and an agent pair that proposes and implements each change. It traded real money.
 

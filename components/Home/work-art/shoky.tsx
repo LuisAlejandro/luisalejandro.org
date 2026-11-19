@@ -288,7 +288,7 @@ export function ShokyArt({ layer = "back" }: { layer?: Layer }) {
           stroke={INK}
         />
         <Note x="16" y="44" size={7}>
-          shokworks · engineer
+          client project · engineer
         </Note>
         <Note x="16" y="70" size={14} fill={INK} weight={500}>
           day 1 → merged

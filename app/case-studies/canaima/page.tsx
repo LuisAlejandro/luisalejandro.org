@@ -160,6 +160,11 @@ export default function CanaimaPage() {
 
       <CaseStudySection index="04" label="Results">
         <p>
+          Canaima Educativo distributed 5.3 million mini laptops with Canaima
+          GNU/Linux pre-installed. The Plan Internet Equipado de CANTV
+          distributed another 606,000 computers with Canaima pre-installed.
+        </p>
+        <p>
           Canaima enjoyed a lot of popularity in Venezuela. It was used in
           schools, universities, government offices, and even in the military.
           On the first month of release of Canaima 3.0, it had 110,000 downloads
@@ -168,9 +173,12 @@ export default function CanaimaPage() {
 
         <CaseStudyStats
           items={[
+            { value: "5.3M", lines: ["mini laptops", "Canaima Educativo"] },
+            {
+              value: "606K",
+              lines: ["computers", "Internet Equipado de CANTV"],
+            },
             { value: "480K", lines: ["downloads across", "three releases"] },
-            { value: "2×", lines: ["downloads from", "3.0 to 4.0"] },
-            { value: "220K", lines: ["downloads on", "Canaima 4.0"] },
           ]}
         />
 

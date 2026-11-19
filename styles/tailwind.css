@@ -3942,17 +3942,24 @@ body:has(.site-shell) {
     background: var(--color-rule-strong);
     border: 1px solid var(--color-rule-strong);
   }
+  /* Each cell spans two of the sheet's rows, drawing and name, and shares
+     them, so the name rows across a sheet row hold one height. */
   .site-wgrid > li {
     position: relative;
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0;
     min-width: 0;
     background: var(--color-paper);
   }
   .site-wcard {
     position: relative;
     isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0;
     color: var(--color-ink);
   }
   /* Curtain: an inverted copy of the cell is uncovered from the left on
@@ -3994,31 +4001,18 @@ body:has(.site-shell) {
     aspect-ratio: 16 / 10;
     overflow: hidden;
   }
-  /* The drawing is set larger than the cell; whatever runs past the edge
-     is cut by the cell, never by the page. */
-  /* In the grid the drawing is a crowd, not a diagram: each object grows
-     around its own centre until they overlap, the headline figures and the
-     callouts that would point at the wrong place are dropped, and the cell
-     cuts whatever runs past its edge. Only unpositioned wrappers are scaled,
-     so every object keeps its place. */
-  .site-wcard__art .site-art svg {
-    transform: translate(var(--art-dx, 0), var(--art-dy, 0)) scale(1.12);
-  }
+  /* In the grid the drawing is a flat lay, not a diagram: WorkArtwork sets
+     every object square to the cell at one shared scale, in two even rows,
+     so nothing is cut. Whatever it does not place is dropped: the headline
+     figure, the callouts, and the CI/CD rail the container slides along. */
   /* Objects hold still in the grid: no tilt, no slide, no zoom. Only what
      happens inside an object plays on hover (ticks, bars, stamps, hands). */
   .site-wcard__art .site-obj,
   .site-wcard__art [data-slide] {
     transform: none !important;
   }
-  .site-wcard__art .site-art svg > g[transform] > g:not([transform]),
-  .site-wcard__art .site-art svg > g:not([transform]) {
-    transform-box: fill-box;
-    transform-origin: center;
-    scale: 1.7;
-  }
-  .site-wcard__art .site-art__figure,
-  .site-wcard__art .site-art svg > path,
-  .site-wcard__art .site-art svg > g:has(> .site-art__lead) {
+  .site-wcard__art .site-art svg > :not(g[transform], .site-art__lift, defs),
+  .site-wcard__art .site-art__figure {
     display: none;
   }
   .site-wcard__head {
@@ -4026,7 +4020,6 @@ body:has(.site-shell) {
     justify-content: space-between;
     align-items: baseline;
     gap: 1rem;
-    margin-top: auto;
     padding: 1rem 1.25rem 1.1rem;
     border-top: 1px solid var(--color-rule);
   }

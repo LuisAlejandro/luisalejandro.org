@@ -11,7 +11,7 @@ import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
-const title = "Tetra case study | Luis Alejandro";
+const title = "Tetra Incubator system case study | Luis Alejandro";
 const description =
   "Tetra is a two-host agent incubator: one machine researches and synthesises, the other implements through a six-stage pipeline, and Discord is the bus where a single human approves the work.";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: [
-    "Tetra",
+    "Tetra Incubator system",
     "agent incubator",
     "Hermes",
     "OpenClaw",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: `${config.url}/images/banner.png`,
         width: 1024,
         height: 576,
-        alt: "Tetra case study",
+        alt: "Tetra Incubator system case study",
       },
     ],
   },
@@ -66,7 +66,7 @@ export default function TetraPage() {
     <SiteShell header={<SiteHeader />} footer={<SiteFooter />}>
       <CaseStudyHead
         year={2026}
-        subtitle="Tetra"
+        subtitle="Tetra Incubator system"
         title="Thirty-five schedules and one approver"
         description="Tetra is a two-host agent incubator: one machine researches and synthesises, the other implements through a six-stage pipeline, and Discord is the bus where a single human approves the work. It has no employees and it runs on cron."
         team={["Luis Alejandro Martínez"]}

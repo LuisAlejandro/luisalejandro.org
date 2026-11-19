@@ -13,18 +13,18 @@ With {{experience}}+ years of professional experience across TypeScript, Python,
 
 ## Selected impact
 
-- 294K+ downloads of Dockershelf, lean Python, Node, and Debian Docker images roughly four times smaller than the official alternatives.
-- 39% booking increase for Wheel the World after the Expedia API integration took their accessible hotel inventory from roughly 2,000 to 600,000+ properties, a 300-fold increase.
-- 60+ open-source projects on GitHub, shipped so other teams can adopt them without vendor lock-in.
+- About 5.9 million computers shipped with [Canaima GNU/Linux](https://luisalejandro.org/case-studies/canaima) pre-installed across Canaima Educativo and the Plan Internet Equipado de CANTV.
+- 39% more bookings for Wheel the World in Q1 2023 after the [Expedia API integration](https://luisalejandro.org/case-studies/expedia) expanded its hotel inventory from roughly 2,000 to 600,000+ properties.
+- Around 25 engineers use [Shoky Enterprise Harness](https://luisalejandro.org/case-studies/shoky) across five client projects.
 
 ## Selected work
 
 - [Mash](https://luisalejandro.org/case-studies/mash) — a desktop workspace for AI-assisted coding: terminal, editor and agents in one app, every tool pinned.
-- [Whol Master](https://luisalejandro.org/case-studies/wholmaster) — offline gym management with biometric entrance; in daily use at one gym for over a year.
-- [Shoky](https://luisalejandro.org/case-studies/shoky) — a forkable multi-repo agent workspace that about 25 engineers work from.
-- [Tetra](https://luisalejandro.org/case-studies/tetra) — a two-host agent incubator: 35 scheduled jobs and one human approver.
-- [The blog system](https://luisalejandro.org/case-studies/blog-system) — nine agents turn a premise into a sourced article under one byline.
-- [Botanas](https://luisalejandro.org/case-studies/botanas) — a trading research loop built to refuse overfit strategies.
+- [Wholmaster](https://luisalejandro.org/case-studies/wholmaster) — offline gym management with biometric entrance; in daily use at one gym for over a year.
+- [Shoky Enterprise Harness](https://luisalejandro.org/case-studies/shoky) — a forkable multi-repo agent workspace that about 25 engineers work from.
+- [Tetra Incubator system](https://luisalejandro.org/case-studies/tetra) — a two-host agent incubator: 35 scheduled jobs and one human approver.
+- [The Writing Council](https://luisalejandro.org/case-studies/blog-system) — nine agents turn a premise into a sourced article under one byline.
+- [Botanas Benchmark](https://luisalejandro.org/case-studies/botanas) — a trading research loop built to refuse overfit strategies.
 
 Earlier case studies (Expedia API Integration, Wheel The World CI/CD, Soleit, Dockershelf, Canaima GNU/Linux) are on the [portfolio](https://luisalejandro.org/portfolio#selected-work).
 

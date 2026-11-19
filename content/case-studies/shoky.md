@@ -1,8 +1,8 @@
 # One workspace for every project
 
-Shoky
+Shoky Enterprise Harness
 
-Shoky is a reusable meta-workspace for small multi-repo projects: a forkable template that brings the agent workflow, per-repo memory and a local container stack with it. Around 25 engineers at Shokworks work from it, across five client projects.
+Shoky is a reusable meta-workspace for small multi-repo projects: a forkable template that brings the agent workflow, per-repo memory and a local container stack with it. Around 25 engineers use it across five client projects.
 
 **Year:** 2026
 
@@ -17,13 +17,9 @@ Shoky is a reusable meta-workspace for small multi-repo projects: a forkable tem
 - Memory Bank contract
 - Docker stack scaffolding
 
-**Links:**
-
-- [Shokworks](https://www.shokworks.com)
-
 ## The Problem
 
-Shokworks had two phases of the same problem. First, the teams were not using AI at all. Then, once they started, each developer used their own personal account and their own habits, so every project began with a different setup and nobody could say what a good one looked like. Rules were copied from repo to repo, there was no shared memory between sessions, and there was no agreed path from an idea to a merged pull request.
+The teams faced two phases of the same problem. First, they were not using AI at all. Then, once they started, each developer used their own personal account and their own habits, so every project began with a different setup and nobody could say what a good one looked like. Rules were copied from repo to repo, there was no shared memory between sessions, and there was no agreed path from an idea to a merged pull request.
 
 The projects make this worse. They are **small multi-repo systems**, typically two or three sibling services on GitHub Enterprise, where one change spans a backend, a frontend and the contract between them. A single-repository assistant setup does not fit that shape: it loses the other repos, it forgets what the last session learned, and it cannot open one pull request per repo with a coherent story.
 
@@ -49,7 +45,7 @@ The workflow lives in agent skills: design a feature, write the PRD, plan the im
 
 ## The Results
 
-Shoky is the standard at Shokworks, where I lead AI-first implementation. Around **25 engineers** work from forks of it, and it has been the starting point for **five client projects**. The engineers are not the only ones affected: the clients get a project whose conventions are written down from the first commit instead of living in one person's head.
+Shoky is the standard workspace for the teams where I lead AI adoption. Around **25 engineers** work from forks of it, and it has been the starting point for **five client projects**. The engineers are not the only ones affected: the clients get a project whose conventions are written down from the first commit instead of living in one person's head.
 
 | Metric | Value |
 | ------------------------------------------- | ----- |
@@ -61,7 +57,3 @@ Shoky is the standard at Shokworks, where I lead AI-first implementation. Around
 The measurable result is onboarding: after the induction session, an engineer is landing a useful change on a repository they have never seen in about **one week**, on a project split across several services. Teams also report working faster and with fewer setup mistakes than when the same work was done by hand. I want to be careful with that claim: I have not instrumented it with a controlled study. What I can point at is the induction path shrinking, the setup questions disappearing from team chat, and the same conventions holding across five projects maintained by different people.
 
 The next step is making that evidence quantitative, and keeping the template honest as the models and the tools underneath it change.
-
-**Links:**
-
-- [Shokworks](https://www.shokworks.com)

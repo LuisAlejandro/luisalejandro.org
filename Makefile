@@ -70,6 +70,7 @@ test: start
 check: start
 	@$(exec_on_docker) npm run check:blog
 	@$(exec_on_docker) npm run check:portfolio
+	@$(exec_on_docker) npm run check:flatlay
 
 image:
 	@docker compose -p $(PROJECT_NAME) -f docker-compose.yml build \

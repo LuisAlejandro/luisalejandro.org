@@ -1,6 +1,6 @@
 # Thirty-five schedules and one approver
 
-Tetra
+Tetra Incubator system
 
 Tetra is a two-host agent incubator: one machine researches and synthesises, the other implements through a six-stage pipeline, and Discord is the bus where a single human approves the work. It has no employees and it runs on cron.
 
