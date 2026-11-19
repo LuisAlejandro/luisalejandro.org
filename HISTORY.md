@@ -1,6 +1,20 @@
 # Changelog
 
 
+## 4.0.1 (2026-11-19)
+
+### Added
+
+* Public policy pages for the Clamoris app. [Luis Alejandro Martínez Faneyth]
+
+
+### Changed
+
+* Rewrite About page around Shokworks and enterprise history. [Luis Alejandro Martínez Faneyth]
+
+* Refresh portfolio illustrations and case studies. [Luis Alejandro Martínez Faneyth]
+
+
 ## 4.0.0 (2026-11-18)
 
 ### Added
