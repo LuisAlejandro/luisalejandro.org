@@ -9,6 +9,8 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
+import { preview } from "@lib/metadata";
+
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
 import { PageEnd } from "@components/common/Site/PageEnd";
@@ -28,6 +30,12 @@ const gallery = [
   "/images/case-studies/soleit-gallery-8.png",
   "/images/case-studies/soleit-gallery-9.png",
 ];
+
+// The study's own screenshot, absolutely addressed so it survives any host.
+const pageImage = preview({
+  url: `${config.url}/images/case-studies/soleit-hero.png`,
+  alt: "Soleit desktop app",
+});
 
 export const metadata: Metadata = {
   title: "Soleit desktop app | Luis Alejandro",
@@ -56,12 +64,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    images: [
-      {
-        url: "/images/case-studies/soleit-hero.png",
-        alt: "Soleit desktop app",
-      },
-    ],
+    images: pageImage.openGraph,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: pageImage.twitter,
   },
 };
 

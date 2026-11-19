@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
+import { SOCIAL_CARD, preview } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -14,6 +15,11 @@ import { SiteShell } from "@components/common/Site/SiteShell";
 const title = "Botanas Benchmark case study | Luis Alejandro";
 const description =
   "An automated trading research loop over Freqtrade: hyperopt in five walk-forward passes, a Calmar-based overfit gate, nine historical stress regimes and an agent pair that proposes each change. It traded real money.";
+
+const previewCard = preview({
+  ...SOCIAL_CARD,
+  alt: "Botanas Benchmark case study",
+});
 
 export const metadata: Metadata = {
   title,
@@ -44,20 +50,13 @@ export const metadata: Metadata = {
     description,
     url: `${config.url}/case-studies/botanas`,
     type: "article",
-    images: [
-      {
-        url: `${config.url}/images/banner.png`,
-        width: 1024,
-        height: 576,
-        alt: "Botanas Benchmark case study",
-      },
-    ],
+    images: previewCard.openGraph,
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [`${config.url}/images/banner.png`],
+    images: previewCard.twitter,
   },
 };
 

@@ -426,14 +426,14 @@ export const ProjectList = [
 /**
  * The six newest case studies. They lead the portfolio's pinned stage; the
  * five above stay on the home page and follow them on the portfolio as a grid.
- * No thumbnails exist yet, so `image` is the site banner their pages share.
+ * No thumbnails exist yet, so `image` is the shared link-preview card.
  */
 export const RecentProjectList = [
   {
     title: "Mash",
     description:
       "A desktop workspace for AI-assisted coding: terminal, editor and agents in one app, every tool pinned. Built after the editor I relied on blocked my country.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["Ghostty", "Herdr", "Pi", "Fresh", "Bash", "APT"],
     visit: "/case-studies/mash",
   },
@@ -441,7 +441,7 @@ export const RecentProjectList = [
     title: "Wholmaster",
     description:
       "Gym management that runs on the front desk's own computer, with biometric entrance and no cloud account. One gym has used it daily for over a year.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["Electron", "Go", "SvelteKit", "SQLite", "C++"],
     visit: "/case-studies/wholmaster",
   },
@@ -449,7 +449,7 @@ export const RecentProjectList = [
     title: "Shoky Enterprise Harness",
     description:
       "A forkable meta-workspace for multi-repo projects, with agent skills, per-repo memory and a local container stack. About 25 engineers work from it.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["Agent skills", "Memory Bank", "Sentrux", "Docker", "Bash"],
     visit: "/case-studies/shoky",
   },
@@ -457,7 +457,7 @@ export const RecentProjectList = [
     title: "Tetra Incubator system",
     description:
       "A two-host agent incubator: 35 scheduled jobs research and build, Discord carries the work, and one person approves it.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["Hermes", "Discord", "Cron", "YAML", "Git"],
     visit: "/case-studies/tetra",
   },
@@ -465,7 +465,7 @@ export const RecentProjectList = [
     title: "The Writing Council",
     description:
       "Nine agents turn a one-line premise into a sourced, published article, checked against a claim pack, under one human byline.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["TypeScript", "Multi-agent", "Cosmic CMS", "SEO"],
     visit: "/case-studies/blog-system",
   },
@@ -473,7 +473,7 @@ export const RecentProjectList = [
     title: "Botanas Benchmark",
     description:
       "A trading research loop over Freqtrade that refuses overfit strategies: five walk-forward passes, a drawdown-adjusted gate and nine stress regimes.",
-    image: "/images/banner.png",
+    image: "/images/social-card.png",
     tags: ["Python", "Freqtrade", "Hyperopt", "Walk-forward"],
     visit: "/case-studies/botanas",
   },

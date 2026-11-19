@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { TopicCards } from "@components/Blog/TopicCards";
 import { DetailHead } from "@components/common/Site/DetailHead";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
+import { preview } from "@lib/metadata";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -41,14 +42,7 @@ export const metadata: Metadata = {
       "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries.",
     url: `${config.url}/blog/category`,
     siteName: "Luis Alejandro Martínez Faneyth",
-    images: [
-      {
-        url: `${config.url}/favicon/android-chrome-512x512.png`,
-        width: 512,
-        height: 512,
-        alt: config.app_name,
-      },
-    ],
+    images: preview().openGraph,
     locale: "es_VE",
     type: "website",
   },
@@ -57,7 +51,7 @@ export const metadata: Metadata = {
     title: "Blog Categories | Luis Alejandro - Browse Posts by Topic",
     description:
       "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries.",
-    images: [`${config.url}/images/banner.png`],
+    images: preview().twitter,
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
   },

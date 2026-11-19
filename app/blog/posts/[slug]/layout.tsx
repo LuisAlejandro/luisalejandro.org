@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
 import { getPost, getPublishedPostForTwin } from "@lib/api";
+import { SOCIAL_CARD } from "@lib/metadata";
 import { plainTeaser, truncateAtWord } from "@lib/plainText";
 
 import "@styles/tailwind.css";
@@ -82,7 +83,7 @@ export async function generateMetadata({
     ? heroImage.url.startsWith("http")
       ? heroImage.url
       : `${config.url}${heroImage.url}`
-    : `${config.url}/images/banner.png`;
+    : SOCIAL_CARD.url;
 
   // Generate article schema-friendly publication date
   const publishedDate = new Date(post.created_at);

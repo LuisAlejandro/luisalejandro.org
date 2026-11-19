@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
+import { SOCIAL_CARD, preview } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -14,6 +15,11 @@ import { SiteShell } from "@components/common/Site/SiteShell";
 const title = "Tetra Incubator system case study | Luis Alejandro";
 const description =
   "Tetra is a two-host agent incubator: one machine researches and synthesises, the other implements through a six-stage pipeline, and Discord is the bus where a single human approves the work.";
+
+const previewCard = preview({
+  ...SOCIAL_CARD,
+  alt: "Tetra Incubator system case study",
+});
 
 export const metadata: Metadata = {
   title,
@@ -44,20 +50,13 @@ export const metadata: Metadata = {
     description,
     url: `${config.url}/case-studies/tetra`,
     type: "article",
-    images: [
-      {
-        url: `${config.url}/images/banner.png`,
-        width: 1024,
-        height: 576,
-        alt: "Tetra Incubator system case study",
-      },
-    ],
+    images: previewCard.openGraph,
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [`${config.url}/images/banner.png`],
+    images: previewCard.twitter,
   },
 };
 

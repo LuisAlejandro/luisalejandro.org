@@ -10,6 +10,8 @@ import {
   experience,
 } from "@constants/constants";
 
+import { preview } from "@lib/metadata";
+
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 import MetaPixel from "@side-effects/MetaPixel";
 
@@ -60,14 +62,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: config.url,
     siteName: "Luis Alejandro Martínez Faneyth",
-    images: [
-      {
-        url: `${config.url}/favicon/android-chrome-512x512.png`,
-        width: 512,
-        height: 512,
-        alt: config.app_name,
-      },
-    ],
+    images: preview().openGraph,
     locale: "en_US",
     type: "website",
   },
@@ -75,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: [`${config.url}/images/banner.png`],
+    images: preview().twitter,
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
   },

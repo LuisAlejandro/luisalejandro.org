@@ -4,6 +4,7 @@ import { config } from "@constants/constants";
 import { portfolioDescription } from "@lib/portfolio";
 
 import "@styles/tailwind.css";
+import { preview } from "@lib/metadata";
 
 const title = "Project Archive | Luis Alejandro";
 
@@ -33,18 +34,13 @@ export const metadata: Metadata = {
     description: portfolioDescription,
     url: `${config.url}/portfolio`,
     type: "website",
-    images: [
-      {
-        url: `${config.url}/images/banner.png`,
-        alt: "Luis Alejandro — project archive",
-      },
-    ],
+    images: preview().openGraph,
   },
   twitter: {
     card: "summary_large_image",
     title,
     description: portfolioDescription,
-    images: [`${config.url}/images/banner.png`],
+    images: preview().twitter,
   },
 };
 

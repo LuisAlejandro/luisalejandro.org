@@ -9,6 +9,8 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
+import { preview } from "@lib/metadata";
+
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
 import { PageEnd } from "@components/common/Site/PageEnd";
@@ -16,6 +18,12 @@ import { CaseStudyStats } from "@components/common/Site/CaseStudyStats";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
+
+// The study's own screenshot, absolutely addressed so it survives any host.
+const pageImage = preview({
+  url: `${config.url}/images/case-studies/dockershelf-hero.png`,
+  alt: "Dockershelf images",
+});
 
 export const metadata: Metadata = {
   title: "Dockershelf | Luis Alejandro",
@@ -44,12 +52,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    images: [
-      {
-        url: "/images/case-studies/dockershelf-hero.png",
-        alt: "Dockershelf images",
-      },
-    ],
+    images: pageImage.openGraph,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: pageImage.twitter,
   },
 };
 

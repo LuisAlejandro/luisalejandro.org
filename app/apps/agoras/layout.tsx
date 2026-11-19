@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { preview } from "@lib/metadata";
+
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -19,8 +21,14 @@ export const metadata: Metadata = {
     url: canonical,
     siteName: "Agoras",
     type: "website",
+    images: preview().openGraph,
   },
-  twitter: { card: "summary", title, description },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: preview().twitter,
+  },
 };
 
 export default function AgorasLayout({

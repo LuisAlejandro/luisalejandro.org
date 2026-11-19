@@ -22,6 +22,7 @@ import { config } from "@constants/constants";
  * Do not split this into multiple root layouts without accepting the reload.
  */
 import "@styles/tailwind.css";
+import { preview } from "@lib/metadata";
 
 export const metadata: Metadata = {
   title:
@@ -68,14 +69,7 @@ export const metadata: Metadata = {
       "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
     url: `${config.url}/blog`,
     siteName: "Luis Alejandro Martínez Faneyth",
-    images: [
-      {
-        url: `${config.url}/favicon/android-chrome-512x512.png`,
-        width: 512,
-        height: 512,
-        alt: config.app_name,
-      },
-    ],
+    images: preview().openGraph,
     locale: "es_VE",
     type: "website",
   },
@@ -85,7 +79,7 @@ export const metadata: Metadata = {
       "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
     description:
       "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
-    images: [`${config.url}/images/banner.png`],
+    images: preview().twitter,
     site: `@${config.blog.twitter}`,
     creator: `@${config.author.twitter}`,
   },

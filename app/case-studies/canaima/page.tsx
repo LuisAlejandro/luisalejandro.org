@@ -9,6 +9,8 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
+import { preview } from "@lib/metadata";
+
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
 import { PageEnd } from "@components/common/Site/PageEnd";
@@ -27,6 +29,12 @@ const gallery = [
   "/images/case-studies/canaima-gallery-7.jpg",
   "/images/case-studies/canaima-gallery-8.jpg",
 ];
+
+// The study's own screenshot, absolutely addressed so it survives any host.
+const pageImage = preview({
+  url: `${config.url}/images/case-studies/canaima-hero.jpg`,
+  alt: "Canaima GNU/Linux",
+});
 
 export const metadata: Metadata = {
   title: "Canaima GNU/Linux case study | Luis Alejandro",
@@ -54,12 +62,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "article",
-    images: [
-      {
-        url: "/images/case-studies/canaima-hero.jpg",
-        alt: "Canaima GNU/Linux",
-      },
-    ],
+    images: pageImage.openGraph,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: pageImage.twitter,
   },
 };
 
