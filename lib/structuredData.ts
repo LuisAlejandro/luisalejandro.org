@@ -135,7 +135,7 @@ export function generateAboutJsonLd() {
         "@id": `${aboutUrl}#ProfilePage`,
         url: aboutUrl,
         name: `About | ${config.author.first_name}`,
-        description: `Career, principles and toolbox of ${config.author.first_name}, a Venezuelan full-stack AI engineer with ${experience} years of remote product work.`,
+        description: `Career, principles and toolbox of ${config.author.first_name}, senior full-stack engineer in Venezuela, shipping AI-powered products at Shokworks with ${experience} years of remote work.`,
         dateCreated: SITE_PROFILE_DATE_CREATED,
         dateModified: SITE_PROFILE_DATE_MODIFIED,
         isPartOf: { "@id": websiteId },

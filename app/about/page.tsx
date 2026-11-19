@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "About | Luis Alejandro",
   description:
-    "Venezuelan full-stack AI engineer. Lead developer of Canaima GNU/Linux, remote for startups across the Americas and Europe since, now building AI agents and products that keep working after launch.",
+    "Senior full-stack engineer in Venezuela with 16+ years shipping production web apps. Now at Shokworks, building AI products in TypeScript, React, Next.js, and Python.",
   alternates: {
     canonical: "https://luisalejandro.org/about",
     types: {
@@ -31,11 +31,11 @@ const cal = "https://cal.com/martinezfaneyth";
 
 const lead = "Hi, I'm Luis.";
 const typed =
-  "Full-stack AI engineer in Venezuela, building for remote teams since 2009.";
+  "Senior full-stack engineer in Venezuela, shipping AI products for remote teams since 2009.";
 
 const facts = [
   { label: "Based", value: "Maracay, Venezuela" },
-  { label: "Languages", value: "Spanish · English" },
+  { label: "Languages", value: "Spanish · English (C2)" },
   { label: "Mode", value: "Remote · by contract" },
 ];
 
@@ -96,7 +96,18 @@ const story = [
         >
           product
         </Link>{" "}
-        went on to diagnose thousands of patients.
+        went on to 150+ clinic subscriptions and 1,000+ patient diagnoses.
+      </>
+    ),
+  },
+  {
+    note: "2023 → now",
+    body: (
+      <>
+        The work now is AI on enterprise data. At Shokworks I own the path from
+        the Next.js interface to a LangGraph engine, and I review generated code
+        with the same bar as code I typed. Collage Labs, the studio I founded in
+        2020, is still where I lead delivery.
       </>
     ),
   },
@@ -114,17 +125,6 @@ const changelog = [
   },
   {
     version: "v1.0",
-    year: "2017",
-    title: "Cybersecurity in Uruguay",
-    body: "Worked with Guayoyo's security team: a CVE, CPE and CWE indexer behind a Flask API on Azure Kubernetes, one source of truth for vulnerability data.",
-    tags: ["Python", "Flask", "MongoDB", "Azure"],
-    link: {
-      href: "/portfolio#howlermonkey-cve-indexer",
-      label: "See the project",
-    },
-  },
-  {
-    version: "v2.0",
     year: "2018",
     title: "Leadbox, Canada",
     body: "Full-stack at an automotive dealership platform: a build queue that let any developer deploy more than a hundred sites, and a video generator that produced campaigns in minutes.",
@@ -132,36 +132,53 @@ const changelog = [
     link: { href: "/portfolio#leadbox-build-queue", label: "See the project" },
   },
   {
-    version: "v3.0",
+    version: "v2.0",
     year: "2019",
-    title: "Collage Labs, and agencies",
-    body: "Founded Collage Labs for mobile and web work, and built WordPress and e-commerce sites with agencies in Spain, on someone else's deadline.",
-    tags: ["WordPress", "PHP", "Docker"],
+    title: "Guayoyo, Uruguay",
+    body: "From June 2019 to December 2021, vulnerability modules on the core index: a CVE, CPE and CWE source of truth behind a Flask API on Azure Kubernetes. The work opened enterprise sales and cut memory use by 66%.",
+    tags: ["Python", "Flask", "MongoDB", "Azure"],
+    link: {
+      href: "/portfolio#howlermonkey-cve-indexer",
+      label: "See the project",
+    },
+  },
+  {
+    version: "v3.0",
+    year: "2020",
+    title: "Collage Labs",
+    body: "Founded in January 2020 and still running: delivery of custom web apps in React, Next.js, and Node or Django, with CI/CD and agile planning for a small cross-functional team.",
+    tags: ["React", "Next.js", "Node.js", "Django"],
   },
   {
     version: "v4.0",
     year: "2020",
     title: "Soleit, Chile",
-    body: "Full-stack for a healthtech startup: an Electron and Ionic React desktop app, a REST API, and the driver that bridged a closed-source 3D scanner into a diagnosis workflow.",
-    tags: ["Electron", "Ionic", "Python", "PostgreSQL"],
+    body: "Full-stack for SoleTech 2.0: React and Electron on the desktop, Node.js, Express, PostgreSQL and AWS behind it, and the driver for a closed-source 3D scanner. It reached 150+ clinic subscriptions and 1,000+ patient diagnoses.",
+    tags: ["Electron", "React", "Node.js", "PostgreSQL"],
     link: { href: "/case-studies/soleit", label: "Read the case study" },
   },
   {
     version: "v5.0",
     year: "2022",
     title: "Wheel The World",
-    body: "The Expedia integration that took accessible inventory from about 1,000 to 600,000+ properties and raised Q1 2023 bookings 39%, and a CI/CD rebuild that cut deploys from 40 to 10 minutes.",
-    tags: ["Go", "TypeScript", "PostgreSQL", "GitHub Actions"],
+    body: "The Expedia integration that took hotel inventory from 2,000 to 600,000+ properties and raised Q1 2023 sales 39%. Shift-left tests cut a release from 20 minutes to 5, and the CI/CD rebuild cut deploys from 40 minutes to 10 and images from 1.5GB to 200MB.",
+    tags: ["Next.js", "TypeScript", "React", "Go"],
     link: { href: "/case-studies/expedia", label: "Read the case study" },
   },
   {
     version: "v6.0",
+    year: "2023",
+    title: "C3 Canada",
+    body: "From August 2023 to February 2026, alongside Shokworks: a zero-downtime migration of 28GB of legacy CRM data spanning 20 years, with custom Python ETL. It supported a 55% increase in new accounts and enterprise onboarding, including Rogers Communications.",
+    tags: ["Python", "ETL", "CRM"],
+  },
+  {
+    version: "v7.0",
     head: true,
     year: "Now",
-    title: "AI engineering, in production",
-    body: "Everything above, pointed at one job: agents, retrieval and model calls wired into real products, with tests, fallbacks and cost limits.",
-    tags: ["LLM APIs", "Agents", "RAG", "MCP"],
-    link: { href: "/#services", label: "See the services" },
+    title: "Shokworks",
+    body: "Senior full-stack since January 2023. LOSA is an aviation safety platform: Next.js 15 in front, Python, FastAPI, LangChain and LangGraph turning questions into DAX against Microsoft warehouses. Andromeda 360 is a multi-tenant AI SaaS with sales assistants on GPT-5.4 mini, on AWS EKS with FluxCD, Neo4j and RabbitMQ. The same stretch moved the team onto Claude Code and Cursor, with a review bar for generated code across four enterprise clients.",
+    tags: ["Next.js", "Python", "LangGraph", "AWS"],
   },
 ];
 
@@ -173,23 +190,37 @@ const principles = [
 ];
 
 const toolbox = [
-  { group: "Languages", items: ["Python", "TypeScript", "Go", "Bash", "PHP"] },
+  {
+    group: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "Go", "SQL", "Bash"],
+  },
   {
     group: "Front-end & desktop",
-    items: ["Next.js", "React", "Ionic", "Electron", "GTK", "Tailwind"],
+    items: ["Next.js", "React", "Tailwind", "Material UI", "Vue", "Electron"],
   },
   {
-    group: "Back-end",
-    items: ["Django", "Flask", "FastAPI", "Node.js", "REST APIs"],
+    group: "Back-end & data",
+    items: [
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "RabbitMQ",
+      "Neo4j",
+    ],
   },
-  { group: "AI", items: ["LLM APIs", "Agents", "RAG", "MCP", "Claude Code"] },
+  {
+    group: "AI",
+    items: ["Claude Code", "Cursor", "LangChain", "LangGraph", "Agents"],
+  },
   {
     group: "Containers & delivery",
-    items: ["Docker", "Kubernetes", "Tilt", "GitHub Actions", "AWS", "Azure"],
+    items: ["Docker", "Kubernetes", "FluxCD", "GitHub Actions", "AWS", "GCP"],
   },
   {
-    group: "Linux & data",
-    items: ["Debian packaging", "live-build", "PostgreSQL", "MySQL", "Redis"],
+    group: "Linux & earlier",
+    items: ["Debian packaging", "Flask", "GTK", "Azure", "PHP"],
   },
 ];
 
@@ -226,7 +257,7 @@ const faq = [
   {
     question: "What kind of projects do you take on?",
     answer:
-      "Full-stack product builds, AI features and agents, third-party integrations at scale, and CI/CD hardening. Long-term contracts and focused projects both work.",
+      "Full-stack product builds, AI products on enterprise data, third-party integrations at scale, and CI/CD hardening. Long-term contracts and focused projects both work.",
   },
   {
     question: "Are you available for new projects?",
@@ -235,7 +266,7 @@ const faq = [
   },
 ];
 
-const updated = { iso: "2026-11-12", label: "12 Nov 2026" };
+const updated = { iso: "2026-11-19", label: "19 Nov 2026" };
 
 const jsonLd = [
   generateAboutJsonLd(),
@@ -403,7 +434,8 @@ export default function AboutPage() {
             team its time back. On a new project I&apos;m the one checking that
             containers are in place and the build is as fast as the resources
             allow. Then I measure, after agreeing what we&apos;re measuring and
-            why.
+            why. Generated code gets the same review and tests as code I wrote
+            by hand.
           </p>
         </div>
       </section>
@@ -437,8 +469,7 @@ export default function AboutPage() {
         </dl>
         <p className="site-note site-about-tools__foot" data-reveal="up">
           Industries so far: government · cybersecurity · automotive ·
-          healthtech · travel &amp; accessibility · e-commerce · developer
-          tooling
+          healthtech · travel &amp; accessibility · aviation · CRM · AI products
         </p>
       </section>
 
