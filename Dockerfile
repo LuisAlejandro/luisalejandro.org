@@ -1,4 +1,7 @@
-FROM dockershelf/node:22
+# Official Node, not dockershelf/node: the dockershelf arm64 builds (22, 24
+# and 26) segfault in WebAssembly, which next/og needs to render the blog's
+# share cards. Netlify builds on Node 22 too.
+FROM node:22-bookworm-slim
 LABEL maintainer="Luis Alejandro Martínez Faneyth <luis@luisalejandro.org>"
 
 ARG UID=1000
