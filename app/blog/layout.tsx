@@ -121,11 +121,6 @@ export const metadata: Metadata = {
     "msapplication-TileImage": `${config.url}/favicon/mstile-144x144.png`,
     "msapplication-TileColor": PAPER,
     "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
-
-    // Facebook metadata
-    "fb:admins": config.author.fb_profile_id,
-    "fb:profile_id": config.author.fb_profile_id,
-    "fb:app_id": config.blog.fb_app_id,
   },
 };
 

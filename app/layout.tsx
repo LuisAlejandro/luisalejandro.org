@@ -13,6 +13,8 @@ import {
 import { INK, PAPER, pageMeta } from "@lib/metadata";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
+import { FacebookMeta } from "@components/common/Site/FacebookMeta";
+
 import MetaPixel from "@side-effects/MetaPixel";
 
 import "@styles/tailwind.css";
@@ -151,11 +153,6 @@ export const metadata: Metadata = {
     "msapplication-TileImage": `${config.url}/favicon/mstile-144x144.png`,
     "msapplication-TileColor": PAPER,
     "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
-
-    // Facebook metadata
-    "fb:admins": config.author.fb_profile_id,
-    "fb:profile_id": config.author.fb_profile_id,
-    "fb:app_id": config.blog.fb_app_id,
   },
 };
 
@@ -177,6 +174,7 @@ export default async function RootLayout({
       prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# dcterms: http://purl.org/dc/terms/#"
     >
       <body className="cursor-default overflow-x-hidden antialiased">
+        <FacebookMeta />
         {children}
         {GA_MEASUREMENT_ID && ENV_NAME !== "local" && (
           <>
