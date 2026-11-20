@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@lib/metadata";
+import { config } from "@constants/constants";
 
 import { ContactForm } from "@components/common/Site/ContactForm";
 import { CopyEmail, LocalTime } from "@components/common/Site/ContactLive";
@@ -14,11 +16,14 @@ import { siteSocialLinks } from "@constants/siteNavigation";
 import { generateHomepageFaqJsonLd } from "@lib/structuredData";
 
 export const metadata: Metadata = {
-  title: "Contact | Luis Alejandro",
-  description:
-    "A brief, a call or a plain email. Remote full-stack and AI engineering work; I reply within 3 business days.",
+  ...pageMeta({
+    title: "Contact | Luis Alejandro",
+    description:
+      "A brief, a call or a plain email. Remote full-stack and AI engineering work; I reply within 3 business days.",
+    path: "/contact",
+  }),
   alternates: {
-    canonical: "https://luisalejandro.org/contact",
+    canonical: `${config.url}/contact`,
     types: {
       "text/markdown": [{ url: "/contact.md", title: "Markdown twin" }],
     },

@@ -22,13 +22,20 @@ import { config } from "@constants/constants";
  * Do not split this into multiple root layouts without accepting the reload.
  */
 import "@styles/tailwind.css";
-import { preview } from "@lib/metadata";
+import { PAPER, pageMeta } from "@lib/metadata";
+
+const blogTitle =
+  "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto";
+const blogDescription =
+  "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.";
 
 export const metadata: Metadata = {
-  title:
-    "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
-  description:
-    "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
+  ...pageMeta({
+    title: blogTitle,
+    description: blogDescription,
+    path: "/blog",
+    locale: "es_VE",
+  }),
   keywords: [
     "software development blog",
     "programming blog",
@@ -58,73 +65,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-  },
-  openGraph: {
-    title:
-      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
-    description:
-      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
-    url: `${config.url}/blog`,
-    siteName: "Luis Alejandro Martínez Faneyth",
-    images: preview().openGraph,
-    locale: "es_VE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title:
-      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
-    description:
-      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
-    images: preview().twitter,
-    site: `@${config.blog.twitter}`,
-    creator: `@${config.author.twitter}`,
-  },
-  icons: {
-    icon: [
-      {
-        url: `${config.url}/favicon/favicon.svg`,
-        type: "image/svg+xml",
-      },
-      {
-        url: `${config.url}/favicon/favicon.png`,
-        type: "image/png",
-      },
-      {
-        url: `${config.url}/favicon/favicon.ico`,
-        type: "image/x-icon",
-      },
-      {
-        url: `${config.url}/favicon/favicon-32x32.png`,
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: `${config.url}/favicon/favicon-16x16.png`,
-        sizes: "16x16",
-        type: "image/png",
-      },
-    ],
-    shortcut: `${config.url}/favicon/favicon.ico`,
-    apple: [
-      {
-        url: `${config.url}/favicon/apple-touch-icon.png`,
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: `${config.url}/favicon/safari-pinned-tab.svg`,
-        color: "#000000",
-      },
-    ],
-  },
-  manifest: `${config.url}/favicon/site.webmanifest`,
   alternates: {
     canonical: `${config.url}/blog`,
     types: {
@@ -165,10 +105,8 @@ export const metadata: Metadata = {
     sitemap: `${config.url}/sitemap.xml`,
 
     // Dublin Core metadata
-    "dcterms.title":
-      "Blog | Luis Alejandro - Desarrollo de Software & Insights de Trabajo Remoto",
-    "dcterms.description":
-      "Blog de desarrollo de software por ingeniero venezolano. Tutoriales de TypeScript, Python, Golang. Consejos de trabajo remoto, insights de código abierto y descubrimientos tecnológicos.",
+    "dcterms.title": blogTitle,
+    "dcterms.description": blogDescription,
     "dcterms.language": "es",
     "dcterms.type": "Collection",
     "dcterms.source": config.url,
@@ -180,13 +118,8 @@ export const metadata: Metadata = {
     "msapplication-tooltip": config.app_name,
     "msapplication-window": "width=1024;height=768",
     "msapplication-task": `name=${config.app_name};action-uri=${config.url};icon-uri=${config.url}/favicon/favicon.ico`,
-    "msapplication-square70x70logo": `${config.url}/favicon/mstile-70x70.png`,
-    "msapplication-square144x144logo": `${config.url}/favicon/mstile-144x144.png`,
-    "msapplication-square150x150logo": `${config.url}/favicon/mstile-150x150.png`,
-    "msapplication-square310x310logo": `${config.url}/favicon/mstile-310x310.png`,
-    "msapplication-wide310x150logo": `${config.url}/favicon/mstile-310x150.png`,
-    "msapplication-TileImage": `${config.url}/favicon/mstile-310x310.png`,
-    "msapplication-TileColor": "#f4f4f0",
+    "msapplication-TileImage": `${config.url}/favicon/mstile-144x144.png`,
+    "msapplication-TileColor": PAPER,
     "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
 
     // Facebook metadata
@@ -200,7 +133,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1.0,
   userScalable: true,
-  themeColor: "#f4f4f0",
+  themeColor: PAPER,
 };
 
 export default async function BlogLayout({

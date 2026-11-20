@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@lib/metadata";
+import { config } from "@constants/constants";
 import Link from "next/link";
 
 import { FaqList } from "@components/common/Site/FaqList";
@@ -16,11 +18,14 @@ import {
 } from "@lib/structuredData";
 
 export const metadata: Metadata = {
-  title: "About | Luis Alejandro",
-  description:
-    "Senior full-stack engineer in Venezuela with 16+ years shipping production web apps. Now at Shokworks, building AI products in TypeScript, React, Next.js, and Python.",
+  ...pageMeta({
+    title: "About | Luis Alejandro",
+    description:
+      "Senior full-stack engineer in Venezuela with 16+ years shipping production web apps. Now at Shokworks, building AI products in TypeScript, React, Next.js, and Python.",
+    path: "/about",
+  }),
   alternates: {
-    canonical: "https://luisalejandro.org/about",
+    canonical: `${config.url}/about`,
     types: {
       "text/markdown": [{ url: "/about.md", title: "Markdown twin" }],
     },

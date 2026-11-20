@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,11 +16,19 @@ const title = "Wholmaster case study | Luis Alejandro";
 const description =
   "Wholmaster is offline-first gym management software: desktop app, embedded database and biometric entrance control, in daily use at a gym for over a year.";
 
-const previewCard = preview({ ...SOCIAL_CARD, alt: "Wholmaster case study" });
+const previewCard: PreviewImage = {
+  ...SOCIAL_CARD,
+  alt: "Wholmaster case study",
+};
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/wholmaster",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "Wholmaster",
     "gym management software",
@@ -42,19 +50,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/wholmaster.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/wholmaster`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

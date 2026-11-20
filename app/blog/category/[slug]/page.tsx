@@ -13,6 +13,8 @@ import { SiteShell } from "@components/common/Site/SiteShell";
 import { config } from "@constants/constants";
 import { getBlogArchive } from "@lib/api";
 import { logError } from "@lib/logger";
+import { pageMeta } from "@lib/metadata";
+import { truncateAtWord } from "@lib/plainText";
 
 interface CategoryPageProps {
   params: Promise<{
@@ -24,7 +26,18 @@ export async function generateMetadata({
   params,
 }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
+  // The archive call is cached per build; a miss only costs the topic's name.
+  const topic = await getBlogArchive()
+    .then(({ archive }) => archive.topics.find((t) => t.slug === slug))
+    .catch(() => undefined);
   return {
+    ...(topic &&
+      pageMeta({
+        title: `${topic.title} | Blog de Luis Alejandro`,
+        description: truncateAtWord(topic.description, 160),
+        path: `/blog/category/${slug}`,
+        locale: "es_VE",
+      })),
     alternates: {
       canonical: `${config.url}/blog/category/${slug}`,
       types: {

@@ -4,9 +4,25 @@ import { config } from "@constants/constants";
 import { getPost } from "@lib/api";
 import { plainTeaser, truncateAtWord } from "@lib/plainText";
 
-export const alt = "Luis Alejandro · Field notes";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+/** The card's alt text is the post's title, so a preview reads as the post. */
+export async function generateImageMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPost(params.slug).catch(() => null);
+  return [
+    {
+      id: "card",
+      alt: post?.title || "Luis Alejandro · Field notes",
+      size,
+      contentType,
+    },
+  ];
+}
 
 export default async function OpengraphImage({
   params,

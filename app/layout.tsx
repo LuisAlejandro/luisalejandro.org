@@ -10,7 +10,7 @@ import {
   experience,
 } from "@constants/constants";
 
-import { preview } from "@lib/metadata";
+import { INK, PAPER, pageMeta } from "@lib/metadata";
 
 import CookieConsentWrapper from "@side-effects/CookieConsentWrapper";
 import MetaPixel from "@side-effects/MetaPixel";
@@ -22,8 +22,6 @@ const siteTitle =
 const siteDescription = `Venezuelan full-stack AI engineer with more than ${experience} years of remote experience in TypeScript, Python, Go and LLM integration. Open-source projects, agent tooling and a developer blog.`;
 
 export const metadata: Metadata = {
-  title: siteTitle,
-  description: siteDescription,
   keywords: [
     "Venezuelan software engineer",
     "remote full stack developer",
@@ -55,25 +53,9 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
   },
-  openGraph: {
-    title: siteTitle,
-    description: siteDescription,
-    url: config.url,
-    siteName: "Luis Alejandro Martínez Faneyth",
-    images: preview().openGraph,
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: preview().twitter,
-    site: `@${config.blog.twitter}`,
-    creator: `@${config.author.twitter}`,
-  },
+  ...pageMeta({ title: siteTitle, description: siteDescription, path: "/" }),
   icons: {
     icon: [
       {
@@ -111,7 +93,7 @@ export const metadata: Metadata = {
       {
         rel: "mask-icon",
         url: `${config.url}/favicon/safari-pinned-tab.svg`,
-        color: "#000000",
+        color: INK,
       },
     ],
   },
@@ -166,13 +148,8 @@ export const metadata: Metadata = {
     "msapplication-tooltip": config.app_name,
     "msapplication-window": "width=1024;height=768",
     "msapplication-task": `name=${config.app_name};action-uri=${config.url};icon-uri=${config.url}/favicon/favicon.ico`,
-    "msapplication-square70x70logo": `${config.url}/favicon/mstile-70x70.png`,
-    "msapplication-square144x144logo": `${config.url}/favicon/mstile-144x144.png`,
-    "msapplication-square150x150logo": `${config.url}/favicon/mstile-150x150.png`,
-    "msapplication-square310x310logo": `${config.url}/favicon/mstile-310x310.png`,
-    "msapplication-wide310x150logo": `${config.url}/favicon/mstile-310x150.png`,
-    "msapplication-TileImage": `${config.url}/favicon/mstile-310x310.png`,
-    "msapplication-TileColor": "#f8d983",
+    "msapplication-TileImage": `${config.url}/favicon/mstile-144x144.png`,
+    "msapplication-TileColor": PAPER,
     "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
 
     // Facebook metadata
@@ -186,7 +163,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1.0,
   userScalable: true,
-  themeColor: "#f8d983",
+  themeColor: PAPER,
 };
 
 export default async function RootLayout({

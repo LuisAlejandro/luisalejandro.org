@@ -8,7 +8,7 @@ import {
   CaseStudyBars,
   CaseStudyHero,
 } from "@components/common/Site/CaseStudyMedia";
-import { preview } from "@lib/metadata";
+import { type PreviewImage, pageMeta } from "@lib/metadata";
 
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -19,15 +19,20 @@ import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
 // The study's own screenshot, absolutely addressed so it survives any host.
-const pageImage = preview({
+const pageImage: PreviewImage = {
   url: `${config.url}/images/case-studies/wheeltheworld-hero.png`,
   alt: "Wheel The World CI/CD pipeline",
-});
+};
 
 export const metadata: Metadata = {
-  title: "CI/CD rebuild at Wheel The World | Luis Alejandro",
-  description:
-    "Rebuilding Wheel The World's CI/CD pipeline with Docker and GitHub Actions: deploys from 40 to 10 minutes, tests from 20 to 5 minutes, images from 1.5GB to 200MB.",
+  ...pageMeta({
+    title: "CI/CD rebuild at Wheel The World | Luis Alejandro",
+    description:
+      "Rebuilding Wheel The World's CI/CD pipeline with Docker and GitHub Actions: deploys from 40 to 10 minutes, tests from 20 to 5 minutes, images from 1.5GB to 200MB.",
+    path: "/case-studies/wheeltheworld",
+    image: pageImage,
+    type: "article",
+  }),
   keywords: [
     "Wheel the World",
     "accessible travel",
@@ -48,14 +53,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/wheeltheworld.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    type: "article",
-    images: pageImage.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: pageImage.twitter,
   },
 };
 

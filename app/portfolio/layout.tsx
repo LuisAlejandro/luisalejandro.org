@@ -4,13 +4,16 @@ import { config } from "@constants/constants";
 import { portfolioDescription } from "@lib/portfolio";
 
 import "@styles/tailwind.css";
-import { preview } from "@lib/metadata";
+import { PAPER, pageMeta } from "@lib/metadata";
 
 const title = "Project Archive | Luis Alejandro";
 
 export const metadata: Metadata = {
-  title,
-  description: portfolioDescription,
+  ...pageMeta({
+    title,
+    description: portfolioDescription,
+    path: "/portfolio",
+  }),
   alternates: {
     canonical: `${config.url}/portfolio`,
     types: {
@@ -29,22 +32,9 @@ export const metadata: Metadata = {
       "text/markdown": [{ url: "/portfolio.md", title: "Markdown twin" }],
     },
   },
-  openGraph: {
-    title,
-    description: portfolioDescription,
-    url: `${config.url}/portfolio`,
-    type: "website",
-    images: preview().openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description: portfolioDescription,
-    images: preview().twitter,
-  },
 };
 
-export const viewport: Viewport = { themeColor: "#f4f4f0" };
+export const viewport: Viewport = { themeColor: PAPER };
 
 export default function PortfolioLayout({
   children,

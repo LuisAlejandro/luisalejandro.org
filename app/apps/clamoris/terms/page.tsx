@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+
+import { config } from "@constants/constants";
+import { pageMeta } from "@lib/metadata";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Clamoris Terms of Use",
-  alternates: { canonical: "https://luisalejandro.org/apps/clamoris/terms" },
+  ...pageMeta({
+    title: "Clamoris Terms of Use",
+    description:
+      "The terms for using Clamoris, a private SEO research app operated by Luis Alejandro Martínez Faneyth.",
+    path: "/apps/clamoris/terms",
+  }),
+  alternates: { canonical: `${config.url}/apps/clamoris/terms` },
 };
 
 export default function ClamorisTermsPage() {

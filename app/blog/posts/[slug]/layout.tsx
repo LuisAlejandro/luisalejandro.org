@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { ADSENSE_PUBLISHER_ID, config } from "@constants/constants";
 import { getPost, getPublishedPostForTwin } from "@lib/api";
-import { SOCIAL_CARD } from "@lib/metadata";
+import { PAPER, SITE_NAME } from "@lib/metadata";
 import { plainTeaser, truncateAtWord } from "@lib/plainText";
 
 import "@styles/tailwind.css";
@@ -77,14 +77,6 @@ export async function generateMetadata({
   // Create canonical URL
   const canonicalUrl = `${config.url}/blog/posts/${slug}`;
 
-  // Optimize hero image
-  const heroImage = post.metadata?.hero;
-  const optimizedImageUrl = heroImage?.url
-    ? heroImage.url.startsWith("http")
-      ? heroImage.url
-      : `${config.url}${heroImage.url}`
-    : SOCIAL_CARD.url;
-
   // Generate article schema-friendly publication date
   const publishedDate = new Date(post.created_at);
   const publishedISO = publishedDate.toISOString();
@@ -152,24 +144,13 @@ export async function generateMetadata({
         "max-snippet": -1,
       },
     },
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: "black-translucent",
-      title: postTitle,
-    },
+    // og:image comes from ./opengraph-image.tsx, and X falls back to it, so
+    // neither preview format names an image here.
     openGraph: {
       title: seoTitle,
       description: optimizedDescription,
       url: canonicalUrl,
-      siteName: "Luis Alejandro - Blog de Desarrollo de Software",
-      images: [
-        {
-          url: optimizedImageUrl,
-          width: 1200,
-          height: 630,
-          alt: `${postTitle} - Insights de Desarrollo de Software por Luis Alejandro`,
-        },
-      ],
+      siteName: SITE_NAME,
       locale: "es_VE",
       type: "article",
       publishedTime: publishedISO,
@@ -185,52 +166,9 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: seoTitle,
       description: optimizedDescription,
-      images: [optimizedImageUrl],
       site: `@${config.blog.twitter}`,
       creator: `@${config.author.twitter}`,
     },
-    icons: {
-      icon: [
-        {
-          url: `${config.url}/favicon/favicon.svg`,
-          type: "image/svg+xml",
-        },
-        {
-          url: `${config.url}/favicon/favicon.png`,
-          type: "image/png",
-        },
-        {
-          url: `${config.url}/favicon/favicon.ico`,
-          type: "image/x-icon",
-        },
-        {
-          url: `${config.url}/favicon/favicon-32x32.png`,
-          sizes: "32x32",
-          type: "image/png",
-        },
-        {
-          url: `${config.url}/favicon/favicon-16x16.png`,
-          sizes: "16x16",
-          type: "image/png",
-        },
-      ],
-      shortcut: `${config.url}/favicon/favicon.ico`,
-      apple: [
-        {
-          url: `${config.url}/favicon/apple-touch-icon.png`,
-          sizes: "180x180",
-          type: "image/png",
-        },
-      ],
-      other: [
-        {
-          rel: "mask-icon",
-          url: `${config.url}/favicon/safari-pinned-tab.svg`,
-          color: "#000000",
-        },
-      ],
-    },
-    manifest: `${config.url}/favicon/site.webmanifest`,
     alternates: {
       canonical: canonicalUrl,
       types: feedAlternates,
@@ -282,26 +220,14 @@ export async function generateMetadata({
       "msapplication-tooltip": postTitle,
       "msapplication-window": "width=1024;height=768",
       "msapplication-task": `name=${postTitle};action-uri=${canonicalUrl};icon-uri=${config.url}/favicon/favicon.ico`,
-      "msapplication-square70x70logo": `${config.url}/favicon/mstile-70x70.png`,
-      "msapplication-square144x144logo": `${config.url}/favicon/mstile-144x144.png`,
-      "msapplication-square150x150logo": `${config.url}/favicon/mstile-150x150.png`,
-      "msapplication-square310x310logo": `${config.url}/favicon/mstile-310x310.png`,
-      "msapplication-wide310x150logo": `${config.url}/favicon/mstile-310x150.png`,
-      "msapplication-TileImage": `${config.url}/favicon/mstile-310x310.png`,
-      "msapplication-TileColor": "#f8d983",
+      "msapplication-TileImage": `${config.url}/favicon/mstile-144x144.png`,
+      "msapplication-TileColor": PAPER,
       "msapplication-config": `${config.url}/favicon/browserconfig.xml`,
 
       // Facebook metadata
       "fb:admins": config.author.fb_profile_id,
       "fb:profile_id": config.author.fb_profile_id,
       "fb:app_id": config.blog.fb_app_id,
-
-      // Additional SEO enhancements
-      "theme-color": "#f8d983",
-      "mobile-web-app-capable": "yes",
-      "apple-mobile-web-app-capable": "yes",
-      "apple-mobile-web-app-status-bar-style": "black-translucent",
-      "apple-mobile-web-app-title": postTitle,
 
       // Schema.org JSON-LD reference
       "schema-org": "BlogPosting",

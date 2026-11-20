@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@lib/metadata";
+import { config } from "@constants/constants";
 
 import { DocSection } from "@components/common/Site/DocSection";
 import { PageEnd } from "@components/common/Site/PageEnd";
@@ -8,11 +10,14 @@ import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
 export const metadata: Metadata = {
-  title: "Privacy | Luis Alejandro",
-  description:
-    "What this site stores: a brief when you send one, and anonymous analytics if you accept cookies. No newsletter, no advertising, no data sold.",
+  ...pageMeta({
+    title: "Privacy | Luis Alejandro",
+    description:
+      "What this site stores: a brief when you send one, and anonymous analytics if you accept cookies. No newsletter, no advertising, no data sold.",
+    path: "/privacy",
+  }),
   alternates: {
-    canonical: "https://luisalejandro.org/privacy",
+    canonical: `${config.url}/privacy`,
     types: {
       "text/markdown": [{ url: "/privacy.md", title: "Markdown twin" }],
     },

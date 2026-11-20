@@ -8,7 +8,7 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
-import { preview } from "@lib/metadata";
+import { type PreviewImage, pageMeta } from "@lib/metadata";
 
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -19,15 +19,20 @@ import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
 // The study's own screenshot, absolutely addressed so it survives any host.
-const pageImage = preview({
+const pageImage: PreviewImage = {
   url: `${config.url}/images/case-studies/expedia-hero.png`,
   alt: "Expedia API integration",
-});
+};
 
 export const metadata: Metadata = {
-  title: "Expedia API integration | Luis Alejandro",
-  description:
-    "Integrating the Expedia hotel database at Wheel The World: a Go content indexer, booking and shopping providers, and a matching algorithm.",
+  ...pageMeta({
+    title: "Expedia API integration | Luis Alejandro",
+    description:
+      "Integrating the Expedia hotel database at Wheel The World: a Go content indexer, booking and shopping providers, and a matching algorithm.",
+    path: "/case-studies/expedia",
+    image: pageImage,
+    type: "article",
+  }),
   keywords: [
     "Expedia",
     "travel technology",
@@ -48,14 +53,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/expedia.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    type: "article",
-    images: pageImage.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: pageImage.twitter,
   },
 };
 

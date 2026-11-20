@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { TopicCards } from "@components/Blog/TopicCards";
 import { DetailHead } from "@components/common/Site/DetailHead";
 import { SectionHeader } from "@components/common/Site/SectionHeader";
-import { preview } from "@lib/metadata";
+import { pageMeta } from "@lib/metadata";
 import { SiteFooter } from "@components/common/Site/SiteFooter";
 import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
@@ -14,9 +14,13 @@ import { logError } from "@lib/logger";
 
 // Metadata for the categories page
 export const metadata: Metadata = {
-  title: "Blog Categories | Luis Alejandro - Browse Posts by Topic",
-  description:
-    "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries organized by category.",
+  ...pageMeta({
+    title: "Blog Categories | Luis Alejandro - Browse Posts by Topic",
+    description:
+      "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries organized by category.",
+    path: "/blog/category",
+    locale: "es_VE",
+  }),
   keywords: [
     "blog categories",
     "software development topics",
@@ -35,25 +39,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  },
-  openGraph: {
-    title: "Blog Categories | Luis Alejandro - Browse Posts by Topic",
-    description:
-      "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries.",
-    url: `${config.url}/blog/category`,
-    siteName: "Luis Alejandro Martínez Faneyth",
-    images: preview().openGraph,
-    locale: "es_VE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog Categories | Luis Alejandro - Browse Posts by Topic",
-    description:
-      "Explore all blog categories and topics. Find posts about software development, programming tutorials, remote work insights, and technology discoveries.",
-    images: preview().twitter,
-    site: `@${config.blog.twitter}`,
-    creator: `@${config.author.twitter}`,
   },
   alternates: {
     canonical: `${config.url}/blog/category`,

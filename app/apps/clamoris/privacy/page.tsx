@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+
+import { config } from "@constants/constants";
+import { pageMeta } from "@lib/metadata";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Clamoris Privacy Policy",
-  alternates: { canonical: "https://luisalejandro.org/apps/clamoris/privacy" },
+  ...pageMeta({
+    title: "Clamoris Privacy Policy",
+    description:
+      "How Clamoris, a private SEO research app, handles Google Ads data and account information.",
+    path: "/apps/clamoris/privacy",
+  }),
+  alternates: { canonical: `${config.url}/apps/clamoris/privacy` },
 };
 
 export default function ClamorisPrivacyPage() {

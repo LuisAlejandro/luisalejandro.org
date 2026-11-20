@@ -9,7 +9,7 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
-import { preview } from "@lib/metadata";
+import { type PreviewImage, pageMeta } from "@lib/metadata";
 
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -32,15 +32,20 @@ const gallery = [
 ];
 
 // The study's own screenshot, absolutely addressed so it survives any host.
-const pageImage = preview({
+const pageImage: PreviewImage = {
   url: `${config.url}/images/case-studies/soleit-hero.png`,
   alt: "Soleit desktop app",
-});
+};
 
 export const metadata: Metadata = {
-  title: "Soleit desktop app | Luis Alejandro",
-  description:
-    "An Electron and Ionic React desktop app for biomechanical diagnosis: REST API, hardware driver, and 3D insole modelling for the Soleit startup.",
+  ...pageMeta({
+    title: "Soleit desktop app | Luis Alejandro",
+    description:
+      "An Electron and Ionic React desktop app for biomechanical diagnosis: REST API, hardware driver, and 3D insole modelling for the Soleit startup.",
+    path: "/case-studies/soleit",
+    image: pageImage,
+    type: "article",
+  }),
   keywords: [
     "Soleit",
     "kinesiology",
@@ -61,14 +66,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/soleit.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    type: "article",
-    images: pageImage.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: pageImage.twitter,
   },
 };
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,14 +16,19 @@ const title = "Shoky Enterprise Harness case study | Luis Alejandro";
 const description =
   "Shoky is a reusable meta-workspace for multi-repo AI-first teams: agent workflow skills, per-repo memory and a generated container stack, used by ~25 engineers.";
 
-const previewCard = preview({
+const previewCard: PreviewImage = {
   ...SOCIAL_CARD,
   alt: "Shoky Enterprise Harness case study",
-});
+};
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/shoky",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "Shoky Enterprise Harness",
     "agentic workspace",
@@ -44,19 +49,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/shoky.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/shoky`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

@@ -9,7 +9,7 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
-import { preview } from "@lib/metadata";
+import { type PreviewImage, pageMeta } from "@lib/metadata";
 
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -31,15 +31,20 @@ const gallery = [
 ];
 
 // The study's own screenshot, absolutely addressed so it survives any host.
-const pageImage = preview({
+const pageImage: PreviewImage = {
   url: `${config.url}/images/case-studies/canaima-hero.jpg`,
   alt: "Canaima GNU/Linux",
-});
+};
 
 export const metadata: Metadata = {
-  title: "Canaima GNU/Linux case study | Luis Alejandro",
-  description:
-    "Leading development of Canaima GNU/Linux, a Debian-based distribution built for Venezuelan public administration, schools and universities.",
+  ...pageMeta({
+    title: "Canaima GNU/Linux case study | Luis Alejandro",
+    description:
+      "Leading development of Canaima GNU/Linux, a Debian-based distribution built for Venezuelan public administration, schools and universities.",
+    path: "/case-studies/canaima",
+    image: pageImage,
+    type: "article",
+  }),
   keywords: [
     "Canaima GNU/Linux",
     "Linux distribution",
@@ -59,14 +64,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/canaima.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    type: "article",
-    images: pageImage.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: pageImage.twitter,
   },
 };
 

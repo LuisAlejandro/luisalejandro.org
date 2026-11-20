@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,11 +16,16 @@ const title = "Mash case study | Luis Alejandro";
 const description =
   "Mash is a desktop workspace for AI-assisted coding: a terminal, editor and coding agents in one app with every tool pinned. Built after Cursor blocked Venezuelan IPs.";
 
-const previewCard = preview({ ...SOCIAL_CARD, alt: "Mash case study" });
+const previewCard: PreviewImage = { ...SOCIAL_CARD, alt: "Mash case study" };
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/mash",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "Mash",
     "terminal workspace",
@@ -42,19 +47,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/mash.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/mash`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

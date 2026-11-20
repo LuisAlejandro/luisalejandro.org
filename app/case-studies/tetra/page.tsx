@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,14 +16,19 @@ const title = "Tetra Incubator system case study | Luis Alejandro";
 const description =
   "Tetra is a two-host agent incubator: one machine researches and synthesises, the other implements through a six-stage pipeline, and Discord is the bus where a single human approves the work.";
 
-const previewCard = preview({
+const previewCard: PreviewImage = {
   ...SOCIAL_CARD,
   alt: "Tetra Incubator system case study",
-});
+};
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/tetra",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "Tetra Incubator system",
     "agent incubator",
@@ -44,19 +49,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/tetra.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/tetra`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

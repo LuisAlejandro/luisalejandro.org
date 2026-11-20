@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,14 +16,19 @@ const title = "The Writing Council case study | Luis Alejandro";
 const description =
   "A writing system that turns a one-line premise into a published, sourced article: specialized agents for research, drafting, fact-grounding and a de-AI editing pass, then CMS publishing and a social queue.";
 
-const previewCard = preview({
+const previewCard: PreviewImage = {
   ...SOCIAL_CARD,
   alt: "The Writing Council case study",
-});
+};
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/blog-system",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "multi-agent writing",
     "editorial pipeline",
@@ -43,19 +48,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/blog-system.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/blog-system`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

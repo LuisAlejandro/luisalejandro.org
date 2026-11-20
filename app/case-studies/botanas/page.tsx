@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { config } from "@constants/constants";
 
-import { SOCIAL_CARD, preview } from "@lib/metadata";
+import { type PreviewImage, SOCIAL_CARD, pageMeta } from "@lib/metadata";
 import { CaseStudyGlance } from "@components/common/Site/CaseStudyGlance";
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -16,14 +16,19 @@ const title = "Botanas Benchmark case study | Luis Alejandro";
 const description =
   "An automated trading research loop over Freqtrade: hyperopt in five walk-forward passes, a Calmar-based overfit gate, nine historical stress regimes and an agent pair that proposes each change. It traded real money.";
 
-const previewCard = preview({
+const previewCard: PreviewImage = {
   ...SOCIAL_CARD,
   alt: "Botanas Benchmark case study",
-});
+};
 
 export const metadata: Metadata = {
-  title,
-  description,
+  ...pageMeta({
+    title,
+    description,
+    path: "/case-studies/botanas",
+    image: previewCard,
+    type: "article",
+  }),
   keywords: [
     "Botanas Benchmark",
     "Freqtrade",
@@ -44,19 +49,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/botanas.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${config.url}/case-studies/botanas`,
-    type: "article",
-    images: previewCard.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: previewCard.twitter,
   },
 };
 

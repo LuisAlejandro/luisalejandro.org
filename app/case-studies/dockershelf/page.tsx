@@ -9,7 +9,7 @@ import {
   CaseStudyHero,
   CaseStudyVideo,
 } from "@components/common/Site/CaseStudyMedia";
-import { preview } from "@lib/metadata";
+import { type PreviewImage, pageMeta } from "@lib/metadata";
 
 import { CaseStudyHead } from "@components/common/Site/CaseStudyHead";
 import { CaseStudySection } from "@components/common/Site/CaseStudySection";
@@ -20,15 +20,20 @@ import { SiteHeader } from "@components/common/Site/SiteHeader";
 import { SiteShell } from "@components/common/Site/SiteShell";
 
 // The study's own screenshot, absolutely addressed so it survives any host.
-const pageImage = preview({
+const pageImage: PreviewImage = {
   url: `${config.url}/images/case-studies/dockershelf-hero.png`,
   alt: "Dockershelf images",
-});
+};
 
 export const metadata: Metadata = {
-  title: "Dockershelf | Luis Alejandro",
-  description:
-    "Dockershelf: Debian-based Docker images built from scratch, tested weekly in GitHub Actions, and roughly four times smaller than the official ones.",
+  ...pageMeta({
+    title: "Dockershelf | Luis Alejandro",
+    description:
+      "Dockershelf: Debian-based Docker images built from scratch, tested weekly in GitHub Actions, and roughly four times smaller than the official ones.",
+    path: "/case-studies/dockershelf",
+    image: pageImage,
+    type: "article",
+  }),
   keywords: [
     "Dockershelf",
     "Docker images",
@@ -49,14 +54,6 @@ export const metadata: Metadata = {
         { url: "/case-studies/dockershelf.md", title: "Markdown twin" },
       ],
     },
-  },
-  openGraph: {
-    type: "article",
-    images: pageImage.openGraph,
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: pageImage.twitter,
   },
 };
 
