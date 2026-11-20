@@ -1,6 +1,8 @@
 {
-    "name": "Luis Alejandro Blog",
-    "short_name": "Luis Alejandro Blog",
+    "name": "Luis Alejandro",
+    "short_name": "Luis Alejandro",
+    "description": "Full-stack AI engineer. Portfolio, case studies and blog.",
+    "start_url": "/",
     "icons": [
         {
             "src": "/favicon/android-chrome-192x192.png",
@@ -10,10 +12,11 @@
         {
             "src": "/favicon/android-chrome-512x512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any maskable"
         }
     ],
-    "theme_color": "#f8d983",
-    "background_color": "#f8d983",
+    "theme_color": "#f4f4f0",
+    "background_color": "#f4f4f0",
     "display": "standalone"
 }
