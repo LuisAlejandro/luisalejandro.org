@@ -1,6 +1,6 @@
 # luisalejandro.org
 
-Current version: 4.0.1
+Current version: 4.0.2
 
 ## Made with 💖 and 🍔
 

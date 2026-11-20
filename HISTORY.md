@@ -1,6 +1,32 @@
 # Changelog
 
 
+## 4.0.2 (2026-11-20)
+
+### Added
+
+* An ink-and-paper social card for link previews. [Luis Alejandro Martínez Faneyth]
+
+
+### Changed
+
+* Draw the favicons and tiles in ink and paper. [Luis Alejandro Martínez Faneyth]
+
+* Share a vortex card, and keep two alternatives. [Luis Alejandro Martínez Faneyth]
+
+
+### Fixed
+
+* Give every page its own preview, in the site's own colours. [Luis Alejandro Martínez Faneyth]
+
+* One preview image per page, and it is no longer the old banner. [Luis Alejandro Martínez Faneyth]
+
+
+### Removed
+
+* Retire the gold-era banner. [Luis Alejandro Martínez Faneyth]
+
+
 ## 4.0.1 (2026-11-19)
 
 ### Added
