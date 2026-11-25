@@ -24,6 +24,7 @@ const siteTitle =
 const siteDescription = `Venezuelan full-stack AI engineer with more than ${experience} years of remote experience in TypeScript, Python, Go and LLM integration. Open-source projects, agent tooling and a developer blog.`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(config.url),
   keywords: [
     "Venezuelan software engineer",
     "remote full stack developer",
