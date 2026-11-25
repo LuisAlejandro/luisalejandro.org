@@ -1,6 +1,19 @@
 # Changelog
 
 
+## 4.0.3 (2026-11-25)
+
+### Fixed
+
+* Keep npm ci from dirtying the tree. [Luis Alejandro Martínez Faneyth]
+
+* Resolve relative metadata against the canonical origin. [Luis Alejandro Martínez Faneyth]
+
+* Accept a bearer token on the revalidate route. [Luis Alejandro Martínez Faneyth]
+
+* Send the fb tags Facebook actually reads. [Luis Alejandro Martínez Faneyth]
+
+
 ## 4.0.2 (2026-11-20)
 
 ### Added
