@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 4.0.4 (2026-11-26)
+
+### Added
+
+* Refresh a post's cache when Postiz publishes it. [Luis Alejandro Martínez Faneyth]
+
+
 ## 4.0.3 (2026-11-25)
 
 ### Fixed
