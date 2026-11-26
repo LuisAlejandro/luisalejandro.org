@@ -28,7 +28,8 @@
     "agent-readiness:smoke": "bash scripts/agent-readiness-smoke.sh",
     "check:blog": "tsx lib/blogArchive.check.ts",
     "check:portfolio": "tsx lib/portfolio.check.ts",
-    "check:flatlay": "tsx lib/flatLay.check.ts"
+    "check:flatlay": "tsx lib/flatLay.check.ts",
+    "check:postiz": "tsx lib/postizWebhook.check.ts"
   },
   "dependencies": {
     "@aws-sdk/client-sesv2": "^3.1106.0",
