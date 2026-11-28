@@ -39,7 +39,7 @@ Post-bump hooks: `.bumpversion.cfg` → `[maintainer-tools]`.
 ## PR CI (pointers)
 
 - **Pull Request** — `.github/workflows/pr.yml` on PRs to `develop`.
-- **Cursor CI fixes** — **maintainer-tools** `docs/cursor-pr-ci-automation.md`. `rosey-lfg-quality` / `rosey-pr` do not merge or fix CI.
+- **Winston PR maintenance** — **maintainer-tools** `docs/winston-pr-maintenance.md`. `rosey-lfg-quality` / `rosey-pr` do not merge or fix CI.
 
 ## Before `make release-*`
 

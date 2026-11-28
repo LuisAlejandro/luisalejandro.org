@@ -76,7 +76,7 @@ Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, qua
 
 ## CI
 
-Pull requests to `develop` run a Docker build and production build plus a Semgrep **Code Quality** job in `.github/workflows/pr.yml`. Auto-approve and merge run in `.github/workflows/pr-auto-merge.yml` after the **Pull Request** workflow succeeds.
+Pull requests to `develop` run a Docker build and production build plus a Semgrep **Code Quality** job in `.github/workflows/pr.yml`. Winston PR maintenance approves eligible PRs and arms GitHub auto-merge after **Pull Request** succeeds. A repair push retriggers CI as `pull_request` `synchronize`.
 
 ## Releases
 
