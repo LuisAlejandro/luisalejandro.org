@@ -39,7 +39,7 @@ jobs:
             echo "present=yes" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Comment @cursor fix on open PRs conflicting with the pushed branch
+      - name: Comment @winston fix on open PRs conflicting with the pushed branch
         if: "${{ steps.token.outputs.present == 'yes' }}"
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
@@ -124,7 +124,7 @@ jobs:
                 owner,
                 repo,
                 issue_number: pull.number,
-                body: `${key} @cursor fix conflicts against \`${base}\``,
+                body: `${key} @winston fix conflicts against \`${base}\``,
               });
               console.log(`nudged ${label} @ ${pull.headRefOid.slice(0, 8)}`);
             }
